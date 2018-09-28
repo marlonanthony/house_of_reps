@@ -26,6 +26,9 @@ const ProfileSchema = new Schema({
   },
   venues: [
     {
+      title: {
+        type: String
+      },
       location: {
         type: String,
         required: true 
@@ -61,6 +64,9 @@ const ProfileSchema = new Schema({
     mixcloud: {
       type: String 
     },
+    youtube: {
+      type: String
+    }
   },
   date: {
     type: Date,

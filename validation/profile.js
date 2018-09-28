@@ -54,6 +54,11 @@ module.exports = function validateProfileInput(data) {
       errors.mixcloud = 'Not a valid URL'
     }
   }
+  if(!isEmpty(data.youtube)) {
+    if(!Validator.isURL(data.youtube)) {
+      errors.youtube = 'Not a valid URL'
+    }
+  }
 
   return {
     errors,

@@ -1,4 +1,5 @@
-.fade-pic {
+/* .fade-pic {
+  
   animation-name: fade-pic; 
   animation-iteration-count: 1;
   animation-duration: 3.5s;
@@ -7,4 +8,11 @@
 @keyframes fade-pic {
   from { opacity: 0; }
   to { opacity: 1; }
+} */
+/* img {
+  width: 100%;
 }
+
+.Landing {
+ 
+} */
