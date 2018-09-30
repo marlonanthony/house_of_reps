@@ -12,7 +12,7 @@ class ProfileItem extends Component {
       <div className='card card-body bg-light mb-3'>
         <div className="row">
           <div>
-            <img src={ profile.user.avatar } alt="avatar" className="rounded-circle"/>
+            <img src={ profile.user.avatar } alt={profile.user.name} className="rounded-circle" />
           </div>
           <div className="col-lg-6 col-md-4 col-8 mr-auto">
             <h3>{ profile.user.name }</h3>

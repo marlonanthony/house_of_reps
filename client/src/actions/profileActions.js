@@ -25,12 +25,10 @@ export const getCurrentProfile = () => dispatch => {
 // Get profile by handle
 export const getProfileByHandle = (handle) => dispatch => {
   dispatch(setProfileLoading())
-  axios.get(`/api/profile/handle/${handle}`).then(res => {
-    dispatch({
-      type: GET_PROFILE,
-      payload: res.data 
-    })
-  })
+  axios.get(`/api/profile/handle/${handle}`).then(res => dispatch({
+    type: GET_PROFILE,
+    payload: res.data 
+  }))
   .catch(err => dispatch({
     type: GET_PROFILE,
     payload: null  
@@ -52,7 +50,7 @@ export const createProfile = (profileData, history) => dispatch => {
 // Add Venue
 export const addVenue = (venueData, history) => dispatch => {
   axios.post('/api/profile/venues', venueData).then(res => history.push('/dashboard'))
-  .catch(err => dispatch => ({
+  .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
   }))
@@ -83,7 +81,7 @@ export const getProfiles = () => dispatch => {
 // Delete account & profile
 export const deleteAccount = () => dispatch => {
   if(window.confirm('Are you sure? This can not be undone')) {
-    axios.delete('/api/profile').then(res => dispatch => ({
+    axios.delete('/api/profile').then(res => dispatch({
       type: SET_CURRENT_USER,
       payload: {} 
     }))

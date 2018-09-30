@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
+import { setCurrentUser, logoutUser } from './actions/authActions'
+import { clearCurrentProfile } from './actions/profileActions';
 import { Provider } from 'react-redux' 
 import store from './store' 
 
-
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css';
 import PrivateRoute from './components/common/PrivateRoute'
 import AppNavbar from './components/layout/AppNavbar'
 import Landing from './components/layout/Landing'
@@ -20,8 +19,9 @@ import EditProfile from './components/edit-profile/EditProfile'
 import AddVenue from './components/add-credentials/AddVenue'
 import Profiles from './components/profiles/Profiles'
 import Profile from './components/profile/Profile'
-import { setCurrentUser, logoutUser } from './actions/authActions'
-import { clearCurrentProfile } from './actions/profileActions';
+import Posts from './components/posts/Posts'
+import Post from './components/post/Post'
+import './App.css';
 
 // Check for token
 if(localStorage.jwtToken) {
@@ -67,10 +67,16 @@ class App extends Component {
                 <PrivateRoute exact path='/add-venue' component={ AddVenue } />
               </Switch>
               <Switch>
-                <PrivateRoute exact path='/djs' component={ Profiles } />
+                <PrivateRoute exact path='/feed' component={ Posts } />
               </Switch>
               <Switch>
                 <PrivateRoute exact path='/profile/:handle' component={ Profile } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/djs' component={ Profiles } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/post/:id' component={ Post } />
               </Switch>
             </div>
             <Footer />

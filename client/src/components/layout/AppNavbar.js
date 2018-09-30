@@ -38,7 +38,9 @@ class AppNavbar extends Component {
     
     const authLinks = (
       <NavItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Link style={{ color: '#007bff', paddingRight: '20px' }} className='nav-link' to='/feed'>Post Feed</Link>
         <Link style={{ color: '#007bff', paddingRight: '20px' }} className='nav-link' to='/dashboard'>DashBoard</Link>
+        <Link style={{ textDecoration: 'none', paddingRight: '20px' }} to='/djs'>DJs</Link>
         <Link onClick={this.onLogoutClick} style={{ textDecoration: 'none' }} to='#'>
           <img src={user.avatar} alt={user.name} 
           className='rounded-circle'
@@ -56,13 +58,10 @@ class AppNavbar extends Component {
     )
 
     return (
-      <div>
         <Navbar color='dark' dark expand='lg'>
           <Container>
-            <div>
-              <NavbarBrand><Link style={{ textDecoration: 'none' }} to='/'>House of Reps</Link></NavbarBrand>
-              <Link to='/djs' style={{ textDecoration: 'none' }}>DJs</Link>
-            </div>
+            <NavbarBrand><Link style={{ textDecoration: 'none' }} to='/'>House of Reps</Link></NavbarBrand>
+              {/* <Link to='/djs' style={{ textDecoration: 'none' }}>DJs</Link> */}
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>
@@ -71,7 +70,6 @@ class AppNavbar extends Component {
             </Collapse>
           </Container>
         </Navbar>
-      </div>
     )
   }
 }
