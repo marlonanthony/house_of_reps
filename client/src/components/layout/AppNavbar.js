@@ -53,7 +53,7 @@ class AppNavbar extends Component {
     const guestLinks = (
       <NavItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Link className='nav-link' style={{ textDecoration: 'none', color: '#007bff', paddingRight: '20px' }} to='/login'>Login</Link>
-        <Link className='nav-link' style={{ textDecoration: 'none', color: '#007bff'}} to='/register'>Register</Link>
+        <Link className='nav-link' style={{ textDecoration: 'none', color: '#007bff'}} to='/register'>Sign Up</Link>
       </NavItem>
     )
 

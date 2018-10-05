@@ -12,6 +12,12 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
+  stageName: {
+    type: String 
+  },
+  phoneNumber: {
+    type: String 
+  },
   company: {
     type: String
   },
@@ -22,6 +28,9 @@ const ProfileSchema = new Schema({
     type: String
   },
   bio: {
+    type: String
+  },
+  style: {
     type: String
   },
   venues: [

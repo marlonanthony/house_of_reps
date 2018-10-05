@@ -12,7 +12,7 @@ class Venues extends Component {
   render() {
     const venues = this.props.venues.map(venue => (
       <tr key={venue._id}>
-        <td><Moment format='YYYY/MM/DD'>{venue.date}</Moment></td>
+        <td><Moment format='MM/DD/YYYY'>{venue.date}</Moment></td>
         <td>{venue.title}</td>
         <td>{venue.location}</td>
         <td><button onClick={ this.onDeleteClick.bind(this, venue._id) } className="btn btn-danger">Delete</button></td>

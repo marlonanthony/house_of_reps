@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Spinner from '../common/Spinner'
 import ProfileItem from './ProfileItem'
 import { getProfiles } from '../../actions/profileActions'
+import ProfileCards from '../profile-cards/ProfileCards'
 
 
 class Profiles extends Component {
@@ -35,6 +36,7 @@ class Profiles extends Component {
               <h1 className="display-4 text-center">DJ Profiles</h1>
               <p className="lead text-center">Connect with other DJ's</p>
               { profileItems }
+              <ProfileCards />
             </div>
           </div>
         </div>

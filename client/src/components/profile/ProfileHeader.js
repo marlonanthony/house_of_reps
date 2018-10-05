@@ -8,7 +8,7 @@ class ProfileHeader extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="card card-body bg-info text-white mb-3">
+          <div className="card card-body bg-info text-white mb-3"> 
             <div className="row">
               <div className="col-4 col-md-3 m-auto">
                 <img className="rounded-circle" src={profile.user.avatar} alt="avatar" />
@@ -17,45 +17,59 @@ class ProfileHeader extends Component {
             <div className="text-center">
               <h1 className="display-4 text-center">{profile.user.name}</h1>
               {isEmpty(profile.location) ? null : (<p>{profile.location}</p>)}
+              {isEmpty(profile.stageName) ? null : (<p>{profile.stageName}</p>)}
               <p>
                 {isEmpty(profile.website) ? null : (
                   <a className="text-white p-2" href={profile.website} target='_blank'>
-                    <i className="fas fa-globe fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px' }} src={require('../../img/globe.png')} />
+                    {/* <i className="fas fa-globe fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.twitter) ? null : (
                   <a className="text-white p-2" href={profile.social.twitter} target='_blank'>
-                    <i className="fab fa-twitter fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px' }} src={require('../../img/twit.png')} />
+                    {/* <i className="fab fa-twitter fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.facebook) ? null : (
                   <a className="text-white p-2" href={profile.social.facebook} target='_blank'>
-                    <i className="fab fa-facebook fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px' }} src={require('../../img/fb3.png')} />
+                    {/* <i className="fab fa-facebook fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.instagram) ? null : (
                   <a className="text-white p-2" href={profile.social.instagram} target='_blank'>
-                    <i className="fab fa-instagram fa-2x"></i>
+                    <img style={{ width: '45px', height: '45px' }} src={require('../../img/ig2.png')} />
+                    {/* <i className="fab fa-instagram fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.youtube) ? null : (
                   <a className="text-white p-2" href={profile.social.youtube} target='_blank'>
-                    <i className="fab fa-youtube fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px' }} src={require('../../img/yt2.png')} />
+                    {/* <i className="fab fa-youtube fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.soundcloud) ? null : (
                   <a className="text-white p-2" href={profile.social.soundcloud} target='_blank'>
-                    <i className="fab fa-soundcloud fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px' }} src={require('../../img/sc.png')} />
+                    {/* <i className="fab fa-soundcloud fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.spotify) ? null : (
                   <a className="text-white p-2" href={profile.social.spotify} target='_blank'>
-                    <i className="fab fa-spotify fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px' }} src={require('../../img/spotify.png')} />
+                    {/* <i className="fab fa-spotify fa-2x"></i> */}
                   </a>
                 )}
                 {isEmpty(profile.social && profile.social.mixcloud) ? null : (
                   <a className="text-white p-2" href={profile.social.mixcloud} target='_blank'>
-                    <i className="fab fa-mixcloud fa-2x"></i>
+                    <img style={{ width: '40px', height: '40px', borderRadius: '50%' }} src={require('../../img/mixcloud.png')} />
+                    {/* <i className="fab fa-mixcloud fa-2x"></i> */}
+                  </a>
+                )}
+                {isEmpty(profile.social && profile.social.linkedin) ? null : (
+                  <a className="text-white p-2" href={profile.social.linkedin} target='_blank'>
+                    <img style={{ width: '40px', height: '40px', borderRadius: '50%' }} src={require('../../img/linkedin.png')} />
                   </a>
                 )}
               </p>

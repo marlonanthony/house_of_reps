@@ -17,8 +17,9 @@ class ProfileItem extends Component {
           <div className="col-lg-6 col-md-4 col-8 mr-auto">
             <h3>{ profile.user.name }</h3>
             <p>
-              {isEmpty(profile.location) ? null : (<span>{profile.location}</span>)}
+              {isEmpty(profile.stageName) ? null : (<span>{profile.stageName}</span>)}
             </p>
+            {console.log(profile)}
             <Link to={`/profile/${profile.handle}`} className='btn btn-info'>
               View Profile 
             </Link>

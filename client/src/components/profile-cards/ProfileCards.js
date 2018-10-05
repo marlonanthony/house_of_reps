@@ -18,7 +18,7 @@ class ProfileCards extends Component {
             src="https://github.com/marlonanthony/portfolio/blob/master/images/profile.png?raw=true" 
             alt="Profile Pic"/>
           <h3>Marlon Decosta</h3>
-          <p>Edit Profile</p>
+          <p>View Profile</p>
           <p>DJ Pickles</p>
         </div>
       </div>

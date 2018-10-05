@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import TextFieldGroup from '../common/TextFieldGroup'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
@@ -13,10 +13,13 @@ class EditProfile extends Component {
   state = {
     displaySocialInputs: false,
     handle: '',
+    stageName: '',
+    phoneNumber: '',
     company: '',
     website: '',
     location: '',
     bio: '',
+    style: '',
     twitter: '',
     instagram: '',
     facebook: '',
@@ -41,10 +44,13 @@ class EditProfile extends Component {
       const profile = nextProps.profile.profile
 
       // If profile field doesnt exist, make empty string
+      profile.stageName = !isEmpty(profile.stageName) ? profile.stageName : ''
+      profile.phoneNumber = !isEmpty(profile.phoneNumber) ? profile.phoneNumber : ''
       profile.company = !isEmpty(profile.company) ? profile.company : ''
       profile.website = !isEmpty(profile.website) ? profile.website : ''
       profile.location = !isEmpty(profile.location) ? profile.location : ''
       profile.bio = !isEmpty(profile.bio) ? profile.bio : ''
+      profile.style = !isEmpty(profile.style) ? profile.style : ''
       profile.social = !isEmpty(profile.social) ? profile.social : {} 
       profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : ''
       profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : ''
@@ -58,10 +64,13 @@ class EditProfile extends Component {
       // Set component field state
       this.setState({
         handle: profile.handle,
+        stageName: profile.stageName,
+        phoneNumber: profile.phoneNumber,
         company: profile.company,
         website: profile.website,
         location: profile.location,
         bio: profile.bio,
+        style: profile.style,
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
@@ -83,10 +92,13 @@ class EditProfile extends Component {
     
     const profileData = {
       handle: this.state.handle,
+      stageName: this.state.stageName,
+      phoneNumber: this.state.phoneNumber,
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
       bio: this.state.bio,
+      style: this.state.style,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
@@ -103,6 +115,33 @@ class EditProfile extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state 
+
+    // Select options for dj style
+    const options = [
+      { label: "What's Your DJ Style?", value: 0 },
+      { label: 'MC', value: 'MC' },
+      { label: 'Tour', value: 'Tour' },
+      { label: 'Battle', value: 'Battle' },
+      { label: 'Hybrid', value: 'Hybrid' },
+      { label: 'Novice', value: 'Novice' },
+      { label: 'Digger', value: 'Digger' },
+      { label: 'Mobile DJ', value: 'Mobile DJ' },
+      { label: 'Live Remix', value: 'Live Remix' },
+      { label: 'Producer DJ', value: 'Producer DJ' },
+      { label: 'Turntablism', value: 'Turntablism' },
+      { label: 'Program Guru', value: 'Program Guru' },
+      { label: 'Mad Scientist', value: 'Mad Scientist' },
+      { label: 'Radio Mixshow', value: 'Radio Mixshow' },
+      { label: 'Night Club Mix', value: 'Night Club Mix' },
+      { label: 'Video DJ "VDJ"', value: 'Video DJ "VDJ"' },
+      { label: 'Bedroom Bandit', value: 'Bedroom Bandit' },
+      { label: 'On air Personality', value: 'On air Personality' },
+      { label: 'House & Electronic', value: 'House & Electronic' },
+      { label: 'Night Club Scratch', value: 'Night Club Scratch' },
+      { label: 'Portable Scratcher', value: 'Portable Scratcher' },
+      { label: 'Audio Visual Artist', value: 'Audio Visual Artist' },
+      { label: 'I Got My Own Swag Bruh', value: 'I Got My Own Swag Bruh' }
+    ]
 
     let socialInputs
 
@@ -177,20 +216,38 @@ class EditProfile extends Component {
       )
     }
     return (
-      <div className='create-profile'>
+      <div className='edit-profile'>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+            <Link to='/dashboard' className='btn btn-light'>Go Back</Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={ this.onSubmit }>
                 <TextFieldGroup 
-                  placeholder='* Profile Handle'
+                  placeholder='* Profile Username'
                   name='handle'
                   value={ this.state.handle } 
                   onChange={ this.onChange } 
                   error={ errors.handle } 
-                  info='A unique handle for your profile URL. Your full name, company name, nickname, etc.'
+                  info='A unique username for your profile URL. Your full name, company name, nickname, etc.'
+                />
+                <TextFieldGroup 
+                  placeholder='A man has no name'
+                  name='stageName'
+                  value={ this.state.stageName }
+                  onChange={ this.onChange }
+                  error={ errors.stageName }
+                  info="What's your stage name?"
+                />
+                <SelectListGroup 
+                  name='style'
+                  value={ this.state.style }
+                  onChange={ this.onChange }
+                  error={ errors.style }
+                  options={options}
+                  error={errors.style}
+                  info='What style best defines you?'
                 />
                 <TextFieldGroup 
                   placeholder='Company'

@@ -5,6 +5,7 @@ import PostForm from './PostForm'
 import Spinner from '../common/Spinner' 
 import { getPosts } from '../../actions/postActions'
 import PostFeed from './PostFeed'
+import ProfileCards from '../profile-cards/ProfileCards'
 
 class Posts extends Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
+              <ProfileCards />
               <PostForm />
               {postContent}
             </div>

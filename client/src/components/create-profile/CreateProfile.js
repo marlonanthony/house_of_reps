@@ -12,10 +12,13 @@ class CreateProfile extends Component {
   state = {
     displaySocialInputs: false,
     handle: '',
+    stageName: '',
+    phoneNumber: '',
     company: '',
     website: '',
     location: '',
     bio: '',
+    style: '',
     twitter: '',
     instagram: '',
     facebook: '',
@@ -42,10 +45,13 @@ class CreateProfile extends Component {
     
     const profileData = {
       handle: this.state.handle,
+      stageName: this.state.stageName,
+      phoneNumber: this.state.phoneNumber,
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
       bio: this.state.bio,
+      style: this.state.style,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
@@ -62,6 +68,33 @@ class CreateProfile extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state 
+
+    // Select options for dj style
+    const options = [
+      { label: "What's Your DJ Style?", value: 0 },
+      { label: 'MC', value: 'MC' },
+      { label: 'Tour', value: 'Tour' },
+      { label: 'Battle', value: 'Battle' },
+      { label: 'Hybrid', value: 'Hybrid' },
+      { label: 'Novice', value: 'Novice' },
+      { label: 'Digger', value: 'Digger' },
+      { label: 'Mobile DJ', value: 'Mobile DJ' },
+      { label: 'Live Remix', value: 'Live Remix' },
+      { label: 'Producer DJ', value: 'Producer DJ' },
+      { label: 'Turntablism', value: 'Turntablism' },
+      { label: 'Program Guru', value: 'Program Guru' },
+      { label: 'Mad Scientist', value: 'Mad Scientist' },
+      { label: 'Radio Mixshow', value: 'Radio Mixshow' },
+      { label: 'Night Club Mix', value: 'Night Club Mix' },
+      { label: 'Video DJ "VDJ"', value: 'Video DJ "VDJ"' },
+      { label: 'Bedroom Bandit', value: 'Bedroom Bandit' },
+      { label: 'On air Personality', value: 'On air Personality' },
+      { label: 'House & Electronic', value: 'House & Electronic' },
+      { label: 'Night Club Scratch', value: 'Night Club Scratch' },
+      { label: 'Portable Scratcher', value: 'Portable Scratcher' },
+      { label: 'Audio Visual Artist', value: 'Audio Visual Artist' },
+      { label: 'I Got My Own Swag Bruh', value: 'I Got My Own Swag Bruh' }
+    ]
 
     let socialInputs
 
@@ -145,12 +178,29 @@ class CreateProfile extends Component {
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={ this.onSubmit }>
                 <TextFieldGroup 
-                  placeholder='* Profile Handle'
+                  placeholder='* Profile Username'
                   name='handle'
                   value={ this.state.handle } 
                   onChange={ this.onChange } 
                   error={ errors.handle } 
-                  info='A unique handle for your profile URL. Your full name, company name, nickname, etc.'
+                  info='A unique username for your profile URL. Your full name, company name, nickname, etc.'
+                />
+                <TextFieldGroup 
+                  placeholder='A man has no name'
+                  name='stageName'
+                  value={ this.state.stageName }
+                  onChange={ this.onChange }
+                  error={ errors.stageName }
+                  info="What's your stage name?"
+                />
+                <SelectListGroup 
+                  name='style'
+                  value={ this.state.style }
+                  onChange={ this.onChange }
+                  error={ errors.style }
+                  options={options}
+                  error={errors.style}
+                  info='What style best defines you?'
                 />
                 <TextFieldGroup 
                   placeholder='Company'
@@ -204,6 +254,7 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }

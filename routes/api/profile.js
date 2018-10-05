@@ -38,28 +38,28 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 
 // @route         GET api/profile/all
 // @description   Get all profiles
-// @access        Public
-router.get('/all', (req, res) => {
+// @access        Private
+router.get('/all', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {} 
 
   Profile.find()
   .populate('user', [ 'name', 'avatar' ])
   .then(profiles => {
     if(!profiles) {
-      errors.noprofile = 'There are no profiles'
+      errors.noprofile = 'No profiles yet'
       return res.status(404).json(errors)
     }
 
     res.json(profiles) 
   })
-  .catch(err => res.status(404).json({ profile: 'There are no profiles'}))
+  .catch(err => res.status(404).json({ profile: 'No profiles yet'}))
 }) 
 
 
 // @route         GET api/profile/handle/:handle
 // @description   Get profile by handle
-// @access        Public
-router.get('/handle/:handle', (req, res) => {
+// @access        Private
+  router.get('/handle/:handle', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {} 
 
   Profile.findOne({ handle: req.params.handle })
@@ -78,8 +78,8 @@ router.get('/handle/:handle', (req, res) => {
 
 // @route         GET api/profile/user/:user_id
 // @description   Get profile by user id
-// @access        Public
-router.get('/user/:user_id', (req, res) => {
+// @access        Private
+router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {} 
 
   Profile.findOne({ user: req.params.user_id })
@@ -117,6 +117,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if(req.body.location) profileFields.location = req.body.location 
   if(req.body.bio) profileFields.bio = req.body.bio 
   if(req.body.venues) profileFields.venues = req.body.venues 
+  if(req.body.stageName) profileFields.stageName = req.body.stageName
+  if(req.body.style) profileFields.style = req.body.style
+  if(req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber
 
   // Social
   profileFields.social = {}
@@ -144,7 +147,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
       // Check if handle exists 
       Profile.findOne({ handle: profileFields.handle }).then(profile => {
         if(profile) {
-          errors.handle = 'That handle already exists'
+          errors.handle = 'That username already exists'
           res.status(400).json(errors) 
         }
 
