@@ -9,6 +9,7 @@ import store from './store'
 
 import PrivateRoute from './components/common/PrivateRoute'
 import AppNavbar from './components/layout/AppNavbar'
+import DropdownMenu from './components/layout/DropdownMenu'
 import Landing from './components/layout/Landing'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -49,7 +50,8 @@ class App extends Component {
       <Provider store={ store }>
         <Router>
           <div className="App">
-            <AppNavbar />
+            {/* <AppNavbar /> */}
+            <DropdownMenu />
             <Route exact path='/' component={ Landing } />
             <div className='container'>
               <Route exact path='/register' component={ Register } />

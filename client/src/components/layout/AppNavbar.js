@@ -38,14 +38,17 @@ class AppNavbar extends Component {
     
     const authLinks = (
       <NavItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Link style={{ color: '#007bff', paddingRight: '20px' }} className='nav-link' to='/feed'>Post Feed</Link>
-        <Link style={{ color: '#007bff', paddingRight: '20px' }} className='nav-link' to='/dashboard'>DashBoard</Link>
+        <Link style={{ color: '#007bff', paddingRight: '20px' }} className='nav-link' to='/feed'>Post</Link>
         <Link style={{ textDecoration: 'none', paddingRight: '20px' }} to='/djs'>DJs</Link>
+        <Link style={{ color: '#007bff', paddingRight: '20px' }} className='nav-link' to='/dashboard'>DashBoard</Link>
         <Link onClick={this.onLogoutClick} style={{ textDecoration: 'none' }} to='#'>
-          <img src={user.avatar} alt={user.name} 
-          className='rounded-circle'
-          style={{ width: '25px', marginRight: '5px' }}
-          title='You must have a Gravatar connected to your email to display and image' />
+          <img 
+            src={user.avatar} 
+            alt={user.name} 
+            className='rounded-circle'
+            style={{ width: '25px', marginRight: '5px' }}
+            title='You must have a Gravatar connected to your email to display and image' 
+          />
           Logout 
         </Link>
       </NavItem>
@@ -58,7 +61,7 @@ class AppNavbar extends Component {
     )
 
     return (
-        <Navbar color='dark' dark expand='lg'>
+        <Navbar color='dark' dark expand='xl'>
           <Container>
             <NavbarBrand><Link style={{ textDecoration: 'none' }} to='/'>House of Reps</Link></NavbarBrand>
               {/* <Link to='/djs' style={{ textDecoration: 'none' }}>DJs</Link> */}
