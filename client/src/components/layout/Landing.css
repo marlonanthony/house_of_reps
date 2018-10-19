@@ -1,5 +1,11 @@
-/* .fade-pic {
-  
+.fade-pic {
+  position: relative;
+  background: url('../../img/dj.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  /* margin-bottom: -50px; */
+
   animation-name: fade-pic; 
   animation-iteration-count: 1;
   animation-duration: 3.5s;
@@ -8,11 +14,84 @@
 @keyframes fade-pic {
   from { opacity: 0; }
   to { opacity: 1; }
-} */
-/* img {
-  width: 100%;
 }
 
-.Landing {
- 
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.landing_buttons {
+  margin: 0 13px 0 13px;
+  padding: 10px;
+  width: 120px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ccc;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  display: inline-block;
+}
+
+.landing_buttons:hover {
+  color: rgb(55, 131, 194);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* .landing_content {} */
+
+.landing_footer {
+  text-align: center;
+  margin-top: 15%;
+  color: rgba(200, 200, 200, 0.6);
+}
+
+#login-title {
+  /* color: rgb(55, 131, 194); */
+}
+
+.inputs {
+  margin: 10px;
+  height: 20px;
+  width: 50%;
+  font-size: 17px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  text-decoration: none;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.inputs::placeholder {
+  /* color: rgb(55, 131, 194); */
+  color: black;
+}
+
+#login-button {
+  font-size: 17px;
+  padding: 8px;
+  margin: 10px; 
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  /* color: rgb(55, 131, 194); */
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#login-button:hover {
+  /* background: rgba(0, 0, 0, 0.8); */
+  font-size: 15px;
+}
+
+/* .is-invalid {
+  border: 1px solid red;
 } */
+
+.error {
+  color: red;
+}

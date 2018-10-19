@@ -1,0 +1,22 @@
+.profile_item {
+  animation-name: profile_cards;
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  color: #aaa;
+}
+
+#profile-item-link {
+  text-decoration: none;
+}
+
+
+@keyframes profile_cards {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-1000px);
+  }
+}

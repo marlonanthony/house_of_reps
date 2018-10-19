@@ -1,0 +1,116 @@
+.posts_container {
+  width: 80%;
+  /* background: rgba(214, 238, 252, 0.5); */
+  /* background: #fff; */
+  margin-left: 10vw;
+  /* border: 1px solid rgb(157, 208, 238); */
+  /* border: .5px solid #ddd; */
+  outline: none;
+  margin-bottom: 5px;
+  padding: 2px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+  grid-template-areas:  
+    'postavatarandname'
+    'postcontent'
+    'icons'
+}
+
+.post_avatar_and_name {
+  display: flex;
+  justify-content: start;
+  padding: 5px;
+  grid-area: postavatarandname;
+}
+
+.post_avatar_img {
+  border-radius: 50%;
+  border: 3px solid rgb(135, 179, 247);
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  grid-area: avatar;
+}
+
+.post_name {
+  grid-area: name;
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(29, 138, 228);
+}
+
+.post_content {
+  grid-area: postcontent;
+  padding: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  color: black;
+}
+
+.postfeed_icons {
+  margin-left: 10px;
+  margin-bottom: -8px;
+}
+
+.postfeed_buttons { 
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: none;
+  background-color: rgba(155, 155, 255, 0.0);
+  outline: none; 
+}
+
+.icons {
+  grid-area: icons;
+  padding: 5px;
+}
+
+.like {
+  color: rgba(0,0,0,0.5);
+}
+
+.like:hover {
+  color: rgba(5, 54, 100, 0.9);
+}
+
+.liked {
+  color: rgba(2, 30, 56, 0.4);
+  
+}
+
+#unlike {
+  color: rgba(0,0,0,0.5);
+}
+
+#unlike:hover {
+  color: rgb(12, 124, 29);
+}
+
+.delete {
+  color: rgba(0,0,0,0.5);
+}
+
+.delete:hover {
+  color: red;
+}
+
+.postfeed_comment {
+  width: 35px;
+  height: 35px;
+}
+
+@media (min-width: 900px) {
+  .posts_container {
+    width: 50%;
+    /* background: #ddd; */
+    margin-left: 25vw;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 25px;
+    grid-template-areas:  
+      'avatar' 'name'
+      'avatar' 'postcontent'
+      'avatar' 'icons'
+  }
+}

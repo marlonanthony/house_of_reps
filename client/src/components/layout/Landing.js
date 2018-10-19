@@ -3,63 +3,124 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 
-// import ProfileCards from '../profile-cards/ProfileCards'
+import { loginUser } from '../../actions/authActions' 
+import TextFieldGroup from '../common/TextFieldGroup'
+import Modal from '.././UI/modal/Modal'
+import Backdrop from '../UI/backdrop/Backdrop'
 import './Landing.css'
-// import background from '../../img/dj.jpg'
 
 class Landing extends Component {
 
+  state = {
+    email: '',
+    password: '',
+    errors: {},
+    showModal: false
+  }
+
   componentDidMount() {
     if(this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/feed')
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.auth.isAuthenticated) {
+      this.props.history.push('/feed') 
+    }
+
+    if(nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
+  }
+
+  showHandler = () => {
+    this.setState(prevState => ({ showModal: !prevState.showModal }))
+  }
+
+  modalToggle = () => {
+    this.setState(prevState => ({ showModal: !prevState.showModal }))
+  }
+
+  onChangeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  onSubmitHandler = e => {
+    e.preventDefault() 
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    this.props.loginUser(userData) 
+  }
+  
+
   render() {
+    const { showModal, errors } = this.state 
+
+     const signInModal = showModal ? (
+      <div> 
+        <Modal show={this.state.showModal}>
+          <h2 id='login-title'>Log In</h2>
+          <form onSubmit={ this.onSubmitHandler }>
+            <TextFieldGroup 
+              placeholder='Email Address'
+              name='email'
+              type='email'
+              value={ this.state.email }
+              onChange={ this.onChangeHandler }
+              error={ errors.email }
+            />
+            <TextFieldGroup 
+              placeholder='Password'
+              name='password'
+              type='password'
+              value={ this.state.password }
+              onChange={ this.onChangeHandler }
+              error={ errors.password }
+            />
+            <input type="submit" id='login-button' />
+          </form>
+        </Modal>
+      </div>
+    ) : null 
+
+    
     return (
-      <div 
-        // style={{
-        //   position: 'relative',
-        //   backgroundImage: `url(${background})`,
-        //   backgroundSize: 'cover',
-        //   backgroundPosition: 'center',
-        //   height: '100vh',
-        //   marginBottom: '-50px'
-        // }}
-        className='fade-pic'
-        >
-        <div className="dark-overlay landing-inner text-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">House of Reps</h1>
-                <p className="lead">Create your account, share posts and get help from other DJs</p>
-                <hr />
-                <Link to='/register' className='btn btn-lg btn-info mr-2'>Sign Up</Link>
-                <Link to='/login' className='btn btn-lg btn-light'>Login</Link>
+      <div>
+        <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+        {signInModal}
+        <div className='fade-pic'>
+          <div className="dark-overlay">
+            <div className="landing_content">
+              <div style={{ marginTop: '40vh', textAlign: 'center' }}>
+                <h1 style={{fontSize: '3.5em', color: '#ccc'}}>House of Reps</h1>
+                <h6 style={{fontSize: '1em', color: '#ccc', marginBottom: '15px', marginTop: '-15px'}}>Share & collaborate with other DJs</h6>
+                <button onClick={this.showHandler} className='landing_buttons'>Sign In</button>
+                <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link>
               </div>
+              <footer className='landing_footer'>
+                Copyright &copy; 2018 House of Reps
+              </footer>
             </div>
           </div>
         </div>
-        {/* <div className='fade-pic'>
-          <img 
-            style={{ width: '100vw', height: '93.5vh', position: 'relative' }}
-            src={require('../../img/dj.jpg')} 
-            alt="Landing Pic"/>
-        </div>   */}
-         {/* <ProfileCards /> */}
       </div>
-      
     )
   }
 }
 
 Landing.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors 
 })
 
-export default connect(mapStateToProps)(Landing)
+export default connect(mapStateToProps, { loginUser })(Landing)

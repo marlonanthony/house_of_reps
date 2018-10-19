@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+.post_form {
+  color: white;
+  margin-left: 10vw;
+}
+
+.text-area {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  /* margin-left: 10vw; */
+  background-color: hsl(228, 15%, 32%);
+  width: 80%;
+  height: auto;
+  line-height: 24px;
+  overflow: auto;
+  font-size: 17px;
+  color: #ccc;
+  resize: none;
+}
+
+::placeholder {
+  color: rgb(29, 138, 228);
+}
+
+.text-area:focus {
+  outline: none;
+}
+
+.post_submit_button {
+  padding: 10px;
+  /* margin-left: 10vw; */
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: #000;
+  font-size: 13px;
+  background: #fff;
+  /* background-color: rgba(155, 155, 255, 0.1); */
+  border: none;
+  outline: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.post_submit_button:hover {
+  color: rgb(55, 131, 194);
+  background: rgba(2, 0, 7, 1);
+}
+
+@media(min-width: 900px) {
+  .post_form {
+    margin-left: 25vw;
+  }
+  .text-area {
+    width: 65%;
+    /* margin-left: 25vw; */
+  }
+  .post_submit_button {
+    /* margin-left: 25vw; */
+    background: black;
+    color: #ddd;
+  }
+}

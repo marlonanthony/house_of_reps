@@ -4,10 +4,15 @@ import { connect } from 'react-redux'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
 import { addPost } from '../../actions/postActions' 
 
+import './PostForm.css'
+
 class PostForm extends Component {
   state = {
     text: '',
-    errors: {} 
+    errors: {},
+    rows: 2,
+    minRows: 2,
+    maxRows: 10
   }
 
   componentWillReceiveProps(newProps) {
@@ -17,7 +22,27 @@ class PostForm extends Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    const textareaLineHeight = 24
+    const { minRows, maxRows } = this.state 
+
+    const previousRows = e.target.rows 
+    e.target.rows = minRows // reset number of rows in textarea
+
+    const currentRows = e.target.scrollHeight / textareaLineHeight 
+
+    if(currentRows === previousRows) {
+      e.target.rows = currentRows
+    }
+
+    if(currentRows >= maxRows) {
+      e.target.rows = maxRows
+      e.target.scrollTop = e.target.scrollHeight
+    }
+
+    this.setState({ 
+      [e.target.name]: e.target.value,
+      rows: currentRows < maxRows ? currentRows : maxRows
+    })
   }
 
   onSubmit = e => {
@@ -39,27 +64,20 @@ class PostForm extends Component {
   render() {
     const { errors } = this.state 
     return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">
-            What's the discussion...
-          </div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <TextAreaFieldGroup 
-                  className="form-control form-control-lg" 
-                  placeholder="Create a post" 
-                  name='text'
-                  value={this.state.text} 
-                  onChange={this.onChange} 
-                  error={errors.text} 
-                />
-              </div>
-              <button type="submit" className="btn btn-dark">Submit</button>
-            </form>
-          </div>
-        </div>
+      <div className='post_form'>
+        <form onSubmit={this.onSubmit}>
+            <TextAreaFieldGroup
+              className='text-area'
+              placeholder="What's the discussion?"
+              name='text'
+              value={this.state.text} 
+              onChange={this.onChange} 
+              error={errors.text} 
+              rows={this.state.rows}
+            />
+          <button className=" post_submit_button">Submit</button>
+        </form>
+        
       </div>
     )
   }

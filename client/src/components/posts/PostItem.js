@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames' 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
+
+import './PostItem.css'
  
 class PostItem extends Component {
 
@@ -33,50 +35,39 @@ class PostItem extends Component {
     const { post, auth, showActions } = this.props 
 
     return (
-     <div style={{backgroundColor: 'rgb(240, 240, 240)'}} className="card card-body mb-3">
-      <div className="row">
-        <div className="col-md-2" >
-          <Link to={'#'}>
-            <img 
-              className="rounded-circle d-none d-md-block" src={post.avatar}
-              alt={post.name} />
-          </Link>
-          <br />
-          <p className="text-center">{post.name}</p>
-        </div>
-        <div className="col-md-10">
-          <div style={{paddingLeft: '100px'}}>
-          <p className="lead">{post.text}</p>
-          { showActions ? (<span>
-            <button 
-            type="button" 
-            onClick={this.onLikeClick.bind(this, post._id)}
-            className="btn btn-light mr-1">
-            <i className={classnames('fas fa-thumbs-up', {
-              'text-info' : this.findUserLike(post.likes) 
+     <div className='posts_container'>
+      <div className='post_avatar_and_name'>
+        <Link to={'#'}><img className='post_avatar_img' src={post.avatar} alt={post.name} /></Link>
+        <p className='post_name'>{post.name}</p>
+      </div>
+
+      <div>
+        <p className='post_content'>{post.text}</p>
+        { showActions ? (<span>
+          <button 
+            className='postfeed_icons postfeed_buttons'
+            onClick={this.onLikeClick.bind(this, post._id)}>
+            <i className={classnames('fas fa-thumbs-up icons like', {
+              'liked' : this.findUserLike(post.likes) 
             })}></i>
-            <span className="badge badge-light">{post.likes.length}</span>
+            <span>{post.likes.length}</span>
           </button>
           <button 
-            type="button" 
-            onClick={this.onUnlikeClick.bind(this, post._id)}
-            className="btn btn-light mr-1">
-            <i className="text-secondary fas fa-thumbs-down"></i>
+            className='postfeed_icons postfeed_buttons'
+            onClick={this.onUnlikeClick.bind(this, post._id)}>
+            <i className="fas fa-thumbs-down icons" id='unlike'></i>
           </button>
-          <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-            Comments
-          </Link>
+          <Link className='' to={`/post/${post._id}`}><img className='postfeed_comment postfeed_icons' src={require('../../img/comment.png')} alt='comment icon' /></Link>
           { post.user === auth.user.id ? (
-            <button onClick={this.onDeleteClick.bind(this, post._id)} type="button" className="btn btn-danger mr-1">
-              <i className="fas fa-times" />
-            </button> ) : null }
-          </span>) : null }
-          </div>
-          
-        </div>
+            <button 
+              className='postfeed_icons postfeed_buttons delete'
+              onClick={this.onDeleteClick.bind(this, post._id)}>
+              <i className="fas fa-times icons" />
+            </button> 
+            ) : null }
+        </span>) : null }
       </div>
-    </div>
-
+     </div>
     )
   }
 }

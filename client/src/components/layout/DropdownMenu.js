@@ -33,13 +33,13 @@ class DropdownMenu extends Component {
     const authLinks = (
       <div>
         <Link to="/djs">DJs</Link>
-        <Link to="/feed">Post</Link>
+        <Link to="/feed">Feed</Link>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="#" onClick={this.onLogoutClick}>
         <img 
           src={user.avatar} 
           alt={user.name} 
-          className='rounded-circle'
+          className=''
           style={{ width: '25px', marginRight: '5px' }}
           title='You must have a Gravatar connected to your email to display and image' 
         />
@@ -50,7 +50,7 @@ class DropdownMenu extends Component {
 
     const guestLinks = (
       <div>
-        <Link to="/login">Log In</Link>
+        {/* <Link to="/login">Sign In</Link> */}
         <Link to="/register">Sign Up</Link>
       </div>
     )
@@ -62,7 +62,7 @@ class DropdownMenu extends Component {
            <div className='dropdown_menu'>
              { isAuthenticated ? authLinks : guestLinks }
            </div>
-         ) : null }
+        ) : null }
       </div>
     )
   }
@@ -74,7 +74,7 @@ DropdownMenu.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth 
+  auth: state.auth
 })
 
 

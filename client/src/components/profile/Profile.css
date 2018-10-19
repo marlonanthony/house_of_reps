@@ -1,0 +1,27 @@
+.profile-container {
+  /* background: white; */
+}
+
+.profile {
+  background-color: white; 
+ 
+}
+
+#profile-post {
+  margin-left: 10vw;
+  margin-top: -1150px;
+}
+
+#profile-back-button {
+  position: absolute;
+  top: 30px;
+  margin-left: 10vw;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+}
+
+#profile-back-button:hover {
+  height: 50px;
+  width: 50px;
+}

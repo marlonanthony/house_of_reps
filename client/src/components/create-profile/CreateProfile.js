@@ -7,6 +7,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 import { createProfile } from '../../actions/profileActions'
+import './CreateProfile.css'
 
 class CreateProfile extends Component {
   state = {
@@ -100,7 +101,7 @@ class CreateProfile extends Component {
 
     if(displaySocialInputs) {
       socialInputs = (
-        <div>
+        <div id='social-inputs'>
           <InputGroup 
             placeholder='Twitter Profile URL'
             name='twitter'
@@ -170,12 +171,11 @@ class CreateProfile extends Component {
     }
     return (
       <div className='create-profile'>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center">Let's get some information to make your profile stand out</p>
-              <small className="d-block pb-3">* = required fields</small>
+        <div className="">
+          <div className="">
+            <div className="">
+              <h1 style={{ textAlign: 'center' }}>Create Your Profile</h1>
+              <p style={{ textAlign: 'center' }}>Let's get some information to make your profile stand out</p>
               <form onSubmit={ this.onSubmit }>
                 <TextFieldGroup 
                   placeholder='* Profile Username'
@@ -183,7 +183,6 @@ class CreateProfile extends Component {
                   value={ this.state.handle } 
                   onChange={ this.onChange } 
                   error={ errors.handle } 
-                  info='A unique username for your profile URL. Your full name, company name, nickname, etc.'
                 />
                 <TextFieldGroup 
                   placeholder='A man has no name'
@@ -191,7 +190,7 @@ class CreateProfile extends Component {
                   value={ this.state.stageName }
                   onChange={ this.onChange }
                   error={ errors.stageName }
-                  info="What's your stage name?"
+                  // info="What's your stage name?"
                 />
                 <SelectListGroup 
                   name='style'
@@ -199,8 +198,7 @@ class CreateProfile extends Component {
                   onChange={ this.onChange }
                   error={ errors.style }
                   options={options}
-                  error={errors.style}
-                  info='What style best defines you?'
+                  // info='What style best defines you?'
                 />
                 <TextFieldGroup 
                   placeholder='Company'
@@ -208,7 +206,7 @@ class CreateProfile extends Component {
                   value={ this.state.company } 
                   onChange={ this.onChange } 
                   error={ errors.company } 
-                  info="Company you're with."
+                  // info="Company you're with."
                 />
                 <TextFieldGroup 
                   placeholder='Website'
@@ -216,7 +214,7 @@ class CreateProfile extends Component {
                   value={ this.state.website } 
                   onChange={ this.onChange } 
                   error={ errors.website } 
-                  info='Website domain'
+                  // info='Website domain'
                 />
                 <TextFieldGroup 
                   placeholder='Location'
@@ -224,7 +222,7 @@ class CreateProfile extends Component {
                   value={ this.state.location } 
                   onChange={ this.onChange } 
                   error={ errors.location } 
-                  info='Where are you from?'
+                  // info='Where are you from?'
                 />
                 <TextAreaFieldGroup 
                   placeholder='Short Bio'
@@ -232,18 +230,18 @@ class CreateProfile extends Component {
                   value={ this.state.bio } 
                   onChange={ this.onChange } 
                   error={ errors.bio } 
-                  info='Tell us a little bit about yourself' 
+                  // info='Tell us a little bit about yourself' 
                 />
-                <div className="mb-3">
+                <div className="">
                   <button type='button' onClick={() => {
                     this.setState(prevState => ({
                       displaySocialInputs: !prevState.displaySocialInputs
                     }))
-                  }} className="btn btn-light">Add Social Network Links</button>
-                  <span className='text-muted'>Optional</span>
+                  }} id="create-profile-social-btn">Add Social Network Links</button>
+                  <span className=''>Optional</span>
                 </div>
                 { socialInputs }
-                <input type="submit" value="submit" className='btn btn-info btn-block mt-4' />
+                <input type="submit" value="submit" id='create-profile-submit-button' />
               </form>
             </div>
           </div>

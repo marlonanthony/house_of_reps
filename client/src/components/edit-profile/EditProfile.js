@@ -246,7 +246,6 @@ class EditProfile extends Component {
                   onChange={ this.onChange }
                   error={ errors.style }
                   options={options}
-                  error={errors.style}
                   info='What style best defines you?'
                 />
                 <TextFieldGroup 

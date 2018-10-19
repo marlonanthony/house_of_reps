@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { loginUser } from '../../actions/authActions'
 import TextFieldGroup from '../common/TextFieldGroup'
+import './Login.css'
 
 class Login extends Component {
   state = {
@@ -13,13 +14,13 @@ class Login extends Component {
 
   componentDidMount() {
     if(this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/feed')
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard') 
+      this.props.history.push('/feed') 
     }
 
     if(nextProps.errors) {
@@ -45,11 +46,11 @@ class Login extends Component {
     const { errors } = this.state 
 
     return (
-      <div className='container'>
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <h2 className="display-4 text-center">Log In</h2>
-            <p className="lead text-center">Sign in to your account</p>
+      <div className=''>
+        <div className="">
+          <div className="">
+            <h2 style={{ textAlign: 'center' }}>Log In</h2>
+            <p style={{ textAlign: 'center' }}>Sign in to your account</p>
             <form onSubmit={ this.onSubmitHandler }>
               <TextFieldGroup 
                 placeholder='Email Address'
@@ -67,7 +68,7 @@ class Login extends Component {
                 onChange={ this.onChangeHandler }
                 error={ errors.password }
               />
-              <input type="submit" className='btn btn-info btn-block mt-4' />
+              <input type="submit" id='login-page-button' />
             </form>
           </div>
         </div>

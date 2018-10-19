@@ -1,0 +1,21 @@
+/* .feed {
+  display: grid;
+  width: 70%;
+  background: black;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+} */
+
+/* .feed {
+  display: grid;
+  justify-self: center;
+  align-self: center;
+} */
+
+@media (min-width: 900px){
+  .feed {
+    position: absolute;
+    z-index: 1;
+    background: rgb(0,0,0)
+  }
+}

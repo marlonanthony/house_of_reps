@@ -1,0 +1,22 @@
+.profile-creds-content {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  background: white;
+}
+
+.profile-creds-content {
+  font-family: Ubuntu, sans-serif;
+}
+
+.venue-items {
+  font-size: 13px;
+  box-sizing: border-box;
+  max-width: 200px;
+  padding-left: 5px;
+  margin-bottom: 2px;
+  padding: 5px;
+  border-radius: 3px;
+  color: #000000;
+  list-style: none;
+  background-color: rgba(185, 211, 250, 0.959);
+}

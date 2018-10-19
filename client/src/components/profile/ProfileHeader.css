@@ -1,0 +1,74 @@
+.profile-header-container {
+  background: white;
+}
+
+.profile-header {
+  display: grid;
+  font-family: Ubuntu, sans-serif;
+}
+
+#profile-banner {
+  width: 100%;
+  max-height: 450px;
+  min-height: 200px;
+}
+
+.profile-header-content {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  /* background: white; */
+}
+
+#profile-avatar {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin-top: -70px;
+  /* margin-left: 10px; */
+  border: 3px solid rgb(123, 180, 238);
+}
+
+.profile-post-and-header-items {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#profile-post {
+  min-width: 800px;
+}
+
+#header-items {
+  width: 100%;
+ 
+}
+
+#profile-name {
+  margin-bottom: -10px;
+  /* grid-area: auto; */
+}
+
+#profile-handle {
+ margin-top: -10px;
+ font-size: 13px;
+}
+
+#profile-location {
+  font-size: 15px;
+  /* grid-area: auto; */
+}
+
+#profile-bio {
+  margin-top: 20px;
+  font-size: 14px;
+  max-width: 200px;
+  /* grid-area: auto; */
+}
+
+#profile-icons {
+  border-radius: 3px;
+  padding: 5px;
+  display: grid;
+  max-width: 200px;
+  margin-left: -5px;
+  grid-template-columns: 75px 75px 75px;
+}

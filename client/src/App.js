@@ -8,12 +8,12 @@ import { Provider } from 'react-redux'
 import store from './store' 
 
 import PrivateRoute from './components/common/PrivateRoute'
-import AppNavbar from './components/layout/AppNavbar'
+// import AppNavbar from './components/layout/AppNavbar'
 import DropdownMenu from './components/layout/DropdownMenu'
 import Landing from './components/layout/Landing'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import Footer from './components/layout/Footer'
+// import Footer from './components/layout/Footer'
 import Dashboard from './components/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
@@ -49,11 +49,10 @@ class App extends Component {
     return (
       <Provider store={ store }>
         <Router>
-          <div className="App">
-            {/* <AppNavbar /> */}
+          <div className="">
             <DropdownMenu />
             <Route exact path='/' component={ Landing } />
-            <div className='container'>
+            <div className=''>
               <Route exact path='/register' component={ Register } />
               <Route exact path='/login' component={ Login } />
               <Switch>
@@ -81,7 +80,7 @@ class App extends Component {
                 <PrivateRoute exact path='/post/:id' component={ Post } />
               </Switch>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </Router>
       </Provider>

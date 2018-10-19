@@ -5,6 +5,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { addVenue } from '../../actions/profileActions'
+import './AddVenue.css'
 
 class AddVenue extends Component {
   state = {
@@ -43,48 +44,42 @@ class AddVenue extends Component {
 
     return (
       <div className='add-venue'>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <Link to='/dashboard' className='btn btn-light'>Go Back</Link>
-              <h1 className="display-4 text-center">Add Venue</h1>
-              <p className="lead text-center">Add your upcoming venues</p>
-              <small className='d-block pb-4'>* = required fields</small>
-              <form onSubmit={ this.onSubmit }>
-                <h6>* Date of Event</h6>
-                <TextFieldGroup 
-                  name='date'
-                  type='date'
-                  value={ this.state.date }
-                  onChange={ this.onChange }
-                  error={ errors.date }
-                />
-                <TextFieldGroup 
-                  placeholder='Title'
-                  name='title'
-                  value={ this.state.title }
-                  onChange={ this.onChange }
-                  error={ errors.title }
-                />
-                <TextFieldGroup 
-                  placeholder='* Location of Event'
-                  name='location'
-                  value={ this.state.location }
-                  onChange={ this.onChange }
-                  error={ errors.location }
-                />
-                <TextAreaFieldGroup 
-                  placeholder='Quick description'
-                  name='description'
-                  value={ this.state.description }
-                  onChange={ this.onChange }
-                  error={ errors.description }
-                />
-                <input type="submit" value='Submit' className='btn btn-info btn-block mt-4' />
-              </form>
-            </div>
-          </div>
-        </div>
+        <Link to='/dashboard'>
+          <img id='addvenue-back-button' src={require('../../img/back.png')} alt='back-button' />
+        </Link>
+        <h1 style={{ textAlign: 'center' }}>Add Venue</h1>
+        <p style={{ textAlign: 'center' }}>Add your upcoming venues</p>
+        <form onSubmit={ this.onSubmit }>
+          <TextFieldGroup 
+            name='date'
+            type='date'
+            value={ this.state.date }
+            onChange={ this.onChange }
+            error={ errors.date }
+          />
+          <TextFieldGroup 
+            placeholder='Title'
+            name='title'
+            value={ this.state.title }
+            onChange={ this.onChange }
+            error={ errors.title }
+          />
+          <TextFieldGroup 
+            placeholder='* Location of Event'
+            name='location'
+            value={ this.state.location }
+            onChange={ this.onChange }
+            error={ errors.location }
+          />
+          <TextAreaFieldGroup 
+            placeholder='Quick description'
+            name='description'
+            value={ this.state.description }
+            onChange={ this.onChange }
+            error={ errors.description }
+          />
+          <input type="submit" value='Submit' id='venue-submit-button' />
+        </form>
       </div>
     )
   }

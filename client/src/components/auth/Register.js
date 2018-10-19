@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+
 import { registerUser } from '../../actions/authActions'
 import TextFieldGroup from '../common/TextFieldGroup'
+import './Register.css'
 
 class Register extends Component {
   state = {
@@ -45,12 +47,12 @@ class Register extends Component {
     const { errors } = this.state  
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <h2 className="display-4 text-center">Sign Up</h2>
-            <p className="lead text-center">Create your account</p>
-            <form onSubmit={ this.onSubmitHandler }>
+      <div className="">
+        <div className="">
+          <div className="">
+            <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
+            <p style={{ textAlign: 'center' }}>Create your account</p>
+            <form id='register-form' onSubmit={ this.onSubmitHandler }>
               <TextFieldGroup
                 type="text"
                 name='name'
@@ -83,7 +85,7 @@ class Register extends Component {
                 onChange={this.onChangeHandler}
                 error={ errors.password2 }
               />
-              <input type="submit" className='btn btn-info btn-block mt-4' />
+              <input type="submit" id='register-button' />
             </form>
           </div>
         </div>
