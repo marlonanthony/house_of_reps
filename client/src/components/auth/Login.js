@@ -47,30 +47,28 @@ class Login extends Component {
 
     return (
       <div className=''>
-        <div className="">
-          <div className="">
-            <h2 style={{ textAlign: 'center' }}>Log In</h2>
-            <p style={{ textAlign: 'center' }}>Sign in to your account</p>
-            <form onSubmit={ this.onSubmitHandler }>
-              <TextFieldGroup 
-                placeholder='Email Address'
-                name='email'
-                type='email'
-                value={ this.state.email }
-                onChange={ this.onChangeHandler }
-                error={ errors.email }
-              />
-              <TextFieldGroup 
-                placeholder='Password'
-                name='password'
-                type="password"
-                value={ this.state.password }
-                onChange={ this.onChangeHandler }
-                error={ errors.password }
-              />
-              <input type="submit" id='login-page-button' />
-            </form>
-          </div>
+        <h2 style={{ textAlign: 'center' }}>Log In</h2>
+        <p style={{ textAlign: 'center' }}>Sign in to your account</p>
+        <div id='login-content'>
+          <form onSubmit={ this.onSubmitHandler }>
+            <TextFieldGroup 
+              placeholder='Email Address'
+              name='email'
+              type='email'
+              value={ this.state.email }
+              onChange={ this.onChangeHandler }
+              error={ errors.email }
+            />
+            <TextFieldGroup 
+              placeholder='Password'
+              name='password'
+              type="password"
+              value={ this.state.password }
+              onChange={ this.onChangeHandler }
+              error={ errors.password }
+            />
+            <input type="submit" id='login-page-button' />
+          </form>
         </div>
       </div>
     )

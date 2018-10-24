@@ -1,5 +1,9 @@
+#register-content {
+  margin-left: 30%;
+}
+
 #register-form {
-  /* margin-left: 10px; */
+  width: 120%;
 }
 
 #register-button {
@@ -15,4 +19,13 @@
 
 #register-button:hover {
   font-size: 15px;
+}
+
+@media (max-width: 800px) {
+  #register-content {
+    margin-left: 5%;
+  }
+  #register-form {
+    width: 150vw;
+  }
 }

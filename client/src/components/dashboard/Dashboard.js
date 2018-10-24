@@ -29,13 +29,26 @@ class Dashboard extends Component {
       if(Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="">
-              Welcome <Link to={`/profile/${profile.handle}`} >{ user.name }</Link>
-            </p>
-            <ProfileActions />
-            <Venues venues={profile.venues} />
-            <div style={{ marginBottom: '60px' }}/>
-            <button onClick={ this.onDeleteClick } className="">Delete My Account</button>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+              <p>
+                Welcome <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`} >{ user.name }</Link>
+              </p>
+              <ProfileActions />
+            </div>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <Venues venues={profile.venues} />
+              <div style={{ marginBottom: '60px' }}/>
+            </div>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <button 
+                style={{
+                  fontSize: '17px', 
+                  marginTop: '50px',
+                  padding: '10px'
+                }} 
+                onClick={ this.onDeleteClick } className="">Delete My Account
+              </button>
+            </div>
           </div>
         )
       } else {
@@ -52,14 +65,8 @@ class Dashboard extends Component {
 
     return (
       <div className='dashboard'>
-        <div className="">
-          <div className="">
-            <div className="">
-              <h1 className=''>Dashboard</h1>
-              { dashboardContent }
-            </div>
-          </div>
-        </div>
+        <h1 style={{textAlign: 'center'}}>Dashboard</h1>
+        { dashboardContent }
       </div>
     )
   }

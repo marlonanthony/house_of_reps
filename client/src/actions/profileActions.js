@@ -49,7 +49,9 @@ export const createProfile = (profileData, history) => dispatch => {
 
 // Add Venue
 export const addVenue = (venueData, history) => dispatch => {
-  axios.post('/api/profile/venues', venueData).then(res => history.push('/dashboard'))
+  axios
+  .post('/api/profile/venues', venueData)
+  .then(res => history.push('/dashboard'))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
@@ -58,7 +60,9 @@ export const addVenue = (venueData, history) => dispatch => {
 
 // Delete Venue
 export const deleteVenue = id => dispatch => {
-  axios.delete(`/api/profile/venues/${id}`).then(res => dispatch({
+  axios
+  .delete(`/api/profile/venues/${id}`)
+  .then(res => dispatch({
     type: GET_PROFILE,
     payload: res.data 
   }))
@@ -67,7 +71,9 @@ export const deleteVenue = id => dispatch => {
 // Get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading())
-  axios.get('/api/profile/all').then(res => dispatch({
+  axios
+  .get('/api/profile/all')
+  .then(res => dispatch({
     type: GET_PROFILES,
     payload: res.data 
   }))

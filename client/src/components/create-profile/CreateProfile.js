@@ -224,6 +224,7 @@ class CreateProfile extends Component {
                   error={ errors.location } 
                   // info='Where are you from?'
                 />
+                <div style={{ marginLeft: '10px' }}>
                 <TextAreaFieldGroup 
                   placeholder='Short Bio'
                   name='bio'
@@ -232,7 +233,8 @@ class CreateProfile extends Component {
                   error={ errors.bio } 
                   // info='Tell us a little bit about yourself' 
                 />
-                <div className="">
+                </div>
+                <div className='add-social-links-button'>
                   <button type='button' onClick={() => {
                     this.setState(prevState => ({
                       displaySocialInputs: !prevState.displaySocialInputs

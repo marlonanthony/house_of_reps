@@ -8,12 +8,10 @@ import { Provider } from 'react-redux'
 import store from './store' 
 
 import PrivateRoute from './components/common/PrivateRoute'
-// import AppNavbar from './components/layout/AppNavbar'
 import DropdownMenu from './components/layout/DropdownMenu'
 import Landing from './components/layout/Landing'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-// import Footer from './components/layout/Footer'
 import Dashboard from './components/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
@@ -49,38 +47,37 @@ class App extends Component {
     return (
       <Provider store={ store }>
         <Router>
-          <div className="">
-            <DropdownMenu />
-            <Route exact path='/' component={ Landing } />
-            <div className=''>
-              <Route exact path='/register' component={ Register } />
-              <Route exact path='/login' component={ Login } />
-              <Switch>
-                <PrivateRoute exact path='/dashboard' component={ Dashboard } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/add-venue' component={ AddVenue } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/feed' component={ Posts } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/profile/:handle' component={ Profile } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/djs' component={ Profiles } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/post/:id' component={ Post } />
-              </Switch>
+          <div>
+            <div>
+              <DropdownMenu />
+              <Route exact path='/' component={ Landing } />
             </div>
-            {/* <Footer /> */}
+            <Route exact path='/register' component={ Register } />
+            <Route exact path='/login' component={ Login } />
+            <Switch>
+              <PrivateRoute exact path='/dashboard' component={ Dashboard } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-venue' component={ AddVenue } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/feed' component={ Posts } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/profile/:handle' component={ Profile } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/djs' component={ Profiles } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/post/:id' component={ Post } />
+            </Switch>
           </div>
         </Router>
       </Provider>

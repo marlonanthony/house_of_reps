@@ -21,7 +21,7 @@ class Venues extends Component {
     ))
     return (
       <div>
-        <h4 className=''>Venues</h4>
+        <h4 style={{ textAlign: 'center' }} className=''>Venues</h4>
         <table className="">
           <thead>
             <tr>

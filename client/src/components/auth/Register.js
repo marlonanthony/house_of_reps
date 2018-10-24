@@ -48,46 +48,44 @@ class Register extends Component {
 
     return (
       <div className="">
-        <div className="">
-          <div className="">
-            <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
-            <p style={{ textAlign: 'center' }}>Create your account</p>
-            <form id='register-form' onSubmit={ this.onSubmitHandler }>
-              <TextFieldGroup
-                type="text"
-                name='name'
-                value={ this.state.name }
-                placeholder='Name'
-                onChange={this.onChangeHandler}
-                error={ errors.name }
-              />
-              <TextFieldGroup
-                type="email"
-                name='email'
-                placeholder='Email'
-                value={ this.state.email }
-                onChange={this.onChangeHandler}
-                error={ errors.email }
-              />
-              <TextFieldGroup
-                type="password"
-                name='password'
-                placeholder='Password'
-                value={ this.state.password }
-                onChange={this.onChangeHandler}
-                error={ errors.password }
-              />
-              <TextFieldGroup
-                type="password"
-                name='password2'
-                placeholder='Confirm Password'
-                value={ this.state.password2 }
-                onChange={this.onChangeHandler}
-                error={ errors.password2 }
-              />
-              <input type="submit" id='register-button' />
-            </form>
-          </div>
+        <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
+        <p style={{ textAlign: 'center' }}>Create your account</p>
+        <div id='register-content'>
+          <form id='register-form' onSubmit={ this.onSubmitHandler }>
+            <TextFieldGroup
+              type="text"
+              name='name'
+              value={ this.state.name }
+              placeholder='Name'
+              onChange={this.onChangeHandler}
+              error={ errors.name }
+            />
+            <TextFieldGroup
+              type="email"
+              name='email'
+              placeholder='Email'
+              value={ this.state.email }
+              onChange={this.onChangeHandler}
+              error={ errors.email }
+            />
+            <TextFieldGroup
+              type="password"
+              name='password'
+              placeholder='Password'
+              value={ this.state.password }
+              onChange={this.onChangeHandler}
+              error={ errors.password }
+            />
+            <TextFieldGroup
+              type="password"
+              name='password2'
+              placeholder='Confirm Password'
+              value={ this.state.password2 }
+              onChange={this.onChangeHandler}
+              error={ errors.password2 }
+            />
+            <input type="submit" id='register-button' />
+          </form>
         </div>
       </div>
     )

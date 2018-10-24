@@ -12,10 +12,10 @@ const InputGroup = ({
   onChange
 }) => {
   return (
-    <div>
+    <div style={{display: 'flex', justifyContent: 'space-around'}}>
       <div>
         <span>
-          <i className={ icon } style={{ height: '40px', width: '40px', color: '#777' }} />
+          <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: '#777' }} />
         </span>
       </div>
       <input 

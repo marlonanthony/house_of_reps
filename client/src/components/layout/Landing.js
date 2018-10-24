@@ -81,7 +81,7 @@ class Landing extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.password }
             />
-            <input type="submit" id='login-button' />
+            <button type="submit" id='login-button'>Sign In</button>
           </form>
         </Modal>
       </div>
@@ -91,7 +91,7 @@ class Landing extends Component {
     return (
       <div>
         <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-        {signInModal}
+        { signInModal }
         <div className='fade-pic'>
           <div className="dark-overlay">
             <div className="landing_content">

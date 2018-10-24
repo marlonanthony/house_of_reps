@@ -12,7 +12,7 @@ export const registerUser = (userData, history) => dispatch => {
     payload: err.response.data 
   }))
 }
-
+  
 // Login Get user token
 export const loginUser = userData => dispatch => {
   axios.post('/api/users/login', userData).then(res => {

@@ -40,6 +40,7 @@
 .landing_buttons:hover {
   color: rgb(55, 131, 194);
   background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }
 
 /* .landing_content {} */
@@ -86,6 +87,7 @@
 #login-button:hover {
   /* background: rgba(0, 0, 0, 0.8); */
   font-size: 15px;
+  cursor: pointer;
 }
 
 /* .is-invalid {

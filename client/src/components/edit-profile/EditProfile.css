@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+}
+
+#edit-profile-back-btn {
+  width: 35px;
+  height: 35px;
+}
+
+#edit-profile-social-btn {
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: 17px; 
+  border: none; 
+  background: rgba(0,0,0,0.1);
+  border-radius: 2px;
+  outline: none;
+}
+
+#edit-profile-submit-btn {
+  font-size: 17px;
+  outline: none;
+  border: none;
+  background: rgba(0,0,0,0.1);
+}

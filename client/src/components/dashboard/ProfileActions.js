@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom'
 const ProfileActions = () => {
   return (
     <div>
-      <Link to="/edit-profile" className="">
-        <i className="fas fa-user-circle"></i> Edit Profile</Link>
-      <Link to="/add-venue" className="">
-        <i className="fab fa-black-tie"></i>
+      <Link to="/edit-profile" 
+        style={{
+          margin: '0 10px', 
+          textDecoration: 'none',
+
+        }}>
+        <i className=""></i> Edit Profile</Link>
+      <Link to="/add-venue" style={{ margin: '0 10px', textDecoration: 'none' }}>
+        <i className=""></i>
         Add Venue</Link>
     </div>
   )
