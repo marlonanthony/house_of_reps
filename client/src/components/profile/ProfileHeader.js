@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import isEmpty from '../../validation/is-empty'
 import ProfileCreds from './ProfileCreds'
-// import ProfilePost from './ProfilePost'
 
 import './ProfileHeader.css'
 
@@ -71,7 +70,16 @@ class ProfileHeader extends Component {
             {/* <div id='profile-post'><ProfilePost /></div> */}
           </div>
           <div id='profile-feed'>
-          <iframe id='youtube-video' title='hofvideo' width="100%" height="315" src="https://www.youtube.com/embed/qrmKp_ANX_M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe 
+              id='youtube-video' 
+              title='hofvideo' 
+              width="100%" 
+              height="315" 
+              src="https://www.youtube.com/embed/qrmKp_ANX_M" 
+              frameBorder="0" 
+              allow="autoplay; encrypted-media" 
+              allowFullScreen>
+            </iframe>
             <h1>News Feed</h1>
             <p style={{ textAlign: 'start'}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim nunc faucibus a pellentesque sit amet porttitor. Scelerisque felis imperdiet proin fermentum leo vel orci porta non. Quis risus sed vulputate odio ut enim blandit volutpat. Eu lobortis elementum nibh tellus. Nunc non blandit massa enim. Non consectetur a erat nam at lectus. Egestas erat imperdiet sed euismod nisi porta. Lobortis mattis aliquam faucibus purus in massa tempor nec. Aenean sed adipiscing diam donec. Euismod in pellentesque massa placerat. Turpis nunc eget lorem dolor sed. Maecenas accumsan lacus vel facilisis volutpat est. Integer feugiat scelerisque varius morbi enim nunc faucibus. Facilisi etiam dignissim diam quis enim lobortis scelerisque. Id aliquet risus feugiat in ante. Semper quis lectus nulla at volutpat diam ut venenatis.

@@ -6,7 +6,6 @@ import PostForm from './PostForm'
 import Spinner from '../common/Spinner' 
 import { getPosts } from '../../actions/postActions'
 import PostFeed from './PostFeed'
-// import Profiles from '../profiles/Profiles'
 import './Posts.css'
 
 class Posts extends Component {
@@ -26,7 +25,6 @@ class Posts extends Component {
 
     return (
       <div className='feed'>
-        {/* <Profiles /> */}
         <div style={{ marginBottom: '200px' }}></div>
         <PostForm />
         {postContent}

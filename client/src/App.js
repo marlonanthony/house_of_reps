@@ -52,6 +52,7 @@ class App extends Component {
               <DropdownMenu />
               <Route exact path='/' component={ Landing } />
             </div>
+            <div>
             <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
             <Switch>
@@ -78,6 +79,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/post/:id' component={ Post } />
             </Switch>
+            </div>
           </div>
         </Router>
       </Provider>

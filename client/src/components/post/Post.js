@@ -30,14 +30,8 @@ class Post extends Component {
 
     return (
       <div className='post'>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <Link to='/feed' className='btn btn-light mb-3'>Back To Feed</Link>
-              { postContent }
-            </div>
-          </div>
-        </div>
+        <Link to='/feed' className=''>Back To Feed</Link>
+        { postContent }
       </div>
     )
   }

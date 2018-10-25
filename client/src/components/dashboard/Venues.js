@@ -13,10 +13,10 @@ class Venues extends Component {
   render() {
     const venues = this.props.venues.map(venue => (
       <tr key={venue._id}>
-        <td><Moment format='MM/DD/YYYY'>{venue.date}</Moment></td>
-        <td>{venue.title}</td>
-        <td>{venue.location}</td>
-        <td><button onClick={ this.onDeleteClick.bind(this, venue._id) }>Delete</button></td>
+        <td style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></td>
+        <td style={{padding: '10px'}}>{venue.title}</td>
+        <td style={{padding: '10px'}}>{venue.location}</td>
+        <td style={{padding: '10px'}}><button onClick={ this.onDeleteClick.bind(this, venue._id) }>Delete</button></td>
       </tr>
     ))
     return (
@@ -25,8 +25,8 @@ class Venues extends Component {
         <table className="">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Title</th>
+              <th >Date</th>
+              <th >Title</th>
               <th>Location</th>
             </tr>
               { venues }
