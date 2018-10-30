@@ -1,21 +1,78 @@
-/* .feed {
+.feed {
+  background: #cdf;
+  /* padding: 100px 4vw 0 4vw; */
+  padding-top: 100px;
   display: grid;
-  width: 70%;
-  background: black;
-  grid-template-columns: 1fr;
-  grid-gap: 30px;
-} */
+  grid-gap: 15px;
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:  
+    'postform'
+    'post-feed-post-content'
+    'footer'
+}
 
-/* .feed {
-  display: grid;
-  justify-self: center;
-  align-self: center;
-} */
+.post-feed-profile {
+  grid-area: profile;
+  display: none;
+}
 
- /* @media (min-width: 900px){
+#posts-profile-img {
+  width: 40px;
+  height: 40px; 
+  margin-top: -25px;
+  border-radius: 50%;
+  border: 2px solid lightblue;
+}
+
+.post-feed-form {
+  grid-area: postform;
+}
+
+.post-feed-post-content {
+  grid-area: post-feed-post-content;
+}
+
+.post-feed-footer {
+  grid-area: footer;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+  margin-left: 5px;
+  font-size: 13px;
+  border: none;
+}
+
+@media (min-width: 950px) {
   .feed {
-    position: absolute;
-    z-index: 1;
-    background: rgb(0,0,0)
+    padding: 100px 4vw 0 4vw;
+    display: grid;
+    grid-gap: 35px;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+      'profile postform footer'
+      'profile post-feed-post-content footer'; 
   }
-} */
+
+  .post-feed-profile {
+    display: block;
+    grid-area: profile;
+  }
+
+  .post-feed-footer {
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 35px;
+    width: 150px;
+    background: white;
+  }
+}
+
+@media(min-width: 1500px) {
+  .feed {
+    padding: 100px 20vw 0 20vw;
+  }
+}

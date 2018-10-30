@@ -1,23 +1,21 @@
 .post_form {
-  color: white;
-  margin-left: 10vw;
+  
 }
 
 .text-area {
-  box-sizing: border-box;
-  border-radius: 5px;
   border: none;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.1);
-  width: 80%;
+  width: 97%;
   height: auto;
   line-height: 24px;
   overflow: auto;
   font-size: 17px;
   resize: none;
+  /* background: rgba(2, 0, 7, 0.1); */
 }
 
 ::placeholder {
+  /* color: rgb(55, 131, 194); */
   color: black;
 }
 
@@ -26,8 +24,8 @@
 }
 
 .post_submit_button {
+  display: none;
   padding: 10px;
-  /* margin-left: 10vw; */
   cursor: pointer;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -47,15 +45,13 @@
 
 @media(min-width: 900px) {
   .post_form {
-    margin-left: 25vw;
   }
   .text-area {
-    width: 50vw;
-    /* margin-left: 25vw; */
+    /* width: 97%; */
+    /* background: rgba(2, 0, 7, 1);   */
+    /* color: rgb(55, 131, 194); */
   }
   .post_submit_button {
-    /* margin-left: 25vw; */
-    /* background: black; */
     color: #000;
   }
 }

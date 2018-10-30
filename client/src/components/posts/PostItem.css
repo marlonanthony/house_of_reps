@@ -1,17 +1,13 @@
 .posts_container {
-  width: 80%;
-  /* background: rgba(214, 238, 252, 0.5); */
-  /* background: #fff; */
-  margin-left: 10vw;
-  /* border: 1px solid rgb(157, 208, 238); */
-  /* border: .5px solid #ddd; */
+  /* border: 1px solid gray; */
+  border:none;
+  background: white;
   outline: none;
   margin-bottom: 5px;
-  padding: 2px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  grid-gap: 10px;
   grid-template-areas:  
     'postavatarandname'
     'postcontent'
@@ -101,13 +97,14 @@
 
 @media (min-width: 900px) {
   .posts_container {
-    width: 50%;
-    /* background: #ddd; */
-    margin-left: 25vw;
+    /* border: 1px solid gray; */
+    border: none;
+    margin-bottom: 5px;
     display: grid;
+    justify-items: center;
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
-    grid-gap: 25px;
+    grid-gap: 15px;
     grid-template-areas:  
       'avatar' 'name'
       'avatar' 'postcontent'
