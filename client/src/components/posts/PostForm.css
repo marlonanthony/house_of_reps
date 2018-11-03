@@ -1,22 +1,23 @@
 .post_form {
-  
+
 }
 
 .text-area {
-  border: none;
+  border: 1px solid #999;
   padding: 10px;
-  width: 97%;
+  width: 80%;
   height: auto;
   line-height: 24px;
   overflow: auto;
   font-size: 17px;
   resize: none;
-  /* background: rgba(2, 0, 7, 0.1); */
+  color: #ccc;
+  /* background: #142634; */
+  background: rgba(2, 0, 7, 0.1);
 }
 
 ::placeholder {
-  /* color: rgb(55, 131, 194); */
-  color: black;
+  color: rgb(55, 131, 194);
 }
 
 .text-area:focus {
@@ -50,6 +51,7 @@
     /* width: 97%; */
     /* background: rgba(2, 0, 7, 1);   */
     /* color: rgb(55, 131, 194); */
+
   }
   .post_submit_button {
     color: #000;

@@ -61,7 +61,7 @@ class Landing extends Component {
     const { showModal, errors } = this.state 
 
      const signInModal = showModal ? (
-      <div> 
+      <React.Fragment> 
         <Modal show={this.state.showModal}>
           <h2 id='login-title'>Log In</h2>
           <form onSubmit={ this.onSubmitHandler }>
@@ -84,12 +84,12 @@ class Landing extends Component {
             <button type="submit" id='login-button'>Sign In</button>
           </form>
         </Modal>
-      </div>
+      </React.Fragment>
     ) : null 
 
     
     return (
-      <div>
+      <React.Fragment>
         <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
         { signInModal }
         <div className='fade-pic'>
@@ -107,7 +107,7 @@ class Landing extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

@@ -25,13 +25,13 @@ class Posts extends Component {
       profileContent = <Spinner />
     } else {
       profileContent = (
-        <div style={{ background: 'white', margin: 'auto', border: 'none', maxWidth: '200px', height: '100px' }}>
-          <img style={{width: '100%', height: '50px' }} src={require('../../img/skyline.jpg')} alt='background-img' />
-          <div style={{display: 'flex', justifyContent: 'space-around', padding: '7px' }}>
+        // <div style={{ background: 'white', margin: 'auto', border: 'none', maxWidth: '200px', height: '110px' }}>
+        //   <img style={{width: '100%', height: '50px' }} src={require('../../img/skyline.jpg')} alt='background-img' />
+          <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <img id='posts-profile-img'src={profile.avatar} alt={profile.name} />
-            <p style={{marginTop: '-10px'}}>@{profile.handle}</p>
+            <p style={{ color: 'rgb(29, 138, 228)' }}>@{profile.handle}</p>
           </div>
-        </div>
+      
       )
     }
 

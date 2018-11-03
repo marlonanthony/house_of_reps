@@ -47,12 +47,12 @@ class App extends Component {
     return (
       <Provider store={ store }>
         <Router>
-          <div>
-            <div>
+          <React.Fragment>
+            <React.Fragment>
               <DropdownMenu />
               <Route exact path='/' component={ Landing } />
-            </div>
-            <div>
+            </React.Fragment>
+            <React.Fragment>
             <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
             <Switch>
@@ -79,8 +79,8 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/post/:id' component={ Post } />
             </Switch>
-            </div>
-          </div>
+            </React.Fragment>
+          </React.Fragment>
         </Router>
       </Provider>
     );

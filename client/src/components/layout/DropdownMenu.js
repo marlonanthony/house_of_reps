@@ -42,7 +42,8 @@ class DropdownMenu extends Component {
       
     const authLinks = (
       <div>
-        <Link to="/djs">DJs</Link>
+        {/* <Link to="/djs">DJs</Link> */}
+        <Link to={`/profile/${profile.handle}`}>Profile</Link>
         <Link to="/feed">Feed</Link>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="#" onClick={this.onLogoutClick}>

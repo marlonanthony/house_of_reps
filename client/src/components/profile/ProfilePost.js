@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import Spinner from '../common/Spinner' 
 import { getPosts } from '../../actions/postActions'
-import PostFeed from '../posts/PostFeed'
+import PostItem from '../posts/PostItem'
 
 class ProfilePost extends Component {
   componentDidMount() {
@@ -17,7 +17,9 @@ class ProfilePost extends Component {
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {
-      postContent = <PostFeed posts={posts} />
+      postContent = posts.map(post => post.user === this.props.auth.user.id 
+        ? <PostItem key={post.id} post={post} /> 
+        : null)
     }
 
     return (
@@ -34,7 +36,8 @@ ProfilePost.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  auth: state.auth 
 })
 
 export default connect(mapStateToProps, { getPosts })(ProfilePost) 

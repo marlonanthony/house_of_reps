@@ -4,8 +4,6 @@
   background-size: cover;
   background-position: center;
   height: 100vh;
-  /* margin-bottom: -50px; */
-
   animation-name: fade-pic; 
   animation-iteration-count: 1;
   animation-duration: 3.5s;

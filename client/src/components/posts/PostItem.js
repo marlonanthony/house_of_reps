@@ -57,7 +57,12 @@ class PostItem extends Component {
             onClick={this.onUnlikeClick.bind(this, post._id)}>
             <i className="fas fa-thumbs-down icons" id='unlike'></i>
           </button>
-          <Link className='' to={`/post/${post._id}`}><img className='postfeed_comment postfeed_icons' src={require('../../img/comment.png')} alt='comment icon' /></Link>
+          <button className='postfeed_icons postfeed_buttons'>
+            <i className='far fa-comment icons' id='comment'/>
+          </button>
+          {/* <Link className='postfeed_icons postfeed_buttons' to={`/post/${post._id}`}>
+            <i className='far fa-comment icons' id='comment'/>
+          </Link> */}
           { post.user === auth.user.id ? (
             <button 
               className='postfeed_icons postfeed_buttons delete'

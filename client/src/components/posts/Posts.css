@@ -1,5 +1,6 @@
 .feed {
-  background: #cdf;
+  background: #142634;
+  /* background: #cdf; */
   /* padding: 100px 4vw 0 4vw; */
   padding-top: 100px;
   display: grid;
@@ -18,9 +19,8 @@
 }
 
 #posts-profile-img {
-  width: 40px;
-  height: 40px; 
-  margin-top: -25px;
+  width: 50px;
+  height: 50px; 
   border-radius: 50%;
   border: 2px solid lightblue;
 }
@@ -35,12 +35,14 @@
 
 .post-feed-footer {
   grid-area: footer;
+  background: #142634;
   padding: 5px;
   text-align: center;
   width: 100%;
   margin-left: 5px;
   font-size: 13px;
   border: none;
+  color: #d48872;
 }
 
 @media (min-width: 950px) {
@@ -67,7 +69,6 @@
     align-items: center;
     height: 35px;
     width: 150px;
-    background: white;
   }
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
 import { addPost } from '../../actions/postActions' 
-
+import Embed from '../slate/embed/Embed'
 import './PostForm.css'
 
 class PostForm extends Component {
@@ -65,7 +65,8 @@ class PostForm extends Component {
     const { errors } = this.state 
     return (
       <div className='post_form'>
-        <form onSubmit={this.onSubmit}>
+        <Embed />
+        {/* <form onSubmit={this.onSubmit}>
             <TextAreaFieldGroup
               className='text-area'
               placeholder="What's the discussion?"
@@ -76,7 +77,7 @@ class PostForm extends Component {
               rows={this.state.rows}
             />
           <button className=" post_submit_button">Submit</button>
-        </form>
+        </form> */}
         
       </div>
     )

@@ -1,0 +1,13 @@
+{
+  "document": {
+    "nodes": [
+      {
+        "object": "block",
+        "type": "video",
+        "data": {
+          "video": ""
+        }
+      }
+    ]
+  }
+}

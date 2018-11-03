@@ -9,12 +9,12 @@ class ProfileCreds extends Component {
 
     const venueItems = venues.map(venue => (
       <li key={venue._id} className='venue-items'>
-        <p>
+        <p style={{color: 'rgb(55, 131, 194)'}}>
           <Moment format='MM/DD/YYYY'>{venue.date}</Moment>
         </p>
-        <h4>{venue.title}</h4>
+        <h4 style={{ color: '#9932CC' }}>{venue.title}</h4>
         <p>{venue.location === '' ? null : (<span>{venue.location}</span>)}</p>
-        <p>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
+        <p style={{ color: '#7e8889' }}>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
         <br/>
       </li>
     ))
