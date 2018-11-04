@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
 import { addComment } from '../../actions/postActions' 
 
+import './CommentForm.css'
+
 class CommentForm extends Component {
   state = {
     text: '',
@@ -40,26 +42,21 @@ class CommentForm extends Component {
   render() {
     const { errors } = this.state 
     return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">
-            Say Somthing...
-          </div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <TextAreaFieldGroup 
-                  className="form-control form-control-lg" 
-                  placeholder="Reply to post" 
-                  name='text'
-                  value={this.state.text} 
-                  onChange={this.onChange} 
-                  error={errors.text} 
-                />
-              </div>
-              <button type="submit" className="btn btn-dark">Submit</button>
-            </form>
-          </div>
+      <div className="post-form ">
+        <div className="">
+          <form onSubmit={this.onSubmit}>
+            <div className="">
+              <TextAreaFieldGroup 
+                className="" 
+                placeholder="Reply to post" 
+                name='text'
+                value={this.state.text} 
+                onChange={this.onChange} 
+                error={errors.text} 
+              />
+            </div>
+            <button type="submit" id='comment-form-submit-btn'>Submit</button>
+          </form>
         </div>
       </div>
     )

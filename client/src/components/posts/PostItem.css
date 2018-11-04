@@ -44,20 +44,20 @@
   text-align: left;
 }
 
-.postfeed_icons {
-  /* display: inline-block;
-  padding: 2px;
-  margin: 0 15px;
-  margin-bottom: -10px;
-  box-sizing: border-box;
-  border: 1px solid black; */
-}
-
 .postfeed_buttons { 
   /* background-color: rgba(155, 155, 255, 0.0); */
-  background: #5a666b;
+  /* background: #5a666b; */
+  background: rgba(0,0,0,0.4);
+  color: rgb(5, 54, 100);
   outline: none;
-  margin: 1px;
+  margin: 2px;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.postfeed_buttons:hover {
+  background: rgba(0,0,0,0.8);
 }
 
 .icons {
@@ -66,11 +66,12 @@
 }
 
 .like {
-  color: rgba(0,0,0,0.5);
+  /* color: rgba(0,0,0,0.5); */
 }
 
 .like:hover {
-  color: rgba(5, 54, 100, 0.9);
+  /* color: rgba(5, 54, 100, 0.9); */
+  color: rgb(29, 138, 255);
 }
 
 .liked {
@@ -79,19 +80,20 @@
 }
 
 #unlike {
-  color: rgba(0,0,0,0.5);
+  /* color: rgba(0,0,0,0.5); */
 }
 
 #unlike:hover {
-  color: rgb(12, 124, 29);
+  /* color: rgb(12, 124, 29); */
+  color: #9932CC;
 }
 
 #comment:hover { 
-  color: #d48872;
+  color: #9932CC;
 }
 
 .delete {
-  color: rgba(0,0,0,0.5);
+  /* color: rgba(0,0,0,0.5); */
 }
 
 .delete:hover {

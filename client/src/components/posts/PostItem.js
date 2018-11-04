@@ -3,11 +3,30 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import { Link } from 'react-router-dom'
 import classnames from 'classnames' 
-import { deletePost, addLike, removeLike } from '../../actions/postActions'
+import Moment from 'react-moment' 
+import { deletePost, addLike, removeLike, getPost } from '../../actions/postActions'
+
+// For comments 
+import Spinner from '../common/Spinner'
+import CommentFeed from '../post/CommentFeed'
+import CommentForm from '../post/CommentForm'
 
 import './PostItem.css'
  
 class PostItem extends Component {
+
+  // For comments 
+  state = { 
+    showComments: false, 
+    text: '',
+    postComments: []
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.text)
+    console.log(this.state.postComments)
+    console.log(this.state.showComments)
+  }
 
   onDeleteClick = id => {
     this.props.deletePost(id) 
@@ -21,31 +40,31 @@ class PostItem extends Component {
     this.props.removeLike(id)
   }
 
-  findUserLike(likes) {
+  findUserLike = likes => {
     const { auth } = this.props 
-
-    if(likes.filter(like => like.user === auth.user.id).length > 0) {
-      return true 
-    } else {
-      return false 
-    }
+    return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
   render() {
     const { post, auth, showActions } = this.props 
+    const { showComments, text, postComments } = this.state 
 
     return (
      <div className='posts_container'>
       <div className='post_avatar_and_name'>
         <Link to={'#'}><img className='post_avatar_img' src={post.avatar} alt={post.name} /></Link>
-        <p className='post_name'>{post.name}</p>
+        <div style={{ display: 'block' }}>
+          <p className='post_name'>{post.name}</p>
+          <p style={{ color: '#7e8889', fontSize: '13px' }}><Moment format='MM/DD/YYYY'>{post.date}</Moment></p>
+        </div>
       </div>
 
       <div>
         <p className='post_content'>{post.text}</p>
         { showActions ? (<span>
           <button 
-            className='postfeed_icons postfeed_buttons'
+            title='like'
+            className='postfeed_buttons'
             onClick={this.onLikeClick.bind(this, post._id)}>
             <i className={classnames('fas fa-thumbs-up icons like', {
               'liked' : this.findUserLike(post.likes) 
@@ -53,24 +72,32 @@ class PostItem extends Component {
             <span>{post.likes.length}</span>
           </button>
           <button 
-            className='postfeed_icons postfeed_buttons'
+            title='unlike'
+            className='postfeed_buttons'
             onClick={this.onUnlikeClick.bind(this, post._id)}>
             <i className="fas fa-thumbs-down icons" id='unlike'></i>
           </button>
-          <button className='postfeed_icons postfeed_buttons'>
-            <i className='far fa-comment icons' id='comment'/>
+          <button 
+            title='comment'
+            onClick={() => this.setState({ text: post._id, postComments: post.comments, showComments: !showComments })} 
+            className='postfeed_buttons'>  
+            <i className='fas fa-comment icons' id='comment'/>
           </button>
-          {/* <Link className='postfeed_icons postfeed_buttons' to={`/post/${post._id}`}>
-            <i className='far fa-comment icons' id='comment'/>
-          </Link> */}
           { post.user === auth.user.id ? (
             <button 
-              className='postfeed_icons postfeed_buttons delete'
+              title='delete'
+              className='postfeed_buttons delete'
               onClick={this.onDeleteClick.bind(this, post._id)}>
               <i className="fas fa-times icons" />
             </button> 
             ) : null }
         </span>) : null }
+        { showComments ? (
+          <div>
+            <CommentForm postId={text} /> 
+            <CommentFeed postId={text} comments={postComments} />
+          </div> 
+        ) : null }
       </div>
      </div>
     )
@@ -93,4 +120,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(PostItem)
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, getPost })(PostItem)

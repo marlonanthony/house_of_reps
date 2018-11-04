@@ -66,7 +66,8 @@ class PostForm extends Component {
     return (
       <div className='post_form'>
         <Embed />
-        {/* <form onSubmit={this.onSubmit}>
+        {/* <div id='post-form-textareafieldgroup'>
+          <form onSubmit={this.onSubmit}>
             <TextAreaFieldGroup
               className='text-area'
               placeholder="What's the discussion?"
@@ -76,9 +77,9 @@ class PostForm extends Component {
               error={errors.text} 
               rows={this.state.rows}
             />
-          <button className=" post_submit_button">Submit</button>
-        </form> */}
-        
+            <button className="post_submit_button">Submit</button>
+          </form>
+        </div> */}
       </div>
     )
   }

@@ -39,7 +39,8 @@
 #profile-name {
   /* color: rgb(55, 131, 194); */
   /* color: #5a666b; */
-  color: #d48872;
+  /* color: #d48872; */
+  color: #bdc7c1;
 }
 
 #profile-handle {
@@ -53,15 +54,16 @@
   margin-top: 20px;
   font-size: 14px;
   max-width: 200px;
-  color: #7e8889;
   /* color: #bdc7c1; */
+  color: #7e8889;
   font-family: Geneva, Tahoma, sans-serif;
 }
 
 #profile-location {
   /* color: #d48872; */
   font-size: 15px;
-  color: #9932CC;
+  color: #bdc7c1;
+  /* color: #9932CC; */
 }
 
 #profile-icons-container {
@@ -89,12 +91,13 @@
   text-align: center;
   padding: 0 5px;
   margin: 0 5px;
+  text-align: left;
   /* color: #5a666b; */
   /* color: rgb(55, 131, 194); */
   /* color: rgb(131, 44, 175); */
   /* color: #9932CC; */
-  color: #d48872;
-  /* color: #bdc7c1; */
+  /* color: #d48872; */
+  color: #bdc7c1;
 }
 
 #profile-creds-div {
@@ -125,9 +128,9 @@
       'headeritems profilefeed profilecredsdiv';
   }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1700px) {
   .profile-header {
-    margin: 0 17vw;
+    margin: 0 15vw;
   }
 
   #profile-feed {

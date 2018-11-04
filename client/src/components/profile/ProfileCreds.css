@@ -21,7 +21,9 @@
 }
 
 #profile-events-h4 {
-  color: #d48872;
+  /* color: #d48872; */
+  /* color: rgb(55, 131, 194); */
+  color: #ccc;
 }
 
 #profile-events-h4::before {

@@ -20,12 +20,18 @@
   color: rgb(55, 131, 194);
 }
 
+#post-form-textareafieldgroup {
+  margin-left: 12%;
+  /* display: grid;
+  justify-items: center; */
+}
+
 .text-area:focus {
   outline: none;
 }
 
 .post_submit_button {
-  display: none;
+  /* display: none; */
   padding: 10px;
   cursor: pointer;
   margin-bottom: 5px;

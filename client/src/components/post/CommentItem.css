@@ -1,0 +1,41 @@
+#comment-feed-container {
+  padding: 15px;
+}
+
+#comment-feed-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgb(123, 180, 238);
+}
+
+#comment-feed-date {
+  margin-left: 5px;
+  font-size: 13px;
+  color: rgb(55, 131, 194);
+}
+
+#comment-feed-text {
+  color: #7e8889;
+}
+
+#commment-feed-delete-button {
+  padding: 0 20px;
+  background: rgba(0,0,0,0.4);
+  color: #ccc;
+  border: none;
+  border-radius: 5%;
+  margin-left: 50%;
+  margin-top: 10px;
+}
+
+#commment-feed-delete-button:hover {
+  /* color: rgb(55, 131, 194); */
+  color: red;
+  background: rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+
+.comment-feed-delete-icon {
+  
+}

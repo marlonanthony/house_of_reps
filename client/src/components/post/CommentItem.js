@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
+import Moment from 'react-moment' 
 import { deleteComment } from '../../actions/postActions' 
+
+import './CommentItem.css'
 
 class CommentItem extends Component {
 
@@ -11,28 +14,26 @@ class CommentItem extends Component {
   }
 
   render() {
-    const { comment, postId, auth } = this.props 
+    const { comment, postId, auth, profile } = this.props 
 
     return (
-      <div className="card card-body mb-3">
-        <div className="row">
-          <div className="col-md-4">
-            <Link to={'#'}>
-              <img className="rounded-circle d-none d-md-block" src={comment.avatar} alt={comment.name} />
-            </Link>
-            <br />
-            <p className="text-center">{comment.name}</p>
-          </div>
-          <div className="col-md-10">
-            <p className="lead">{comment.text}</p>
-            { comment.user === auth.user.id ? (
-            <button 
-              onClick={this.onDeleteClick.bind(this, postId, comment._id)} 
-              type="button" 
-              className="btn btn-danger mr-1">
-              <i className="fas fa-times" />
-            </button> ) : null }
-          </div>
+      <div id='comment-feed-container'>
+        <div style={{ display: 'flex' }}>
+          <Link to={`/profile/${profile.handle}`}>
+            <img id='comment-feed-avatar' src={comment.avatar} alt={comment.avatar} />
+          </Link>
+          <p id='comment-feed-date'><Moment format='MM/DD/YYYY'>{comment.date}</Moment></p>
+          { comment.user === auth.user.id ? (
+          <button 
+            onClick={this.onDeleteClick.bind(this, postId, comment._id)} 
+            type="button" 
+            title='Delete comment'
+            id='commment-feed-delete-button'>
+            <i className="fas fa-times comment-feed-delete-icon" />
+          </button> ) : null }
+        </div>
+        <div className="">
+          <p id='comment-feed-text'>{comment.text}</p>
         </div>
       </div>
     )
@@ -43,11 +44,13 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth 
+  auth: state.auth,
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { deleteComment })(CommentItem)

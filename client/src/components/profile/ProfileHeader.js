@@ -70,8 +70,8 @@ class ProfileHeader extends Component {
               </p>
           </div>
           <div id='profile-feed'>
-            <h1>News Feed</h1>
-            {/* <iframe 
+            <h1 style={{ textAlign: 'center' }}>News Feed</h1>
+            <iframe 
               id='youtube-video' 
               title='hofvideo' 
               // width="100%" 
@@ -82,7 +82,7 @@ class ProfileHeader extends Component {
               frameBorder="0" 
               allow="autoplay; encrypted-media" 
               allowFullScreen>
-            </iframe> */}
+            </iframe>
             <ProfilePost />
           </div>
           <div id='profile-creds-div'>

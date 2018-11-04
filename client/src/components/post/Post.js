@@ -9,9 +9,10 @@ import Spinner from '../common/Spinner'
 import { getPost } from '../../actions/postActions'
 
 class Post extends Component {
-  componentDidMount() {
-    this.props.getPost(this.props.match.params.id) 
-  }
+  // componentDidMount() {
+  //   this.props.getPost(this.props.match.params.id) 
+  // }
+
   render() {
     const { post, loading } = this.props.post 
     let postContent 
