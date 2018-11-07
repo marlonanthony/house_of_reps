@@ -1,7 +1,8 @@
 #comment-form-submit-btn {
   padding: 5px 15px;
   background: rgba(0,0,0,0.4);
-  color: #ccc;
+  /* color: #ccc; */
+  color: rgb(55, 131, 194);
   border: none;
   border-radius: 5%;
 }

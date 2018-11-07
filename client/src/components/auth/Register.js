@@ -47,9 +47,9 @@ class Register extends Component {
     const { errors } = this.state  
 
     return (
-      <div className="">
-        <h2 style={{ textAlign: 'center' }}>Sign Up</h2>
-        <p style={{ textAlign: 'center' }}>Create your account</p>
+      <div className="register-container">
+        <h2 style={{ textAlign: 'center', color: '#bdc7c1' }}>Sign Up</h2>
+        <p style={{ textAlign: 'center', color: '#7e8889' }}>Create your account</p>
         <div id='register-content'>
           <form id='register-form' onSubmit={ this.onSubmitHandler }>
             <TextFieldGroup

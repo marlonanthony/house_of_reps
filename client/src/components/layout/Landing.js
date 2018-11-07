@@ -96,8 +96,10 @@ class Landing extends Component {
           <div className="dark-overlay">
             <div className="landing_content">
               <div style={{ marginTop: '40vh', textAlign: 'center' }}>
-                <h1 style={{fontSize: '3.5em', color: '#ccc'}}>House of Reps</h1>
-                <h6 style={{fontSize: '1em', color: '#ccc', marginBottom: '15px', marginTop: '-15px'}}>Share & collaborate with other DJs</h6>
+                <h1 style={{fontSize: '3.5em', color: '#bdc7c1'}}>House of Reps</h1>
+                <h6 style={{fontSize: '1em', color: '#7e8889', marginBottom: '15px', marginTop: '-15px'}}>
+                  Community of DJs by DJs for DJs
+                </h6>
                 <button onClick={this.showHandler} className='landing_buttons'>Sign In</button>
                 <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link>
               </div>

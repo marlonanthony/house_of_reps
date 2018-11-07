@@ -1,3 +1,7 @@
+.register-container {
+
+}
+
 #register-content {
   margin-left: 30%;
 }
@@ -13,12 +17,14 @@
   border: none;
   border-radius: 2px;
   outline: none;
+  color: #aaa;
   /* color: rgb(55, 131, 194); */
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 #register-button:hover {
-  font-size: 15px;
+  color: rgb(55, 131, 194);
+  background: rgba(0,0,0,0.8);
 }
 
 @media (max-width: 800px) {

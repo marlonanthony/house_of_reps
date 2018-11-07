@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
-
 import { deleteVenue } from '../../actions/profileActions'
+
+import './Venue.css'
 
 class Venues extends Component {
   onDeleteClick = id => {
@@ -16,13 +17,19 @@ class Venues extends Component {
         <td style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></td>
         <td style={{padding: '10px'}}>{venue.title}</td>
         <td style={{padding: '10px'}}>{venue.location}</td>
-        <td style={{padding: '10px'}}><button onClick={ this.onDeleteClick.bind(this, venue._id) }>Delete</button></td>
+        <td style={{padding: '10px'}}>
+          <button 
+            id='venue-delete-btns'
+            onClick={ this.onDeleteClick.bind(this, venue._id) }>
+              Delete
+          </button>
+        </td>
       </tr>
     ))
     return (
-      <div>
-        <h4 style={{ textAlign: 'center' }} className=''>Venues</h4>
-        <table className="">
+      <div id='venue-container'>
+        <h3 style={{ textAlign: 'center', padding: '10px', color: '#ccc' }} className=''>Venues</h3>
+        <table className="venue-table-data">
           <thead>
             <tr>
               <th >Date</th>

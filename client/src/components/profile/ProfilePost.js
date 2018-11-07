@@ -18,7 +18,7 @@ class ProfilePost extends Component {
       postContent = <Spinner />
     } else {
       postContent = posts.map(post => post.user === this.props.auth.user.id 
-        ? <PostItem key={post.id} post={post} /> 
+        ? <PostItem key={post._id} post={post} /> 
         : null)
     }
 

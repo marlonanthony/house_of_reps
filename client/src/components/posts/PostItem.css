@@ -1,4 +1,6 @@
 .posts_container {
+  /* background: rgb(1, 13, 24); */
+  background: rgb(5, 22, 37);
   width: 90%;
   margin: auto;
   border:none;
@@ -51,6 +53,7 @@
   color: rgb(5, 54, 100);
   outline: none;
   margin: 2px;
+  margin-bottom: 5px;
   border: none;
   border-radius: 5%;
   cursor: pointer;
@@ -58,6 +61,7 @@
 
 .postfeed_buttons:hover {
   background: rgba(0,0,0,0.8);
+  color: rgb(29, 138, 255);
 }
 
 .icons {
@@ -75,8 +79,9 @@
 }
 
 .liked {
-  color: rgb(29, 138, 228);
-  
+  /* color: rgb(29, 138, 228); */
+  background: rgba(0,0,0,0.8);
+  color: rgb(29, 138, 255);
 }
 
 #unlike {
@@ -85,11 +90,11 @@
 
 #unlike:hover {
   /* color: rgb(12, 124, 29); */
-  color: #9932CC;
+  /* color: #9932CC; */
 }
 
 #comment:hover { 
-  color: #9932CC;
+  /* color: #9932CC; */
 }
 
 .delete {
@@ -102,16 +107,16 @@
 
 @media (min-width: 900px) {
   .posts_container {
-    border: none;
+    /* border: none; */
     margin-bottom: 5px;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: auto 1fr;
+    /* display: grid; */
+    /* justify-items: center; */
+    /* grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
-    grid-gap: 15px;
-    grid-template-areas:  
+    grid-gap: 15px; */
+    /* grid-template-areas:  
       'avatar' 'name'
       'avatar' 'postcontent'
-      'avatar' 'icons'
+      'avatar' 'icons' */
   }
 }

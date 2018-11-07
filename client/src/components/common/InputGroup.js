@@ -15,7 +15,7 @@ const InputGroup = ({
     <div style={{display: 'flex', justifyContent: 'space-around'}}>
       <div>
         <span>
-          <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: '#777' }} />
+          <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: 'rgb(55, 131, 194)' }} />
         </span>
       </div>
       <input 

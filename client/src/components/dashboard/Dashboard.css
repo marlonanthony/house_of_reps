@@ -1,0 +1,21 @@
+#dashboard {
+  background: #050c14;
+  color: #aaa;
+  padding-top: 70px;
+}
+
+#dashboard-delete-btn {
+  font-size: 17px; 
+  padding: 10px;
+  background: rgba(0,0,0,0.4);
+  color: #aaa;
+  border: none;
+  border-radius: 2%;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+#dashboard-delete-btn:hover {
+  color: rgb(55, 131, 194);
+  background: rgba(0,0,0,0.8);
+}

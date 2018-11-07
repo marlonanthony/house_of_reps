@@ -8,7 +8,7 @@
 }
 
 .profile-header {
-  margin: 0 10vw;
+  /* margin: 0 10vw; */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto;
@@ -26,14 +26,18 @@
 
 #profile-avatar {
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 140px;
+  width: 140px;
+  margin-left: 5vw;
   margin-top: -70px;
   border: 3px solid rgb(123, 180, 238);
 }
 
 #header-items {
   grid-area: headeritems;
+  padding-left: 5vw;
+  /* margin-left: 30vw; */
+  /* justify-self: center; */
 }
 
 #profile-name {
@@ -100,6 +104,13 @@
   color: #bdc7c1;
 }
 
+#youtube-video {
+  /* margin-left: 15%; */
+  margin-left: 5%;
+  margin-top: 25px; 
+  margin-bottom: 5px; 
+}
+
 #profile-creds-div {
   grid-area: profilecredsdiv;
 }
@@ -141,6 +152,9 @@
 @media (max-width: 600px) {
   #youtube-video {
     height: 205px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px; 
   }
 
   #profile-avatar {

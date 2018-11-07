@@ -20,11 +20,11 @@ class ProfileCreds extends Component {
     ))
     return (
       <div className='profile-creds'>
-        <h4 id='profile-events-h4' style={{textAlign: 'center'}}>Highlights</h4>
+        <h4 id='profile-events-h4'>Highlights</h4>
         <div className='profile-creds-content'>
           {venueItems.length > 0 ? ( 
             venueItems.filter((val, i) => i < 4 ?  (<ul>{venueItems}</ul>) : null)
-          ) : (<p className=''>No Venues Listed</p>)}
+          ) : (<p id='no_venues'>Add some content</p>)}
         </div>
       </div>
     )

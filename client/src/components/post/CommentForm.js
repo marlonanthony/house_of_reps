@@ -55,7 +55,8 @@ class CommentForm extends Component {
                 error={errors.text} 
               />
             </div>
-            <button type="submit" id='comment-form-submit-btn'>Submit</button>
+            <i className='far fa-paper-plane' id='comment-form-submit-btn' />
+            {/* <button type="submit" id='comment-form-submit-btn'>Submit</button> */}
           </form>
         </div>
       </div>

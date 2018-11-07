@@ -1,5 +1,12 @@
 #comment-feed-container {
   padding: 15px;
+  background: rgba(0,0,0,0.4);
+  border: .3px solid black;
+  margin: 1.5px 0;
+}
+
+#comment-feed-container:hover {
+  /* background: rgba(2, 2, 12, 0.747); */
 }
 
 #comment-feed-avatar {
@@ -17,15 +24,16 @@
 
 #comment-feed-text {
   color: #7e8889;
+  font-size: 15px;
 }
 
 #commment-feed-delete-button {
-  padding: 0 20px;
+  padding: 0 30px;
+  max-height: 30px;
   background: rgba(0,0,0,0.4);
   color: #ccc;
   border: none;
   border-radius: 5%;
-  margin-left: 50%;
   margin-top: 10px;
 }
 

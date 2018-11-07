@@ -7,6 +7,8 @@ import Spinner from '../common/Spinner'
 import ProfileActions from './ProfileActions'
 import Venues from './Venues'
 
+import './Dashboard.css'
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile()
@@ -28,25 +30,20 @@ class Dashboard extends Component {
       // Check if logged in user has profile data
       if(Object.keys(profile).length > 0) {
         dashboardContent = (
-          <div>
+          <div style={{ minHeight: '100vh' }}>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-              <p>
-                Welcome <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`} >{ user.name }</Link>
-              </p>
+              <Link 
+                style={{textDecoration: 'none', color: 'rgb(55, 131, 194)', padding: '10px'}} 
+                to={`/profile/${profile.handle}`} >{ user.name }
+              </Link>
               <ProfileActions />
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <Venues venues={profile.venues} />
-              <div style={{ marginBottom: '60px' }}/>
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <button 
-                style={{
-                  fontSize: '17px', 
-                  marginTop: '50px',
-                  padding: '10px'
-                }} 
-                onClick={ this.onDeleteClick } className="">Delete My Account
+                onClick={ this.onDeleteClick } id="dashboard-delete-btn">Delete My Account
               </button>
             </div>
           </div>
@@ -55,7 +52,7 @@ class Dashboard extends Component {
         // User is logged in but has no profile
         dashboardContent = (
           <div>
-            <p className="">Welcome { user.name }</p>
+            <p className="">{ user.name }</p>
             <p>You have not yet set up a profile, please add some info</p>
             <Link to='/create-profile' className=''>Create Profile</Link>
           </div>
@@ -64,8 +61,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className='dashboard'>
-        <h1 style={{textAlign: 'center'}}>Dashboard</h1>
+      <div id='dashboard'>
         { dashboardContent }
       </div>
     )

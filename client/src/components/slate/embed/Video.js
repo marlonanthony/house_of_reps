@@ -13,7 +13,8 @@ class Video extends Component {
   }
 
   render() {
-    const { isSelected, attributes } = this.props 
+    // const { isSelected, attributes } = this.props 
+    const { attributes } = this.props 
     const video = this.props.node.data.get('video')
 
     return (

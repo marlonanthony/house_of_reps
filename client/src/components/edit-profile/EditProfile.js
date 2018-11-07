@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
@@ -249,7 +249,10 @@ class EditProfile extends Component {
     }
     return (
       <div className='edit-profile'>
-        <h1 style={{ textAlign: 'center' }}>Edit Profile</h1>
+        <Link to='/dashboard'>
+          <i id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
+        </Link>
+        <h1 style={{ textAlign: 'center', color: '#ccc' }}>Edit Profile</h1>
         <div className='row'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
             <div style={{ display: 'flex', justifyContent: 'center' }} className='FileUpload'>
@@ -258,12 +261,16 @@ class EditProfile extends Component {
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '100%', 
+                  width: '50%', 
                   height: 'auto', 
-                  marginRight: '20px',
                   padding: '10px',
                   cursor: 'pointer',
-                  backgroundColor: 'lightblue' }}
+                  color: '#aaa',
+                  border: 'dashed',
+                  borderColor: '#ccc',
+                  marginLeft: '-70px',
+                  background: 'rgba(0,0,0,0.4)'
+                }}
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>
@@ -345,7 +352,7 @@ class EditProfile extends Component {
                   displaySocialInputs: !prevState.displaySocialInputs
                 }))
               }} id='edit-profile-social-btn'>Add Social Network Links</button>
-              <span style={{ color: '#555', marginLeft: '10px' }}>Optional</span>
+              <span style={{ color: '#ccc', marginLeft: '10px' }}>Optional</span>
             </div>
             { socialInputs }
             <input type="submit" value="Submit" id='edit-profile-submit-btn' />

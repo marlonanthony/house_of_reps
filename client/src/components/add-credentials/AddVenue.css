@@ -1,28 +1,90 @@
-#venue-submit-button {
+.add-venue {
+  background: #050c14;
+  color: #aaa;
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+.register-inputs {
+  margin: 10px;
+  margin-left: 10%;
+  height: 30px;
+  width: 80%;
   font-size: 17px;
   border: none;
-  margin-top: 10px;
+  border-radius: 2px;
   outline: none;
-  margin-left: 10px;
+  text-decoration: none;
+  padding: 5px;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.register-inputs::placeholder {
+  /* color: rgb(55, 131, 194); */
+  color: #bdc7c1;
+}
+
+.register-text-area {
+  /* border: 1px solid rgb(21, 58, 88); */
+  border: none;
+  padding: 10px;
+  width: 79.5%;
+  height: auto;
+  line-height: 24px;
+  overflow: auto;
+  font-size: 17px;
+  resize: none;
+  color: #ccc;
+  margin-left: 10%;
+  /* background: #142634; */
+  background: rgba(2, 0, 7, 0.2);
+}
+
+.register-text-area::placeholder {
+  color: #ccc;
+}
+
+
+.red {
+  color: red;
+}
+
+#venue-submit-button {
+  margin-top: 10px;
+  margin-left: 10%;
+  padding: 10px;
+  font-size: 17px; 
+  border: none; 
+  background: rgba(0,0,0,0.4);
+  color: #aaa;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
 }
 
 #venue-submit-button:hover {
-  font-size: 16px;
-}
-
-#venue-submit-button:active {
-  font-size: 15px;
+  color: rgb(55, 131, 194);
+  background: rgba(0,0,0,0.8);
 }
 
 #addvenue-back-button {
   position: absolute;
   top: 30px;
+  margin-left: 10%;
   width: 40px;
   height: 40px;
   text-decoration: none;
+  color: #ccc;
 }
 
 #addvenue-back-button:hover {
-  height: 50px;
-  width: 50px;
+  background: rgb(55, 131, 194);
+  border-radius: 50%;
+  color: rgba(0,0,0,0.8);
+}
+
+#addvenue-back-button:active {
+  height: 35px;
+  width: 35px;
 }

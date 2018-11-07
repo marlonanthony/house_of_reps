@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom'
 
 const ProfileActions = () => {
   return (
-    <div>
+    <div style={{ padding: '10px' }}>
       <Link to="/edit-profile" 
         style={{
           margin: '0 10px', 
           textDecoration: 'none',
-
+          color: 'rgb(55, 131, 194)'
         }}>
-        <i className=""></i> Edit Profile</Link>
-      <Link to="/add-venue" style={{ margin: '0 10px', textDecoration: 'none' }}>
-        <i className=""></i>
-        Add Venue</Link>
+        <i className='fab fa-black-tie'/> Edit Profile
+      </Link>
+      <Link to="/add-venue" style={{ margin: '0 10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
+        <i className="fas fa-clipboard" /> Add Event
+      </Link>
     </div>
   )
 }
