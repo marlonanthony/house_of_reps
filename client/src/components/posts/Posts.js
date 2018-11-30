@@ -14,7 +14,7 @@ class Posts extends Component {
     this.props.getPosts() 
     this.props.getCurrentProfile()
   }
-
+  
   render() {
     const { posts, loading } = this.props.post 
     const { profile } = this.props.profile 

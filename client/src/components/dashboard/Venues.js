@@ -29,16 +29,18 @@ class Venues extends Component {
     return (
       <div id='venue-container'>
         <h3 style={{ textAlign: 'center', padding: '10px', color: '#ccc' }} className=''>Venues</h3>
-        <table className="venue-table-data">
-          <thead>
-            <tr>
-              <th >Date</th>
-              <th >Title</th>
-              <th>Location</th>
-            </tr>
-              { venues }
-            </thead>
-        </table>
+        {/* <div style={{ overflowX: 'auto' }}> */}
+          <table className="venue-table-data">
+            <thead>
+              <tr>
+                <th >Date</th>
+                <th >Title</th>
+                <th>Location</th>
+              </tr>
+                { venues }
+              </thead>
+          </table>
+        {/* </div> */}
       </div>
     )
   }

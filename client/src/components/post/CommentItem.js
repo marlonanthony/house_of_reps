@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
-import { deleteComment } from '../../actions/postActions' 
+import { deleteComment, getPosts } from '../../actions/postActions' 
 
 import './CommentItem.css'
 
@@ -14,6 +14,7 @@ class CommentItem extends Component {
   }
 
   render() {
+    
     const { comment, postId, auth, profile } = this.props 
 
     return (
@@ -57,4 +58,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 })
 
-export default connect(mapStateToProps, { deleteComment })(CommentItem)
+export default connect(mapStateToProps, { deleteComment, getPosts })(CommentItem)

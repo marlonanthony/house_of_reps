@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
 import { addPost } from '../../actions/postActions' 
 // import Embed from '../slate/embed/Embed'
-import classnames from 'classnames'
+// import classnames from 'classnames'
 import './PostForm.css'
 
 class PostForm extends Component {
@@ -13,7 +13,8 @@ class PostForm extends Component {
     errors: {},
     rows: 2,
     minRows: 2,
-    maxRows: 10
+    maxRows: 10,
+    show: false
   }
 
   componentWillReceiveProps(newProps) {
@@ -60,28 +61,42 @@ class PostForm extends Component {
     this.props.addPost(newPost) 
     this.setState({ text: '' })
   }
-  
 
+  showHandler = () => {
+    this.setState(prevState => ({ show: !prevState.show }))
+  }
+
+  addPhoto = (e) => {
+    // Add photo for posts
+    e.preventDefault()
+    alert('Hello World!')
+  }
+  
   render() {
     const { errors } = this.state 
     return (
       <div className='post_form'>
         {/* <Embed /> */}
         <div id='post-form-textareafieldgroup'>
-          <form onSubmit={this.onSubmit}>
-          <TextAreaFieldGroup
-            className='text-area'
-            placeholder="What's the discussion?"
-            name='text'
-            value={this.state.text} 
-            onChange={this.onChange} 
-            error={errors.text} 
-            rows={this.state.rows}
-          />
-          <button className='post_submit_button' title='submit'>
-            <i id='post-submit-icon' className="far fa-paper-plane " />
-          </button>
-          {/* <button className="post_submit_button">Submit</button> */}
+          <form onSubmit={this.onSubmit} onClick={this.showHandler} >
+            <TextAreaFieldGroup
+              className='text-area'
+              placeholder="What's the discussion?"
+              name='text'
+              value={this.state.text} 
+              onChange={this.onChange} 
+              error={errors.text} 
+              rows={this.state.rows}
+            />
+            <div className={ this.state.show ? 'otherstuff' : 'disp'}>
+              <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
+                <i class="fas fa-image" id='add-photo' />
+              </button>
+              <button className='post_submit_button' title='Submit'>
+                <i id='post-submit-icon' className="far fa-paper-plane " />
+              </button>
+            </div>
+            {/* <button className="post_submit_button">Submit</button> */}
           </form>
         </div>
       </div>

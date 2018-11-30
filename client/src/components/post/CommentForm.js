@@ -2,21 +2,25 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
-import { addComment } from '../../actions/postActions' 
+import { addComment, getPosts } from '../../actions/postActions' 
 
 import './CommentForm.css'
 
 class CommentForm extends Component {
   state = {
     text: '',
-    errors: {} 
+    errors: {}
   }
 
-  componentWillReceiveProps(newProps) {
-    if(newProps.errors) {
-      this.setState({ errors: newProps.errors })
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevProps, this.state.text)
+  // }
+
+  // componentWillReceiveProps(newProps) {
+  //   if(newProps.errors) {
+  //     this.setState({ errors: newProps.errors })
+  //   }
+  // }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -55,7 +59,9 @@ class CommentForm extends Component {
                 error={errors.text} 
               />
             </div>
-            <i className='far fa-paper-plane' id='comment-form-submit-btn' />
+            <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
+              <i className='far fa-paper-plane' id='comment-form-submit-btn' />
+            </button>
             {/* <button type="submit" id='comment-form-submit-btn'>Submit</button> */}
           </form>
         </div>
@@ -76,4 +82,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { addComment })(CommentForm)
+export default connect(mapStateToProps, { addComment, getPosts })(CommentForm)

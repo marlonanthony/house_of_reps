@@ -22,10 +22,14 @@ class PostItem extends Component {
     postComments: []
   }
 
-  componentDidUpdate() {
-    console.log(this.state.text)
-    console.log(this.state.postComments)
-    console.log(this.state.showComments)
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.state.prevProps)
+    // console.log(this.state.postComments)
+    // console.log(this.props)
+    // console.log(prevState)
+    if(this.props.post.comments !== prevState.postComments) {
+      this.setState({ postComments: this.props.post.comments })
+    }
   }
 
   onDeleteClick = id => {
@@ -83,7 +87,10 @@ class PostItem extends Component {
           </button>
           <button 
             title='comment'
-            onClick={() => this.setState({ text: post._id, postComments: post.comments, showComments: !showComments })} 
+            onClick={() => this.setState((prevState, props) => ({ 
+              text: props.post._id, 
+              postComments: props.post.comments, 
+              showComments: !prevState.showComments }))} 
             className='postfeed_buttons'>  
             <i className='fas fa-comment icons' id='comment'/>
           </button>
@@ -96,13 +103,15 @@ class PostItem extends Component {
               <i className="fas fa-times icons" />
             </button> 
             ) : null }
-        </span>) : null }
+        </span>) : null 
+        }
         { showComments ? (
           <div>
             <CommentForm postId={text} /> 
             <CommentFeed postId={text} comments={postComments} />
           </div> 
-        ) : null }
+          ) : null 
+        }
       </div>
      </div>
     )
