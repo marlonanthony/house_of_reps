@@ -38,7 +38,19 @@ class CommentItem extends Component {
           </div>
         </div>
         <div className="">
-          <p id='comment-feed-text'>{comment.text}</p>
+          { comment.description === undefined && comment.image === undefined && comment.title === undefined && comment.url === undefined
+            ? <p id='comment-feed-text'>{comment.text}</p>
+            : ( <div>
+                  <p id='comment-feed-text'>{comment.text}</p>
+                  <a href={comment.url} target='_blank'>
+                    <img src={comment.image} alt='thumbnail' style={{ width: '50%', margin: '0 25%' }} id='comment-link-img' />
+                  </a>
+                  <p style={{textAlign: 'center', fontSize: '12px', color: '#7e8889' }}>{comment.title}</p>
+                  <p style={{textAlign: 'center', fontSize: '10px', color: '#7e8889' }}>{comment.description}</p>
+                  {/* <a href={comment.url}><small>{comment.url}</small></a> */}
+                </div>
+              )
+          }
         </div>
       </div>
     )

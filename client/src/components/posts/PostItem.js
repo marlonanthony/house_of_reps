@@ -52,7 +52,6 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments } = this.state 
-
     return (
      <div className='posts_container'>
       <div className='post_avatar_and_name'>
@@ -64,7 +63,19 @@ class PostItem extends Component {
       </div>
 
       <div>
-        <p className='post_content'>{post.text}</p>
+        { post.description === undefined && post.image === undefined && post.title === undefined && post.url === undefined
+          ? <p className='post_content'>{post.text}</p>
+          : ( <div className='post_content'>
+                <p style={{ color: 'white' }}>{post.text}</p>
+                <a href={post.url} target='_blank'>
+                  <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
+                </a>
+                <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
+                <p style={{textAlign: 'center', fontSize: '10px'}}>{post.description}</p>
+                {/* <a href={post.url}><small>{post.url}</small></a> */}
+              </div>
+            )
+        }
         { showActions ? (<span>
           <button 
             title='like'

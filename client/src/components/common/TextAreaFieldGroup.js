@@ -7,7 +7,7 @@ class TextAreaFieldGroup extends Component {
 
 
   render() {
-    const { name, placeholder, value, error, info, onChange, rows } = this.props 
+    const { name, placeholder, value, error, info, onChange, onPaste, rows } = this.props 
     return (
       <div className="">
         <textarea 
@@ -19,6 +19,7 @@ class TextAreaFieldGroup extends Component {
           value={value}
           onChange={onChange}
           rows={rows}
+          onPaste={onPaste}
         />
         {info && <small className=''>{info}</small>}
         { error && (<div className='error'>{error}</div>)}

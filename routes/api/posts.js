@@ -51,7 +51,11 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     text: req.body.text,
     name: req.body.name,
     avatar: req.body.avatar,
-    user: req.user.id
+    user: req.user.id,
+    image: req.body.image,
+    title: req.body.title,
+    description: req.body.description,
+    url: req.body.url 
   })
 
   newPost.save().then(post => res.json(post)) 
@@ -135,7 +139,11 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
       text: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
-      user: req.user.id 
+      user: req.user.id,
+      image: req.body.image,
+      title: req.body.title,
+      description: req.body.description,
+      url: req.body.url 
     }
 
     // Add to comments array

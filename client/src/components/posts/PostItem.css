@@ -46,6 +46,10 @@
   text-align: left;
 }
 
+#post-link-img:hover {
+  opacity: .8;
+}
+
 .postfeed_buttons { 
   /* background-color: rgba(155, 155, 255, 0.0); */
   /* background: #5a666b; */

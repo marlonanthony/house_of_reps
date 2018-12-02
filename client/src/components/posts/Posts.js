@@ -10,6 +10,11 @@ import PostFeed from './PostFeed'
 import './Posts.css'
 
 class Posts extends Component {
+
+  state ={
+    showsPreview: false 
+  }
+
   componentDidMount() {
     this.props.getPosts() 
     this.props.getCurrentProfile()
@@ -38,7 +43,7 @@ class Posts extends Component {
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {
-      postContent = <PostFeed posts={posts} />
+      postContent = <PostFeed showPreview={this.state.showsPreview} posts={posts} />
     }
 
     return (
@@ -46,7 +51,7 @@ class Posts extends Component {
         <div className='post-feed-profile'>
           { profileContent }
         </div>
-        <div className='post-feed-form'><PostForm style={{display: 'grid', justifySelf: 'center'}} /></div>
+        <div className='post-feed-form'><PostForm showPreview={this.state.showsPreview} style={{display: 'grid', justifySelf: 'center'}} /></div>
         <div className='post-feed-post-content'>{postContent}</div>
         <div className='post-feed-footer'>
           <footer id='postsfeed-footer'>
