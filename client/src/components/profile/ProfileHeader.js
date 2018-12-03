@@ -80,6 +80,10 @@ class ProfileHeader extends Component {
               src="https://www.youtube.com/embed/qrmKp_ANX_M" 
               frameBorder="0" 
               allow="autoplay; encrypted-media" 
+              style={{
+                marginBottom: '20px',
+                marginTop: '25px' 
+              }}
               allowFullScreen>
             </iframe>
             {/* <h1 style={{ textAlign: 'center' }}>News Feed</h1> */}

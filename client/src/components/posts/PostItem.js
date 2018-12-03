@@ -23,10 +23,6 @@ class PostItem extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(this.state.prevProps)
-    // console.log(this.state.postComments)
-    // console.log(this.props)
-    // console.log(prevState)
     if(this.props.post.comments !== prevState.postComments) {
       this.setState({ postComments: this.props.post.comments })
     }
@@ -63,16 +59,24 @@ class PostItem extends Component {
       </div>
 
       <div>
-        { post.description === undefined && post.image === undefined && post.title === undefined && post.url === undefined
+        { !post.description && !post.image && !post.title && !post.url && !post.media
           ? <p className='post_content'>{post.text}</p>
+          : post.media 
+          ? ( <div>
+                <p className='post_content'>{post.text}</p>
+                <img src={post.media} alt="uploaded-image" style={{width: '100%'}} />
+              </div>
+            )
           : ( <div className='post_content'>
-                <p style={{ color: 'white' }}>{post.text}</p>
-                <a href={post.url} target='_blank'>
-                  <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
-                </a>
-                <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
-                <p style={{textAlign: 'center', fontSize: '10px'}}>{post.description}</p>
-                {/* <a href={post.url}><small>{post.url}</small></a> */}
+                <p>{post.text}</p>
+                <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
+                  <a href={post.url} target='_blank'>
+                    <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
+                  </a>
+                  <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
+                  <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
+                  {/* <a href={post.url}><small>{post.url}</small></a> */}
+                </div>
               </div>
             )
         }

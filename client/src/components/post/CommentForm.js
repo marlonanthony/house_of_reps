@@ -5,8 +5,13 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import { addComment, getPosts } from '../../actions/postActions'
 import axios from 'axios'
 import LinkPreview from '../posts/LinkPreview'
+import Dropzone from 'react-dropzone' 
+import request from 'superagent' 
 
 import './CommentForm.css'
+
+const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 class CommentForm extends Component {
   state = {
@@ -14,7 +19,10 @@ class CommentForm extends Component {
     errors: {},
     show: false,
     data: {},
-    showPreview: false 
+    showPreview: false,
+    uploadedFileCloudinaryUrl: '',
+    uploadedFile: '',
+    media: ''
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -65,36 +73,71 @@ class CommentForm extends Component {
       image: this.state.data.image,
       title: this.state.data.title,
       description: this.state.data.description,
-      url: this.state.data.url 
+      url: this.state.data.url,
+      media: this.state.media
     }
 
     this.props.addComment(postId, newComment) 
-    this.setState({ text: '', data: {} })
+    this.setState({ text: '', data: {}, media: '' })
     e.target.reset() 
   }
-  
+
+  showButtonsHandler = () => {
+    this.setState(prevState => ({ show: !prevState.show }))
+  }
+
+  onImageDrop = files => {
+    this.setState({ uploadedFile: files[0]})
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload = (file) => {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file) 
+    
+    upload.end((err, response) => {
+      if(err) console.log(err) 
+      if(response.body.secure_url !== '') {
+        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
+        this.setState({ media: response.body.secure_url })
+        this.setState({ showPreview: true })
+      }
+    })
+  }
 
   render() {
-    const { errors, data } = this.state 
+    const { errors, data, media, show, showPreview, text } = this.state 
     return (
       <div className="post-form ">
-        <div className="">
+        <div onClick={this.showButtonsHandler}>
           <form onSubmit={this.onSubmit}>
-            <div className="">
-              <TextAreaFieldGroup 
-                className="" 
-                placeholder="Reply to post" 
-                name='text'
-                value={this.state.text} 
-                onChange={this.onChange} 
-                onPaste={this.onPaste}
-                error={errors.text} 
-              />
+            <TextAreaFieldGroup 
+              className="" 
+              placeholder="Reply to post" 
+              name='text'
+              value={text} 
+              onChange={this.onChange} 
+              onPaste={this.onPaste}
+              error={errors.text} 
+            />
+            <div className={ show ? 'otherstuff' : 'display-none' }>
+              <Dropzone 
+                style={{ 
+                  border: 'none'
+                }}
+                multiple={false}
+                accept='image/*, video/*'
+                onDrop={this.onImageDrop}>
+                <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
+                  <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+                </button>
+              </Dropzone>
+              <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
+                <i className='far fa-paper-plane' id='comment-form-submit-btn' />
+              </button>
             </div>
-            <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
-              <i className='far fa-paper-plane' id='comment-form-submit-btn' />
-            </button>
-            { this.state.showPreview ? <LinkPreview post={data} /> : null }
+            { showPreview ? <LinkPreview post={data} media={media} /> : null }
           </form>
         </div>
       </div>

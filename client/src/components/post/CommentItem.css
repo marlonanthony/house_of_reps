@@ -27,8 +27,16 @@
   font-size: 15px;
 }
 
-#comment-link-img:hover {
+#comment-link-container {
+  background: rgba(0,0,0,0.4);
+}
+
+#comment-link-container:hover {
   opacity: .8;
+}
+
+#comment-link-img:hover {
+  /* opacity: .8; */
 }
 
 #commment-feed-delete-button {

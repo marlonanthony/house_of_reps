@@ -29,6 +29,9 @@ const PostSchema = new Schema({
   url: {
     type: String 
   },
+  media: {
+    type: String
+  },
   likes: [
     {
       user: {
@@ -64,6 +67,9 @@ const PostSchema = new Schema({
         type: String 
       },
       url: {
+        type: String 
+      },
+      media: {
         type: String 
       }
     }

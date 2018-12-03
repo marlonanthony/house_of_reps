@@ -3,7 +3,7 @@ import {
   GET_POSTS,
   POST_LOADING, 
   DELETE_POST, 
-  // DELETE_COMMENT,
+  DELETE_COMMENT,
   ADD_COMMENT,
   GET_POST 
 } from '../actions/types'
@@ -71,11 +71,16 @@ export default function(state = initialState, action) {
         ...state,
         posts: state.posts.filter(post => post._id !== action.payload) 
       }
-    // case DELETE_COMMENT: 
-    //   return {
-    //     ...state,
-    //     posts: state.posts.map(post => post.comments.filter(comment => comment._id !== action.payload.commentId))
-    //   }
+    case DELETE_COMMENT: 
+      const arr = []
+      const currentPost = state.posts.map(post => post._id === action.payload.postId ? post : null)
+      const singlePost = currentPost.map(post => currentPost.slice(post))
+      console.log(singlePost)
+      console.log(state.posts.map(post => post._id === action.payload.postId ? post : null))
+      return {
+        ...state,
+        posts: state.posts  //state.posts.map(post => post.comments.filter(comment => comment._id !== action.payload))
+      }
     default: 
       return state 
   }

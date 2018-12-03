@@ -48,7 +48,7 @@
 
 @media (min-width: 950px) {
   .feed {
-    padding: 100px 4vw 0 4vw;
+    padding: 100px 10vw 0 10vw;  /*4vw */
     display: grid;
     grid-gap: 35px;
     grid-template-columns: auto 1fr auto;
@@ -75,6 +75,6 @@
 
 @media(min-width: 1500px) {
   .feed {
-    padding: 100px 20vw 0 20vw;
+    padding: 100px 23vw 0 23vw;
   }
 }

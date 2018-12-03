@@ -41,7 +41,7 @@
 .post_content {
   grid-area: postcontent;
   padding: 5px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: sans-serif;
   color: #bdc7c1;
   text-align: left;
 }

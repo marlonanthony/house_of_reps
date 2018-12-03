@@ -5,9 +5,14 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import { addPost } from '../../actions/postActions' 
 import axios from 'axios'
 import LinkPreview from './LinkPreview'
+import Dropzone from 'react-dropzone' 
+import request from 'superagent' 
 // import Embed from '../slate/embed/Embed'
 // import classnames from 'classnames'
 import './PostForm.css'
+
+const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 class PostForm extends Component {
   state = {
@@ -18,7 +23,10 @@ class PostForm extends Component {
     maxRows: 10,
     show: false,
     data: {},
-    showPreview: false
+    showPreview: false,
+    uploadedFileCloudinaryUrl: '',
+    uploadedFile: '',
+    media: ''
   }
 
   componentWillReceiveProps(newProps) {
@@ -90,12 +98,12 @@ class PostForm extends Component {
       image: this.state.data.image,
       title: this.state.data.title,
       description: this.state.data.description,
-      url: this.state.data.url 
+      url: this.state.data.url,
+      media: this.state.media 
     }
 
     this.props.addPost(newPost) 
-    this.setState({ text: '' })
-    this.setState({ data: {} })   // Clear newPost 
+    this.setState({ text: '', data: {}, media: '' })
     e.target.reset() 
   }
 
@@ -103,18 +111,28 @@ class PostForm extends Component {
     this.setState(prevState => ({ show: !prevState.show }))
   }
 
-  addPhoto = (e) => {
-    e.preventDefault()
-    // share a photo or video for posts
-    // Select a file
-    // Check if file is image or video
-    // Handle each case
+  onImageDrop = files => {
+    this.setState({ uploadedFile: files[0]})
+    this.handleImageUpload(files[0])
+  }
 
-    alert('Hello World!')
+  handleImageUpload = (file) => {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file) 
+    
+    upload.end((err, response) => {
+      if(err) console.log(err) 
+      if(response.body.secure_url !== '') {
+        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
+        this.setState({ media: response.body.secure_url })
+        this.setState({ showPreview: true })
+      }
+    })
   }
   
   render() {
-    const { errors, data } = this.state 
+    const { errors, data, text, showPreview, media, rows, show } = this.state 
     return (
       <div className='post_form'>
         {/* <Embed /> */}
@@ -124,21 +142,29 @@ class PostForm extends Component {
               className='text-area'
               placeholder="What's the discussion?"
               name='text'
-              value={this.state.text} 
+              value={text} 
               onChange={this.onChange} 
               onPaste={this.onPaste}
               error={errors.text} 
-              rows={this.state.rows}
+              rows={rows}
             />
-            <div className={ this.state.show ? 'otherstuff' : 'disp'}>
-              <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                <i className="fas fa-image" id='add-photo' />
-              </button>
+            <div className={ show ? 'otherstuff' : 'disp'}>
+              <Dropzone 
+                style={{ 
+                  border: 'none'
+                }}
+                multiple={false}
+                accept='image/*, video/*'
+                onDrop={this.onImageDrop}>
+                <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
+                  <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+                </button>
+              </Dropzone>
               <button className='post_submit_button' title='Submit'>
                 <i id='post-submit-icon' className="far fa-paper-plane " />
               </button>
             </div>
-            { this.state.showPreview ? <LinkPreview post={data} /> : null }
+            { showPreview ? <LinkPreview post={data} media={media} /> : null }
           </form>
         </div>
       </div>

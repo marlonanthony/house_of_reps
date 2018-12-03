@@ -9,6 +9,10 @@ import './CommentItem.css'
 
 class CommentItem extends Component {
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps)
+  }
+
   onDeleteClick = (postId, commentId) => {
     this.props.deleteComment(postId, commentId)
   }
@@ -16,7 +20,7 @@ class CommentItem extends Component {
   render() {
     
     const { comment, postId, auth, profile } = this.props 
-
+    console.log(this.props)
     return (
       <div id='comment-feed-container'>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -38,16 +42,31 @@ class CommentItem extends Component {
           </div>
         </div>
         <div className="">
-          { comment.description === undefined && comment.image === undefined && comment.title === undefined && comment.url === undefined
+          { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
             ? <p id='comment-feed-text'>{comment.text}</p>
-            : ( <div>
+            : comment.media
+            ? ( <div>
+                  <p className='post_content'>{comment.text}</p>
+                  <img src={comment.media} alt="uploaded-image" style={{width: '100%'}} />
+                </div>
+              )
+            : ( <div className='post_content'>
                   <p id='comment-feed-text'>{comment.text}</p>
-                  <a href={comment.url} target='_blank'>
-                    <img src={comment.image} alt='thumbnail' style={{ width: '50%', margin: '0 25%' }} id='comment-link-img' />
-                  </a>
-                  <p style={{textAlign: 'center', fontSize: '12px', color: '#7e8889' }}>{comment.title}</p>
-                  <p style={{textAlign: 'center', fontSize: '10px', color: '#7e8889' }}>{comment.description}</p>
-                  {/* <a href={comment.url}><small>{comment.url}</small></a> */}
+                  <div id='comment-link-container' style={{ borderRadius: '5px', margin: '0 5% 5% 5%', paddingBottom: '5%' }}>
+                    <a href={comment.url} target='_blank'>
+                      <img src={comment.image} alt='thumbnail' style={{ width: '60%', padding: '0 20%' }} id='comment-link-img' />
+                    </a>
+                    {/* <a href={comment.url}><small>{comment.url}</small></a> */}
+                    <div>
+                      <p style={{
+                        textAlign: 'center', 
+                        fontSize: '12px', 
+                        color: '#7e8889',
+                        padding: '0 5%'
+                        }}>{comment.title}</p>
+                      <p style={{textAlign: 'center', fontSize: '12px', color: '#7e8889', padding: '0 5%' }}>{comment.description}</p>
+                    </div>
+                  </div>
                 </div>
               )
           }
