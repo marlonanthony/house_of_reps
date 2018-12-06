@@ -19,7 +19,9 @@ class PostItem extends Component {
   state = { 
     showComments: false, 
     text: '',
-    postComments: []
+    postComments: [],
+    likes: this.props.post.likes,
+    liked: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -34,10 +36,19 @@ class PostItem extends Component {
 
   onLikeClick = id => {
     this.props.addLike(id)
+    
+    const { auth } = this.props 
+    if(this.state.likes.map(like => like.user === auth.user.id).length <= 0){
+      this.setState(prevState => ({ likes: this.state.likes.concat(id) }))
+      this.setState({ liked: true })
+    }
   }
 
   onUnlikeClick = id => {
     this.props.removeLike(id)
+
+    const { auth } = this.props 
+    this.setState({ likes: this.state.likes.filter(like => like.user === auth.user.id), liked: false })
   }
 
   findUserLike = likes => {
@@ -47,7 +58,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props 
-    const { showComments, text, postComments } = this.state 
+    const { showComments, text, postComments, likes } = this.state 
     return (
      <div className='posts_container'>
       <div className='post_avatar_and_name'>
@@ -64,7 +75,7 @@ class PostItem extends Component {
           : post.media 
           ? ( <div>
                 <p className='post_content'>{post.text}</p>
-                <img src={post.media} alt="uploaded-image" style={{width: '100%'}} />
+                <img src={post.media} alt="uploaded" style={{width: '100%'}} />
               </div>
             )
           : ( <div className='post_content'>
@@ -83,16 +94,12 @@ class PostItem extends Component {
         { showActions ? (<span>
           <button 
             title='like'
-            // className='postfeed_buttons'
-            className={classnames('postfeed_buttons', {
+            className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
               'liked' : this.findUserLike(post.likes) 
             })}
             onClick={this.onLikeClick.bind(this, post._id)}>
             <i className='fas fa-thumbs-up icons like'></i>
-            {/* <i className={classnames('fas fa-thumbs-up icons like', {
-              'liked' : this.findUserLike(post.likes) 
-            })}></i> */}
-            <span>{post.likes.length}</span>
+            <span>{likes.length}</span>
           </button>
           <button 
             title='unlike'
@@ -114,7 +121,6 @@ class PostItem extends Component {
               title='double click to delete'
               className='postfeed_buttons delete'
               onDoubleClick={this.onDeleteClick.bind(this, post._id)}>
-              {/* onClick={this.onDeleteClick.bind(this, post._id)} */}
               <i className="fas fa-times icons" />
             </button> 
             ) : null }

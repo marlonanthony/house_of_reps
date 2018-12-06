@@ -36,6 +36,7 @@
   grid-area: name;
   font-family: 'Ubuntu', sans-serif;
   color: rgb(29, 138, 228);
+  font-size: 13px;
 }
 
 .post_content {

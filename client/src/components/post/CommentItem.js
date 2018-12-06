@@ -9,18 +9,27 @@ import './CommentItem.css'
 
 class CommentItem extends Component {
 
+  state = {
+    comment: this.props.comment
+  }
+
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps)
+    if(this.props.comment !== prevState.comment) {
+      this.setState({ comment: this.props.comment })
+    }
   }
 
   onDeleteClick = (postId, commentId) => {
     this.props.deleteComment(postId, commentId)
+    this.setState({ comment: false })
   }
 
   render() {
-    
-    const { comment, postId, auth, profile } = this.props 
-    console.log(this.props)
+    const { postId, auth, profile } = this.props 
+    const { comment } = this.state
+
+    if(!this.state.comment) return <div />
+
     return (
       <div id='comment-feed-container'>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -33,7 +42,7 @@ class CommentItem extends Component {
           <div style={{ display: 'flex' }}>
             { comment.user === auth.user.id ? (
             <button 
-              onClick={this.onDeleteClick.bind(this, postId, comment._id)} 
+              onDoubleClick={this.onDeleteClick.bind(this, postId, comment._id)} 
               type="button" 
               title='Delete comment'
               id='commment-feed-delete-button'>
@@ -47,25 +56,22 @@ class CommentItem extends Component {
             : comment.media
             ? ( <div>
                   <p className='post_content'>{comment.text}</p>
-                  <img src={comment.media} alt="uploaded-image" style={{width: '100%'}} />
+                  <img src={comment.media} alt="uploaded" style={{ width: '100%', height: '100%' }} />
                 </div>
               )
-            : ( <div className='post_content'>
+            : ( 
+                <div className='comment-wrapper'>
                   <p id='comment-feed-text'>{comment.text}</p>
-                  <div id='comment-link-container' style={{ borderRadius: '5px', margin: '0 5% 5% 5%', paddingBottom: '5%' }}>
-                    <a href={comment.url} target='_blank'>
-                      <img src={comment.image} alt='thumbnail' style={{ width: '60%', padding: '0 20%' }} id='comment-link-img' />
+                  <div id='wrap-comment-link'>
+                    <a href={comment.url} target='_blank' id='comment-anchor-container'>
+                      <div id='comment-link-container'>
+                        <img src={comment.image} alt='thumbnail' id='comment-link-img' />
+                        <div id='comments-grandson'>
+                          <p id='comments-title'>{comment.title}</p>
+                          <p id='comments-description'>{comment.description}</p>
+                        </div>
+                      </div>
                     </a>
-                    {/* <a href={comment.url}><small>{comment.url}</small></a> */}
-                    <div>
-                      <p style={{
-                        textAlign: 'center', 
-                        fontSize: '12px', 
-                        color: '#7e8889',
-                        padding: '0 5%'
-                        }}>{comment.title}</p>
-                      <p style={{textAlign: 'center', fontSize: '12px', color: '#7e8889', padding: '0 5%' }}>{comment.description}</p>
-                    </div>
                   </div>
                 </div>
               )

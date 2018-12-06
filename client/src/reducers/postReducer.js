@@ -21,65 +21,58 @@ export default function(state = initialState, action) {
         ...state,
         loading: true 
       }
+
     case GET_POSTS: 
       return {
         ...state,
         posts: action.payload,
         loading: false 
       }
+
     case GET_POST: 
       return {
         ...state,
         post: action.payload,
         loading: false 
       }
+
     case ADD_POST: 
       return {
         ...state,
         posts: [action.payload, ...state.posts]
       }
+
     case ADD_COMMENT: 
       const { posts } = state 
-      let updatedPost = posts.map((val, i, arr) => {
+      const updatedPost = posts.map(val => {
         if(val._id === action.payload._id) {
           val = action.payload
         }
         return val
       })
-  
       return {
         ...state,
         posts: updatedPost,
         loading: false
-        // post: posts.map((val, i, arr)  => {
-        //   console.log(val._id)
-        //   console.log(action.payload._id) 
-        //   if(val._id === action.payload._id){
-        //     val = action.payload 
-        //     console.log(val) 
-        //   }
-        //   console.log(val)
-        //   console.log(arr)
-        //   return val
-        // }),
-        // post: [action.payload.comments[0], state.post.comments ],
-        // post: action.payload._id === state.post._id ? state.post.comments.unshift(action.payload.comments[0]) : state,
-        // posts: [ action.payload, ...state.posts ],
       }
+
     case DELETE_POST:
       return {
         ...state,
         posts: state.posts.filter(post => post._id !== action.payload) 
       }
+
     case DELETE_COMMENT: 
-      const arr = []
-      const currentPost = state.posts.map(post => post._id === action.payload.postId ? post : null)
-      const singlePost = currentPost.map(post => currentPost.slice(post))
-      console.log(singlePost)
-      console.log(state.posts.map(post => post._id === action.payload.postId ? post : null))
+      const selectedPost = state.posts.filter(post => post._id === action.payload.postId)[0].comments.filter(val => val._id !== action.payload.commentId)
+      const newerComment = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments = selectedPost
+        }
+        return post 
+      })
       return {
         ...state,
-        posts: state.posts  //state.posts.map(post => post.comments.filter(comment => comment._id !== action.payload))
+        posts: newerComment
       }
     default: 
       return state 

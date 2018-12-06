@@ -27,16 +27,36 @@
   font-size: 15px;
 }
 
+#wrap-comment-link:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+#comment-anchor-container {
+  text-decoration: none;
+}
+
 #comment-link-container {
   background: rgba(0,0,0,0.4);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 90px;
+  grid-template-areas:  
+    'image title'
+    'image title';
 }
 
-#comment-link-container:hover {
-  opacity: .8;
+#comment-link-img {
+  grid-area: image;
+  width: 120px;
 }
 
-#comment-link-img:hover {
-  /* opacity: .8; */
+#comments-grandson {
+  grid-area: title;
+  font-size: 12px;
+  margin-left: -60px;
+  max-height: 120px;
+  overflow: hidden;
+  color: rgb(55, 131, 194);
 }
 
 #commment-feed-delete-button {
@@ -44,6 +64,7 @@
   max-height: 30px;
   background: rgba(0,0,0,0.4);
   color: #ccc;
+  outline: none;
   border: none;
   border-radius: 5%;
   margin-top: 10px;
