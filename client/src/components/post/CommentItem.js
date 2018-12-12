@@ -44,7 +44,7 @@ class CommentItem extends Component {
             <button 
               onDoubleClick={this.onDeleteClick.bind(this, postId, comment._id)} 
               type="button" 
-              title='Delete comment'
+              title='Double click to delete comment'
               id='commment-feed-delete-button'>
               <i className="fas fa-times comment-feed-delete-icon" />
             </button> ) : null }

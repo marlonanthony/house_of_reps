@@ -57,6 +57,7 @@ const PostSchema = new Schema({
         type: Date,
         default: Date.now 
       },
+      // linkpreview 
       image: {
         type: String
       },
@@ -69,6 +70,7 @@ const PostSchema = new Schema({
       url: {
         type: String 
       },
+      // upload image
       media: {
         type: String 
       }

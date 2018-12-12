@@ -5,6 +5,9 @@ const passport = require('passport')
 // Load Validation
 const validateProfileInput = require('../../validation/profile')
 const validateVenuesInput = require('../../validation/venues')
+const validateDjpoolsInput = require('../../validation/djpools')
+const validatePerksInput = require('../../validation/djpools')
+const validateBrandsInput = require('../../validation/djpools')
 
 // Load Profile Model
 const Profile = require('../../models/Profile')
@@ -186,6 +189,108 @@ router.post('/venues', passport.authenticate('jwt', { session: false }), (req, r
   })
 })
 
+// @route        POST api/profile/djpools
+// @description  Add a djpool
+// @access       Private
+router.post('/djpools', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateDjpoolsInput(req.body) 
+
+  // Check Validation
+  if(!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors) 
+  }
+  
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const newDjpool = {
+      image: req.body.image,
+      url: req.body.url
+    }
+
+    // Add djpool to array
+    profile.djpools.unshift(newDjpool) 
+    profile.save().then(profile => res.json(profile)) 
+  })
+})
+
+// @route        POST api/profile/stores
+// @description  Add a certified store
+// @access       Private
+router.post('/stores', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateDjpoolsInput(req.body) 
+
+  // Check Validation
+  if(!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors) 
+  }
+  
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const newStore = {
+      image: req.body.image,
+      url: req.body.url
+    }
+
+    // Add store to array
+    profile.stores.unshift(newStore) 
+    profile.save().then(profile => res.json(profile)) 
+  })
+})
+
+// @route        POST api/profile/perks
+// @description  Add a Perk
+// @access       Private
+router.post('/perks', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validatePerksInput(req.body) 
+
+  // Check Validation
+  if(!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors) 
+  }
+  
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const newPerk = {
+      image: req.body.image,
+      url: req.body.url,
+      description: req.body.description
+    }
+
+    // Add Perk to array
+    profile.perks.unshift(newPerk) 
+    profile.save().then(profile => res.json(profile)) 
+  })
+})
+
+// @route        POST api/profile/brands
+// @description  Add a Brand
+// @access       Private
+router.post('/brands', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateBrandsInput(req.body) 
+
+  // Check Validation
+  if(!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors) 
+  }
+  
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const newBrand = {
+      image: req.body.image,
+      url: req.body.url,
+      description: req.body.description
+    }
+
+    // Add Perk to array
+    profile.brands.unshift(newBrand) 
+    profile.save().then(profile => res.json(profile)) 
+  })
+})
+
 
 // @route        DELETE api/profile/venues/:venue_id
 // @description  Delete venue from profile
@@ -198,6 +303,74 @@ router.delete('/venues/:venue_id', passport.authenticate('jwt', { session: false
 
     // Splice out of array
     profile.venues.splice(removeIndex, 1) 
+
+    // Save
+    profile.save().then(profile => res.json(profile))  
+  }).catch(err => res.status(404).json(err)) 
+})
+
+// @route        DELETE api/profile/djpools/:djpool_id
+// @description  Delete djpool
+// @access       Private
+router.delete('/djpools/:djpool_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    // Get remove index
+    const removeIndex = profile.djpools.map(item => item.id).indexOf(req.params.venue_id) 
+
+    // Splice out of array
+    profile.djpools.splice(removeIndex, 1) 
+
+    // Save
+    profile.save().then(profile => res.json(profile))  
+  }).catch(err => res.status(404).json(err)) 
+})
+
+// @route        DELETE api/profile/stores/:store_id
+// @description  Delete store
+// @access       Private
+router.delete('/stores/:store_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    // Get remove index
+    const removeIndex = profile.stores.map(item => item.id).indexOf(req.params.store_id) 
+
+    // Splice out of array
+    profile.stores.splice(removeIndex, 1) 
+
+    // Save
+    profile.save().then(profile => res.json(profile))  
+  }).catch(err => res.status(404).json(err)) 
+})
+
+// @route        DELETE api/profile/perks/:perk_id
+// @description  Delete perk
+// @access       Private
+router.delete('/perks/:perk_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    // Get remove index
+    const removeIndex = profile.perks.map(item => item.id).indexOf(req.params.perk_id) 
+
+    // Splice out of array
+    profile.perks.splice(removeIndex, 1) 
+
+    // Save
+    profile.save().then(profile => res.json(profile))  
+  }).catch(err => res.status(404).json(err)) 
+})
+
+// @route        DELETE api/profile/brands/:brand_id
+// @description  Delete brand
+// @access       Private
+router.delete('/brands/:brand_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    // Get remove index
+    const removeIndex = profile.brands.map(item => item.id).indexOf(req.params.brand_id) 
+
+    // Splice out of array
+    profile.brands.splice(removeIndex, 1) 
 
     // Save
     profile.save().then(profile => res.json(profile))  

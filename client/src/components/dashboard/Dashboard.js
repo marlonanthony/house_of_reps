@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
-import { getCurrentProfile, deleteAccount } from '../../actions/profileActions'
+import { getCurrentProfile, deleteAccount, deleteDjpool, deleteStore, deletePerk, deleteBrand } from '../../actions/profileActions'
 import Spinner from '../common/Spinner'
 import ProfileActions from './ProfileActions'
 import Venues from './Venues'
@@ -14,11 +14,28 @@ class Dashboard extends Component {
     this.props.getCurrentProfile()
   }
 
-  onDeleteClick = e => {
+  onDeleteClick = () => {
     this.props.deleteAccount()
   }
 
+  onDeleteDjpool = id => {
+    this.props.deleteDjpool(id) 
+  }
+
+  onDeleteStore = id => {
+    this.props.deleteStore(id) 
+  }
+
+  onDeletePerk = id => {
+    this.props.deletePerk(id) 
+  }
+
+  onDeleteBrand = id => {
+    this.props.deleteBrand(id) 
+  }
+
   render() {
+    console.log(this.props)
     const { user } = this.props.auth
     const { profile, loading } = this.props.profile
 
@@ -37,13 +54,109 @@ class Dashboard extends Component {
                 to={`/profile/${profile.handle}`} >{ user.name }
               </Link>
               <ProfileActions />
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+                { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
+                  <Link to="/add-djpool" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
+                    <i className="fas fa-wrench" /> Add DJ Pool 
+                  </Link>
+                ) : null }
+                { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
+                  <Link to="/add-store" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
+                    <i className='far fa-building' /> Add Certified Store
+                  </Link>
+                ) : null }
+                { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
+                  <Link to="/add-perk" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
+                    <i className='fas fa-gift' /> Add Perk
+                  </Link>
+                ) : null }
+                { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
+                  <Link to="/add-brand" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
+                    <i className='fas fa-gift' /> Add Brand
+                  </Link>
+                ) : null }
+              </div>
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <Venues venues={profile.venues} />
             </div>
+            
+            {profile._id === "5bad9e76f3dd61183a0fec97" ? 
+            <div style={{padding: '50px 10% 50px 10%'}}>
+              <h3 style={{textAlign: 'center'}}>DJ Pools</h3>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              {profile.djpools.map(val => (
+                <div key={val._id} style={{padding: '5px'}}>
+                  <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
+                  <br />
+                  <button 
+                    id='djpools_delete_btn'
+                    onClick={ this.onDeleteDjpool.bind(this, val._id) }>
+                      Delete
+                  </button>
+                </div>
+              ))} 
+              </div>
+            </div> : null }
+
+            {profile._id === "5bad9e76f3dd61183a0fec97" ? 
+            <div style={{padding: '50px 10% 50px 10%'}}>
+              <h3 style={{textAlign: 'center'}}>Certified Stores</h3>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              {profile.stores.map(val => (
+                <div key={val._id} style={{padding: '5px'}}>
+                  <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
+                  <br />
+                  <button 
+                    id='djpools_delete_btn'
+                    onClick={ this.onDeleteStore.bind(this, val._id) }>
+                      Delete
+                  </button>
+                </div>
+              ))} 
+              </div>
+            </div> : null }
+
+            {profile._id === "5bad9e76f3dd61183a0fec97" ? 
+            <div style={{padding: '50px 10% 50px 10%'}}>
+              <h3 style={{textAlign: 'center'}}>Perks</h3>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              {profile.perks.map(val => (
+                <div key={val._id} style={{padding: '5px'}}>
+                  <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
+                  <br />
+                  <button 
+                    id='djpools_delete_btn'
+                    onClick={ this.onDeletePerk.bind(this, val._id) }>
+                      Delete
+                  </button>
+                </div>
+              ))} 
+              </div>
+            </div> : null }
+
+            {profile._id === "5bad9e76f3dd61183a0fec97" ? 
+            <div style={{padding: '50px 10% 50px 10%'}}>
+              <h3 style={{textAlign: 'center'}}>Brands</h3>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              {profile.brands.map(val => (
+                <div key={val._id} style={{padding: '5px'}}>
+                  <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
+                  <br />
+                  <button 
+                    id='djpools_delete_btn'
+                    onClick={ this.onDeleteBrand.bind(this, val._id) }>
+                      Delete
+                  </button>
+                </div>
+              ))} 
+              </div>
+            </div> : null }
+
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <button 
-                onClick={ this.onDeleteClick } id="dashboard-delete-btn">Delete My Account
+                onDoubleClick={ this.onDeleteClick } id="dashboard-delete-btn" title='double-click to delete profile'>
+                Delete My Account
               </button>
             </div>
           </div>
@@ -71,13 +184,17 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
+  deleteDjpool: PropTypes.func.isRequired,
+  deleteStore: PropTypes.func.isRequired,
+  deletePerk: PropTypes.func.isRequired,
+  deleteBrand: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth 
+  auth: state.auth, 
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard)
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount, deleteDjpool, deleteStore, deletePerk , deleteBrand})(Dashboard)

@@ -1,0 +1,34 @@
+.djpool {
+  display: flex;
+  flex: 1;
+  overflow-x: hidden;
+  max-height: 150px;
+  width: 170px;
+  margin: auto;
+}
+
+.slide-arrow {
+  color: #14B6D4;
+  cursor: pointer;
+  font-size: 25px;
+  position: absolute;
+  background: rgba(0,0,0,0.4);
+}
+
+.slide-arrow:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+.slide-arrow.left {
+  left: 0;
+  top: 40%;
+  /* z-index: 2; */
+  padding: 0px 4px 0px 0px;
+}
+
+.slide-arrow.right {
+  right: 0;
+  top: 40%;
+  /* z-index: 2; */
+  padding: 3px 2px 5px 6px;
+}

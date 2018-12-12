@@ -48,6 +48,7 @@
 #comment-link-img {
   grid-area: image;
   width: 120px;
+  min-height: 120px;
 }
 
 #comments-grandson {

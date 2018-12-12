@@ -13,9 +13,27 @@
   border-radius: 2%;
   margin-top: 30px;
   cursor: pointer;
+  outline: none;
 }
 
 #dashboard-delete-btn:hover {
   color: rgb(55, 131, 194);
   background: rgba(0,0,0,0.8);
+}
+
+#djpools_delete_btn {
+  padding: 10px;
+  width: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ccc;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  display: inline-block;
+}
+
+#djpools_delete_btn:hover {
+  color: rgb(55, 131, 194);
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }

@@ -1,6 +1,7 @@
 .posts_container {
-  /* background: rgb(1, 13, 24); */
-  background: rgb(5, 22, 37);
+  background: rgb(5, 22, 37);  
+  /* background: rgba(0,0,0,.5);   last dark mode*/
+  /* background: rgb(7, 10, 17); */
   width: 90%;
   margin: auto;
   border:none;

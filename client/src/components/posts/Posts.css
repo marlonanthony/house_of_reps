@@ -1,8 +1,9 @@
 .feed {
-  /* background: #142634; */
-  background: #050c14;
+  /* background: black; */
+  /* background: #050c14;   */
+  background: rgba(4, 9, 12, 0.918);  
+  /* background: rgb(13, 18, 24); */
   min-height: 100vh;
-  /* background: #cdf; */
   /* padding: 100px 4vw 0 4vw; */
   padding-top: 100px;
   display: grid;
@@ -24,7 +25,7 @@
   width: 65px;
   height: 65px; 
   border-radius: 50%;
-  border: 2px solid rgb(55, 131, 194);
+  border: 2.5px solid rgb(57, 106, 146);
 }
 
 .post-feed-form {
@@ -33,6 +34,22 @@
 
 .post-feed-post-content {
   grid-area: post-feed-post-content;
+}
+
+.stores_container {
+  display: none;
+}
+
+.djpools {
+  display: none;
+}
+
+.perks_and_hookups {
+  display: none;
+}
+
+.certified_brands {
+  display: none;
 }
 
 .post-feed-footer {
@@ -53,15 +70,61 @@
     display: grid;
     grid-gap: 35px;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-areas: 
       'profile postform footer'
-      'profile post-feed-post-content footer'; 
+      'djpools post-feed-post-content stores'
+      'perks post-feed-post-content brands'; 
   }
 
   .post-feed-profile {
     display: block;
     grid-area: profile;
+    padding: 20px 5px 0 5px;
+    border-radius: 2%;
+    background: rgba(2, 4, 5, 0.884);
+  }
+
+  .stores_container {
+    grid-area: stores;
+    display: flex;
+    height: 150px;
+    width: 170px;
+    border-radius: 2%;
+    background: rgba(2, 4, 5, 0.884);
+  }
+
+  .djpools {
+    grid-area: djpools;
+    display: flex;
+    position: relative;
+    width: 170px;
+    height: 150px;
+    overflow-x: hidden;
+    border-radius: 2%;
+  }
+
+  .perks_and_hookups {
+    grid-area: perks;
+    display: flex;
+    position: relative;
+    width: 170px;
+    height: 150px;
+    overflow-x: hidden;
+    border-radius: 2%;
+    background: rgba(2, 4, 5, 0.884);
+    color: #555;
+  }
+
+  .certified_brands {
+    grid-area: brands;
+    display: flex;
+    position: relative;
+    width: 170px;
+    height: 150px;
+    overflow-x: hidden;
+    border-radius: 2%;
+    background: rgba(2, 4, 5, 0.884);
   }
 
   .post-feed-footer {
@@ -69,8 +132,10 @@
     text-align: center;
     display: flex;
     align-items: center;
-    height: 35px;
+    height: 90px;
     width: 150px;
+    border-radius: 2%;
+    background: rgba(2, 4, 5, 0.884);
   }
 }
 

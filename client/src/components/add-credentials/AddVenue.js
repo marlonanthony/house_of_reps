@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import { addVenue } from '../../actions/profileActions'
 import classnames from 'classnames'
 import './AddVenue.css'
+// import { SET_CURRENT_USER } from '../../actions/types';
 
 class AddVenue extends Component {
   state = {
@@ -42,7 +43,10 @@ class AddVenue extends Component {
 
   render() {
     const { errors } = this.state 
-
+    // console.log(this.props)
+    // if(this.props.auth.user.id === "5bad9df3f3dd61183a0fec96") {
+    //   return <div>Hello World</div>
+    // }
     return (
       <div className='add-venue'>
         <Link to='/dashboard'>
@@ -154,7 +158,7 @@ AddVenue.propTypes = {
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors 
+  errors: state.errors
 })
 
 export default connect(mapStateToProps, { addVenue })(withRouter(AddVenue))

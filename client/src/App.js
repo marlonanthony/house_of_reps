@@ -16,11 +16,16 @@ import Dashboard from './components/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
 import AddVenue from './components/add-credentials/AddVenue'
+import AddDjpool from './components/add-credentials/AddDjpool'
+import AddCertifiedStore from './components/add-credentials/AddCertifiedStore'
+import AddPerk from './components/add-credentials/AddPerk'
+import AddBrand from './components/add-credentials/AddBrand'
 import Profiles from './components/profiles/Profiles'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import Post from './components/post/Post'
 import './App.css';
+
 
 // Check for token
 if(localStorage.jwtToken) {
@@ -66,6 +71,18 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path='/add-venue' component={ AddVenue } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-djpool' component={ AddDjpool } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-store' component={ AddCertifiedStore } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-perk' component={ AddPerk } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-brand' component={ AddBrand } />
             </Switch>
             <Switch>
               <PrivateRoute exact path='/feed' component={ Posts } />

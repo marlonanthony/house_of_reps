@@ -54,6 +54,52 @@ const ProfileSchema = new Schema({
       }
     }
   ],
+  djpools: [
+    {
+      image: {
+        type: String 
+      },
+      url: {
+        type: String 
+      }
+    }
+  ],
+  stores: [
+    {
+      image: { 
+        type: String 
+      },
+      url: { 
+        type: String 
+      }
+    }
+  ],
+  perks: [
+    {
+      image: {
+        type: String 
+      },
+      url: {
+        type: String 
+      }, 
+      description: {
+        type: String 
+      }
+    }
+  ],
+  brands: [
+    {
+      image: {
+        type: String 
+      },
+      url: {
+        type: String 
+      }, 
+      description: {
+        type: String 
+      }
+    }
+  ],
   social: {
     twitter: {
       type: String 
