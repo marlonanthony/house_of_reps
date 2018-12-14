@@ -1,7 +1,15 @@
 .feed {
   /* background: black; */
   /* background: #050c14;   */
-  background: rgba(4, 9, 12, 0.918);  
+
+  /* background: rgba(4, 9, 12, 0.918); reversed from PostItem.css  */
+  /* background: rgb(5, 22, 37);   */
+  background-image: url('../../img/dj.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100vw 100vh;
+
+
   /* background: rgb(13, 18, 24); */
   min-height: 100vh;
   /* padding: 100px 4vw 0 4vw; */
@@ -22,10 +30,10 @@
 }
 
 #posts-profile-img {
-  width: 65px;
-  height: 65px; 
+  width: 75px;
+  height: 75px; 
   border-radius: 50%;
-  border: 2.5px solid rgb(57, 106, 146);
+  border: 1px solid black;
 }
 
 .post-feed-form {
@@ -66,6 +74,10 @@
 
 @media (min-width: 950px) {
   .feed {
+    background-image: url('../../img/dj.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100vw 100vh;
     padding: 100px 10vw 0 10vw;  /*4vw */
     display: grid;
     grid-gap: 35px;
@@ -80,9 +92,9 @@
   .post-feed-profile {
     display: block;
     grid-area: profile;
-    padding: 20px 5px 0 5px;
+    padding: 0px 5px 0 5px;
     border-radius: 2%;
-    background: rgba(2, 4, 5, 0.884);
+    /* background: rgba(2, 4, 5, 0.884); */
   }
 
   .stores_container {

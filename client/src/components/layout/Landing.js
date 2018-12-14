@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
-
 import { loginUser } from '../../actions/authActions' 
 import TextFieldGroup from '../common/TextFieldGroup'
 import Modal from '.././UI/modal/Modal'

@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import PostModal from '../../UI/modal/PostModal'
+import Backdrop from '../../UI/backdrop/Backdrop'
+import Arrow from '../../UI/arrow_glyph/Arrow'
 import './CertifiedStores.css'
 
 export default class CertifiedStores extends Component {
 
-  state = { currentImageIndex: 0 }
+  state = { 
+    currentImageIndex: 0,
+    showModal: false 
+  }
 
   previousSlide = () => {
     const { stores } = this.props 
@@ -12,7 +18,7 @@ export default class CertifiedStores extends Component {
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
 
-    this.setState({ currentImageIndex: index })
+    this.setState({ currentImageIndex: index, showModal: true })
   }
 
   nextSlide = () => {
@@ -22,14 +28,39 @@ export default class CertifiedStores extends Component {
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
 
-    this.setState({ currentImageIndex: index })
+    this.setState({ currentImageIndex: index, showModal: true })
+  }
+
+  modalToggle = () => {
+    this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
 
   render() {
     const { store, stores } = this.props 
     console.log(stores)
+
+    const storesModal = this.state.showModal ? (
+      <Fragment>
+        <PostModal>
+          <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+              <div>
+                <h2 style={{color: '#444'}}>Certified Stores</h2>
+                <img src={stores[this.state.currentImageIndex].image} alt={store.url} 
+                  style={{width: '200px', height: '200px'}}
+                /><br />
+                <a href={stores[this.state.currentImageIndex].url}><small>{stores[this.state.currentImageIndex].url}</small></a>
+              </div>
+          <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+        </PostModal>
+      </Fragment>
+    ) : null 
+
+
+
     return (
-      <div> {/* style={{ maxWidth: '170px', maxHeight: '150px'}}> */}
+      <div>
+        <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+        {storesModal}
         <div className='store'
         style={{ 
           position: 'absolute',
@@ -37,20 +68,13 @@ export default class CertifiedStores extends Component {
           // transition: 'transform 300ms cubic-bezier(0.1, 0.7, 1.0, 0.1)',
           overflowY: 'hidden',
         }}>
-          <Arrow direction='left' clickFunction={this.previousSlide} glyph='&#9664;' />
+          <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
           <a href={stores[this.state.currentImageIndex].url} target='_blank'>
             <img src={stores[this.state.currentImageIndex].image} alt={stores[this.state.currentImageIndex].url} style={{height: '100%', width: '100%' }} />
           </a>
-          <Arrow direction='right' clickFunction={this.nextSlide} glyph='&#9654;' />
+          <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />
         </div>
       </div>
     )
   }
 }
-
-const Arrow = ({ direction, clickFunction, glyph }) => (
-  <div className={`slide-arrow ${direction}`} onClick={ clickFunction }>
-    { glyph }
-  </div>
-)
-

@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
-
-import PostForm from './PostForm' 
-import Spinner from '../common/Spinner' 
 import { getPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
+import PostForm from './PostForm' 
+import Spinner from '../common/Spinner' 
 import PostFeed from './PostFeed'
 import DjPools from './post-assets/DjPools'
-import './Posts.css'
 import CertifiedStores from './post-assets/CertifiedStores'
 import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
-// import ProfileCreds from '../profile/ProfileCreds';
+import './Posts.css'
 
 class Posts extends Component {
 

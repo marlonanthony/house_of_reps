@@ -1,0 +1,58 @@
+.PostModal {
+  position: fixed;
+  background-color: white;
+  z-index: 201;
+  width: 80%;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px black;
+  padding: 16px;
+  left: 10%;
+  top: 30%;
+  box-sizing: border-box;
+  text-align: center;
+  animation-name: modal;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  /* transition: all 3s ease-out; */
+}
+/* .modal {
+  position: fixed;
+  background-color: white;
+  z-index: 201;
+  width: 70%;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px black;
+  padding: 16px;
+  left: 15%;
+  top: 35%;
+  box-sizing: border-box;
+  text-align: center;
+  animation-name: modalleave;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  transition: all 3s ease-out;
+} */
+
+@keyframes modal {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* @keyframes modalleave {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+} */
+
+@media (min-width: 1250px) {
+  .PostModal {
+    width: 40%;
+    left: 30%;
+  }
+}

@@ -84,9 +84,9 @@ class Dashboard extends Component {
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
               <h3 style={{textAlign: 'center'}}>DJ Pools</h3>
-              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', }}>
               {profile.djpools.map(val => (
-                <div key={val._id} style={{padding: '5px'}}>
+                <div key={val._id} style={{padding: '20px'}}>
                   <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
                   <br />
                   <button 
@@ -102,9 +102,9 @@ class Dashboard extends Component {
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
               <h3 style={{textAlign: 'center'}}>Certified Stores</h3>
-              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around',}}>
               {profile.stores.map(val => (
-                <div key={val._id} style={{padding: '5px'}}>
+                <div key={val._id} style={{padding: '20px'}}>
                   <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
                   <br />
                   <button 
@@ -122,7 +122,7 @@ class Dashboard extends Component {
               <h3 style={{textAlign: 'center'}}>Perks</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
               {profile.perks.map(val => (
-                <div key={val._id} style={{padding: '5px'}}>
+                <div key={val._id} style={{padding: '20px'}}>
                   <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
                   <br />
                   <button 
@@ -140,7 +140,7 @@ class Dashboard extends Component {
               <h3 style={{textAlign: 'center'}}>Brands</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
               {profile.brands.map(val => (
-                <div key={val._id} style={{padding: '5px'}}>
+                <div key={val._id} style={{padding: '20px'}}>
                   <img src={val.image} alt={val._id} style={{height: '100px', width: '100px', }} />
                   <br />
                   <button 
