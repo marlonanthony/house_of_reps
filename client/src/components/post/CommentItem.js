@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux' 
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import { deleteComment, getPosts } from '../../actions/postActions' 
-
+import CommentsModal from '../UI/modal/CommentsModal'
+import Backdrop from '../UI/backdrop/Backdrop'
 import './CommentItem.css'
 
 class CommentItem extends Component {
 
   state = {
-    comment: this.props.comment
+    comment: this.props.comment,
+    showModal: false 
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,20 +26,58 @@ class CommentItem extends Component {
     this.setState({ comment: false })
   }
 
+  modalToggle = () => {
+    this.setState(prevState => ({ showModal: !prevState.showModal }))
+  }
+
+  modalShow = () => {
+    this.setState({ showModal: true })
+  }
+
+  userNameOrAvatarClicked = commentId => {
+    this.props.profiles.map(profile =>  {
+      if(profile.user._id === commentId) {
+        this.props.history.push(`/profile/${profile.handle}`)
+      }
+    })
+  }
+
   render() {
-    const { postId, auth, profile } = this.props 
+    const { postId, auth } = this.props 
     const { comment } = this.state
+    let userHandle 
+    
+    this.props.profiles.map(profile => {
+      if(profile.user._id === comment.user) {
+        userHandle = <p className='comment-feed-name'>{profile.user.name}</p>
+      }
+    })
+
+    const commentsModal = this.state.showModal ? (
+      <Fragment> 
+        <CommentsModal>
+          <div>
+            <p id='comment-modal-text'>{comment.text}</p>
+            <img src={comment.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
+          </div>
+        </CommentsModal>
+      </Fragment>
+    ) : null 
 
     if(!this.state.comment) return <div />
 
     return (
+      <Fragment>
+      <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+      {commentsModal}
       <div id='comment-feed-container'>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex'}}>
-            <Link to={`/profile/${profile.handle}`}>
-              <img id='comment-feed-avatar' src={comment.avatar} alt={comment.avatar} />
-            </Link>
-            <p id='comment-feed-date'><Moment format='MM/DD/YYYY'>{comment.date}</Moment></p>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img id='comment-feed-avatar' onClick={()=> this.userNameOrAvatarClicked(comment.user)} src={comment.avatar} alt={comment.avatar} />
+            <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '7px' }}>
+              { userHandle }
+              <p id='comment-feed-date'><Moment format='MM/DD/YYYY'>{comment.date}</Moment></p>
+            </div>
           </div>
           <div style={{ display: 'flex' }}>
             { comment.user === auth.user.id ? (
@@ -54,9 +94,9 @@ class CommentItem extends Component {
           { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
             ? <p id='comment-feed-text'>{comment.text}</p>
             : comment.media
-            ? ( <div>
+            ? ( <div onClick={this.modalShow}>
                   <p className='post_content'>{comment.text}</p>
-                  <img src={comment.media} alt="uploaded" style={{ width: '100%', height: '100%' }} />
+                  <img src={comment.media} alt="uploaded" className='comments_image' />
                 </div>
               )
             : ( 
@@ -78,6 +118,7 @@ class CommentItem extends Component {
           }
         </div>
       </div>
+      </Fragment>
     )
   }
 }
@@ -86,13 +127,11 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile
+  auth: state.auth
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts })(CommentItem)
+export default connect(mapStateToProps, { deleteComment, getPosts })(withRouter(CommentItem))

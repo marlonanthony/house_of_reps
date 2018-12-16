@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PostModal from '../../UI/modal/PostModal'
 import Backdrop from '../../UI/backdrop/Backdrop'
 import Arrow from '../../UI/arrow_glyph/Arrow'
-import './DjPools.css'
+import './DjPoolsSmall.css'
 
 export default class DjPools extends Component {
 
@@ -44,7 +44,7 @@ export default class DjPools extends Component {
           <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
               <div>
                 <h2 style={{color: '#444'}}>DJ Pools & Music Stores</h2>
-                <a className='djpools_modal_img' href={djpools[this.state.currentImageIndex].url}>
+                <a className='djpools_modal_img' href={djpools[this.state.currentImageIndex].url} target='_blank'>
                   <img src={djpools[this.state.currentImageIndex].image} alt={djpool.url} 
                     style={{width: '200px', height: '200px'}} />
                 </a>
@@ -58,22 +58,10 @@ export default class DjPools extends Component {
 
 
     return (
-      <div>
+      <div style={{margin: '0 5px'}}>
         <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
         {djpoolsModal}
-        <div className='djpool'
-        style={{ 
-          position: 'absolute',
-          // transform: `translateX(-${this.state.currentImageIndex*100}%)`, 
-          // transition: 'transform 300ms cubic-bezier(0.1, 0.7, 1.0, 0.1)',
-          overflowY: 'hidden',
-        }}>
-          <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
-          <a href={djpools[this.state.currentImageIndex].url} target='_blank'>
-            <img src={djpools[this.state.currentImageIndex].image} alt={djpools[this.state.currentImageIndex].url} style={{height: '100%', width: '100%' }} />
-          </a>
-          <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />
-        </div>
+        <img onClick={this.modalToggle} src={djpool.image} alt={djpool.url} className='djpoolsscroll-img' />
       </div>
     )
   }

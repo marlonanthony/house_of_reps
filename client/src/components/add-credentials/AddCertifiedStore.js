@@ -40,7 +40,7 @@ class AddCertifiedStore extends Component {
         <Link to='/dashboard'>
           <i id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         </Link>
-        <h1 style={{ textAlign: 'center', color: '#ccc' }}>Add DJ Pool</h1>
+        <h1 style={{ textAlign: 'center', color: '#ccc' }}>Add Certified Store</h1>
         <div style={{ }}>
           <form onSubmit={ this.onSubmit }>
             <div>

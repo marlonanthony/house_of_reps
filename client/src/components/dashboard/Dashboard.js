@@ -35,7 +35,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { user } = this.props.auth
     const { profile, loading } = this.props.profile
 
@@ -48,10 +47,10 @@ class Dashboard extends Component {
       if(Object.keys(profile).length > 0) {
         dashboardContent = (
           <div style={{ minHeight: '100vh' }}>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(0,0,0,0.6)', maxWidth: '600px', margin: 'auto'}}>
               <Link 
-                style={{textDecoration: 'none', color: 'rgb(55, 131, 194)', padding: '10px'}} 
-                to={`/profile/${profile.handle}`} >{ user.name }
+                style={{textDecoration: 'none', color: 'rgb(55, 131,194)', padding: '10px'}} 
+                to={`/profile/${profile.handle}`} >@{ profile.handle }
               </Link>
               <ProfileActions />
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
@@ -77,13 +76,11 @@ class Dashboard extends Component {
                 ) : null }
               </div>
             </div>
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-              <Venues venues={profile.venues} />
-            </div>
+
             
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center'}}>DJ Pools</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '100px', }}>DJ Pools</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', }}>
               {profile.djpools.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -101,7 +98,7 @@ class Dashboard extends Component {
 
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center'}}>Certified Stores</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '150px',}}>Certified Stores</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around',}}>
               {profile.stores.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -119,7 +116,7 @@ class Dashboard extends Component {
 
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center'}}>Perks</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '100px',}}>Perks</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
               {profile.perks.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -137,7 +134,7 @@ class Dashboard extends Component {
 
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center'}}>Brands</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '100px',}}>Brands</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
               {profile.brands.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -152,6 +149,10 @@ class Dashboard extends Component {
               ))} 
               </div>
             </div> : null }
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '5px' }}>
+              <Venues venues={profile.venues} />
+            </div> 
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <button 

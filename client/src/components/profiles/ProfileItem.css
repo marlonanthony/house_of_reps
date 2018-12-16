@@ -9,14 +9,29 @@
 
 #profile-item-link {
   text-decoration: none;
+  color: rgb(55, 131, 194);
+}
+
+.djs_profile_card {
+  padding: 10px;
+  width: 320px;
+  background: rgba(4, 9, 12, 0.7);
+  margin: 10px;
+}
+
+@media (min-width: 600px) {
+  .djs_profile_card {
+    width: 500px;
+    margin: 10px;
+  }
 }
 
 
-@keyframes profile_cards {
+/* @keyframes profile_cards {
   0% {
     transform: translateX(100vw);
   }
   100% {
     transform: translateX(-1000px);
   }
-}
+} */

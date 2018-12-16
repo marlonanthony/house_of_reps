@@ -16,15 +16,28 @@
   border: 2px solid rgb(123, 180, 238);
 }
 
-#comment-feed-date {
-  margin-left: 5px;
+#comment-feed-avatar:hover {
+  cursor: pointer;
+}
+
+.comment-feed-name {
+  color: rgb(29, 138, 228);
   font-size: 13px;
-  color: rgb(55, 131, 194);
+}
+
+#comment-feed-date {
+  font-size: 13px;
+  margin-top: -5px;
+  color: #7e8889;
 }
 
 #comment-feed-text {
-  color: #7e8889;
+  color: #bdc7c1;
   font-size: 15px;
+}
+
+#comment-modal-text {
+  color: #ccc;
 }
 
 #wrap-comment-link:hover {
@@ -43,6 +56,14 @@
   grid-template-areas:  
     'image title'
     'image title';
+}
+
+.comments_image {
+  max-width: 100%;
+}
+
+.comments_image:hover {
+  cursor: pointer;
 }
 
 #comment-link-img {

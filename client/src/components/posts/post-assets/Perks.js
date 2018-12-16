@@ -44,9 +44,11 @@ export default class Perks extends Component {
           <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
               <div>
                 <h2>Reps Perks & Hookups</h2>
-                <img src={perks[this.state.currentImageIndex].image} alt={perk.url} 
-                  style={{width: '200px', height: '200px'}}
-                />
+                <a href={perks[this.state.currentImageIndex].url} target='_blank' className='perks_modal_img'>
+                  <img src={perks[this.state.currentImageIndex].image} 
+                       alt={perk.url} 
+                       style={{width: '200px', height: '200px'}} />
+                </a>
                 <p style={{padding: '0 10%'}}>{perks[this.state.currentImageIndex].description}</p>
                 <a href={perks[this.state.currentImageIndex].url}><small>{perks[this.state.currentImageIndex].url}</small></a>
               </div>

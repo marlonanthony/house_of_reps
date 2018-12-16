@@ -6,3 +6,7 @@
   width: 170px;
   margin: auto;
 }
+
+.brands_modal_img:hover {
+  opacity: .8;
+}

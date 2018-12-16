@@ -2,10 +2,11 @@
   /* background: #050c14; */
   color: #aaa;
   padding-top: 70px;
-  background-image: url('../../img/banner3.jpg');
+  background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100vw 100vh;
+  min-height: 100vh;
 }
 
 #dashboard-delete-btn {

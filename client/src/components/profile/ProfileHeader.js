@@ -7,14 +7,14 @@ import './ProfileHeader.css'
 
 class ProfileHeader extends Component {
   render() {
-    const { profile } = this.props 
+    const { profile, user } = this.props 
 
     return (
       <div className='profile-header-container'>
         <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' />
         <div className="profile-header">
           <div id='profile-avatar-div'>
-          {isEmpty(profile.avatar) ? null : <img id='profile-avatar' src={profile.avatar} alt="avatar" />}
+          {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
           </div>
             <div id='header-items'>
               <h4 id='profile-name'>{profile.user.name}</h4>

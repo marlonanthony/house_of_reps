@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import Spinner from '../common/Spinner'
-// import ProfileItem from './ProfileItem'
-import ProfileHighlights from './ProfileHighlights'
+import ProfileItem from './ProfileItem'
+// import ProfileHighlights from './ProfileHighlights'
 import { getProfiles } from '../../actions/profileActions'
-// import background from '../../img/banner3.jpg'
+// import background from 'http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg'
 
 class Profiles extends Component {
   componentDidMount() {
@@ -21,8 +21,7 @@ class Profiles extends Component {
     } 
       else if(profiles.length > 0) {
         profileItems = profiles.map(profile => (
-          // <ProfileItem key={profile._id} profile={profile} />
-          <ProfileHighlights key={profile._id} profile={profile} />
+          <ProfileItem key={profile._id} profile={profile} />
         ))
       } else {
         profileItems = <h4>No profiles found...</h4>
@@ -30,21 +29,26 @@ class Profiles extends Component {
     
 
     return (
-      // <div className='profiles'>
-      <div style={{
-        // backgroundImage: `url(${background})`,
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-        // backgroundPosition: 'center',
-        // minHeight: '100vh',
-      }}>
-        <div 
-          style={{
-            // paddingTop: '80px', 
-            // background: 'rgba(0,0,0,0.0)', 
-            // minHeight: `100vh - ${'80px'}`
-          }}>
-            { profileItems }
+      <div >
+        <div style={{
+          backgroundImage: `url(http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg)`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          minHeight: '100vh',
+        }}>
+          <div 
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+              padding: '100px 5px 20px 5px',
+              alignItems: 'center'
+              
+            }}>
+              { profileItems }
+          </div>
         </div>
       </div>
     )

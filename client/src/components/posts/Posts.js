@@ -10,6 +10,7 @@ import DjPools from './post-assets/DjPools'
 import CertifiedStores from './post-assets/CertifiedStores'
 import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
+// import DjPoolsSmall from './post-assets/DjPoolsSmall'
 import './Posts.css'
 
 class Posts extends Component {
@@ -28,12 +29,14 @@ class Posts extends Component {
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
     const { showsPreview } = this.state
+    const { user } = this.props.auth
     let postContent 
     let profileContent
     let djpools
     let stores
     let perks 
     let brands 
+    // let djpoolssmall
 
     if(profiles === null || loading) {
       brands = <Spinner />
@@ -75,12 +78,22 @@ class Posts extends Component {
       ))
     }
 
+    // if(profiles === null || loading) {
+    //   djpoolssmall = <Spinner />
+    // } else {
+    //   djpoolssmall  = profiles.map(val => (
+    //     val.djpools.length > 0 && val.djpools !== null 
+    //     ? val.djpools.map(djpool => ( <DjPoolsSmall key={djpool._id} djpools={val.djpools} djpool={djpool} /> ))
+    //     : null 
+    //   ))
+    // }
+
     if(profile === null || loading) {
       profileContent = <Spinner />
     } else {
       profileContent = (
           <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-            <img id='posts-profile-img'src={profile.avatar} alt={profile.name} />
+            <img id='posts-profile-img' src={user.avatar} alt={user.name} />
             <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{profile.handle}</p>
           </div>
       
@@ -90,7 +103,7 @@ class Posts extends Component {
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {
-      postContent = <PostFeed showPreview={showsPreview} posts={posts} />
+      postContent = <PostFeed showPreview={showsPreview} posts={posts} profiles={profiles} />
     }
 
     return (
@@ -98,14 +111,15 @@ class Posts extends Component {
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
+        {/* <div className='djpoolsscroll'>{djpoolssmall}</div> */}
         <div className='post-feed-form'>
-          <PostForm showPreview={showsPreview} style={{display: 'grid', justifySelf: 'center'}} />
+          <PostForm showPreview={showsPreview}/>
         </div>
         <div className='post-feed-post-content'>{postContent}</div>
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='post-feed-footer'>
-          <footer id='postsfeed-footer'>Copyright &copy; 2018 House of Reps</footer>
+          <footer>Copyright &copy; 2018 House of Reps</footer>
         </div>
       </div>
     )
@@ -114,13 +128,16 @@ class Posts extends Component {
 
 Posts.propTypes = {
   post: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
   getProfiles: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   post: state.post,
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth 
 })
 
 export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles })(Posts) 

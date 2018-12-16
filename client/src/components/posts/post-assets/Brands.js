@@ -44,9 +44,10 @@ export default class Brands extends Component {
           <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
               <div>
                 <h2 style={{color: '#444'}}>Certified Brands</h2>
-                <img src={brands[this.state.currentImageIndex].image} alt={brand.url} 
-                  style={{width: '200px', height: '200px'}}
-                />
+                <a className='brands_modal_img' href={brands[this.state.currentImageIndex].url}>
+                  <img src={brands[this.state.currentImageIndex].image} alt={brand.url} 
+                       style={{width: '200px', height: '200px'}} />
+                </a>
                 <p style={{padding: '0 10%'}}>{brands[this.state.currentImageIndex].description}</p>
                 <a href={brands[this.state.currentImageIndex].url}><small>{brands[this.state.currentImageIndex].url}</small></a>
               </div>

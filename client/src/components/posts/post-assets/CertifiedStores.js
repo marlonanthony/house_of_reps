@@ -37,7 +37,6 @@ export default class CertifiedStores extends Component {
 
   render() {
     const { store, stores } = this.props 
-    console.log(stores)
 
     const storesModal = this.state.showModal ? (
       <Fragment>
@@ -45,9 +44,11 @@ export default class CertifiedStores extends Component {
           <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
               <div>
                 <h2 style={{color: '#444'}}>Certified Stores</h2>
-                <img src={stores[this.state.currentImageIndex].image} alt={store.url} 
-                  style={{width: '200px', height: '200px'}}
-                /><br />
+                <a className='stores_modal_img' href={stores[this.state.currentImageIndex].url}>
+                  <img src={stores[this.state.currentImageIndex].image} alt={store.url} 
+                    style={{width: '200px', height: '200px'}} />
+                </a>
+                <br />
                 <a href={stores[this.state.currentImageIndex].url}><small>{stores[this.state.currentImageIndex].url}</small></a>
               </div>
           <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />

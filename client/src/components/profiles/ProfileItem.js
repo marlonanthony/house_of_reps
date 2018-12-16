@@ -11,39 +11,21 @@ class ProfileItem extends Component {
 
 
     return (
-      <div 
-        className='' 
-        style={{ 
-        display: 'inline-block', 
-        marginRight: '25px', 
-        // border: 'none',
-        // borderRadius: '5px',
-        minWidth: '250px',
-        padding: '20px'
-        }}>
-        <div className='profile_item' style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div>
-            <img 
-              src={ profile.user.avatar } 
-              alt={profile.user.name} 
-              className=""
-              style={{
-                borderRadius: '50%',
-                height: '100px',
-                width: '100px'
-              }} />
-          </div>
-
-          <div className="">
-            <h3>{ profile.user.name }</h3>
-            <p>
-              {isEmpty(profile.stageName) ? null : (<span>{profile.stageName}</span>)}
-            </p>
-            <Link to={`/profile/${profile.handle}`} id='profile-item-link'>
-              View Profile 
-            </Link>
-          </div>
-
+      <div className='profile_item'>
+        <div className='djs_profile_card'>
+          <img 
+            src={ profile.user.avatar } 
+            alt={profile.user.name} 
+            style={{
+              borderRadius: '50%',
+              height: '100px',
+              width: '100px',
+            }} />
+          <p>{isEmpty(profile.stageName) ? null : (<span>{profile.stageName}</span>)}</p>
+          <Link to={`/profile/${profile.handle}`} id='profile-item-link'>
+            {isEmpty(profile.handle) ? null : (<span>@{profile.handle}</span>)}
+          </Link>
+          <p>{profile.bio}</p>
         </div>
       </div>
     )

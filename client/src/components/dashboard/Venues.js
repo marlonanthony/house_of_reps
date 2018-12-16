@@ -13,34 +13,41 @@ class Venues extends Component {
 
   render() {
     const venues = this.props.venues.map(venue => (
-      <tr key={venue._id}>
-        <td style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></td>
-        <td style={{padding: '10px'}}>{venue.title}</td>
-        <td style={{padding: '10px'}}>{venue.location}</td>
-        <td style={{padding: '10px'}}>
-          <button 
+      <div key={venue._id} 
+          style={{
+            display: 'flex', 
+            background: 'rgba(0,0,0,0.5)', 
+            margin: '10px', 
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            maxWidth: '400px',
+            minHeight: '200px',
+            justifyContent: 'space-around', }}>
+        <p style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></p>
+        <p style={{padding: '10px'}}>{venue.title}</p>
+        <p style={{padding: '10px'}}>{venue.location}</p>
+        <p style={{padding: '10px'}}>{venue.description}</p>
+        <div style={{padding: '10px'}}>
+          <button
             id='venue-delete-btns'
             onClick={ this.onDeleteClick.bind(this, venue._id) }>
               Delete
           </button>
-        </td>
-      </tr>
+        </div>
+      </div>
     ))
     return (
-      <div id='venue-container'>
-        <h3 style={{ textAlign: 'center', padding: '10px', color: '#ccc' }} className=''>Venues</h3>
-        {/* <div style={{ overflowX: 'auto' }}> */}
-          <table className="venue-table-data">
-            <thead>
-              <tr>
-                <th >Date</th>
-                <th >Title</th>
-                <th>Location</th>
-              </tr>
-                { venues }
-              </thead>
-          </table>
-        {/* </div> */}
+      <div>
+        <h3 style={{ 
+          textAlign: 'center', 
+          padding: '10px', 
+          color: '#fff', 
+          background: 'rgba(0,0,0,0.5)', 
+          margin: '10px auto', 
+          width: '100px', }} 
+          className=''>Venues
+        </h3>
+        { venues }
       </div>
     )
   }

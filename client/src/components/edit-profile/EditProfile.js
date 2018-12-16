@@ -6,6 +6,7 @@ import Dropzone from 'react-dropzone'
 import request from 'superagent' 
 
 import { createProfile, getCurrentProfile } from '../../actions/profileActions'
+import { registerUser } from '../../actions/authActions'
 import TextFieldGroup from '../common/TextFieldGroup'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import SelectListGroup from '../common/SelectListGroup'
@@ -101,6 +102,7 @@ class EditProfile extends Component {
 
   onSubmit = e => {
     e.preventDefault()
+    const { user } = this.props.auth 
     
     const profileData = {
       avatar: this.state.avatar,
@@ -123,6 +125,15 @@ class EditProfile extends Component {
     }
 
     this.props.createProfile(profileData, this.props.history) 
+
+    const newUser = {
+      name: user.name,
+      email: user.email,
+      avatar: this.state.avatar,
+      password: user.password,
+      password2: user.password2
+    }
+    this.props.registerUser(newUser, this.props.history) 
   }
 
   onImageDrop = files => {
@@ -367,12 +378,14 @@ EditProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
+  auth: state.auth 
 })
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(EditProfile))
+export default connect(mapStateToProps, { createProfile, getCurrentProfile, registerUser })(withRouter(EditProfile))

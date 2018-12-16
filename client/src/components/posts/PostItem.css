@@ -35,11 +35,25 @@
   grid-area: avatar;
 }
 
+.post_avatar_img:hover {
+  cursor: pointer;
+}
+
 .post_name {
   grid-area: name;
   font-family: 'Ubuntu', sans-serif;
   color: rgb(29, 138, 228);
   font-size: 13px;
+}
+
+.post_name:hover {
+  cursor: pointer;
+}
+
+.post_feed_date {
+  color: #7e8889;
+  font-size: 13px;
+  margin-top: -7px;
 }
 
 .post_content {

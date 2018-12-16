@@ -48,7 +48,7 @@ class DropdownMenu extends Component {
         <Link to="/dashboard">Dashboard</Link>
         <Link to="#" onClick={this.onLogoutClick}>
         <img 
-          src={profile.avatar}
+          src={user.avatar}
           alt={user.name} 
           className=''
           style={{ width: '25px', marginRight: '5px' }}

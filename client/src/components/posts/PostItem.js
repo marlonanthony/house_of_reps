@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import classnames from 'classnames' 
 import Moment from 'react-moment' 
-import { deletePost, addLike, removeLike, getPost } from '../../actions/postActions'
+import { deletePost, addLike, removeLike } from '../../actions/postActions'
 
 // For comments 
-// import Spinner from '../common/Spinner'
 import CommentFeed from '../post/CommentFeed'
 import CommentForm from '../post/CommentForm'
 
@@ -21,7 +20,7 @@ class PostItem extends Component {
     text: '',
     postComments: [],
     likes: this.props.post.likes,
-    liked: false
+    liked: false,
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -56,16 +55,25 @@ class PostItem extends Component {
     return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
+  userNameOrAvatarClicked = postId => {
+    this.props.profiles.map(profile =>  {
+      if(profile.user._id === postId) {
+        this.props.history.push(`/profile/${profile.handle}`)
+      }
+    })
+  }
+
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
+
     return (
      <div className='posts_container'>
       <div className='post_avatar_and_name'>
-        <Link to={'#'}><img className='post_avatar_img' src={post.avatar} alt={post.name} /></Link>
-        <div style={{ display: 'block'  }}>
-          <p className='post_name'>{post.name}</p>
-          <p style={{ color: '#7e8889', fontSize: '13px' }}><Moment format='MM/DD/YYYY'>{post.date}</Moment></p>
+        <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
+        <div style={{ display: 'flex', flexDirection: 'column'  }}>
+          <p className='post_name' onClick={() => this.userNameOrAvatarClicked(post.user)}>{post.name}</p>
+          <p className='post_feed_date'><Moment format='MM/DD/YYYY'>{post.date}</Moment></p>
         </div>
       </div>
 
@@ -86,7 +94,6 @@ class PostItem extends Component {
                   </a>
                   <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
                   <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
-                  {/* <a href={post.url}><small>{post.url}</small></a> */}
                 </div>
               </div>
             )
@@ -129,7 +136,7 @@ class PostItem extends Component {
         { showComments ? (
           <div>
             <CommentForm postId={text} /> 
-            <CommentFeed postId={text} comments={postComments} />
+            <CommentFeed postId={text} comments={postComments} profiles={this.props.profiles}/>
           </div> 
           ) : null 
         }
@@ -155,4 +162,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike, getPost })(PostItem)
+export default connect(mapStateToProps, { deletePost, addLike, removeLike })(withRouter(PostItem))

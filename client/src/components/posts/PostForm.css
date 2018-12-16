@@ -1,5 +1,7 @@
 .post_form {
-
+  background: rgba(4, 9, 12, 0.918); 
+  width: 93%;
+  margin-left: 3.5%;
 }
 
 .disp {
@@ -7,7 +9,8 @@
 }
 
 .text-area {
-  border: 1px solid rgb(21, 58, 88);
+  /* border: 1px solid rgb(21, 58, 88); */
+  border: none;
   padding: 10px;
   /* width: 80%; */
   width: 93%;
@@ -18,7 +21,8 @@
   resize: none;
   color: #ccc;
   /* background: #142634; */
-  background: rgba(2, 0, 7, 0.1);
+  /* background: rgba(2, 0, 7, 0.5); */
+  background: rgba(4, 9, 12, 0.918);  
 }
 
 ::placeholder {
@@ -26,7 +30,9 @@
 }
 
 #post-form-textareafieldgroup {
-  margin-left: 3.5%;
+  /* margin:  0 3.5%; */
+  padding: 5px;
+  background: rgba(4, 9, 12, 0.918); 
   /* margin-left: 12%; */
   /* display: grid;
   justify-items: center; */
@@ -50,7 +56,7 @@
   color: #ccc;
   margin-left: 10%;
   /* background: #142634; */
-  background: rgba(2, 0, 7, 0.2);
+ 
 }
 
 .post-form-text-area::placeholder {
@@ -60,6 +66,7 @@
 .otherstuff {
   display: flex;
   justify-content: space-around;
+  padding-bottom: 10px;
 }
 
 #add-photo {

@@ -17,6 +17,7 @@ class Profile extends Component {
 
   render() {
     const { profile, loading } = this.props.profile
+    const { user } = this.props.auth
     let profileContent
 
     if(profile === null || loading) {
@@ -24,7 +25,7 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div>
-          <ProfileHeader profile={profile} />
+          <ProfileHeader profile={profile} user={user} />
         </div>
       )
     }
@@ -45,7 +46,8 @@ Profile.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth 
 })
 
 export default connect(mapStateToProps, { getProfileByHandle })(Profile)
