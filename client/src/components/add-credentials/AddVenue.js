@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-// import TextFieldGroup from '../common/TextFieldGroup'
-// import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
+import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { addVenue } from '../../actions/profileActions'
-import classnames from 'classnames'
+// import classnames from 'classnames'
 import './AddVenue.css'
 // import { SET_CURRENT_USER } from '../../actions/types';
 
@@ -43,10 +43,6 @@ class AddVenue extends Component {
 
   render() {
     const { errors } = this.state 
-    // console.log(this.props)
-    // if(this.props.auth.user.id === "5bad9df3f3dd61183a0fec96") {
-    //   return <div>Hello World</div>
-    // }
     return (
       <div className='add-venue'>
         <Link to='/dashboard'>
@@ -56,92 +52,34 @@ class AddVenue extends Component {
         <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
         <div style={{ }}>
           <form onSubmit={ this.onSubmit }>
-            {/* <TextFieldGroup 
+            <CreateProfileTextFieldGroup 
               name='date'
               type='date'
               value={ this.state.date }
               onChange={ this.onChange }
               error={ errors.date }
-            /> */}
-            <div>
-              <input 
-                type='date'
-                className={classnames('register-inputs', {
-                  'errors': errors.date 
-                })}
-                name='date'
-                value={ this.state.date }
-                onChange={ this.onChange }
-                error={ errors.date }
-                style={{ fontSize: '20px' }}
-              />
-              { <div><span style={{ marginLeft: '10px', color: 'red' }}>{errors.date}</span></div> }
-            </div>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'is-invalid': errors
-                })}
-                name='title'
-                value={ this.state.title }
-                onChange={ this.onChange }
-                error={ errors.title }
-                placeholder='Title'
-              />
-              { <div><span style={{ marginLeft: '10px', color: 'red'}}>{errors.title}</span></div> }
-            </div>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'errors': errors
-                })}
-                name='location'
-                value={ this.state.location }
-                onChange={ this.onChange }
-                error={ errors.location }
-                placeholder='Location of Event'
-              />
-              { <div><span style={{ marginLeft: '10px', color: 'red'}}>{errors.location}</span></div> }
-            </div>
-            {/* <TextFieldGroup 
+            />
+            <CreateProfileTextFieldGroup 
               placeholder='Title'
               name='title'
               value={ this.state.title }
               onChange={ this.onChange }
               error={ errors.title }
-            /> */}
-            {/* <TextFieldGroup 
+            />
+            <CreateProfileTextFieldGroup 
               placeholder='* Location of Event'
               name='location'
               value={ this.state.location }
               onChange={ this.onChange }
               error={ errors.location }
-            /> */}
-            <div>
-              <textarea 
-                className={classnames('register-text-area', {
-                  'errors': errors
-                })}
-                placeholder='Quick description'
-                name='description'
-                value={ this.state.description }
-                onChange={ this.onChange }
-                error={ errors.description }
-                rows={3}
-              />
-              { errors && (<div className='errors'>{errors.description}</div>)}
-            </div>
-            {/* <div style={{ width: '53.5%' }}>
-              <TextAreaFieldGroup 
-                placeholder='Quick description'
-                name='description'
-                value={ this.state.description }
-                onChange={ this.onChange }
-                error={ errors.description }
-              />
-            </div> */}
+            />
+            <CreateProfileTextAreaFieldGroup 
+              placeholder='Quick description'
+              name='description'
+              value={ this.state.description }
+              onChange={ this.onChange }
+              error={ errors.description }
+            />
             <input type="submit" value='Submit' id='venue-submit-button' />
           </form>
         </div>

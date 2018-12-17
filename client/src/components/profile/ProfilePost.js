@@ -37,7 +37,7 @@ ProfilePost.propTypes = {
 
 const mapStateToProps = state => ({
   post: state.post,
-  auth: state.auth 
+  auth: state.auth,
 })
 
 export default connect(mapStateToProps, { getPosts })(ProfilePost) 

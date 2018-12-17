@@ -1,0 +1,12 @@
+.register-inputs {
+  max-width: 50%; 
+  display: absolute;
+  height: 20px;
+  font-size: 17px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  text-decoration: none;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.1);
+}

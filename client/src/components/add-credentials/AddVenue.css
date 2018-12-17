@@ -1,8 +1,8 @@
 .add-venue {
-  background: #050c14;
+  /* background: #050c14; */
   color: #aaa;
-  min-height: 100vh;
   padding-top: 70px;
+  text-align: center;
 }
 
 .register-inputs {
@@ -45,21 +45,13 @@
   color: #ccc;
 }
 
-
-.red {
-  color: red;
-}
-
 #venue-submit-button {
-  margin-top: 10px;
-  margin-left: 10%;
   padding: 10px;
-  font-size: 17px; 
-  border: none; 
-  background: rgba(0,0,0,0.4);
-  color: #aaa;
-  border-radius: 2px;
+  font-size: 17px;
   outline: none;
+  border: none;
+  color: #aaa;
+  background: rgba(0,0,0,0.4);
   cursor: pointer;
 }
 
@@ -71,9 +63,8 @@
 #addvenue-back-button {
   position: absolute;
   top: 30px;
-  margin-left: 10%;
-  width: 40px;
-  height: 40px;
+  left: 2%;
+  font-size: 35px;
   text-decoration: none;
   color: #ccc;
 }
@@ -85,6 +76,5 @@
 }
 
 #addvenue-back-button:active {
-  height: 35px;
-  width: 35px;
+  font-size: 33px;
 }

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import { deleteComment, getPosts } from '../../actions/postActions' 
+import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import './CommentItem.css'
@@ -18,6 +19,9 @@ class CommentItem extends Component {
   componentDidUpdate(prevProps, prevState) {
     if(this.props.comment !== prevState.comment) {
       this.setState({ comment: this.props.comment })
+    }
+    if(this.props.profiles !== prevProps.profiles){
+      this.props.getProfiles() 
     }
   }
 
@@ -46,12 +50,17 @@ class CommentItem extends Component {
     const { postId, auth } = this.props 
     const { comment } = this.state
     let userHandle 
-    
-    this.props.profiles.map(profile => {
-      if(profile.user._id === comment.user) {
-        userHandle = <p className='comment-feed-name'>{profile.user.name}</p>
-      }
-    })
+    console.log(this.props) 
+
+    if(!this.props.profiles){
+      userHandle = null 
+    } else {
+      this.props.profiles.map(profile => {
+        if(profile.user._id === comment.user) {
+          userHandle = <p className='comment-feed-name'>{profile.user.name}</p>
+        }
+      })
+    }
 
     const commentsModal = this.state.showModal ? (
       <Fragment> 
@@ -131,7 +140,7 @@ CommentItem.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts })(withRouter(CommentItem))
+export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles })(withRouter(CommentItem))

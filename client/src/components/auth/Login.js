@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { loginUser } from '../../actions/authActions'
-import TextFieldGroup from '../common/TextFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import './Login.css'
 
 class Login extends Component {
@@ -46,12 +46,12 @@ class Login extends Component {
     const { errors } = this.state 
 
     return (
-      <div className=''>
+      <div className='' style={{ overflow: 'hidden', paddingTop: '60px'}}>
         <h2 style={{ textAlign: 'center' }}>Log In</h2>
         <p style={{ textAlign: 'center' }}>Sign in to your account</p>
         <div id='login-content'>
           <form onSubmit={ this.onSubmitHandler }>
-            <TextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Email Address'
               name='email'
               type='email'
@@ -59,7 +59,7 @@ class Login extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.email }
             />
-            <TextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Password'
               name='password'
               type="password"

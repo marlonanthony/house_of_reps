@@ -100,7 +100,7 @@ class Posts extends Component {
       )
     }
 
-    if(posts === null || loading) {
+    if(posts === null || profiles === undefined || loading) {
       postContent = <Spinner />
     } else {
       postContent = <PostFeed showPreview={showsPreview} posts={posts} profiles={profiles} />

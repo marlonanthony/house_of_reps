@@ -1,8 +1,9 @@
 import React from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
+import './CreateProfileTextFieldGroup.css'
 
-const TextFieldGroup = ({
+const CreateProfileTextFieldGroup = ({
   name, 
   placeholder,
   value,
@@ -17,7 +18,7 @@ const TextFieldGroup = ({
     <div>
       <input 
         type={type}
-        className={classnames('inputs', {
+        className={classnames('create-profile-text-field-group-inputs', {
           'is-invalid': error
         })}
         placeholder={placeholder}
@@ -33,7 +34,7 @@ const TextFieldGroup = ({
   )
 }
 
-TextFieldGroup.propTypes = {
+CreateProfileTextFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -44,8 +45,8 @@ TextFieldGroup.propTypes = {
   disabled: PropTypes.string,
 }
 
-TextFieldGroup.defaultProps = {
+CreateProfileTextFieldGroup.defaultProps = {
   type: 'text' 
 }
 
-export default TextFieldGroup
+export default CreateProfileTextFieldGroup

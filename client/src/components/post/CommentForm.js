@@ -63,6 +63,7 @@ class CommentForm extends Component {
     e.preventDefault()
     
     const { user } = this.props.auth 
+    console.log(user)
     const { postId } = this.props 
     this.setState({ showPreview: false })
 

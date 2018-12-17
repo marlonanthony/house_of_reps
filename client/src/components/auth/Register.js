@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone'
 import request from 'superagent' 
 
 import { registerUser } from '../../actions/authActions'
-import TextFieldGroup from '../common/TextFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -116,7 +116,7 @@ class Register extends Component {
             </div>
           </div>
           <form id='register-form' onSubmit={ this.onSubmitHandler }>
-            <TextFieldGroup
+            <RegisterTextFieldGroup
               type="text"
               name='name'
               value={ this.state.name }
@@ -124,7 +124,7 @@ class Register extends Component {
               onChange={this.onChangeHandler}
               error={ errors.name }
             />
-            <TextFieldGroup
+            <RegisterTextFieldGroup
               type="email"
               name='email'
               placeholder='Email'
@@ -132,7 +132,7 @@ class Register extends Component {
               onChange={this.onChangeHandler}
               error={ errors.email }
             />
-            <TextFieldGroup
+            <RegisterTextFieldGroup
               type="password"
               name='password'
               placeholder='Password'
@@ -140,7 +140,7 @@ class Register extends Component {
               onChange={this.onChangeHandler}
               error={ errors.password }
             />
-            <TextFieldGroup
+            <RegisterTextFieldGroup
               type="password"
               name='password2'
               placeholder='Confirm Password'

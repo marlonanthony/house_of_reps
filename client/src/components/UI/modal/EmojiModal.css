@@ -1,0 +1,39 @@
+
+.icon {
+  color: #444;
+  padding: 5px;
+}
+.icon:hover {
+  cursor: pointer;
+}
+
+.EmojiModal {
+  position: fixed;
+  background-color: rgba(0,0,0,.8);
+  z-index: 201;
+  width: 330px;
+  border: none;
+  border-radius: 2%;
+  padding: 20px;
+  left: 10%;
+  top: 25%;
+  box-sizing: border-box;
+  animation-name: emojimodal;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes emojimodal {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 600px) {
+  .EmojiModal {
+    left: calc(60% - 330px);
+  }
+}

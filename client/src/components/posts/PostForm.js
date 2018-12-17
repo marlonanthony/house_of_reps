@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
-import { addPost } from '../../actions/postActions' 
 import axios from 'axios'
-import LinkPreview from './LinkPreview'
+import EmojiPicker from 'emoji-picker-react' 
+import JSEMOJI from 'emoji-js'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
+import { addPost } from '../../actions/postActions' 
+import LinkPreview from './LinkPreview'
+import EmojiModal from '../UI/modal/EmojiModal'
+import LightBackdrop from '../UI/backdrop/LightBackdrop'
+
 // import Embed from '../slate/embed/Embed'
 // import classnames from 'classnames'
 import './PostForm.css'
@@ -26,7 +31,8 @@ class PostForm extends Component {
     showPreview: false,
     uploadedFileCloudinaryUrl: '',
     uploadedFile: '',
-    media: ''
+    media: '',
+    showEmojis: false 
   }
 
   componentWillReceiveProps(newProps) {
@@ -130,11 +136,38 @@ class PostForm extends Component {
       }
     })
   }
+
+  toggleEmoji = () => {
+    this.setState(prevState => ({ showEmojis: !prevState.showEmojis }))
+  }
+
+  addEmoji = emojiName => {
+    const jsemoji = new JSEMOJI() 
+    jsemoji.img_set = 'emojione' 
+    jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
+    jsemoji.supports_css = false 
+    jsemoji.allow_native = false  
+    jsemoji.replace_mode = 'unified' 
+    jsemoji.text_mode = true 
+    jsemoji.include_title = true 
+    jsemoji.replace_unified(`:${emojiName}:`)
+    jsemoji.replace_colons(`:${emojiName}:`)
+    
+    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
+    this.setState({ text: this.state.text + emoji })
+  }
   
   render() {
     const { errors, data, text, showPreview, media, rows, show } = this.state 
     return (
+      <div>
+        <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
       <div className='post_form'>
+        { this.state.showEmojis ? 
+        <EmojiModal>
+          <EmojiPicker onEmojiClick={this.addEmoji} />
+        </EmojiModal>
+        : null }
         {/* <Embed /> */}
         <div id='post-form-textareafieldgroup'>
           <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
@@ -160,6 +193,7 @@ class PostForm extends Component {
                   <i className="fas fa-image" id='add-photo' title='Upload Photo' />
                 </button>
               </Dropzone>
+              <i className="far fa-smile-wink icon" onClick={this.toggleEmoji} />
               <button className='post_submit_button' title='Submit'>
                 <i id='post-submit-icon' className="far fa-paper-plane " />
               </button>
@@ -167,6 +201,7 @@ class PostForm extends Component {
             { showPreview ? <LinkPreview post={data} media={media} /> : null }
           </form>
         </div>
+      </div>
       </div>
     )
   }

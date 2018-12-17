@@ -1,18 +1,30 @@
 .create-profile {
-  /* margin-left: 10vw; */
+  background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.createprofilecontainer {
+  height: auto; 
+  width: 100vw; 
+  text-align: center;
 }
 
 .select-list {
-  width: 51%;
+  width: 90%;
   font-size: 16px;
   padding: 5px;
   border: none;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   outline: none;
   text-decoration: none;
   margin: 10px;
   height: 30px;
+  color: #bdc7c1;
 }
 
 #create-profile-social-btn {
@@ -22,32 +34,31 @@
   padding: 5px;
   margin: 10px;
   outline: none;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  color: #ccc;
 }
 
 #create-profile-social-btn:hover {
-  font-size: 16.5px;
-}
-
-#create-profile-social-btn:active {
-  font-size: 16px;
+  background: rgba(0,0,0,0.7);
 }
 
 #social-inputs {
-  width: 50%;
+  width: 90%;
   padding: 5px;
-  margin: 10px;
   outline: none;
   text-decoration: none;
   border: none;
+  margin: 0 auto;
 }
 
 .social-links {
   font-size: 17px;
   border: none;
-  width: 50vw;
+  /* width: 50vw; */
+  width: 100%;
   outline: none;
-  background: #aaa;
+  color: #aaa;
+  background: rgba(0,0,0,0.7);
   padding: 5px;
   height: 30px;
 }
@@ -63,14 +74,28 @@
   border: none;
   border-radius: 2px;
   outline: none;
-  /* color: rgb(55, 131, 194); */
-  background: rgba(0, 0, 0, 0.1);
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 #create-profile-submit-button:hover {
-  font-size: 16.5px;
+  background: rgb(0,0,0,0.7);
 }
 
-#create-profile-submit-button:active {
-  font-size: 16px;
+@media (min-width: 1050px) {
+  .select-list {
+    width: 51%;
+    font-size: 16px;
+    padding: 5px;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    outline: none;
+    text-decoration: none;
+    margin: 10px;
+    height: 30px;
+  }
+  #social-inputs {
+    width: 50%;
+  }
 }

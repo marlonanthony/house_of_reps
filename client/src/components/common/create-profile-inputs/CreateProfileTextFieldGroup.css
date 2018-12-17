@@ -1,0 +1,23 @@
+.create-profile-text-field-group-inputs {
+  margin: 10px;
+  height: 20px;
+  width: 50%;
+  font-size: 17px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  text-decoration: none;
+  padding: 10px;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.create-profile-text-field-group-inputs::placeholder {
+  color: #ccc;
+}
+
+@media (max-width: 1050px) {
+  .create-profile-text-field-group-inputs {
+    width: 90%;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
+import './RegisterTextFieldGroup.css'
 
 const TextFieldGroup = ({
   name, 
@@ -14,10 +15,10 @@ const TextFieldGroup = ({
   disabled
 }) => {
   return (
-    <div>
+    <div style={{marginLeft: '-10%'}}>
       <input 
         type={type}
-        className={classnames('inputs', {
+        className={classnames('register-inputs', {
           'is-invalid': error
         })}
         placeholder={placeholder}
@@ -26,7 +27,6 @@ const TextFieldGroup = ({
         onChange={onChange}
         disabled={disabled}
       />
-      <br />
       {info && <small className=''>{info}</small>}
       { error && (<div className='error'>{error}</div>)}
     </div>

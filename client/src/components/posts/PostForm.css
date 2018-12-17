@@ -40,8 +40,6 @@
 
 .text-area:focus {
   outline: none;
-
-
 }
 .post-form-text-area {
   /* border: 1px solid rgb(21, 58, 88); */
@@ -72,12 +70,14 @@
 #add-photo {
   width: 25px; 
   height: 25px;
+  font-size: 20px;
   background: none;
   color: rgb(55, 131, 194);
 }
 
 #add-photo:hover {
   color: rgb(78, 168, 241);
+  cursor: pointer;
 }
 
 .post_submit_button {
@@ -94,6 +94,7 @@
 #post-submit-icon {
   width: 20px;
   height: 20px;
+  font-size: 15px;
 }
 
 #post-submit-icon:hover {
@@ -104,4 +105,13 @@
 .post_submit_button:hover {
   color: rgb(78, 168, 241);
   /* background: rgba(2, 0, 7, .8); */
+}
+
+.icon {
+  color: rgb(55,131,194);
+  padding: 5px;
+  font-size: 17px;
+}
+.icon:hover {
+  cursor: pointer;
 }

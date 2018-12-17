@@ -47,31 +47,39 @@ class Dashboard extends Component {
       if(Object.keys(profile).length > 0) {
         dashboardContent = (
           <div style={{ minHeight: '100vh' }}>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(0,0,0,0.6)', maxWidth: '600px', margin: 'auto'}}>
+            <div style={{
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              background: 'rgba(0,0,0,0.6)', 
+              maxWidth: '80%', 
+              margin: 'auto',
+              padding: '10px'
+              }}>
               <Link 
                 style={{textDecoration: 'none', color: 'rgb(55, 131,194)', padding: '10px'}} 
                 to={`/profile/${profile.handle}`} >@{ profile.handle }
               </Link>
-              <ProfileActions />
-              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                <ProfileActions />
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
-                  <Link to="/add-djpool" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
-                    <i className="fas fa-wrench" /> Add DJ Pool 
+                  <Link to="/add-djpool" style={{ padding: '20px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
+                    <i className="fas fa-swimming-pool" /> <span style={{color: '#ccc'}}>Add DJ Pool</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
-                  <Link to="/add-store" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
-                    <i className='far fa-building' /> Add Certified Store
+                  <Link to="/add-store" style={{ padding: '20px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
+                    <i className='fas fa-store' /> <span style={{color: '#ccc'}}>Add Certified Store</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
-                  <Link to="/add-perk" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
-                    <i className='fas fa-gift' /> Add Perk
+                  <Link to="/add-perk" style={{ padding: '0px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
+                    <i className='fas fa-gift' /> <span style={{color: '#ccc'}}>Add Perk</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
-                  <Link to="/add-brand" style={{ padding: '10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
-                    <i className='fas fa-gift' /> Add Brand
+                  <Link to="/add-brand" style={{ padding: '0px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
+                    <i className='far fa-building' /> <span style={{color: '#ccc'}}>Add Brand</span>
                   </Link>
                 ) : null }
               </div>

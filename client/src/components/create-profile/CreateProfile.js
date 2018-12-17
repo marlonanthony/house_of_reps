@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import TextFieldGroup from '../common/TextFieldGroup'
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
+import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 import { createProfile } from '../../actions/profileActions'
@@ -171,82 +171,77 @@ class CreateProfile extends Component {
     }
     return (
       <div className='create-profile'>
-        <div className="">
-          <div className="">
-            <div className="">
-              <h1 style={{ textAlign: 'center' }}>Create Your Profile</h1>
-              <p style={{ textAlign: 'center' }}>Let's get some information to make your profile stand out</p>
-              <form onSubmit={ this.onSubmit }>
-                <TextFieldGroup 
-                  placeholder='* Profile Username'
-                  name='handle'
-                  value={ this.state.handle } 
-                  onChange={ this.onChange } 
-                  error={ errors.handle } 
-                />
-                <TextFieldGroup 
-                  placeholder='A man has no name'
-                  name='stageName'
-                  value={ this.state.stageName }
-                  onChange={ this.onChange }
-                  error={ errors.stageName }
-                  // info="What's your stage name?"
-                />
-                <SelectListGroup 
-                  name='style'
-                  value={ this.state.style }
-                  onChange={ this.onChange }
-                  error={ errors.style }
-                  options={options}
-                  // info='What style best defines you?'
-                />
-                <TextFieldGroup 
-                  placeholder='Company'
-                  name='company'
-                  value={ this.state.company } 
-                  onChange={ this.onChange } 
-                  error={ errors.company } 
-                  // info="Company you're with."
-                />
-                <TextFieldGroup 
-                  placeholder='Website'
-                  name='website'
-                  value={ this.state.website } 
-                  onChange={ this.onChange } 
-                  error={ errors.website } 
-                  // info='Website domain'
-                />
-                <TextFieldGroup 
-                  placeholder='Location'
-                  name='location'
-                  value={ this.state.location } 
-                  onChange={ this.onChange } 
-                  error={ errors.location } 
-                  // info='Where are you from?'
-                />
-                <div style={{ marginLeft: '10px' }}>
-                <TextAreaFieldGroup 
-                  placeholder='Short Bio'
-                  name='bio'
-                  value={ this.state.bio } 
-                  onChange={ this.onChange } 
-                  error={ errors.bio } 
-                  // info='Tell us a little bit about yourself' 
-                />
-                </div>
-                <div className='add-social-links-button'>
-                  <button type='button' onClick={() => {
-                    this.setState(prevState => ({
-                      displaySocialInputs: !prevState.displaySocialInputs
-                    }))
-                  }} id="create-profile-social-btn">Add Social Network Links</button>
-                  <span className=''>Optional</span>
-                </div>
-                { socialInputs }
-                <input type="submit" value="submit" id='create-profile-submit-button' />
-              </form>
+        <h1 style={{ textAlign: 'center', paddingTop: '60px', color: '#aaa' }}>Create Your Profile</h1>
+        <p style={{ textAlign: 'center', color: '#888' }}>Let's get some information to make your profile stand out</p>
+        <div className='createprofilecontainer'>
+          <form onSubmit={ this.onSubmit }>
+            <CreateProfileTextFieldGroup 
+              placeholder='* Profile Username'
+              name='handle'
+              value={ this.state.handle } 
+              onChange={ this.onChange } 
+              error={ errors.handle } 
+              info='A unique username for your profile URL.'
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='A man has no name'
+              name='stageName'
+              value={ this.state.stageName }
+              onChange={ this.onChange }
+              error={ errors.stageName }
+              info="What's your stage name?"
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='Company'
+              name='company'
+              value={ this.state.company } 
+              onChange={ this.onChange } 
+              error={ errors.company } 
+              info="Company you're with."
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='Website'
+              name='website'
+              value={ this.state.website } 
+              onChange={ this.onChange } 
+              error={ errors.website } 
+              info='Website domain'
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='Location'
+              name='location'
+              value={ this.state.location } 
+              onChange={ this.onChange } 
+              error={ errors.location } 
+              info='Where are you from?'
+            />
+            <SelectListGroup 
+              name='style'
+              value={ this.state.style }
+              onChange={ this.onChange }
+              error={ errors.style }
+              options={options}
+              info='What style best defines you?'
+            />
+              <CreateProfileTextAreaFieldGroup 
+                placeholder='Short Bio'
+                name='bio'
+                value={ this.state.bio } 
+                onChange={ this.onChange } 
+                error={ errors.bio } 
+                info='Tell us a little bit about yourself' 
+              />
+            <div className='add-social-links-button'>
+              <button type='button' onClick={() => {
+                this.setState(prevState => ({
+                  displaySocialInputs: !prevState.displaySocialInputs
+                }))
+              }} id="create-profile-social-btn">Add Social Network Links</button>
+              <span className=''>Optional</span>
             </div>
-          </div>
+            { socialInputs }
+            <input type="submit" value="Submit" id='create-profile-submit-button' />
+          </form>
         </div>
       </div>
     )
