@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
 import classnames from 'classnames' 
 import Moment from 'react-moment' 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
+import CommentsModal from '../UI/modal/CommentsModal'
+import Backdrop from '../UI/backdrop/Backdrop'
 
 // For comments 
 import CommentFeed from '../post/CommentFeed'
@@ -21,6 +23,7 @@ class PostItem extends Component {
     postComments: [],
     likes: this.props.post.likes,
     liked: false,
+    showModal: false 
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -55,6 +58,14 @@ class PostItem extends Component {
     return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
+  modalToggle = () => {
+    this.setState(prevState => ({ showModal: !prevState.showModal }))
+  }
+
+  modalShow = () => {
+    this.setState({ showModal: true })
+  }
+
   userNameOrAvatarClicked = postId => {
     this.props.profiles.map(profile =>  {
       if(profile.user._id === postId) {
@@ -67,7 +78,21 @@ class PostItem extends Component {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
 
+    const postModal = this.state.showModal ? (
+      <Fragment> 
+        <CommentsModal>
+          <div>
+            <p id='comment-modal-text'>{post.text}</p>
+            <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
+          </div>
+        </CommentsModal>
+      </Fragment>
+    ) : null 
+
     return (
+     <Fragment>
+     <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+     {postModal}
      <div className='posts_container'>
       <div className='post_avatar_and_name'>
         <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
@@ -83,7 +108,7 @@ class PostItem extends Component {
           : post.media 
           ? ( <div>
                 <p className='post_content'>{post.text}</p>
-                <img src={post.media} alt="uploaded" style={{width: '100%'}} />
+                <img className='postfeed-media-pic' onClick={this.modalShow} src={post.media} alt="uploaded" />
               </div>
             )
           : ( <div className='post_content'>
@@ -142,6 +167,7 @@ class PostItem extends Component {
         }
       </div>
      </div>
+     </Fragment>
     )
   }
 }

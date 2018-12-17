@@ -60,15 +60,15 @@ class Dashboard extends Component {
                 style={{textDecoration: 'none', color: 'rgb(55, 131,194)', padding: '10px'}} 
                 to={`/profile/${profile.handle}`} >@{ profile.handle }
               </Link>
-              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center', padding: '10px 0px' }}>
                 <ProfileActions />
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
-                  <Link to="/add-djpool" style={{ padding: '20px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
+                  <Link to="/add-djpool" style={{ padding: '15px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
                     <i className="fas fa-swimming-pool" /> <span style={{color: '#ccc'}}>Add DJ Pool</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
-                  <Link to="/add-store" style={{ padding: '20px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
+                  <Link to="/add-store" style={{ padding: '15px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
                     <i className='fas fa-store' /> <span style={{color: '#ccc'}}>Add Certified Store</span>
                   </Link>
                 ) : null }

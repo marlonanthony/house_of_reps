@@ -49,8 +49,7 @@ class CommentItem extends Component {
   render() {
     const { postId, auth } = this.props 
     const { comment } = this.state
-    let userHandle 
-    console.log(this.props) 
+    let userHandle
 
     if(!this.props.profiles){
       userHandle = null 

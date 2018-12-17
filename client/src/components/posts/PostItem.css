@@ -64,6 +64,14 @@
   text-align: left;
 }
 
+.postfeed-media-pic {
+  width: 100%;
+}
+
+.postfeed-media-pic:hover {
+  cursor: pointer;
+}
+
 #post-link-img:hover {
   opacity: .8;
 }

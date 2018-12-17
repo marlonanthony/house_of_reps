@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 const ProfileActions = () => {
   return (
-    // <div style={{ padding: '10px' }}>
     <React.Fragment>
       <Link to="/edit-profile" 
         style={{
@@ -17,7 +16,6 @@ const ProfileActions = () => {
         <i className="fas fa-clipboard" /><span style={{color: '#ccc', padding: '0 5px'}}>Add Event</span>
       </Link>
     </React.Fragment>
-    // </div>
   )
 }
 
