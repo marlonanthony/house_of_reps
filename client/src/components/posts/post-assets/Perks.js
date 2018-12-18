@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import PostModal from '../../UI/modal/PostModal'
+import PostAssetsModal from '../../UI/modal/PostAssetsModal'
 import Backdrop from '../../UI/backdrop/Backdrop'
 import Arrow from '../../UI/arrow_glyph/Arrow'
 import './Perks.css'
@@ -40,7 +40,7 @@ export default class Perks extends Component {
     
     const perksModal = this.state.showModal ? (
       <Fragment>
-        <PostModal>
+        <PostAssetsModal>
           <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
               <div>
                 <h2>Reps Perks & Hookups</h2>
@@ -53,7 +53,7 @@ export default class Perks extends Component {
                 <a href={perks[this.state.currentImageIndex].url}><small>{perks[this.state.currentImageIndex].url}</small></a>
               </div>
           <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
-        </PostModal>
+        </PostAssetsModal>
       </Fragment>
     ) : null 
 

@@ -42,7 +42,7 @@ class PostItem extends Component {
     const { auth } = this.props 
     if(this.state.likes.map(like => like.user === auth.user.id).length <= 0){
       this.setState(prevState => ({ likes: this.state.likes.concat(id) }))
-      this.setState({ liked: true })
+      this.setState(prevState => ({ liked: true }))
     }
   }
 
@@ -50,11 +50,17 @@ class PostItem extends Component {
     this.props.removeLike(id)
 
     const { auth } = this.props 
-    this.setState({ likes: this.state.likes.filter(like => like.user === auth.user.id), liked: false })
+    if(this.state.likes.map(like => like.user === auth.user.id).length > 0) {
+      this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
+      this.setState(prevState => ({ liked: false }))
+    }
+    // this.setState({ likes: this.state.likes.filter(like => like.user === auth.user.id) })
+    // this.setState({ liked: false })
   }
 
   findUserLike = likes => {
     const { auth } = this.props 
+  
     return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
@@ -77,6 +83,7 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
+    let youtubeUrl = post.url ? post.url.replace(/watch\?v\=/gi, 'embed/') : null 
 
     const postModal = this.state.showModal ? (
       <Fragment> 
@@ -114,9 +121,15 @@ class PostItem extends Component {
           : ( <div className='post_content'>
                 <p>{post.text}</p>
                 <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
-                  <a href={post.url} target='_blank'>
+                  {/* <a href={post.url} target='_blank'>
                     <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
-                  </a>
+                  </a> */}
+                  
+                  {youtubeUrl ? 
+                  <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+                    <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
+                  </div>
+                    : null}
                   <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
                   <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
                 </div>

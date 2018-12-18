@@ -3,6 +3,14 @@
   flex-wrap: wrap;
 } */
 
+.dashboard_venue_items {
+  background: rgba(0, 0, 0, 0.5)
+}
+
+.dashboard_venue_items:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 
 #venue-delete-btns {
   /* margin: 0 13px 0 13px; */

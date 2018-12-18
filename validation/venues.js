@@ -8,6 +8,7 @@ module.exports = function validateVenuesInput(data) {
   data.location = !isEmpty(data.location) ? data.location : '' 
   data.date = !isEmpty(data.date) ? data.date : '' 
   data.description = !isEmpty(data.description) ? data.description : '' 
+  data.video = !isEmpty(data.video) ? data.video : '' 
 
   if(Validator.isEmpty(data.title)) {
     errors.title = 'title is required'

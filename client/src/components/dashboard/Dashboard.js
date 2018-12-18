@@ -162,7 +162,7 @@ class Dashboard extends Component {
               <Venues venues={profile.venues} />
             </div> 
 
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px'}}>
               <button 
                 onDoubleClick={ this.onDeleteClick } id="dashboard-delete-btn" title='double-click to delete profile'>
                 Delete My Account

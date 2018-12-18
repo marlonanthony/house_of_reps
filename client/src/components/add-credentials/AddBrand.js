@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { addStore, addPerk, addBrand } from '../../actions/profileActions'
+import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
 import classnames from 'classnames'
 
 class AddBrand extends Component {
@@ -42,52 +43,35 @@ class AddBrand extends Component {
         <Link to='/dashboard'>
           <i id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         </Link>
-        <h1 style={{ textAlign: 'center', color: '#ccc' }}>Add Brand</h1>
-        <div style={{ }}>
+        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Brand</h1>
+        {/* setting input div classname to djpools for lack of repitition */}
+        <div className='djpools_input_wrapper'>
           <form onSubmit={ this.onSubmit }>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'is-invalid': errors
-                })}
+            <CreateProfileTextFieldGroup 
                 name='url'
+                type='text'
                 value={ this.state.url }
                 onChange={ this.onChange }
                 error={ errors.url }
                 placeholder='URL'
               />
-              { <div><span style={{ marginLeft: '10%', color: 'red'}}>{errors.url}</span></div> }
-            </div>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'is-invalid': errors
-                })}
-                name='image'
-                value={ this.state.image }
-                onChange={ this.onChange }
-                error={ errors.image }
-                placeholder='image'
-              />
-              { <div><span style={{ marginLeft: '10%', color: 'red'}}>{errors.image}</span></div> }
-            </div>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'is-invalid': errors
-                })}
-                name='description'
-                value={ this.state.description }
-                onChange={ this.onChange }
-                error={ errors.description }
-                placeholder='description'
-              />
-              { <div><span style={{ marginLeft: '10%', color: 'red'}}>{errors.description}</span></div> }
-            </div>
-            <input type="submit" value='Submit' id='venue-submit-button' />
+            <CreateProfileTextFieldGroup 
+              name='image'
+              type='text'
+              value={ this.state.image }
+              onChange={ this.onChange }
+              error={ errors.image }
+              placeholder='image'
+            />
+            <CreateProfileTextFieldGroup 
+              name='description'
+              type='text'
+              value={ this.state.description }
+              onChange={ this.onChange }
+              error={ errors.description }
+              placeholder='description'
+            />
+            <input type="submit" value='Submit' id='venue-submit-button' style={{ marginLeft: '10px' }} />
           </form>
         </div>
       </div>

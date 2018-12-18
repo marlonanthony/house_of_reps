@@ -13,10 +13,9 @@ class Venues extends Component {
 
   render() {
     const venues = this.props.venues.map(venue => (
-      <div key={venue._id} 
+      <div key={venue._id} className='dashboard_venue_items'
           style={{
             display: 'flex', 
-            background: 'rgba(0,0,0,0.5)', 
             margin: '10px', 
             alignItems: 'center',
             flexWrap: 'wrap',
@@ -26,6 +25,11 @@ class Venues extends Component {
         <p style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></p>
         <p style={{padding: '10px'}}>{venue.title}</p>
         <p style={{padding: '10px'}}>{venue.location}</p>
+        {venue.video  ? 
+          <iframe width="400" height="300" src={venue.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
+          : null 
+        }
+        {/* <iframe width="560" height="315" src={venue.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
         <p style={{padding: '10px'}}>{venue.description}</p>
         <div style={{padding: '10px'}}>
           <button

@@ -1,4 +1,4 @@
-.PostModal {
+.PostAssetsModal {
   position: fixed;
   background-color: white;
   z-index: 201;
@@ -10,11 +10,11 @@
   top: 30%;
   box-sizing: border-box;
   text-align: center;
-  animation-name: modal;
+  animation-name: postassetsmodal;
   animation-duration: .5s;
   animation-iteration-count: 1;
 }
-@keyframes modal {
+@keyframes postassetsmodal {
   0% {
     transform: translateY(-100vh);
   }
@@ -24,7 +24,7 @@
 }
 
 @media (min-width: 1250px) {
-  .PostModal {
+  .PostAssetsModal {
     width: 40%;
     left: 30%;
   }

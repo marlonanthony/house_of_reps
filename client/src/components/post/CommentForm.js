@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
-import { addComment, getPosts } from '../../actions/postActions'
 import axios from 'axios'
-import LinkPreview from '../posts/LinkPreview'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
+import EmojiPicker from 'emoji-picker-react' 
+import JSEMOJI from 'emoji-js'
 
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
+import { addComment, getPosts } from '../../actions/postActions'
+import LinkPreview from '../posts/LinkPreview'
+import EmojiModal from '../UI/modal/EmojiModal'
+import LightBackdrop from '../UI/backdrop/LightBackdrop'
 import './CommentForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -22,7 +26,8 @@ class CommentForm extends Component {
     showPreview: false,
     uploadedFileCloudinaryUrl: '',
     uploadedFile: '',
-    media: ''
+    media: '',
+    showEmojis: false 
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -107,41 +112,70 @@ class CommentForm extends Component {
     })
   }
 
+  toggleEmoji = () => {
+    this.setState(prevState => ({ showEmojis: !prevState.showEmojis }))
+  }
+
+  addEmoji = emojiName => {
+    const jsemoji = new JSEMOJI() 
+    jsemoji.img_set = 'emojione' 
+    jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
+    jsemoji.supports_css = false 
+    jsemoji.allow_native = false  
+    jsemoji.replace_mode = 'unified' 
+    jsemoji.text_mode = true 
+    jsemoji.include_title = true 
+    jsemoji.replace_unified(`:${emojiName}:`)
+    jsemoji.replace_colons(`:${emojiName}:`)
+    
+    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
+    this.setState({ text: this.state.text + emoji })
+  }
+
   render() {
     const { errors, data, media, show, showPreview, text } = this.state 
     return (
-      <div className="post-form ">
-        <div onClick={this.showButtonsHandler}>
-          <form onSubmit={this.onSubmit}>
-            <TextAreaFieldGroup 
-              className="" 
-              placeholder="Reply to post" 
-              name='text'
-              value={text} 
-              onChange={this.onChange} 
-              onPaste={this.onPaste}
-              error={errors.text} 
-            />
-            <div className={ show ? 'otherstuff' : 'display-none' }>
-              <Dropzone 
-                style={{ 
-                  border: 'none'
-                }}
-                multiple={false}
-                accept='image/*, video/*'
-                onDrop={this.onImageDrop}>
-                <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                  <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+      <Fragment>
+        <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
+        <div className="post-form ">
+        { this.state.showEmojis ? 
+          <EmojiModal>
+            <EmojiPicker onEmojiClick={this.addEmoji} />
+          </EmojiModal>
+          : null }
+          <div onClick={this.showButtonsHandler}>
+            <form onSubmit={this.onSubmit}>
+              <TextAreaFieldGroup 
+                className="" 
+                placeholder="Reply to post" 
+                name='text'
+                value={text} 
+                onChange={this.onChange} 
+                onPaste={this.onPaste}
+                error={errors.text} 
+              />
+              <div className={ show ? 'otherstuff' : 'display-none' }>
+                <Dropzone 
+                  style={{ 
+                    border: 'none'
+                  }}
+                  multiple={false}
+                  accept='image/*, video/*'
+                  onDrop={this.onImageDrop}>
+                  <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
+                    <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+                  </button>
+                </Dropzone>
+                <i className="far fa-smile-wink icon" onClick={this.toggleEmoji} />
+                <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
+                  <i className='far fa-paper-plane' id='comment-form-submit-btn' />
                 </button>
-              </Dropzone>
-              <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
-                <i className='far fa-paper-plane' id='comment-form-submit-btn' />
-              </button>
-            </div>
-            { showPreview ? <LinkPreview post={data} media={media} /> : null }
-          </form>
+              </div>
+              { showPreview ? <LinkPreview post={data} media={media} /> : null }
+            </form>
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }

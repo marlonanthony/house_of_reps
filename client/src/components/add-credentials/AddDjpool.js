@@ -3,7 +3,8 @@ import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { addDjpool } from '../../actions/profileActions'
-import classnames from 'classnames'
+import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import './AddDjpool.css' 
 
 class AddDjpool extends Component {
   state = {
@@ -40,38 +41,26 @@ class AddDjpool extends Component {
         <Link to='/dashboard'>
           <i id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         </Link>
-        <h1 style={{ textAlign: 'center', color: '#ccc' }}>Add DJ Pool</h1>
-        <div style={{ }}>
+        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add DJ Pool</h1>
+        <div className='djpools_input_wrapper'>
           <form onSubmit={ this.onSubmit }>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'is-invalid': errors
-                })}
-                name='url'
-                value={ this.state.url }
-                onChange={ this.onChange }
-                error={ errors.url }
-                placeholder='URL'
-              />
-              { <div><span style={{ marginLeft: '10%', color: 'red'}}>{errors.url}</span></div> }
-            </div>
-            <div>
-              <input 
-                type='text'
-                className={classnames('register-inputs', {
-                  'is-invalid': errors
-                })}
-                name='image'
-                value={ this.state.image }
-                onChange={ this.onChange }
-                error={ errors.image }
-                placeholder='image'
-              />
-              { <div><span style={{ marginLeft: '10%', color: 'red'}}>{errors.image}</span></div> }
-            </div>
-            <input type="submit" value='Submit' id='venue-submit-button' />
+            <CreateProfileTextFieldGroup 
+              name='url'
+              type='text'
+              value={ this.state.url }
+              onChange={ this.onChange }
+              error={ errors.url }
+              placeholder='URL'
+            />
+            <CreateProfileTextFieldGroup 
+              name='image'
+              type='text'
+              value={ this.state.image }
+              onChange={ this.onChange }
+              error={ errors.image }
+              placeholder='image'
+            />
+            <input type="submit" value='Submit' id='venue-submit-button' style={{ marginLeft: '10px' }} />
           </form>
         </div>
       </div>

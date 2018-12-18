@@ -5,7 +5,6 @@ import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/Cre
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { addVenue } from '../../actions/profileActions'
-// import classnames from 'classnames'
 import './AddVenue.css'
 // import { SET_CURRENT_USER } from '../../actions/types';
 
@@ -15,7 +14,8 @@ class AddVenue extends Component {
     date: '',
     description: '',
     errors: {},
-    title: ''
+    title: '',
+    video: ''
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +35,8 @@ class AddVenue extends Component {
       date: this.state.date,
       location: this.state.location,
       description: this.state.description,
-      title: this.state.title
+      title: this.state.title,
+      video: this.state.video
     }
 
     this.props.addVenue(venueData, this.props.history)
@@ -72,6 +73,14 @@ class AddVenue extends Component {
               value={ this.state.location }
               onChange={ this.onChange }
               error={ errors.location }
+            />
+            <CreateProfileTextFieldGroup 
+              name='video'
+              type='text'
+              value={ this.state.video }
+              onChange={ this.onChange }
+              error={ errors.video }
+              placeholder='Add embedded video url'
             />
             <CreateProfileTextAreaFieldGroup 
               placeholder='Quick description'

@@ -6,6 +6,7 @@ import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
+
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
 import { addPost } from '../../actions/postActions' 
 import LinkPreview from './LinkPreview'
@@ -162,46 +163,46 @@ class PostForm extends Component {
     return (
       <div>
         <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
-      <div className='post_form'>
-        { this.state.showEmojis ? 
-        <EmojiModal>
-          <EmojiPicker onEmojiClick={this.addEmoji} />
-        </EmojiModal>
-        : null }
-        {/* <Embed /> */}
-        <div id='post-form-textareafieldgroup'>
-          <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
-            <TextAreaFieldGroup
-              className='text-area'
-              placeholder="What's the discussion?"
-              name='text'
-              value={text} 
-              onChange={this.onChange} 
-              onPaste={this.onPaste}
-              error={errors.text} 
-              rows={rows}
-            />
-            <div className={ show ? 'otherstuff' : 'disp'}>
-              <Dropzone 
-                style={{ 
-                  border: 'none'
-                }}
-                multiple={false}
-                accept='image/*, video/*'
-                onDrop={this.onImageDrop}>
-                <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                  <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+        <div className='post_form'>
+          { this.state.showEmojis ? 
+          <EmojiModal>
+            <EmojiPicker onEmojiClick={this.addEmoji} />
+          </EmojiModal>
+          : null }
+          {/* <Embed /> */}
+          <div id='post-form-textareafieldgroup'>
+            <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
+              <TextAreaFieldGroup
+                className='text-area'
+                placeholder="What's the discussion?"
+                name='text'
+                value={text} 
+                onChange={this.onChange} 
+                onPaste={this.onPaste}
+                error={errors.text} 
+                rows={rows}
+              />
+              <div className={ show ? 'otherstuff' : 'disp'}>
+                <Dropzone 
+                  style={{ 
+                    border: 'none'
+                  }}
+                  multiple={false}
+                  accept='image/*, video/*'
+                  onDrop={this.onImageDrop}>
+                  <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
+                    <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+                  </button>
+                </Dropzone>
+                <i className="far fa-smile-wink icon" onClick={this.toggleEmoji} />
+                <button className='post_submit_button' title='Submit'>
+                  <i id='post-submit-icon' className="far fa-paper-plane " />
                 </button>
-              </Dropzone>
-              <i className="far fa-smile-wink icon" onClick={this.toggleEmoji} />
-              <button className='post_submit_button' title='Submit'>
-                <i id='post-submit-icon' className="far fa-paper-plane " />
-              </button>
-            </div>
-            { showPreview ? <LinkPreview post={data} media={media} /> : null }
-          </form>
+              </div>
+              { showPreview ? <LinkPreview post={data} media={media} /> : null }
+            </form>
+          </div>
         </div>
-      </div>
       </div>
     )
   }

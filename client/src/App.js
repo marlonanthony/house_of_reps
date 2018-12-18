@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
@@ -52,12 +52,12 @@ class App extends Component {
     return (
       <Provider store={ store }>
         <Router>
-          <React.Fragment>
-            <React.Fragment>
+          <Fragment>
+            <Fragment>
               <DropdownMenu />
               <Route exact path='/' component={ Landing } />
-            </React.Fragment>
-            <React.Fragment>
+            </Fragment>
+            <Fragment>
             <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
             <Switch>
@@ -96,8 +96,8 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/post/:id' component={ Post } />
             </Switch>
-            </React.Fragment>
-          </React.Fragment>
+            </Fragment>
+          </Fragment>
         </Router>
       </Provider>
     );
