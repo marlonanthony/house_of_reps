@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
 import { getCurrentProfile, clearCurrentProfile } from '../../actions/profileActions'
-import Spinner from '../common/Spinner'
 
 import './DropdownMenu.css'
 

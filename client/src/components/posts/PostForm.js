@@ -13,6 +13,8 @@ import LinkPreview from './LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
 import LightBackdrop from '../UI/backdrop/LightBackdrop'
 import EmojiIcon from '../UI/emoji-icon/EmojiIcon'
+import PostSubmitIcon from '../UI/post_submit_icon/PostSubmitIcon'
+import PhotoIcon from '../UI/photo_icon/PhotoIcon'
 
 // import Embed from '../slate/embed/Embed'
 import './PostForm.css'
@@ -79,9 +81,6 @@ class PostForm extends Component {
     e.stopPropagation() 
     let clipboardData = e.clipboardData || window.clipboardData
     let pastedData = clipboardData.getData('Text') 
-   
-    // let urlData = `${''+clipboardData.getData('Text')}`
-    // console.log(urlData.slice(7, -10).match(/src.*/g))
 
     // Check for URL 
     const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/
@@ -187,19 +186,17 @@ class PostForm extends Component {
               />
               <div className={ show ? 'otherstuff' : 'disp'}>
                 <Dropzone 
-                  style={{ 
-                    border: 'none'
-                  }}
+                  style={{ border: 'none' }}
                   multiple={false}
                   accept='image/*, video/*'
                   onDrop={this.onImageDrop}>
                   <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                    <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+                    <PhotoIcon />
                   </button>
                 </Dropzone>
                 <EmojiIcon toggleEmoji={this.toggleEmoji} />
                 <button className='post_submit_button' title='Submit'>
-                  <i id='post-submit-icon' className="far fa-paper-plane " />
+                  <PostSubmitIcon />
                 </button>
               </div>
               { showPreview ? <LinkPreview post={data} media={media} /> : null }

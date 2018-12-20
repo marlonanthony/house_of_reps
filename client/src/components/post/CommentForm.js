@@ -13,6 +13,8 @@ import LinkPreview from '../posts/LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
 import LightBackdrop from '../UI/backdrop/LightBackdrop'
 import EmojiIcon from '../UI/emoji-icon/EmojiIcon'
+import PostSubmitIcon from '../UI/post_submit_icon/PostSubmitIcon'
+import PhotoIcon from '../UI/photo_icon/PhotoIcon'
 import './CommentForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -157,19 +159,17 @@ class CommentForm extends Component {
               />
               <div className={ show ? 'otherstuff' : 'display-none' }>
                 <Dropzone 
-                  style={{ 
-                    border: 'none'
-                  }}
+                  style={{ border: 'none' }}
                   multiple={false}
                   accept='image/*, video/*'
                   onDrop={this.onImageDrop}>
                   <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                    <i className="fas fa-image" id='add-photo' title='Upload Photo' />
+                    <PhotoIcon />
                   </button>
                 </Dropzone>
                 <EmojiIcon toggleEmoji={this.toggleEmoji} />
                 <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
-                  <i className='far fa-paper-plane' id='comment-form-submit-btn' />
+                  <PostSubmitIcon />
                 </button>
               </div>
               { showPreview ? <LinkPreview post={data} media={media} /> : null }

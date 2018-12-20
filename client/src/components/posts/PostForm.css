@@ -67,19 +67,6 @@
   padding-bottom: 10px;
 }
 
-#add-photo {
-  width: 25px; 
-  height: 25px;
-  font-size: 20px;
-  background: none;
-  color: rgb(55, 131, 194);
-}
-
-#add-photo:hover {
-  color: rgb(78, 168, 241);
-  cursor: pointer;
-}
-
 .post_submit_button {
   cursor: pointer;
   color: rgb(55,131,194);
@@ -87,16 +74,6 @@
   border: none;
   outline: none;
   font-family: 'Ubuntu', sans-serif;
-}
-
-#post-submit-icon {
-  width: 20px;
-  height: 20px;
-  font-size: 15px;
-}
-
-#post-submit-icon:hover {
-  color: rgb(78, 168, 241);
 }
 
 .post_submit_button:hover {

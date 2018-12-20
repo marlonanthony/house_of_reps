@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import { addVenue } from '../../actions/profileActions'
 import './AddVenue.css'
-// import { SET_CURRENT_USER } from '../../actions/types';
 
 class AddVenue extends Component {
   state = {
@@ -25,7 +24,7 @@ class AddVenue extends Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    // this.setState({ [e.target.name]: e.target.value })
   }
 
   onPaste = e => {
@@ -34,7 +33,7 @@ class AddVenue extends Component {
     let parsedUrl = urlData.slice(7, -10)
     parsedUrl.includes('soundcloud') ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
       : parsedUrl.includes('youtube' || 'youtu.be') ? parsedUrl = parsedUrl.match(/http(.*?)[\s]/g).toString().slice(0, -2)
-      :  parsedUrl 
+      :  null
 
     this.setState({ video: parsedUrl })
   }
@@ -90,7 +89,7 @@ class AddVenue extends Component {
               name='video'
               type='text'
               value={ this.state.video }
-              // onChange={ this.onChange }
+              onChange={ this.onChange }
               onPaste={ this.onPaste }
               error={ errors.video }
               placeholder='Add embedded video url'

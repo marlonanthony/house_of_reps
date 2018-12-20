@@ -1,16 +1,3 @@
-#comment-form-submit-btn {
-  padding: 5px 15px;
-  font-size: 15px;
-  color: rgb(55, 131, 194);
-  border: none;
-  border-radius: 5%;
-}
-
-#comment-form-submit-btn:hover {
-  color: rgb(78, 168, 241);
-  cursor: pointer;
-}
-
 .display-none {
   display: none;
 }

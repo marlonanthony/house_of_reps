@@ -64,10 +64,8 @@ class CommentItem extends Component {
     const commentsModal = this.state.showModal ? (
       <Fragment> 
         <CommentsModal>
-          <div>
-            <p id='comment-modal-text'>{comment.text}</p>
-            <img src={comment.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
-          </div>
+          <p id='comment-modal-text'>{comment.text}</p>
+          <img src={comment.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
         </CommentsModal>
       </Fragment>
     ) : null 
@@ -98,7 +96,7 @@ class CommentItem extends Component {
             </button> ) : null }
           </div>
         </div>
-        <div className="">
+        <div>
           { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
             ? <p id='comment-feed-text'>{comment.text}</p>
             : comment.media
