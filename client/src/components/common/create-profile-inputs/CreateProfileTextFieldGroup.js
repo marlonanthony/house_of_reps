@@ -11,6 +11,7 @@ const CreateProfileTextFieldGroup = ({
   error,
   info,
   type,
+  onPaste,
   onChange,
   disabled
 }) => {
@@ -24,6 +25,7 @@ const CreateProfileTextFieldGroup = ({
         placeholder={placeholder}
         name={name}
         value={value}
+        onPaste={onPaste}
         onChange={onChange}
         disabled={disabled}
       />

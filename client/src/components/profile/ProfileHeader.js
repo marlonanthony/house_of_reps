@@ -11,7 +11,7 @@ class ProfileHeader extends Component {
 
     return (
       <div className='profile-header-container'>
-        <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' />
+        {/* <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' /> */}
         <div className="profile-header">
           <div id='profile-avatar-div'>
           {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
@@ -70,6 +70,7 @@ class ProfileHeader extends Component {
               </p>
           </div>
           <div id='profile-feed'>
+            <div >
             <iframe 
               id='youtube-video' 
               title='hofvideo' 
@@ -86,6 +87,7 @@ class ProfileHeader extends Component {
               }}
               allowFullScreen>
             </iframe>
+            </div>
             {/* <h1 style={{ textAlign: 'center' }}>News Feed</h1> */}
             <ProfilePost />
           </div>

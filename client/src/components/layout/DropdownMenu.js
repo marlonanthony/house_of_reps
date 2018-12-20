@@ -37,7 +37,7 @@ class DropdownMenu extends Component {
     const { profile, loading } = this.props.profile
 
     if(profile === null || loading) {
-      return <Spinner />
+      return null
     }
       
     const authLinks = (

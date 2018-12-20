@@ -1,7 +1,5 @@
 #comment-form-submit-btn {
   padding: 5px 15px;
-  background: rgba(0,0,0,0.4);
-  /* color: #ccc; */
   font-size: 15px;
   color: rgb(55, 131, 194);
   border: none;
@@ -9,8 +7,7 @@
 }
 
 #comment-form-submit-btn:hover {
-  color: rgb(55, 131, 194);
-  background: rgba(0,0,0,0.8);
+  color: rgb(78, 168, 241);
   cursor: pointer;
 }
 

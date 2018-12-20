@@ -28,6 +28,17 @@ class AddVenue extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  onPaste = e => {
+    let clipboardData = e.clipboardData || window.clipboardData
+    let urlData = `${''+clipboardData.getData('Text')}`
+    let parsedUrl = urlData.slice(7, -10)
+    parsedUrl.includes('soundcloud') ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
+      : parsedUrl.includes('youtube' || 'youtu.be') ? parsedUrl = parsedUrl.match(/http(.*?)[\s]/g).toString().slice(0, -2)
+      :  parsedUrl 
+
+    this.setState({ video: parsedUrl })
+  }
+
   onSubmit = e => {
     e.preventDefault()
     
@@ -37,6 +48,7 @@ class AddVenue extends Component {
       description: this.state.description,
       title: this.state.title,
       video: this.state.video
+    
     }
 
     this.props.addVenue(venueData, this.props.history)
@@ -78,7 +90,8 @@ class AddVenue extends Component {
               name='video'
               type='text'
               value={ this.state.video }
-              onChange={ this.onChange }
+              // onChange={ this.onChange }
+              onPaste={ this.onPaste }
               error={ errors.video }
               placeholder='Add embedded video url'
             />

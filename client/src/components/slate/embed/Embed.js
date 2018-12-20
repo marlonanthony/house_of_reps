@@ -18,8 +18,8 @@ class Embed extends Component {
   }
 
   style = {
-    width: '90%',
-    margin: 'auto'
+    width: '100%',
+    margin: 'auto', 
   }
 
   render() {
@@ -46,7 +46,6 @@ class Embed extends Component {
   onChange = ({ value }) => {
     this.setState({ value })
   }
-
 }
 
 export default Embed;

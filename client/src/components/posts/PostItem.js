@@ -83,7 +83,13 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
-    let youtubeUrl = post.url ? post.url.replace(/watch\?v\=/gi, 'embed/') : null 
+
+    let youtubeUrl = post.url
+    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+      ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                             .replace(/watch\?v\=/gi, 'embed/')
+                             .replace(/\&feature\=www\.youtube\.com/gi, '')
+      : youtubeUrl = null 
 
     const postModal = this.state.showModal ? (
       <Fragment> 
@@ -121,15 +127,14 @@ class PostItem extends Component {
           : ( <div className='post_content'>
                 <p>{post.text}</p>
                 <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
-                  {/* <a href={post.url} target='_blank'>
-                    <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
-                  </a> */}
-                  
-                  {youtubeUrl ? 
-                  <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
-                    <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
-                  </div>
-                    : null}
+                  { youtubeUrl 
+                  ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+                      <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
+                    </div>
+                  : <a href={post.url} target='_blank'>
+                      <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
+                    </a> 
+                  }
                   <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
                   <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
                 </div>

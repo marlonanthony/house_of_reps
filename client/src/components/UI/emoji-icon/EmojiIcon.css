@@ -1,0 +1,9 @@
+.emoji-icon {
+  color: rgb(55,131,194);
+  padding: 5px;
+  font-size: 17px;
+}
+.emoji-icon:hover {
+  cursor: pointer;
+  color: rgb(78, 168, 241);
+}

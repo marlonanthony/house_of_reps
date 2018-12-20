@@ -12,6 +12,7 @@ import { addComment, getPosts } from '../../actions/postActions'
 import LinkPreview from '../posts/LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
 import LightBackdrop from '../UI/backdrop/LightBackdrop'
+import EmojiIcon from '../UI/emoji-icon/EmojiIcon'
 import './CommentForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -166,7 +167,7 @@ class CommentForm extends Component {
                     <i className="fas fa-image" id='add-photo' title='Upload Photo' />
                   </button>
                 </Dropzone>
-                <i className="far fa-smile-wink icon" onClick={this.toggleEmoji} />
+                <EmojiIcon toggleEmoji={this.toggleEmoji} />
                 <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
                   <i className='far fa-paper-plane' id='comment-form-submit-btn' />
                 </button>

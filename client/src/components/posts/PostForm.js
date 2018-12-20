@@ -12,9 +12,9 @@ import { addPost } from '../../actions/postActions'
 import LinkPreview from './LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
 import LightBackdrop from '../UI/backdrop/LightBackdrop'
+import EmojiIcon from '../UI/emoji-icon/EmojiIcon'
 
 // import Embed from '../slate/embed/Embed'
-// import classnames from 'classnames'
 import './PostForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -79,6 +79,9 @@ class PostForm extends Component {
     e.stopPropagation() 
     let clipboardData = e.clipboardData || window.clipboardData
     let pastedData = clipboardData.getData('Text') 
+   
+    // let urlData = `${''+clipboardData.getData('Text')}`
+    // console.log(urlData.slice(7, -10).match(/src.*/g))
 
     // Check for URL 
     const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/
@@ -194,7 +197,7 @@ class PostForm extends Component {
                     <i className="fas fa-image" id='add-photo' title='Upload Photo' />
                   </button>
                 </Dropzone>
-                <i className="far fa-smile-wink icon" onClick={this.toggleEmoji} />
+                <EmojiIcon toggleEmoji={this.toggleEmoji} />
                 <button className='post_submit_button' title='Submit'>
                   <i id='post-submit-icon' className="far fa-paper-plane " />
                 </button>
