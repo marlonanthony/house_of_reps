@@ -14,79 +14,79 @@ class ProfileHeader extends Component {
         {/* <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' /> */}
         <div className="profile-header">
           <div id='profile-avatar-div'>
-          {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
+            {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
           </div>
-            <div id='header-items'>
-              <h4 id='profile-name'>{profile.user.name}</h4>
-              {isEmpty(profile.handle) ? null : (<p id='profile-handle'>@{profile.handle}</p>)}
-              {isEmpty(profile.bio) ? null : (<p id='profile-bio'>{profile.bio}</p>)}
-              {isEmpty(profile.location) ? null : (<p id='profile-location'>{profile.location}</p>)}
-              <p id='profile-icons-container'>
-                {isEmpty(profile.website) ? null : (
-                  <a className="" href={profile.website} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/globe.png')} alt='website avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.twitter) ? null : (
-                  <a className="" href={profile.social.twitter} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/twit.png')} alt='twitter avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.facebook) ? null : (
-                  <a className="" href={profile.social.facebook} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.instagram) ? null : (
-                  <a className="" href={profile.social.instagram} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/ig2.png')} alt='instagram avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.youtube) ? null : (
-                  <a className="" href={profile.social.youtube} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/yt2.png')} alt='youtube avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.soundcloud) ? null : (
-                  <a className="" href={profile.social.soundcloud} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/sc.png')} alt='soundcloud avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.spotify) ? null : (
-                  <a className="" href={profile.social.spotify} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/spotify.png')} alt='spotify avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.mixcloud) ? null : (
-                  <a className="" href={profile.social.mixcloud} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/mixcloud.png')} alt='mixcloud avatar' />
-                  </a>
-                )}
-                {isEmpty(profile.social && profile.social.linkedin) ? null : (
-                  <a className="" href={profile.social.linkedin} target='_blank'>
-                    <img className='profile-header-icon' src={require('../../img/linkedin.png')} alt='linkedin avatar' />
-                  </a>
-                )}
-              </p>
+          <div id='header-items'>
+            <h4 id='profile-name'>{profile.user.name}</h4>
+            {isEmpty(profile.handle) ? null : (<p id='profile-handle'>@{profile.handle}</p>)}
+            {isEmpty(profile.bio) ? null : (<p id='profile-bio'>{profile.bio}</p>)}
+            {isEmpty(profile.location) ? null : (<p id='profile-location'>{profile.location}</p>)}
+            <p id='profile-icons-container'>
+              {isEmpty(profile.website) ? null : (
+                <a className="" href={profile.website} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/globe.png')} alt='website avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.twitter) ? null : (
+                <a className="" href={profile.social.twitter} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/twit.png')} alt='twitter avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.facebook) ? null : (
+                <a className="" href={profile.social.facebook} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.instagram) ? null : (
+                <a className="" href={profile.social.instagram} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/ig2.png')} alt='instagram avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.youtube) ? null : (
+                <a className="" href={profile.social.youtube} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/yt2.png')} alt='youtube avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.soundcloud) ? null : (
+                <a className="" href={profile.social.soundcloud} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/sc.png')} alt='soundcloud avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.spotify) ? null : (
+                <a className="" href={profile.social.spotify} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/spotify.png')} alt='spotify avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.mixcloud) ? null : (
+                <a className="" href={profile.social.mixcloud} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/mixcloud.png')} alt='mixcloud avatar' />
+                </a>
+              )}
+              {isEmpty(profile.social && profile.social.linkedin) ? null : (
+                <a className="" href={profile.social.linkedin} target='_blank'>
+                  <img className='profile-header-icon' src={require('../../img/linkedin.png')} alt='linkedin avatar' />
+                </a>
+              )}
+            </p>
           </div>
           <div id='profile-feed'>
             <div >
-            <iframe 
-              id='youtube-video' 
-              title='hofvideo' 
-              // width="100%" 
-              // height="315px" 
-              width='90%'
-              height='300'
-              src="https://www.youtube.com/embed/qrmKp_ANX_M" 
-              frameBorder="0" 
-              allow="autoplay; encrypted-media" 
-              style={{
-                marginBottom: '20px',
-                marginTop: '25px' 
-              }}
-              allowFullScreen>
-            </iframe>
+              <iframe 
+                id='youtube-video' 
+                title='hofvideo' 
+                // width="100%" 
+                // height="315px" 
+                width='90%'
+                height='300'
+                src="https://www.youtube.com/embed/qrmKp_ANX_M" 
+                frameBorder="0" 
+                allow="autoplay; encrypted-media" 
+                style={{
+                  marginBottom: '20px',
+                  marginTop: '25px' 
+                }}
+                allowFullScreen>
+              </iframe>
             </div>
             {/* <h1 style={{ textAlign: 'center' }}>News Feed</h1> */}
             <ProfilePost />

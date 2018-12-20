@@ -60,7 +60,7 @@ class AddVenue extends Component {
         <Link to='/dashboard'>
           <i id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         </Link>
-        <h1 style={{ textAlign: 'center', color: '#ccc' }}>Add Event</h1>
+        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Event</h1>
         <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
         <div style={{ }}>
           <form onSubmit={ this.onSubmit }>

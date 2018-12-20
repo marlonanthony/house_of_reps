@@ -13,21 +13,19 @@ const InputGroup = ({
 }) => {
   return (
     <div style={{display: 'flex', justifyContent: 'space-around'}}>
-      <div>
-        <span>
-          <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: 'rgb(55, 131, 194)' }} />
-        </span>
-      </div>
+      <span>
+        <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: 'rgb(55, 131, 194)' }} />
+      </span>
       <input 
         className={classnames('social-links', {
           'is-invalid': error
         })}
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
+        placeholder={ placeholder }
+        name={ name }
+        value={ value }
+        onChange={ onChange }
       />
-      { error && (<div className='invalid-feedback'>{error}</div>)}
+      { error && (<div className='invalid-feedback'>{ error }</div>)}
     </div>
   )
 }

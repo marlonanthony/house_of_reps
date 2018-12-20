@@ -2,7 +2,8 @@
 
 
 .Loader {
-  color: #800080;
+  /* color: #800080; */
+  color: rgb(53, 118, 204);
   font-size: 90px;
   text-indent: -9999em;
   overflow: hidden;

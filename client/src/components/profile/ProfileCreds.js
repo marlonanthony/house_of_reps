@@ -19,7 +19,6 @@ class ProfileCreds extends Component {
           : null 
         }
         <p style={{ color: '#7e8889', textAlign: 'center' }}>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
-        <br/>
       </li>
     ))
     return (

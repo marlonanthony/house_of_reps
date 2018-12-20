@@ -11,9 +11,9 @@ class ProfileAbout extends Component {
     const firstName = profile.user.name.trim().split(' ')[0] 
 
     return (
-      <div className="">
-        <h3 className="">{firstName}'s Bio</h3>
-        <p className="">
+      <div>
+        <h3>{firstName}'s Bio</h3>
+        <p>
           {isEmpty(profile.bio) ? (<span>{firstName} does not have a bio yet</span>) : (<span>{profile.bio}</span>)}
         </p>
       </div>

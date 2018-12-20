@@ -220,7 +220,7 @@ class CreateProfile extends Component {
               value={ this.state.style }
               onChange={ this.onChange }
               error={ errors.style }
-              options={options}
+              options={ options }
               info='What style best defines you?'
             />
               <CreateProfileTextAreaFieldGroup 

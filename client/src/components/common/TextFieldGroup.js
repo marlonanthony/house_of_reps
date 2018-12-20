@@ -6,7 +6,6 @@ const TextFieldGroup = ({
   name, 
   placeholder,
   value,
-  label,
   error,
   info,
   type,
@@ -16,19 +15,19 @@ const TextFieldGroup = ({
   return (
     <div>
       <input 
-        type={type}
+        type={ type }
         className={classnames('inputs', {
           'is-invalid': error
         })}
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
+        placeholder={ placeholder }
+        name={ name }
+        value={ value }
+        onChange={ onChange }
+        disabled={ disabled  }
       />
       <br />
-      {info && <small className=''>{info}</small>}
-      { error && (<div className='error'>{error}</div>)}
+      { info && <small className=''>{ info }</small> }
+      { error && (<div className='error'>{ error }</div>) }
     </div>
   )
 }

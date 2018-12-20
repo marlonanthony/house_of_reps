@@ -57,7 +57,7 @@ class Register extends Component {
     this.handleImageUpload(files[0])
   }
 
-  handleImageUpload = (file) => {
+  handleImageUpload = file => {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file) 
@@ -65,7 +65,7 @@ class Register extends Component {
     upload.end((err, response) => {
       if(err) console.log(err) 
       if(response.body.secure_url !== '') {
-        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
+        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url })
         this.setState({ avatar: response.body.secure_url })
       }
     })
@@ -96,20 +96,20 @@ class Register extends Component {
                   marginLeft: '-70px',
                   background: 'rgba(0,0,0,0.4)'
                 }}
-                multiple={false}
+                multiple={ false }
                 accept='image/*'
-                onDrop={this.onImageDrop}>
+                onDrop={ this.onImageDrop }>
                 <p>Drop an image or click to select a file to upload.</p>
               </Dropzone>
             </div>
             <div>
-              {this.state.uploadedFileCloudinaryUrl === '' ? null : 
+              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
               <div>
-                <div style={{justifyContent: 'flex-end'}}>
+                <div style={{ justifyContent: 'flex-end' }}>
                   <img 
-                    src={this.state.uploadedFileCloudinaryUrl} 
+                    src={ this.state.uploadedFileCloudinaryUrl } 
                     style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                    alt={this.state.uploadedFile.name} />
+                    alt={ this.state.uploadedFile.name } />
                 </div>
               </div>
               }
@@ -121,7 +121,7 @@ class Register extends Component {
               name='name'
               value={ this.state.name }
               placeholder='Name'
-              onChange={this.onChangeHandler}
+              onChange={ this.onChangeHandler }
               error={ errors.name }
             />
             <RegisterTextFieldGroup
@@ -129,7 +129,7 @@ class Register extends Component {
               name='email'
               placeholder='Email'
               value={ this.state.email }
-              onChange={this.onChangeHandler}
+              onChange={ this.onChangeHandler }
               error={ errors.email }
             />
             <RegisterTextFieldGroup
@@ -137,7 +137,7 @@ class Register extends Component {
               name='password'
               placeholder='Password'
               value={ this.state.password }
-              onChange={this.onChangeHandler}
+              onChange={ this.onChangeHandler }
               error={ errors.password }
             />
             <RegisterTextFieldGroup
@@ -145,7 +145,7 @@ class Register extends Component {
               name='password2'
               placeholder='Confirm Password'
               value={ this.state.password2 }
-              onChange={this.onChangeHandler}
+              onChange={ this.onChangeHandler }
               error={ errors.password2 }
             />
             <input type="submit" id='register-button' />
