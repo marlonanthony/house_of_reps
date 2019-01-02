@@ -83,13 +83,12 @@ class ProfileHeader extends Component {
                 allow="autoplay; encrypted-media" 
                 style={{
                   marginBottom: '20px',
-                  marginTop: '25px' 
+                  // marginTop: '25px' 
                 }}
                 allowFullScreen>
               </iframe>
             </div>
-            {/* <h1 style={{ textAlign: 'center' }}>News Feed</h1> */}
-            <ProfilePost />
+            <ProfilePost allProps={this.props.allProps} />
           </div>
           <div id='profile-creds-div'>
             <ProfileCreds venues={profile.venues} />

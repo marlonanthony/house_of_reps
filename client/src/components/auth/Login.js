@@ -46,8 +46,8 @@ class Login extends Component {
     const { errors } = this.state 
 
     return (
-      <div className='' style={{ overflow: 'hidden', paddingTop: '60px'}}>
-        <h2 style={{ textAlign: 'center' }}>Log In</h2>
+      <div className='login'>
+        <h2 style={{ textAlign: 'center', paddingTop: '60px' }}>Log In</h2>
         <p style={{ textAlign: 'center' }}>Sign in to your account</p>
         <div id='login-content'>
           <form onSubmit={ this.onSubmitHandler }>

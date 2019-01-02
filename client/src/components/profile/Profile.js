@@ -10,6 +10,7 @@ import './Profile.css'
 
 class Profile extends Component {
   componentDidMount() {
+    console.log(this.props) 
     if(this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle) 
     }
@@ -25,7 +26,7 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div>
-          <ProfileHeader profile={profile} user={user} />
+          <ProfileHeader profile={profile} user={user} allProps={this.props} />
         </div>
       )
     }

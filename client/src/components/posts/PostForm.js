@@ -35,7 +35,7 @@ class PostForm extends Component {
     uploadedFileCloudinaryUrl: '',
     uploadedFile: '',
     media: '',
-    showEmojis: false 
+    showEmojis: false,
   }
 
   componentWillReceiveProps(newProps) {
@@ -108,9 +108,9 @@ class PostForm extends Component {
       title: this.state.data.title,
       description: this.state.data.description,
       url: this.state.data.url,
-      media: this.state.media 
+      media: this.state.media,
+      handle: this.props.profile.profile.handle
     }
-
     this.props.addPost(newPost) 
     this.setState({ text: '', data: {}, media: '' })
     e.target.reset() 
@@ -216,7 +216,8 @@ PostForm.propTypes = {
 
 const mapStateToProps = state => ({
   errors: state.errors, 
-  auth: state.auth 
+  auth: state.auth,
+  profile: state.profile 
 })
 
 export default connect(mapStateToProps, { addPost })(PostForm)

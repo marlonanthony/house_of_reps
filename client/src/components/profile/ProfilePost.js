@@ -8,16 +8,20 @@ import PostItem from '../posts/PostItem'
 class ProfilePost extends Component {
   componentDidMount() {
     this.props.getPosts() 
+    
   }
 
   render() {
+    console.log(this.props)
     const { posts, loading } = this.props.post 
     let postContent 
 
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {
-      postContent = posts.map(post => post.user === this.props.auth.user.id 
+      // postContent = posts.map(post => this.props.allProps.match.params.handle.slice(0, 4) === 
+      //   post.name.toLowerCase().slice(0, 4) ||
+        postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
         ? <PostItem key={post._id} post={post} /> 
         : null)
     }
@@ -32,7 +36,7 @@ class ProfilePost extends Component {
 
 ProfilePost.propTypes = {
   post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired
+  getPosts: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

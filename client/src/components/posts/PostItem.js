@@ -83,8 +83,8 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
-
     let youtubeUrl = post.url
+    
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
       ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
                              .replace(/watch\?v\=/gi, 'embed/')

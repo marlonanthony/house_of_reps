@@ -7,7 +7,6 @@ const CreateProfileTextFieldGroup = ({
   name, 
   placeholder,
   value,
-  label,
   error,
   info,
   type,
@@ -43,7 +42,7 @@ CreateProfileTextFieldGroup.propTypes = {
   info: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  // onChange: PropTypes.func.isRequired,
   disabled: PropTypes.string,
 }
 

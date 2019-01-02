@@ -114,7 +114,7 @@
 #youtube-video {
   /* margin-left: 15%; */
   margin-left: 5%;
-  margin-top: 25px; 
+  /* margin-top: 25px;  */
   margin-bottom: 5px; 
   width: 90%;
 }
@@ -148,7 +148,11 @@
       'headeritems profilefeed profilecredsdiv';
   }
   #youtube-video {
-    width: 90%
+    width: 90%;
+    margin-top: 70px;
+  }
+  #profile-avatar {
+    margin-top: 30px;
   }
 }
 @media (min-width: 1700px) {

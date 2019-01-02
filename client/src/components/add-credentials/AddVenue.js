@@ -24,7 +24,7 @@ class AddVenue extends Component {
   }
 
   onChange = e => {
-    // this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   onPaste = e => {
@@ -89,7 +89,7 @@ class AddVenue extends Component {
               name='video'
               type='text'
               value={ this.state.video }
-              onChange={ this.onChange }
+              // onChange={null}
               onPaste={ this.onPaste }
               error={ errors.video }
               placeholder='Add embedded video url'

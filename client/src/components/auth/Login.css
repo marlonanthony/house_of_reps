@@ -1,7 +1,16 @@
+.login {
+  background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden; 
+  color: #aaa;
+}
+
 #login-content {
   margin-left: 5%;
   width: 150vw;
-
 }
 
 #login-page-button {
