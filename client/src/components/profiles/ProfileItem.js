@@ -21,6 +21,7 @@ class ProfileItem extends Component {
               height: '100px',
               width: '100px',
             }} />
+            {/* stageName sounds weird and should probabley be removed */}
           <p>{isEmpty(profile.stageName) ? null : (<span>{profile.stageName}</span>)}</p>
           <Link to={`/profile/${profile.handle}`} id='profile-item-link'>
             {isEmpty(profile.handle) ? null : (<span>@{profile.handle}</span>)}

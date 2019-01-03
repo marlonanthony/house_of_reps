@@ -1,9 +1,10 @@
 .profile_item {
-  animation-name: profile_cards;
+  /* animation-name: profile_cards;
   animation-iteration-count: infinite;
   animation-duration: 20s;
   animation-timing-function: linear;
-  animation-delay: 0s;
+  animation-delay: 0s; */
+  
   color: #aaa;
 }
 
