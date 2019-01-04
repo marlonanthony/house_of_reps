@@ -42,12 +42,10 @@ const ProfileSchema = new Schema({
         type: String
       },
       location: {
-        type: String,
-        required: true 
+        type: String
       },
       date: {
-        type: Date,
-        required: true 
+        type: Date
       },
       description: {
         type: String 

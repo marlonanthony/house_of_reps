@@ -36,7 +36,14 @@ class Posts extends Component {
     let stores
     let perks 
     let brands 
+    let highlights
     // let djpoolssmall
+
+    if(profiles === null || loading) highlights = null
+    else highlights = profiles.map(profile => profile.venues)
+    let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
+    let first = [].concat.apply([], firstHighlight)
+    
 
     if(profiles === null || loading) {
       brands = <Spinner />
@@ -109,6 +116,7 @@ class Posts extends Component {
     return (
       <div className='feed'>
         <div className='post-feed-profile'>{ profileContent }</div>
+        <div className='post-feed-social'>Social</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         {/* <div className='djpoolsscroll'>{djpoolssmall}</div> */}
@@ -116,6 +124,20 @@ class Posts extends Component {
           <PostForm showPreview={showsPreview}/>
         </div>
         <div className='post-feed-post-content'>{postContent}</div>
+        { first[1] ? 
+          <div className='post-feed-highlights'>
+            {/* <p style={{fontSize: '12px'}}>{first[2].title}</p> */}
+            <iframe 
+              title={first[1].video} 
+              style={{width: '100%', height: '100%'}} 
+              src={first[1].video} 
+              frameBorder={0}
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen={true}>
+            </iframe>
+          </div>
+          : null
+        }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='post-feed-footer'>

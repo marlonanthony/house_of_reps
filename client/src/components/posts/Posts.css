@@ -17,14 +17,16 @@
   /* padding: 100px 4vw 0 4vw; */
   padding-top: 100px;
   display: grid;
+  justify-items: center;
   grid-gap: 15px;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto 1fr auto;
   grid-template-areas:  
     /* 'djpoolsscroll' */
-    'postform'
-    'post-feed-post-content'
-    'footer'
+    'postfeedsocial postfeedhighlights'
+    'postform postform'
+    'post-feed-post-content post-feed-post-content' 
+    'footer footer'
 }
 
 .post-feed-profile {
@@ -41,6 +43,7 @@
 
 .post-feed-form {
   grid-area: postform;
+  min-width: 100%;
 }
 
 .post-feed-post-content {
@@ -59,6 +62,24 @@
   from { margin-left: 94vw; }
   to { margin-left:  calc(-110px * 9); }
 } */
+
+.post-feed-social {
+  grid-area: postfeedsocial;
+  display: flex;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #aaa;
+}
+.post-feed-highlights {
+  grid-area: postfeedhighlights;
+  height: 200px;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column;
+  color: #aaa;
+}
 
 .stores_container {
   display: none;
@@ -99,10 +120,12 @@
     padding: 100px 10vw 0 10vw;  /*4vw */
     display: grid;
     grid-gap: 35px;
+    justify-items: center;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
     grid-template-areas: 
       'profile postform footer'
+      'postfeedsocials post-feed-post-content postfeedhighlights'
       'djpools post-feed-post-content stores'
       'perks post-feed-post-content brands'; 
   }
@@ -119,6 +142,31 @@
     display: none;
   } */
 
+  .post-feed-social {
+    grid-area: postfeedsocials;
+    display: flex;
+    width: 250px;
+    height: 200px;
+    overflow-x: hidden;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+  }
+
+  .post-feed-highlights {
+    grid-area: postfeedhighlights;
+    display: flex;
+    width: 250px;
+    height: 200px;
+    overflow-x: hidden;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #aaa;
+  }
+
   .stores_container {
     grid-area: stores;
     display: flex;
@@ -131,21 +179,17 @@
   .djpools {
     grid-area: djpools;
     display: flex;
-    position: relative;
     width: 170px;
     height: 150px;
     overflow-x: hidden;
-    border-radius: 2%;
   }
 
   .perks_and_hookups {
     grid-area: perks;
     display: flex;
-    position: relative;
     width: 170px;
     height: 150px;
     overflow-x: hidden;
-    border-radius: 2%;
     background: rgba(2, 4, 5, 0.884);
     color: #555;
   }
@@ -153,28 +197,26 @@
   .certified_brands {
     grid-area: brands;
     display: flex;
-    position: relative;
     width: 170px;
     height: 150px;
     overflow-x: hidden;
-    border-radius: 2%;
     background: rgba(2, 4, 5, 0.884);
   }
 
   .post-feed-footer {
-    padding: 15px;
-    text-align: center;
     display: flex;
     align-items: center;
-    height: 90px;
-    width: 150px;
-    border-radius: 2%;
+    justify-content: center;
+    height: 110px;
+    width: 240px;
+    /* width: 150px; */
     /* background: rgba(2, 4, 5, 0.884); */
   }
 }
 
 @media(min-width: 1500px) {
   .feed {
-    padding: 100px 23vw 0 23vw;
+    padding: 100px 19vw 0 19vw;
+    /* padding: 100px 23vw 0 23vw; */
   }
 }

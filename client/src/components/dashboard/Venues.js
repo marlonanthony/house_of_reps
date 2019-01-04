@@ -22,7 +22,7 @@ class Venues extends Component {
             maxWidth: '400px',
             minHeight: '200px',
             justifyContent: 'space-around', }}>
-        <p style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></p>
+        { venue.date ? <p style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></p> : null }
         <p style={{padding: '10px'}}>{venue.title}</p>
         <p style={{padding: '10px'}}>{venue.location}</p>
         {venue.video ? 

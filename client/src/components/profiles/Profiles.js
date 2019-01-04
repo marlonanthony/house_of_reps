@@ -44,11 +44,17 @@ class Profiles extends Component {
           backgroundAttachment: 'fixed',
           minHeight: '100vh', }}>
           <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', padding: '10px', alignItems: 'center'}}>
-          { first.map(venue => (
+          { first[2] ?
+            <iframe id='profile_creds_video' title={first[0].video} width="330" height="200" src={first[2].video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
+            : null
+          }
+          {/* { first.map(venue => (
             <li key={venue._id} className='firstHighlight'>
+              { venue.date ? 
               <p style={{color: 'rgb(55, 131, 194)'}}>
                 <Moment format='MM/DD/YYYY'>{venue.date}</Moment>
-              </p>
+              </p> : null
+              }
               <h4 style={{ color: '#ccc' }}>{venue.title}</h4>
               <p>{venue.location === '' ? null : (<span style={{color: '#7e8889'}}>{venue.location}</span>)}</p>
               { venue.video
@@ -63,7 +69,7 @@ class Profiles extends Component {
               }
               <p style={{ color: '#7e8889', textAlign: 'center' }}>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
             </li>
-          ))}
+          ))} */}
           </div>
           <div style={{
             display: 'flex',
