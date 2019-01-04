@@ -18,6 +18,12 @@ class ProfileCreds extends Component {
           ? <iframe id='profile_creds_video' title={venue._id} width="330" height="200" src={venue.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
           : null 
         }
+        { venue.image && !venue.video
+          ? <div style={{display: 'flex', justifyContent: 'center' }}>
+              <img src={venue.image} style={{maxHeight: '200px', maxWidth: '100%',  }} alt="new-venue"/>
+            </div>
+          : null
+        }
         <p style={{ color: '#7e8889', textAlign: 'center' }}>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
       </li>
     ))

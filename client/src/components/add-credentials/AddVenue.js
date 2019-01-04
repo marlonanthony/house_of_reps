@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
-import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
+import Dropzone from 'react-dropzone' 
+import request from 'superagent' 
+
 import { addVenue } from '../../actions/profileActions'
+import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import './AddVenue.css'
+
+const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 class AddVenue extends Component {
   state = {
@@ -14,7 +20,10 @@ class AddVenue extends Component {
     description: '',
     errors: {},
     title: '',
-    video: ''
+    video: '',
+    image: '',
+    uploadedFileCloudinaryUrl: '',
+    uploadedFile: ''
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,11 +55,31 @@ class AddVenue extends Component {
       location: this.state.location,
       description: this.state.description,
       title: this.state.title,
-      video: this.state.video
+      video: this.state.video,
+      image: this.state.image 
     
     }
 
     this.props.addVenue(venueData, this.props.history)
+  }
+
+  onImageDrop = files => {
+    this.setState({ uploadedFile: files[0]})
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload = (file) => {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file) 
+    
+    upload.end((err, response) => {
+      if(err) console.log(err) 
+      if(response.body.secure_url !== '') {
+        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
+        this.setState({ image: response.body.secure_url })
+      }
+    })
   }
 
   render() {
@@ -63,6 +92,38 @@ class AddVenue extends Component {
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Event</h1>
         <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
         <div style={{ }}>
+          <div className='edit-profile-dropzone'>
+            <div className='FileUpload'>
+              <Dropzone 
+                style={{ 
+                  borderRadius: '2px',
+                  fontSize: '15px',
+                  textAlign: 'center',
+                  width: '50%', 
+                  height: 'auto', 
+                  padding: '10px',
+                  cursor: 'pointer',
+                  color: '#aaa',
+                  border: 'dashed',
+                  borderColor: '#ccc',
+                  // marginLeft: '-70px',
+                  background: 'rgba(0,0,0,0.4)'
+                }}
+                multiple={false}
+                accept='image/*'
+                onDrop={this.onImageDrop}>
+                <p>Drop an image or click to select a file to upload.</p>
+              </Dropzone>
+            </div>
+            <div>
+              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
+                <img 
+                  src={this.state.uploadedFileCloudinaryUrl} 
+                  style={{ height: '50px', width: '50px' }}
+                  alt={this.state.uploadedFile.name} />
+              }
+            </div>
+          </div>
           <form onSubmit={ this.onSubmit }>
             <CreateProfileTextFieldGroup 
               name='date'
@@ -79,7 +140,7 @@ class AddVenue extends Component {
               error={ errors.title }
             />
             <CreateProfileTextFieldGroup 
-              placeholder='* Location of Event'
+              placeholder='Location of Event'
               name='location'
               value={ this.state.location }
               onChange={ this.onChange }
@@ -92,7 +153,7 @@ class AddVenue extends Component {
               // onChange={null}
               onPaste={ this.onPaste }
               error={ errors.video }
-              placeholder='Add embedded video url'
+              placeholder='Paste embed code'
             />
             <CreateProfileTextAreaFieldGroup 
               placeholder='Quick description'

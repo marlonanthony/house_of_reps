@@ -54,6 +54,9 @@ const ProfileSchema = new Schema({
       },
       video: {
         type: String 
+      },
+      image: { 
+        type: String 
       }
     }
   ],

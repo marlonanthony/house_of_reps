@@ -181,7 +181,8 @@ router.post('/venues', passport.authenticate('jwt', { session: false }), (req, r
       location: req.body.location,
       date: req.body.date,
       description: req.body.description,
-      video: req.body.video 
+      video: req.body.video,
+      image: req.body.image 
     }
 
     // Add to venues array

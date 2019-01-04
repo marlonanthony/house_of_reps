@@ -25,11 +25,14 @@ class Venues extends Component {
         <p style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></p>
         <p style={{padding: '10px'}}>{venue.title}</p>
         <p style={{padding: '10px'}}>{venue.location}</p>
-        {venue.video  ? 
+        {venue.video ? 
           <iframe width="400" height="300" src={venue.video} title={venue.title} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
           : null 
         }
-        {/* <iframe width="560" height="315" src={venue.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+        { venue.image && !venue.video ? 
+            <img src={venue.image} width='100%' height='100%'/>
+            : null 
+        }
         <p style={{padding: '10px'}}>{venue.description}</p>
         <div style={{padding: '10px'}}>
           <button

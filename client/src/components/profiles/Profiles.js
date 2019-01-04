@@ -55,6 +55,12 @@ class Profiles extends Component {
                 ? <iframe id='profile_creds_video' title={venue._id} width="330" height="200" src={venue.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
                 : null 
               }
+              { !venue.video && venue.image 
+                ? <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <img src={venue.image} style={{maxHeight: '200px', maxWidth: '100%'}} alt="venue"/>
+                  </div>
+                : null 
+              }
               <p style={{ color: '#7e8889', textAlign: 'center' }}>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
             </li>
           ))}
