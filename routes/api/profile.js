@@ -318,7 +318,7 @@ router.delete('/djpools/:djpool_id', passport.authenticate('jwt', { session: fal
 
   Profile.findOne({ user: req.user.id }).then(profile => {
     // Get remove index
-    const removeIndex = profile.djpools.map(item => item.id).indexOf(req.params.venue_id) 
+    const removeIndex = profile.djpools.map(item => item.id).indexOf(req.params.djpool_id) 
 
     // Splice out of array
     profile.djpools.splice(removeIndex, 1) 

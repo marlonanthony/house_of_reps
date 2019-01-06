@@ -10,7 +10,7 @@ import DjPools from './post-assets/DjPools'
 import CertifiedStores from './post-assets/CertifiedStores'
 import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
-// import DjPoolsSmall from './post-assets/DjPoolsSmall'
+import Highlights from './post-assets/highlights/Highlights'
 import './Posts.css'
 
 class Posts extends Component {
@@ -37,12 +37,11 @@ class Posts extends Component {
     let perks 
     let brands 
     let highlights
-    // let djpoolssmall
 
     if(profiles === null || loading) highlights = null
     else highlights = profiles.map(profile => profile.venues)
     let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
-    let first = [].concat.apply([], firstHighlight)
+    let recentHighlights = [].concat.apply([], firstHighlight)
     
 
     if(profiles === null || loading) {
@@ -85,16 +84,6 @@ class Posts extends Component {
       ))
     }
 
-    // if(profiles === null || loading) {
-    //   djpoolssmall = <Spinner />
-    // } else {
-    //   djpoolssmall  = profiles.map(val => (
-    //     val.djpools.length > 0 && val.djpools !== null 
-    //     ? val.djpools.map(djpool => ( <DjPoolsSmall key={djpool._id} djpools={val.djpools} djpool={djpool} /> ))
-    //     : null 
-    //   ))
-    // }
-
     if(profile === null || loading) {
       profileContent = <Spinner />
     } else {
@@ -119,25 +108,17 @@ class Posts extends Component {
         <div className='post-feed-social'>Social</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
-        {/* <div className='djpoolsscroll'>{djpoolssmall}</div> */}
         <div className='post-feed-form'>
           <PostForm showPreview={showsPreview}/>
         </div>
         <div className='post-feed-post-content'>{postContent}</div>
-        { first[1] ? 
+        { recentHighlights ? 
+        <div>
           <div className='post-feed-highlights'>
-            {/* <p style={{fontSize: '12px'}}>{first[2].title}</p> */}
-            <iframe 
-              title={first[1].video} 
-              style={{width: '100%', height: '100%'}} 
-              src={first[1].video} 
-              frameBorder={0}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen={true}>
-            </iframe>
+            <Highlights recentHighlights={recentHighlights} />
           </div>
-          : null
-        }
+          <p id='post-feed-highlights-title'>Highlights</p>
+        </div> : null }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='post-feed-footer'>

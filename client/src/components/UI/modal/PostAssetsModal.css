@@ -1,11 +1,12 @@
 .PostAssetsModal {
   position: fixed;
-  background-color: white;
+  background-color: black;
   z-index: 201;
   width: 80%;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   box-shadow: 1px 1px 1px black;
-  padding: 16px;
+  /* padding: 16px; */
+  padding: 25px;
   left: 10%;
   top: 30%;
   box-sizing: border-box;

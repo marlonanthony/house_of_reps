@@ -2,15 +2,23 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
+import Dropzone from 'react-dropzone' 
+import request from 'superagent' 
 import { addDjpool } from '../../actions/profileActions'
 import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
 import './AddDjpool.css' 
 
+const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
+
 class AddDjpool extends Component {
   state = {
     image: '',
+    // localImage: '',
     url: '',
-    errors: {}
+    errors: {},
+    uploadedFileCloudinaryUrl: '',
+    uploadedFile: ''
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,10 +36,30 @@ class AddDjpool extends Component {
     
     const djpoolData = {
       image: this.state.image,
+      // localImage: this.state.localImage,
       url: this.state.url
     }
 
     this.props.addDjpool(djpoolData, this.props.history)
+  }
+
+  onImageDrop = files => {
+    this.setState({ uploadedFile: files[0]})
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload = (file) => {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file) 
+    
+    upload.end((err, response) => {
+      if(err) console.log(err) 
+      if(response.body.secure_url !== '') {
+        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
+        this.setState({ image: response.body.secure_url })
+      }
+    })
   }
 
   render() {
@@ -43,6 +71,38 @@ class AddDjpool extends Component {
         </Link>
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add DJ Pool</h1>
         <div className='djpools_input_wrapper'>
+        <div className='edit-profile-dropzone'>
+              <div className='FileUpload'>
+                <Dropzone 
+                  style={{ 
+                    borderRadius: '2px',
+                    fontSize: '15px',
+                    textAlign: 'center',
+                    width: '50%', 
+                    height: 'auto', 
+                    padding: '10px',
+                    cursor: 'pointer',
+                    color: '#aaa',
+                    border: 'dashed',
+                    borderColor: '#ccc',
+                    // marginLeft: '-70px',
+                    background: 'rgba(0,0,0,0.4)'
+                  }}
+                  multiple={false}
+                  accept='image/*'
+                  onDrop={this.onImageDrop}>
+                  <p>Drop an image or click to select a file to upload.</p>
+                </Dropzone>
+              </div>
+              <div>
+                { this.state.uploadedFileCloudinaryUrl === '' ? null : 
+                  <img 
+                    src={this.state.uploadedFileCloudinaryUrl} 
+                    style={{ height: '50px', width: '50px' }}
+                    alt={this.state.uploadedFile.name} />
+                }
+              </div>
+            </div>
           <form onSubmit={ this.onSubmit }>
             <CreateProfileTextFieldGroup 
               name='url'
@@ -50,7 +110,7 @@ class AddDjpool extends Component {
               value={ this.state.url }
               onChange={ this.onChange }
               error={ errors.url }
-              placeholder='URL'
+              placeholder='DJ Pool URL'
             />
             <CreateProfileTextFieldGroup 
               name='image'
@@ -58,7 +118,7 @@ class AddDjpool extends Component {
               value={ this.state.image }
               onChange={ this.onChange }
               error={ errors.image }
-              placeholder='image'
+              placeholder='Image URL'
             />
             <input type="submit" value='Submit' id='venue-submit-button' style={{ marginLeft: '10px' }} />
           </form>

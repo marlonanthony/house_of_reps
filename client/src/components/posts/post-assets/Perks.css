@@ -2,8 +2,10 @@
   display: flex;
   flex: 1;
   overflow-x: hidden;
-  max-height: 150px;
-  width: 170px;
+  /* max-height: 150px;
+  width: 170px; */
+  width: 225px;
+  height: 225px;
   margin: auto;
 }
 
