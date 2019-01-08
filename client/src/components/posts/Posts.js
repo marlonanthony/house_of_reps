@@ -39,9 +39,14 @@ class Posts extends Component {
     let highlights
 
     if(profiles === null || loading) highlights = null
-    else highlights = profiles.map(profile => profile.venues)
-    let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
-    let recentHighlights = [].concat.apply([], firstHighlight)
+    // else highlights = profiles.map(profile => profile.venues) 
+    else {
+      let hls = profiles.map(profile => profile.venues).map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
+      highlights = [].concat.apply([], hls)
+    }
+
+    // let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
+    // let recentHighlights = [].concat.apply([], firstHighlight)
     
 
     if(profiles === null || loading) {
@@ -108,22 +113,16 @@ class Posts extends Component {
         <div className='post-feed-social'>Social</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
-        <div className='post-feed-form'>
-          <PostForm showPreview={showsPreview}/>
-        </div>
+        <div className='post-feed-form'><PostForm showPreview={showsPreview}/></div>
         <div className='post-feed-post-content'>{postContent}</div>
-        { recentHighlights ? 
+        { highlights ? 
         <div>
-          <div className='post-feed-highlights'>
-            <Highlights recentHighlights={recentHighlights} />
-          </div>
+          <div className='post-feed-highlights'><Highlights recentHighlights={highlights} /></div>
           <p id='post-feed-highlights-title'>Highlights</p>
         </div> : null }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
-        <div className='post-feed-footer'>
-          <footer>Copyright &copy; 2018 House of Reps</footer>
-        </div>
+        <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
       </div>
     )
   }

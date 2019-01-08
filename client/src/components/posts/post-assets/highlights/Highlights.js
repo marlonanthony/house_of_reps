@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PostAssetsModal from '../../../UI/modal/PostAssetsModal'
-import Moment from 'react-moment'
+// import Moment from 'react-moment'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import './Highlights.css'
