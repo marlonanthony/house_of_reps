@@ -119,7 +119,7 @@ class Posts extends Component {
         <div>
           <div className='post-feed-highlights'><Highlights recentHighlights={highlights} /></div>
           <p id='post-feed-highlights-title'>Highlights</p>
-        </div> : null }
+        </div> : <Spinner /> }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>

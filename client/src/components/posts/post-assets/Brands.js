@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import PostAssetsModal from '../../UI/modal/PostAssetsModal'
-import Backdrop from '../../UI/backdrop/Backdrop'
+// import PostAssetsModal from '../../UI/modal/PostAssetsModal'
+// import Backdrop from '../../UI/backdrop/Backdrop'
 import Arrow from '../../UI/arrow_glyph/Arrow'
 import './Brands.css'
 
@@ -8,7 +8,7 @@ export default class Brands extends Component {
 
   state = { 
     currentImageIndex: 0,
-    showModal: false 
+    // showModal: false 
   }
 
   previousSlide = () => {
@@ -18,7 +18,10 @@ export default class Brands extends Component {
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
 
-    this.setState({ currentImageIndex: index, showModal: true })
+    this.setState({ 
+      currentImageIndex: index, 
+      // showModal: true 
+    })
   }
 
   nextSlide = () => {
@@ -28,39 +31,42 @@ export default class Brands extends Component {
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
 
-    this.setState({ currentImageIndex: index, showModal: true })
+    this.setState({ 
+      currentImageIndex: index, 
+      // showModal: true 
+    })
   }
 
-  modalToggle = () => {
-    this.setState(prevState => ({ showModal: !prevState.showModal }))
-  }
+  // modalToggle = () => {
+  //   this.setState(prevState => ({ showModal: !prevState.showModal }))
+  // }
 
   render() {
     const { brand, brands } = this.props 
 
-    const brandsModal = this.state.showModal ? (
-      <Fragment>
-        <PostAssetsModal>
-          <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-              <div>
-                <h2 style={{color: '#444'}}>Certified Brands</h2>
-                <a className='brands_modal_img' href={brands[this.state.currentImageIndex].url}>
-                  <img src={brands[this.state.currentImageIndex].image} alt={brand.url} 
-                       style={{width: '200px', height: '200px'}} />
-                </a>
-                <p style={{padding: '0 10%'}}>{brands[this.state.currentImageIndex].description}</p>
-                <a href={brands[this.state.currentImageIndex].url}><small>{brands[this.state.currentImageIndex].url}</small></a>
-              </div>
+    // const brandsModal = this.state.showModal ? (
+    //   <Fragment>
+    //     <PostAssetsModal>
+    //       <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+    //           <div>
+    //             <h2 style={{color: '#444'}}>Certified Brands</h2>
+    //             <a className='brands_modal_img' href={brands[this.state.currentImageIndex].url}>
+    //               <img src={brands[this.state.currentImageIndex].image} alt={brand.url} 
+    //                    style={{width: '200px', height: '200px'}} />
+    //             </a>
+    //             <p style={{padding: '0 10%'}}>{brands[this.state.currentImageIndex].description}</p>
+    //             <a href={brands[this.state.currentImageIndex].url}><small>{brands[this.state.currentImageIndex].url}</small></a>
+    //           </div>
               
-          <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
-        </PostAssetsModal>
-      </Fragment>
-    ) : null 
+    //       <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+    //     </PostAssetsModal>
+    //   </Fragment>
+    // ) : null 
 
     return (
       <div>
-        <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-        {brandsModal}
+        {/* <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+        {brandsModal} */}
         <div className='brandss'
         style={{ 
           position: 'absolute',

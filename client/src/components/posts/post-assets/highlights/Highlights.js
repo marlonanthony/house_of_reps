@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import PostAssetsModal from '../../../UI/modal/PostAssetsModal'
-// import Moment from 'react-moment'
+import Moment from 'react-moment'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import './Highlights.css'
+import Spinner from '../../../common/Spinner';
+import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
 
 export default class Highlights extends Component {
 
@@ -42,27 +43,31 @@ export default class Highlights extends Component {
 
     const highlightsModal = this.state.showModal ? (
       <Fragment>
-        <PostAssetsModal>
+        <HighlightsModal>
           <div style={{ color: '#ccc' }}>
           <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-            {/* { recentHighlights[this.state.currentImageIndex].date ? 
+            { recentHighlights[this.state.currentImageIndex].date ? 
             <p style={{color: 'rgb(55, 131, 194)'}}>
               <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
-            </p> : null  } */}
+            </p> : null  }
             { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
+            { recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
             <iframe 
               title={recentHighlights[this.state.currentImageIndex].video} 
-              style={{ maxWidth: '100%', maxHeight: '100%' }}
-              // style={{maxWidth: '100%', maxHeight: '100%'}} 
+              style={{width: '95%', height: '50vh'}} 
               src={recentHighlights[this.state.currentImageIndex].video} 
               frameBorder={0}
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen={true}>
             </iframe>
-            { recentHighlights[this.state.currentImageIndex].description ? <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
+            : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
+            ? <img src={recentHighlights[this.state.currentImageIndex].image} style={{maxWidth: '100%', maxHeight: '100%'}} alt="highlights"/>
+            : null }
+            { recentHighlights[this.state.currentImageIndex].description ? 
+              <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
           <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
           </div>
-        </PostAssetsModal>
+        </HighlightsModal>
       </Fragment>
     ) : null 
 
@@ -78,15 +83,18 @@ export default class Highlights extends Component {
           // overflowY: 'hidden',
         }}>
           <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-          {recentHighlights[this.state.currentImageIndex] ? 
-            <iframe 
+          {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
+            (<iframe 
               title={recentHighlights[this.state.currentImageIndex].video} 
               style={{width: '250px', height: '200px'}} 
               src={recentHighlights[this.state.currentImageIndex].video} 
               frameBorder={0}
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen={true}>
-            </iframe> : null }
+            </iframe>) 
+            : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
+            ? <img src={recentHighlights[this.state.currentImageIndex].image} height={200} width={250} alt="highlights"/>
+            : null }
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>

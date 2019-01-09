@@ -1,0 +1,27 @@
+.HighlightsModal {
+  position: fixed;
+  background-color: black;
+  z-index: 201;
+  width: 100vw;
+  max-height: 80vh;
+  overflow-y: scroll;
+  /* border: 1px solid #ccc; */
+  box-shadow: 1px 1px 1px black;
+  /* padding: 16px; */
+  padding: 25px;
+  left: 0;
+  top: 5vh;
+  box-sizing: border-box;
+  text-align: center;
+  animation-name: highlightsmodal;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+}
+@keyframes highlightsmodal {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
