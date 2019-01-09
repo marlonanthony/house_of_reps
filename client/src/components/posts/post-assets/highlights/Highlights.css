@@ -3,3 +3,42 @@
   flex: 1;
   justify-content: center;
 }
+.highlightss_icon {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 5px;
+  animation-name: highlights;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+}
+
+.highlightss_icon:hover {
+  /* animation: spin 2s ease-in-out 1; */
+  cursor: pointer;
+}
+
+.highlightss_icon_hover {
+
+}
+
+
+
+@keyframes highlights {
+  0% {
+    transform: translateX(100vw);
+  }
+  /* 60% {
+    transform: translateX(2vw);
+  }
+  95% {
+    transform: translateX(5vw);
+  } */
+  100% {
+    transform: translateX(0);
+    
+  }
+}

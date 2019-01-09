@@ -1,16 +1,13 @@
 .HighlightsModal {
-  position: fixed;
+  position: absolute;
   background-color: black;
   z-index: 201;
-  width: 100vw;
-  max-height: 80vh;
-  overflow-y: scroll;
-  /* border: 1px solid #ccc; */
-  box-shadow: 1px 1px 1px black;
-  /* padding: 16px; */
-  padding: 25px;
-  left: 0;
+  font-size: 13px;
+  width: 90vw;
+  left: 5vw;
   top: 5vh;
+  box-shadow: 1px 1px 1px black;
+  padding: 25px;
   box-sizing: border-box;
   text-align: center;
   animation-name: highlightsmodal;
@@ -23,5 +20,12 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@media(min-width: 1200px) {
+  .HighlightsModal {
+    width: 40vw;
+    left: 30vw;
   }
 }

@@ -56,7 +56,8 @@ class AddVenue extends Component {
       description: this.state.description,
       title: this.state.title,
       video: this.state.video,
-      image: this.state.image 
+      image: this.state.image,
+      // handle: this.props.profile.profile.handle 
     
     }
 
@@ -83,6 +84,7 @@ class AddVenue extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { errors } = this.state 
     return (
       <div className='add-venue'>

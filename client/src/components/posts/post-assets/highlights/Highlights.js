@@ -20,7 +20,9 @@ export default class Highlights extends Component {
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
 
-    this.setState({ currentImageIndex: index, showModal: true })
+    this.setState({ currentImageIndex: index, 
+      //showModal: true 
+    })
   }
 
   nextSlide = () => {
@@ -30,7 +32,9 @@ export default class Highlights extends Component {
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
 
-    this.setState({ currentImageIndex: index, showModal: true })
+    this.setState({ currentImageIndex: index, 
+      //showModal: true 
+    })
   }
 
   modalToggle = () => {
@@ -39,13 +43,20 @@ export default class Highlights extends Component {
 
   render() {
     const { recentHighlights } = this.props 
-    console.log(recentHighlights)
 
     const highlightsModal = this.state.showModal ? (
       <Fragment>
         <HighlightsModal>
           <div style={{ color: '#ccc' }}>
-          <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+          { recentHighlights[this.state.currentImageIndex].date ?
+            <p style={{color: 'rgb(55, 131, 194)'}}>
+              <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
+            </p> : null 
+          }
+          { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
+          { recentHighlights[this.state.currentImageIndex].description ? 
+              <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
+          {/* <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
             { recentHighlights[this.state.currentImageIndex].date ? 
             <p style={{color: 'rgb(55, 131, 194)'}}>
               <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
@@ -65,7 +76,7 @@ export default class Highlights extends Component {
             : null }
             { recentHighlights[this.state.currentImageIndex].description ? 
               <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
-          <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+          <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' /> */}
           </div>
         </HighlightsModal>
       </Fragment>
@@ -86,7 +97,7 @@ export default class Highlights extends Component {
           {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
             (<iframe 
               title={recentHighlights[this.state.currentImageIndex].video} 
-              style={{width: '250px', height: '200px'}} 
+              style={{width: '250px', height: '250px'}} 
               src={recentHighlights[this.state.currentImageIndex].video} 
               frameBorder={0}
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
@@ -95,6 +106,8 @@ export default class Highlights extends Component {
             : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
             ? <img src={recentHighlights[this.state.currentImageIndex].image} height={200} width={250} alt="highlights"/>
             : null }
+          <br />
+          <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='instagram avatar' />
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>

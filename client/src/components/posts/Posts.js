@@ -26,6 +26,7 @@ class Posts extends Component {
   }
   
   render() {
+    console.log(highlights)
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
     const { showsPreview } = this.state
