@@ -14,7 +14,6 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/u
 class AddDjpool extends Component {
   state = {
     image: '',
-    // localImage: '',
     url: '',
     errors: {},
     uploadedFileCloudinaryUrl: '',
@@ -36,7 +35,6 @@ class AddDjpool extends Component {
     
     const djpoolData = {
       image: this.state.image,
-      // localImage: this.state.localImage,
       url: this.state.url
     }
 
@@ -71,38 +69,38 @@ class AddDjpool extends Component {
         </Link>
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add DJ Pool</h1>
         <div className='djpools_input_wrapper'>
-        <div className='edit-profile-dropzone'>
-              <div className='FileUpload'>
-                <Dropzone 
-                  style={{ 
-                    borderRadius: '2px',
-                    fontSize: '15px',
-                    textAlign: 'center',
-                    width: '50%', 
-                    height: 'auto', 
-                    padding: '10px',
-                    cursor: 'pointer',
-                    color: '#aaa',
-                    border: 'dashed',
-                    borderColor: '#ccc',
-                    // marginLeft: '-70px',
-                    background: 'rgba(0,0,0,0.4)'
-                  }}
-                  multiple={false}
-                  accept='image/*'
-                  onDrop={this.onImageDrop}>
-                  <p>Drop an image or click to select a file to upload.</p>
-                </Dropzone>
-              </div>
-              <div>
-                { this.state.uploadedFileCloudinaryUrl === '' ? null : 
-                  <img 
-                    src={this.state.uploadedFileCloudinaryUrl} 
-                    style={{ height: '50px', width: '50px' }}
-                    alt={this.state.uploadedFile.name} />
-                }
-              </div>
+          <div className='edit-profile-dropzone'>
+            <div className='FileUpload'>
+              <Dropzone 
+                style={{ 
+                  borderRadius: '2px',
+                  fontSize: '15px',
+                  textAlign: 'center',
+                  width: '50%', 
+                  height: 'auto', 
+                  padding: '10px',
+                  cursor: 'pointer',
+                  color: '#aaa',
+                  border: 'dashed',
+                  borderColor: '#ccc',
+                  // marginLeft: '-70px',
+                  background: 'rgba(0,0,0,0.4)'
+                }}
+                multiple={false}
+                accept='image/*'
+                onDrop={this.onImageDrop}>
+                <p>Drop an image or click to select a file to upload.</p>
+              </Dropzone>
             </div>
+            <div>
+              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
+                <img 
+                  src={this.state.uploadedFileCloudinaryUrl} 
+                  style={{ height: '50px', width: '50px' }}
+                  alt={this.state.uploadedFile.name} />
+              }
+            </div>
+          </div>
           <form onSubmit={ this.onSubmit }>
             <CreateProfileTextFieldGroup 
               name='url'

@@ -12,6 +12,7 @@ import './CreateProfile.css'
 class CreateProfile extends Component {
   state = {
     displaySocialInputs: false,
+    banner: '',
     handle: '',
     stageName: '',
     phoneNumber: '',
@@ -45,6 +46,7 @@ class CreateProfile extends Component {
     e.preventDefault()
     
     const profileData = {
+      banner: this.state.banner,
       handle: this.state.handle,
       stageName: this.state.stageName,
       phoneNumber: this.state.phoneNumber,

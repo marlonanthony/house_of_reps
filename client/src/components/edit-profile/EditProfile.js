@@ -20,6 +20,7 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/u
 class EditProfile extends Component {
   state = {
     displaySocialInputs: false,
+    banner: '',
     handle: '',
     stageName: '',
     phoneNumber: '',
@@ -56,6 +57,7 @@ class EditProfile extends Component {
 
       // If profile field doesnt exist, make empty string
       profile.avatar = !isEmpty(profile.avatar) ? profile.avatar : '' 
+      profile.banner = !isEmpty(profile.banner) ? profile.banner : ''
       profile.stageName = !isEmpty(profile.stageName) ? profile.stageName : ''
       profile.phoneNumber = !isEmpty(profile.phoneNumber) ? profile.phoneNumber : ''
       profile.company = !isEmpty(profile.company) ? profile.company : ''
@@ -76,6 +78,7 @@ class EditProfile extends Component {
       // Set component field state
       this.setState({
         avatar: profile.avatar,
+        banner: profile.banner,
         handle: profile.handle,
         stageName: profile.stageName,
         phoneNumber: profile.phoneNumber,
@@ -106,6 +109,7 @@ class EditProfile extends Component {
     
     const profileData = {
       avatar: this.state.avatar,
+      banner: this.state.banner,
       handle: this.state.handle,
       stageName: this.state.stageName,
       phoneNumber: this.state.phoneNumber,
@@ -150,7 +154,7 @@ class EditProfile extends Component {
       if(err) console.log(err) 
       if(response.body.secure_url !== '') {
         this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
-        this.setState({ avatar: response.body.secure_url })
+        this.setState({ banner: response.body.secure_url })
       }
     })
   }

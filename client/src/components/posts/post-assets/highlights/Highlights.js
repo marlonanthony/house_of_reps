@@ -48,35 +48,52 @@ export default class Highlights extends Component {
       <Fragment>
         <HighlightsModal>
           <div style={{ color: '#ccc' }}>
-          { recentHighlights[this.state.currentImageIndex].date ?
-            <p style={{color: 'rgb(55, 131, 194)'}}>
-              <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
-            </p> : null 
-          }
-          { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
-          { recentHighlights[this.state.currentImageIndex].description ? 
-              <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
-          {/* <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-            { recentHighlights[this.state.currentImageIndex].date ? 
-            <p style={{color: 'rgb(55, 131, 194)'}}>
-              <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
-            </p> : null  }
+            <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+            { recentHighlights[this.state.currentImageIndex].date ?
+              <p style={{color: 'rgb(55, 131, 194)'}}>
+                <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
+              </p> : null 
+            }
             { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
-            { recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
-            <iframe 
-              title={recentHighlights[this.state.currentImageIndex].video} 
-              style={{width: '95%', height: '50vh'}} 
-              src={recentHighlights[this.state.currentImageIndex].video} 
-              frameBorder={0}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen={true}>
-            </iframe>
-            : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
-            ? <img src={recentHighlights[this.state.currentImageIndex].image} style={{maxWidth: '100%', maxHeight: '100%'}} alt="highlights"/>
-            : null }
+            { recentHighlights[this.state.currentImageIndex].video ?
+              <iframe 
+                title={recentHighlights[this.state.currentImageIndex].video} 
+                style={{width: '95%', height: '50vh'}} 
+                src={recentHighlights[this.state.currentImageIndex].video} 
+                frameBorder={0}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen={true}>
+              </iframe>
+              : recentHighlights[this.state.currentImageIndex].image 
+              ? <img src={recentHighlights[this.state.currentImageIndex].image} style={{maxWidth: '100%', maxHeight: '50vh'}} alt="highlights"/>
+              : null
+            }
             { recentHighlights[this.state.currentImageIndex].description ? 
-              <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
-          <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' /> */}
+              <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null 
+            }
+            
+            <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+            {/* <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+              { recentHighlights[this.state.currentImageIndex].date ? 
+              <p style={{color: 'rgb(55, 131, 194)'}}>
+                <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
+              </p> : null  }
+              { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
+              { recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
+              <iframe 
+                title={recentHighlights[this.state.currentImageIndex].video} 
+                style={{width: '95%', height: '50vh'}} 
+                src={recentHighlights[this.state.currentImageIndex].video} 
+                frameBorder={0}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen={true}>
+              </iframe>
+              : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
+              ? <img src={recentHighlights[this.state.currentImageIndex].image} style={{maxWidth: '100%', maxHeight: '100%'}} alt="highlights"/>
+              : null }
+              { recentHighlights[this.state.currentImageIndex].description ? 
+                <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
+            <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' /> */}
           </div>
         </HighlightsModal>
       </Fragment>
@@ -104,10 +121,11 @@ export default class Highlights extends Component {
               allowFullScreen={true}>
             </iframe>) 
             : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
-            ? <img src={recentHighlights[this.state.currentImageIndex].image} height={200} width={250} alt="highlights"/>
+            ? <img src={recentHighlights[this.state.currentImageIndex].image} height={250} width={250} alt="highlights"/>
             : null }
           <br />
-          <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='instagram avatar' />
+          {/* <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/mc.svg')} alt='instagram avatar' /> */}
+          <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='instagram avatar' title={'🔥'}/>
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>

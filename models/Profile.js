@@ -10,6 +10,9 @@ const ProfileSchema = new Schema({
   avatar: {
     type: String
   },
+  banner: {
+    type: String 
+  },
   handle: {
     type: String,
     required: true,

@@ -3,6 +3,16 @@
   background: rgba(0,0,0,0.4);
   border: .3px solid black;
   margin: 1.5px 0;
+  position: relative;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: 
+    'avatar comment_name_and_date'
+    'avatar post_content'
+    'avatar post_image'
+    /* 'avatar deletebtn' */
 }
 
 #comment-feed-container:hover {
@@ -14,10 +24,15 @@
   height: 40px;
   border-radius: 50%;
   border: 2px solid rgb(123, 180, 238);
+  grid-area: avatar;
 }
 
 #comment-feed-avatar:hover {
   cursor: pointer;
+}
+
+#comment_name_and_date_container {
+  grid-area: comment_name_and_date
 }
 
 .comment-feed-name {
@@ -34,6 +49,7 @@
 #comment-feed-text {
   color: #bdc7c1;
   font-size: 15px;
+  grid-area: post_content;
 }
 
 #comment-modal-text {
@@ -51,45 +67,50 @@
 #comment-link-container {
   background: rgba(0,0,0,0.4);
   display: grid;
+  align-items: center;
   grid-template-columns: 200px 1fr;
   grid-template-rows: 90px;
   grid-template-areas:  
     'image title'
     'image title';
 }
+#comment-link-img {
+  grid-area: image;
+  max-width: 110px;
+  /* min-height: 120px; */
+}
+#comments-grandson {
+  grid-area: title;
+  font-size: 12px;
+  margin-left: -60px;
+  max-height: 120px;
+  overflow: auto;
+  color: rgb(55, 131, 194);
+}
 
 .comments_image {
   max-width: 100%;
+  grid-area: post_image;
 }
 
 .comments_image:hover {
   cursor: pointer;
 }
 
-#comment-link-img {
-  grid-area: image;
-  width: 120px;
-  min-height: 120px;
-}
-
-#comments-grandson {
-  grid-area: title;
-  font-size: 12px;
-  margin-left: -60px;
-  max-height: 120px;
-  overflow: hidden;
-  color: rgb(55, 131, 194);
-}
-
 #commment-feed-delete-button {
-  padding: 0 30px;
-  max-height: 30px;
+  padding: 10px 20px;
+  /* max-height: 30px; */
   background: rgba(0,0,0,0.4);
   color: #ccc;
   outline: none;
   border: none;
-  border-radius: 5%;
-  margin-top: 10px;
+  /* border-radius: 5%; */
+  position: absolute; 
+  top: 0;
+  right: 0;
+
+  /* margin-top: 10px;
+  grid-area: deletebtn; */
 }
 
 #commment-feed-delete-button:hover {

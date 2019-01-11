@@ -70,24 +70,25 @@ class ProfileHeader extends Component {
             </p>
           </div>
           <div id='profile-feed'>
-            <div >
-              <iframe 
-                id='youtube-video' 
-                title='hofvideo' 
-                // width="100%" 
-                // height="315px" 
-                width='90%'
-                height='300'
-                src="https://www.youtube.com/embed/qrmKp_ANX_M" 
-                frameBorder="0" 
-                allow="autoplay; encrypted-media" 
-                style={{
-                  marginBottom: '20px',
-                  // marginTop: '25px' 
-                }}
-                allowFullScreen>
-              </iframe>
-            </div>
+            {/* { 
+              <img src={profile.banner} width={'93%'} height={200} style={{marginLeft: '3.5%'}} alt='profile banner'/> 
+            } */}
+            <iframe 
+              id='youtube-video' 
+              title='hofvideo' 
+              // width="100%" 
+              // height="315px" 
+              width='90%'
+              height='300'
+              src="https://www.youtube.com/embed/qrmKp_ANX_M" 
+              frameBorder="0" 
+              allow="autoplay; encrypted-media" 
+              style={{
+                marginBottom: '20px',
+                // marginTop: '25px' 
+              }}
+              allowFullScreen>
+            </iframe>
             <ProfilePost allProps={this.props.allProps} />
           </div>
           <div id='profile-creds-div'>

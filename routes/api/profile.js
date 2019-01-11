@@ -115,6 +115,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   const profileFields = {}
   profileFields.user = req.user.id 
   if(req.body.avatar) profileFields.avatar = req.body.avatar
+  if(req.body.banner) profileFields.banner = req.body.banner
   if(req.body.handle) profileFields.handle = req.body.handle 
   if(req.body.company) profileFields.company = req.body.company 
   if(req.body.website) profileFields.website = req.body.website 

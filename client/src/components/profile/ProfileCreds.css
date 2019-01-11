@@ -48,25 +48,31 @@
 
 @media (max-width: 1250px) {
   .profile-creds-content {
-    display: grid;
+    /* display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     margin-bottom: 25px;
-    justify-items: center;
+    justify-items: center; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
   }
 
   .venue-items {
     margin-top: 2px;
     /* min-width: 380px; */
-    min-width: 388px;
+    /* min-width: 388px; */
+    min-width: 47vw;
+    padding: 10px;
+    /* margin: 5px; */
   }
 
   #profile_creds_video {
-    width: 378px;
+    width: 100%;
   }
 
   #no_venues {
-    /* margin-left: 40vw; */
     text-align: center;
   }
 }
@@ -74,24 +80,20 @@
 @media(max-width: 780px) {
   .venue-items {
     margin-left: 0;
-    /* padding: 0 5vw; */
-    min-width: 100%;
-    justify-items: center;
+    min-width: 100vw;
   }
   #no_venues {
-    /* margin-left: 34%; */
     text-align: center;
   }
   .profile-creds-content {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: 1fr 1fr;
     margin-bottom: 25px;
     justify-items: center;
   }
   #profile_creds_video {
     width: 100%;
-    /* margin-left: 5%; */
   }
 }
 

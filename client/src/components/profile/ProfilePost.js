@@ -12,7 +12,6 @@ class ProfilePost extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { posts, loading } = this.props.post 
     let postContent 
 
@@ -27,7 +26,7 @@ class ProfilePost extends Component {
     }
 
     return (
-      <div className='profile-feed'>
+      <div>
          {postContent}
       </div>
     )

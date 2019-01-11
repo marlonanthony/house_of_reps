@@ -14,15 +14,16 @@
   animation-name: highlights;
   animation-duration: .5s;
   animation-iteration-count: 1;
+  opacity: .5;
 }
 
 .highlightss_icon:hover {
   /* animation: spin 2s ease-in-out 1; */
   cursor: pointer;
+  opacity: 1;
 }
 
 .highlightss_icon_hover {
-
 }
 
 
@@ -30,6 +31,7 @@
 @keyframes highlights {
   0% {
     transform: translateX(100vw);
+    opacity: 1;
   }
   /* 60% {
     transform: translateX(2vw);
@@ -39,6 +41,6 @@
   } */
   100% {
     transform: translateX(0);
-    
+    opacity: 1;
   }
 }
