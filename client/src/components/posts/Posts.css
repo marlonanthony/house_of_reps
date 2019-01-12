@@ -43,7 +43,8 @@
   width: 75px;
   height: 75px; 
   border-radius: 50%;
-  border: 1px solid black;
+  border: 3px solid rgb(135, 179, 247);
+  /* border: 1px solid black; */
 }
 
 .post-feed-form {

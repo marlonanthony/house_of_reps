@@ -58,6 +58,10 @@ const ProfileSchema = new Schema({
       },
       image: { 
         type: String 
+      },
+      dateCreated: {
+        type: Date,
+        default: Date.now  
       }
     }
   ],

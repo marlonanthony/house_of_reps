@@ -11,38 +11,17 @@ import CertifiedStores from './post-assets/CertifiedStores'
 import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
-import InputGroup from '../common/InputGroup'
-import { Link } from 'react-router-dom'
+import SearchBar from './post-assets/searchbar/SearchBar'
 import './Posts.css'
 
 class Posts extends Component {
 
-  state ={
-    showsPreview: false,
-    matches: '',
-    showMatches: false 
-  }
+  state = { showsPreview: false }
 
   componentDidMount() {
     this.props.getPosts() 
     this.props.getCurrentProfile()
     this.props.getProfiles()
-  }
-
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  // toggleShowMatches = e => {
-  //   this.setState(prevState => ({ showMatches: !prevState.showMatches }))
-  // }
-
-  onMouseEnter = () => {
-    this.setState({ showMatches: true })
-  }
-
-  onMouseLeave = () => {
-    this.setState({ showMatches: false })
   }
   
   render() {
@@ -57,12 +36,16 @@ class Posts extends Component {
     let perks 
     let brands 
     let highlights
+    let orderedHighlights
 
     if(profiles === null || loading) highlights = null
     // else highlights = profiles.map(profile => profile.venues) 
     else {
       let hls = profiles.map(profile => profile.venues).map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
       highlights = [].concat.apply([], hls)
+      orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+      console.log(orderedHighlights)
+      // if (highlights) console.log(highlights.sort((a,b) => a.dateCreated.getTime() - b.dateCreated.getTime()) )
     }
 
     // let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
@@ -129,34 +112,7 @@ class Posts extends Component {
 
     return (
       <div className='feed'>
-        <div className='searchbar'/*onClick={this.toggleShowMatches} */ onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} style={{
-          width: '100%',
-          position: 'relative',
-          zIndex: 2,
-          background: 'rgba(0,0,0,0.99)',
-          height: '45px'
-        }}>
-          <InputGroup 
-            placeholder='search'
-            name='matches'
-            // icon='fas fa-search'
-            value={ this.state.matches }
-            onChange={ this.onChange } 
-            // error={ errors.matches } 
-          />
-          <i className='fas fa-search' style={{position: 'absolute', right: 0, top: 5, color: 'rgb(55, 131, 194)',}}/>
-          { this.state.showMatches ?
-          <ul style={{color: '#ccc', listStyle: 'none', textAlign: 'end', position: 'absolute', top: '65%', right: 0 }}>
-            { this.props.profile.profiles ? this.props.profile.profiles.map(profile => (
-              profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-              profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-              profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase()) ?
-              <li className='searchbar_items'  key={profile.user._id}>
-                <Link to={`/profile/${profile.handle}`} className='searchbar_links'><small>@{profile.handle}</small></Link>
-              </li> : null
-            )) : null } 
-          </ul> : null }
-        </div>
+        <SearchBar profiles={profiles} />
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='post-feed-social'>Social</div>
         <div className='djpools'>{ djpools }</div>
@@ -165,7 +121,7 @@ class Posts extends Component {
         <div className='post-feed-post-content'>{postContent}</div>
         { highlights ? 
         <div>
-          <div className='post-feed-highlights'><Highlights recentHighlights={highlights} /></div>
+          <div className='post-feed-highlights'><Highlights recentHighlights={orderedHighlights} /></div>
           <p id='post-feed-highlights-title'>Highlights</p>
         </div> : <Spinner /> }
         <div className='stores_container'>{ stores }</div>

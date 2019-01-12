@@ -83,6 +83,9 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
+    // let hashtags = post.text.match(/(#[a-z0-9][a-z0-9\-_]*)/ig)
+  let hashtags = post.text.replace(/(^|\W)(#[a-z\d][\w-]*)/ig, <span style={{color: 'blue'}}>' $2'</span>)
+    console.log(hashtags && hashtags)
     let youtubeUrl = post.url
     
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
@@ -117,7 +120,12 @@ class PostItem extends Component {
 
       <div>
         { !post.description && !post.image && !post.title && !post.url && !post.media
-          ? <p className='post_content'>{post.text}</p>
+          // ? <p className='post_content'>{post.text}</p>
+          ? <p className='post_content'>
+              {
+                hashtags //&& hashtags.map(hashtag =>  <span style={{color: 'blue'}}>{hashtag}</span> )
+              }
+            </p>
           : post.media 
           ? ( <div>
                 <p className='post_content'>{post.text}</p>
