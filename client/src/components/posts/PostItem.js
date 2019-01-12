@@ -86,6 +86,13 @@ class PostItem extends Component {
     // let hashtags = post.text.match(/(#[a-z0-9][a-z0-9\-_]*)/ig)
   let hashtags = post.text.replace(/(^|\W)(#[a-z\d][\w-]*)/ig, <span style={{color: 'blue'}}>' $2'</span>)
     console.log(hashtags && hashtags)
+
+    //   s.match(/\s\#\w+/gi)  // 
+    //   figure out how to replace whats captured with this regex with appropriate span // 
+
+
+
+
     let youtubeUrl = post.url
     
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
