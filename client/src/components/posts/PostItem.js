@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import classnames from 'classnames' 
 import Moment from 'react-moment' 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
@@ -13,6 +13,8 @@ import CommentFeed from '../post/CommentFeed'
 import CommentForm from '../post/CommentForm'
 
 import './PostItem.css'
+
+
  
 class PostItem extends Component {
 
@@ -83,15 +85,7 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
-    // let hashtags = post.text.match(/(#[a-z0-9][a-z0-9\-_]*)/ig)
-  let hashtags = post.text.replace(/(^|\W)(#[a-z\d][\w-]*)/ig, <span style={{color: 'blue'}}>' $2'</span>)
-    console.log(hashtags && hashtags)
-
-    //   s.match(/\s\#\w+/gi)  // 
-    //   figure out how to replace whats captured with this regex with appropriate span // 
-
-
-
+ 
 
     let youtubeUrl = post.url
     
@@ -128,9 +122,13 @@ class PostItem extends Component {
       <div>
         { !post.description && !post.image && !post.title && !post.url && !post.media
           // ? <p className='post_content'>{post.text}</p>
-          ? <p className='post_content'>
+          ? <p className='post_content' >
               {
-                hashtags //&& hashtags.map(hashtag =>  <span style={{color: 'blue'}}>{hashtag}</span> )
+                <span className='hashtags' style={{color: 'skyblue'}}
+                  dangerouslySetInnerHTML={{
+                    __html : post.text.replace(/(\#\w+)/gi, "<a href='#'>$&</a>")
+                  }}
+                />
               }
             </p>
           : post.media 
@@ -220,5 +218,6 @@ PostItem.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth
 })
+
 
 export default connect(mapStateToProps, { deletePost, addLike, removeLike })(withRouter(PostItem))

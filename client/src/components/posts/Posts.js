@@ -44,7 +44,6 @@ class Posts extends Component {
       let hls = profiles.map(profile => profile.venues).map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
       highlights = [].concat.apply([], hls)
       orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-      console.log(orderedHighlights)
       // if (highlights) console.log(highlights.sort((a,b) => a.dateCreated.getTime() - b.dateCreated.getTime()) )
     }
 
