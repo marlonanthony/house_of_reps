@@ -47,7 +47,8 @@
 }
 
 .hashtags a {
-  color: blue;
+  /* color: blue; */
+  color: rgb(29, 138, 255);
   text-decoration-line: none;
   cursor: pointer;
 }
