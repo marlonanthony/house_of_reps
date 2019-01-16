@@ -7,6 +7,8 @@ import Moment from 'react-moment'
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
+import PostText from './post-assets/post_comment_text/PostText'
+import PostModalText from './post-assets/post_comment_text/PostModalText'
 
 // For comments 
 import CommentFeed from '../post/CommentFeed'
@@ -99,7 +101,8 @@ class PostItem extends Component {
       <Fragment> 
         <CommentsModal>
           <div>
-            <p id='comment-modal-text'>{post.text}</p>
+            {/* <p id='comment-modal-text'>{post.text}</p> */}
+            <PostModalText postText={post.text} />
             <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
           </div>
         </CommentsModal>
@@ -121,24 +124,15 @@ class PostItem extends Component {
 
       <div>
         { !post.description && !post.image && !post.title && !post.url && !post.media
-          // ? <p className='post_content'>{post.text}</p>
-          ? <p className='post_content' >
-              {
-                <span className='hashtags' style={{color: 'skyblue'}}
-                  dangerouslySetInnerHTML={{
-                    __html : post.text.replace(/(\#\w+)/gi, "<a href='#'>$&</a>")
-                  }}
-                />
-              }
-            </p>
+          ? <PostText postText={post.text} />
           : post.media 
           ? ( <div>
-                <p className='post_content'>{post.text}</p>
+                <PostText postText={post.text} />
                 <img className='postfeed-media-pic' onClick={this.modalShow} src={post.media} alt="uploaded" />
               </div>
             )
           : ( <div className='post_content'>
-                <p>{post.text}</p>
+                <PostText postText={post.text} />
                 <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
                   { youtubeUrl 
                   ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
@@ -154,7 +148,7 @@ class PostItem extends Component {
               </div>
             )
         }
-        { showActions ? (<span>
+        { showActions ? ( <span>
           <button 
             title='like'
             className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {

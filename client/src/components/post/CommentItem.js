@@ -7,6 +7,8 @@ import { deleteComment, getPosts } from '../../actions/postActions'
 import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
+import CommentText from '../posts/post-assets/post_comment_text/CommentText'
+import PostModalText from '../posts/post-assets/post_comment_text/PostModalText'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -65,7 +67,8 @@ class CommentItem extends Component {
     const commentsModal = this.state.showModal ? (
       <Fragment> 
         <CommentsModal>
-          <p id='comment-modal-text'>{comment.text}</p>
+          {/* <p id='comment-modal-text'>{comment.text}</p> */}
+          <PostModalText postText={comment.text} />
           <img src={comment.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
         </CommentsModal>
       </Fragment>
@@ -93,16 +96,16 @@ class CommentItem extends Component {
           </button> ) : null }
           <div id='comment_content_container'>
             { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
-              ? <p id='comment-feed-text'>{comment.text}</p>
+              ? <CommentText commentText={comment.text} />
               : comment.media
               ? ( <div onClick={this.modalShow}>
-                    <p className='comment-feed-text' style={{color: '#bdc7c1'}}>{comment.text}</p>
+                    <CommentText commentText={comment.text} />
                     <img src={comment.media} alt="uploaded" className='comments_image' />
                   </div>
                 )
               : ( 
                   <div className='comment-wrapper'>
-                    <p id='comment-feed-text'>{comment.text}</p>
+                    <CommentText commentText={comment.text} />
                     <div id='wrap-comment-link'>
                       <a href={comment.url} target='_blank' id='comment-anchor-container'>
                         <div id='comment-link-container'>
