@@ -89,7 +89,7 @@ class ProfileHeader extends Component {
             {/* { 
               <img src={profile.banner} width={'93%'} height={200} style={{marginLeft: '3.5%'}} alt='profile banner'/> 
             } */}
-            <iframe 
+            {/* <iframe 
               id='youtube-video' 
               title='hofvideo' 
               // width="100%" 
@@ -104,7 +104,7 @@ class ProfileHeader extends Component {
                 // marginTop: '25px' 
               }}
               allowFullScreen>
-            </iframe>
+            </iframe> */}
             <ProfilePost allProps={this.props.allProps} />
           </div>
           <div id='profile-creds-div'>

@@ -9,7 +9,7 @@
   max-width: 300px;
   padding-left: 5px;
   /* margin-left: 15%; */
-  margin-bottom: .5px;
+  margin-bottom: 10px;
   padding: 5px;
   color: #bdc7c1;
   list-style: none;
@@ -32,9 +32,9 @@
 
 #profile-events-h4 {
   text-align: center;
-  color: #d48872;
-  margin-top: 60px;
-  /* color: rgb(55, 131, 194); */
+  /* color: #d48872; */
+  /* margin-top: 60px; */
+  color: rgb(55, 131, 194); 
   /* color: #ccc; */
 }
 

@@ -4,7 +4,8 @@
   background-attachment: fixed;
   background-size: cover; */
   /* background: #0b0c10; */
-  background: #050811;
+  background: #071020;
+  /* background: #050811; */
   padding-top: 70px;
   min-height: 100vh;
   /* background-size: 100vw 100vh; */
@@ -213,17 +214,18 @@
     display: block;
     margin-top: 70px;
   }
+  #profile-feed {
+    margin: 70px 45px;
+    max-width: 680px;
+  }
 }
 
 @media (min-width: 1700px) {
   .profile-header {
-    margin: 0 12vw;
+    margin: 0 14vw;
   }
 
-  #profile-feed {
-    margin: 0 45px;
-    max-width: 680px;
-  }
+
 }
 
 @media (max-width: 600px) {
