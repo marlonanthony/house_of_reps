@@ -13,10 +13,13 @@ class ProfileHeader extends Component {
       <div className='profile-header-container'>
         {/* <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' /> */}
         <div className="profile-header">
-          <div id='profile-avatar-div'>
+          {/* <div id='profile-avatar-div'>
             {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
-          </div>
+          </div> */}
           <div id='header-items'>
+            <div id='profile-avatar-div'>
+              {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
+            </div>
             <div id='profile-header-about-info'>
               <h4 id='profile-name'>{profile.user.name}</h4>
               {isEmpty(profile.handle) ? null : (<p id='profile-handle'>@{profile.handle}</p>)}
@@ -71,15 +74,15 @@ class ProfileHeader extends Component {
               )}
             </div>
             <div id='reps_banners'>
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
-              <img className='profile-header-icon' src={require('../../img/fb3.png')} alt='facebook avatar' />
+              {/* <img className='reps_banner_icons' src={require('../../img/fb3.png')} alt='avatar' /> */}
+              <img className='reps_banner_icons' src={require('../../img/wremixer.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/wproducer.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/wturntablist.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/wPartyrocker.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/wonair.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/wMixer2.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/vdjw.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/wmc.svg')} alt='avatar' />
             </div>
           </div>
           <div id='profile-feed'>

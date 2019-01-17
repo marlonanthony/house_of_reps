@@ -19,23 +19,28 @@
 .profile-header {
   /* margin: 0 10vw; */
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  /* justify-items: space-around;
+  align-content: center; */
   font-family: Ubuntu, sans-serif;
   grid-template-areas: 
-    'avatar'
-    'headeritems'
-    'profilecredsdiv'
-    'profilefeed';
+    'headeritems headeritems'
+    'profilecredsdiv profilecredsdiv' 
+    'profilefeed profilefeed';
 }
 
 #profile-avatar-div {
   grid-area: avatar;
-  margin-left: 5vw;
+  /* margin-left: 5vw; */
   background: rgba(0,0,0,0.5);
-  max-width: 200px;
+  max-width: 300px;
   padding: 10px;
   text-align: center;
+  max-height: 200px;
+  width: 200px;
+  /* justify-self: center;
+  align-self: center; */
 }
 
 #profile-avatar {
@@ -49,17 +54,26 @@
 
 #header-items {
   grid-area: headeritems;
-  padding-left: 5vw;
+  display: grid;
+  grid-gap: 50px;
+  justify-items: center;
+  align-content: space-around;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+    'avatar icons-container'
+    'about-info reps_banners';
   /* margin-left: 30vw; */
   /* justify-self: center; */
 }
 
 #profile-header-about-info {
+  grid-area: about-info;
   background: rgba(0,0,0,0.5);
   padding: 10px;
   margin: 10px 0;
   max-width: 200px;
-
+  max-height: 300px;
 }
 
 #profile-name {
@@ -94,9 +108,11 @@
 }
 
 #profile-icons-container {
+  grid-area: icons-container;
   padding: 10px;
   display: grid;
   max-width: 200px;
+  height: 200px;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-content: center;
@@ -107,6 +123,7 @@
 .profile-header-icon {
   width: 35px;
   height: 35px;
+  padding: 10px;
   border-radius: 50%;
   
 }
@@ -116,16 +133,24 @@
 }
 
 #reps_banners {
+  grid-area: reps_banners;
   padding: 10px;
   margin-top: 10px;
   display: grid;
   max-width: 200px;
+  height: 200px;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-content: center;
   grid-gap: 10px;
   background: rgba(0,0,0,0.5);
 } 
+
+.reps_banner_icons {
+  width: 50px;
+  height: 50px;
+  /* border-radius: 50%; */
+}
 
 #profile-feed {
   grid-area: profilefeed;
@@ -167,7 +192,7 @@
 
 @media (min-width: 1250px) {
   .profile-header {
-    margin: 0 10vw;
+    margin: 0 5vw;
     padding: 0;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -184,11 +209,15 @@
   #profile-avatar {
     margin-top: 30px;
   }
+  #header-items {
+    display: block;
+    margin-top: 70px;
+  }
 }
 
 @media (min-width: 1700px) {
   .profile-header {
-    margin: 0 15vw;
+    margin: 0 12vw;
   }
 
   #profile-feed {
@@ -211,5 +240,10 @@
     width: 70px;
     /* margin-top: -40px; */
     border: 3px solid rgb(123, 180, 238);
+  }
+
+  #header-items {
+    display: block;
+    margin: 0 auto;
   }
 }
