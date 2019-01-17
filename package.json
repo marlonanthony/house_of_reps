@@ -2,6 +2,9 @@
   "name": "houseofreps",
   "version": "1.0.0",
   "description": "Social network for DJs",
+  "engines": {
+    "node": "8.11.3"
+  },
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
