@@ -218,6 +218,9 @@
     margin: 70px 45px;
     max-width: 680px;
   }
+  #profile-header-about-info {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 1700px) {
