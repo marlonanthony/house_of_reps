@@ -40,7 +40,7 @@ class AddVenue extends Component {
     let clipboardData = e.clipboardData || window.clipboardData
     let urlData = `${''+clipboardData.getData('Text')}`
     let parsedUrl = urlData.slice(7, -10)
-    parsedUrl.includes('soundcloud') ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
+    parsedUrl = parsedUrl.includes('soundcloud') ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
       : parsedUrl.includes('youtube' || 'youtu.be') ? parsedUrl = parsedUrl.match(/http(.*?)[\s]/g).toString().slice(0, -2)
       :  null
 
