@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Social network for DJs",
   "engines": {
-    "node": "8.11.3"
+    "node": "8.11.3",
+    "yarn": "1.7.0"
   },
   "main": "server.js",
   "scripts": {
@@ -29,6 +30,6 @@
     "validator": "^10.8.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.9"
   }
 }
