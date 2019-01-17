@@ -43,7 +43,6 @@ class AddVenue extends Component {
     parsedUrl = parsedUrl.includes('soundcloud') ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
       : parsedUrl.includes('youtube' || 'youtu.be') ? parsedUrl = parsedUrl.match(/http(.*?)[\s]/g).toString().slice(0, -2)
       :  null
-
     this.setState({ video: parsedUrl })
   }
 
@@ -85,6 +84,7 @@ class AddVenue extends Component {
 
   render() {
     console.log(this.props)
+    console.log(this.state.video)
     const { errors } = this.state 
     return (
       <div className='add-venue'>

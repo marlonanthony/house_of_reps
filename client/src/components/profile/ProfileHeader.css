@@ -31,13 +31,18 @@
 
 #profile-avatar-div {
   grid-area: avatar;
+  margin-left: 5vw;
+  background: rgba(0,0,0,0.5);
+  max-width: 200px;
+  padding: 10px;
+  text-align: center;
 }
 
 #profile-avatar {
   border-radius: 50%;
   height: 140px;
   width: 140px;
-  margin-left: 5vw;
+  /* margin-left: 5vw; */
   /* margin-top: -70px; */
   border: 3px solid rgb(123, 180, 238);
 }
@@ -47,6 +52,14 @@
   padding-left: 5vw;
   /* margin-left: 30vw; */
   /* justify-self: center; */
+}
+
+#profile-header-about-info {
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  margin: 10px 0;
+  max-width: 200px;
+
 }
 
 #profile-name {
@@ -67,25 +80,28 @@
   margin-top: 20px;
   font-size: 14px;
   max-width: 200px;
-  /* color: #bdc7c1; */
-  color: #7e8889;
-  font-family: Geneva, Tahoma, sans-serif;
+  color: #bdc7c1;
+  /* color: #7e8889; */
+  font-family: sans-serif;
 }
 
 #profile-location {
   /* color: #d48872; */
   font-size: 15px;
-  color: #bdc7c1;
+  color: rgb(55, 131, 194);
+  /* color: #bdc7c1; */
   /* color: #9932CC; */
 }
 
 #profile-icons-container {
-  border-radius: 3px;
-  padding: 5px;
+  padding: 10px;
   display: grid;
   max-width: 200px;
-  margin-left: -5px;
-  grid-template-columns: 75px 75px 75px;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  grid-gap: 10px;
+  background: rgba(0,0,0,0.5);
 }
 
 .profile-header-icon {
@@ -98,6 +114,18 @@
 .profile-header-icon:hover {
   animation: spin 2s ease-in-out 1;
 }
+
+#reps_banners {
+  padding: 10px;
+  margin-top: 10px;
+  display: grid;
+  max-width: 200px;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  grid-gap: 10px;
+  background: rgba(0,0,0,0.5);
+} 
 
 #profile-feed {
   grid-area: profilefeed;
