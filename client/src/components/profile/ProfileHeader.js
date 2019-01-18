@@ -89,6 +89,8 @@ class ProfileHeader extends Component {
             {/* { 
               <img src={profile.banner} width={'93%'} height={200} style={{marginLeft: '3.5%'}} alt='profile banner'/> 
             } */}
+            {/* <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fverabanquets%2Fvideos%2F445864812613689%2F&show_text=0&width=267" width="267" height="476" style={{
+              border: 'none', overflow: 'hidden' }} scrolling="no" frameBorder={0} allowTransparency="true" allowFullScreen="true"></iframe> */}
             {/* <iframe 
               id='youtube-video' 
               title='hofvideo' 

@@ -17,12 +17,12 @@ class ProfileCreds extends Component {
         <h4 style={{ color: '#ccc' }}>{venue.title ? venue.title : null}</h4>
         <p>{venue.location === '' ? null : (<span style={{color: '#7e8889'}}>{venue.location}</span>)}</p>
         { venue.video
-          ? <iframe id='profile_creds_video' title={venue._id} width="330" height="200" src={venue.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
+          ? <iframe id='profile_creds_video' title={venue._id}  src={venue.video} width="330" height="200" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
           : null 
         }
         { venue.image && !venue.video
           ? <div style={{display: 'flex', justifyContent: 'center' }}>
-              <img src={venue.image} style={{maxHeight: '200px', maxWidth: '100%',  }} alt="new-venue"/>
+              <img src={venue.image} id='venue_profile_image' alt="new-venue"/>
             </div>
           : null
         }

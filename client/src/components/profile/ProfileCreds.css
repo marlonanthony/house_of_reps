@@ -1,5 +1,6 @@
 .profile-creds-content {
   font-family: Arial, Ubuntu, sans-serif;
+
 }
 
 .venue-items {
@@ -47,6 +48,11 @@
   margin-left: 10px;
 }
 
+#venue_profile_image {
+  max-height: 200px;
+  width: 100%;
+}
+
 @media (max-width: 1250px) {
   .profile-creds-content {
     /* display: grid;
@@ -71,10 +77,15 @@
 
   #profile_creds_video {
     width: 100%;
+    height: 500px;
   }
 
   #no_venues {
     text-align: center;
+  }
+  #venue_profile_image {
+    max-height: 500px;
+    max-width: 100%;
   }
 }
 

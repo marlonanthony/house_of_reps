@@ -55,7 +55,11 @@
 
 #header-items {
   grid-area: headeritems;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-end;
+  /* display: grid;
   grid-gap: 50px;
   justify-items: center;
   align-content: space-around;
@@ -63,7 +67,7 @@
   grid-template-rows: 1fr 1fr;
   grid-template-areas: 
     'avatar icons-container'
-    'about-info reps_banners';
+    'about-info reps_banners'; */
   /* margin-left: 30vw; */
   /* justify-self: center; */
 }
@@ -73,7 +77,8 @@
   background: rgba(0,0,0,0.5);
   padding: 10px;
   margin: 10px 0;
-  max-width: 200px;
+  margin-bottom: 0;
+  min-width: 200px;
   max-height: 300px;
 }
 
@@ -220,6 +225,7 @@
   }
   #profile-header-about-info {
     margin-top: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -250,5 +256,9 @@
   #header-items {
     display: block;
     margin: 0 auto;
+  }
+  #profile-header-about-info {
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 }
