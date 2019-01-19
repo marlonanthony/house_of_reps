@@ -17,9 +17,8 @@
   /* padding: 100px 4vw 0 4vw; */
   padding-top: 100px;
   display: grid;
-  justify-items: center;
   grid-gap: 15px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 300px;
   grid-template-rows: auto auto 1fr auto;
   grid-template-areas:  
     /* 'djpoolsscroll' */
@@ -77,14 +76,18 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: rgba(0,0,0,0.5);
+  height: 250px;
   color: #aaa;
+  margin: 0 0 0 4vw;
 }
 .post-feed-highlights {
   grid-area: postfeedhighlights;
-  height: 200px;
-  display: flex;
+  height: 250px;
   color: #aaa;
+  margin: 0 1vw 0 0;
 }
+
 #post-feed-highlights-title {
   margin-top: -2px;
   /* color: rgb(55, 131, 194); */
@@ -194,6 +197,7 @@
     justify-content: center;
     align-items: center;
     color: #aaa;
+    margin: 0;
   }
 
   .post-feed-highlights {
@@ -202,6 +206,7 @@
     width: 250px;
     height: 250px;
     background: rgba(0,0,0,0.5);
+    margin: 0;
   }
 
   .stores_container {

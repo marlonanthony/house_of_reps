@@ -75,14 +75,15 @@ class ProfileHeader extends Component {
             </div>
             <div id='reps_banners'>
               {/* <img className='reps_banner_icons' src={require('../../img/fb3.png')} alt='avatar' /> */}
-              <img className='reps_banner_icons' src={require('../../img/wremixer.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/wproducer.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/wturntablist.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/wPartyrocker.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/wonair.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/wMixer2.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/vdjw.svg')} alt='avatar' />
-              <img className='reps_banner_icons' src={require('../../img/wmc.svg')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/mc.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/mixer.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/mixer2.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/onair.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/partyrocker.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/producer.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/remixer2.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/turntablist.png')} alt='avatar' />
+              <img className='reps_banner_icons' src={require('../../img/pngcopy/vdj.png')} alt='avatar' />
             </div>
           </div>
           <div id='profile-feed'>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { getPosts } from '../../actions/postActions'
@@ -113,7 +113,7 @@ class Posts extends Component {
       <div className='feed'>
         <SearchBar profiles={profiles} />
         <div className='post-feed-profile'>{ profileContent }</div>
-        <div className='post-feed-social'>Social</div>
+        <div className='post-feed-social'>Thingy</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'><PostForm showPreview={showsPreview}/></div>
