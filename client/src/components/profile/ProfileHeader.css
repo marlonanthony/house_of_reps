@@ -199,7 +199,7 @@
 
 @media (min-width: 1250px) {
   .profile-header {
-    margin: 0 5vw;
+    margin: 0 7vw;
     padding: 0;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -230,7 +230,7 @@
   }
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1600px) {
   .profile-header {
     margin: 0 14vw;
   }

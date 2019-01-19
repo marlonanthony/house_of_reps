@@ -23,6 +23,13 @@ class ProfilePost extends Component {
       postContent = <Spinner />
     } else {
         // postContent = posts.map(post => post.likes.map(like => like.user === this.props.auth.user.id))
+        // posts.forEach((post, i, array) => {
+        //   post.likes.forEach((like, index, arr) => {
+        //     if(post[like].user === this.props.auth.user.id) {
+        //       postContent = postContent.concat(post)
+        //     }
+        //   })
+        // })
         postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
         ? <PostItem key={post._id} post={post} /> 
         : null)
