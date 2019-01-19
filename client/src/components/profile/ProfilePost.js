@@ -29,7 +29,7 @@ class ProfilePost extends Component {
     }
 
     return (
-      <div>
+      <div style={{ marginBottom: 70 }}>
          {postContent}
       </div>
     )

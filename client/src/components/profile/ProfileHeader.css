@@ -220,7 +220,7 @@
     margin-top: 70px;
   }
   #profile-feed {
-    margin: 70px 45px;
+    margin: 70px auto;
     max-width: 680px;
   }
   #profile-header-about-info {
