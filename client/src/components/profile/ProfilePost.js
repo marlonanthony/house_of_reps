@@ -6,6 +6,10 @@ import { getPosts } from '../../actions/postActions'
 import PostItem from '../posts/PostItem'
 
 class ProfilePost extends Component {
+  state = {
+    showLikes: false 
+  }
+
   componentDidMount() {
     this.props.getPosts() 
     
@@ -18,8 +22,7 @@ class ProfilePost extends Component {
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {
-      // postContent = posts.map(post => this.props.allProps.match.params.handle.slice(0, 4) === 
-      //   post.name.toLowerCase().slice(0, 4) ||
+        // postContent = posts.map(post => post.likes.map(like => like.user === this.props.auth.user.id))
         postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
         ? <PostItem key={post._id} post={post} /> 
         : null)

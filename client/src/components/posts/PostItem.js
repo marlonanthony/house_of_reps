@@ -27,7 +27,7 @@ class PostItem extends Component {
     postComments: [],
     likes: this.props.post.likes,
     liked: false,
-    showModal: false 
+    showModal: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,7 +45,9 @@ class PostItem extends Component {
     
     const { auth } = this.props 
     if(this.state.likes.map(like => like.user === auth.user.id).length <= 0){
-      this.setState(prevState => ({ likes: this.state.likes.concat(id) }))
+      let newLike = this.state.likes.concat(id) 
+      this.setState(prevState => ({ likes: newLike }))
+      // this.setState(prevState => ({ likes: prevState.likes.concat(id) }))
       this.setState(prevState => ({ liked: true }))
     }
   }
@@ -55,7 +57,8 @@ class PostItem extends Component {
 
     const { auth } = this.props 
     if(this.state.likes.map(like => like.user === auth.user.id).length > 0) {
-      this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
+      this.setState({ likes: this.state.likes.slice(1) })
+      // this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
       this.setState(prevState => ({ liked: false }))
     }
     // this.setState({ likes: this.state.likes.filter(like => like.user === auth.user.id) })
