@@ -1,12 +1,13 @@
 .feed {
   /* background: #050c14;   */
   /* background: #050811; */
-  /* background: #071020; */
-  background: #112545;
-  /* background: rgba(4, 9, 12, 0.918); reversed from PostItem.css  */
-  /* background: rgb(5, 22, 37);   */
 
-  /* background: black; */
+
+  /* background: #071020; */
+  /* background: #112545;   */
+  background: #112540;  
+
+
   /* background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
