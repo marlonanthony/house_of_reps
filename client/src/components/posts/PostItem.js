@@ -175,6 +175,7 @@ class PostItem extends Component {
               showComments: !prevState.showComments }))} 
             className='postfeed_buttons'>  
             <i className='fas fa-comment icons' id='comment'/>
+            <span>{postComments.length}</span>
           </button>
           { post.user === auth.user.id ? (
             <button 
