@@ -18,18 +18,20 @@ class ProfilePost extends Component {
   render() {
     const { posts, loading } = this.props.post 
     let postContent 
-
+    let likedPost = []
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {
-        // postContent = posts.map(post => post.likes.map(like => like.user === this.props.auth.user.id))
-        // posts.forEach((post, i, array) => {
-        //   post.likes.forEach((like, index, arr) => {
-        //     if(post[like].user === this.props.auth.user.id) {
-        //       postContent = postContent.concat(post)
-        //     }
-        //   })
-        // })
+      // for(let i = 0; i < posts.length; i++){
+      //   for(let j = 0; j < posts[i].likes.length; j++) {
+      //     if(posts[i].likes[j].user === this.props.auth.user.id) {
+      //       likedPost.push(posts[i])
+      //       console.log(posts[i])
+      //     }
+      //   }
+      // }
+      // console.log(likedPost)
+
         postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
         ? <PostItem key={post._id} post={post} /> 
         : null)
@@ -38,6 +40,9 @@ class ProfilePost extends Component {
     return (
       <div style={{ marginBottom: 70 }}>
          {postContent}
+         {/* {likedPost.map(post => (
+           <PostItem key={post._id} post={post} />
+         ))} */}
       </div>
     )
   }

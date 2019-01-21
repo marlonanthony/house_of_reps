@@ -34,6 +34,10 @@
   display: none;
 }
 
+.searchbarpost {
+  display: none; 
+}
+
 .post-feed-profile {
   grid-area: profile;
   display: none;
@@ -147,8 +151,9 @@
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto 1fr;
     grid-template-areas: 
-      'profile postform searchbar'
-      'postfeedsocials post-feed-post-content postfeedhighlights'
+      'searchbarpost postform searchbar'
+      'profile post-feed-post-content postfeedhighlights'
+      /* 'postfeedsocials post-feed-post-content postfeedhighlights' */
       'djpools post-feed-post-content stores'
       'perks post-feed-post-content brands'; 
   }
@@ -175,11 +180,20 @@
   .searchbar_links:hover {
   }
 
+  .searchbarpost {
+    grid-area: searchbarpost;
+    display: flex;
+    justify-content: space-between;
+    width: 240px;
+  }
+
   .post-feed-profile {
     display: block;
     grid-area: profile;
-    padding: 0px 5px 0 5px;
-    border-radius: 2%;
+    padding: 5px 5px 0 5px;
+    background: rgba(0,0,0,0.5);
+    width: 225px;
+    height: 225px;
     /* background: rgba(2, 4, 5, 0.884); */
   }
 
@@ -189,7 +203,8 @@
 
   .post-feed-social {
     grid-area: postfeedsocials;
-    display: flex;
+    display: none;
+    /* display: flex; */
     width: 250px;
     height: 250px;
     overflow-x: hidden;

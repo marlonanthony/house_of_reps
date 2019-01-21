@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import InputGroup from '../../../common/InputGroup'
 
 
-class SearchBar extends Component {
+class SearchPost extends Component {
   state = {
     matches: '',
     showMatches: ''
@@ -13,17 +13,9 @@ class SearchBar extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onMouseEnter = () => {
-    this.setState({ showMatches: true })
-  }
-
-  onMouseLeave = () => {
-    this.setState({ showMatches: false })
-  }
-
   render() {
     return (
-      <div className='searchbar' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} style={{
+      <div className='searchpost' style={{
         width: '100%',
         position: 'relative',
         zIndex: 2,
@@ -53,4 +45,4 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar
+export default SearchPost

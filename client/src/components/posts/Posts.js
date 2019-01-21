@@ -12,11 +12,24 @@ import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
+import InputGroup from '../common/InputGroup'
 import './Posts.css'
 
 class Posts extends Component {
 
-  state = { showsPreview: false }
+  state = { 
+    showsPreview: false,
+    matches: '',
+    showMatches: false
+  }
+  
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  onClick = e => {
+    this.setState( prevState => ({ showMatches: !prevState.showMatches }))
+  }
 
   componentDidMount() {
     this.props.getPosts() 
@@ -95,9 +108,9 @@ class Posts extends Component {
       profileContent = <Spinner />
     } else {
       profileContent = (
-          <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-            <img id='posts-profile-img' src={user.avatar} alt={user.name} />
-            <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{profile.handle}</p>
+          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+            <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
+            <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p>
           </div>
       
       )
@@ -105,22 +118,41 @@ class Posts extends Component {
 
     if(posts === null || profiles === undefined || loading) {
       postContent = <Spinner />
+    }
+
+    if(this.state.showMatches) {
+      const arr = []
+      posts.forEach(post => {
+        if(post.text.toLowerCase().includes(this.state.matches.toLowerCase())){
+          arr.push(post)
+        }
+      })
+      postContent = <PostFeed showPreview={ showsPreview } posts={ arr } profiles={ profiles } />
     } else {
-      postContent = <PostFeed showPreview={showsPreview} posts={posts} profiles={profiles} />
+      postContent = <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
     }
 
     return (
       <div className='feed'>
-        <SearchBar profiles={profiles} />
+        <div className='searchbarpost'>
+          <InputGroup 
+            placeholder='search post'
+            name='matches'
+            value={ this.state.matches }
+            onChange={ this.onChange } 
+          />
+          <button onClick={this.onClick} style={{ height: 39, background: 'rgba(0,0,0,0.5)', color: 'blue', padding: 10, border: 'none' }}>i</button>
+        </div>
+        <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='post-feed-social'>Thingy</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
-        <div className='post-feed-form'><PostForm showPreview={showsPreview}/></div>
-        <div className='post-feed-post-content'>{postContent}</div>
+        <div className='post-feed-form'><PostForm showPreview={ showsPreview }/></div>
+        <div className='post-feed-post-content'>{ postContent }</div>
         { highlights ? 
         <div>
-          <div className='post-feed-highlights'><Highlights recentHighlights={orderedHighlights} /></div>
+          <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>
           <p id='post-feed-highlights-title'>Highlights</p>
         </div> : <Spinner /> }
         <div className='stores_container'>{ stores }</div>
