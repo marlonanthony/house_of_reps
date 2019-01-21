@@ -20,15 +20,20 @@ class Posts extends Component {
   state = { 
     showsPreview: false,
     matches: '',
-    showMatches: false
+    showMatches: false,
+    showLikes: false
   }
   
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onClick = e => {
+  onSearchPostClick = e => {
     this.setState( prevState => ({ showMatches: !prevState.showMatches }))
+  }
+
+  showLikesHandler = e => {
+    this.setState( prevState => ({ showLikes: !prevState.showLikes }))
   }
 
   componentDidMount() {
@@ -108,9 +113,10 @@ class Posts extends Component {
       profileContent = <Spinner />
     } else {
       profileContent = (
-          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: '10px' }}>
             <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
             <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p>
+            <button onClick={this.showLikesHandler}>Liked Post</button>
           </div>
       
       )
@@ -128,6 +134,20 @@ class Posts extends Component {
         }
       })
       postContent = <PostFeed showPreview={ showsPreview } posts={ arr } profiles={ profiles } />
+    } 
+    
+    else if(this.state.showLikes) {
+      const likedPost = []
+      for(let i = 0; i < posts.length; i++){
+        for(let j = 0; j < posts[i].likes.length; j++) {
+          if(posts[i].likes[j].user === this.props.auth.user.id) {
+            likedPost.push(posts[i])
+            console.log(posts[i])
+          }
+        }
+      }
+      console.log(likedPost)
+      postContent = <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } />
     } else {
       postContent = <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
     }
@@ -141,7 +161,7 @@ class Posts extends Component {
             value={ this.state.matches }
             onChange={ this.onChange } 
           />
-          <button onClick={this.onClick} style={{ height: 39, background: 'rgba(0,0,0,0.5)', color: 'blue', padding: 10, border: 'none' }}>i</button>
+          <button onClick={this.onSearchPostClick} style={{ height: 40, flex: 1, background: 'rgba(0,0,0,0.5)', color: 'blue', padding: 10, border: 'none' }}>i</button>
         </div>
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
