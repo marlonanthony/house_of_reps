@@ -24,21 +24,20 @@ class SearchBar extends Component {
   render() {
     return (
       <div className='searchbar' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} style={{
-        width: '100%',
+        // width: '100%',
         position: 'relative',
         zIndex: 2,
-        background: 'rgba(0,0,0,0.99)',
-        height: '45px'
+        height: '40px'
         }}>
         <InputGroup 
-          placeholder='reps'
+          placeholder='search reps'
           name='matches'
           value={ this.state.matches }
           onChange={ this.onChange } 
         />
         <i className='fas fa-search' style={{position: 'absolute', right: 0, top: 5, color: 'rgb(55, 131, 194)',}}/>
         { this.state.showMatches ?
-        <ul style={{color: '#ccc', listStyle: 'none', textAlign: 'end', position: 'absolute', top: '65%', right: 0 }}>
+        <ul style={{color: '#ccc', listStyle: 'none', textAlign: 'end', position: 'absolute', top: '60%', right: 0 }}>
           { this.props.profiles ? this.props.profiles.map(profile => (
             profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
             profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 

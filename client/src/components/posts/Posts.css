@@ -18,24 +18,74 @@
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto 1fr auto;
   grid-template-areas:  
     /* 'djpoolsscroll' */
-    'postfeedsocial postfeedhighlights'
+    /* 'postfeedsocial postfeedhighlights' */
+    'searchbarpost searchbar'
     'postform postform'
     'post-feed-post-content post-feed-post-content' 
     'footer footer'
 }
 
 .searchbar {
-  /* grid-area: searchbar;
-  width: 100%; */
-  display: none;
+  grid-area: searchbar;
+  /* display: flex; */
+  right: 3.5vw;
+}
+
+.searchbar_items {
+  padding: 10px; 
+  width: 220px;
+  /* width: 230px;  */
+  /* background: rgba(245, 245, 245, 0.8); */
+  background: rgba(0,0,0,0.5);
+}
+.searchbar_items:hover {
+  background: black;
+  cursor: pointer;
+}
+.searchbar_links {
+  color: rgb(55, 131, 194);
+  text-decoration: none;
+  list-style: none;
 }
 
 .searchbarpost {
-  display: none; 
+  grid-area: searchbarpost;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+
+} 
+.searchbarinput {
+  flex: 8; 
+  background: rgba(0,0,0,0.5); 
+  border: none; 
+  margin-left: 3.5vw;
+  color: #ccc;
+  font-size: 13px;
+  outline: none;
+}
+.searchbarinput::placeholder {
+  font-size: 13px;
+  padding-left: 5px;
+}
+
+.searchbarpostbtn {
+  flex: 1;
+  cursor: pointer;  
+  outline: none; 
+  height: 40; 
+  background: rgba(0,0,0,0.5);
+  color: rgb(55, 131, 194);
+  padding: 10; 
+  border: none;
+}
+.searchbarpostbtn:hover {
+  background: rgba(0,0,0,1);
+
 }
 
 .post-feed-profile {
@@ -75,7 +125,8 @@
 
 .post-feed-social {
   grid-area: postfeedsocial;
-  display: flex;
+  display: none;
+  /* display: flex; */
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
@@ -87,6 +138,7 @@
 }
 .post-feed-highlights {
   grid-area: postfeedhighlights;
+  display: none;
   height: 250px;
   color: #aaa;
   margin: 0 1vw 0 0;
@@ -161,6 +213,9 @@
   .searchbar {
     display: flex;
     justify-content: space-between;
+    right: 0;
+    width: 250px;
+    background: rgba(0,0,0,0.8);
   }
   .searchbar_items {
     padding: 10px; 
@@ -185,6 +240,26 @@
     display: flex;
     justify-content: space-between;
     width: 250px;
+    height: 40px;
+    margin-right: 0;
+  }
+
+  .searchbarinput {
+    margin-left: 0;
+    flex: 7;
+    background: rgba(0,0,0,0.5);
+    outline: none;
+  }
+
+  .searchbarpostbtn {
+    cursor: pointer;  
+    flex: 1; 
+    outline: none; 
+    height: 40; 
+    background: rgba(0,0,0,0.5); 
+    color: rgb(55, 131, 194);
+    padding: 10; 
+    border: none;
   }
 
   .post-feed-profile {

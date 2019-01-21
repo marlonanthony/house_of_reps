@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
+import { Link } from 'react-router-dom'
 import { getPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
@@ -113,12 +114,21 @@ class Posts extends Component {
       profileContent = <Spinner />
     } else {
       profileContent = (
-          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: '10px' }}>
+        <div>
+          <div style={{ padding: '10px' }}>
             <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
-            <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p>
-            <button onClick={this.showLikesHandler}>Liked Post</button>
           </div>
-      
+          <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", padding: '10px' }}>
+            <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}><p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p></Link>
+            <button onClick={this.showLikesHandler} style={{
+              padding: 10, 
+              background: 'rgba(0,0,0,0.5)', 
+              color: 'rgb(55, 131, 194)', 
+              cursor: 'pointer',
+              border: 'none',
+              outline: 'none'}}>Liked Post</button>
+          </div>
+        </div>
       )
     }
 
@@ -155,13 +165,16 @@ class Posts extends Component {
     return (
       <div className='feed'>
         <div className='searchbarpost'>
-          <InputGroup 
+          <input
             placeholder='search post'
             name='matches'
             value={ this.state.matches }
-            onChange={ this.onChange } 
+            onChange={ this.onChange }
+            className='searchbarinput'
           />
-          <button onClick={this.onSearchPostClick} style={{ height: 40, flex: 1, background: 'rgba(0,0,0,0.5)', color: 'blue', padding: 10, border: 'none' }}>i</button>
+          <button className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
+            <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
+          </button>
         </div>
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
