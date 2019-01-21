@@ -31,7 +31,7 @@ class SearchBar extends Component {
         height: '45px'
         }}>
         <InputGroup 
-          placeholder='search'
+          placeholder='reps'
           name='matches'
           value={ this.state.matches }
           onChange={ this.onChange } 

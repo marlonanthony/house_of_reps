@@ -184,16 +184,16 @@
     grid-area: searchbarpost;
     display: flex;
     justify-content: space-between;
-    width: 240px;
+    width: 250px;
   }
 
   .post-feed-profile {
-    display: block;
+    display: flex;
+    justify-content: center;
     grid-area: profile;
-    padding: 5px 5px 0 5px;
     background: rgba(0,0,0,0.5);
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 250px;
     /* background: rgba(2, 4, 5, 0.884); */
   }
 
@@ -227,8 +227,8 @@
   .stores_container {
     grid-area: stores;
     display: flex;
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 250px;
     /* height: 150px;
     width: 170px; */
     border-radius: 2%;
@@ -238,8 +238,8 @@
   .djpools {
     grid-area: djpools;
     display: flex;
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 250px;
     /* width: 170px;
     height: 150px; */
     overflow-x: hidden;
@@ -248,8 +248,8 @@
   .perks_and_hookups {
     grid-area: perks;
     display: flex;
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 250px;
     /* width: 170px;
     height: 150px; */
     overflow-x: hidden;
@@ -260,8 +260,8 @@
   .certified_brands {
     grid-area: brands;
     display: flex;
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 250px;
     /* width: 170px;
     height: 150px; */
     overflow-x: hidden;
