@@ -42,7 +42,7 @@ export default class CertifiedStores extends Component {
   // }
 
   render() {
-    const { store, stores } = this.props 
+    const { stores } = this.props 
 
     // const storesModal = this.state.showModal ? (
     //   <Fragment>

@@ -3,7 +3,7 @@ import Moment from 'react-moment'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import './Highlights.css'
-import Spinner from '../../../common/Spinner';
+// import Spinner from '../../../common/Spinner';
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
 
 export default class Highlights extends Component {

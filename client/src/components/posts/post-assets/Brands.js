@@ -42,7 +42,7 @@ export default class Brands extends Component {
   // }
 
   render() {
-    const { brand, brands } = this.props 
+    const { brands } = this.props 
 
     // const brandsModal = this.state.showModal ? (
     //   <Fragment>

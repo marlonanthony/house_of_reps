@@ -180,7 +180,6 @@ class Posts extends Component {
         for(let j = 0; j < posts[i].likes.length; j++) {
           if(posts[i].likes[j].user === this.props.auth.user.id) {
             likedPost.push(posts[i])
-            console.log(posts[i])
           }
         }
       }
@@ -200,9 +199,14 @@ class Posts extends Component {
             onChange={ this.onChange }
             className='searchbarinput'
           />
-          <button className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
-            <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
-          </button>
+          { this.state.showMatches
+            ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
+                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
+              </button>)
+            : (<button className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
+                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
+              </button>)
+          }
         </div>
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
@@ -218,6 +222,12 @@ class Posts extends Component {
         </div> : <Spinner /> }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
+        <div className='test'>
+          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
+          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
+          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
+          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
+        </div>
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
       </div>
     )

@@ -42,7 +42,7 @@ export default class DjPools extends Component {
   // }
 
   render() {
-    const { djpool, djpools } = this.props 
+    const { djpools } = this.props 
     
     // const djpoolsModal = this.state.showModal ? (
     //   <Fragment>

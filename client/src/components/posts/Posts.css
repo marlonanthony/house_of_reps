@@ -161,6 +161,10 @@
   margin-left: 10px;
 }
 
+.test {
+  display: none;
+}
+
 .stores_container {
   display: none;
 }
@@ -207,7 +211,7 @@
       'searchbarpost postform searchbar'
       'profile post-feed-post-content postfeedhighlights'
       /* 'postfeedsocials post-feed-post-content postfeedhighlights' */
-      'djpools post-feed-post-content stores'
+      'test post-feed-post-content stores'
       'perks post-feed-post-content brands'; 
   }
 
@@ -290,6 +294,15 @@
     margin: 0;
   }
 
+  .test {
+    grid-area: test;
+    display: flex;
+    /* overflow: hidden; */
+    width: 250px;
+    height: 250px;
+    flex-wrap: wrap;
+  }
+
   .post-feed-highlights {
     grid-area: postfeedhighlights;
     display: flex;
@@ -312,7 +325,7 @@
 
   .djpools {
     grid-area: djpools;
-    display: flex;
+    display: none;
     width: 250px;
     height: 250px;
     /* width: 170px;

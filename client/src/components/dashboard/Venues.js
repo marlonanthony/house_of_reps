@@ -30,7 +30,7 @@ class Venues extends Component {
           : null 
         }
         { venue.image && !venue.video ? 
-            <img src={venue.image} width='100%' height='100%'/>
+            <img src={venue.image} alt='highlight' width='100%' height='100%'/>
             : null 
         }
         <p style={{padding: '10px'}}>{venue.description}</p>

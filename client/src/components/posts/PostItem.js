@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import classnames from 'classnames' 
 import Moment from 'react-moment' 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
@@ -96,8 +96,8 @@ class PostItem extends Component {
     
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
       ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                             .replace(/watch\?v\=/gi, 'embed/')
-                             .replace(/\&feature\=www\.youtube\.com/gi, '')
+                             .replace(/watch\?v=/gi, 'embed/')
+                             .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null 
 
     const postModal = this.state.showModal ? (
@@ -141,7 +141,7 @@ class PostItem extends Component {
                   ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
                       <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
                     </div>
-                  : <a href={post.url} target='_blank'>
+                  : <a href={post.url} target='_blank' rel='noopener noreferrer'>
                       <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
                     </a> 
                   }

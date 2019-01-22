@@ -68,8 +68,8 @@ class CommentItem extends Component {
     
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
       ? youtubeUrl = comment.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                             .replace(/watch\?v\=/gi, 'embed/')
-                             .replace(/\&feature\=www\.youtube\.com/gi, '')
+                             .replace(/watch\?v=/gi, 'embed/')
+                             .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null 
 
     const commentsModal = this.state.showModal ? (

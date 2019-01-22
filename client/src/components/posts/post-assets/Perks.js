@@ -42,7 +42,7 @@ export default class Perks extends Component {
   // }
 
   render() {
-    const { perk, perks } = this.props 
+    const { perks } = this.props 
     
     // const perksModal = this.state.showModal ? (
     //   <Fragment>

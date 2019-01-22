@@ -28,7 +28,7 @@ class SearchPost extends Component {
           value={ this.state.matches }
           onChange={ this.onChange } 
         />
-        <i className='fas fa-search' style={{position: 'absolute', right: 0, top: 5, color: 'rgb(55, 131, 194)',}}/>
+        <i className='fas fa-search' style={{position: 'absolute', right: 0, top: 5, color: 'rgb(55, 131, 194)', }}/>
         { this.state.showMatches ?
         <ul style={{color: '#ccc', listStyle: 'none', textAlign: 'end', position: 'absolute', top: '65%', right: 0 }}>
           { this.props.profiles ? this.props.profiles.map(profile => (
