@@ -75,7 +75,6 @@ class CommentItem extends Component {
     const commentsModal = this.state.showModal ? (
       <Fragment> 
         <CommentsModal>
-          {/* <p id='comment-modal-text'>{comment.text}</p> */}
           <PostModalText postText={comment.text} />
           <img src={comment.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
         </CommentsModal>
@@ -114,14 +113,13 @@ class CommentItem extends Component {
               : ( 
                   <div className='comment-wrapper'>
                     <CommentText commentText={comment.text} />
-                    <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
+                    <div style={{ background: 'rgba(0, 0, 0, 0.5)', borderRadius: '5px' }}>
                       { youtubeUrl 
-                      ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+                      ? 
+                        // <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
                           <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
-                          {/* <p style={{textAlign: 'center', fontSize: '12px'}}>{comment.title}</p>
-                          <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{comment.description}</p> */}
-                        </div>
-                      : <a href={comment.url} target='_blank' id='comment-anchor-container'>
+                        // </div>
+                      : <a href={comment.url} target='_blank' rel='noopener noreferrer' id='comment-anchor-container'>
                           <div id='comment-link-container'>
                             <img src={comment.image} alt='thumbnail' id='comment-link-img' />
                             <div id='comments-grandson'>

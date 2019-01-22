@@ -23,7 +23,7 @@ export default function CommentText({ commentText }) {
   
 
   return (
-    <p className='post_content' >
+    <p className='post_content' style={{fontSize: '13px'}}>
       { replacedText }
     </p>
   )

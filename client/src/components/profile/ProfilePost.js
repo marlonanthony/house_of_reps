@@ -7,7 +7,7 @@ import PostItem from '../posts/PostItem'
 
 class ProfilePost extends Component {
   state = {
-    showLikes: false 
+    showLikes: false
   }
 
   componentDidMount() {

@@ -115,18 +115,46 @@ class Posts extends Component {
     } else {
       profileContent = (
         <div>
-          <div style={{ padding: '10px' }}>
+          <div style={{ padding: '10px', textAlign: 'center' }}>
             <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
           </div>
           <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", padding: '10px' }}>
             <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}><p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p></Link>
-            <button onClick={this.showLikesHandler} style={{
-              padding: 10, 
-              background: 'rgba(0,0,0,0.5)', 
-              color: 'rgb(55, 131, 194)', 
-              cursor: 'pointer',
-              border: 'none',
-              outline: 'none'}}>Liked Post</button>
+            <div style={{display: 'flex', justifyContent: 'space-between' }}>
+              <button onClick={this.showLikesHandler} style={{
+                padding: 10, 
+                margin: '0px 2px',
+                flex: 1,
+                background: 'rgba(0,0,0,0.5)', 
+                color: 'rgb(55, 131, 194)', 
+                cursor: 'pointer',
+                border: 'none',
+                outline: 'none'}}>
+                  Liked Post
+              </button>
+              <button style={{
+                padding: 10, 
+                margin: '0px 2px',
+                flex: 1,
+                background: 'rgba(0,0,0,0.5)', 
+                color: 'rgb(55, 131, 194)', 
+                cursor: 'pointer',
+                border: 'none',
+                outline: 'none'}}>
+                New Blog Post
+              </button>
+              <button style={{
+                padding: 10, 
+                margin: '0px 2px',
+                flex: 1,
+                background: 'rgba(0,0,0,0.5)', 
+                color: 'rgb(55, 131, 194)', 
+                cursor: 'pointer',
+                border: 'none',
+                outline: 'none'}}>
+                <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
+              </button>
+            </div>
           </div>
         </div>
       )

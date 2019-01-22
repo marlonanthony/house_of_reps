@@ -23,7 +23,7 @@ export default function PostText({ postText }) {
   
 
   return (
-    <p className='post_content' >
+    <p className='post_content' style={{textAlign: 'center'}} >
       { replacedText }
     </p>
   )
