@@ -14,6 +14,7 @@ import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
 // import InputGroup from '../common/InputGroup'
+
 import './Posts.css'
 
 class Posts extends Component {
@@ -114,7 +115,7 @@ class Posts extends Component {
       profileContent = <Spinner />
     } else {
       profileContent = (
-        <div>
+        <div className='postscontainertest'>
           <div style={{ padding: '10px', textAlign: 'center' }}>
             <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
           </div>
@@ -235,10 +236,20 @@ class Posts extends Component {
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='test'>
+
+                             {/*                 testing animation                          */}
+                             {/*              good place to map over array                  */}
+
+          <div className='test2'>
+            <img src={require('../../img/djpoolsdjcity.jpg')} width='100%' height='100%' alt=""/>
+            <img src={require('../../img/djpoolsDMS.jpg')} width='100%' height='100%' alt=""/>
+            <img src={require('../../img/djpoolsCKillers.jpg')} width='100%' height='100%' alt=""/>
+            <img src={require('../../img/hor-icon.jpg')} width='100%' height='100%' alt=""/>
+          </div>
+          {/* <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
           <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
           <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
-          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
-          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
+          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/> */}
         </div>
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
       </div>

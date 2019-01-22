@@ -297,10 +297,37 @@
   .test {
     grid-area: test;
     display: flex;
-    /* overflow: hidden; */
     width: 250px;
     height: 250px;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+
+    /* testing animation */
+    position: relative;
+    /* margin-left: 0; */
+    overflow: hidden;
+
+
+    
+  }
+
+  .postscontainertest {
+    background-image: url('../../img/dj.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .test2 {
+    display: flex;
+    /* position: absolute; */
+    height: 250px;
+    width: 250px;
+    margin-left: 0;
+    /* margin-left: 0; */
+    transition: margin-left 8s;
+    transition-timing-function: cubic-bezier(0.4,0,0.58,1);
+  }
+  .test2:hover {
+    margin-left: -750px;
   }
 
   .post-feed-highlights {
