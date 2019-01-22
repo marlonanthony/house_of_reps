@@ -121,7 +121,19 @@ class Posts extends Component {
           <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", padding: '10px' }}>
             <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}><p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p></Link>
             <div style={{display: 'flex', justifyContent: 'space-between' }}>
-              <button onClick={this.showLikesHandler} style={{
+              { this.state.showLikes
+                ? (<button onClick={this.showLikesHandler} style={{
+                padding: 10, 
+                margin: '0px 2px',
+                flex: 1,
+                background: 'black', 
+                color: 'rgb(55, 131, 255)', 
+                cursor: 'pointer',
+                border: 'none',
+                outline: 'none'}}>
+                  Liked Post
+              </button>)
+              : (<button onClick={this.showLikesHandler} style={{
                 padding: 10, 
                 margin: '0px 2px',
                 flex: 1,
@@ -131,7 +143,7 @@ class Posts extends Component {
                 border: 'none',
                 outline: 'none'}}>
                   Liked Post
-              </button>
+              </button>)}
               <button style={{
                 padding: 10, 
                 margin: '0px 2px',
@@ -141,7 +153,7 @@ class Posts extends Component {
                 cursor: 'pointer',
                 border: 'none',
                 outline: 'none'}}>
-                New Blog Post
+                Add Blog Post
               </button>
               <button style={{
                 padding: 10, 
@@ -201,7 +213,7 @@ class Posts extends Component {
           />
           { this.state.showMatches
             ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
-                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
+                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 255)' }}/>
               </button>)
             : (<button className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
                 <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
