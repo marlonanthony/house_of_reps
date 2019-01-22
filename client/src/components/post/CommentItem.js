@@ -51,18 +51,26 @@ class CommentItem extends Component {
   render() {
     const { postId, auth } = this.props 
     const { comment } = this.state
-    let userHandle
+    // let userHandle
 
-    if(!this.props.profiles){
-      userHandle = null 
-    } else {
-      this.props.profiles.map(profile => {
-        // if(profile.user._id === comment.user) {
-          userHandle = <p className='comment-feed-name'>{comment.name}</p>
-          // userHandle = <p className='comment-feed-name'>{profile.user.name}</p>
-        // }
-      })
-    }
+    // if(!this.props.profiles){
+    //   userHandle = null 
+    // } else {
+    //   this.props.profiles.map(profile => {
+    //     // if(profile.user._id === comment.user) {
+    //       userHandle = <p className='comment-feed-name'>{comment.name}</p>
+    //       // userHandle = <p className='comment-feed-name'>{profile.user.name}</p>
+    //     // }
+    //   })
+    // }
+
+    let youtubeUrl = comment.url
+    
+    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+      ? youtubeUrl = comment.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                             .replace(/watch\?v\=/gi, 'embed/')
+                             .replace(/\&feature\=www\.youtube\.com/gi, '')
+      : youtubeUrl = null 
 
     const commentsModal = this.state.showModal ? (
       <Fragment> 
@@ -106,7 +114,25 @@ class CommentItem extends Component {
               : ( 
                   <div className='comment-wrapper'>
                     <CommentText commentText={comment.text} />
-                    <div id='wrap-comment-link'>
+                    <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
+                      { youtubeUrl 
+                      ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+                          <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
+                          {/* <p style={{textAlign: 'center', fontSize: '12px'}}>{comment.title}</p>
+                          <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{comment.description}</p> */}
+                        </div>
+                      : <a href={comment.url} target='_blank' id='comment-anchor-container'>
+                          <div id='comment-link-container'>
+                            <img src={comment.image} alt='thumbnail' id='comment-link-img' />
+                            <div id='comments-grandson'>
+                              <p id='comments-title'>{comment.title}</p>
+                              <p id='comments-description'>{comment.description}</p>
+                            </div>
+                          </div>
+                        </a>
+                      }
+                    </div>
+                    {/* <div id='wrap-comment-link'>
                       <a href={comment.url} target='_blank' id='comment-anchor-container'>
                         <div id='comment-link-container'>
                           <img src={comment.image} alt='thumbnail' id='comment-link-img' />
@@ -116,7 +142,7 @@ class CommentItem extends Component {
                           </div>
                         </div>
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 )
             }

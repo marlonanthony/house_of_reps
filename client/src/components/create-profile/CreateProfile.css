@@ -52,19 +52,19 @@
 }
 
 .social-links {
-  font-size: 17px;
+  font-size: 13px;
   border: none;
   /* width: 50vw; */
   width: 100%;
   outline: none;
   color: #aaa;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.01);
   padding: 5px;
   height: 30px;
 }
 
 .social-links::placeholder {
-  color: rgb(24, 100, 161);
+  color: rgb(55, 131, 194);
 }
 
 #create-profile-submit-button {
