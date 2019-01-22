@@ -18,7 +18,7 @@ class ProfilePost extends Component {
   render() {
     const { posts, loading } = this.props.post 
     let postContent 
-    let likedPost = []
+    // let likedPost = []
     if(posts === null || loading) {
       postContent = <Spinner />
     } else {

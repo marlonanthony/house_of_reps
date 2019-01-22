@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import reactStringReplace from 'react-string-replace'
 import { Link } from 'react-router-dom'
-
+import './PostText.css'
 
 
 export default class PostText extends Component {
@@ -10,25 +10,25 @@ export default class PostText extends Component {
  
     // Match URLs
     replacedText = reactStringReplace(this.props.postText, /(https?:\/\/\S+)/g, (match, i) => (
-      <a key={match + i} href={match}>{match}</a>
+      <a className='post_text_urls' key={match + i} href={match} target='_blank' rel='noopener noreferrer'>{match}</a>
     ));
      
     // Match @-mentions
     replacedText = reactStringReplace(replacedText, /@(\w+)/g, (match, i) => (
-      <Link key={match + i} to={`/profile/${match}`}>@{match}</Link>
+      <Link className='post_text_mentions' key={match + i} to={`/profile/${match}`}>@{match}</Link>
     ));
      
     // Match hashtags
     replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => (
-      <a key={match + i} target='_blank' href={`https://twitter.com/hashtag/${match}`}>#{match}</a>
+      <a className='post_text_hashtags' key={match + i} target='_blank' rel='noopener noreferrer' href={`https://twitter.com/hashtag/${match}`}>#{match}</a>
     ));
       
     
   
     return (
-      <div className='post_content' >
+      <p className='post_content' >
         { replacedText }
-      </div>
+      </p>
     )
   }
 }

@@ -1,0 +1,14 @@
+.post_text_mentions {
+  text-decoration: none;
+  color: rgb(55, 131, 194);
+}
+
+.post_text_hashtags {
+  text-decoration: none;
+  color: rgb(55, 131, 194);
+}
+
+.post_text_urls {
+  text-decoration: none;
+  color: rgb(55, 131, 194);
+}

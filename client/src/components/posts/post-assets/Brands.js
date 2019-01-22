@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 // import PostAssetsModal from '../../UI/modal/PostAssetsModal'
 // import Backdrop from '../../UI/backdrop/Backdrop'
 import Arrow from '../../UI/arrow_glyph/Arrow'

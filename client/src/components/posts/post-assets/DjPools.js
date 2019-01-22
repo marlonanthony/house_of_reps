@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import PostAssetsModal from '../../UI/modal/PostAssetsModal'
+import React, { Component } from 'react'
+// import PostAssetsModal from '../../UI/modal/PostAssetsModal'
 import Backdrop from '../../UI/backdrop/Backdrop'
 import Arrow from '../../UI/arrow_glyph/Arrow'
 import './DjPools.css'
@@ -77,7 +77,7 @@ export default class DjPools extends Component {
           overflowX: 'hidden',
         }}>
           <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
-          <a href={djpools[this.state.currentImageIndex].url} target='_blank'>
+          <a href={djpools[this.state.currentImageIndex].url} target='_blank' rel='noopener noreferrer'>
             <img src={djpools[this.state.currentImageIndex].image} alt={djpools[this.state.currentImageIndex].url} style={{height: '100%', width: '100%' }} />
           </a>
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />

@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
@@ -13,7 +13,7 @@ import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
-import InputGroup from '../common/InputGroup'
+// import InputGroup from '../common/InputGroup'
 import './Posts.css'
 
 class Posts extends Component {
