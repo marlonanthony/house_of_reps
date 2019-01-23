@@ -47,7 +47,7 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
-    const { showsPreview } = this.state
+    const { showsPreview, showLikes, showMatches, matches } = this.state
     const { user } = this.props.auth
     let postContent 
     let profileContent
@@ -133,18 +133,19 @@ class Posts extends Component {
                 border: 'none',
                 outline: 'none'}}>
                   Liked Post
-              </button>)
-              : (<button onClick={this.showLikesHandler} style={{
-                padding: 10, 
-                margin: '0px 2px',
-                flex: 1,
-                background: 'rgba(0,0,0,0.5)', 
-                color: 'rgb(55, 131, 194)', 
-                cursor: 'pointer',
-                border: 'none',
-                outline: 'none'}}>
-                  Liked Post
-              </button>)}
+                </button>)
+                : (<button onClick={this.showLikesHandler} style={{
+                  padding: 10, 
+                  margin: '0px 2px',
+                  flex: 1,
+                  background: 'rgba(0,0,0,0.5)', 
+                  color: 'rgb(55, 131, 194)', 
+                  cursor: 'pointer',
+                  border: 'none',
+                  outline: 'none'}}>
+                    Liked Post
+                </button>)
+              }
               <button style={{
                 padding: 10, 
                 margin: '0px 2px',
@@ -177,26 +178,25 @@ class Posts extends Component {
       postContent = <Spinner />
     }
 
-    if(this.state.showMatches) {
+    if(showMatches) {
       const arr = []
       posts.forEach(post => {
-        if(post.text.toLowerCase().includes(this.state.matches.toLowerCase())){
+        if(post.text.toLowerCase().includes(matches.toLowerCase())) {
           arr.push(post)
         }
       })
       postContent = <PostFeed showPreview={ showsPreview } posts={ arr } profiles={ profiles } />
     } 
     
-    else if(this.state.showLikes) {
+    else if(showLikes) {
       const likedPost = []
       for(let i = 0; i < posts.length; i++){
         for(let j = 0; j < posts[i].likes.length; j++) {
-          if(posts[i].likes[j].user === this.props.auth.user.id) {
+          if(posts[i].likes[j].user === user.id) {
             likedPost.push(posts[i])
           }
         }
       }
-      console.log(likedPost)
       postContent = <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } />
     } else {
       postContent = <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
@@ -208,7 +208,7 @@ class Posts extends Component {
           <input
             placeholder='search post'
             name='matches'
-            value={ this.state.matches }
+            value={ matches }
             onChange={ this.onChange }
             className='searchbarinput'
           />
