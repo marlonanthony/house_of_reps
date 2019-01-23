@@ -198,7 +198,7 @@
 
 @media (min-width: 1250px) {
   .profile-header {
-    margin: 0 7vw;
+    margin: 0 9vw;
     padding: 0;
     display: grid;
     grid-template-columns: auto 1fr auto;
