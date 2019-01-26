@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import Dropzone from 'react-dropzone' 
@@ -68,9 +68,7 @@ class AddBrand extends Component {
     const { errors } = this.state 
     return (
       <div className='add-djpool'>
-        <Link to='/dashboard'>
-          <i id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        </Link>
+        <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Brand</h1>
         {/* setting input div classname to djpools for lack of repitition */}
         <div className='djpools_input_wrapper'>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
@@ -265,9 +265,7 @@ class EditProfile extends Component {
     return (
       <div className='edit-profile-background'>
         <div className='edit-profile'>
-          <Link to='/dashboard'>
-            <i id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-          </Link>
+          <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
           <h1 style={{ textAlign: 'center', color: '#aaa' }}>Edit Profile</h1>
           <div className='row'>
             <div className='edit-profile-dropzone'>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import Dropzone from 'react-dropzone' 
@@ -88,9 +88,7 @@ class AddVenue extends Component {
     const { errors } = this.state 
     return (
       <div className='add-venue'>
-        <Link to='/dashboard'>
-          <i id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        </Link>
+        <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Event</h1>
         <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
         <div style={{ }}>
