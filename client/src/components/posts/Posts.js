@@ -241,6 +241,7 @@ class Posts extends Component {
                              {/*              good place to map over array                  */}
 
           <div className='test2'>
+            <img src={require('../../img/repsbuttons.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsdjcity.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsDMS.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsCKillers.jpg')} width='100%' height='100%' alt=""/>
