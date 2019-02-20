@@ -8,7 +8,8 @@ import {
   ADD_COMMENT,
   GET_POST,
   CLEAR_ERRORS,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  GET_MORE_POSTS
 } from './types' 
 
 // Add Post 
@@ -26,9 +27,9 @@ export const addPost = postData => dispatch => {
 }
 
 // Get Posts 
-export const getPosts = () => dispatch => {
+export const getPosts = (count, start) => dispatch => {
   dispatch(setPostLoading()) 
-  axios.get('/api/posts')
+  axios.get(`/api/posts?&page=${start}&limit=${count}`)
   .then(res => dispatch({
     type: GET_POSTS,
     payload: res.data 
@@ -37,6 +38,17 @@ export const getPosts = () => dispatch => {
     type: GET_POSTS,
     payload: null
   }))
+}
+
+// Get More Posts
+export const getMorePosts = (count, start) => dispatch => {
+  dispatch(setPostLoading())
+  axios.get(`/api/posts?page=${start}&limit=${count}`)
+  .then(res => dispatch({
+    type: GET_MORE_POSTS,
+    payload: res.data
+  }))
+  .catch(err => console.log(err)) 
 }
 
 // Get Post 

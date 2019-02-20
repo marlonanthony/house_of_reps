@@ -5,7 +5,8 @@ import {
   DELETE_POST, 
   DELETE_COMMENT,
   ADD_COMMENT,
-  GET_POST 
+  GET_POST,
+  GET_MORE_POSTS
 } from '../actions/types'
 
 const initialState = { 
@@ -26,6 +27,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         posts: action.payload,
+        loading: false 
+      }
+    
+    case GET_MORE_POSTS:
+      return {
+        ...state,
+        posts: [...state.posts, ...action.payload],
         loading: false 
       }
 
