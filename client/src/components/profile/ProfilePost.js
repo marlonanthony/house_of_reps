@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
+import InfinteScroll from 'react-infinite-scroll-component'
 import Spinner from '../common/Spinner' 
-import { getPosts } from '../../actions/postActions'
+import { getPosts, getMorePosts } from '../../actions/postActions'
 import PostItem from '../posts/PostItem'
 
 class ProfilePost extends Component {
   state = {
-    showLikes: false
+    showLikes: false,
+    // pagination
+    count: 30,
+    start: 0
   }
 
   componentDidMount() {
-    this.props.getPosts() 
-    
+    this.props.getPosts(this.state.count, this.state.start) 
+    this.setState(prevState => ({ start: prevState.start + 1 }))
+  }
+
+  fetchMore = () => {
+    const { count, start } = this.state 
+    this.props.getMorePosts(count, start)
+    this.setState( prevState => ({ start: prevState.start + 1 }))
   }
 
   render() {
@@ -28,7 +38,13 @@ class ProfilePost extends Component {
 
     return (
       <div style={{ marginBottom: 70 }}>
-         {postContent}
+        <InfinteScroll
+        dataLength={posts.length}
+        next={this.fetchMore}
+        hasMore={true}
+        loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+          {postContent}
+        </InfinteScroll>
       </div>
     )
   }
@@ -44,4 +60,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { getPosts })(ProfilePost) 
+export default connect(mapStateToProps, { getPosts, getMorePosts })(ProfilePost) 

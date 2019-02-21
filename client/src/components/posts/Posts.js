@@ -203,7 +203,7 @@ class Posts extends Component {
         next={this.fetchMore}
         hasMore={true}
         loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-          <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
+          <PostFeed showPreview={ showsPreview } posts={ arr } profiles={ profiles } />
         </InfinteScroll>
       )
     } 
