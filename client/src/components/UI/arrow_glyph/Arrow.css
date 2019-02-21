@@ -3,7 +3,7 @@
   cursor: pointer;
   font-size: 25px;
   position: absolute;
-  background: rgba(0,0,0,0.4);
+  /* background: rgba(0,0,0,0.4); */
 }
 
 .slide-arrow:hover {

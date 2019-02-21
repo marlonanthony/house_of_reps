@@ -19,17 +19,32 @@ router.get('/test', (req, res) => res.json({ msg: 'Posts Works' }))
 // @route         GET api/posts
 // @description   Get posts
 // @access        Public
-// router.get('/', (req, res) => {
-//   Post.find().sort({ date: -1 }).then(posts => res.json(posts))
-//   .catch(err => res.status(404).json({ nopostsfound: 'No posts found' })) 
-// })
 router.get('/', (req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
+
   }
 
   Post.find()
+  .sort({ date: -1 })
+  .skip(pageOptions.page * pageOptions.limit)
+  .limit(pageOptions.limit)
+  .then(posts => res.json(posts))
+  .catch(err => res.status(404).json({ nopostsfound: 'No posts found' })) 
+})
+
+// @route         GET api/posts/search
+// @description   Get posts
+// @access        Public
+router.get(`/search/:search`, (req, res) => {
+  const pageOptions = {
+    page: parseInt(req.query.page) || 0, 
+    limit: parseInt(req.query.limit) || 10,
+    search: req.params.search
+  }
+
+  Post.find({$text: {$search: pageOptions.search}})
   .sort({ date: -1 })
   .skip(pageOptions.page * pageOptions.limit)
   .limit(pageOptions.limit)

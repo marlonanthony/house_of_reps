@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts } from '../../actions/postActions'
+import { getPosts, getMorePosts, getMatchingPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
 import Spinner from '../common/Spinner' 
@@ -190,13 +190,22 @@ class Posts extends Component {
     }
 
     if(showMatches) {
+      // this.props.getMatchingPosts(matches.toLowerCase())
       const arr = []
       posts.forEach(post => {
         if(post.text.toLowerCase().includes(matches.toLowerCase())) {
           arr.push(post)
         }
       })
-      postContent = <PostFeed showPreview={ showsPreview } posts={ arr } profiles={ profiles } />
+      postContent = (
+        <InfinteScroll
+        dataLength={posts.length}
+        next={this.fetchMore}
+        hasMore={true}
+        loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+          <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
+        </InfinteScroll>
+      )
     } 
     
     else if(showLikes) {
@@ -208,7 +217,15 @@ class Posts extends Component {
           }
         }
       }
-      postContent = <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } />
+      postContent = (
+        <InfinteScroll
+        dataLength={posts.length}
+        next={this.fetchMore}
+        hasMore={true}
+        loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+          <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } />
+        </InfinteScroll>
+      )
     } else {
       postContent = (
         <InfinteScroll
@@ -246,6 +263,15 @@ class Posts extends Component {
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'><PostForm showPreview={ showsPreview }/></div>
+        <div className='img_test'>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/BUTTONSGS.png')} alt=""/>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/DJMIXES.png')} alt=""/>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/GEARMARKETPNG.png')} alt=""/>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/NEWS.png')} alt=""/>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/REPSFLOOR.png')} alt=""/>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/VIDEO.png')} alt=""/>
+          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/MUSIC.png')} alt=""/>
+        </div>
         <div className='post-feed-post-content'>{ postContent }</div>
         { highlights ? 
         <div>
@@ -283,7 +309,8 @@ Posts.propTypes = {
   auth: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
   getProfiles: PropTypes.func.isRequired,
-  getMorePosts: PropTypes.func.isRequired
+  getMorePosts: PropTypes.func.isRequired,
+  getMatchingPosts: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -292,4 +319,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts })(Posts) 
+export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getMatchingPosts })(Posts) 
