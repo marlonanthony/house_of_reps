@@ -10,7 +10,6 @@ import './Profile.css'
 
 class Profile extends Component {
   componentDidMount() {
-    console.log(this.props) 
     if(this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle) 
     }

@@ -44,11 +44,11 @@ class PostItem extends Component {
     this.props.addLike(id)
     
     const { auth } = this.props 
-    if(this.state.likes.map(like => like.user === auth.user.id).length <= 0){
-      let newLike = this.state.likes.concat(id) 
+    const likesArr = this.state.likes 
+    if(likesArr.map(like => like.user === auth.user.id).length <= 0){
+      let newLike = likesArr.concat(id) 
       this.setState(prevState => ({ likes: newLike }))
-      // this.setState(prevState => ({ likes: prevState.likes.concat(id) }))
-      this.setState(prevState => ({ liked: true }))
+      this.setState({ liked: true })
     }
   }
 
