@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import classnames from 'classnames' 
-import { deleteComment, getPosts, addCommentLike } from '../../actions/postActions' 
+import { deleteComment, getPosts, addCommentLike, removeCommentLike } from '../../actions/postActions' 
 import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
@@ -35,19 +35,17 @@ class CommentItem extends Component {
     const { auth } = this.props 
     this.props.addCommentLike(postId, commentId)
     this.setState(prevState => ({ commentLikes: prevState.commentLikes.concat({ user: auth.user.id }), liked: true }))
-    // const { auth } = this.props 
-    // const likesArr = [...this.state.likes] 
-    // if(likesArr.filter(like => like.user === auth.user.id).length <= 0){
-    //   let newLike = likesArr.concat({
-    //     user: id
-    //   }) 
-    //   this.setState({ likes: newLike, liked: true })
-    //   console.log(newLike.filter(like => like.user === auth.user.id).length)
-    // }
-    
-    // console.log(this.state.likes)
-    // console.log(this.props.post)
-    // console.log(newLike)
+  }
+
+  onUnlikeClick = (postId, commentId) => {
+    const { auth } = this.props 
+    this.props.removeCommentLike(postId, commentId)
+    // const index = this.state.commentLikes.map(like => like.user).indexOf(auth.user.id)
+    // console.log(index)
+    if(this.state.commentLikes.map(like => like.user === auth.user.id).length > 0) {
+      // this.setState(prevState => ({ commentLikes: prevState.commentLikes.splice(index, 1), liked: false }))
+      this.setState(prevState => ({ commentLikes: prevState.commentLikes.slice(1), liked: false }))
+    }
   }
 
   findUserLike = likes => {
@@ -122,14 +120,6 @@ class CommentItem extends Component {
             <p className='comment-feed-name'>{comment.name}</p>
             <p id='comment-feed-date'><Moment format='MM/DD/YYYY'>{comment.date}</Moment></p>
           </div>
-          { comment.user === auth.user.id ? (
-          <button 
-            onDoubleClick={this.onDeleteClick.bind(this, postId, comment._id)} 
-            type="button" 
-            title='Double click to delete comment'
-            id='commment-feed-delete-button'>
-            <i className="fas fa-times comment-feed-delete-icon" />
-          </button> ) : null }
           <div id='comment_content_container'>
             { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
               ? <CommentText commentText={comment.text} />
@@ -163,18 +153,34 @@ class CommentItem extends Component {
                 )
             }
           </div>
-          <button 
-            title='like comment'
-            // className='postfeed_buttons'
-            onClick={this.onLikeClick.bind(this, postId, comment._id)}
-            className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-              'liked' : this.findUserLike(comment.likes)
-            })}
-            // onClick={this.onLikeClick.bind(this, post._id)}
-            >
-            <i className='fas fa-thumbs-up icons like'></i>
-            <span>{this.state.commentLikes.length}</span>
-          </button>
+          <div>
+            <button 
+              title='like comment'
+              // className='postfeed_buttons'
+              onClick={this.onLikeClick.bind(this, postId, comment._id)}
+              className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
+                'liked' : this.findUserLike(comment.likes)
+              })}
+              // onClick={this.onLikeClick.bind(this, post._id)}
+              >
+              <i className='fas fa-thumbs-up icons like'></i>
+              <span>{this.state.commentLikes.length}</span>
+            </button>
+            <button 
+              title='unlike'
+              className='postfeed_buttons'
+              onClick={this.onUnlikeClick.bind(this, postId, comment._id)}>
+              <i className="fas fa-thumbs-down icons" id='unlike'></i>
+            </button>
+            { comment.user === auth.user.id ? (
+            <button 
+              title='double click to delete'
+              className='postfeed_buttons delete'
+              onDoubleClick={this.onDeleteClick.bind(this, postId, comment._id)}>
+              <i className="fas fa-times icons" />
+            </button> 
+            ) : null }
+          </div>
         </div>
       </Fragment>
     )
@@ -184,6 +190,7 @@ class CommentItem extends Component {
 CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   addCommentLike: PropTypes.func.isRequired,
+  removeCommentLike: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -193,4 +200,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike })(withRouter(CommentItem))
+export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike })(withRouter(CommentItem))

@@ -50,12 +50,7 @@ class PostItem extends Component {
         user: id
       }) 
       this.setState({ likes: newLike, liked: true })
-      console.log(newLike.filter(like => like.user === auth.user.id).length)
     }
-    
-    console.log(this.state.likes)
-    console.log(this.props.post)
-    // console.log(newLike)
   }
 
   onUnlikeClick = id => {
@@ -97,7 +92,6 @@ class PostItem extends Component {
   }
 
   render() {
-    console.log(this.state.likes)
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
  

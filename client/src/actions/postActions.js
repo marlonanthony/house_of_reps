@@ -112,6 +112,15 @@ export const removeLike = id => dispatch => {
 }
 
 ///////////////////////////// MOVE DOWN ///////////////////////////////////////
+export const removeCommentLike = (postId, commentId) => dispatch => {
+  axios.post(`/api/posts/comment/unlike/${postId}/${commentId}`)
+  .catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data 
+  }))
+}
+
+///////////////////////////// MOVE DOWN ///////////////////////////////////////
 // Add Like to Comment
 export const addCommentLike = (postId, commentId) => dispatch => {
   axios.post(`/api/posts/comment/like/${postId}/${commentId}`)
