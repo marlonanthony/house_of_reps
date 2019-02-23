@@ -25,7 +25,7 @@ class PostItem extends Component {
     showComments: false, 
     text: '',
     postComments: [],
-    likes: this.props.post.likes,
+    likes: [...this.props.post.likes],
     liked: false,
     showModal: false
   }
@@ -44,12 +44,18 @@ class PostItem extends Component {
     this.props.addLike(id)
     
     const { auth } = this.props 
-    const likesArr = this.state.likes 
-    if(likesArr.map(like => like.user === auth.user.id).length <= 0){
-      let newLike = likesArr.concat(id) 
-      this.setState(prevState => ({ likes: newLike }))
-      this.setState({ liked: true })
+    const likesArr = [...this.state.likes] 
+    if(likesArr.filter(like => like.user === auth.user.id).length <= 0){
+      let newLike = likesArr.concat({
+        user: id
+      }) 
+      this.setState({ likes: newLike, liked: true })
+      console.log(newLike.filter(like => like.user === auth.user.id).length)
     }
+    
+    console.log(this.state.likes)
+    console.log(this.props.post)
+    // console.log(newLike)
   }
 
   onUnlikeClick = id => {
@@ -58,9 +64,12 @@ class PostItem extends Component {
     const { auth } = this.props 
     if(this.state.likes.map(like => like.user === auth.user.id).length > 0) {
       this.setState({ likes: this.state.likes.slice(1) })
-      // this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
       this.setState(prevState => ({ liked: false }))
+
+      // this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
     }
+
+
     // this.setState({ likes: this.state.likes.filter(like => like.user === auth.user.id) })
     // this.setState({ liked: false })
   }
@@ -88,6 +97,7 @@ class PostItem extends Component {
   }
 
   render() {
+    console.log(this.state.likes)
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
  
@@ -157,7 +167,8 @@ class PostItem extends Component {
             className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
               'liked' : this.findUserLike(post.likes) 
             })}
-            onClick={this.onLikeClick.bind(this, post._id)}>
+            onClick={this.onLikeClick.bind(this, post._id)}
+            >
             <i className='fas fa-thumbs-up icons like'></i>
             <span>{likes.length}</span>
           </button>
@@ -214,7 +225,8 @@ PostItem.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  // post: state.post 
 })
 
 

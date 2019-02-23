@@ -151,6 +151,25 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
   })
 })
 
+//////////////////////////////////////////////////        Move this down      /////////////////////////////////////////////////////
+// @route POST    api/posts/comment/like/:id/:comment_id
+// descriptioin   Add like to comment
+// @access        Private
+router.post('/comment/like/:id/:comment_id/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findById(req.params.id).then(post => {
+      post.comments.map(comment => comment._id.toString() === req.params.comment_id 
+        ? comment.likes.filter(like => like.user.toString() === req.user.id).length > 0
+        ? res.status(400).json({ alreadyliked: 'User already liked this post' })
+        : comment.likes.push({ user: req.user.id })
+        :  null
+      )
+      post.save().then(post => res.json(post)) 
+    })
+    .catch(err => res.status(404).json(err)) 
+  })
+})
+
 
 // @route         POST api/posts/comment/:id
 // @description   Add comment to post

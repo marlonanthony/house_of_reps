@@ -55,7 +55,6 @@ class Posts extends Component {
   }
   
   render() {
-    console.log(this.state.start)
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
     const { showsPreview, showLikes, showMatches, matches } = this.state
