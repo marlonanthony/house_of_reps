@@ -19,7 +19,8 @@ class CommentItem extends Component {
     showModal: false,
     // comment likes
     commentLikes: this.props.comment.likes,
-    liked: false
+    liked: false,
+    showComments: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -156,12 +157,10 @@ class CommentItem extends Component {
           <div>
             <button 
               title='like comment'
-              // className='postfeed_buttons'
               onClick={this.onLikeClick.bind(this, postId, comment._id)}
               className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
                 'liked' : this.findUserLike(comment.likes)
               })}
-              // onClick={this.onLikeClick.bind(this, post._id)}
               >
               <i className='fas fa-thumbs-up icons like'></i>
               <span>{this.state.commentLikes.length}</span>
@@ -172,6 +171,13 @@ class CommentItem extends Component {
               onClick={this.onUnlikeClick.bind(this, postId, comment._id)}>
               <i className="fas fa-thumbs-down icons" id='unlike'></i>
             </button>
+            <button 
+              title='comment'
+              onClick={() => this.setState(prevState => ({ showComments: !prevState.showComments }))} 
+              className='postfeed_buttons'>  
+              <i className='fas fa-comment icons' id='comment'/>
+              <span>{comment.comments.length}</span>
+            </button>
             { comment.user === auth.user.id ? (
             <button 
               title='double click to delete'
@@ -181,6 +187,11 @@ class CommentItem extends Component {
             </button> 
             ) : null }
           </div>
+          { comment.comments && this.state.showComments && comment.comments.map(nestedComment => (
+            <ul style={{ textAlign: 'center', width: '100px', listStyle: 'none'}}  key={nestedComment._id} >
+              <li style={{ color: 'white', width: '100%' }}>{nestedComment.text}</li>
+            </ul>
+          ))}
         </div>
       </Fragment>
     )
