@@ -187,11 +187,26 @@ class CommentItem extends Component {
             </button> 
             ) : null }
           </div>
-          { comment.comments && this.state.showComments && comment.comments.map(nestedComment => (
-            <ul style={{ textAlign: 'center', width: '100px', listStyle: 'none'}}  key={nestedComment._id} >
-              <li style={{ color: 'white', width: '100%' }}>{nestedComment.text}</li>
-            </ul>
-          ))}
+          { comment.comments && this.state.showComments 
+            ? ( 
+              <div className='nested_comments'>
+                { comment.comments.map(nestedComment => (
+                <div  key={nestedComment._id}>
+                  <div className='nested_comments_container'>
+                    <div style={{display: 'flex' }}>
+                      { nestedComment.avatar && 
+                      <img className='nested_comment_avatar' src={nestedComment.avatar} alt="user avatar"/> }
+                      { nestedComment.name && <p style={{color: 'rgb(55, 131, 194)', fontSize: 12 }}>{nestedComment.name}</p> }
+                    </div>
+                    <div>
+                      { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
+                    </div>
+                  </div>
+                </div>
+                ))}
+              </div>
+            ) : null 
+          }
         </div>
       </Fragment>
     )

@@ -206,6 +206,21 @@ router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session
   .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
 })
 
+/////////////////////////////////////////////        Move Down    /////////////////////////////////////////////
+// @route DELETE  api/posts/comment/comment/:id/:comment_id/:nested_comment_id
+// @desc          Delete a nested comment
+// @access        Private
+// router.delete('/comment/comment/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   Post.findById(req.params.id).then(post => {
+
+//     post.comments.map(comment => comment._id.toString() === req.params.comment_id
+//       ? comment.comments.map(nestedComment => nestedComment._id.toString() === req.params.nested_comment_id
+//       ? comment.comments.splice()
+//       : null
+//     ) : null)
+//   })
+// })
+
 
 // @route POST    api/posts/comment/comment/:id/:comment_id
 // @desc          Add nested comment to comment
