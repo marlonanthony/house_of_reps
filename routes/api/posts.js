@@ -291,7 +291,7 @@ router.delete('/comment/comment/:id/:comment_id/:nested_comment_id', passport.au
   .catch(err => res.status(404).json(err)) 
 })
 
-// @route POST       api/posts/comment/comment/like/:id/comment_id/:nested_comment_id
+// @route POST       api/posts/comment/comment/like/:id/:comment_id/:nested_comment_id
 // @desciption       Add like to nested comment
 // @access           Private
 router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -317,5 +317,30 @@ router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport
   })
 })
 
+// @route POST       api/posts/comment/comment/unlike/:id/:comment_id/:nested_comment_id
+// @description      Remove like from nested commment
+// @access           Private
+router.post('/comment/comment/unlike/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findById(req.params.id).then(post => {
+      post.comments.map(comment => {
+        if(comment._id.toString() === req.params.comment_id) {
+          comment.comments.map(nestedComment => {
+            if(nestedComment._id.toString() === req.params.nested_comment_id) {
+              nestedComment.likes.map(like => {
+                if((like.user.toString() === req.user.id).length === 0) {
+                  res.status(400).json({ notliked: 'You have not yet liked this comment' })
+                }
+              })
+              nestedComment.likes.splice(nestedComment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
+            }
+          })
+        }
+      })
+      post.save().then(post => res.json(post))
+    })
+    .catch(err => res.status(404).json(err)) 
+  })
+})
 
 module.exports = router  

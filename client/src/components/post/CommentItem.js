@@ -207,7 +207,7 @@ class CommentItem extends Component {
               <i className="fas fa-thumbs-down icons" id='unlike'></i>
             </button>
             <button 
-              title='comment'
+              title='show comments'
               onClick={() => this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))} 
               className='postfeed_buttons'>  
               <i className='fas fa-comment icons' id='comment'/>
