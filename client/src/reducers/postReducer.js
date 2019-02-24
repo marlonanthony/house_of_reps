@@ -7,7 +7,8 @@ import {
   ADD_COMMENT,
   GET_POST,
   GET_MORE_POSTS,
-  GET_MATCHING_POSTS
+  GET_MATCHING_POSTS,
+  ADD_NESTED_COMMENT
 } from '../actions/types'
 
 const initialState = { 
@@ -71,6 +72,16 @@ export default function(state = initialState, action) {
         posts: updatedPost,
         loading: false
       }
+
+    // case ADD_NESTED_COMMENT:
+    //   const { posts } = state 
+    //   const updatedPost = posts.map(comment => {
+    //     if(comment._id === action.payload.)
+    //   })
+    //   return {
+    //     ...state,
+    //     posts: []
+    //   }
 
     case DELETE_POST:
       return {

@@ -8,7 +8,7 @@ import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
 
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
-import { addComment, getPosts } from '../../actions/postActions'
+import { addComment } from '../../actions/postActions'
 import LinkPreview from '../posts/LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
 import LightBackdrop from '../UI/backdrop/LightBackdrop'
@@ -192,4 +192,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { addComment, getPosts })(CommentForm)
+export default connect(mapStateToProps, { addComment })(CommentForm)

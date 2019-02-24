@@ -10,7 +10,8 @@ import {
   CLEAR_ERRORS,
   DELETE_COMMENT,
   GET_MORE_POSTS,
-  GET_MATCHING_POSTS
+  GET_MATCHING_POSTS,
+  ADD_NESTED_COMMENT
 } from './types' 
 
 // Add Post 
@@ -160,6 +161,20 @@ export const removeCommentLike = (postId, commentId) => dispatch => {
     payload: err.response.data 
   }))
 }
+
+// Add NestedComment 
+export const addNestedComment = (postId, commentId, nestedCommentData) => dispatch => {
+  dispatch(clearErrors()) 
+  axios.post(`/api/posts/comment/comment/${postId}/${commentId}`, nestedCommentData)
+  .catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data 
+  }))
+}
+  // .then(res => dispatch({
+  //   type: ADD_NESTED_COMMENT,
+  //   payload: res.data
+  // }))
 
 // Set loading state
 export const setPostLoading = () => {

@@ -239,8 +239,6 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
 // @access        Private
 router.delete('/comment/comment/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
   Post.findById(req.params.id).then(post => {
-    
-
     post.comments.map(comment => comment._id.toString() === req.params.comment_id
       ? comment.comments.map(nestedComment => nestedComment._id.toString() === req.params.nested_comment_id
       ? comment.comments.splice(comment.comments.map(val => val._id.toString()).indexOf(req.params.nested_comment_id), 1)

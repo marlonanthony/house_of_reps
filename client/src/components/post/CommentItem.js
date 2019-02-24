@@ -4,12 +4,13 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import classnames from 'classnames' 
-import { deleteComment, getPosts, addCommentLike, removeCommentLike } from '../../actions/postActions' 
+import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment } from '../../actions/postActions' 
 import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import CommentText from '../posts/post-assets/post_comment_text/CommentText'
 import PostModalText from '../posts/post-assets/post_comment_text/PostModalText'
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -20,7 +21,11 @@ class CommentItem extends Component {
     // comment likes
     commentLikes: this.props.comment.likes,
     liked: false,
-    showComments: false
+    showNestedComments: false,
+    text: '',
+    errors: {},
+    data: {},
+    showNestedSubmitBtn: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,6 +79,30 @@ class CommentItem extends Component {
         this.props.history.push(`/profile/${profile.handle}`)
       }
     })
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  addNewNestedComment = (postId, commentId) => {
+    console.log(postId, commentId)
+    const { user } = this.props.auth 
+    // const { postId } = this.props 
+
+    const newNestedComment = {
+      text: this.state.text,
+      name: user.name,
+      avatar: user.avatar
+    }
+
+    this.props.addNestedComment(postId, commentId, newNestedComment)
+    this.setState({ text: '' })
+    // e.target.reset() 
+  }
+
+  showNestedSubmitBtnHandler = () => {
+    this.setState(prevState => ({ showNestedSubmitBtn: !prevState.showNestedSubmitBtn }))
   }
 
   render() {
@@ -173,7 +202,7 @@ class CommentItem extends Component {
             </button>
             <button 
               title='comment'
-              onClick={() => this.setState(prevState => ({ showComments: !prevState.showComments }))} 
+              onClick={() => this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))} 
               className='postfeed_buttons'>  
               <i className='fas fa-comment icons' id='comment'/>
               <span>{comment.comments.length}</span>
@@ -187,23 +216,40 @@ class CommentItem extends Component {
             </button> 
             ) : null }
           </div>
-          { comment.comments && this.state.showComments 
-            ? ( 
+          { comment.comments && this.state.showNestedComments ? 
+            ( 
               <div className='nested_comments'>
-                { comment.comments.map(nestedComment => (
-                <div  key={nestedComment._id}>
-                  <div className='nested_comments_container'>
-                    <div style={{display: 'flex' }}>
-                      { nestedComment.avatar && 
-                      <img className='nested_comment_avatar' src={nestedComment.avatar} alt="user avatar"/> }
-                      { nestedComment.name && <p style={{color: 'rgb(55, 131, 194)', fontSize: 12 }}>{nestedComment.name}</p> }
-                    </div>
-                    <div>
-                      { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
+                <div onClick={this.showNestedSubmitBtnHandler} style={{marginLeft: 50, display: 'flex', flexDirection: 'column', background: 'none'}}>
+                  <textarea 
+                    placeholder="Reply to comment" 
+                    name='text'
+                    value={this.state.text} 
+                    onChange={this.onChange} 
+                    style={{ padding: 10, background: 'skyblue', border: 'none', fontSize: 13 }}
+                    // error={this.state.errors.text} 
+                  />
+                  { this.state.showNestedSubmitBtn ?
+                  <i onClick={this.addNewNestedComment.bind(this, postId, comment._id)} id='post-submit-icon' className="far fa-paper-plane " /> : null}
+
+                </div>
+                <div>
+                  { comment.comments.map(nestedComment => (
+                  <div  key={nestedComment._id}>
+                    <div className='nested_comments_container'>
+                      <div style={{display: 'flex', alignItems: 'center' }}>
+                        { nestedComment.avatar && <img className='nested_comment_avatar' src={nestedComment.avatar} alt="user avatar"/> }
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                          { nestedComment.name && <p style={{color: 'rgb(55, 131, 194)', fontSize: 12 }}>{nestedComment.name}</p> }
+                          <p style={{color: 'gray', fontSize: '11px', marginTop: '-5px'}}><Moment format='MM/DD/YYYY'>{nestedComment.date}</Moment></p>
+                        </div>
+                      </div>
+                      <div>
+                        { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
+                      </div>
                     </div>
                   </div>
+                  ))}
                 </div>
-                ))}
               </div>
             ) : null 
           }
@@ -217,6 +263,7 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   addCommentLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
+  addNestedComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -226,4 +273,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike })(withRouter(CommentItem))
+export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment })(withRouter(CommentItem))

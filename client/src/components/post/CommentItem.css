@@ -13,7 +13,6 @@
     'avatar post_content'
     'avatar post_image'
     'nested_comments nested_comments';
-    /* 'avatar deletebtn' */
 }
 
 #comment-feed-container:hover {
@@ -42,7 +41,7 @@
 
 #nested_comments_text {
   padding: 5px;
-  color: white;
+  color: aliceblue;
   font-size: 13px;
 }
 
