@@ -74,7 +74,8 @@
   grid-area: postcontent;
   padding: 5px;
   font-family: sans-serif;
-  color: #bdc7c1;
+  /* color: #bdc7c1; */
+  color: rgb(173, 187, 199);
   text-align: left;
 }
 

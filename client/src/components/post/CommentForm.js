@@ -140,11 +140,11 @@ class CommentForm extends Component {
       <Fragment>
         <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
         <div className="post-form ">
-        { this.state.showEmojis ? 
-          <EmojiModal>
-            <EmojiPicker onEmojiClick={this.addEmoji} />
-          </EmojiModal>
-          : null }
+          { this.state.showEmojis && 
+            <EmojiModal>
+              <EmojiPicker onEmojiClick={this.addEmoji} />
+            </EmojiModal>
+          }
           <div onClick={this.showButtonsHandler}>
             <form onSubmit={this.onSubmit}>
               <TextAreaFieldGroup 

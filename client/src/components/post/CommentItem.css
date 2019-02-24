@@ -41,7 +41,7 @@
 
 #nested_comments_text {
   padding: 5px;
-  color: aliceblue;
+  color: rgb(173, 187, 199);
   font-size: 13px;
 }
 
@@ -74,6 +74,7 @@
 
 #comment-feed-text {
   color: #bdc7c1;
+  color: rgb(173, 187, 199);
   font-size: 15px;
   grid-area: post_content;
 }

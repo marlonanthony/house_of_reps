@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import classnames from 'classnames' 
-import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment } from '../../actions/postActions' 
+import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment } from '../../actions/postActions' 
 import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
@@ -103,6 +103,11 @@ class CommentItem extends Component {
 
   showNestedSubmitBtnHandler = () => {
     this.setState(prevState => ({ showNestedSubmitBtn: !prevState.showNestedSubmitBtn }))
+  }
+
+  onDeleteNestedComment = (postId, commentId, nestedCommentId) => {
+    this.props.deleteNestedComment(postId, commentId, nestedCommentId)
+    // this.setState({ comment: false })
   }
 
   render() {
@@ -218,19 +223,21 @@ class CommentItem extends Component {
           </div>
           { comment.comments && this.state.showNestedComments ? 
             ( 
-              <div className='nested_comments'>
+              <section className='nested_comments'>
                 <div onClick={this.showNestedSubmitBtnHandler} style={{marginLeft: 50, display: 'flex', flexDirection: 'column', background: 'none'}}>
                   <textarea 
                     placeholder="Reply to comment" 
                     name='text'
                     value={this.state.text} 
                     onChange={this.onChange} 
-                    style={{ padding: 10, background: 'skyblue', border: 'none', fontSize: 13 }}
+                    style={{ padding: 10, background: 'skyblue', border: 'none', fontSize: 13, outline: 'none' }}
                     // error={this.state.errors.text} 
                   />
-                  { this.state.showNestedSubmitBtn ?
-                  <i onClick={this.addNewNestedComment.bind(this, postId, comment._id)} id='post-submit-icon' className="far fa-paper-plane " /> : null}
-
+                  { this.state.showNestedSubmitBtn &&
+                    <div style={{padding: '10px 0px', display: 'flex', justifyContent: 'center'}}>
+                     <i onClick={this.addNewNestedComment.bind(this, postId, comment._id)} id='post-submit-icon' className="far fa-paper-plane " />
+                    </div>
+                  }
                 </div>
                 <div>
                   { comment.comments.map(nestedComment => (
@@ -246,11 +253,19 @@ class CommentItem extends Component {
                       <div>
                         { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
                       </div>
+                      { nestedComment.user === auth.user.id ? (
+                      <button 
+                        title='double click to delete'
+                        className='postfeed_buttons delete'
+                        onDoubleClick={this.onDeleteNestedComment.bind(this, postId, comment._id, nestedComment._id)}>
+                        <i className="fas fa-times icons" />
+                      </button> 
+                      ) : null }
                     </div>
                   </div>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null 
           }
         </div>
@@ -264,6 +279,7 @@ CommentItem.propTypes = {
   addCommentLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
   addNestedComment: PropTypes.func.isRequired,
+  deleteNestedComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -273,4 +289,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment })(withRouter(CommentItem))
+export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment })(withRouter(CommentItem))

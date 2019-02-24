@@ -176,6 +176,15 @@ export const addNestedComment = (postId, commentId, nestedCommentData) => dispat
   //   payload: res.data
   // }))
 
+// Delete NestedComment
+export const deleteNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
+  axios.delete(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`)
+  .catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data 
+  }))
+}
+
 // Set loading state
 export const setPostLoading = () => {
   return {
