@@ -70,7 +70,7 @@ const PostSchema = new Schema({
           }
         }
       ],
-      // Text Nested Comments
+      // Nested Comments
       comments: [
         {
           user: {
@@ -90,6 +90,14 @@ const PostSchema = new Schema({
           avatar: {
             type: String 
           },
+          likes: [
+            {
+              user: {
+                type: Schema.Types.ObjectId,
+                ref: 'users'
+              }
+            }
+          ],
           date: {
             type: Date,
             default: Date.now 

@@ -1,5 +1,5 @@
 .dropdown {
-  position: absolute;
+  position: fixed;
   display: inline-block;
   z-index: 10;
   top: 20px;

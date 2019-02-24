@@ -34,6 +34,7 @@ router.get('/', (req, res) => {
   .catch(err => res.status(404).json({ nopostsfound: 'No posts found' })) 
 })
 
+
 // @route         GET api/posts/search
 // @description   Get posts
 // @access        Public
@@ -151,6 +152,7 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
   })
 })
 
+
 // @route         POST api/posts/comment/:id
 // @description   Add comment to post
 // @access        Private
@@ -206,6 +208,45 @@ router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session
   .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
 })
 
+
+// @route POST    api/posts/comment/like/:id/:comment_id
+// description    Add like to comment
+// @access        Private
+router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findById(req.params.id).then(post => {
+      post.comments.map(comment => comment._id.toString() === req.params.comment_id 
+        ? comment.likes.filter(like => like.user.toString() === req.user.id).length > 0
+        ? res.status(400).json({ alreadyliked: 'User already liked this post' })
+        : comment.likes.push({ user: req.user.id })
+        :  null
+      )
+      post.save().then(post => res.json(post)) 
+    })
+    .catch(err => res.status(404).json(err)) 
+  })
+})
+
+
+// @route           POST api/posts/comment/unlike/:id/:comment_id
+// @sdescription    Unlike comment
+// @access          Private
+router.post('/comment/unlike/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findById(req.params.id).then(post => {
+      post.comments.map(comment => comment._id.toString() === req.params.comment_id
+        ? comment.likes.filter(like => like.user.toString() === req.user.id).length === 0
+        ? res.status(400).json({ notliked: 'You have not yet liked this comment' })
+        : comment.likes.splice(comment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
+        : null
+      )
+      post.save().then(post => res.json(post))
+    })
+    .catch(err => res.status(404).json(err)) 
+  })
+})
+
+
 // @route POST    api/posts/comment/comment/:id/:comment_id
 // @desc          Add nestedComment to comment
 // @access        Private
@@ -234,6 +275,7 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
   .catch(err => res.status(404).json(err)) 
 })
 
+
 // @route DELETE  api/posts/comment/comment/:id/:comment_id/:nested_comment_id
 // @desc          Delete a nested comment
 // @access        Private
@@ -247,42 +289,6 @@ router.delete('/comment/comment/:id/:comment_id/:nested_comment_id', passport.au
     post.save().then(post => res.json(post)) 
   })
   .catch(err => res.status(404).json(err)) 
-})
-
-// @route POST    api/posts/comment/like/:id/:comment_id
-// description    Add like to comment
-// @access        Private
-router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.findById(req.params.id).then(post => {
-      post.comments.map(comment => comment._id.toString() === req.params.comment_id 
-        ? comment.likes.filter(like => like.user.toString() === req.user.id).length > 0
-        ? res.status(400).json({ alreadyliked: 'User already liked this post' })
-        : comment.likes.push({ user: req.user.id })
-        :  null
-      )
-      post.save().then(post => res.json(post)) 
-    })
-    .catch(err => res.status(404).json(err)) 
-  })
-})
-
-// @route           POST api/posts/comment/unlike/:id/:comment_id
-// @sdescription    Unlike comment
-// @access          Private
-router.post('/comment/unlike/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.findById(req.params.id).then(post => {
-      post.comments.map(comment => comment._id.toString() === req.params.comment_id
-        ? comment.likes.filter(like => like.user.toString() === req.user.id).length === 0
-        ? res.status(400).json({ notliked: 'You have not yet liked this comment' })
-        : comment.likes.splice(comment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
-        : null
-      )
-      post.save().then(post => res.json(post))
-    })
-    .catch(err => res.status(404).json(err)) 
-  })
 })
 
 module.exports = router  
