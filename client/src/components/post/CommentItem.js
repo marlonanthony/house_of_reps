@@ -25,7 +25,8 @@ class CommentItem extends Component {
     text: '',
     errors: {},
     data: {},
-    showNestedSubmitBtn: false
+    showNestedSubmitBtn: false,
+    showForm: false 
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -212,6 +213,12 @@ class CommentItem extends Component {
               <i className='fas fa-comment icons' id='comment'/>
               <span>{comment.comments.length}</span>
             </button>
+            <button 
+              title='comment'
+              onClick={() => this.setState(prevState => ({ showForm: !prevState.showForm }))} 
+              className='postfeed_buttons'>  
+              <i className='fas fa-user-edit icons' id='comment'/>
+            </button>
             { comment.user === auth.user.id ? (
             <button 
               title='double click to delete'
@@ -222,16 +229,19 @@ class CommentItem extends Component {
             ) : null }
           </div>
           { comment.comments && this.state.showNestedComments ? 
-            ( 
+            (
               <section className='nested_comments'>
+
+                { this.state.showForm &&
                 <div onClick={this.showNestedSubmitBtnHandler} style={{marginLeft: 50, display: 'flex', flexDirection: 'column', background: 'none'}}>
                   <textarea 
                     placeholder="Reply to comment" 
                     name='text'
                     value={this.state.text} 
                     onChange={this.onChange} 
-                    style={{ padding: 10, background: 'skyblue', border: 'none', fontSize: 13, outline: 'none' }}
-                    // error={this.state.errors.text} 
+                    className='nested_comment_textarea'
+                    style={{ color: 'black', padding: 10, background: 'rgb(205, 205, 225)', border: 'none', fontSize: 13, outline: 'none' }}
+                    // error={this.state.errors.text} 'rgb(173, 187, 199)'
                   />
                   { this.state.showNestedSubmitBtn &&
                     <div style={{padding: '10px 0px', display: 'flex', justifyContent: 'center'}}>
@@ -239,6 +249,7 @@ class CommentItem extends Component {
                     </div>
                   }
                 </div>
+                }
                 <div>
                   { comment.comments.map(nestedComment => (
                   <div  key={nestedComment._id}>
@@ -253,14 +264,37 @@ class CommentItem extends Component {
                       <div>
                         { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
                       </div>
-                      { nestedComment.user === auth.user.id ? (
-                      <button 
-                        title='double click to delete'
-                        className='postfeed_buttons delete'
-                        onDoubleClick={this.onDeleteNestedComment.bind(this, postId, comment._id, nestedComment._id)}>
-                        <i className="fas fa-times icons" />
-                      </button> 
-                      ) : null }
+
+
+                      
+                      <div>
+                        <button 
+                          title='like comment'
+                          // onClick={this.onLikeClick.bind(this, postId, comment._id)}
+                          className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
+                            'liked' : this.findUserLike(nestedComment.likes)
+                          })}
+                          >
+                          <i className='fas fa-thumbs-up icons like'></i>
+                          <span>{nestedComment.likes.length}</span>
+                        </button>
+                        <button 
+                          title='unlike'
+                          className='postfeed_buttons'
+                          // onClick={this.onUnlikeClick.bind(this, postId, comment._id)}
+                          >
+                          <i className="fas fa-thumbs-down icons" id='unlike'></i>
+                        </button>
+                        { nestedComment.user === auth.user.id && (
+                        <button 
+                          title='double click to delete'
+                          className='postfeed_buttons delete'
+                          onDoubleClick={this.onDeleteNestedComment.bind(this, postId, comment._id, nestedComment._id)}>
+                          <i className="fas fa-times icons" />
+                        </button> 
+                        )}
+                      </div>
+
                     </div>
                   </div>
                   ))}

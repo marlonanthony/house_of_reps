@@ -45,6 +45,10 @@
   font-size: 13px;
 }
 
+.nested_comment_textarea::placeholder {
+  color: rgb(0,0,0);
+}
+
 #comment-feed-avatar {
   width: 40px;
   height: 40px;
