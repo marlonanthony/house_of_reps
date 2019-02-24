@@ -291,4 +291,45 @@ router.delete('/comment/comment/:id/:comment_id/:nested_comment_id', passport.au
   .catch(err => res.status(404).json(err)) 
 })
 
+
+router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findById(req.params.id).then(post => {
+      post.comments.map(comment => {
+        if(comment._id.toString() === req.params.comment_id){
+          comment.comments.map(nestedComment => {
+            if(nestedComment._id.toString() === req.params.nested_comment_id) {
+              nestedComment.likes.map(like => {
+                if((like.user.toString() === req.user.id).length > 0) {
+                  res.status(400).json({ alreadyliked: 'User already liked this post' })
+                }
+              })
+              nestedComment.likes.push({ user: req.user.id })
+            }
+          })
+        }
+      })
+      post.save().then(post => res.json(post))
+    })
+    .catch(err => res.status(404).json(err)) 
+  })
+})
+
+
+///////////////////////////////           DELETE THIS       //////////////////////////////////////////////////
+// router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   Profile.findOne({ user: req.user.id }).then(profile => {
+//     Post.findById(req.params.id).then(post => {
+//       post.comments.map(comment => comment._id.toString() === req.params.comment_id 
+//         ? comment.likes.filter(like => like.user.toString() === req.user.id).length > 0
+//         ? res.status(400).json({ alreadyliked: 'User already liked this post' })
+//         : comment.likes.push({ user: req.user.id })
+//         :  null
+//       )
+//       post.save().then(post => res.json(post)) 
+//     })
+//     .catch(err => res.status(404).json(err)) 
+//   })
+// })
+
 module.exports = router  
