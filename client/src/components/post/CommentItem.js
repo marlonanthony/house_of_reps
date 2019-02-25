@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import classnames from 'classnames' 
-import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment } from '../../actions/postActions' 
+import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment } from '../../actions/postActions' 
 import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
@@ -111,6 +111,10 @@ class CommentItem extends Component {
     // this.setState({ comment: false })
   }
 
+  onLikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
+    this.props.likeNestedComment(postId, commentId, nestedCommentId)
+  }
+
   render() {
     const { postId, auth } = this.props 
     const { comment } = this.state
@@ -214,7 +218,7 @@ class CommentItem extends Component {
               <span>{comment.comments.length}</span>
             </button>
             <button 
-              title='comment'
+              title='reply'
               onClick={() => this.setState(prevState => ({ showForm: !prevState.showForm }))} 
               className='postfeed_buttons'>  
               <i className='fas fa-user-edit icons' id='comment'/>
@@ -240,7 +244,7 @@ class CommentItem extends Component {
                     value={this.state.text} 
                     onChange={this.onChange} 
                     className='nested_comment_textarea'
-                    style={{ color: 'black', padding: 10, background: 'rgb(205, 205, 225)', border: 'none', fontSize: 13, outline: 'none' }}
+                    style={{ color: 'black', padding: 10, background: 'rgb(180, 180, 200)', border: 'none', fontSize: 13, outline: 'none' }}
                     // error={this.state.errors.text} 'rgb(173, 187, 199)'
                   />
                   { this.state.showNestedSubmitBtn &&
@@ -270,7 +274,7 @@ class CommentItem extends Component {
                       <div>
                         <button 
                           title='like comment'
-                          // onClick={this.onLikeClick.bind(this, postId, comment._id)}
+                          onClick={this.onLikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}
                           className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
                             'liked' : this.findUserLike(nestedComment.likes)
                           })}
@@ -314,6 +318,7 @@ CommentItem.propTypes = {
   removeCommentLike: PropTypes.func.isRequired,
   addNestedComment: PropTypes.func.isRequired,
   deleteNestedComment: PropTypes.func.isRequired,
+  likeNestedComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -323,4 +328,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment })(withRouter(CommentItem))
+export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment })(withRouter(CommentItem))

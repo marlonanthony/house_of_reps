@@ -185,6 +185,24 @@ export const deleteNestedComment = (postId, commentId, nestedCommentId) => dispa
   }))
 }
 
+// Like NestedComment
+export const likeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
+  axios.post(`/api/posts/comment/comment/like/${postId}/${commentId}/${nestedCommentId}`)
+  .catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data 
+  }))
+}
+
+// Unlike NestedComment
+export const unlikeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
+  axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}`)
+  .catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data 
+  }))
+}
+
 // Set loading state
 export const setPostLoading = () => {
   return {
