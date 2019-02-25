@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import classnames from 'classnames' 
-import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment } from '../../actions/postActions' 
+import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment, unlikeNestedComment } from '../../actions/postActions' 
 import { getProfiles } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
@@ -113,6 +113,10 @@ class CommentItem extends Component {
 
   onLikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
     this.props.likeNestedComment(postId, commentId, nestedCommentId)
+  }
+
+  onUnlikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
+    this.props.unlikeNestedComment(postId, commentId, nestedCommentId)
   }
 
   render() {
@@ -285,7 +289,7 @@ class CommentItem extends Component {
                         <button 
                           title='unlike'
                           className='postfeed_buttons'
-                          // onClick={this.onUnlikeClick.bind(this, postId, comment._id)}
+                          onClick={this.onUnlikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}
                           >
                           <i className="fas fa-thumbs-down icons" id='unlike'></i>
                         </button>
@@ -319,6 +323,7 @@ CommentItem.propTypes = {
   addNestedComment: PropTypes.func.isRequired,
   deleteNestedComment: PropTypes.func.isRequired,
   likeNestedComment: PropTypes.func.isRequired,
+  unlikeNestedComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -328,4 +333,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment })(withRouter(CommentItem))
+export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment, unlikeNestedComment })(withRouter(CommentItem))

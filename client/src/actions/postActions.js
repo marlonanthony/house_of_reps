@@ -196,7 +196,7 @@ export const likeNestedComment = (postId, commentId, nestedCommentId) => dispatc
 
 // Unlike NestedComment
 export const unlikeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
-  axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}`)
+  axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}/${nestedCommentId}`)
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
