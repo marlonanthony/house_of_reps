@@ -10,7 +10,7 @@ class ProfilePost extends Component {
   state = {
     showLikes: false,
     // pagination
-    count: 30,
+    count: 10,
     start: 0
   }
 

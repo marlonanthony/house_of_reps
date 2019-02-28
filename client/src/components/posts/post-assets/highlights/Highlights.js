@@ -3,7 +3,7 @@ import Moment from 'react-moment'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import './Highlights.css'
-// import Spinner from '../../../common/Spinner';
+import Spinner from '../../../common/Spinner';
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
 
 export default class Highlights extends Component {
@@ -101,6 +101,7 @@ export default class Highlights extends Component {
 
     return (
       <div className='highlightss'>
+        <React.Suspense fallback={<Spinner />}>
         <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
         {highlightsModal}
         <div 
@@ -128,6 +129,7 @@ export default class Highlights extends Component {
           <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='instagram avatar' title={'🔥'}/>
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
+        </React.Suspense>
       </div>
     )
   }

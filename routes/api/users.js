@@ -101,6 +101,24 @@ router.post('/login', (req, res) => {
   })
 })
 
+// @route         PUT api/users/id
+// @description   Update user info
+// @access        Private
+// router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   const { errors, isValid } = validateLoginInput(req.body) 
+
+  // Check Validation
+//   if(!isValid) {
+//     return res.status(400).json(errors) 
+//   }
+
+//   const id = req.user.id 
+
+//   User.findByIdAndUpdate({id}, ).then
+
+// })
+
+
 // @route         GET api/users/current
 // @description   Return current user
 // @access        Private

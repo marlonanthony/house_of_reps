@@ -25,7 +25,7 @@ class Posts extends Component {
     matches: '',
     showMatches: false,
     showLikes: false,
-    count: 30, 
+    count: 10, 
     start: 0
   }
   
@@ -272,11 +272,12 @@ class Posts extends Component {
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/MUSIC.png')} alt=""/>
         </div>
         <div className='post-feed-post-content'>{ postContent }</div>
-        { highlights ? 
         <div>
-          <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>
+          { highlights && <div className='post-feed-highlights'>
+            <Highlights recentHighlights={ orderedHighlights } />
+          </div> }
           <p id='post-feed-highlights-title'>Highlights</p>
-        </div> : <Spinner /> }
+        </div>
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='test'>
