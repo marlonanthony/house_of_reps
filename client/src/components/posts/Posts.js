@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts, getMatchingPosts } from '../../actions/postActions'
+import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
 import Spinner from '../common/Spinner' 
@@ -39,6 +39,11 @@ class Posts extends Component {
 
   showLikesHandler = e => {
     this.setState( prevState => ({ showLikes: !prevState.showLikes }))
+    if(this.state.showLikes) {
+      this.props.getLikedPosts()
+    }
+    this.props.getPosts() 
+    console.log(this.state.showLikes)
   }
 
   componentDidMount() {
@@ -208,21 +213,24 @@ class Posts extends Component {
     } 
     
     else if(showLikes) {
-      const likedPost = []
-      for(let i = 0; i < posts.length; i++){
-        for(let j = 0; j < posts[i].likes.length; j++) {
-          if(posts[i].likes[j].user === user.id) {
-            likedPost.push(posts[i])
-          }
-        }
-      }
+      // this.props.getLikedPosts(this.state.count, this.state.start)
+      // this.setState(prevState => ({ start: prevState.start + 1 }))
+      // const likedPost = []
+      // for(let i = 0; i < posts.length; i++){
+      //   for(let j = 0; j < posts[i].likes.length; j++) {
+      //     if(posts[i].likes[j].user === user.id) {
+      //       likedPost.push(posts[i])
+      //     }
+      //   }
+      // }
       postContent = (
         <InfinteScroll
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
         loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-          <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } />
+          <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
+          {/* <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } /> */}
         </InfinteScroll>
       )
     } else {
@@ -318,4 +326,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getMatchingPosts })(Posts) 
+export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getLikedPosts, getMatchingPosts })(Posts) 

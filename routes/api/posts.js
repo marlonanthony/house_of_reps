@@ -73,7 +73,7 @@ router.get('/profileposts', passport.authenticate('jwt', { session: false }), (r
 })
 
 
-//////////////////////////        MOVE DOWN     ///////////////////////////////////
+
 // @route         GET api/posts/likedposts
 // @desc          Get liked posts
 // @access        Private
@@ -82,33 +82,14 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  const arr = []
   Profile.findOne({ user: req.user.id }).then(profile => {
     Post.find({
-      user: { $in: req.user.id }
+      likes: { $elemMatch: { user: req.user.id } }
     })
     .sort({ date: -1 })
-    .skip(pageOptions.page * pageOptions.limit)
-    .limit(pageOptions.limit)
+    // .skip(pageOptions.page * pageOptions.limit)
+    // .limit(pageOptions.limit)
     .then(posts => res.json(posts))
-      // .sort({ date: -1 })
-
-      // .skip(pageOptions.page * pageOptions.limit)
-      // .limit(pageOptions.limit)
-      // .then(posts => {
-      //   res.json(posts.filter(post => post.likes.filter(like => like.user.toString() === req.user.id)))
-      // })
-
-      // .then(posts => {
-      //   posts.map(post => {
-      //     post.likes.map(like => {
-      //       if((like.user.toString() === req.user.id)) {
-      //         arr.push(post) 
-      //       }
-      //     })
-      //   })
-      //   res.json(arr)
-      // })
   })
 })
 

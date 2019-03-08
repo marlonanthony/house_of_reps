@@ -10,7 +10,8 @@ import {
   GET_MATCHING_POSTS,
   ADD_NESTED_COMMENT,
   GET_PROFILE_POSTS,
-  GET_MORE_PROFILE_POSTS
+  GET_MORE_PROFILE_POSTS,
+  GET_LIKED_POSTS
 } from '../actions/types'
 
 const initialState = { 
@@ -28,6 +29,13 @@ export default function(state = initialState, action) {
       }
 
     case GET_POSTS: 
+      return {
+        ...state,
+        posts: action.payload,
+        loading: false 
+      }
+
+    case GET_LIKED_POSTS:
       return {
         ...state,
         posts: action.payload,

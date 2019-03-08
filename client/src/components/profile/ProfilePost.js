@@ -22,7 +22,7 @@ class ProfilePost extends Component {
   fetchMore = () => {
     const { count, start } = this.state 
     this.props.getMoreProfilePosts(count, start)
-    this.setState( prevState => ({ start: prevState.start + 1 }))
+    this.setState( prevState => ({ start: start + 1 }))
   }
 
   render() {
@@ -32,10 +32,10 @@ class ProfilePost extends Component {
       postContent = null
     } else {
       postContent = posts.map(post => <PostItem key={post._id} post={post} />)
+    }
         // postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
         // ? <PostItem key={post._id} post={post} /> 
         // : null)
-    }
 
     return (
       <div style={{ marginBottom: 70 }}>
@@ -43,7 +43,7 @@ class ProfilePost extends Component {
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
-        loader={<p>These arent the posts you're looking for</p>}
+        loader={<p style={{textAlign: 'center'}}>These arent the posts you're looking for</p>}
         >
           {postContent}
         </InfinteScroll>
