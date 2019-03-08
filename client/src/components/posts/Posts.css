@@ -2,8 +2,9 @@
   /* background: #050c14;   */
   /* background: #050811; */
 
-  background: rgb(10, 19, 29);
-  /* background: #282c35;    Dan Abramov    */    
+  background: rgb(10, 19, 29);     
+  /* background: #282c35;        Dan Abramov */
+  /* background: #151515; */
   /* background: #071020; */
 
 
@@ -299,6 +300,7 @@
     background: rgba(0,0,0,0.5);
     width: 250px;
     height: 250px;
+    margin-top: -30px;
   }
 
   .post-feed-social {
@@ -356,8 +358,9 @@
     display: flex;
     width: 250px;
     height: 250px;
-    background: rgba(0,0,0,0.5);
+    /* background: rgba(0,0,0,0.5); */
     margin: 0;
+    margin-top: -30px;
   }
 
   .stores_container {
@@ -368,7 +371,7 @@
     /* height: 150px;
     width: 170px; */
     border-radius: 2%;
-    background: rgba(2, 4, 5, 0.884);
+    /* background: rgba(2, 4, 5, 0.884); */
   }
 
   .djpools {
@@ -389,7 +392,7 @@
     /* width: 170px;
     height: 150px; */
     overflow-x: hidden;
-    background: rgba(2, 4, 5, 0.884);
+    /* background: rgba(2, 4, 5, 0.884); */
     color: #555;
   }
 
@@ -401,7 +404,7 @@
     /* width: 170px;
     height: 150px; */
     overflow-x: hidden;
-    background: rgba(2, 4, 5, 0.884);
+    /* background: rgba(2, 4, 5, 0.884); */
   }
 
   .post-feed-footer {

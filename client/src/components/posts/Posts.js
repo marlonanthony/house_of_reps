@@ -40,9 +40,10 @@ class Posts extends Component {
   showLikesHandler = e => {
     this.setState( prevState => ({ showLikes: !prevState.showLikes }))
     if(this.state.showLikes) {
-      this.props.getLikedPosts()
+      this.props.getLikedPosts(this.state.count, this.state.start)
+    } else {
+      this.props.getPosts() 
     }
-    this.props.getPosts() 
     console.log(this.state.showLikes)
   }
 
@@ -52,6 +53,7 @@ class Posts extends Component {
     this.props.getProfiles()
     this.setState( prevState => ({ start: prevState.start + 1 }))
   }
+
 
   fetchMore = () => {
     const { count, start } = this.state 
@@ -87,7 +89,7 @@ class Posts extends Component {
     
 
     if(profiles === null || loading) {
-      brands = <Spinner />
+      brands = null //<Spinner />
     } else {
       brands = profiles.map(val => (
         val.brands.length > 0 && val.brands !== null 
@@ -97,7 +99,7 @@ class Posts extends Component {
     }
 
     if(profiles === null || loading) {
-      perks = <Spinner />
+      perks = null //<Spinner />
     } else {
       perks = profiles.map(val => (
         val.perks.length > 0 && val.perks !== null 
@@ -107,7 +109,7 @@ class Posts extends Component {
     }
 
     if(profiles === null || loading) {
-      stores = <Spinner />
+      stores = null //<Spinner />
     } else {
       stores = profiles.map(val => (
         val.stores.length > 0 && val.stores !== null 
@@ -117,7 +119,7 @@ class Posts extends Component {
     }
 
     if(profiles === null || loading) {
-      djpools = <Spinner />
+      djpools = null // <Spinner />
     } else {
       djpools  = profiles.map(val => (
         val.djpools.length > 0 && val.djpools !== null 
@@ -213,8 +215,6 @@ class Posts extends Component {
     } 
     
     else if(showLikes) {
-      // this.props.getLikedPosts(this.state.count, this.state.start)
-      // this.setState(prevState => ({ start: prevState.start + 1 }))
       // const likedPost = []
       // for(let i = 0; i < posts.length; i++){
       //   for(let j = 0; j < posts[i].likes.length; j++) {
@@ -230,8 +230,8 @@ class Posts extends Component {
         hasMore={true}
         loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
           <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
-          {/* <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } /> */}
         </InfinteScroll>
+          /* <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } /> */
       )
     } else {
       postContent = (
