@@ -38,13 +38,15 @@ class Posts extends Component {
   }
 
   showLikesHandler = e => {
-    this.setState( prevState => ({ showLikes: !prevState.showLikes }))
-    if(this.state.showLikes) {
-      this.props.getLikedPosts(this.state.count, this.state.start)
-    } else {
-      this.props.getPosts() 
-    }
-    console.log(this.state.showLikes)
+    this.setState( prevState => ({ 
+      showLikes: !prevState.showLikes 
+    }), () => {
+      if(this.state.showLikes) {
+        this.props.getLikedPosts(this.state.count, this.state.start)
+      } else {
+        this.props.getPosts() 
+      }
+    })
   }
 
   componentDidMount() {
@@ -52,6 +54,13 @@ class Posts extends Component {
     this.props.getCurrentProfile()
     this.props.getProfiles()
     this.setState( prevState => ({ start: prevState.start + 1 }))
+    // this.setState({ showLikes: true })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.showLikes !== prevState.showLikes){
+      this.setState(prevState => !prevState.showLikes)
+    }
   }
 
 

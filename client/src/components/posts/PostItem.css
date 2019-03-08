@@ -1,7 +1,10 @@
 .posts_container {
   /* background: rgb(5, 22, 37);  reversed from posts.css  */ 
 
-  background: rgba(0,0,0,.5);  
+  background: rgba(0,0,0,.5);
+  /* background: white; */
+
+
   /* background: rgb(7, 10, 17); */
   width: 90%;
   margin: auto;
@@ -19,7 +22,8 @@
 }
 
 .posts_container:hover {
-  background: rgba(0,0,0,0.6);
+  /* background: rgba(0,0,0,0.6); */
+  background: rgba(0,0,0,0.9);
 }
 
 .post_avatar_and_name {

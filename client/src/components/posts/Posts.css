@@ -3,7 +3,9 @@
   /* background: #050811; */
 
   background: rgb(10, 19, 29);     
-  /* background: #282c35;        Dan Abramov */
+  /* background: #282c35;  Dan Abramov    */
+  /* background: rgb(7, 10, 17); */
+
   /* background: #151515; */
   /* background: #071020; */
 
@@ -263,8 +265,8 @@
     text-decoration: none;
     list-style: none;
   }
-  .searchbar_links:hover {
-  }
+  /* .searchbar_links:hover {
+  } */
 
   .searchbarpost {
     grid-area: searchbarpost;
