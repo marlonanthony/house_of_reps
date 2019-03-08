@@ -8,7 +8,9 @@ import {
   GET_POST,
   GET_MORE_POSTS,
   GET_MATCHING_POSTS,
-  ADD_NESTED_COMMENT
+  ADD_NESTED_COMMENT,
+  GET_PROFILE_POSTS,
+  GET_MORE_PROFILE_POSTS
 } from '../actions/types'
 
 const initialState = { 
@@ -30,6 +32,20 @@ export default function(state = initialState, action) {
         ...state,
         posts: action.payload,
         loading: false 
+      }
+
+    case GET_PROFILE_POSTS:
+      return {
+        ...state,
+        posts: action.payload,
+        loading: false
+      }
+
+    case GET_MORE_PROFILE_POSTS:
+      return {
+        ...state,
+        posts: [...state.posts, ...action.payload],
+        loading: false
       }
     
     case GET_MORE_POSTS:
@@ -71,6 +87,24 @@ export default function(state = initialState, action) {
         ...state,
         posts: updatedPost,
         loading: false
+      }
+
+    case ADD_NESTED_COMMENT:
+
+      const updatePost = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              comment.comments.unshift(action.payload.nestedCommentData)
+            }
+          })
+        }
+        return post 
+      })
+      return {
+        ...state,
+        posts: updatePost,
+        loading: false 
       }
 
     // case ADD_NESTED_COMMENT:

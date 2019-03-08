@@ -10,7 +10,6 @@ import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import CommentText from '../posts/post-assets/post_comment_text/CommentText'
 import PostModalText from '../posts/post-assets/post_comment_text/PostModalText'
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -26,12 +25,18 @@ class CommentItem extends Component {
     errors: {},
     data: {},
     showNestedSubmitBtn: false,
-    showForm: false 
+    showForm: false,
+    comments: this.props.comments 
   }
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.comment !== prevState.comment) {
       this.setState({ comment: this.props.comment })
+      console.log(this.props.comment)
+    }
+    if(this.props.comment.comments !== prevState.comment.comments) {
+      this.setState({ comment: this.props.comment })
+      console.log(this.props.comment)
     }
     if(this.props.profiles !== prevProps.profiles){
       this.props.getProfiles() 
@@ -87,7 +92,6 @@ class CommentItem extends Component {
   }
 
   addNewNestedComment = (postId, commentId) => {
-    console.log(postId, commentId)
     const { user } = this.props.auth 
     // const { postId } = this.props 
 
@@ -98,7 +102,7 @@ class CommentItem extends Component {
     }
 
     this.props.addNestedComment(postId, commentId, newNestedComment)
-    this.setState({ text: '' })
+    
     // e.target.reset() 
   }
 
@@ -122,18 +126,6 @@ class CommentItem extends Component {
   render() {
     const { postId, auth } = this.props 
     const { comment } = this.state
-    // let userHandle
-
-    // if(!this.props.profiles){
-    //   userHandle = null 
-    // } else {
-    //   this.props.profiles.map(profile => {
-    //     // if(profile.user._id === comment.user) {
-    //       userHandle = <p className='comment-feed-name'>{comment.name}</p>
-    //       // userHandle = <p className='comment-feed-name'>{profile.user.name}</p>
-    //     // }
-    //   })
-    // }
 
     let youtubeUrl = comment.url
     

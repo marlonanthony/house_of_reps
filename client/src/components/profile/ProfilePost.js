@@ -3,25 +3,25 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import InfinteScroll from 'react-infinite-scroll-component'
 import Spinner from '../common/Spinner' 
-import { getPosts, getMorePosts } from '../../actions/postActions'
+import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../actions/postActions'
 import PostItem from '../posts/PostItem'
 
 class ProfilePost extends Component {
   state = {
     showLikes: false,
     // pagination
-    count: 30,
+    count: 10,
     start: 0
   }
 
   componentDidMount() {
-    this.props.getPosts(this.state.count, this.state.start) 
+    this.props.getProfilePosts(this.state.count, this.state.start) 
     this.setState(prevState => ({ start: prevState.start + 1 }))
   }
 
   fetchMore = () => {
     const { count, start } = this.state 
-    this.props.getMorePosts(count, start)
+    this.props.getMoreProfilePosts(count, start)
     this.setState( prevState => ({ start: prevState.start + 1 }))
   }
 
@@ -29,11 +29,12 @@ class ProfilePost extends Component {
     const { posts, loading } = this.props.post 
     let postContent 
     if(posts === null || loading) {
-      postContent = <Spinner />
+      postContent = null
     } else {
-        postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
-        ? <PostItem key={post._id} post={post} /> 
-        : null)
+      postContent = posts.map(post => <PostItem key={post._id} post={post} />)
+        // postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
+        // ? <PostItem key={post._id} post={post} /> 
+        // : null)
     }
 
     return (
@@ -42,7 +43,8 @@ class ProfilePost extends Component {
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
-        loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+        loader={<p>These arent the posts you're looking for</p>}
+        >
           {postContent}
         </InfinteScroll>
       </div>
@@ -60,4 +62,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { getPosts, getMorePosts })(ProfilePost) 
+export default connect(mapStateToProps, { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts })(ProfilePost) 

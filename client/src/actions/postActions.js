@@ -11,7 +11,9 @@ import {
   DELETE_COMMENT,
   GET_MORE_POSTS,
   GET_MATCHING_POSTS,
-  ADD_NESTED_COMMENT
+  ADD_NESTED_COMMENT,
+  GET_PROFILE_POSTS,
+  GET_MORE_PROFILE_POSTS
 } from './types' 
 
 // Add Post 
@@ -42,6 +44,31 @@ export const getPosts = (count, start) => dispatch => {
   }))
 }
 
+// Get Profile Posts 
+export const getProfilePosts = (count, start) => dispatch => {
+  dispatch(setPostLoading()) 
+  axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
+  .then(res => dispatch({
+    type: GET_PROFILE_POSTS,
+    payload: res.data 
+  })) 
+  .catch(err => dispatch({
+    type: GET_PROFILE_POSTS,
+    payload: null
+  }))
+}
+
+// Get More Profile Posts
+export const getMoreProfilePosts = (count, start) => dispatch => {
+  dispatch(setPostLoading())
+  axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
+  .then(res => dispatch({
+    type: GET_MORE_PROFILE_POSTS,
+    payload: res.data,
+  }))
+  .catch(err => console.log(err)) 
+}
+
 // Get More Posts
 export const getMorePosts = (count, start) => dispatch => {
   dispatch(setPostLoading())
@@ -55,7 +82,6 @@ export const getMorePosts = (count, start) => dispatch => {
 
 // Get Matching Posts
 export const getMatchingPosts = (matches) => dispatch => {
-  console.log(matches)
   dispatch(setPostLoading())
   axios.get(`/api/posts/search/:${matches}`)
   .then(res => dispatch({
@@ -166,15 +192,20 @@ export const removeCommentLike = (postId, commentId) => dispatch => {
 export const addNestedComment = (postId, commentId, nestedCommentData) => dispatch => {
   dispatch(clearErrors()) 
   axios.post(`/api/posts/comment/comment/${postId}/${commentId}`, nestedCommentData)
+  .then(res => dispatch({
+    type: ADD_NESTED_COMMENT,
+    payload: {
+      data: res.data,
+      postId,
+      commentId,
+      nestedCommentData
+    }, 
+  })) 
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
   }))
 }
-  // .then(res => dispatch({
-  //   type: ADD_NESTED_COMMENT,
-  //   payload: res.data
-  // }))
 
 // Delete NestedComment
 export const deleteNestedComment = (postId, commentId, nestedCommentId) => dispatch => {

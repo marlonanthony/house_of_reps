@@ -25,7 +25,7 @@ class Posts extends Component {
     matches: '',
     showMatches: false,
     showLikes: false,
-    count: 30, 
+    count: 10, 
     start: 0
   }
   
