@@ -154,7 +154,7 @@ class CommentItem extends Component {
           <img id='comment-feed-avatar' onClick={()=> this.userNameOrAvatarClicked(comment.user)} src={comment.avatar} alt={comment.avatar} />
           <div id='comment_name_and_date_container' style={{ display: 'flex', flexDirection: 'column', paddingLeft: '7px' }}>
             <p className='comment-feed-name'>{comment.name}</p>
-            <p id='comment-feed-date'><Moment format='MM/DD/YYYY'>{comment.date}</Moment></p>
+            <p id='comment-feed-date'><Moment format='ddd, ll LT'>{comment.date}</Moment></p>
           </div>
           <div id='comment_content_container'>
             { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
@@ -258,7 +258,7 @@ class CommentItem extends Component {
                         { nestedComment.avatar && <img className='nested_comment_avatar' src={nestedComment.avatar} alt="user avatar"/> }
                         <div style={{display: 'flex', flexDirection: 'column'}}>
                           { nestedComment.name && <p style={{color: 'rgb(55, 131, 194)', fontSize: 12 }}>{nestedComment.name}</p> }
-                          <p style={{color: 'gray', fontSize: '11px', marginTop: '-5px'}}><Moment format='MM/DD/YYYY'>{nestedComment.date}</Moment></p>
+                          <p style={{color: 'gray', fontSize: '11px', marginTop: '-5px'}}><Moment format='ddd, ll LT'>{nestedComment.date}</Moment></p>
                         </div>
                       </div>
                       <div>

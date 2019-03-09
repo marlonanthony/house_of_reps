@@ -125,7 +125,7 @@ class PostItem extends Component {
         <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
         <div style={{ display: 'flex', flexDirection: 'column'  }}>
           <p className='post_name' onClick={() => this.userNameOrAvatarClicked(post.user)}>{post.name}</p>
-          <p className='post_feed_date'><Moment format='MM/DD/YYYY'>{post.date}</Moment></p>
+          <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
         </div>
       </div>
 

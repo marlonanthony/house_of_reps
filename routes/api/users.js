@@ -58,6 +58,19 @@ router.post('/register', (req, res) => {
   })
 })
 
+/////////////////////////////////////////////////////////           TESTING USER UPDATE          ///////////////////////////////////////////////////
+router.post('/update/:id', (req, res) => {
+  User.findOneAndUpdate({ _id: req.params.id }, req.body)
+  .then(user => {
+    console.log(user)
+    user.avatar = req.body.avatar 
+    user.save()
+    res.json(user) 
+  })
+  .catch(err => console.log(err)) 
+})
+
+
 // @route         POST api/users/login
 // @description   Login User / Returning JWT Token
 // @access        Public 

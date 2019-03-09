@@ -216,14 +216,6 @@ class Posts extends Component {
     } 
     
     else if(showLikes) {
-      // const likedPost = []
-      // for(let i = 0; i < posts.length; i++){
-      //   for(let j = 0; j < posts[i].likes.length; j++) {
-      //     if(posts[i].likes[j].user === user.id) {
-      //       likedPost.push(posts[i])
-      //     }
-      //   }
-      // }
       postContent = (
         <InfinteScroll
         dataLength={posts.length}
@@ -232,7 +224,6 @@ class Posts extends Component {
         loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
           <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
         </InfinteScroll>
-          /* <PostFeed showPreview={ showsPreview } posts={ likedPost } profiles={ profiles } /> */
       )
     } else {
       postContent = (
