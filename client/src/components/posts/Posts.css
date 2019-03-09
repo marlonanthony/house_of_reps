@@ -224,7 +224,8 @@
     grid-template-rows: auto auto auto 1fr;
     grid-template-areas: 
       'searchbarpost postform searchbar'
-      'profile img_test postfeedhighlights'
+      'profile post-feed-post-content postfeedhighlights'
+      /* 'profile img_test postfeedhighlights' */
       /* 'searchbarpost postform searchbar'
       'profile post-feed-post-content postfeedhighlights' */
       /* 'postfeedsocials post-feed-post-content postfeedhighlights' */
@@ -233,16 +234,16 @@
   }
   
   .post-feed-post-content {
-    margin-top: -150px;
+    /* margin-top: -150px; */
   }
 
-  .img_test {
+  /* .img_test {
     grid-area: img_test;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     
-  }
+  } */
 
   .searchbar {
     display: flex;
