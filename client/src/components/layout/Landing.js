@@ -33,6 +33,10 @@ class Landing extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.history.push('/dashboard')
+  }
+
   showHandler = () => {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
@@ -121,7 +125,7 @@ Landing.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors 
+  errors: state.errors,
 })
 
 export default connect(mapStateToProps, { loginUser })(Landing)

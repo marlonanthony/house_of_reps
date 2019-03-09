@@ -15,6 +15,16 @@ class Profile extends Component {
     }
   }
 
+  // componentDidMount() {
+  //   if(!this.props.profile.profile) {
+  //     console.log(this.props.profile.profile)
+  //     return this.props.history.push('/dashboard') 
+  //   }
+  //   if(this.props.match.params.handle) {
+  //     this.props.getProfileByHandle(this.props.match.params.handle) 
+  //   }
+  // }
+
   render() {
     const { profile, loading } = this.props.profile
     const { user } = this.props.auth
