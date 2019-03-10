@@ -21,8 +21,12 @@ class ProfilePost extends Component {
 
   fetchMore = () => {
     const { count, start } = this.state 
-    this.props.getMoreProfilePosts(count, start)
-    this.setState( prevState => ({ start: start + 1 }))
+    this.props.posts.map(post => {
+      if(this.props.allProps.match.params.handle === post.handle) {
+        this.props.getMoreProfilePosts(count, start) 
+        this.setState( prevState => ({ start: start + 1 }))
+      }
+    })
   }
 
   render() {
