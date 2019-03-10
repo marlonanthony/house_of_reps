@@ -15,7 +15,7 @@ class ProfilePost extends Component {
   }
 
   componentDidMount() {
-    this.props.getProfilePosts(this.state.count, this.state.start) 
+    this.props.getProfilePosts(this.state.count, this.state.start, this.props.allProps.match.params.handle) 
     this.setState(prevState => ({ start: prevState.start + 1 }))
   }
 
@@ -27,15 +27,18 @@ class ProfilePost extends Component {
 
   render() {
     const { posts, loading } = this.props.post 
+    console.log(this.props.allProps)
     let postContent 
     if(posts === null || loading) {
       postContent = null
     } else {
-      postContent = posts.map(post => <PostItem key={post._id} post={post} />)
-    }
         // postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
         // ? <PostItem key={post._id} post={post} /> 
         // : null)
+
+      postContent = posts.map(post => <PostItem key={post._id} post={post} />)
+    }
+
 
     return (
       <div style={{ marginBottom: 70 }}>

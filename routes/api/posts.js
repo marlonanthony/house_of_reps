@@ -64,7 +64,7 @@ router.get('/profileposts', passport.authenticate('jwt', { session: false }), (r
     limit: parseInt(req.query.limit) || 10
   }
   Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.find({ user: { $in: req.user.id } })
+    Post.find({ handle: req.query.handle })
     .sort({ date: -1 })
     .skip(pageOptions.page * pageOptions.limit)
     .limit(pageOptions.limit)
@@ -109,7 +109,6 @@ router.get('/:id', (req, res) => {
 // @access        Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validatePostInput(req.body) 
-
   // Check Validation
   if(!isValid) {
     // If errors send 400 with errors object
@@ -119,7 +118,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   const newPost = new Post({
     text: req.body.text,
     name: req.body.name,
-    handle: req.body.handle,
+    handle: req.user.handle,
     avatar: req.body.avatar,
     user: req.user.id,
     image: req.body.image,

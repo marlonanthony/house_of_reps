@@ -41,9 +41,10 @@ router.post('/register', (req, res) => {
       })
       const newUser = new User({
         name: req.body.name,
+        handle: req.body.handle,
         email: req.body.email,
         avatar: req.body.avatar ? req.body.avatar : avatar,
-        password: req.body.password 
+        password: req.body.password
       })
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -63,7 +64,8 @@ router.post('/update/:id', (req, res) => {
   User.findOneAndUpdate({ _id: req.params.id }, req.body)
   .then(user => {
     console.log(user)
-    user.avatar = req.body.avatar 
+    if(req.body.avatar) user.avatar = req.body.avatar 
+    if(req.body.handle) user.handle = req.body.handle
     user.save()
     res.json(user) 
   })
@@ -121,7 +123,8 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   res.json({
     id: req.user.id,
     name: req.user.name,
-    email: req.user.email 
+    email: req.user.email,
+    avatar: req.user.avatar 
   })
 })
 

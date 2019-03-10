@@ -73,9 +73,9 @@ export const getLikedPosts = (count, start) => dispatch => {
 
 
 // Get Profile Posts 
-export const getProfilePosts = (count, start) => dispatch => {
+export const getProfilePosts = (count, start, handle) => dispatch => {
   dispatch(setPostLoading()) 
-  axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
+  axios.get(`/api/posts/profileposts?page=${start}&limit=${count}&handle=${handle}`)
   .then(res => dispatch({
     type: GET_PROFILE_POSTS,
     payload: res.data 
