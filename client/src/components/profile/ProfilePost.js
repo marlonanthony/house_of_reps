@@ -50,7 +50,7 @@ class ProfilePost extends Component {
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
-        loader={<p style={{textAlign: 'center'}}>These arent the posts you're looking for</p>}
+        loader={<p style={{textAlign: 'center'}}>These are not the posts you're looking for</p>}
         >
           {postContent}
         </InfinteScroll>

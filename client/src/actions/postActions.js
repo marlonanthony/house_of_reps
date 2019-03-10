@@ -14,7 +14,8 @@ import {
   ADD_NESTED_COMMENT,
   GET_PROFILE_POSTS,
   GET_MORE_PROFILE_POSTS,
-  GET_LIKED_POSTS
+  GET_LIKED_POSTS,
+  GET_MORE_LIKED_POSTS
 } from './types' 
 
 // Add Post 
@@ -66,6 +67,17 @@ export const getLikedPosts = (count, start) => dispatch => {
   axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
   .then(res => dispatch({
     type: GET_LIKED_POSTS,
+    payload: res.data 
+  }))
+  .catch(err => console.log(err)) 
+}
+
+// Get More Liked Posts 
+export const getMoreLikedPosts = (count, start) => dispatch => {
+  dispatch(setPostLoading()) 
+  axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
+  .then(res => dispatch({
+    type: GET_MORE_LIKED_POSTS,
     payload: res.data 
   }))
   .catch(err => console.log(err)) 

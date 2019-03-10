@@ -87,8 +87,8 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
       likes: { $elemMatch: { user: req.user.id } }
     })
     .sort({ date: -1 })
-    // .skip(pageOptions.page * pageOptions.limit)
-    // .limit(pageOptions.limit)
+    .skip(pageOptions.page * pageOptions.limit)
+    .limit(pageOptions.limit)
     .then(posts => res.json(posts))
   })
 })

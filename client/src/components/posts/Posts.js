@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { Link } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts } from '../../actions/postActions'
+import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts, getMoreLikedPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
 import Spinner from '../common/Spinner' 
@@ -42,7 +42,7 @@ class Posts extends Component {
       showLikes: !prevState.showLikes 
     }), () => {
       if(this.state.showLikes) {
-        this.props.getLikedPosts(this.state.count, this.state.start)
+        this.props.getLikedPosts()
       } else {
         this.props.getPosts() 
       }
@@ -58,8 +58,12 @@ class Posts extends Component {
 
   fetchMore = () => {
     const { count, start } = this.state 
+    if(this.state.showLikes) {
+      this.props.getMoreLikedPosts(this.state.count, this.state.start) 
+    } else {
     this.props.getMorePosts(count, start)
     this.setState( prevState => ({ start: start + 1 }))
+    }
   }
   
   render() {
@@ -318,4 +322,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getLikedPosts, getMatchingPosts })(Posts) 
+export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getLikedPosts, getMoreLikedPosts, getMatchingPosts })(Posts) 
