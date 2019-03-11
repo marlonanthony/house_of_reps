@@ -33,11 +33,11 @@ class Posts extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  onSearchPostClick = e => {
+  onSearchPostClick = () => {
     this.setState( prevState => ({ showMatches: !prevState.showMatches }))
   }
 
-  showLikesHandler = e => {
+  showLikesHandler = () => {
     this.setState( prevState => ({ 
       showLikes: !prevState.showLikes,
       start: 1
@@ -60,7 +60,7 @@ class Posts extends Component {
   fetchMore = () => {
     const { count, start } = this.state 
     if(this.state.showLikes) {
-      this.props.getMoreLikedPosts(this.state.count, this.state.start) 
+      this.props.getMoreLikedPosts(count, start) 
       this.setState( prevState => ({ start: prevState.start + 1 }))
     } else {
     this.props.getMorePosts(count, start)
