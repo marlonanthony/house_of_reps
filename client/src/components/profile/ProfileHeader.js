@@ -8,7 +8,6 @@ import './ProfileHeader.css'
 class ProfileHeader extends Component {
   render() {
     const { profile, user } = this.props 
-
     return (
       <div className='profile-header-container'>
         {/* <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' /> */}

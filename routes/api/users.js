@@ -60,10 +60,11 @@ router.post('/register', (req, res) => {
 })
 
 /////////////////////////////////////////////////////////           TESTING USER UPDATE          ///////////////////////////////////////////////////
-router.post('/update/:id', (req, res) => {
+router.post('/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   User.findOneAndUpdate({ _id: req.params.id }, req.body)
   .then(user => {
-    console.log(user)
+    // if(req.body.email) user.email = req.body.email 
+    // if(req.body.password) user.password = req.body.password 
     if(req.body.avatar) user.avatar = req.body.avatar 
     if(req.body.handle) user.handle = req.body.handle
     user.save()
@@ -100,7 +101,7 @@ router.post('/login', (req, res) => {
     .then(isMatch => {
       if(isMatch) {
         // User Matched 
-        const payload = { id: user.id, name: user.name, avatar: user.avatar }
+        const payload = { id: user.id, name: user.name, avatar: user.avatar, handle: user.handle }
         // Sign Token
         jwt.sign(payload, keys.secretOrKey, { expiresIn: 604800 }, (err, token) => {
           res.json({
@@ -124,7 +125,8 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
-    avatar: req.user.avatar 
+    avatar: req.user.avatar,
+    handle: req.user.handle
   })
 })
 

@@ -60,9 +60,10 @@ class Posts extends Component {
     const { count, start } = this.state 
     if(this.state.showLikes) {
       this.props.getMoreLikedPosts(this.state.count, this.state.start) 
+      this.setState( prevState => ({ start: prevState.start + 1 }))
     } else {
     this.props.getMorePosts(count, start)
-    this.setState( prevState => ({ start: start + 1 }))
+    this.setState( prevState => ({ start: prevState.start + 1 }))
     }
   }
   
@@ -219,24 +220,25 @@ class Posts extends Component {
       )
     } 
     
-    else if(showLikes) {
-      postContent = (
-        <InfinteScroll
-        dataLength={posts.length}
-        next={this.fetchMore}
-        hasMore={true}
-        loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-          <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
-        </InfinteScroll>
-      )
-    } else {
+    // else if(showLikes) {
+    //   postContent = (
+    //     <InfinteScroll
+    //     dataLength={posts.length}
+    //     next={this.fetchMore}
+    //     hasMore={true}
+    //     loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+    //       <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
+    //     </InfinteScroll>
+    //   )
+    // } 
+    else {
       postContent = (
         <InfinteScroll
           dataLength={posts.length}
           next={this.fetchMore}
           hasMore={true}
           loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-          <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
+            <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
         </InfinteScroll> 
       )
     }

@@ -94,7 +94,6 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props 
     const { showComments, text, postComments, likes } = this.state 
- 
 
     let youtubeUrl = post.url
     

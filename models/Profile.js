@@ -34,7 +34,8 @@ const ProfileSchema = new Schema({
     type: String
   },
   bio: {
-    type: String
+    type: String,
+    max: 280
   },
   style: {
     type: String

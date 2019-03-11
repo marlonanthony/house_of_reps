@@ -29,6 +29,9 @@ module.exports = function validateRegisterInput(data) {
   // if(Validator.isEmpty(data.avatar)) {
   //   errors.avatar = 'Avatar is required'
   // }
+  if(Validator.isEmpty(data.handle)) {
+    errors.handle = 'Handle is required'
+  }
 
   if(Validator.isEmpty(data.password)) {
     errors.password = 'Password is required'

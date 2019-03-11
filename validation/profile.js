@@ -10,6 +10,10 @@ module.exports = function validateProfileInput(data) {
     errors.handle = 'Username needs to be between 2 and 40 characters'
   }
 
+  if(!Validator.isLength(data.bio, { max: 280 })) {
+    errors.bio = 'Bio needs to be 280 characters or less'
+  }
+
   if(Validator.isEmpty(data.handle)) {
     errors.handle = 'Profile username is required'
   }
