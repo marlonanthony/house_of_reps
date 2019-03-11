@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import InfinteScroll from 'react-infinite-scroll-component'
-import Spinner from '../common/Spinner' 
+// import Spinner from '../common/Spinner' 
 import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../actions/postActions'
 import PostItem from '../posts/PostItem'
 
@@ -21,12 +21,8 @@ class ProfilePost extends Component {
 
   fetchMore = () => {
     const { count, start } = this.state 
-    this.props.posts.map(post => {
-      if(this.props.allProps.match.params.handle === post.handle) {
-        this.props.getMoreProfilePosts(count, start) 
-        this.setState( prevState => ({ start: start + 1 }))
-      }
-    })
+    this.props.getMoreProfilePosts(count, start) 
+    this.setState( prevState => ({ start: start + 1 }))
   }
 
   render() {
@@ -35,10 +31,6 @@ class ProfilePost extends Component {
     if(posts === null || loading) {
       postContent = null
     } else {
-        // postContent = posts.map(post => this.props.allProps.match.params.handle === post.handle
-        // ? <PostItem key={post._id} post={post} /> 
-        // : null)
-
       postContent = posts.map(post => <PostItem key={post._id} post={post} />)
     }
 
