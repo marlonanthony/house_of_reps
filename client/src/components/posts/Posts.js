@@ -71,9 +71,8 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
-    const { showsPreview, showLikes, showMatches, matches } = this.state
+    const { showsPreview, showMatches, matches } = this.state
     const { user } = this.props.auth
-    console.log(this.state.count, this.state.start, this.state.showLikes)
     let postContent 
     let profileContent
     let djpools
@@ -203,47 +202,21 @@ class Posts extends Component {
       postContent = <Spinner />
     }
 
-    if(showMatches) {
-      // this.props.getMatchingPosts(matches.toLowerCase())
-      const arr = []
-      posts.forEach(post => {
-        if(post.text.toLowerCase().includes(matches.toLowerCase())) {
-          arr.push(post)
-        }
-      })
-      postContent = (
-        <InfinteScroll
-        dataLength={posts.length}
-        next={this.fetchMore}
-        hasMore={true}
-        loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-          <PostFeed showPreview={ showsPreview } posts={ arr } profiles={ profiles } />
-        </InfinteScroll>
-      )
-    } 
-    
-    // else if(showLikes) {
-    //   postContent = (
-    //     <InfinteScroll
-    //     dataLength={posts.length}
-    //     next={this.fetchMore}
-    //     hasMore={true}
-    //     loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-    //       <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
-    //     </InfinteScroll>
-    //   )
-    // } 
-    else {
-      postContent = (
-        <InfinteScroll
-          dataLength={posts.length}
-          next={this.fetchMore}
-          hasMore={true}
-          loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-            <PostFeed showPreview={ showsPreview } posts={ posts } profiles={ profiles } />
-        </InfinteScroll> 
-      )
-    }
+    const arr = []
+    posts.forEach(post => {
+      if(post.text.toLowerCase().includes(matches.toLowerCase())) {
+        arr.push(post)
+      }
+    })
+    postContent = (
+      <InfinteScroll
+      dataLength={posts.length}
+      next={this.fetchMore}
+      hasMore={true}
+      loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+        <PostFeed showPreview={ showsPreview } posts={ showMatches ? arr : posts } profiles={ profiles } />
+      </InfinteScroll>
+    )
 
     return (
       <div className='feed'>
