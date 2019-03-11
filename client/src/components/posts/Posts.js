@@ -39,7 +39,8 @@ class Posts extends Component {
 
   showLikesHandler = e => {
     this.setState( prevState => ({ 
-      showLikes: !prevState.showLikes 
+      showLikes: !prevState.showLikes,
+      start: 1
     }), () => {
       if(this.state.showLikes) {
         this.props.getLikedPosts()
@@ -72,6 +73,7 @@ class Posts extends Component {
     const { profile, profiles } = this.props.profile 
     const { showsPreview, showLikes, showMatches, matches } = this.state
     const { user } = this.props.auth
+    console.log(this.state.count, this.state.start, this.state.showLikes)
     let postContent 
     let profileContent
     let djpools
