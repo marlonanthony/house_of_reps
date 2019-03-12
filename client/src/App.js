@@ -24,6 +24,7 @@ import Profiles from './components/profiles/Profiles'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import Post from './components/post/Post'
+import Verify from './components/auth/Verify'
 import './App.css';
 
 
@@ -60,6 +61,7 @@ class App extends Component {
             <Fragment>
             <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
+            <Route exact path='/verify' component={ Verify } />
             <Switch>
               <PrivateRoute exact path='/dashboard' component={ Dashboard } />
             </Switch>

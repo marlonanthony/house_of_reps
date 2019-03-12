@@ -53,7 +53,10 @@ router.post('/register', (req, res) => {
           if(err) throw err 
           newUser.password = hash 
           newUser.save()
-          .then(user => res.json(user))
+          .then(user => { 
+            
+          })
+          // .then(user => res.json(user))
           .catch(err => console.log(err)) 
         })
       })
@@ -65,12 +68,13 @@ router.post('/register', (req, res) => {
 router.post('/update/:id', (req, res) => {
   User.findOne({ _id: req.params.id })
   .then(user => {
-    const { email, body, title, subject, recipients } = req.body 
+    const { email, body, title, subject, recipients, token } = req.body 
     const emailInfo = {
       title,
       subject,
       body,
-      recipients
+      recipients,
+      token
     }
     
     const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
