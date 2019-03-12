@@ -9,6 +9,13 @@ class Verify extends Component {
     isVerified: false
   }
 
+  // Get User url from redux
+  // verify the url is correct
+  // if isVerified set to true 
+  // send user to create profile
+  // if isVerified is false deal with possible errors
+  // Send user to Sapsburg
+
   componentDidMount() {
     const { pathname, search } = this.props.location
     if(`${pathname}${search}` === this.state.url) {
