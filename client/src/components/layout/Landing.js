@@ -33,9 +33,9 @@ class Landing extends Component {
     }
   }
 
-  componentWillUnmount() {
-    this.props.history.push('/dashboard')
-  }
+  // componentWillUnmount() {
+  //   this.props.history.push('/dashboard')
+  // }
 
   showHandler = () => {
     this.setState(prevState => ({ showModal: !prevState.showModal }))

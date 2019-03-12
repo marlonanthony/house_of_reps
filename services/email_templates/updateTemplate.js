@@ -1,3 +1,5 @@
+const keys = require('../../config/keys')
+
 module.exports = emailInfo => {
   return `
     <html>
@@ -5,7 +7,7 @@ module.exports = emailInfo => {
         <div style='text-align: center'>
           <h3>House of Reps</h3>
           <p>${emailInfo.body}</p>
-          <a href='http://localhost:3000/feed'>Confirm email</a>
+          <a href="${keys.redirectDomain}">Confirm email</a>
         </div>
       </body>
     </html>
