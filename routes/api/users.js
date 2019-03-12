@@ -75,7 +75,9 @@ router.post('/update/:id', (req, res) => {
     
     const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
     mailer.send() 
-
+    console.log(user)
+    // await mailer.send() 
+    // await user.save()
  
     // res.json(user) 
   })
