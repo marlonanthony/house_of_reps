@@ -5,13 +5,13 @@ import { withRouter } from 'react-router-dom'
 
 class Verify extends Component {
   state = {
-    token: 123456,
-    email: 'mad1083@yahoo.com',
+    url: '/verify/?email=mad1083@yahoo.com&token=123456',
     isVerified: false
   }
 
   componentDidMount() {
-    if(this.props.location.search.includes(this.state.email) && this.props.location.search.includes(this.state.token)) {
+    const { pathname, search } = this.props.location
+    if(`${pathname}${search}` === this.state.url) {
       this.setState({ isVerified: true })
     }
   }
