@@ -172,7 +172,7 @@ class CommentItem extends Component {
                       { youtubeUrl 
                       ? 
                         // <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
-                          <iframe width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
+                          <iframe title='youtube' width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
                         // </div>
                       : <a href={comment.url} target='_blank' rel='noopener noreferrer' id='comment-anchor-container'>
                           <div id='comment-link-container'>

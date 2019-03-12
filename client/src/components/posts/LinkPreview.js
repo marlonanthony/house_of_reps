@@ -7,7 +7,6 @@ const LinkPreview = ({ post, media }) => {
       <img src={post.image} alt={post.title} style={{ width: '50%', margin: '0 25%' }} />
       <p style={{ fontSize: '12px' }}>{post.title}</p>
       <p style={{ fontSize: '10px' }}>{post.description}</p>
-      <a href={''}><small>{post.url}</small></a>
     </div>
   )
 }

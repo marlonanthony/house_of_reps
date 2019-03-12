@@ -28,7 +28,7 @@
 
 .post_avatar_and_name {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 5px;
   grid-area: postavatarandname;
 }

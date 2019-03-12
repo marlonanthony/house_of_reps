@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken') 
 const keys = require('../../config/keys')
 const passport = require('passport')
+const Mailer = require('../../services/Mailer')
+const updateTemplate = require('../../services/email_templates/updateTemplate')
 
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register')
@@ -60,18 +62,37 @@ router.post('/register', (req, res) => {
 })
 
 /////////////////////////////////////////////////////////           TESTING USER UPDATE          ///////////////////////////////////////////////////
-router.post('/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  User.findOneAndUpdate({ _id: req.params.id }, req.body)
+router.post('/update/:id', (req, res) => {
+  User.findOne({ _id: req.params.id })
   .then(user => {
-    // if(req.body.email) user.email = req.body.email 
-    // if(req.body.password) user.password = req.body.password 
-    if(req.body.avatar) user.avatar = req.body.avatar 
-    if(req.body.handle) user.handle = req.body.handle
-    user.save()
-    res.json(user) 
+    const { email, body, title, subject, recipients } = req.body 
+    const emailInfo = {
+      title,
+      subject,
+      body,
+      recipients
+    }
+    
+    const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
+    mailer.send() 
+
+ 
+    // res.json(user) 
   })
   .catch(err => console.log(err)) 
 })
+// router.post('/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   User.findOneAndUpdate({ _id: req.params.id }, req.body)
+//   .then(user => {
+//     // if(req.body.email) user.email = req.body.email 
+//     // if(req.body.password) user.password = req.body.password 
+//     if(req.body.avatar) user.avatar = req.body.avatar 
+//     if(req.body.handle) user.handle = req.body.handle
+//     user.save()
+//     res.json(user) 
+//   })
+//   .catch(err => console.log(err)) 
+// })
 
 
 // @route         POST api/users/login

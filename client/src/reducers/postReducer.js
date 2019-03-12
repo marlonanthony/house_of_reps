@@ -111,7 +111,7 @@ export default function(state = initialState, action) {
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {
             if(comment._id === action.payload.commentId) {
-              comment.comments.unshift(action.payload.nestedCommentData)
+              comment = comment.comments.unshift(action.payload.nestedCommentData)
             }
           })
         }
@@ -122,16 +122,6 @@ export default function(state = initialState, action) {
         posts: updatePost,
         loading: false 
       }
-
-    // case ADD_NESTED_COMMENT:
-    //   const { posts } = state 
-    //   const updatedPost = posts.map(comment => {
-    //     if(comment._id === action.payload.)
-    //   })
-    //   return {
-    //     ...state,
-    //     posts: []
-    //   }
 
     case DELETE_POST:
       return {
