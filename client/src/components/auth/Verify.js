@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 class Verify extends Component {
   state = {
@@ -30,6 +30,7 @@ class Verify extends Component {
       return (
         <div style={{textAlign: 'center', color: 'cyan'}}>
           <h1>Congrats You're Verified!!!!</h1>
+          <Link to='/login'>Log In</Link>
         </div>
       )
     } 
@@ -41,4 +42,9 @@ class Verify extends Component {
   }
 }
 
-export default connect(null, {})(withRouter(Verify))
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors 
+})
+
+export default connect(mapStateToProps)(withRouter(Verify))

@@ -53,6 +53,7 @@ class Register extends Component {
       password2
     }
     this.props.registerUser(newUser, this.props.history) 
+    console.log(this.props.history)
   }
 
   onImageDrop = files => {
@@ -75,6 +76,7 @@ class Register extends Component {
   }
 
   render() {
+    console.log(this.props.history)
     const { errors } = this.state  
 
     return (
@@ -138,7 +140,7 @@ class Register extends Component {
             <RegisterTextFieldGroup
               type="text"
               name='handle'
-              placeholder='Username'
+              placeholder='userhandle'
               value={ this.state.handle }
               onChange={ this.onChangeHandler }
               error={ errors.handle }

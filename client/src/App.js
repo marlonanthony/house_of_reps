@@ -25,6 +25,7 @@ import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import Post from './components/post/Post'
 import Verify from './components/auth/Verify'
+import ConfirmEmail from './components/auth/ConfirmEmail'
 import './App.css';
 
 
@@ -59,45 +60,46 @@ class App extends Component {
               <Route exact path='/' component={ Landing } />
             </Fragment>
             <Fragment>
-            <Route exact path='/register' component={ Register } />
-            <Route exact path='/login' component={ Login } />
-            <Route exact path='/verify' component={ Verify } />
-            <Switch>
-              <PrivateRoute exact path='/dashboard' component={ Dashboard } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/add-venue' component={ AddVenue } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/add-djpool' component={ AddDjpool } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/add-store' component={ AddCertifiedStore } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/add-perk' component={ AddPerk } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/add-brand' component={ AddBrand } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/feed' component={ Posts } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/profile/:handle' component={ Profile } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/djs' component={ Profiles } />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path='/post/:id' component={ Post } />
-            </Switch>
+              <Route exact path='/register' component={ Register } />
+              <Route exact path='/login' component={ Login } />
+              <Route exact path='/checkemail' component={ ConfirmEmail } />
+              <Route exact path='/verify' component={ Verify } />
+              <Switch>
+                <PrivateRoute exact path='/dashboard' component={ Dashboard } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/add-venue' component={ AddVenue } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/add-djpool' component={ AddDjpool } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/add-store' component={ AddCertifiedStore } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/add-perk' component={ AddPerk } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/add-brand' component={ AddBrand } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/feed' component={ Posts } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/profile/:handle' component={ Profile } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/djs' component={ Profiles } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/post/:id' component={ Post } />
+              </Switch>
             </Fragment>
           </Fragment>
         </Router>

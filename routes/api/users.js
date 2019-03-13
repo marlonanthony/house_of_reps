@@ -53,21 +53,21 @@ router.post('/register', (req, res) => {
 
           .then(user => { 
             // send email 
-            const { recipients } = req.body 
+            // const { recipients } = req.body 
             const emailInfo = {
               subject: 'Testing the register route',
               body: "Bruh, I'm fittin to write all the emails!",
-              recipients, // change this to email after testing
+              recipients: 'mad1083@yahoo.com', // change this to email after testing
               token: hash 
             }
             
             const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
             mailer.send() 
-            res.json(user) 
+            // res.json(user) 
           })
 
 
-          // .then(user => res.json(user))
+          .then(user => res.json(user))
           .catch(err => console.log(err)) 
         })
       })

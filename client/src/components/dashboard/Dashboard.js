@@ -173,7 +173,7 @@ class Dashboard extends Component {
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
             <p className="">{ user.name }</p>
             <p>You have not yet set up a profile, please add some info</p>
             <Link to='/create-profile' className=''>Create Profile</Link>
