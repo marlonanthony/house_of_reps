@@ -53,12 +53,11 @@ router.post('/register', (req, res) => {
 
           .then(user => { 
             // send email 
-            const { body, title, subject, recipients } = req.body 
+            const { recipients } = req.body 
             const emailInfo = {
-              title,
-              subject,
-              body,
-              recipients,
+              subject: 'Testing the register route',
+              body: "Bruh, I'm fittin to write all the emails!",
+              recipients, // change this to email after testing
               token: hash 
             }
             
