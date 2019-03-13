@@ -5,12 +5,13 @@ import { withRouter } from 'react-router-dom'
 
 class Verify extends Component {
   state = {
-    url: '/verify/?email=mad1083@yahoo.com&token=123456',
+    url: `/verify/${this.props.location.search}`,
     isVerified: false
   }
 
-  // Get User url from redux
-  // verify the url is correct
+  
+  // Get User token from redux
+  // compare tokens
   // if isVerified set to true 
   // send user to create profile
   // if isVerified is false deal with possible errors

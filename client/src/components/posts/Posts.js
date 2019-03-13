@@ -28,7 +28,25 @@ class Posts extends Component {
     count: 10, 
     start: 0
   }
-  
+
+  componentDidMount() {
+    this.props.getPosts(this.state.count, this.state.start) 
+    this.props.getCurrentProfile()
+    this.props.getProfiles()
+    this.setState( prevState => ({ start: prevState.start + 1 }))
+  }
+
+  fetchMore = () => {
+    const { count, start } = this.state 
+    if(this.state.showLikes) {
+      this.props.getMoreLikedPosts(count, start) 
+      this.setState( prevState => ({ start: prevState.start + 1 }))
+    } else {
+    this.props.getMorePosts(count, start)
+    this.setState( prevState => ({ start: prevState.start + 1 }))
+    }
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -48,24 +66,6 @@ class Posts extends Component {
         this.props.getPosts() 
       }
     })
-  }
-
-  componentDidMount() {
-    this.props.getPosts(this.state.count, this.state.start) 
-    this.props.getCurrentProfile()
-    this.props.getProfiles()
-    this.setState( prevState => ({ start: prevState.start + 1 }))
-  }
-
-  fetchMore = () => {
-    const { count, start } = this.state 
-    if(this.state.showLikes) {
-      this.props.getMoreLikedPosts(count, start) 
-      this.setState( prevState => ({ start: prevState.start + 1 }))
-    } else {
-    this.props.getMorePosts(count, start)
-    this.setState( prevState => ({ start: prevState.start + 1 }))
-    }
   }
   
   render() {

@@ -16,6 +16,7 @@ class Register extends Component {
   state = {
     name: '',
     email: '',
+    handle: '',
     password: '',
     password2: '',
     errors: {},
@@ -42,12 +43,14 @@ class Register extends Component {
 
   onSubmitHandler = e => {
     e.preventDefault()
+    const { name, email, handle, avatar, password, password2 } = this.state
     const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      avatar: this.state.avatar,
-      password: this.state.password,
-      password2: this.state.password2
+      name,
+      email,
+      handle,
+      avatar,
+      password,
+      password2
     }
     this.props.registerUser(newUser, this.props.history) 
   }
@@ -131,6 +134,14 @@ class Register extends Component {
               value={ this.state.email }
               onChange={ this.onChangeHandler }
               error={ errors.email }
+            />
+            <RegisterTextFieldGroup
+              type="text"
+              name='handle'
+              placeholder='Username'
+              value={ this.state.handle }
+              onChange={ this.onChangeHandler }
+              error={ errors.handle }
             />
             <RegisterTextFieldGroup
               type="password"
