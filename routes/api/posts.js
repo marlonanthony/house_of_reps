@@ -64,7 +64,7 @@ router.get('/profileposts', passport.authenticate('jwt', { session: false }), (r
     limit: parseInt(req.query.limit) || 10
   }
   Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.find({ handle: req.query.handle })
+    Post.find({ handle: req.query.handle, date: { $gte: new Date('2019-01-01') } })
     .sort({ date: -1 })
     .skip(pageOptions.page * pageOptions.limit)
     .limit(pageOptions.limit)

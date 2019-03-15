@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import InfinteScroll from 'react-infinite-scroll-component'
-// import Spinner from '../common/Spinner' 
 import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../actions/postActions'
 import PostItem from '../posts/PostItem'
 
@@ -31,7 +30,7 @@ class ProfilePost extends Component {
     if(posts === null || loading) {
       postContent = null
     } else {
-      postContent = posts.map(post => <PostItem key={post._id} post={post} />)
+      postContent = posts.map(post => <PostItem key={post._id} post={post} /> )
     }
 
 
@@ -41,8 +40,7 @@ class ProfilePost extends Component {
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
-        loader={<p style={{textAlign: 'center'}}>These are not the posts you're looking for</p>}
-        >
+        loader={<p style={{textAlign: 'center'}}>These are not the posts youre looking for</p>}>
           {postContent}
         </InfinteScroll>
       </div>

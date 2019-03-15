@@ -50,9 +50,7 @@ router.post('/register', (req, res) => {
           newUser.password = hash 
           newUser.save()
 
-
           .then(user => { 
-            // send email 
             // const { recipients } = req.body 
             const emailInfo = {
               subject: 'Testing the register route',
@@ -63,16 +61,14 @@ router.post('/register', (req, res) => {
             
             const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
             mailer.send() 
-            // res.json(user) 
           })
-
-
           .then(user => res.json(user))
           .catch(err => console.log(err)) 
         })
       })
     }
   })
+  .catch(err => console.log(err)) 
 })
 
 /////////////////////////////////////////////////////////           TESTING USER UPDATE          ///////////////////////////////////////////////////
