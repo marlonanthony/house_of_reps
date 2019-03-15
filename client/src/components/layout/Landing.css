@@ -6,7 +6,7 @@
   height: 100vh;
   animation-name: fade-pic; 
   animation-iteration-count: 1;
-  animation-duration: 3.5s;
+  animation-duration: 5s;
 }
 
 @keyframes fade-pic {

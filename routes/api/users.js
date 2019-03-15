@@ -61,8 +61,8 @@ router.post('/register', (req, res) => {
             
             const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
             mailer.send() 
+            res.json(user) 
           })
-          .then(user => res.json(user))
           .catch(err => console.log(err)) 
         })
       })

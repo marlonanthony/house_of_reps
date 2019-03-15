@@ -14,15 +14,16 @@ class ProfilePost extends Component {
   }
 
   componentDidMount() {
+    const { count, start } = this.state 
     window.scrollTo(0, 0) 
-    this.props.getProfilePosts(this.state.count, this.state.start, this.props.allProps.match.params.handle) 
+    this.props.getProfilePosts(count, start, this.props.allProps.match.params.handle) 
     this.setState(prevState => ({ start: prevState.start + 1 }))
   }
 
   fetchMore = () => {
     const { count, start } = this.state 
     this.props.getMoreProfilePosts(count, start) 
-    this.setState( prevState => ({ start: start + 1 }))
+    this.setState( prevState => ({ start: prevState.start + 1 }))
   }
 
   render() {
@@ -41,7 +42,7 @@ class ProfilePost extends Component {
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
-        loader={<p style={{textAlign: 'center'}}>These are not the posts youre looking for</p>}>
+        loader={<p style={{textAlign: 'center'}}>These are not the posts you're looking for</p>}>
           {postContent}
         </InfinteScroll>
       </div>

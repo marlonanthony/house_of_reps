@@ -37,12 +37,6 @@ class Posts extends Component {
     this.setState( prevState => ({ start: prevState.start + 1 }))
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if(this.props.location.pathname !== prevProps.location.pathname) {
-  //     window.scrollTo(0, 0) 
-  //   }
-  // }
-
   fetchMore = () => {
     const { count, start } = this.state 
     if(this.state.showLikes) {
