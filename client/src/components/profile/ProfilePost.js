@@ -14,6 +14,7 @@ class ProfilePost extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0) 
     this.props.getProfilePosts(this.state.count, this.state.start, this.props.allProps.match.params.handle) 
     this.setState(prevState => ({ start: prevState.start + 1 }))
   }

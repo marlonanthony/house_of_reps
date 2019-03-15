@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
 import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts, getMoreLikedPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
@@ -30,11 +30,18 @@ class Posts extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0) 
     this.props.getPosts(this.state.count, this.state.start) 
     this.props.getCurrentProfile()
     this.props.getProfiles()
     this.setState( prevState => ({ start: prevState.start + 1 }))
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if(this.props.location.pathname !== prevProps.location.pathname) {
+  //     window.scrollTo(0, 0) 
+  //   }
+  // }
 
   fetchMore = () => {
     const { count, start } = this.state 
@@ -299,4 +306,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getLikedPosts, getMoreLikedPosts, getMatchingPosts })(Posts) 
+export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getLikedPosts, getMoreLikedPosts, getMatchingPosts })(withRouter(Posts)) 
