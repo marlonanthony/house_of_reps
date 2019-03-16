@@ -138,6 +138,24 @@ const ProfileSchema = new Schema({
       type: String
     }
   },
+  notifications: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now 
+      },
+      message: {
+        type: String
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now 
