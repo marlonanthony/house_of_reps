@@ -13,7 +13,6 @@ class CreateProfile extends Component {
   state = {
     displaySocialInputs: false,
     banner: '',
-    handle: '',
     stageName: '',
     phoneNumber: '',
     company: '',
@@ -47,7 +46,7 @@ class CreateProfile extends Component {
     
     const profileData = {
       banner: this.state.banner,
-      handle: this.state.handle,
+      handle: this.props.auth.user.handle,
       stageName: this.state.stageName,
       phoneNumber: this.state.phoneNumber,
       company: this.state.company,
@@ -178,14 +177,6 @@ class CreateProfile extends Component {
         <div className='createprofilecontainer'>
           <form onSubmit={ this.onSubmit }>
             <CreateProfileTextFieldGroup 
-              placeholder='* Profile Username'
-              name='handle'
-              value={ this.state.handle } 
-              onChange={ this.onChange } 
-              error={ errors.handle } 
-              info='A unique username for your profile URL.'
-            />
-            <CreateProfileTextFieldGroup 
               placeholder='A man has no name'
               name='stageName'
               value={ this.state.stageName }
@@ -258,7 +249,8 @@ CreateProfile.propTypes = {
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  errors: state.errors
+  errors: state.errors,
+  auth: state.auth 
 })
 
 export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile))

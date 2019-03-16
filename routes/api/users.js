@@ -24,8 +24,12 @@ router.post('/confirm', (req, res) => {
       if(user) {
         user.isVerified = true 
         user.save()
-        res.json(user)  // change this so that password doesnt show up
-        console.log(user)
+        res.json({
+          _id: user.id, // might use id, email, and handle. not sure yet. else get rid of them
+          email: user.email,
+          handle: user.handle,
+          isVerified: user.isVerified
+        })
       }
     })
     .catch(err => console.log(err))
@@ -79,7 +83,6 @@ router.post('/register', (req, res) => {
               subject: 'Testing the register route',
               body: "Bruh, I'm fittin to write all the emails!",
               recipients: 'mad1083@yahoo.com', // change this to email after testing
-              // token: 123
               token: token.token
             }
             
