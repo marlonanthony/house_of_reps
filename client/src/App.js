@@ -55,19 +55,19 @@ class App extends Component {
       <Provider store={ store }>
         <Router>
           <Fragment>
-            <Route exact path='/register' component={ Register } />
+            {/* <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
             <Route exact path='/checkemail' component={ ConfirmEmail } />
-            <Route exact path='/verify' component={ Verify } />
+            <Route exact path='/verify' component={ Verify } /> */}
             <Fragment>
               <DropdownMenu />
               <Route exact path='/' component={ Landing } />
             </Fragment>
-            <Fragment>
-              {/* <Route exact path='/register' component={ Register } />
+            <div>
+              <Route exact path='/register' component={ Register } />
               <Route exact path='/login' component={ Login } />
               <Route exact path='/checkemail' component={ ConfirmEmail } />
-              <Route exact path='/verify' component={ Verify } /> */}
+              <Route exact path='/verify' component={ Verify } />
               <Switch>
                 <PrivateRoute exact path='/dashboard' component={ Dashboard } />
               </Switch>
@@ -104,7 +104,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path='/post/:id' component={ Post } />
               </Switch>
-            </Fragment>
+            </div>
           </Fragment>
         </Router>
       </Provider>

@@ -53,7 +53,6 @@ class Register extends Component {
       password2
     }
     this.props.registerUser(newUser, this.props.history) 
-    console.log(this.props.history)
   }
 
   onImageDrop = files => {
@@ -76,7 +75,6 @@ class Register extends Component {
   }
 
   render() {
-    console.log(this.props.history)
     const { errors } = this.state  
 
     return (

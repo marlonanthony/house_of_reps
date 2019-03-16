@@ -56,7 +56,7 @@ router.post('/register', (req, res) => {
               subject: 'Testing the register route',
               body: "Bruh, I'm fittin to write all the emails!",
               recipients: 'mad1083@yahoo.com', // change this to email after testing
-              token: hash 
+              token: newUser.password
             }
             
             const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
@@ -137,7 +137,6 @@ router.post('/login', (req, res) => {
         const payload = { id: user.id, name: user.name, avatar: user.avatar, handle: user.handle }
         // Sign Token
         jwt.sign(payload, keys.secretOrKey, { expiresIn: 604800 }, (err, token) => {
-          console.log(token)
           res.json({
             success: true,
             token: 'Bearer ' + token 
@@ -155,12 +154,14 @@ router.post('/login', (req, res) => {
 // @description   Return current user
 // @access        Private
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req.user) 
   res.json({
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
     avatar: req.user.avatar,
-    handle: req.user.handle
+    handle: req.user.handle,
+    password: req.user.password
   })
 })
 

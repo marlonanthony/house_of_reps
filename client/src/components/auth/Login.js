@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
+import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../actions/authActions'
 import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import './Login.css'
@@ -19,9 +20,9 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if(nextProps.auth.isAuthenticated) {
-    //   this.props.history.push('/feed') 
-    // }
+    if(nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard') 
+    }
 
     if(nextProps.errors) {
       this.setState({ errors: nextProps.errors })
@@ -40,7 +41,7 @@ class Login extends Component {
     }
 
     this.props.loginUser(userData) 
-    this.props.history.push('/dashboard') 
+    // this.props.history.push('/dashboard') 
   }
 
   render() {
@@ -88,4 +89,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-export default connect(mapStateToProps, { loginUser })(Login)
+export default connect(mapStateToProps, { loginUser })(withRouter(Login))

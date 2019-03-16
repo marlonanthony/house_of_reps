@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
-
+import { withRouter } from 'react-router-dom'
 import ProfileHeader from './ProfileHeader' 
 import Spinner from '../common/Spinner'
 import { getProfileByHandle } from '../../actions/profileActions'
@@ -10,9 +10,13 @@ import './Profile.css'
 
 class Profile extends Component {
   componentDidMount() {
+    console.log(this.props)
+    if(this.props.match.params.handle === 'undefined') {
+      return this.props.history.push('/dashboard')
+    }
     if(this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle) 
-    }
+    } 
   }
 
   // componentDidMount() {
@@ -60,4 +64,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getProfileByHandle })(Profile)
+export default connect(mapStateToProps, { getProfileByHandle })(withRouter(Profile))
