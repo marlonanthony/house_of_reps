@@ -16,9 +16,7 @@ const User = require('../../models/User')
 const Token = require('../../models/Token')
 
 router.post('/confirm', (req, res) => {
-  console.log(req.body.token)
   Token.findOne({ token: req.body.token }).then(response => {
-    console.log(response)
     User.findById(response._userId)
     .then(user => {
       if(user) {

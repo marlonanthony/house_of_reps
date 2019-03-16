@@ -162,7 +162,9 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
       }
 
       // Add user id to likes array
-      post.likes.push({ user: req.user.id }) 
+      console.log(req.user) 
+      console.log(post)
+      post.likes.push({ user: req.user.id, name: req.user.name }) 
       post.save().then(post => res.json(post)) 
     })
     .catch(err => res.status(404).json(err)) 
