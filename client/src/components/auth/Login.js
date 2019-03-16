@@ -45,7 +45,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { errors } = this.state 
 
     return (

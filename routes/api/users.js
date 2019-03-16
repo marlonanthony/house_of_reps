@@ -13,7 +13,23 @@ const validateLoginInput = require('../../validation/login')
 
 // Load User Model
 const User = require('../../models/User')
+const Token = require('../../models/Token')
 
+router.post('/confirm', (req, res) => {
+  console.log(req.body.token)
+  Token.findOne({ token: req.body.token }).then(response => {
+    console.log(response)
+    User.findById(response._userId)
+    .then(user => {
+      if(user) {
+        user.isVerified = true 
+        res.json(user)  // change this so that password doesnt show up
+        console.log(user)
+      }
+    })
+    .catch(err => console.log(err))
+  })
+})
 
 // @route         POST api/users/register
 // @description   Register a user
@@ -51,17 +67,24 @@ router.post('/register', (req, res) => {
           newUser.save()
 
           .then(user => { 
+            let num = Math.floor((Math.random() * 10000000000) + 1)
+            const token = new Token({
+              _userId: user._id,
+              token: num
+            })
+              token.save() 
             // const { recipients } = req.body 
             const emailInfo = {
               subject: 'Testing the register route',
               body: "Bruh, I'm fittin to write all the emails!",
               recipients: 'mad1083@yahoo.com', // change this to email after testing
-              token: newUser.password
+              // token: 123
+              token: token.token
             }
             
             const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
             mailer.send() 
-            res.json(user) 
+            res.json(user)
           })
           .catch(err => console.log(err)) 
         })
@@ -70,6 +93,7 @@ router.post('/register', (req, res) => {
   })
   .catch(err => console.log(err)) 
 })
+
 
 /////////////////////////////////////////////////////////           TESTING USER UPDATE          ///////////////////////////////////////////////////
 router.post('/update/:id', (req, res) => {
@@ -93,19 +117,6 @@ router.post('/update/:id', (req, res) => {
   })
   .catch(err => console.log(err)) 
 })
-// router.post('/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-//   User.findOneAndUpdate({ _id: req.params.id }, req.body)
-//   .then(user => {
-//     // if(req.body.email) user.email = req.body.email 
-//     // if(req.body.password) user.password = req.body.password 
-//     if(req.body.avatar) user.avatar = req.body.avatar 
-//     if(req.body.handle) user.handle = req.body.handle
-//     user.save()
-//     res.json(user) 
-//   })
-//   .catch(err => console.log(err)) 
-// })
-
 
 // @route         POST api/users/login
 // @description   Login User / Returning JWT Token
@@ -154,15 +165,12 @@ router.post('/login', (req, res) => {
 // @description   Return current user
 // @access        Private
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  console.log(req.user) 
   res.json({
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
     avatar: req.user.avatar,
     handle: req.user.handle,
-    password: req.user.password
   })
 })
-
 module.exports = router  
