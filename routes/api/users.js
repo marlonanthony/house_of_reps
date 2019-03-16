@@ -23,6 +23,7 @@ router.post('/confirm', (req, res) => {
     .then(user => {
       if(user) {
         user.isVerified = true 
+        user.save()
         res.json(user)  // change this so that password doesnt show up
         console.log(user)
       }
