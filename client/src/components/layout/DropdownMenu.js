@@ -35,7 +35,7 @@ class DropdownMenu extends Component {
     const { isAuthenticated, user } = this.props.auth 
     const { profile, loading } = this.props.profile
     const { location: { pathname } } = this.props
-
+    
     if(profile === null || loading) {
       return null
     }

@@ -10,7 +10,6 @@ import './Profile.css'
 
 class Profile extends Component {
   componentDidMount() {
-    console.log(this.props)
     if(this.props.match.params.handle === 'undefined') {
       return this.props.history.push('/dashboard')
     }
@@ -18,16 +17,6 @@ class Profile extends Component {
       this.props.getProfileByHandle(this.props.match.params.handle) 
     } 
   }
-
-  // componentDidMount() {
-  //   if(!this.props.profile.profile) {
-  //     console.log(this.props.profile.profile)
-  //     return this.props.history.push('/dashboard') 
-  //   }
-  //   if(this.props.match.params.handle) {
-  //     this.props.getProfileByHandle(this.props.match.params.handle) 
-  //   }
-  // }
 
   render() {
     const { profile, loading } = this.props.profile

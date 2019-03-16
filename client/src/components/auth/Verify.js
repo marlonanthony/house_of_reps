@@ -6,18 +6,8 @@ import { withRouter, Link } from 'react-router-dom'
 
 class Verify extends Component {
   state = {
-    url: `${this.props.location.search}`,
     isVerified: false
   }
-
-  
-  // Get User token from redux
-  // compare tokens
-  // if isVerified set to true 
-  // send user to create profile
-  // if isVerified is false deal with possible errors
-  // Send user to Sapsburg
-  // Match email and username using regex to compare with backend
 
   componentDidMount() {
     const { pathname, search } = this.props.location
@@ -29,10 +19,6 @@ class Verify extends Component {
         console.log(res)
       }
     }).catch(err => console.log(err))
- 
-    // if(`${pathname}${search}` === this.state.url) {
-    //   this.setState({ isVerified: true })
-    // }
   }
 
   render() {
@@ -50,6 +36,11 @@ class Verify extends Component {
       </div>
     )
   }
+}
+
+Verify.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
