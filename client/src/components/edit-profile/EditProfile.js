@@ -21,7 +21,6 @@ class EditProfile extends Component {
   state = {
     displaySocialInputs: false,
     banner: '',
-    handle: '',
     stageName: '',
     phoneNumber: '',
     company: '',
@@ -79,7 +78,6 @@ class EditProfile extends Component {
       this.setState({
         avatar: profile.avatar,
         banner: profile.banner,
-        handle: profile.handle,
         stageName: profile.stageName,
         phoneNumber: profile.phoneNumber,
         company: profile.company,
@@ -110,7 +108,6 @@ class EditProfile extends Component {
     const profileData = {
       avatar: this.state.avatar,
       banner: this.state.banner,
-      handle: this.state.handle,
       stageName: this.state.stageName,
       phoneNumber: this.state.phoneNumber,
       company: this.state.company,
@@ -301,14 +298,6 @@ class EditProfile extends Component {
               </div>
             </div>
             <form onSubmit={ this.onSubmit }>
-              <CreateProfileTextFieldGroup 
-                placeholder='Profile Username'
-                name='handle'
-                value={ this.state.handle } 
-                onChange={ this.onChange } 
-                error={ errors.handle } 
-                info='A unique username for your profile URL.'
-              />
               <CreateProfileTextFieldGroup 
                 placeholder='A man has no name'
                 name='stageName'
