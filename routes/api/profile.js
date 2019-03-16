@@ -161,6 +161,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
       })
     }
   })
+  .catch(err => console.log(err)) 
 }) 
 
 // @route        POST api/profile/venues

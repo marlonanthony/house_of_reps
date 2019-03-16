@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
@@ -34,9 +34,18 @@ class DropdownMenu extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth 
     const { profile, loading } = this.props.profile
+    const { location: { pathname } } = this.props
 
     if(profile === null || loading) {
       return null
+    }
+    if(
+      pathname == '/create-profile' || 
+      pathname == '/login' || 
+      pathname == '/register' ||
+      pathname.includes('/verify')
+    ) {
+      return null 
     }
       
     const authLinks = (
@@ -92,4 +101,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile, getCurrentProfile })(DropdownMenu)
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile, getCurrentProfile })(withRouter(DropdownMenu))

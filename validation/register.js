@@ -26,19 +26,20 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is invalid'
   }
 
-  // if(Validator.isEmpty(data.avatar)) {
-  //   errors.avatar = 'Avatar is required'
-  // }
+  if(!Validator.isLength(data.handle, { min: 2, max: 40 })) {
+    errors.handle = 'Hanlde needs to be between 2 and 40 characters'
+  }
+
   if(Validator.isEmpty(data.handle)) {
     errors.handle = 'Handle is required'
   }
 
-  if(Validator.isEmpty(data.password)) {
-    errors.password = 'Password is required'
-  }
-
   if(!Validator.isLength(data.password, { min: 6, max: 30 })) {
     errors.password = 'Password must be at least 6 characters'
+  }
+
+  if(Validator.isEmpty(data.password)) {
+    errors.password = 'Password is required'
   }
 
   if(Validator.isEmpty(data.password2)) {

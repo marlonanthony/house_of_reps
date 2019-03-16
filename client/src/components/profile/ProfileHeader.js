@@ -16,9 +16,9 @@ class ProfileHeader extends Component {
             {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
           </div> */}
           <div id='header-items'>
-            <div id='profile-avatar-div'>
-              {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
-            </div>
+            {/* <div id='profile-avatar-div'>
+              {isEmpty(user.avatar) ? <p>create profile</p> : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
+            </div> */}
             <div id='profile-header-about-info'>
               <h4 id='profile-name'>{profile.user.name}</h4>
               {isEmpty(profile.handle) ? null : (<p id='profile-handle'>@{profile.handle}</p>)}
