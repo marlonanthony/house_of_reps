@@ -162,6 +162,10 @@ class PostItem extends Component {
               </div>
             )
         }
+        { likes.length < 1 ? null : likes.length > 3 
+          ? <div style={{color: 'cyan'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+          : <div style={{color: 'cyan'}}> Liked by {likes.map(like => <span style={{color: 'cyan'}}>{like.name} </span>)}</div>
+        }
         { showActions ? ( <span>
           <button 
             title='like'

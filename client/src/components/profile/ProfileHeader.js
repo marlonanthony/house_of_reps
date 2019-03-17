@@ -69,7 +69,6 @@ class ProfileHeader extends Component {
               )}
             </div>
             <div id='reps_banners'>
-              {/* <img className='reps_banner_icons' src={require('../../img/fb3.png')} alt='avatar' /> */}
               <img className='reps_banner_icons' src={require('../../img/pngcopy/mc.png')} alt='avatar' />
               <img className='reps_banner_icons' src={require('../../img/pngcopy/mixer.png')} alt='avatar' />
               <img className='reps_banner_icons' src={require('../../img/pngcopy/mixer2.png')} alt='avatar' />
