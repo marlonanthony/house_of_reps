@@ -192,12 +192,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
   axios.delete(`/api/posts/comment/${postId}/${commentId}`)
   .then(res => dispatch({
     type: DELETE_COMMENT,
-    payload: {
-      commentId,
-      postId
-    }
-    // type: GET_POST,
-    // payload: res.data 
+    payload: { commentId, postId }
   })) 
   .catch(err => dispatch({
     type: GET_ERRORS,

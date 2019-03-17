@@ -156,8 +156,8 @@ export default function(state = initialState, action) {
       const updatePost = state.posts.map(post => {
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {
-            if(comment._id === action.payload.commentId) {
-              comment = comment.comments.unshift(action.payload.nestedCommentData)
+            if(comment._id.toString() === action.payload.commentId) {
+              post = action.payload.data
             }
           })
         }

@@ -312,11 +312,16 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
       avatar: req.body.avatar,
       user: req.user.id,
     }
-    post.comments.map(comment => comment._id.toString() === req.params.comment_id
-      ? comment.comments.unshift(newComment)
-      : null 
-    )
-    post.save().then(post => res.json(post)) 
+    // post.comments.map(comment => comment._id.toString() === req.params.comment_id
+    //   ? comment.comments.unshift(newComment)
+    //   : null 
+    // )
+    post.comments.map(comment => {
+      if(comment._id.toString() === req.params.comment_id) {
+        comment = comment.comments.push(newComment) 
+      }
+    }) 
+    post.save().then((post) => res.json(post))
   })
   .catch(err => res.status(404).json(err)) 
 })
