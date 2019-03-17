@@ -16,7 +16,8 @@ import {
   GET_MORE_PROFILE_POSTS,
   GET_LIKED_POSTS,
   GET_MORE_LIKED_POSTS, 
-  ADD_LIKE
+  ADD_LIKE,
+  REMOVE_LIKE
 } from './types' 
 
 // Add Post 
@@ -153,7 +154,6 @@ export const addLike = id => dispatch => {
     type: ADD_LIKE,
     payload: post.data 
   }))  
-  // .then(res => dispatch(getPosts()))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data
@@ -163,7 +163,10 @@ export const addLike = id => dispatch => {
 // Remove Like
 export const removeLike = id => dispatch => {
   axios.post(`/api/posts/unlike/${id}`)
-  // .then(res => dispatch(getPosts()))
+  .then(post => dispatch({
+    type: REMOVE_LIKE,
+    payload: post.data 
+  }))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data

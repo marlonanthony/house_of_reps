@@ -45,6 +45,9 @@ class PostItem extends Component {
     
     const { auth } = this.props 
     const likesArr = [...this.state.likes] 
+    // if(this.state.likes.filter(like => like.user === auth.user.id).length <= 0){
+    //   this.setState(prevState => ({ likes: prevState.likes, liked: true }))
+      
     if(likesArr.filter(like => like.user === auth.user.id).length <= 0){
       let newLike = likesArr.concat({
         user: id
@@ -60,6 +63,11 @@ class PostItem extends Component {
     if(this.state.likes.map(like => like.user === auth.user.id).length > 0) {
       this.setState({ likes: this.state.likes.slice(1) })
       this.setState(prevState => ({ liked: false }))
+
+      // const removeIndex = this.state.likes.map(like => like.user.toString()).indexOf(auth.user.id) 
+      // this.setState(prevState => ({ liked: false, likes: this.state.likes.splice(removeIndex, 1) })) 
+
+
 
       // this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
     }

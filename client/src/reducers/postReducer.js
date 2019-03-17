@@ -13,7 +13,8 @@ import {
   GET_MORE_PROFILE_POSTS,
   GET_LIKED_POSTS,
   GET_MORE_LIKED_POSTS,
-  ADD_LIKE
+  ADD_LIKE,
+  REMOVE_LIKE
 } from '../actions/types'
 
 const initialState = { 
@@ -93,6 +94,13 @@ export default function(state = initialState, action) {
       }
 
     case ADD_LIKE:
+      return {
+        ...state,
+        post: action.payload,
+        loading: false 
+      }
+
+    case REMOVE_LIKE:
       return {
         ...state,
         post: action.payload,
