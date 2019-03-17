@@ -138,7 +138,9 @@ class PostItem extends Component {
               </div>
             )
         }
-        { likes.length < 1 ? null : likes.length > 1 
+        { likes.length < 1 ? null : likes.length === 2 
+          ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Liked by {likes[0].name} and {likes[1].name}</div>
+          : likes.length > 2 
           ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
           : <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
         }
