@@ -188,7 +188,7 @@ class Posts extends Component {
                 outline: 'none'}}>
                 <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
               </button>
-              <button style={{
+              <button onClick={this.showNotificationsHandler} style={{
                 padding: 10, 
                 margin: '0px 2px',
                 flex: 1,
@@ -197,7 +197,7 @@ class Posts extends Component {
                 cursor: 'pointer',
                 border: 'none',
                 outline: 'none'}}>
-                <i onClick={this.showNotificationsHandler} className='far fa-bell' style={{fontSize: 15}}> {profile.notifications.length}</i>
+                <i className='far fa-bell' style={{fontSize: 15}}> {profile.notifications.length}</i>
                 {/* <span> {profile.notifications.length}</span> */}
               </button>
             </div>

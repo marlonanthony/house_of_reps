@@ -7,7 +7,11 @@ class Notifications extends Component {
       <div>
         { this.props.profile.profile && 
         <div style={{ color: 'rgb(55, 131, 194)', textAlign: 'center' }}>
-          {this.props.profile.profile.notifications.map(val => <p key={val._id}>{val.message}</p>)}
+          { this.props.profile.profile.notifications.map((val, i) => 
+            <div style={{padding: 10}} key={val._id}>
+              <p>{i+1}. <span style={{color:'#999'}}>{val.message}</span></p>
+            </div>)
+          }
         </div>
         }
       </div>
