@@ -26,7 +26,8 @@ class Posts extends Component {
     showMatches: false,
     showLikes: false,
     count: 10, 
-    start: 0
+    start: 0,
+    showNotifications: false 
   }
 
   componentDidMount() {
@@ -67,6 +68,11 @@ class Posts extends Component {
         this.props.getPosts() 
       }
     })
+  }
+
+  showNotificationsHandler = () => {
+    this.props.history.push('/notifications')
+    // this.setState(prevState => ({ showNotifications: !prevState.showNotifications }))
   }
   
   render() {
@@ -180,7 +186,7 @@ class Posts extends Component {
                 cursor: 'pointer',
                 border: 'none',
                 outline: 'none'}}>
-                Add Blog Post
+                <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
               </button>
               <button style={{
                 padding: 10, 
@@ -191,7 +197,8 @@ class Posts extends Component {
                 cursor: 'pointer',
                 border: 'none',
                 outline: 'none'}}>
-                <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
+                <i onClick={this.showNotificationsHandler} className='far fa-bell' style={{fontSize: 15}}> {profile.notifications.length}</i>
+                {/* <span> {profile.notifications.length}</span> */}
               </button>
             </div>
           </div>

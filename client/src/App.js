@@ -26,6 +26,7 @@ import Posts from './components/posts/Posts'
 import Post from './components/post/Post'
 import Verify from './components/auth/Verify'
 import ConfirmEmail from './components/auth/ConfirmEmail'
+import Notifications from './components/posts/post-assets/notifications/Notifications'
 import './App.css';
 
 
@@ -103,6 +104,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path='/post/:id' component={ Post } />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/notifications' component={ Notifications } />
               </Switch>
             </div>
           </Fragment>
