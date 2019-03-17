@@ -34,6 +34,9 @@ class PostItem extends Component {
     if(this.props.post.comments !== prevState.postComments) {
       this.setState({ postComments: this.props.post.comments })
     }
+    if(this.props.post.likes !== prevState.likes) {
+      this.setState({ likes: this.props.post.likes })
+    }
   }
 
   onDeleteClick = id => {
@@ -162,9 +165,9 @@ class PostItem extends Component {
               </div>
             )
         }
-        { likes.length < 1 ? null : likes.length > 3 
-          ? <div style={{color: 'cyan'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-          : <div style={{color: 'cyan'}}> Liked by {likes.map(like => <span style={{color: 'cyan'}}>{like.name} </span>)}</div>
+        { likes.length < 1 ? null : likes.length > 1 
+          ? <div style={{color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+          : <div style={{color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
         }
         { showActions ? ( <span>
           <button 

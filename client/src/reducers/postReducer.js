@@ -94,9 +94,15 @@ export default function(state = initialState, action) {
       }
 
     case ADD_LIKE:
+      const updatePostsLikes = state.posts.map(post => {
+        if(post._id === action.payload._id) {
+          post = action.payload 
+        } 
+        return post 
+      })
       return {
         ...state,
-        post: action.payload,
+        posts: updatePostsLikes,
         loading: false 
       }
 
@@ -109,34 +115,16 @@ export default function(state = initialState, action) {
 
     case ADD_COMMENT: 
       const { posts } = state 
-      const updatedPost = posts.map(val => {
-        if(val._id === action.payload._id) {
-          val = action.payload
+      const updatedPost = posts.map(comment => {
+        if(comment._id === action.payload._id) {
+          comment = action.payload
         }
-        return val
+        return comment
       })
       return {
         ...state,
         posts: updatedPost,
         loading: false
-      }
-
-    case ADD_NESTED_COMMENT:
-
-      const updatePost = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
-            if(comment._id === action.payload.commentId) {
-              comment = comment.comments.unshift(action.payload.nestedCommentData)
-            }
-          })
-        }
-        return post 
-      })
-      return {
-        ...state,
-        posts: updatePost,
-        loading: false 
       }
 
     case DELETE_POST:
@@ -157,6 +145,24 @@ export default function(state = initialState, action) {
         ...state,
         posts: newerComment
       }
+
+    case ADD_NESTED_COMMENT:
+      const updatePost = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              comment = comment.comments.unshift(action.payload.nestedCommentData)
+            }
+          })
+        }
+        return post 
+      })
+    return {
+      ...state,
+      posts: updatePost,
+      loading: false 
+    }
+
     default: 
       return state 
   }
