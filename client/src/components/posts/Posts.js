@@ -198,7 +198,6 @@ class Posts extends Component {
                 border: 'none',
                 outline: 'none'}}>
                 <i className='far fa-bell' style={{fontSize: 15}}> {profile.notifications.length}</i>
-                {/* <span> {profile.notifications.length}</span> */}
               </button>
             </div>
           </div>
