@@ -10,15 +10,11 @@ class ProfileHeader extends Component {
     const { profile, user } = this.props 
     return (
       <div className='profile-header-container'>
-        {/* <img id='profile-banner' src={require('../../img/banner1.jpg')} alt='profile-banner' /> */}
         <div className="profile-header">
-          {/* <div id='profile-avatar-div'>
-            {isEmpty(user.avatar) ? null : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
-          </div> */}
           <div id='header-items'>
-            {/* <div id='profile-avatar-div'>
+            <div id='profile-avatar-div'>
               {isEmpty(user.avatar) ? <p>create profile</p> : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
-            </div> */}
+            </div>
             <div id='profile-header-about-info'>
               <h4 id='profile-name'>{profile.user.name}</h4>
               {isEmpty(profile.handle) ? null : (<p id='profile-handle'>@{profile.handle}</p>)}
@@ -86,27 +82,6 @@ class ProfileHeader extends Component {
             </div>
           </div>
           <div id='profile-feed'>
-            {/* { 
-              <img src={profile.banner} width={'93%'} height={200} style={{marginLeft: '3.5%'}} alt='profile banner'/> 
-            } */}
-            {/* <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fverabanquets%2Fvideos%2F445864812613689%2F&show_text=0&width=267" width="267" height="476" style={{
-              border: 'none', overflow: 'hidden' }} scrolling="no" frameBorder={0} allowTransparency="true" allowFullScreen="true"></iframe> */}
-            {/* <iframe 
-              id='youtube-video' 
-              title='hofvideo' 
-              // width="100%" 
-              // height="315px" 
-              width='90%'
-              height='300'
-              src="https://www.youtube.com/embed/qrmKp_ANX_M" 
-              frameBorder="0" 
-              allow="autoplay; encrypted-media" 
-              style={{
-                marginBottom: '20px',
-                // marginTop: '25px' 
-              }}
-              allowFullScreen>
-            </iframe> */}
             <ProfilePost allProps={this.props.allProps} />
           </div>
           <div id='profile-creds-div'>
