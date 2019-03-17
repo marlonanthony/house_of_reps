@@ -45,39 +45,12 @@ class PostItem extends Component {
 
   onLikeClick = id => {
     this.props.addLike(id)
-    
-    const { auth } = this.props 
-    const likesArr = [...this.state.likes] 
-    // if(this.state.likes.filter(like => like.user === auth.user.id).length <= 0){
-    //   this.setState(prevState => ({ likes: prevState.likes, liked: true }))
-      
-    if(likesArr.filter(like => like.user === auth.user.id).length <= 0){
-      let newLike = likesArr.concat({
-        user: id
-      }) 
-      this.setState({ likes: newLike, liked: true })
-    }
+    this.setState(prevState => ({ likes: prevState.likes, liked: true }))
   }
 
   onUnlikeClick = id => {
     this.props.removeLike(id)
-
-    const { auth } = this.props 
-    if(this.state.likes.map(like => like.user === auth.user.id).length > 0) {
-      this.setState({ likes: this.state.likes.slice(1) })
-      this.setState(prevState => ({ liked: false }))
-
-      // const removeIndex = this.state.likes.map(like => like.user.toString()).indexOf(auth.user.id) 
-      // this.setState(prevState => ({ liked: false, likes: this.state.likes.splice(removeIndex, 1) })) 
-
-
-
-      // this.setState({ likes: this.state.likes.filter((like, i, arr) => like.user === auth.user.id) })
-    }
-
-
-    // this.setState({ likes: this.state.likes.filter(like => like.user === auth.user.id) })
-    // this.setState({ liked: false })
+    this.setState(prevState => ({ likes: prevState.likes, liked: false }))
   }
 
   findUserLike = likes => {
@@ -166,8 +139,8 @@ class PostItem extends Component {
             )
         }
         { likes.length < 1 ? null : likes.length > 1 
-          ? <div style={{color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-          : <div style={{color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+          ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+          : <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
         }
         { showActions ? ( <span>
           <button 

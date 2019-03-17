@@ -107,9 +107,15 @@ export default function(state = initialState, action) {
       }
 
     case REMOVE_LIKE:
+      const updatePostRemoveLikes = state.posts.map(post => {
+        if(post._id === action.payload._id) {
+          post = action.payload
+        }
+        return post 
+      })
       return {
         ...state,
-        post: action.payload,
+        posts: updatePostRemoveLikes,
         loading: false 
       }
 
