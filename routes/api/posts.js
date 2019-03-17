@@ -169,7 +169,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
       Profile.findOne({ user: post.user }).then(profile => {
         const message = `${req.user.name} liked your post!`
         profile.notifications.push({ user: req.user.id, name: req.user.name, message })
-        profile.save() 
+        profile.save().then(profile => res.json(profile)) 
       })
     })
     .catch(err => res.status(404).json(err)) 
