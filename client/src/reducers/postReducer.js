@@ -9,6 +9,7 @@ import {
   GET_MORE_POSTS,
   GET_MATCHING_POSTS,
   ADD_NESTED_COMMENT,
+  REMOVE_NESTED_COMMENT,
   GET_PROFILE_POSTS,
   GET_MORE_PROFILE_POSTS,
   GET_LIKED_POSTS,
@@ -166,6 +167,25 @@ export default function(state = initialState, action) {
     return {
       ...state,
       posts: updatePost,
+      loading: false 
+    }
+
+    case REMOVE_NESTED_COMMENT:
+      const updateRomoveNestedCommentPosts = state.posts.map(post => {
+        console.log(post, action.payload) 
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id.toString() === action.payload.commentId) {
+              // this line is causing issues
+              comment = comment.filter(nestedComment => nestedComment._id.toString() !== action.payload.nestedCommentId) 
+            }
+          })
+        }
+        return action.payload.data  
+      })
+    return {
+      ...state,
+      posts: updatePostRemoveLikes,
       loading: false 
     }
 

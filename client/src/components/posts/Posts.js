@@ -27,7 +27,8 @@ class Posts extends Component {
     showLikes: false,
     count: 10, 
     start: 0,
-    showNotifications: false 
+    showNotifications: false,
+    showPopup: false
   }
 
   componentDidMount() {
@@ -73,6 +74,10 @@ class Posts extends Component {
   showNotificationsHandler = () => {
     this.props.history.push('/notifications')
     // this.setState(prevState => ({ showNotifications: !prevState.showNotifications }))
+  }
+
+  popupHandler = () => {
+    this.setState(prevState => ({ showPopup: !prevState.showPopup }))
   }
   
   render() {
@@ -151,7 +156,25 @@ class Posts extends Component {
             <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
           </div>
           <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", padding: '10px' }}>
-            <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}><p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p></Link>
+            <div className='popup' onMouseOver={this.popupHandler} onMouseOut={this.popupHandler}>
+              <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}>
+                <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p>
+              </Link>
+              <div className={this.state.showPopup ? 'show popupcontent' : 'popupcontent'}>
+                <span>@{ profile.handle }</span>
+              </div>
+            </div>
+
+            {/* <div>
+              <h2>Popup</h2>
+              <div className="popup" onMouseOver={this.popup} onMouseOut={this.popup}>
+                Hover to toggle the popup!
+                <span className={this.state.show ? 'show popuptext' : 'popuptext' } 
+                  id="myPopup">A Simple Popup!
+                </span>
+              </div>
+            </div> */}
+
             <div style={{display: 'flex', justifyContent: 'space-between' }}>
               { this.state.showLikes
                 ? (<button onClick={this.showLikesHandler} style={{

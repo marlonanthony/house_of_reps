@@ -12,6 +12,7 @@ import {
   GET_MORE_POSTS,
   GET_MATCHING_POSTS,
   ADD_NESTED_COMMENT,
+  REMOVE_NESTED_COMMENT,
   GET_PROFILE_POSTS,
   GET_MORE_PROFILE_POSTS,
   GET_LIKED_POSTS,
@@ -240,6 +241,10 @@ export const addNestedComment = (postId, commentId, nestedCommentData) => dispat
 // Delete NestedComment
 export const deleteNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
   axios.delete(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`)
+  .then(res => dispatch({
+    type: REMOVE_NESTED_COMMENT,
+    payload: { data: res.data, postId, commentId, nestedCommentId }
+  }))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
