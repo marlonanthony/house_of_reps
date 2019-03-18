@@ -102,8 +102,7 @@ class CommentItem extends Component {
     }
 
     this.props.addNestedComment(postId, commentId, newNestedComment)
-    
-    // e.target.reset() 
+    this.setState({ text: '' })
   }
 
   showNestedSubmitBtnHandler = () => {
@@ -240,7 +239,7 @@ class CommentItem extends Component {
                     value={this.state.text} 
                     onChange={this.onChange} 
                     className='nested_comment_textarea'
-                    style={{ color: 'black', padding: 10, background: 'rgb(180, 180, 200)', border: 'none', fontSize: 13, outline: 'none' }}
+                    style={{ color: 'black', padding: 10, background: '#aaa', border: 'none', fontSize: 13, outline: 'none' }}
                     // error={this.state.errors.text} 'rgb(173, 187, 199)'
                   />
                   { this.state.showNestedSubmitBtn &&

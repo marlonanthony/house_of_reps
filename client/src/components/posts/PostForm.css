@@ -3,6 +3,7 @@
   /* background: rgba(0,0,0,0.5); */
   width: 93%;
   margin-left: 3.5%;
+  border: 0.1px solid rgba(55, 131, 194, 0.3);
 }
 
 .disp {
@@ -34,7 +35,7 @@
 #post-form-textareafieldgroup {
   /* margin:  0 3.5%; */
   padding: 5px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.2);              /* changed opacity from .05 */
   /* background: rgba(4, 9, 12, 0.918);  */
   /* margin-left: 12%; */
   /* display: grid;

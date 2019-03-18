@@ -1,7 +1,7 @@
 .feed {
   /* background: #050c14;   */
   background: #020811;
-
+  /* background: rgb(4,6,8); */
   /* background: rgb(10, 19, 29); */
   /* background: rgb(6, 9, 14); */
   /* background: #282c35;  Dan Abramov    */
@@ -9,7 +9,6 @@
 
   /* background: #151515; */
   /* background: #071020; */
-
 
   /* background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
   background-repeat: no-repeat;
@@ -38,7 +37,8 @@
   grid-area: searchbar;
   /* display: flex; */
   right: 3.5vw;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.2); /* changed from 0.5 */
+  border: 0.1px solid rgba(55, 131, 194, 0.3);
 }
 
 .searchbar_items {
@@ -63,7 +63,7 @@
   display: flex;
   justify-content: space-between;
   margin-right: 20px;
-
+  border: 0.1px solid rgba(55, 131, 194, 0.3);
 } 
 .searchbarinput {
   flex: 8; 
@@ -90,7 +90,8 @@
   border: none;
 }
 .searchbarpostbtn:hover {
-  background: rgba(0,0,0,1);
+  background: rgba(0,0,0,0.5);
+  border: 0.1px solid rgba(55, 131, 194, 0.2);
 
 }
 
@@ -210,7 +211,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgba(0,0,0,0.5);
+  /* background: rgba(0,0,0,0.5); */
   height: 250px;
   color: #aaa;
   margin: 0 0 0 4vw;
@@ -348,12 +349,14 @@
     width: 250px;
     height: 40px;
     margin-right: 0;
+    background: rgba(0,0,0,0.2);
   }
 
   .searchbarinput {
     margin-left: 0;
     flex: 7;
-    background: rgba(0,0,0,0.5);
+    background: none;
+    /* background: rgba(0,0,0,0.5); */
     outline: none;
   }
 
@@ -362,7 +365,7 @@
     flex: 1; 
     outline: none; 
     height: 40; 
-    background: rgba(0,0,0,0.5); 
+    background: rgba(0,0,0,0.3); 
     color: rgb(55, 131, 194);
     padding: 10; 
     border: none;
@@ -372,7 +375,8 @@
     display: flex;
     justify-content: center;
     grid-area: profile;
-    background: rgba(0,0,0,0.5);
+    /* background: rgba(0,0,0,0.5); */
+    border: 0.5px solid rgba(55, 131, 194, 0.3);
     width: 250px;
     height: 250px;
     margin-top: -30px;
@@ -406,9 +410,10 @@
   }
 
   .postscontainertest {
-    background-image: url('../../img/banner1.jpg');
+    background-image: url('../../img/landingpic.jpg');
     background-repeat: no-repeat;
-    background-size: 100% 40%;
+    background-size: 99% 40%;
+    margin-left: 0.5%;
   }
 
   .test2 {
