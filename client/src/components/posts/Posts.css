@@ -1,10 +1,9 @@
 .feed {
   /* background: #050c14;   */
-  /* background: #050811; */
+  background: #020811;
 
   /* background: rgb(10, 19, 29); */
-  /* background: rgb(19, 19, 27); */
-  background: rgb(6, 9, 14);
+  /* background: rgb(6, 9, 14); */
   /* background: #282c35;  Dan Abramov    */
   /* background: rgb(7, 10, 17); */
 
@@ -115,16 +114,20 @@
 .popup .popupcontent {
   visibility: hidden;
   width: 160px;
-  background-color: #555;
+  background-color: #020811;
   color: #fff;
   text-align: center;
-  border-radius: 6px;
+  border: 0.5px solid rgb(55, 131, 194);
   padding: 8px 0;
   position: absolute;
   z-index: 1;
   top: 100%;
   left: 50%;
   margin-left: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Popup arrow */
@@ -136,7 +139,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent #555 transparent;
+  border-color: transparent transparent rgb(55, 131, 194) transparent;
 }
 
 /* Toggle this class - hide and show the popup */
@@ -156,14 +159,24 @@
   to { opacity: 1; }
 }
 
-
-#posts-profile-img {
+.popup-profile-img {
   width: 50px;
   height: 50px; 
+  margin: 5px 0;
+  border-radius: 50%;
+  border: 2px solid rgb(55, 131, 194);
+  /* border: 3px solid rgb(135, 179, 247); */
+}
+
+
+#posts-profile-img {
+  width: 65px;
+  height: 65px; 
   border-radius: 50%;
   margin-top: 60px;
   margin-bottom: -20px;
-  border: 3px solid rgb(135, 179, 247);
+  border: 2px solid rgb(55, 131, 194);
+  /* border: 3px solid rgb(135, 179, 247); */
   /* border: 1px solid black; */
 }
 

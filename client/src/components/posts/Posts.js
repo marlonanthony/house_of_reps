@@ -14,6 +14,7 @@ import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
+import PostsProfilePopup from '../UI/popup_menu/PostsProfilePopup'
 // import InputGroup from '../common/InputGroup'
 
 import './Posts.css'
@@ -153,28 +154,17 @@ class Posts extends Component {
       profileContent = (
         <div className='postscontainertest'>
           <div style={{ padding: '10px', textAlign: 'center' }}>
-            <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
+            <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}>
+              <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
+            </Link>
           </div>
           <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", padding: '10px' }}>
-            <div className='popup' onMouseOver={this.popupHandler} onMouseOut={this.popupHandler}>
-              <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}>
-                <p style={{ color: 'rgb(29, 138, 228)', fontSize: '13px' }}>@{ profile.handle }</p>
-              </Link>
-              <div className={this.state.showPopup ? 'show popupcontent' : 'popupcontent'}>
-                <span>@{ profile.handle }</span>
-              </div>
-            </div>
-
-            {/* <div>
-              <h2>Popup</h2>
-              <div className="popup" onMouseOver={this.popup} onMouseOut={this.popup}>
-                Hover to toggle the popup!
-                <span className={this.state.show ? 'show popuptext' : 'popuptext' } 
-                  id="myPopup">A Simple Popup!
-                </span>
-              </div>
-            </div> */}
-
+            <PostsProfilePopup 
+              popupHandler={this.popupHandler}
+              profile={profile} 
+              user={user} 
+              showPopup={this.state.showPopup}
+            />
             <div style={{display: 'flex', justifyContent: 'space-between' }}>
               { this.state.showLikes
                 ? (<button onClick={this.showLikesHandler} style={{
