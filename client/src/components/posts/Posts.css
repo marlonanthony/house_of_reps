@@ -368,7 +368,7 @@
     background: rgba(0,0,0,0.3); 
     color: rgb(55, 131, 194);
     padding: 10; 
-    border: none;
+    border: 0.1px solid rgba(55, 131, 194, 0.2);
   }
 
   .post-feed-profile {

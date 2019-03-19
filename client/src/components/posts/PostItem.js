@@ -9,6 +9,7 @@ import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import PostText from './post-assets/post_comment_text/PostText'
 import PostModalText from './post-assets/post_comment_text/PostModalText'
+import PostFeedPopup from '../UI/popup_menu/PostFeedPopup'
 
 // For comments 
 import CommentFeed from '../post/CommentFeed'
@@ -27,7 +28,8 @@ class PostItem extends Component {
     postComments: [],
     likes: [...this.props.post.likes],
     liked: false,
-    showModal: false
+    showModal: false,
+    showPopup: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,15 +70,19 @@ class PostItem extends Component {
   }
 
   userNameOrAvatarClicked = postId => {
-    this.props.profiles.map(profile =>  {
+    this.props.profile.profiles.map(profile =>  {
       if(profile.user._id === postId) {
         this.props.history.push(`/profile/${profile.handle}`)
       }
     })
   }
 
+  popupHandler = () => {
+    this.setState(prevState => ({ showPopup: !prevState.showPopup }))
+  }
+
   render() {
-    const { post, auth, showActions } = this.props 
+    const { post, auth, showActions, profile } = this.props 
     const { showComments, text, postComments, likes } = this.state 
 
     let youtubeUrl = post.url
@@ -91,7 +97,6 @@ class PostItem extends Component {
       <Fragment> 
         <CommentsModal>
           <div>
-            {/* <p id='comment-modal-text'>{post.text}</p> */}
             <PostModalText postText={post.text} />
             <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
           </div>
@@ -107,7 +112,18 @@ class PostItem extends Component {
       <div className='post_avatar_and_name'>
         <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
         <div style={{ display: 'flex', flexDirection: 'column'  }}>
-          <p className='post_name' onClick={() => this.userNameOrAvatarClicked(post.user)}>{post.name}</p>
+          
+
+          <PostFeedPopup 
+              popupHandler={this.popupHandler}
+              profile={profile} 
+              user={auth.user} 
+              post={post}
+              showPopup={this.state.showPopup}
+              userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+            />
+
+
           <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
         </div>
       </div>
@@ -209,6 +225,7 @@ PostItem.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  profile: state.profile
   // post: state.post 
 })
 

@@ -28,7 +28,6 @@ class Posts extends Component {
     showLikes: false,
     count: 10, 
     start: 0,
-    showNotifications: false,
     showPopup: false
   }
 
@@ -74,7 +73,6 @@ class Posts extends Component {
 
   showNotificationsHandler = () => {
     this.props.history.push('/notifications')
-    // this.setState(prevState => ({ showNotifications: !prevState.showNotifications }))
   }
 
   popupHandler = () => {
@@ -96,16 +94,11 @@ class Posts extends Component {
     let orderedHighlights
 
     if(profiles === null || loading) highlights = null
-    // else highlights = profiles.map(profile => profile.venues) 
     else {
       let hls = profiles.map(profile => profile.venues).map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
       highlights = [].concat.apply([], hls)
       orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-      // if (highlights) console.log(highlights.sort((a,b) => a.dateCreated.getTime() - b.dateCreated.getTime()) )
     }
-
-    // let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
-    // let recentHighlights = [].concat.apply([], firstHighlight)
     
 
     if(profiles === null || loading) {
@@ -185,7 +178,7 @@ class Posts extends Component {
                   background: 'rgba(0,0,0,0.4)', 
                   color: 'rgb(55, 131, 194)', 
                   cursor: 'pointer',
-                  border: 'none',
+                  border: '0.3px solid rgba(55,131,194, 0.3)',
                   outline: 'none'}}>
                     Liked Post
                 </button>)
@@ -197,7 +190,7 @@ class Posts extends Component {
                 background: 'rgba(0,0,0,0.4)', 
                 color: 'rgb(55, 131, 194)', 
                 cursor: 'pointer',
-                border: 'none',
+                border: '0.3px solid rgba(55,131,194, 0.3)',
                 outline: 'none'}}>
                 <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
               </button>
@@ -208,7 +201,7 @@ class Posts extends Component {
                 background: 'rgba(0,0,0,0.4)', 
                 color: 'rgb(55, 131, 194)', 
                 cursor: 'pointer',
-                border: 'none',
+                border: '0.3px solid rgba(55,131,194, 0.3)',
                 outline: 'none'}}>
                 <i className='far fa-bell' style={{fontSize: 15}}> {profile.notifications.length}</i>
               </button>
@@ -263,7 +256,7 @@ class Posts extends Component {
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'><PostForm showPreview={ showsPreview }/></div>
-        <div className='img_test'>
+        {/* <div className='img_test'>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/BUTTONSGS.png')} alt=""/>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/DJMIXES.png')} alt=""/>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/GEARMARKETPNG.png')} alt=""/>
@@ -271,10 +264,9 @@ class Posts extends Component {
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/REPSFLOOR.png')} alt=""/>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/VIDEO.png')} alt=""/>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/MUSIC.png')} alt=""/>
-        </div>
+        </div> */}
         <div className='post-feed-post-content'>{ postContent }</div>
-        { highlights ? 
-        <div>
+        { highlights ? <div>
           <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>
           <p id='post-feed-highlights-title'>Highlights</p>
         </div> : <Spinner /> }
