@@ -143,6 +143,7 @@ export default function(state = initialState, action) {
       }
 
       case ADD_COMMENT_LIKE:
+      console.log(action.payload, state.posts)
       const updateCommentLikes = state.posts.map(post => {
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {

@@ -155,25 +155,23 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
 // @description   Like post
 // @access        Private
 router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.findById(req.params.id).then(post => {
-      if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-        return res.status(400).json({ alreadyliked: 'User already liked this post' })
-      }
+  Post.findById(req.params.id).then(post => {
+    if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ alreadyliked: 'User already liked this post' })
+    }
 
-      // Add user id and name likes array
-      post.likes.push({ user: req.user.id, name: req.user.name }) 
-      post.save().then(post => res.json(post)) 
+    // Add user id and name to likes array
+    post.likes.push({ user: req.user.id, name: req.user.name }) 
+    post.save().then(post => res.json(post)) 
 
-      // Add user id name and notification message to notification array
-      Profile.findOne({ user: post.user }).then(profile => {
-        const message = `${req.user.name} liked your post!`
-        profile.notifications.push({ user: req.user.id, name: req.user.name, message })
-        profile.save().then(profile => res.json(profile)) 
-      })
+    // Add user id name and notification message to notification array
+    Profile.findOne({ user: post.user }).then(profile => {
+      const message = `${req.user.name} liked your post!`
+      profile.notifications.push({ user: req.user.id, name: req.user.name, message })
+      profile.save().then(profile => res.json(profile)) 
     })
-    .catch(err => res.status(404).json(err)) 
   })
+  .catch(err => res.status(404).json(err)) 
 })
 
 
@@ -259,18 +257,24 @@ router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session
 // description    Add like to comment
 // @access        Private
 router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.findById(req.params.id).then(post => {
-      post.comments.map(comment => comment._id.toString() === req.params.comment_id 
-        ? comment.likes.filter(like => like.user.toString() === req.user.id).length > 0
-        ? res.status(400).json({ alreadyliked: 'User already liked this post' })
-        : comment.likes.push({ user: req.user.id, name: req.user.name })
-        :  null
-      )
-      post.save().then(post => res.json(post)) 
+  Post.findById(req.params.id).then(post => {
+    post.comments.map(comment => {
+      if(comment._id.toString() === req.params.comment_id) {
+        if(comment.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          return res.status(400).json({ alreadyliked: 'User already liked this comment' })
+        }
+        comment.likes.push({ user: req.user.id, name: req.user.name })
+
+        Profile.findOne({ user: comment.user }).then(profile => {
+          const message = `${req.user.name} liked your comment!`
+          profile.notifications.push({ user: req.user.id, name: req.user.name, message })
+          profile.save().then(profile => res.json(profile)) 
+        })
+      }
     })
-    .catch(err => res.status(404).json(err)) 
+    post.save().then(post => res.json(post)) 
   })
+  .catch(err => res.status(404).json(err)) 
 })
 
 
