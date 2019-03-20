@@ -264,7 +264,7 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
       post.comments.map(comment => comment._id.toString() === req.params.comment_id 
         ? comment.likes.filter(like => like.user.toString() === req.user.id).length > 0
         ? res.status(400).json({ alreadyliked: 'User already liked this post' })
-        : comment.likes.push({ user: req.user.id })
+        : comment.likes.push({ user: req.user.id, name: req.user.name })
         :  null
       )
       post.save().then(post => res.json(post)) 

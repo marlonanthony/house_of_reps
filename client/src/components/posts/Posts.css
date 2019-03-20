@@ -1,7 +1,7 @@
 .feed {
   /* background: #050c14;   */
   /* background: #020811; */
-  background: black;
+  background: #060606;
   /* background: rgb(4,6,8); */
   /* background: rgb(10, 19, 29); */
   /* background: rgb(6, 9, 14); */
@@ -376,8 +376,9 @@
     display: flex;
     justify-content: center;
     grid-area: profile;
-    /* background: rgba(0,0,0,0.5); */
-    border: 0.5px solid rgba(55, 131, 194, 0.13);
+    background: rgba(0,0,0,0.5);
+    border: 0.5px solid rgba(55, 131, 194, 0.1);
+    border-radius: 4px;
     width: 250px;
     height: 250px;
     margin-top: -30px;

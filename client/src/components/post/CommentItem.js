@@ -176,6 +176,12 @@ class CommentItem extends Component {
                   </div>
                 )
             }
+            { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
+              ? <div style={{ fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
+              : comment.likes.length > 2 
+              ? <div style={{ fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.</div>
+              : <div style={{ fontSize: '11px', color: 'rgb(29, 138, 255)'}}> Liked by {comment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+            }
           </div>
           <div>
             <button 
