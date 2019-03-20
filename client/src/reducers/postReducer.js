@@ -179,31 +179,6 @@ export default function(state = initialState, action) {
         loading: false
       }
 
-    
-    case REMOVE_NESTED_COMMENT_LIKE:
-      const removeNestedCommentLike = state.posts.map(post => {
-        console.log(action.payload, post) 
-        if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
-            if(comment._id === action.payload.commentId) {
-              comment.comments.map(nestedComment => {
-                if(nestedComment._id === action.payload.nestedCommentId) {
-                  post = action.payload.data 
-                }
-              })
-            }
-          })
-        }
-        return post 
-      })
-      return {
-        ...state,
-        posts: removeNestedCommentLike,
-        loading: false 
-      }
-
-
-
     case DELETE_COMMENT: 
       const selectedPost = state.posts.filter(post => post._id === action.payload.postId)[0].comments.filter(val => val._id !== action.payload.commentId)
       const newerComment = state.posts.map(post => {
@@ -273,8 +248,26 @@ export default function(state = initialState, action) {
         loading: false 
       }
 
-
-    
+    case REMOVE_NESTED_COMMENT_LIKE:
+      const removeNestedCommentLike = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              comment.comments.map(nestedComment => {
+                if(nestedComment._id === action.payload.nestedCommentId) {
+                  post = action.payload.data 
+                }
+              })
+            }
+          })
+        }
+        return post 
+      })
+      return {
+        ...state,
+        posts: removeNestedCommentLike,
+        loading: false 
+      }
 
     default: 
       return state 

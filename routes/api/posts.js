@@ -350,26 +350,22 @@ router.delete('/comment/comment/:id/:comment_id/:nested_comment_id', passport.au
 // @desciption       Add like to nested comment
 // @access           Private
 router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.findById(req.params.id).then(post => {
-      post.comments.map(comment => {
-        if(comment._id.toString() === req.params.comment_id){
-          comment.comments.map(nestedComment => {
-            if(nestedComment._id.toString() === req.params.nested_comment_id) {
-              nestedComment.likes.map(like => {
-                if((like.user.toString() === req.user.id).length > 0) {
-                  res.status(400).json({ alreadyliked: 'User already liked this post' })
-                }
-              })
-              nestedComment.likes.push({ user: req.user.id })
+  Post.findById(req.params.id).then(post => {
+    post.comments.map(comment => {
+      if(comment._id.toString() === req.params.comment_id){
+        comment.comments.map(nestedComment => {
+          if(nestedComment._id.toString() === req.params.nested_comment_id) {
+            if(nestedComment.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+              return res.status(400).json({ alreadyliked: 'User already liked this nested comment' })
             }
-          })
-        }
-      })
-      post.save().then(post => res.json(post))
+            nestedComment.likes.push({ user: req.user.id, name: req.user.name })
+          }
+        })
+      }
     })
-    .catch(err => res.status(404).json(err)) 
+    post.save().then(post => res.json(post))
   })
+  .catch(err => res.status(404).json(err)) 
 })
 
 // @route POST       api/posts/comment/comment/unlike/:id/:comment_id/:nested_comment_id
@@ -382,11 +378,14 @@ router.post('/comment/comment/unlike/:id/:comment_id/:nested_comment_id', passpo
         if(comment._id.toString() === req.params.comment_id) {
           comment.comments.map(nestedComment => {
             if(nestedComment._id.toString() === req.params.nested_comment_id) {
-              nestedComment.likes.map(like => {
-                if((like.user.toString() === req.user.id).length === 0) {
-                  res.status(400).json({ notliked: 'You have not yet liked this comment' })
-                }
-              })
+              if(nestedComment.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+                return res.status(400).json({ notliked: 'You have not yet liked this nested comment'})
+              }
+              // nestedComment.likes.map(like => {
+              //   if((like.user.toString() === req.user.id).length === 0) {
+              //     res.status(400).json({ notliked: 'You have not yet liked this comment' })
+              //   }
+              // })
               nestedComment.likes.splice(nestedComment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
             }
           })

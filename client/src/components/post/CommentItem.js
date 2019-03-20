@@ -18,6 +18,7 @@ class CommentItem extends Component {
     comment: this.props.comment,
     showModal: false,
     liked: false,
+    nestedCommentLiked: false,
     showNestedComments: false,
     text: '',
     errors: {},
@@ -53,6 +54,19 @@ class CommentItem extends Component {
     const { auth } = this.props 
   
     return likes.filter(like => like.user === auth.user.id).length > 0
+  }
+
+  findUserNestedCommentLike = (likes, postId, commentId, nestedCommentId) => {
+    const { auth } = this.props 
+
+    console.log(this.props.comment, likes, postId, commentId, nestedCommentId) 
+    this.props.comments.map(nestedComment => {
+      if(nestedComment._id === nestedCommentId) {
+        return nestedComment.likes.filter(like => like.user === auth.user.id).length > 0
+      }
+    })
+    
+    // return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
   onDeleteClick = (postId, commentId) => {
@@ -105,10 +119,12 @@ class CommentItem extends Component {
 
   onLikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
     this.props.likeNestedComment(postId, commentId, nestedCommentId)
+    this.setState(prevState => ({ nestedCommentLiked: true, comment: this.props.comment }))
   }
 
   onUnlikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
     this.props.unlikeNestedComment(postId, commentId, nestedCommentId)
+    this.setState( prevState => ({ nestedCommentLiked: false, comment: this.props.comment }))
   }
 
   render() {
@@ -263,10 +279,10 @@ class CommentItem extends Component {
                       
                       <div>
                         <button 
-                          title='like comment'
+                          title='like nested comment'
                           onClick={this.onLikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}
-                          className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-                            'liked' : this.findUserLike(nestedComment.likes)
+                          className={this.state.nestedCommentLiked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
+                            'liked' : this.findUserNestedCommentLike(nestedComment.likes, postId, comment._id, nestedComment._id)
                           })}
                           >
                           <i className='fas fa-thumbs-up icons like'></i>
