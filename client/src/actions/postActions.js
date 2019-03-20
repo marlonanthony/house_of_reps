@@ -18,7 +18,9 @@ import {
   GET_LIKED_POSTS,
   GET_MORE_LIKED_POSTS, 
   ADD_LIKE,
-  REMOVE_LIKE
+  REMOVE_LIKE,
+  ADD_COMMENT_LIKE,
+  REMOVE_COMMENT_LIKE
 } from './types' 
 
 // Add Post 
@@ -204,6 +206,14 @@ export const deleteComment = (postId, commentId) => dispatch => {
 // Add Like to Comment
 export const addCommentLike = (postId, commentId) => dispatch => {
   axios.post(`/api/posts/comment/like/${postId}/${commentId}`)
+  .then(post => dispatch({
+    type: ADD_COMMENT_LIKE,
+    payload: {
+      data: post.data,
+      postId,
+      commentId
+    }
+  }))  
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
@@ -213,6 +223,14 @@ export const addCommentLike = (postId, commentId) => dispatch => {
 // Unlike Comment
 export const removeCommentLike = (postId, commentId) => dispatch => {
   axios.post(`/api/posts/comment/unlike/${postId}/${commentId}`)
+  .then(post => dispatch({
+    type: REMOVE_COMMENT_LIKE,
+    payload: {
+      data: post.data,
+      postId,
+      commentId
+    }
+  }))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 

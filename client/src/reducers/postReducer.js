@@ -15,7 +15,9 @@ import {
   GET_LIKED_POSTS,
   GET_MORE_LIKED_POSTS,
   ADD_LIKE,
-  REMOVE_LIKE
+  REMOVE_LIKE,
+  ADD_COMMENT_LIKE,
+  REMOVE_COMMENT_LIKE
 } from '../actions/types'
 
 const initialState = { 
@@ -94,6 +96,12 @@ export default function(state = initialState, action) {
         posts: [action.payload, ...state.posts]
       }
 
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== action.payload) 
+      }
+
     case ADD_LIKE:
       const updatePostsLikes = state.posts.map(post => {
         if(post._id === action.payload._id) {
@@ -134,11 +142,40 @@ export default function(state = initialState, action) {
         loading: false
       }
 
-    case DELETE_POST:
+      case ADD_COMMENT_LIKE:
+      const updateCommentLikes = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              post = action.payload.data
+            }
+          })
+        } 
+        return post
+      })
       return {
         ...state,
-        posts: state.posts.filter(post => post._id !== action.payload) 
+        posts: updateCommentLikes,
+        loading: false 
       }
+
+    case REMOVE_COMMENT_LIKE:
+      const removeCommentLike = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              post = action.payload.data
+            }
+          })
+        }
+        return post 
+      })
+      return {
+        ...state,
+        posts: removeCommentLike,
+        loading: false
+      }
+
 
     case DELETE_COMMENT: 
       const selectedPost = state.posts.filter(post => post._id === action.payload.postId)[0].comments.filter(val => val._id !== action.payload.commentId)
@@ -157,7 +194,7 @@ export default function(state = initialState, action) {
       const updatePost = state.posts.map(post => {
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {
-            if(comment._id.toString() === action.payload.commentId) {
+            if(comment._id === action.payload.commentId) {
               post = action.payload.data
             }
           })
@@ -175,9 +212,9 @@ export default function(state = initialState, action) {
         console.log(post, action.payload) 
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {
-            if(comment._id.toString() === action.payload.commentId) {
+            if(comment._id === action.payload.commentId) {
               // this line is causing issues
-              comment = comment.filter(nestedComment => nestedComment._id.toString() !== action.payload.nestedCommentId) 
+              comment = comment.filter(nestedComment => nestedComment._id !== action.payload.nestedCommentId) 
             }
           })
         }

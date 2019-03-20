@@ -4,10 +4,8 @@ import './CommentsModal.css'
 
 const PostModal = props => {
   return (
-    <div>
-      <div className='CommentsModal'>
-        {props.children}
-      </div>
+    <div className='CommentsModal'>
+      {props.children}
     </div>
   )
 }

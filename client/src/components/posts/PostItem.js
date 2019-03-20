@@ -55,11 +55,8 @@ class PostItem extends Component {
     this.setState(prevState => ({ likes: prevState.likes, liked: false }))
   }
 
-  findUserLike = likes => {
-    const { auth } = this.props 
+  findUserLike = likes => likes.filter(like => like.user === this.props.auth.user.id).length > 0
   
-    return likes.filter(like => like.user === auth.user.id).length > 0
-  }
 
   modalToggle = () => {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
@@ -94,14 +91,10 @@ class PostItem extends Component {
       : youtubeUrl = null 
 
     const postModal = this.state.showModal ? (
-      <Fragment> 
-        <CommentsModal>
-          <div>
-            <PostModalText postText={post.text} />
-            <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
-          </div>
-        </CommentsModal>
-      </Fragment>
+      <CommentsModal>
+        <PostModalText postText={post.text} />
+        <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '60vh'}} />
+      </CommentsModal>
     ) : null 
 
     return (
@@ -112,18 +105,13 @@ class PostItem extends Component {
       <div className='post_avatar_and_name'>
         <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
         <div style={{ display: 'flex', flexDirection: 'column'  }}>
-          
-
           <PostFeedPopup 
               popupHandler={this.popupHandler}
               profile={profile} 
-              user={auth.user} 
               post={post}
               showPopup={this.state.showPopup}
               userNameOrAvatarClicked={this.userNameOrAvatarClicked}
-            />
-
-
+          />
           <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
         </div>
       </div>

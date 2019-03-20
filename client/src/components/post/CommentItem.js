@@ -17,8 +17,6 @@ class CommentItem extends Component {
   state = {
     comment: this.props.comment,
     showModal: false,
-    // comment likes
-    commentLikes: this.props.comment.likes,
     liked: false,
     showNestedComments: false,
     text: '',
@@ -32,32 +30,23 @@ class CommentItem extends Component {
   componentDidUpdate(prevProps, prevState) {
     if(this.props.comment !== prevState.comment) {
       this.setState({ comment: this.props.comment })
-      console.log(this.props.comment)
     }
     if(this.props.comment.comments !== prevState.comment.comments) {
       this.setState({ comment: this.props.comment })
-      console.log(this.props.comment)
     }
     if(this.props.profiles !== prevProps.profiles){
       this.props.getProfiles() 
     }
   }
 
-  onLikeClick = (postId, commentId) => {
-    const { auth } = this.props 
-    this.props.addCommentLike(postId, commentId)
-    this.setState(prevState => ({ commentLikes: prevState.commentLikes.concat({ user: auth.user.id }), liked: true }))
+  onLikeClick = (postId, commentId, comment) => {
+    this.props.addCommentLike(postId, commentId, comment)
+    this.setState(prevState => ({ liked: true, comment: this.props.comment }))
   }
 
   onUnlikeClick = (postId, commentId) => {
-    const { auth } = this.props 
     this.props.removeCommentLike(postId, commentId)
-    // const index = this.state.commentLikes.map(like => like.user).indexOf(auth.user.id)
-    // console.log(index)
-    if(this.state.commentLikes.map(like => like.user === auth.user.id).length > 0) {
-      // this.setState(prevState => ({ commentLikes: prevState.commentLikes.splice(index, 1), liked: false }))
-      this.setState(prevState => ({ commentLikes: prevState.commentLikes.slice(1), liked: false }))
-    }
+    this.setState( prevState => ({ liked: false, comment: this.props.comment }))
   }
 
   findUserLike = likes => {
@@ -191,13 +180,13 @@ class CommentItem extends Component {
           <div>
             <button 
               title='like comment'
-              onClick={this.onLikeClick.bind(this, postId, comment._id)}
+              onClick={this.onLikeClick.bind(this, postId, comment._id, comment)}
               className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
                 'liked' : this.findUserLike(comment.likes)
               })}
               >
               <i className='fas fa-thumbs-up icons like'></i>
-              <span>{this.state.commentLikes.length}</span>
+              {<span>{this.props.comment.likes.length}</span>}
             </button>
             <button 
               title='unlike'

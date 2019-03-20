@@ -1,6 +1,7 @@
 .feed {
   /* background: #050c14;   */
-  background: #020811;
+  /* background: #020811; */
+  background: black;
   /* background: rgb(4,6,8); */
   /* background: rgb(10, 19, 29); */
   /* background: rgb(6, 9, 14); */
@@ -38,7 +39,7 @@
   /* display: flex; */
   right: 3.5vw;
   background: rgba(0,0,0,0.2); /* changed from 0.5 */
-  border: 0.1px solid rgba(55, 131, 194, 0.3);
+  border: 0.1px solid rgba(55, 131, 194, 0.1);
 }
 
 .searchbar_items {
@@ -63,7 +64,7 @@
   display: flex;
   justify-content: space-between;
   margin-right: 20px;
-  border: 0.1px solid rgba(55, 131, 194, 0.3);
+  border: 0.1px solid rgba(55, 131, 194, 0.1);
 } 
 .searchbarinput {
   flex: 8; 
@@ -146,8 +147,8 @@
 /* Toggle this class - hide and show the popup */
 .popup .show {
   visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 1.1s;
+  animation: fadeIn 1.1s;
 }
 
 /* Add animation (fade in the popup) */
@@ -368,7 +369,7 @@
     background: rgba(0,0,0,0.3); 
     color: rgb(55, 131, 194);
     padding: 10; 
-    border: 0.1px solid rgba(55, 131, 194, 0.2);
+    border: 0.1px solid rgba(55, 131, 194, 0.1);
   }
 
   .post-feed-profile {
@@ -376,7 +377,7 @@
     justify-content: center;
     grid-area: profile;
     /* background: rgba(0,0,0,0.5); */
-    border: 0.5px solid rgba(55, 131, 194, 0.3);
+    border: 0.5px solid rgba(55, 131, 194, 0.13);
     width: 250px;
     height: 250px;
     margin-top: -30px;

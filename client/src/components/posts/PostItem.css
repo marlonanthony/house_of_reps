@@ -13,7 +13,7 @@
   margin-bottom: 5px;
   padding: 10px;
   display: grid;
-  border: 0.1px solid rgba(55, 131, 194, 0.3);
+  border: 0.1px solid rgba(55, 131, 194, 0.1);
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-template-areas:  
