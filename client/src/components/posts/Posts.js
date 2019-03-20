@@ -80,7 +80,6 @@ class Posts extends Component {
   }
   
   render() {
-    console.log(this.props.profile)
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
     const { showsPreview, showMatches, matches } = this.state

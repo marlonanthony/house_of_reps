@@ -210,20 +210,19 @@ export default function(state = initialState, action) {
 
     case REMOVE_NESTED_COMMENT:
       const updateRomoveNestedCommentPosts = state.posts.map(post => {
-        console.log(post, action.payload) 
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {
             if(comment._id === action.payload.commentId) {
-              // this line is causing issues
-              comment = comment.filter(nestedComment => nestedComment._id !== action.payload.nestedCommentId) 
+              comment.comments.filter(nestedComment => nestedComment._id !== action.payload.nestedCommentId) 
+              post = action.payload.data
             }
           })
         }
-        return action.payload.data  
+          return post 
       })
     return {
       ...state,
-      posts: updatePostRemoveLikes,
+      posts: updateRomoveNestedCommentPosts,
       loading: false 
     }
 

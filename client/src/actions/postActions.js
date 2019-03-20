@@ -243,12 +243,7 @@ export const addNestedComment = (postId, commentId, nestedCommentData) => dispat
   axios.post(`/api/posts/comment/comment/${postId}/${commentId}`, nestedCommentData)
   .then(res => dispatch({
     type: ADD_NESTED_COMMENT,
-    payload: {
-      data: res.data,
-      postId,
-      commentId,
-      nestedCommentData
-    }, 
+    payload: { data: res.data, postId, commentId, nestedCommentData }, 
   })) 
   .catch(err => dispatch({
     type: GET_ERRORS,
