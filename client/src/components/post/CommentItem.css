@@ -28,10 +28,14 @@
 
 .nested_comments_container {
   margin-left: 50px; 
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.5);
   margin-bottom: 5px;
   padding: 10px;
   border: .1px solid rgba(55, 131, 194, 0.1);
+}
+
+.nested_comments_container:hover {
+  background: #030303;
 }
 
 .nested_comment_avatar {
