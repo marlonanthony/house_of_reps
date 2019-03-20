@@ -17,7 +17,9 @@ import {
   ADD_LIKE,
   REMOVE_LIKE,
   ADD_COMMENT_LIKE,
-  REMOVE_COMMENT_LIKE
+  REMOVE_COMMENT_LIKE,
+  ADD_NESTED_COMMENT_LIKE,
+  REMOVE_NESTED_COMMENT_LIKE
 } from '../actions/types'
 
 const initialState = { 
@@ -142,8 +144,7 @@ export default function(state = initialState, action) {
         loading: false
       }
 
-      case ADD_COMMENT_LIKE:
-      console.log(action.payload, state.posts)
+    case ADD_COMMENT_LIKE:
       const updateCommentLikes = state.posts.map(post => {
         if(post._id === action.payload.postId) {
           post.comments.map(comment => {
@@ -159,6 +160,7 @@ export default function(state = initialState, action) {
         posts: updateCommentLikes,
         loading: false 
       }
+
 
     case REMOVE_COMMENT_LIKE:
       const removeCommentLike = state.posts.map(post => {
@@ -176,6 +178,30 @@ export default function(state = initialState, action) {
         posts: removeCommentLike,
         loading: false
       }
+
+    
+    case REMOVE_NESTED_COMMENT_LIKE:
+      const removeNestedCommentLike = state.posts.map(post => {
+        console.log(action.payload, post) 
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              comment.comments.map(nestedComment => {
+                if(nestedComment._id === action.payload.nestedCommentId) {
+                  post = action.payload.data 
+                }
+              })
+            }
+          })
+        }
+        return post 
+      })
+      return {
+        ...state,
+        posts: removeNestedCommentLike,
+        loading: false 
+      }
+
 
 
     case DELETE_COMMENT: 
@@ -202,11 +228,11 @@ export default function(state = initialState, action) {
         }
         return post 
       })
-    return {
-      ...state,
-      posts: updatePost,
-      loading: false 
-    }
+      return {
+        ...state,
+        posts: updatePost,
+        loading: false 
+      }
 
     case REMOVE_NESTED_COMMENT:
       const updateRomoveNestedCommentPosts = state.posts.map(post => {
@@ -220,11 +246,35 @@ export default function(state = initialState, action) {
         }
           return post 
       })
-    return {
-      ...state,
-      posts: updateRomoveNestedCommentPosts,
-      loading: false 
-    }
+      return {
+        ...state,
+        posts: updateRomoveNestedCommentPosts,
+        loading: false 
+      }
+
+    case ADD_NESTED_COMMENT_LIKE:
+      const updateNestedCommentLikes = state.posts.map(post => {
+        if(post._id === action.payload.postId) {
+          post.comments.map(comment => {
+            if(comment._id === action.payload.commentId) {
+              comment.comments.map(nestedComment => {
+                if(nestedComment._id === action.payload.nestedCommentId) {
+                  post = action.payload.data
+                }
+              })
+            }
+          })
+        }
+        return post 
+      })
+      return {
+        ...state,
+        posts: updateNestedCommentLikes,
+        loading: false 
+      }
+
+
+    
 
     default: 
       return state 

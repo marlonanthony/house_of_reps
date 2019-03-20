@@ -20,7 +20,9 @@ import {
   ADD_LIKE,
   REMOVE_LIKE,
   ADD_COMMENT_LIKE,
-  REMOVE_COMMENT_LIKE
+  REMOVE_COMMENT_LIKE,
+  ADD_NESTED_COMMENT_LIKE,
+  REMOVE_NESTED_COMMENT_LIKE
 } from './types' 
 
 // Add Post 
@@ -267,6 +269,10 @@ export const deleteNestedComment = (postId, commentId, nestedCommentId) => dispa
 // Like NestedComment
 export const likeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
   axios.post(`/api/posts/comment/comment/like/${postId}/${commentId}/${nestedCommentId}`)
+  .then(res => dispatch({
+    type: ADD_NESTED_COMMENT_LIKE,
+    payload: { data: res.data, postId, commentId, nestedCommentId }
+  }))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
@@ -276,6 +282,10 @@ export const likeNestedComment = (postId, commentId, nestedCommentId) => dispatc
 // Unlike NestedComment
 export const unlikeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
   axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}/${nestedCommentId}`)
+  .then(res => dispatch({
+    type: REMOVE_NESTED_COMMENT_LIKE,
+    payload: { data: res.data, postId, commentId, nestedCommentId }
+  }))
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
