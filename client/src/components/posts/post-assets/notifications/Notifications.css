@@ -1,0 +1,9 @@
+.notifications_container {
+  padding: 10px; 
+  background: #030303; 
+  margin: 10px;
+}
+
+.notifications_container:hover {
+  background: rgba(0,0,0,0.5);
+}
