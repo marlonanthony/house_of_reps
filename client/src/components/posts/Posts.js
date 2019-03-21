@@ -29,6 +29,7 @@ class Posts extends Component {
     count: 10, 
     start: 0,
     showPopup: false,
+    showLikesPopup: false,
   }
 
   componentDidMount() {
@@ -77,6 +78,14 @@ class Posts extends Component {
 
   popupHandler = () => {
     this.setState(prevState => ({ showPopup: !prevState.showPopup }))
+  }
+
+  likesPopupHandler = () => { this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup })) }
+
+  removePopup = (e) => {
+    if(!e.target.closest('.popup')) {
+      this.setState({ showLikesPopup: false })
+    }
   }
   
   render() {
@@ -227,12 +236,18 @@ class Posts extends Component {
       next={this.fetchMore}
       hasMore={true}
       loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
-        <PostFeed showPreview={ showsPreview } posts={ showMatches ? arr : posts } profiles={ profiles } />
+        <PostFeed 
+          likesPopupHandler={this.likesPopupHandler} 
+          showLikesPopup={this.state.showLikesPopup} 
+          removePopup={this.removePopup} 
+          showPreview={ showsPreview } 
+          posts={ showMatches ? arr : posts } 
+          profiles={ profiles } />
       </InfinteScroll>
     )
 
     return (
-      <div className='feed'>
+      <div  onClick={this.removePopup}  className='feed'>
         <div className='searchbarpost'>
           <input
             placeholder='search post'
@@ -255,7 +270,7 @@ class Posts extends Component {
         <div className='post-feed-social'>Thingy</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
-        <div className='post-feed-form'><PostForm showPreview={ showsPreview }/></div>
+        <div className='post-feed-form'><PostForm  showPreview={ showsPreview }/></div>
         {/* <div className='img_test'>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/BUTTONSGS.png')} alt=""/>
           <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/DJMIXES.png')} alt=""/>
