@@ -381,11 +381,6 @@ router.post('/comment/comment/unlike/:id/:comment_id/:nested_comment_id', passpo
               if(nestedComment.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
                 return res.status(400).json({ notliked: 'You have not yet liked this nested comment'})
               }
-              // nestedComment.likes.map(like => {
-              //   if((like.user.toString() === req.user.id).length === 0) {
-              //     res.status(400).json({ notliked: 'You have not yet liked this comment' })
-              //   }
-              // })
               nestedComment.likes.splice(nestedComment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
             }
           })

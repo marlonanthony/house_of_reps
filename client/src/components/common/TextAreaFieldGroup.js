@@ -11,7 +11,7 @@ class TextAreaFieldGroup extends Component {
     return (
       <div>
         <textarea 
-          className={classnames('text-area', {
+          className={classnames('text-area', { // text-area is in PostForm.css
             '': error
           })}
           placeholder={ placeholder }

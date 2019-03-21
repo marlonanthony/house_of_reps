@@ -18,7 +18,6 @@ class CommentItem extends Component {
     comment: this.props.comment,
     showModal: false,
     liked: false,
-    nestedCommentLiked: false,
     showNestedComments: false,
     text: '',
     errors: {},
@@ -54,19 +53,6 @@ class CommentItem extends Component {
     const { auth } = this.props 
   
     return likes.filter(like => like.user === auth.user.id).length > 0
-  }
-
-  findUserNestedCommentLike = (likes, postId, commentId, nestedCommentId) => {
-    const { auth } = this.props 
-
-    console.log(this.props.comment, likes, postId, commentId, nestedCommentId) 
-    this.props.comments.map(nestedComment => {
-      if(nestedComment._id === nestedCommentId) {
-        return nestedComment.likes.filter(like => like.user === auth.user.id).length > 0
-      }
-    })
-    
-    // return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
   onDeleteClick = (postId, commentId) => {
@@ -193,10 +179,10 @@ class CommentItem extends Component {
                 )
             }
             { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
-              ? <div style={{ fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
+              ? <div style={{ marginLeft: 5, fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
               : comment.likes.length > 2 
-              ? <div style={{ fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.</div>
-              : <div style={{ fontSize: '11px', color: 'rgb(29, 138, 255)'}}> Liked by {comment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+              ? <div style={{ marginLeft: 5, fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.</div>
+              : <div style={{ marginLeft: 5, fontSize: '11px', color: 'rgb(29, 138, 255)'}}> Liked by {comment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
             }
           </div>
           <div>
@@ -250,7 +236,6 @@ class CommentItem extends Component {
                     value={this.state.text} 
                     onChange={this.onChange} 
                     className='nested_comment_textarea'
-                    style={{ color: 'black', padding: 10, background: '#aaa', border: 'none', fontSize: 13, outline: 'none' }}
                     // error={this.state.errors.text} 'rgb(173, 187, 199)'
                   />
                   { this.state.showNestedSubmitBtn &&
@@ -273,26 +258,28 @@ class CommentItem extends Component {
                       </div>
                       <div>
                         { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
+                        { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
+                          ? <div style={{ marginLeft: 35, fontSize: '10px', color: 'rgb(29, 138, 255)'}}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>
+                          : nestedComment.likes.length > 2 
+                          ? <div style={{ marginLeft: 35, fontSize: '10px', color: 'rgb(29, 138, 255)'}}>Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and {nestedComment.likes.length -1} others.</div>
+                          : <div style={{ marginLeft: 35, fontSize: '10px', color: 'rgb(29, 138, 255)'}}> Liked by {nestedComment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+                        }
                       </div>
 
-
-                      
-                      <div>
+                      <div style={{ marginLeft: 30 }}>
                         <button 
                           title='like nested comment'
                           onClick={this.onLikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}
-                          className={this.state.nestedCommentLiked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-                            'liked' : this.findUserNestedCommentLike(nestedComment.likes, postId, comment._id, nestedComment._id)
-                          })}
-                          >
+                          className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
+                            'liked' : this.findUserLike(nestedComment.likes)
+                          })}>
                           <i className='fas fa-thumbs-up icons like'></i>
                           <span>{nestedComment.likes.length}</span>
                         </button>
                         <button 
                           title='unlike'
                           className='postfeed_buttons'
-                          onClick={this.onUnlikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}
-                          >
+                          onClick={this.onUnlikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}>
                           <i className="fas fa-thumbs-down icons" id='unlike'></i>
                         </button>
                         { nestedComment.user === auth.user.id && (

@@ -3,6 +3,7 @@
   display: inline-block;
   z-index: 10;
   top: 20px;
+  /* right: 10; */
   margin-left: 87vw;
 }
 
@@ -49,7 +50,7 @@
   padding: 10px;
   text-decoration: none;
   border: none;
-  border-top: solid 1px #e0e0e0;
+  /* border-top: solid 1px #e0e0e0; */
   text-decoration: none;
   /* color: #ccc; */
   color: rgb(6, 50, 87);
