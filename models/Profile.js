@@ -151,6 +151,15 @@ const ProfileSchema = new Schema({
         type: Date,
         default: Date.now 
       },
+      avatar: {
+        type: String
+      },
+      postImage: {
+        type: String 
+      },
+      postText: {
+        type: String 
+      },
       message: {
         type: String
       }

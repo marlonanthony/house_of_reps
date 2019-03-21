@@ -24,7 +24,8 @@ class CommentItem extends Component {
     data: {},
     showNestedSubmitBtn: false,
     showForm: false,
-    comments: this.props.comments 
+    comments: this.props.comments,
+    showLikesPopup: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -113,6 +114,8 @@ class CommentItem extends Component {
     this.setState( prevState => ({ nestedCommentLiked: false, comment: this.props.comment }))
   }
 
+  likesPopupHandler = () => { this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup })) }
+
   render() {
     const { postId, auth } = this.props 
     const { comment } = this.state
@@ -178,12 +181,27 @@ class CommentItem extends Component {
                   </div>
                 )
             }
-            { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
-              ? <div style={{ marginLeft: 5, fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
-              : comment.likes.length > 2 
-              ? <div style={{ marginLeft: 5, fontSize: '11px', color: 'rgb(29, 138, 255)'}}>Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.</div>
-              : <div style={{ marginLeft: 5, fontSize: '11px', color: 'rgb(29, 138, 255)'}}> Liked by {comment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
-            }
+
+            <div className='popup' >
+              { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
+                ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
+                : comment.likes.length > 2 
+                ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.</div>
+                : <div  onClick={this.likesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}> Liked by {comment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+              }
+              <div onMouseLeave={this.likesPopupHandler} className={this.state.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
+                <i className='fas fa-thumbs-up icons likespopupicon'></i>
+                <div>
+                  {comment.likes.length < 1 ? null : comment.likes.map(like => (
+                    <div className='likespopupavatarandname' key={like.user}>
+                      <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
+                      <p style={{padding: 10 }}>{like.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
           </div>
           <div>
             <button 
