@@ -161,13 +161,13 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
     }
 
     // Add user id and name to likes array
-    post.likes.push({ user: req.user.id, name: req.user.name }) 
+    post.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar }) 
     post.save().then(post => res.json(post)) 
 
     // Add user id name and notification message to notification array
     Profile.findOne({ user: post.user }).then(profile => {
       const message = `${req.user.name} liked your post!`
-      profile.notifications.push({ user: req.user.id, name: req.user.name, message })
+      profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, message })
       profile.save().then(profile => res.json(profile)) 
     })
   })
@@ -263,11 +263,11 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
         if(comment.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
           return res.status(400).json({ alreadyliked: 'User already liked this comment' })
         }
-        comment.likes.push({ user: req.user.id, name: req.user.name })
+        comment.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar })
 
         Profile.findOne({ user: comment.user }).then(profile => {
           const message = `${req.user.name} liked your comment!`
-          profile.notifications.push({ user: req.user.id, name: req.user.name, message })
+          profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, message })
           profile.save().then(profile => res.json(profile)) 
         })
       }
@@ -358,7 +358,7 @@ router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport
             if(nestedComment.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
               return res.status(400).json({ alreadyliked: 'User already liked this nested comment' })
             }
-            nestedComment.likes.push({ user: req.user.id, name: req.user.name })
+            nestedComment.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar })
           }
         })
       }

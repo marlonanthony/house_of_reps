@@ -29,7 +29,8 @@ class PostItem extends Component {
     likes: [...this.props.post.likes],
     liked: false,
     showModal: false,
-    showPopup: false
+    showPopup: false,
+    showLikesPopup: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -77,6 +78,8 @@ class PostItem extends Component {
   popupHandler = () => {
     this.setState(prevState => ({ showPopup: !prevState.showPopup }))
   }
+
+  likesPopupHandler = () => { this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup })) }
 
   render() {
     const { post, auth, showActions, profile } = this.props 
@@ -142,12 +145,29 @@ class PostItem extends Component {
               </div>
             )
         }
-        { likes.length < 1 ? null : likes.length === 2 
-          ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Liked by {likes[0].name} and {likes[1].name}</div>
-          : likes.length > 2 
-          ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-          : <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
-        }
+
+
+        <div className='popup' onMouseOver={this.likesPopupHandler} onMouseOut={this.likesPopupHandler}>
+          { likes.length < 1 ? null : likes.length === 2 
+            ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Liked by {likes[0].name} and {likes[1].name}</div>
+            : likes.length > 2 
+            ? <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+            : <div style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+          }
+          <div className={this.state.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
+            <i className='fas fa-thumbs-up icons likespopupicon'></i>
+            <div>
+              {likes.length < 1 ? null : likes.map(like => (
+                <div className='likespopupavatarandname' key={like.user}>
+                  <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
+                  <p style={{padding: 10 }}>{like.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <br />
+
         { showActions ? ( <span>
           <button 
             title='like'

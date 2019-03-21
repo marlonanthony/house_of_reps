@@ -4,7 +4,7 @@ class PostFeedPopup extends Component {
 
   render() {
     const { profile: {profiles}, popupHandler, post, showPopup, userNameOrAvatarClicked  } = this.props
-    let bio = profiles && profiles.map(profile =>  {
+    let profileInfo = profiles && profiles.map(profile =>  {
       if(profile.user._id === post.user) {
         return (
           <React.Fragment key={profile.user._id}>
@@ -22,7 +22,7 @@ class PostFeedPopup extends Component {
         <div className={showPopup ? 'show popupcontent' : 'popupcontent'}>
           <img onClick={() => userNameOrAvatarClicked(post.user)} className='popup-profile-img' src={ post.avatar } alt={ post.name } />
           <span onClick={() => userNameOrAvatarClicked(post.user)} style={{color: 'rgb(29, 138, 228)', fontSize: 13}}>{post.name}</span>
-          { bio && bio }
+          { profileInfo && profileInfo }
         </div>
       </div>
     )

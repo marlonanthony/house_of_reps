@@ -43,6 +43,9 @@ const PostSchema = new Schema({
       },
       name: {
         type: String
+      },
+      avatar: {
+        type: String 
       }
     }
   ],
@@ -73,6 +76,9 @@ const PostSchema = new Schema({
           },
           name: {
             type: String  
+          },
+          avatar: {
+            type: String 
           }
         }
       ],
@@ -103,6 +109,9 @@ const PostSchema = new Schema({
                 ref: 'users'
               },
               name: {
+                type: String 
+              },
+              avatar: {
                 type: String 
               }
             }
