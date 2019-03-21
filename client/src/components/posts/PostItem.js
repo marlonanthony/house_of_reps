@@ -30,6 +30,7 @@ class PostItem extends Component {
     liked: false,
     showModal: false,
     showPopup: false,
+    showLikesPopup: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -78,6 +79,14 @@ class PostItem extends Component {
     this.setState(prevState => ({ showPopup: !prevState.showPopup }))
   }
 
+  likesPopupHandler = () => this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup })) 
+
+  removePopup = (e) => {
+    if(!e.target.closest('.popup')) {
+      this.setState(prevState => ({ showLikesPopup: false }))
+    }
+  }
+  
 
   render() {
     const { post, auth, showActions, profile } = this.props 
@@ -102,7 +111,7 @@ class PostItem extends Component {
      <Fragment>
      <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
      {postModal}
-     <div  onClick={this.props.removePopup} className='posts_container'>
+     <div  onClick={this.removePopup} className='posts_container'>
       <div className='post_avatar_and_name'>
         <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
         <div style={{ display: 'flex', flexDirection: 'column'  }}>
@@ -147,12 +156,12 @@ class PostItem extends Component {
 
         <div className='popup' >
           { likes.length < 1 ? null : likes.length === 2 
-            ? <div  onClick={this.props.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Liked by {likes[0].name} and {likes[1].name}</div>
+            ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Liked by {likes[0].name} and {likes[1].name}</div>
             : likes.length > 2 
-            ? <div  onClick={this.props.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-            : <div  onClick={this.props.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+            ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+            : <div  onClick={this.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
           }
-          <div onMouseLeave={this.props.likesPopupHandler} className={this.props.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
+          <div onMouseLeave={this.likesPopupHandler} className={ this.state.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
             <div style={{ position: 'absolute', top: 5, left: 5 }}>
               <i className='fas fa-thumbs-up icons likespopupicon'></i>
               <small>{likes.length}</small>

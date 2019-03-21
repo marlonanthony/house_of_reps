@@ -11,9 +11,6 @@ class PostFeed extends Component {
         key={post._id} 
         post={post} 
         profiles={this.props.profiles} 
-        likesPopupHandler={this.props.likesPopupHandler}
-        showLikesPopup={this.props.showLikesPopup}
-        removePopup={this.props.removePopup}
       /> 
     ))
   }

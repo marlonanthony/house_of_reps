@@ -29,7 +29,6 @@ class Posts extends Component {
     count: 10, 
     start: 0,
     showPopup: false,
-    showLikesPopup: false,
   }
 
   componentDidMount() {
@@ -80,14 +79,6 @@ class Posts extends Component {
     this.setState(prevState => ({ showPopup: !prevState.showPopup }))
   }
 
-  likesPopupHandler = () => { this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup })) }
-
-  removePopup = (e) => {
-    if(!e.target.closest('.popup')) {
-      this.setState({ showLikesPopup: false })
-    }
-  }
-  
   render() {
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
@@ -237,9 +228,6 @@ class Posts extends Component {
       hasMore={true}
       loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
         <PostFeed 
-          likesPopupHandler={this.likesPopupHandler} 
-          showLikesPopup={this.state.showLikesPopup} 
-          removePopup={this.removePopup} 
           showPreview={ showsPreview } 
           posts={ showMatches ? arr : posts } 
           profiles={ profiles } />
