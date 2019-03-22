@@ -235,7 +235,7 @@ class Posts extends Component {
     )
 
     return (
-      <div  onClick={this.removePopup}  className='feed'>
+      <div className='feed'>
         <div className='searchbarpost'>
           <input
             placeholder='search post'
@@ -246,7 +246,7 @@ class Posts extends Component {
           />
           { this.state.showMatches
             ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
-                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 255)' }}/>
+                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 255)' }} />
               </button>)
             : (<button className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
                 <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
