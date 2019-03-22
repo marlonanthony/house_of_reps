@@ -226,6 +226,13 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
     // Add to comments array
     post.comments.unshift(newComment) 
     post.save().then(post => res.json(post)) 
+
+    // Add to notifications array
+    Profile.findOne({ user: post.user }).then(profile => {
+      const message = `${req.user.name} commented on your post!`
+      profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, postId: post._id, postImage: post.media, postText: post.text, message })
+      profile.save().then(profile => res.json(profile)) 
+    })
   })
   .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
 })
@@ -316,13 +323,16 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
       avatar: req.body.avatar,
       user: req.user.id,
     }
-    // post.comments.map(comment => comment._id.toString() === req.params.comment_id
-    //   ? comment.comments.unshift(newComment)
-    //   : null 
-    // )
     post.comments.map(comment => {
       if(comment._id.toString() === req.params.comment_id) {
         comment = comment.comments.unshift(newComment) 
+
+        // Add to notifications array
+        Profile.findOne({ user: comment.user }).then(profile => {
+          const message = `${req.user.name} commented on your comment!`
+          profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, postId: post._id, commentId: comment._id, postImage: comment.media, postText: comment.text, message })
+          profile.save().then(profile => res.json(profile)) 
+        })
       }
     }) 
     post.save().then((post) => res.json(post))

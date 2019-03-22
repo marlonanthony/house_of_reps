@@ -42,6 +42,8 @@ class Notifications extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   { notification.message && notification.message.includes('liked') 
                     ? <i className='fas fa-thumbs-up icons likespopupicon'></i>
+                    : notification.message && notification.message.includes('commented') 
+                    ? <i className='fas fa-comment icons' id='comment'/>
                     : null
                   }
                   { notification.date && (
@@ -52,10 +54,10 @@ class Notifications extends Component {
                       : Math.abs(new Date(notification.date) - new Date()) >= 86400000
                       ? 'yesterday'
                       : Math.abs(new Date(notification.date) - new Date()) > 3600000
-                      ? Math.round(Math.abs(new Date(notification.date) - new Date()) / 3600000) + ' hours ago'
+                      ? Math.floor(Math.abs(new Date(notification.date) - new Date()) / 3600000) + ' hours ago'
                       : Math.abs(new Date(notification.date) - new Date()) >= 60000
-                      ? Math.round(Math.abs(new Date(notification.date) - new Date()) / 60000) + ' minutes ago'
-                      : Math.round(Math.abs(new Date(notification.date) - new Date()) / 1000) + ' seconds ago'
+                      ? Math.floor(Math.abs(new Date(notification.date) - new Date()) / 60000) + ' minutes ago'
+                      : Math.floor(Math.abs(new Date(notification.date) - new Date()) / 1000) + ' seconds ago'
                     }</p>
                   )}
                 </div>

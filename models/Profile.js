@@ -160,6 +160,12 @@ const ProfileSchema = new Schema({
       postText: {
         type: String 
       },
+      postId: {
+        type: String
+      },
+      commentId: {
+        type: String 
+      },
       message: {
         type: String
       }
