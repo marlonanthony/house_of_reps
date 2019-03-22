@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import Moment from 'react-moment' 
+import axios from 'axios'
 import './Notifications.css'
 
 class Notifications extends Component {
+
+  state = {
+    notifications: []
+  }
+
+  componentDidMount() {
+    axios.get('/api/profile/notifications') 
+    .then(res => {
+      this.setState({ notifications: res.data })
+    })
+  }
+
   render() {
     //   31, 449, 600, 000 ms === 1 Year
     //    2, 592, 000, 000 ms === 1 Month (30 Days)
@@ -11,11 +24,12 @@ class Notifications extends Component {
     //        86, 400, 000 ms === 1 Day
     //         3, 600, 000 ms === 1 Hour
     //             60, 000 ms === 1 minute 
+    console.log(this.state.notifications)
     return (
       <div>
-        { this.props.profile.profile && 
+        { this.state.notifications && 
           <div style={{ color: 'rgb(55, 131, 194)', marginTop: 100 }}>
-            { this.props.profile.profile.notifications.map(notification => 
+            { this.state.notifications.map(notification => 
               <div className='notifications_container' key={notification._id}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   { notification.avatar && <img src={notification.avatar} style={{ width: 30, height: 30, borderRadius: '50%', marginRight: 10 }} />}
@@ -35,62 +49,18 @@ class Notifications extends Component {
                       ?  <Moment format='ddd, ll LT'>{notification.date}</Moment>
                       : Math.abs(new Date(notification.date) - new Date()) > 172800000 
                       ? '2 days ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 86400000
+                      : Math.abs(new Date(notification.date) - new Date()) >= 86400000
                       ? 'yesterday'
-                      : Math.abs(new Date(notification.date) - new Date()) > 82800000
-                      ? '23 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 79200000
-                      ? '22 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 75600000
-                      ? '21 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 72000000
-                      ? '20 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 68400000
-                      ? '19 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 64800000
-                      ? '18 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 61200000
-                      ? '17 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 57600000
-                      ? '16 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 54000000
-                      ? '15 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 50400000
-                      ? '14 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 46800000
-                      ? '13 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 43200000
-                      ? '12 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 39600000
-                      ? '11 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 36000000
-                      ? '10 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 32400000
-                      ? '9 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 28800000
-                      ? '8 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 25200000
-                      ? '7 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 21600000
-                      ? '6 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 18000000
-                      ? '5 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 14400000
-                      ? '4 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 10800000
-                      ? '3 hours ago'
-                      : Math.abs(new Date(notification.date) - new Date()) > 7200000
-                      ? '2 hours ago'
                       : Math.abs(new Date(notification.date) - new Date()) > 3600000
-                      ? '1 hour ago'
+                      ? Math.round(Math.abs(new Date(notification.date) - new Date()) / 3600000) + ' hours ago'
                       : Math.abs(new Date(notification.date) - new Date()) >= 60000
-                      ? '1 minute ago'
+                      ? Math.round(Math.abs(new Date(notification.date) - new Date()) / 60000) + ' minutes ago'
                       : Math.round(Math.abs(new Date(notification.date) - new Date()) / 1000) + ' seconds ago'
                     }</p>
-                  ) }
+                  )}
                 </div>
               </div>
-            ).reverse()}
+            )}
           </div>
         }
       </div>
@@ -98,9 +68,9 @@ class Notifications extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth 
-})
+// const mapStateToProps = state => ({
+//   profile: state.profile
+//   auth: state.auth 
+// })
 
-export default connect(mapStateToProps)(Notifications)
+export default connect(null)(Notifications)

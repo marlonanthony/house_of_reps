@@ -99,6 +99,34 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), (
 })
 
 
+// @route         GET api/profile/notifications
+// @description   GET current users notifications
+// @access        Private
+router.get('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const errors = {} 
+
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    // if(!profile) {
+    //   errors.noprofile = 'There is no profile for this user'
+    //   return res.status(404).json(errors)
+    // }
+    // if(!profile.notifications) {
+    //   errors.notifications = 'You have no notifications'
+    //   return res.status(404).json(errors) 
+    // }
+    notificationArr = []
+    profile.notifications.map(notification => {
+      if(Math.abs(new Date(notification.date) - new Date()) < 259200000) {
+        notificationArr.push(notification) 
+      }
+    })
+    res.json(notificationArr.reverse())
+  })
+  .catch(err => res.status(404).json(err))
+}) 
+
+
 // @route         POST api/profile
 // @description   Create or edit user profile
 // @access        Private
