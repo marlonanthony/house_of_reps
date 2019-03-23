@@ -51,7 +51,7 @@ class Notifications extends Component {
                     : null
                   }
                   { notification.date && (
-                    <p>{ notification.date && Math.abs(new Date(notification.date) - new Date()) > 259200000 
+                    <p style={{color: '#aaa'}}>{ notification.date && Math.abs(new Date(notification.date) - new Date()) > 259200000 
                       ?  <Moment format='ddd, ll LT'>{notification.date}</Moment>
                       : Math.abs(new Date(notification.date) - new Date()) > 172800000 
                       ? '2 days ago'

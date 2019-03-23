@@ -5,22 +5,25 @@
   border-radius: 3px;
   margin: 15px 0px; 
 }
+.notifications_container::before {
+  content: 'Older Notification'
+}
 
 .notifications_container:hover {
-  background: rgba(0,0,0,0.5);
+  background: #060606;
   border: .5px solid rgba(55,131,194,0.1);
 }
 
 .seen {
-  border: 1px solid rgb(55, 131, 194);
+  border: 0.5px solid rgba(55, 131, 194, 0.1);
   margin: 35px 0px;
 }
 .seen:hover {
-  border: 1px solid rgb(55, 131, 194);
+  border: .7px solid rgba(55, 131, 194, 0.5);
 }
 .seen::before {
-  content: '\01F525';
-  margin-left: 50%;
+  content: '\01F525 New Notification \01F525';
+  /* margin-left: 50%; */
 }
 
 
@@ -30,6 +33,6 @@
     margin: 15px 15%;
   }
   .seen {
-    margin: 35px 15%;
+    margin: 50px 15%;
   }
 }

@@ -23,7 +23,6 @@
 }
 
 .red {
-  /* color: rgb(55, 131, 194); */
   color: rgb(133, 58, 49);
 }
 .notification_count {
@@ -108,7 +107,7 @@
 /* The actual popup */
 .popup .popupcontent {
   visibility: hidden;
-  width: 160px;
+  width: 200px;
   background-color: #030303;
   color: #fff;
   text-align: center;
@@ -118,7 +117,8 @@
   z-index: 1;
   top: 100%;
   left: 50%;
-  margin-left: -80px;
+  margin-left: -100px;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;

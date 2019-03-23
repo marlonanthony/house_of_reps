@@ -274,7 +274,15 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
 
         Profile.findOne({ user: comment.user }).then(profile => {
           const message = `${req.user.name} liked your comment!`
-          profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, message })
+          profile.notifications.push({ 
+            user: req.user.id, 
+            name: req.user.name, 
+            avatar: req.user.avatar, 
+            postId: post._id, 
+            commentId: comment._id, 
+            postImage: comment.media, 
+            postText: comment.text, 
+            message })
           profile.save().then(profile => res.json(profile)) 
         })
       }
