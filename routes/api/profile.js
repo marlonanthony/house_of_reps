@@ -105,15 +105,10 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), (
 router.get('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
   Profile.findOne({ user: req.user.id })
   .then(profile => {
-    // const nIndex = profile.notifications.map(item => item._id.toString()).indexOf(notification._id)
-    // profile.notification.splice(nIndex, 1)
-    
     profile.notifications.map((notification, i, array) => {
       if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 259200000){
-        console.log(notification.date)
         array.splice(notification[i], 1)
       }
-      
     })
     profile.save().then(profile => res.json(profile.notifications.reverse()))
   })

@@ -40,7 +40,9 @@ class Posts extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
+    if(this.props.profile.profile !== prevProps.profile.profile) {
+      this.props.getCurrentProfile() 
+    }
   }
 
   fetchMore = () => {
@@ -203,13 +205,13 @@ class Posts extends Component {
                 padding: 10, 
                 margin: '0px 2px',
                 flex: 1,
-                background: 'rgba(0,0,0,0.4)', 
+                background: 'rgba(0,0,0,0.1)', 
                 color: 'rgb(55, 131, 194)', 
                 cursor: 'pointer',
                 border: '0.3px solid rgba(55,131,194, 0.3)',
                 outline: 'none'}}>
-                <i className={ profile.notifications.filter(notification => !notification.seen).length > 0 ? 'far fa-bell' : 'far fa-bell' }
-                  style={{fontSize: 15}}> <small className={profile.notifications.filter(notification => !notification.seen).length > 0 ? ' topcorner red' : ''}>{profile.notifications.filter(notification => !notification.seen).length}</small></i>
+                <i className={ profile.notifications.filter(notification => !notification.seen).length > 0 ? 'far fa-bell red' : 'far fa-bell' }
+                  style={{fontSize: 15}}><small className={profile.notifications.filter(notification => !notification.seen).length > 0 ? ' notification_count red' : 'notification_count'}>{profile.notifications.filter(notification => !notification.seen).length}</small></i>
               </button>
             </div>
           </div>

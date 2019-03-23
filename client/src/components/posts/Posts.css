@@ -35,9 +35,10 @@
 }
 
 .red {
-  color: rgb(29, 138, 255);
+  /* color: rgb(55, 131, 194); */
+  color: rgb(133, 58, 49);
 }
-.topcorner {
+.notification_count {
   position: absolute;
   right: 20%;
   top: 15%;
