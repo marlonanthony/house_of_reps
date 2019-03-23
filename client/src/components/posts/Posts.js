@@ -16,6 +16,7 @@ import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
 import PostsProfilePopup from '../UI/popup_menu/PostsProfilePopup'
 import PostFeedProfileContent from './post-assets/postfeed_profile_content/PostFeedProfileContent'
+import SearchPost from './post-assets/searchbar/SearchPost'
 // import InputGroup from '../common/InputGroup'
 
 import './Posts.css'
@@ -176,7 +177,7 @@ class Posts extends Component {
     })
     postContent = (
       <InfinteScroll
-      dataLength={posts.length}
+      dataLength={ posts.length}
       next={this.fetchMore}
       hasMore={true}
       loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
@@ -189,7 +190,13 @@ class Posts extends Component {
 
     return (
       <div className='feed'>
-        <div className='searchbarpost'>
+        <SearchPost 
+          onSearchPostClick={this.onSearchPostClick}
+          matches={matches}
+          onChange={this.onChange}
+          showMatches={this.state.showMatches}
+        />
+        {/* <div className='searchbarpost'>
           <input
             placeholder='search post'
             name='matches'
@@ -205,22 +212,12 @@ class Posts extends Component {
                 <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
               </button>)
           }
-        </div>
+        </div> */}
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
-        <div className='post-feed-social'>Thingy</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'><PostForm  showPreview={ showsPreview }/></div>
-        {/* <div className='img_test'>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/BUTTONSGS.png')} alt=""/>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/DJMIXES.png')} alt=""/>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/GEARMARKETPNG.png')} alt=""/>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/NEWS.png')} alt=""/>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/REPSFLOOR.png')} alt=""/>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/VIDEO.png')} alt=""/>
-          <img style={{padding: '5px'}} height='60' width='60' src={require('../../img/MUSIC.png')} alt=""/>
-        </div> */}
         <div className='post-feed-post-content'>{ postContent }</div>
         { highlights ? <div>
           <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>
@@ -240,10 +237,6 @@ class Posts extends Component {
             <img src={require('../../img/djpoolsCKillers.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/hor-icon.jpg')} width='100%' height='100%' alt=""/>
           </div>
-          {/* <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
-          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
-          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/>
-          <img src={require('../../img/djpoolsdjcity.jpg')} width='49.6%' height='49.6%' style={{border: '.5px solid black'}} alt=""/> */}
         </div>
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
       </div>

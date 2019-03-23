@@ -1,48 +1,23 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import InputGroup from '../../../common/InputGroup'
+import React from 'react'
 
-
-class SearchPost extends Component {
-  state = {
-    matches: '',
-    showMatches: ''
-  }
-
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  render() {
-    return (
-      <div className='searchpost' style={{
-        width: '100%',
-        position: 'relative',
-        zIndex: 2,
-        background: 'rgba(0,0,0,0.99)',
-        height: '45px'
-        }}>
-        <InputGroup 
-          placeholder='search'
-          name='matches'
-          value={ this.state.matches }
-          onChange={ this.onChange } 
-        />
-        <i className='fas fa-search' style={{position: 'absolute', right: 0, top: 5, color: 'rgb(55, 131, 194)', }}/>
-        { this.state.showMatches ?
-        <ul style={{color: '#ccc', listStyle: 'none', textAlign: 'end', position: 'absolute', top: '65%', right: 0 }}>
-          { this.props.profiles ? this.props.profiles.map(profile => (
-            profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-            profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-            profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase()) ?
-            <li className='searchbar_items'  key={profile.user._id}>
-              <Link to={`/profile/${profile.handle}`} className='searchbar_links'><small>@{profile.handle}</small></Link>
-            </li> : null
-          )) : null } 
-        </ul> : null }
-      </div>
-    )
-  }
-}
+const SearchPost = props  => (
+  <div className='searchbarpost'>
+    <input
+      placeholder='search post'
+      name='matches'
+      value={ props.matches }
+      onChange={ props.onChange }
+      className='searchbarinput'
+    />
+    { props.showMatches
+      ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={props.onSearchPostClick} title='toggle filter'>
+          <i className='fas fa-search' style={{ color: 'rgb(55, 131, 255)' }} />
+        </button>)
+      : (<button className='searchbarpostbtn' onClick={props.onSearchPostClick} title='toggle filter'>
+          <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
+        </button>)
+    }
+  </div>
+)
 
 export default SearchPost

@@ -225,37 +225,8 @@
   grid-area: post-feed-post-content;
 }
 
-/* .djpoolsscroll {
-  grid-area: djpoolsscroll;
-  display: flex;
-  padding-left: 4%;
-  overflow: hidden;
-  animation: djpoolsscroll 40s linear infinite;
-} */
-
-/* @keyframes djpoolsscroll {
-  from { margin-left: 94vw; }
-  to { margin-left:  calc(-110px * 9); }
-} */
-
-.post-feed-social {
-  grid-area: postfeedsocial;
-  display: none;
-  overflow-x: hidden;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 250px;
-  color: #aaa;
-  margin: 0 0 0 4vw;
-}
 .post-feed-highlights {
   display: none;
-  /* grid-area: postfeedhighlights;
-  display: none;
-  height: 250px;
-  color: #aaa;
-  margin: 0 1vw 0 0; */
 }
 
 #post-feed-highlights-title {
@@ -263,10 +234,6 @@
   margin-top: -2px;
   color: rgb(55, 131, 194); 
   text-align: center;
-
-
-  /* color: rgb(55, 131, 194); */
-  /* color: #d48872; */
 }
 #post-feed-highlights-title::before {
   content: '\01F525';
@@ -315,11 +282,7 @@
 
 @media (min-width: 1200px) {
   .feed {
-    /* background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100vw 100vh; */
-    padding: 100px 5vw 0 5vw;  /*4vw */
+    padding: 100px 5vw 0 5vw;  
     display: grid;
     grid-gap: 35px;
     justify-items: center;
@@ -328,23 +291,9 @@
     grid-template-areas: 
       'searchbarpost postform searchbar'
       'profile post-feed-post-content postfeedhighlights'
-      /* 'profile img_test postfeedhighlights' */
-      /* 'searchbarpost postform searchbar'
-      'profile post-feed-post-content postfeedhighlights' */
-      /* 'postfeedsocials post-feed-post-content postfeedhighlights' */
       'test post-feed-post-content stores'
       'perks post-feed-post-content brands'; 
   }
-  
-  .post-feed-post-content {}
-
-  /* .img_test {
-    grid-area: img_test;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    
-  } */
 
   .searchbar {
     display: flex;
@@ -412,20 +361,6 @@
     background: rgba(0,0,0,0.8);
   }
 
-  .post-feed-social {
-    grid-area: postfeedsocials;
-    display: none;
-    /* display: flex; */
-    width: 250px;
-    height: 250px;
-    overflow-x: hidden;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-    color: #aaa;
-    margin: 0;
-  }
-
   .test {
     grid-area: test;
     display: flex;
@@ -489,8 +424,6 @@
     display: flex;
     width: 250px;
     height: 250px;
-    /* width: 170px;
-    height: 150px; */
     overflow-x: hidden;
   }
 
