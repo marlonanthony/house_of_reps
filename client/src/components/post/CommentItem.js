@@ -305,10 +305,10 @@ class CommentItem extends Component {
                       {/* </div> */}
                         <div className='popup' >
                           { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
-                            ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>
+                            ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>
                             : nestedComment.likes.length > 2 
-                            ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and {nestedComment.likes.length -1} others.</div>
-                            : <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}> Liked by {nestedComment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+                            ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and {nestedComment.likes.length -1} others.</div>
+                            : <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}> Liked by {nestedComment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
                           }
                           <div onMouseLeave={this.nestedCommentLikesPopupHandler} className={this.state.showNestedCommentsLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
                             <div style={{ position: 'absolute', top: 5, left: 5 }}>

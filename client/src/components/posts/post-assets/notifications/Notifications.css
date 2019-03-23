@@ -5,11 +5,15 @@
   margin-top: 100px;
 }
 
+#notifications_header {
+  text-align: center;
+}
+
 .notifications_container {
   width: 100%;
   padding: 10px; 
   background: rgb(03, 03, 03); 
-  border-radius: 3px;
+  border-radius: 5px;
   margin: 15px 0px; 
 }
 .notifications_container::before {
@@ -17,18 +21,18 @@
 }
 
 .notifications_container:hover {
-  background: #030303;
-  border: .5px solid rgba(55,131,194,0.3);
+  background: #000;
+  /* border: .5px solid rgba(55,131,194,0.3); */
 }
 
 .new_notification {
-  border: 0.5px solid rgba(55, 131, 194, 0.18);
+  /* border: 0.5px solid rgba(55, 131, 194, 0.18); */
   margin: 35px 0px;
-  background: #030303;
-  border-radius: 3px;
+  background: #000;
+  border-radius: 5px;
 }
 .new_notification:hover {
-  border: .7px solid rgba(55, 131, 194, 0.3);
+  /* border: .7px solid rgba(55, 131, 194, 0.3); */
 }
 .new_notification::before {
   content: '\01F525 New Notification \01F525';

@@ -25,6 +25,7 @@ class Notifications extends Component {
       <div>
         { this.state.notifications && 
           <div className='notifications'>
+            <h1 id='notifications_header'>Notifications</h1>
             { this.state.notifications.map(notification => (
               <div className={!notification.seen ? 'notifications_container new_notification' : 'notifications_container' } key={notification._id}>
                 <div className='notification_avatar_and_message_container'>
