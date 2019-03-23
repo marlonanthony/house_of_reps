@@ -10,28 +10,16 @@
 
   /* background: #151515; */
   /* background: #071020; */
-
-  /* background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100vw 100vh; */
-
-
-  /* background: rgb(13, 18, 24); */
   min-height: 100vh;
-  /* padding: 100px 4vw 0 4vw; */
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto 1fr;
   grid-template-areas:  
-    /* 'djpoolsscroll' */
-    /* 'postfeedsocial postfeedhighlights' */
     'searchbarpost searchbar'
     'postform postform'
     'post-feed-post-content post-feed-post-content' 
-    /* 'footer footer' */
 }
 
 .red {
@@ -49,14 +37,11 @@
   right: 3.5vw;
   background: rgba(0,0,0,0.5);
   border-radius: 3px;
-  /* border: 0.1px solid rgba(55, 131, 194, 0.1); */
 }
 
 .searchbar_items {
   padding: 10px; 
   width: 220px;
-  /* width: 230px;  */
-  /* background: rgba(245, 245, 245, 0.8); */
   background: rgba(0,0,0,0.5);
 }
 .searchbar_items:hover {
@@ -74,8 +59,6 @@
   display: flex;
   justify-content: space-between;
   margin-right: 20px;
-  /* background: rgba(0,0,0,0.5); */
-  /* border: 0.1px solid rgba(55, 131, 194, 0.1); */
 } 
 .searchbarinput {
   flex: 8; 
@@ -103,7 +86,6 @@
 }
 .searchbarpostbtn:hover {
   background: rgba(0,0,0,1);
-  /* border: 0.1px solid rgba(55, 131, 194, 0.2); */
 
 }
 
@@ -221,7 +203,6 @@
   margin: 5px 0;
   border-radius: 50%;
   border: 2px solid rgb(55, 131, 194);
-  /* border: 3px solid rgb(135, 179, 247); */
 }
 
 
@@ -232,8 +213,6 @@
   margin-top: 60px;
   margin-bottom: -20px;
   border: 2px solid rgb(55, 131, 194);
-  /* border: 3px solid rgb(135, 179, 247); */
-  /* border: 1px solid black; */
 }
 
 .post-feed-form {
@@ -261,12 +240,10 @@
 .post-feed-social {
   grid-area: postfeedsocial;
   display: none;
-  /* display: flex; */
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background: rgba(0,0,0,0.5); */
   height: 250px;
   color: #aaa;
   margin: 0 0 0 4vw;
@@ -341,9 +318,6 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100vw 100vh; */
-    /* background: #0b0c10; */
-    /* background: #050c14;   */
-    /* background: #050811; */
     padding: 100px 5vw 0 5vw;  /*4vw */
     display: grid;
     grid-gap: 35px;
@@ -361,9 +335,7 @@
       'perks post-feed-post-content brands'; 
   }
   
-  .post-feed-post-content {
-    /* margin-top: -150px; */
-  }
+  .post-feed-post-content {}
 
   /* .img_test {
     grid-area: img_test;
@@ -394,9 +366,6 @@
     text-decoration: none;
     list-style: none;
   }
-  /* .searchbar_links:hover {
-  } */
-
   .searchbarpost {
     grid-area: searchbarpost;
     display: flex;
@@ -415,7 +384,6 @@
     margin-left: 0;
     flex: 7;
     background: none;
-    /* background: rgba(0,0,0,0.5); */
     outline: none;
   }
 
@@ -427,7 +395,6 @@
     background: rgba(0,0,0,0.3); 
     color: rgb(55, 131, 194);
     padding: 10; 
-    /* border: 0.1px solid rgba(55, 131, 194, 0.1); */
   }
 
   .post-feed-profile {
@@ -435,7 +402,6 @@
     justify-content: center;
     grid-area: profile;
     background: rgba(0,0,0,0.5);
-    /* border: 0.5px solid rgba(55, 131, 194, 0.1); */
     border-radius: 5px;
     width: 250px;
     height: 250px;
@@ -443,11 +409,6 @@
   }
   .post-feed-profile:hover {
     background: rgba(0,0,0,0.8);
-  }
-  .postscontainertest {
-    background-image: url('../../img/landingpic.jpg');
-    background-repeat: no-repeat;
-    background-size: 100% 40%;
   }
 
   .post-feed-social {
@@ -469,21 +430,15 @@
     display: flex;
     width: 250px;
     height: 250px;
-    /* flex-wrap: wrap; */
-
-    /* testing animation */
     position: relative;
-    /* margin-left: 0; */
     overflow: hidden;
   }
 
   .test2 {
     display: flex;
-    /* position: absolute; */
     height: 250px;
     width: 250px;
     margin-left: 0;
-    /* margin-left: 0; */
     transition: margin-left 6s;
     transition-timing-function: linear;
     /* cubic-bezier(0.2, .6, .7, 0.15); */
@@ -499,7 +454,6 @@
     display: flex;
     width: 250px;
     height: 250px;
-    /* background: rgba(0,0,0,0.5); */
     margin: 0;
     margin-top: -30px;
   }
@@ -509,10 +463,7 @@
     display: flex;
     width: 250px;
     height: 250px;
-    /* height: 150px;
-    width: 170px; */
     border-radius: 2%;
-    /* background: rgba(2, 4, 5, 0.884); */
   }
 
   .djpools {
@@ -520,8 +471,6 @@
     display: none;
     width: 250px;
     height: 250px;
-    /* width: 170px;
-    height: 150px; */
     overflow-x: hidden;
   }
 
@@ -530,10 +479,7 @@
     display: flex;
     width: 250px;
     height: 250px;
-    /* width: 170px;
-    height: 150px; */
     overflow-x: hidden;
-    /* background: rgba(2, 4, 5, 0.884); */
     color: #555;
   }
 
@@ -545,24 +491,19 @@
     /* width: 170px;
     height: 150px; */
     overflow-x: hidden;
-    /* background: rgba(2, 4, 5, 0.884); */
   }
 
   .post-feed-footer {
-    /* display: flex; */
     display: none;
     align-items: center;
     justify-content: center;
     height: 110px;
     width: 240px;
-    /* width: 150px; */
-    /* background: rgba(2, 4, 5, 0.884); */
   }
 }
 
 @media(min-width: 1500px) {
   .feed {
     padding: 100px 14vw 0 14vw;
-    /* padding: 100px 23vw 0 23vw; */
   }
 }

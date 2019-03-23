@@ -36,18 +36,18 @@ class DropdownMenu extends Component {
     const { profile, loading } = this.props.profile
     const { location: { pathname } } = this.props
     
-    if(profile === null || loading) {
+    if(!profile) {
       return null
     }
-    if(
-      pathname == '/create-profile' || 
-      pathname == '/login' || 
-      pathname == '/register' ||
+    if( profile &&
+      pathname === '/create-profile' || 
+      pathname === '/login' || 
+      pathname === '/register' ||
       pathname.includes('/verify')
     ) {
       return null 
     }
-      
+  
     const authLinks = (
       <div>
         {/* <Link to="/djs">DJs</Link> */}
@@ -58,7 +58,6 @@ class DropdownMenu extends Component {
         <img 
           src={user.avatar}
           alt={user.name} 
-          className=''
           style={{ width: '25px', marginRight: '5px' }}
         />
           Logout 
@@ -69,7 +68,7 @@ class DropdownMenu extends Component {
 
     const guestLinks = (
       <div>
-        {/* <Link to="/login">Sign In</Link> */}
+        <Link to="/login">Sign In</Link>
         <Link to="/register">Sign Up</Link>
       </div>
     )
