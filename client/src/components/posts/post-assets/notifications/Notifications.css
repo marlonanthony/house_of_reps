@@ -1,14 +1,25 @@
 .notifications_container {
   padding: 10px; 
-  background: #030303; 
-  margin: 10px;
+  background: rgba(5,31,100,0.1); 
+  width: 70%;
+  margin: 15px 15%;
   border-radius: 3px;
 }
 
 .notifications_container:hover {
   background: rgba(0,0,0,0.5);
+  border: .5px solid rgba(55,131,194,0.1);
 }
 
-.blued {
+.seen {
   border: 1px solid rgb(55, 131, 194);
+  margin: 35px 15%;
+}
+.seen:hover {
+  border: 1px solid rgb(55, 131, 194);
+}
+
+.seen::before {
+  content: '\01F525';
+  margin-left: 50%;
 }

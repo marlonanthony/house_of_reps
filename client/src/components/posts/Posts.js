@@ -39,6 +39,10 @@ class Posts extends Component {
     this.setState( prevState => ({ start: prevState.start + 1 }))
   }
 
+  componentDidUpdate(prevProps, prevState) {
+
+  }
+
   fetchMore = () => {
     const { count, start } = this.state 
     if(this.state.showLikes) {
@@ -195,6 +199,7 @@ class Posts extends Component {
                 <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
               </button>
               <button onClick={this.showNotificationsHandler} style={{
+                position: 'relative',
                 padding: 10, 
                 margin: '0px 2px',
                 flex: 1,
@@ -203,7 +208,8 @@ class Posts extends Component {
                 cursor: 'pointer',
                 border: '0.3px solid rgba(55,131,194, 0.3)',
                 outline: 'none'}}>
-                <i className='far fa-bell' style={{fontSize: 15}}> {profile.notifications.length}</i>
+                <i className={ profile.notifications.filter(notification => !notification.seen).length > 0 ? 'far fa-bell' : 'far fa-bell' }
+                  style={{fontSize: 15}}> <small className={profile.notifications.filter(notification => !notification.seen).length > 0 ? ' topcorner red' : ''}>{profile.notifications.filter(notification => !notification.seen).length}</small></i>
               </button>
             </div>
           </div>

@@ -34,6 +34,15 @@
     /* 'footer footer' */
 }
 
+.red {
+  color: rgb(29, 138, 255);
+}
+.topcorner {
+  position: absolute;
+  right: 20%;
+  top: 15%;
+}
+
 .searchbar {
   grid-area: searchbar;
   right: 3.5vw;

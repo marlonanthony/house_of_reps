@@ -34,7 +34,7 @@ class Notifications extends Component {
         { this.state.notifications && 
           <div style={{ color: 'rgb(55, 131, 194)', marginTop: 100 }}>
             { this.state.notifications.map(notification => (
-              <div className={!notification.seen ? 'notifications_container blued' : 'notifications_container' } key={notification._id}>
+              <div className={!notification.seen ? 'notifications_container seen' : 'notifications_container' } key={notification._id}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   { notification.avatar && <img src={notification.avatar} style={{ width: 30, height: 30, borderRadius: '50%', marginRight: 10 }} />}
                   { notification.message && <p><span style={{color:'#999'}}>{notification.message}</span></p> }
