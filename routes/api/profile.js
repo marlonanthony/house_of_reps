@@ -105,17 +105,32 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), (
 router.get('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
   Profile.findOne({ user: req.user.id })
   .then(profile => {
-    // notificationArr = []
-    // profile.notifications.map(notification => {
-    //   if(Math.abs(new Date(notification.date) - new Date()) < 259200000) {  // If !profile.seen 
-    //     notificationArr.push(notification) 
-    //   }
-    // })
-    // res.json(notificationArr.reverse())
-    res.json(profile.notifications.reverse()) 
+    // const nIndex = profile.notifications.map(item => item._id.toString()).indexOf(notification._id)
+    // profile.notification.splice(nIndex, 1)
+    
+    profile.notifications.map((notification, i, array) => {
+      if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 259200000){
+        console.log(notification.date)
+        array.splice(notification[i], 1)
+      }
+      
+    })
+    profile.save().then(profile => res.json(profile.notifications.reverse()))
   })
   .catch(err => res.status(404).json(err))
 }) 
+
+// @route            POST api/profile/notifications
+// @desc             Set notification to seen once Notifications.js component unMounts
+// @access           Private
+router.post('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    profile.notifications.map(notification => {
+      notification.seen = true 
+    })
+    profile.save().then(profile => res.json(profile))
+  })
+})
 
 
 // @route         POST api/profile

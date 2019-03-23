@@ -17,6 +17,10 @@ class Notifications extends Component {
     })
   }
 
+  componentWillUnmount() {
+    axios.post('/api/profile/notifications')
+  }
+
   render() {
     //   31, 449, 600, 000 ms === 1 Year
     //    2, 592, 000, 000 ms === 1 Month (30 Days)
@@ -24,13 +28,13 @@ class Notifications extends Component {
     //        86, 400, 000 ms === 1 Day
     //         3, 600, 000 ms === 1 Hour
     //             60, 000 ms === 1 minute 
-    console.log(this.state.notifications)
+    
     return (
       <div>
         { this.state.notifications && 
           <div style={{ color: 'rgb(55, 131, 194)', marginTop: 100 }}>
-            { this.state.notifications.map(notification => 
-              <div className='notifications_container' key={notification._id}>
+            { this.state.notifications.map(notification => (
+              <div className={!notification.seen ? 'notifications_container blued' : 'notifications_container' } key={notification._id}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   { notification.avatar && <img src={notification.avatar} style={{ width: 30, height: 30, borderRadius: '50%', marginRight: 10 }} />}
                   { notification.message && <p><span style={{color:'#999'}}>{notification.message}</span></p> }
@@ -62,7 +66,7 @@ class Notifications extends Component {
                   )}
                 </div>
               </div>
-            )}
+            ))}
           </div>
         }
       </div>

@@ -2,8 +2,13 @@
   padding: 10px; 
   background: #030303; 
   margin: 10px;
+  border-radius: 3px;
 }
 
 .notifications_container:hover {
   background: rgba(0,0,0,0.5);
+}
+
+.blued {
+  border: 1px solid rgb(55, 131, 194);
 }
