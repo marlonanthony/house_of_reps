@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PostsProfilePopup from '../../../UI/popup_menu/PostsProfilePopup'
 
 export default function PostFeedProfileContent(props) {
-  return (
+  return ( props.profile && 
     <div className='postscontainertest'>
       <div style={{ padding: '10px', textAlign: 'center' }}>
         <Link style={{textDecoration: 'none'}} to={`/profile/${props.profile.handle}`}>

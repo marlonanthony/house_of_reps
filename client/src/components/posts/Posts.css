@@ -229,21 +229,6 @@
   display: none;
 }
 
-#post-feed-highlights-title {
-  display: none;
-  margin-top: -2px;
-  color: rgb(55, 131, 194); 
-  text-align: center;
-}
-#post-feed-highlights-title::before {
-  content: '\01F525';
-  margin-right: 10px;
-}
-#post-feed-highlights-title::after {
-  content: '\01F525';
-  margin-left: 10px;
-}
-
 .test {
   display: none;
 }

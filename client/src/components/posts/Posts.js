@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
 import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts, getMoreLikedPosts } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
@@ -14,10 +14,8 @@ import Perks from './post-assets/Perks'
 import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
-import PostsProfilePopup from '../UI/popup_menu/PostsProfilePopup'
 import PostFeedProfileContent from './post-assets/postfeed_profile_content/PostFeedProfileContent'
 import SearchPost from './post-assets/searchbar/SearchPost'
-// import InputGroup from '../common/InputGroup'
 
 import './Posts.css'
 
@@ -92,14 +90,14 @@ class Posts extends Component {
     const { profile, profiles } = this.props.profile 
     const { showsPreview, showMatches, matches } = this.state
     const { user } = this.props.auth
-    let postContent 
-    let profileContent
-    let djpools
-    let stores
-    let perks 
-    let brands 
-    let highlights
-    let orderedHighlights
+    let postContent, 
+        profileContent,
+        djpools,
+        stores,
+        perks, 
+        brands, 
+        highlights,
+        orderedHighlights
 
     if(profiles === null || loading) highlights = null
     else {
@@ -165,7 +163,7 @@ class Posts extends Component {
       )
     }
 
-    if(posts === null || profiles === undefined || loading) {
+    if(!posts || !profiles || loading) {
       postContent = <Spinner />
     }
 
@@ -194,42 +192,19 @@ class Posts extends Component {
           onSearchPostClick={this.onSearchPostClick}
           matches={matches}
           onChange={this.onChange}
-          showMatches={this.state.showMatches}
-        />
-        {/* <div className='searchbarpost'>
-          <input
-            placeholder='search post'
-            name='matches'
-            value={ matches }
-            onChange={ this.onChange }
-            className='searchbarinput'
-          />
-          { this.state.showMatches
-            ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
-                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 255)' }} />
-              </button>)
-            : (<button className='searchbarpostbtn' onClick={this.onSearchPostClick} title='toggle filter'>
-                <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
-              </button>)
-          }
-        </div> */}
+          showMatches={this.state.showMatches} />
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'><PostForm  showPreview={ showsPreview }/></div>
         <div className='post-feed-post-content'>{ postContent }</div>
-        { highlights ? <div>
-          <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>
-          <p id='post-feed-highlights-title'>Highlights</p>
-        </div> : <Spinner /> }
+        { highlights && <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>}
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='test'>
-
                              {/*                 testing animation                          */}
                              {/*              good place to map over array                  */}
-
           <div className='test2'>
             <img src={require('../../img/repsbuttons.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsdjcity.jpg')} width='100%' height='100%' alt=""/>
@@ -251,7 +226,9 @@ Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   getProfiles: PropTypes.func.isRequired,
   getMorePosts: PropTypes.func.isRequired,
-  getMatchingPosts: PropTypes.func.isRequired
+  getMatchingPosts: PropTypes.func.isRequired,
+  getLikedPosts: PropTypes.func.isRequired, 
+  getMoreLikedPosts: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -260,4 +237,11 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getPosts, getCurrentProfile, getProfiles, getMorePosts, getLikedPosts, getMoreLikedPosts, getMatchingPosts })(withRouter(Posts)) 
+export default connect(mapStateToProps, { 
+  getPosts, 
+  getCurrentProfile, 
+  getProfiles, 
+  getMorePosts, 
+  getLikedPosts, 
+  getMoreLikedPosts, 
+  getMatchingPosts })(withRouter(Posts)) 
