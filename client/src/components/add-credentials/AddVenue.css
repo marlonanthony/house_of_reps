@@ -1,13 +1,6 @@
 .add-venue {
-  /* background: #050c14; */
   color: #aaa;
   text-align: center;
-  background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 100vh;
-  overflow: hidden; 
 }
 
 .register-inputs {

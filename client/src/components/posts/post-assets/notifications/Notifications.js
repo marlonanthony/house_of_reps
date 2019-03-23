@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux' 
 import Moment from 'react-moment' 
 import axios from 'axios'
 import './Notifications.css'
@@ -22,36 +21,29 @@ class Notifications extends Component {
   }
 
   render() {
-    //   31, 449, 600, 000 ms === 1 Year
-    //    2, 592, 000, 000 ms === 1 Month (30 Days)
-    //       604, 800, 000 ms === 1 Week
-    //        86, 400, 000 ms === 1 Day
-    //         3, 600, 000 ms === 1 Hour
-    //             60, 000 ms === 1 minute 
-    
     return (
       <div>
         { this.state.notifications && 
-          <div style={{ color: 'rgb(55, 131, 194)', marginTop: 100 }}>
+          <div className='notifications'>
             { this.state.notifications.map(notification => (
-              <div className={!notification.seen ? 'notifications_container seen' : 'notifications_container' } key={notification._id}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  { notification.avatar && <img src={notification.avatar} style={{ width: 30, height: 30, borderRadius: '50%', marginRight: 10 }} />}
-                  { notification.message && <p><span style={{color:'#999'}}>{notification.message}</span></p> }
+              <div className={!notification.seen ? 'notifications_container new_notification' : 'notifications_container' } key={notification._id}>
+                <div className='notification_avatar_and_message_container'>
+                  { notification.avatar && <img src={notification.avatar} className='notification_user_avatar' />}
+                  { notification.message && <p><span className='notification_message'>{notification.message}</span></p> }
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className='notification_post_content'>
                   { notification.postText && <p>{ notification.postText.length >= 47 ? notification.postText.slice(0, 50) + '...' : notification.postText }</p> }
-                  { notification.postImage && <img src={notification.postImage} style={{ width: 30, height: 30, marginLeft: 10 }} />}
+                  { notification.postImage && <img src={notification.postImage} className='notification_post_content_image' />}
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div className='notification_icons'>
                   { notification.message && notification.message.includes('liked') 
-                    ? <i className='fas fa-thumbs-up icons likespopupicon'></i>
+                    ? <i className='fas fa-thumbs-up icons'></i>
                     : notification.message && notification.message.includes('commented') 
                     ? <i className='fas fa-comment icons' id='comment'/>
                     : null
                   }
                   { notification.date && (
-                    <p style={{color: '#aaa'}}>{ notification.date && Math.abs(new Date(notification.date) - new Date()) > 259200000 
+                    <p className='notification_date'>{ notification.date && Math.abs(new Date(notification.date) - new Date()) > 259200000 
                       ?  <Moment format='ddd, ll LT'>{notification.date}</Moment>
                       : Math.abs(new Date(notification.date) - new Date()) > 172800000 
                       ? '2 days ago'
@@ -74,9 +66,11 @@ class Notifications extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   profile: state.profile
-//   auth: state.auth 
-// })
+export default Notifications
 
-export default connect(null)(Notifications)
+    //   31, 449, 600, 000 ms === 1 Year
+    //    2, 592, 000, 000 ms === 1 Month (30 Days)
+    //       604, 800, 000 ms === 1 Week
+    //        86, 400, 000 ms === 1 Day
+    //         3, 600, 000 ms === 1 Hour
+    //             60, 000 ms === 1 minute 

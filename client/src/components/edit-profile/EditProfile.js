@@ -260,103 +260,101 @@ class EditProfile extends Component {
       )
     }
     return (
-      <div className='edit-profile-background'>
-        <div className='edit-profile'>
-          <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-          <h1 style={{ textAlign: 'center', color: '#aaa' }}>Edit Profile</h1>
-          <div className='row'>
-            <div className='edit-profile-dropzone'>
-              <div className='FileUpload'>
-                <Dropzone 
-                  style={{ 
-                    borderRadius: '2px',
-                    fontSize: '15px',
-                    textAlign: 'center',
-                    width: '50%', 
-                    height: 'auto', 
-                    padding: '10px',
-                    cursor: 'pointer',
-                    color: '#aaa',
-                    border: 'dashed',
-                    borderColor: '#ccc',
-                    // marginLeft: '-70px',
-                    background: 'rgba(0,0,0,0.4)'
-                  }}
-                  multiple={false}
-                  accept='image/*'
-                  onDrop={this.onImageDrop}>
-                  <p>Drop an image or click to select a file to upload.</p>
-                </Dropzone>
-              </div>
-              <div>
-                { this.state.uploadedFileCloudinaryUrl === '' ? null : 
-                  <img 
-                    src={this.state.uploadedFileCloudinaryUrl} 
-                    style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                    alt={this.state.uploadedFile.name} />
-                }
-              </div>
+      <div className='edit-profile'>
+        <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
+        <h1 style={{ textAlign: 'center', color: '#aaa' }}>Edit Profile</h1>
+        <div className='row'>
+          <div className='edit-profile-dropzone'>
+            <div className='FileUpload'>
+              <Dropzone 
+                style={{ 
+                  borderRadius: '2px',
+                  fontSize: '15px',
+                  textAlign: 'center',
+                  width: '50%', 
+                  height: 'auto', 
+                  padding: '10px',
+                  cursor: 'pointer',
+                  color: '#aaa',
+                  border: 'dashed',
+                  borderColor: '#ccc',
+                  // marginLeft: '-70px',
+                  background: 'rgba(0,0,0,0.4)'
+                }}
+                multiple={false}
+                accept='image/*'
+                onDrop={this.onImageDrop}>
+                <p>Drop an image or click to select a file to upload.</p>
+              </Dropzone>
             </div>
-            <form onSubmit={ this.onSubmit }>
-              <CreateProfileTextFieldGroup 
-                placeholder='A man has no name'
-                name='stageName'
-                value={ this.state.stageName }
-                onChange={ this.onChange }
-                error={ errors.stageName }
-                info="What's your stage name?"
-              />
-              <CreateProfileTextFieldGroup 
-                placeholder='Company'
-                name='company'
-                value={ this.state.company } 
-                onChange={ this.onChange } 
-                error={ errors.company } 
-                info="Company you're with."
-              />
-              <CreateProfileTextFieldGroup 
-                placeholder='Website'
-                name='website'
-                value={ this.state.website } 
-                onChange={ this.onChange } 
-                error={ errors.website } 
-                info='Website domain'
-              />
-              <CreateProfileTextFieldGroup 
-                placeholder='Location'
-                name='location'
-                value={ this.state.location } 
-                onChange={ this.onChange } 
-                error={ errors.location } 
-                info='Where are you from?'
-              />
-              <SelectListGroup 
-                name='style'
-                value={ this.state.style }
-                onChange={ this.onChange }
-                error={ errors.style }
-                options={options}
-                info='What style best defines you?'
-              />
-              <CreateProfileTextAreaFieldGroup 
-                placeholder='Short Bio'
-                name='bio'
-                value={ this.state.bio } 
-                onChange={ this.onChange } 
-                error={ errors.bio } 
-              />
-              <div className='add-social-links-button'>
-                <button type='button' onClick={() => {
-                  this.setState(prevState => ({
-                    displaySocialInputs: !prevState.displaySocialInputs
-                  }))
-                }} id='create-profile-social-btn'>Add Social Network Links</button>
-                <span style={{ color: '#ccc', marginLeft: '10px' }}>Optional</span>
-              </div>
-              { socialInputs }
-              <input type="submit" value="Submit" id='create-profile-submit-button' />
-            </form>
+            <div>
+              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
+                <img 
+                  src={this.state.uploadedFileCloudinaryUrl} 
+                  style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+                  alt={this.state.uploadedFile.name} />
+              }
+            </div>
           </div>
+          <form onSubmit={ this.onSubmit }>
+            <CreateProfileTextFieldGroup 
+              placeholder='A man has no name'
+              name='stageName'
+              value={ this.state.stageName }
+              onChange={ this.onChange }
+              error={ errors.stageName }
+              info="What's your stage name?"
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='Company'
+              name='company'
+              value={ this.state.company } 
+              onChange={ this.onChange } 
+              error={ errors.company } 
+              info="Company you're with."
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='Website'
+              name='website'
+              value={ this.state.website } 
+              onChange={ this.onChange } 
+              error={ errors.website } 
+              info='Website domain'
+            />
+            <CreateProfileTextFieldGroup 
+              placeholder='Location'
+              name='location'
+              value={ this.state.location } 
+              onChange={ this.onChange } 
+              error={ errors.location } 
+              info='Where are you from?'
+            />
+            <SelectListGroup 
+              name='style'
+              value={ this.state.style }
+              onChange={ this.onChange }
+              error={ errors.style }
+              options={options}
+              info='What style best defines you?'
+            />
+            <CreateProfileTextAreaFieldGroup 
+              placeholder='Short Bio'
+              name='bio'
+              value={ this.state.bio } 
+              onChange={ this.onChange } 
+              error={ errors.bio } 
+            />
+            <div className='add-social-links-button'>
+              <button type='button' onClick={() => {
+                this.setState(prevState => ({
+                  displaySocialInputs: !prevState.displaySocialInputs
+                }))
+              }} id='create-profile-social-btn'>Add Social Network Links</button>
+              <span style={{ color: '#ccc', marginLeft: '10px' }}>Optional</span>
+            </div>
+            { socialInputs }
+            <input type="submit" value="Submit" id='create-profile-submit-button' />
+          </form>
         </div>
       </div>
     )
