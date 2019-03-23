@@ -15,6 +15,7 @@ import Brands from './post-assets/Brands'
 import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
 import PostsProfilePopup from '../UI/popup_menu/PostsProfilePopup'
+import PostFeedProfileContent from './post-assets/postfeed_profile_content/PostFeedProfileContent'
 // import InputGroup from '../common/InputGroup'
 
 import './Posts.css'
@@ -108,7 +109,7 @@ class Posts extends Component {
     
 
     if(profiles === null || loading) {
-      brands = null //<Spinner />
+      brands = null
     } else {
       brands = profiles.map(val => (
         val.brands.length > 0 && val.brands !== null 
@@ -118,7 +119,7 @@ class Posts extends Component {
     }
 
     if(profiles === null || loading) {
-      perks = null //<Spinner />
+      perks = null
     } else {
       perks = profiles.map(val => (
         val.perks.length > 0 && val.perks !== null 
@@ -128,7 +129,7 @@ class Posts extends Component {
     }
 
     if(profiles === null || loading) {
-      stores = null //<Spinner />
+      stores = null
     } else {
       stores = profiles.map(val => (
         val.stores.length > 0 && val.stores !== null 
@@ -138,7 +139,7 @@ class Posts extends Component {
     }
 
     if(profiles === null || loading) {
-      djpools = null // <Spinner />
+      djpools = null
     } else {
       djpools  = profiles.map(val => (
         val.djpools.length > 0 && val.djpools !== null 
@@ -147,75 +148,19 @@ class Posts extends Component {
       ))
     }
 
-    if(profile === null || loading) {
-      profileContent = <Spinner />
+    if(!profile) {
+      profileContent = null
     } else {
       profileContent = (
-        <div className='postscontainertest'>
-          <div style={{ padding: '10px', textAlign: 'center' }}>
-            <Link style={{textDecoration: 'none'}} to={`/profile/${profile.handle}`}>
-              <img id='posts-profile-img' src={ user.avatar } alt={ user.name } />
-            </Link>
-          </div>
-          <div style={{display: 'flex', alignItems: 'center', flexDirection: "column", padding: '10px' }}>
-            <PostsProfilePopup 
-              popupHandler={this.popupHandler}
-              profile={profile} 
-              user={user} 
-              showPopup={this.state.showPopup}
-            />
-            <div style={{display: 'flex', justifyContent: 'space-between' }}>
-              { this.state.showLikes
-                ? (<button onClick={this.showLikesHandler} style={{
-                padding: 10, 
-                margin: '0px 2px',
-                flex: 1,
-                background: 'rgba(0,0,0,0.8)', 
-                color: 'rgb(55, 131, 255)', 
-                cursor: 'pointer',
-                border: '0.3px solid rgba(55,131,194, 0.3)',
-                outline: 'none'}}>
-                  Liked Post
-                </button>)
-                : (<button onClick={this.showLikesHandler} style={{
-                  padding: 10, 
-                  margin: '0px 2px',
-                  flex: 1,
-                  background: 'rgba(0,0,0,0.4)', 
-                  color: 'rgb(55, 131, 194)', 
-                  cursor: 'pointer',
-                  border: '0.3px solid rgba(55,131,194, 0.3)',
-                  outline: 'none'}}>
-                    Liked Post
-                </button>)
-              }
-              <button style={{
-                padding: 10, 
-                margin: '0px 2px',
-                flex: 1,
-                background: 'rgba(0,0,0,0.4)', 
-                color: 'rgb(55, 131, 194)', 
-                cursor: 'pointer',
-                border: '0.3px solid rgba(55,131,194, 0.3)',
-                outline: 'none'}}>
-                <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
-              </button>
-              <button onClick={this.showNotificationsHandler} style={{
-                position: 'relative',
-                padding: 10, 
-                margin: '0px 2px',
-                flex: 1,
-                background: 'rgba(0,0,0,0.1)', 
-                color: 'rgb(55, 131, 194)', 
-                cursor: 'pointer',
-                border: '0.3px solid rgba(55,131,194, 0.3)',
-                outline: 'none'}}>
-                <i className={ profile.notifications.filter(notification => !notification.seen).length > 0 ? 'far fa-bell red' : 'far fa-bell' }
-                  style={{fontSize: 15}}><small className={profile.notifications.filter(notification => !notification.seen).length > 0 ? ' notification_count red' : 'notification_count'}>{profile.notifications.filter(notification => !notification.seen).length}</small></i>
-              </button>
-            </div>
-          </div>
-        </div>
+        <PostFeedProfileContent
+          profile={profile}
+          user={user} 
+          popupHandler={this.popupHandler}
+          showPopup={this.state.showPopup}
+          showLikesHandler={this.showLikesHandler}
+          showLikes={this.state.showLikes}
+          showNotificationsHandler={this.showNotificationsHandler}
+        />
       )
     }
 

@@ -111,7 +111,8 @@
   background-color: #030303;
   color: #fff;
   text-align: center;
-  border: 0.5px solid rgb(55, 131, 194);
+  /* border: 0.5px solid rgb(55, 131, 194); */
+  border: 0.4px solid rgba(55, 131, 194, 1);
   padding: 8px 0;
   position: absolute;
   z-index: 1;
