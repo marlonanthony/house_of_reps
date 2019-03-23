@@ -309,12 +309,9 @@ router.post('/comment/unlike/:id/:comment_id', passport.authenticate('jwt', { se
 // @access        Private
 router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validatePostInput(req.body) 
-    // Check Validation
-    if(!isValid) {
-      // If errors send 400 with errors object
-      return res.status(400).json(errors) 
-    }
-
+  if(!isValid) {
+    return res.status(400).json(errors) 
+  }
   Post.findById(req.params.id).then(post => {
     const newComment = {
       text: req.body.text,
@@ -325,18 +322,27 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
     }
     post.comments.map(comment => {
       if(comment._id.toString() === req.params.comment_id) {
-        comment = comment.comments.unshift(newComment) 
+        comment.comments.unshift(newComment) 
+        post.save().then(post => res.json(post)) 
 
         // Add to notifications array
         Profile.findOne({ user: comment.user }).then(profile => {
           const message = `${req.user.name} commented on your comment!`
-          profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, postId: post._id, commentId: comment._id, postImage: comment.media, postText: comment.text, message })
-          profile.save().then(profile => res.json(profile)) 
+          profile.notifications.push({ 
+            user: req.user.id, 
+            name: req.user.name, 
+            avatar: req.user.avatar, 
+            postId: post._id, 
+            commentId: comment._id, 
+            postImage: comment.media, 
+            postText: comment.text, 
+            message 
+          })
+          profile.save().then(profile => res.json(profile))
         })
       }
-    }) 
-    post.save().then((post) => res.json(post))
-  })
+    })
+  }) 
   .catch(err => res.status(404).json(err)) 
 })
 
