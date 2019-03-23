@@ -1,29 +1,12 @@
 .profile-header-container {
-  /* background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover; */
-  /* background: #0b0c10; */
-  background: #071020;
-  /* background: #050811; */
   padding-top: 70px;
   min-height: 100vh;
-  /* background-size: 100vw 100vh; */
-}
-
-#profile-banner {
-  width: 100%;
-  max-height: 450px;
-  min-height: 200px;
 }
 
 .profile-header {
-  /* margin: 0 10vw; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;
-  /* justify-items: space-around;
-  align-content: center; */
   font-family: Ubuntu, sans-serif;
   grid-template-areas: 
     'headeritems headeritems'
@@ -33,23 +16,18 @@
 
 #profile-avatar-div {
   grid-area: avatar;
-  /* margin-left: 5vw; */
   background: rgba(0,0,0,0.5);
   max-width: 300px;
   padding: 10px;
   text-align: center;
   max-height: 200px;
   width: 200px;
-  /* justify-self: center;
-  align-self: center; */
 }
 
 #profile-avatar {
   border-radius: 50%;
   height: 140px;
   width: 140px;
-  /* margin-left: 5vw; */
-  /* margin-top: -70px; */
   border: 3px solid rgb(123, 180, 238);
 }
 
@@ -59,17 +37,6 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: flex-end;
-  /* display: grid;
-  grid-gap: 50px;
-  justify-items: center;
-  align-content: space-around;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 
-    'avatar icons-container'
-    'about-info reps_banners'; */
-  /* margin-left: 30vw; */
-  /* justify-self: center; */
 }
 
 #profile-header-about-info {
@@ -83,9 +50,6 @@
 }
 
 #profile-name {
-  /* color: rgb(55, 131, 194); */
-  /* color: #5a666b; */
-  /* color: #d48872; */
   color: #bdc7c1;
 }
 
@@ -101,16 +65,12 @@
   font-size: 14px;
   max-width: 200px;
   color: #bdc7c1;
-  /* color: #7e8889; */
   font-family: sans-serif;
 }
 
 #profile-location {
-  /* color: #d48872; */
   font-size: 15px;
   color: rgb(55, 131, 194);
-  /* color: #bdc7c1; */
-  /* color: #9932CC; */
 }
 
 #profile-icons-container {
@@ -156,7 +116,6 @@
   width: 40px;
   height: 40px;
   padding: 9px;
-  /* border-radius: 50%; */
 }
 
 #profile-feed {
@@ -164,18 +123,11 @@
   text-align: center;
   padding: 0 5px;
   text-align: left;
-  /* color: #5a666b; */
-  /* color: rgb(55, 131, 194); */
-  /* color: rgb(131, 44, 175); */
-  /* color: #9932CC; */
-  /* color: #d48872; */
   color: #bdc7c1;
 }
 
 #youtube-video {
-  /* margin-left: 15%; */
   margin-left: 5%;
-  /* margin-top: 25px;  */
   margin-bottom: 5px; 
   width: 90%;
 }
@@ -238,8 +190,6 @@
   #profile-feed {
     max-width: 1100px;
   }
-
-
 }
 
 @media (max-width: 600px) {
@@ -254,7 +204,6 @@
     border-radius: 50%;
     height: 70px;
     width: 70px;
-    /* margin-top: -40px; */
     border: 3px solid rgb(123, 180, 238);
   }
 

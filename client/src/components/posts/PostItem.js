@@ -178,42 +178,43 @@ class PostItem extends Component {
         </div>
         <br />
 
-        { showActions ? ( <span>
-          <button 
-            title='like'
-            className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-              'liked' : this.findUserLike(post.likes) 
-            })}
-            onClick={this.onLikeClick.bind(this, post._id)}
-            >
-            <i className='fas fa-thumbs-up icons like'></i>
-            <span>{likes.length}</span>
-          </button>
-          <button 
-            title='unlike'
-            className='postfeed_buttons'
-            onClick={this.onUnlikeClick.bind(this, post._id)}>
-            <i className="fas fa-thumbs-down icons" id='unlike'></i>
-          </button>
-          <button 
-            title='comment'
-            onClick={() => this.setState((prevState, props) => ({ 
-              text: props.post._id, 
-              postComments: props.post.comments, 
-              showComments: !prevState.showComments }))} 
-            className='postfeed_buttons'>  
-            <i className='fas fa-comment icons' id='comment'/>
-            <span>{post.comments.length}</span>
-          </button>
-          { post.user === auth.user.id ? (
+        { showActions && ( 
+          <span>
             <button 
-              title='double click to delete'
-              className='postfeed_buttons delete'
-              onDoubleClick={this.onDeleteClick.bind(this, post._id)}>
-              <i className="fas fa-times icons" />
-            </button> 
+              title='like'
+              className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
+                'liked' : this.findUserLike(post.likes) 
+              })}
+              onClick={this.onLikeClick.bind(this, post._id)}
+              >
+              <i className='fas fa-thumbs-up icons like'></i>
+              <span>{likes.length}</span>
+            </button>
+            <button 
+              title='unlike'
+              className='postfeed_buttons'
+              onClick={this.onUnlikeClick.bind(this, post._id)}>
+              <i className="fas fa-thumbs-down icons" id='unlike'></i>
+            </button>
+            <button 
+              title='comment'
+              onClick={() => this.setState((prevState, props) => ({ 
+                text: props.post._id, 
+                postComments: props.post.comments, 
+                showComments: !prevState.showComments }))} 
+              className='postfeed_buttons'>  
+              <i className='fas fa-comment icons' id='comment'/>
+              <span>{post.comments.length}</span>
+            </button>
+            { post.user === auth.user.id ? (
+              <button 
+                title='double click to delete'
+                className='postfeed_buttons delete'
+                onDoubleClick={this.onDeleteClick.bind(this, post._id)}>
+                <i className="fas fa-times icons" />
+              </button> 
             ) : null }
-        </span>) : null 
+          </span>) 
         }
         { showComments ? (
           <div>
