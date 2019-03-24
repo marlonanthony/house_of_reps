@@ -91,12 +91,13 @@ class Notifications extends Component {
                 <div className='notification_post_content' onClick={this.postHandler.bind(this, notification.postId)}>
                   { notification.postText && <p>{ notification.postText.length >= 47 ? notification.postText.slice(0, 50) + '...' : notification.postText }</p> }
                   { notification.postImage && <img src={notification.postImage} className='notification_post_content_image' />}
+                  { notification.highlight && <iframe title='youtube' width="100%" height="400" src={notification.highlight.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
                 </div>
                 <div className='notification_icons'>
                   { notification.message && notification.message.includes('liked') 
                     ? <i className='fas fa-thumbs-up icons'></i>
                     : notification.message && notification.message.includes('commented') 
-                    ? <i className='fas fa-comment icons' id='comment'/>
+                    ? <i className='fas fa-comment icons' id='comment'/>                     
                     : null
                   }
                   { notification.date && (
@@ -106,8 +107,10 @@ class Notifications extends Component {
                       ? '2 days ago'
                       : Math.abs(new Date(notification.date) - new Date()) >= 86400000
                       ? 'yesterday'
-                      : Math.abs(new Date(notification.date) - new Date()) > 3600000
+                      : Math.abs(new Date(notification.date) - new Date()) > 7200000
                       ? Math.floor(Math.abs(new Date(notification.date) - new Date()) / 3600000) + ' hours ago'
+                      : Math.abs(new Date(notification.date) - new Date()) > 3600000
+                      ? '1 hour ago'
                       : Math.abs(new Date(notification.date) - new Date()) >= 60000
                       ? Math.floor(Math.abs(new Date(notification.date) - new Date()) / 60000) + ' minutes ago'
                       : Math.floor(Math.abs(new Date(notification.date) - new Date()) / 1000) + ' seconds ago'

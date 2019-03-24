@@ -350,7 +350,6 @@ class EditProfile extends Component {
                   displaySocialInputs: !prevState.displaySocialInputs
                 }))
               }} id='create-profile-social-btn'>Add Social Network Links</button>
-              <span style={{ color: '#ccc', marginLeft: '10px' }}>Optional</span>
             </div>
             { socialInputs }
             <input type="submit" value="Submit" id='create-profile-submit-button' />
