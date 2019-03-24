@@ -11,6 +11,6 @@ html {
 ::-webkit-scrollbar {
   display: none;
 }
-/* ::-webkit-scrollbar-thumb {
-  background: #FF0000;
-} */
+/* ::-webkit-scrollbar-thumb {} */
+
+/* ::-webkit-scrollbar-track {} */

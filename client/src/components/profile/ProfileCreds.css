@@ -12,10 +12,29 @@
   color: #bdc7c1;
   list-style: none;
   background: rgba(0,0,0,0.5);
+  position: relative;
 }
 .venue-items:hover {
   background: rgba(0,0,0,0.6);
   cursor: pointer;
+}
+
+.profile_highlights_toggle_modal {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  right: 10px;
+  bottom: 15px;
+  animation-name: highlights;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  opacity: .5;
+}
+
+.profile_highlights_toggle_modal:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 #profile_creds_video {

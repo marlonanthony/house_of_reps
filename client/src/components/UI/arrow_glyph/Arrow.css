@@ -3,11 +3,11 @@
   cursor: pointer;
   font-size: 25px;
   position: absolute;
-  /* background: rgba(0,0,0,0.4); */
+  opacity: 0.5;
 }
 
 .slide-arrow:hover {
-  background: rgba(0,0,0,0.6);
+  opacity: 1;
 }
 
 .slide-arrow.left {
@@ -29,17 +29,16 @@
   cursor: pointer;
   font-size: 40px;
   position: absolute;
-  /* background: rgba(0,0,0,0.9); */
+  opacity: 0.5;
 }
 
 .modal-slide-arrow:hover {
-  /* background: rgba(0,0,0,1); */
+  opacity: 1;
 }
 
 .modal-slide-arrow.left {
   left: 0;
   top: 40%;
-  /* z-index: 2; */
   padding: 0px 4px 0px 0px;
 }
 

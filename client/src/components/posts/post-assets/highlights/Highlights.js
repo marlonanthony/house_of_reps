@@ -20,9 +20,7 @@ export default class Highlights extends Component {
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
 
-    this.setState({ currentImageIndex: index, 
-      //showModal: true 
-    })
+    this.setState({ currentImageIndex: index })
   }
 
   nextSlide = () => {
@@ -32,9 +30,7 @@ export default class Highlights extends Component {
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
 
-    this.setState({ currentImageIndex: index, 
-      //showModal: true 
-    })
+    this.setState({ currentImageIndex: index })
   }
 
   modalToggle = () => {
@@ -44,17 +40,12 @@ export default class Highlights extends Component {
   render() {
     const { recentHighlights } = this.props 
 
-    const highlightsModal = this.state.showModal ? (
+    const highlightsModal = this.state.showModal && (
       <Fragment>
         <HighlightsModal>
           <div style={{ color: '#ccc' }}>
             <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-            { recentHighlights[this.state.currentImageIndex].date ?
-              <p style={{color: 'rgb(55, 131, 194)'}}>
-                <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
-              </p> : null 
-            }
-            { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
+            { recentHighlights[this.state.currentImageIndex].title && <p style={{color: 'rgb(29, 138, 255)'}}>{recentHighlights[this.state.currentImageIndex].title}</p> }
             { recentHighlights[this.state.currentImageIndex].video ?
               <iframe 
                 title={recentHighlights[this.state.currentImageIndex].video} 
@@ -71,33 +62,11 @@ export default class Highlights extends Component {
             { recentHighlights[this.state.currentImageIndex].description ? 
               <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null 
             }
-            
             <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
-            {/* <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-              { recentHighlights[this.state.currentImageIndex].date ? 
-              <p style={{color: 'rgb(55, 131, 194)'}}>
-                <Moment format='MM/DD/YYYY'>{recentHighlights[this.state.currentImageIndex].date}</Moment>
-              </p> : null  }
-              { recentHighlights[this.state.currentImageIndex].title ? <p>{recentHighlights[this.state.currentImageIndex].title}</p> : null }
-              { recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
-              <iframe 
-                title={recentHighlights[this.state.currentImageIndex].video} 
-                style={{width: '95%', height: '50vh'}} 
-                src={recentHighlights[this.state.currentImageIndex].video} 
-                frameBorder={0}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen={true}>
-              </iframe>
-              : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
-              ? <img src={recentHighlights[this.state.currentImageIndex].image} style={{maxWidth: '100%', maxHeight: '100%'}} alt="highlights"/>
-              : null }
-              { recentHighlights[this.state.currentImageIndex].description ? 
-                <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null }
-            <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' /> */}
           </div>
         </HighlightsModal>
       </Fragment>
-    ) : null 
+    ) 
 
     return (
       <div className='highlightss'>
@@ -124,8 +93,7 @@ export default class Highlights extends Component {
             ? <img src={recentHighlights[this.state.currentImageIndex].image} height={250} width={250} alt="highlights"/>
             : null }
           <br />
-          {/* <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/mc.svg')} alt='instagram avatar' /> */}
-          <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='instagram avatar' title={'🔥'}/>
+          <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='hors' title={'🔥'}/>
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>
