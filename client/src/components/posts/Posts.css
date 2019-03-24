@@ -140,6 +140,7 @@
 .popup .likespopupcontent {
   visibility: hidden;
   width: 300px;
+  max-height: 400px;
   background-color: #030303;
   color: rgb(55, 131, 194);
   text-align: center;
@@ -147,6 +148,7 @@
   padding: 8px 0;
   position: absolute;
   z-index: 1;
+  overflow-y: auto;
   bottom: 100%;
   left: 50%;
   margin-left: -50px;
@@ -172,7 +174,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* max-height: 300px; */
 }
 
 .likespopupicon {

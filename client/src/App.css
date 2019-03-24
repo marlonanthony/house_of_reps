@@ -2,3 +2,15 @@ body {
   margin: 0px;  
   background: #060606;  
 }
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+/* ::-webkit-scrollbar-thumb {
+  background: #FF0000;
+} */

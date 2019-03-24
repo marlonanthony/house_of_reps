@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux' 
 import Moment from 'react-moment' 
 import axios from 'axios'
+import { getPost } from '../../../../actions/postActions'
+import Modal from '../../../UI/modal/Modal'
 import './Notifications.css'
 
 class Notifications extends Component {
 
   state = {
-    notifications: []
+    notifications: [],
+    showPost: false, 
   }
 
   componentDidMount() {
@@ -16,13 +20,27 @@ class Notifications extends Component {
     })
   }
 
+  postHandler = (postId) => {
+    this.props.getPost(postId)
+    this.setState(prevState => ({ showPost: !prevState.showPost }))
+  }
+
   componentWillUnmount() {
     axios.post('/api/profile/notifications')
   }
 
   render() {
+    const { post } = this.props.post
     return (
       <div>
+        { this.state.showPost && post &&
+          <div>
+            <Modal>
+              <p>{post.text && post.text}</p>
+            </Modal>
+          </div>
+        }
+
         { this.state.notifications && 
           <div className='notifications'>
             <h1 id='notifications_header'>Notifications</h1>
@@ -32,7 +50,7 @@ class Notifications extends Component {
                   { notification.avatar && <img src={notification.avatar} className='notification_user_avatar' />}
                   { notification.message && <p><span className='notification_message'>{notification.message}</span></p> }
                 </div>
-                <div className='notification_post_content'>
+                <div className='notification_post_content' onClick={this.postHandler.bind(this, notification.postId)}>
                   { notification.postText && <p>{ notification.postText.length >= 47 ? notification.postText.slice(0, 50) + '...' : notification.postText }</p> }
                   { notification.postImage && <img src={notification.postImage} className='notification_post_content_image' />}
                 </div>
@@ -67,7 +85,11 @@ class Notifications extends Component {
   }
 }
 
-export default Notifications
+const mapStateToProps = state => ({
+  post: state.post
+})
+
+export default connect(mapStateToProps, { getPost  })(Notifications)
 
     //   31, 449, 600, 000 ms === 1 Year
     //    2, 592, 000, 000 ms === 1 Month (30 Days)
