@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import Moment from 'react-moment' 
 import axios from 'axios'
 import { getPost } from '../../../../actions/postActions'
-// import Modal from '../../../UI/modal/Modal'
 import './Notifications.css'
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
 import PostText from '../post_comment_text/PostText'
-import PostModalText from '../post_comment_text/PostModalText'
+import Backdrop from '../../../UI/backdrop/Backdrop'
 
 class Notifications extends Component {
 
@@ -28,6 +27,10 @@ class Notifications extends Component {
     this.setState(prevState => ({ showPost: !prevState.showPost }))
   }
 
+  modalToggle = () => {
+    this.setState(prevState => ({ showPost: !prevState.showPost }))
+  }
+
   componentWillUnmount() {
     axios.post('/api/profile/notifications')
   }
@@ -45,6 +48,7 @@ class Notifications extends Component {
       <div>
         { this.state.showPost && post &&
           <div className='notifications_modal_wrapper'>
+            <Backdrop clicked={this.modalToggle} show={this.state.showPost} />
             <HighlightsModal>
               { !post.description && !post.image && !post.title && !post.url && !post.media
                 ? <PostText postText={post.text && post.text} />

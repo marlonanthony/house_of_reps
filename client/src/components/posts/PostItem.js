@@ -247,7 +247,6 @@ PostItem.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile
-  // post: state.post 
 })
 
 

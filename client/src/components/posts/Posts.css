@@ -140,7 +140,7 @@
 .popup .likespopupcontent {
   visibility: hidden;
   width: 300px;
-  max-height: 400px;
+  height: 300px;
   background-color: #030303;
   color: rgb(55, 131, 194);
   text-align: center;

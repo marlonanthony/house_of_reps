@@ -63,7 +63,29 @@ const ProfileSchema = new Schema({
       dateCreated: {
         type: Date,
         default: Date.now  
-      }
+      },
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      likes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          },
+          name: {
+            type: String  
+          },
+          avatar: {
+            type: String 
+          },
+          date: {
+            type: Date,
+            default: Date.now 
+          }
+        }
+      ],
     }
   ],
   djpools: [

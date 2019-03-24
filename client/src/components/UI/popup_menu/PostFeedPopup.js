@@ -28,5 +28,5 @@ class PostFeedPopup extends Component {
     )
   }
 }
-
+ 
 export default PostFeedPopup

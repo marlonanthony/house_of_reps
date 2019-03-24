@@ -213,7 +213,8 @@ router.post('/venues', passport.authenticate('jwt', { session: false }), (req, r
       date: req.body.date,
       description: req.body.description,
       video: req.body.video,
-      image: req.body.image 
+      image: req.body.image,
+      user: req.user.id 
     }
 
     // Add to venues array
@@ -221,6 +222,28 @@ router.post('/venues', passport.authenticate('jwt', { session: false }), (req, r
     profile.save().then(profile => res.json(profile)) 
   })
 })
+
+// @route        POST api/profile/venues/like
+// @description  Like Highlight/venue
+// @access       Private 
+router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.params.userId }).then(profile => {
+    const newLike = {
+      user: req.user.id,
+      avatar: req.user.avatar,
+      name: req.user.name 
+    }
+    profile.venues.map(venue => {
+      if(venue._id.toString() === req.params.id) {
+        venue.likes.push(newLike) 
+        
+      }
+    })
+    profile.save().then(profile => res.json(profile)) 
+  })
+  .catch(err => console.log(err)) 
+})
+
 
 // @route        POST api/profile/djpools
 // @description  Add a djpool
