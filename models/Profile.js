@@ -182,6 +182,12 @@ const ProfileSchema = new Schema({
       postText: {
         type: String 
       },
+      video: {
+        type: String 
+      },
+      highlight: {
+        type: Object
+      },
       postId: {
         type: String
       },

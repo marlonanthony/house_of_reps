@@ -235,11 +235,19 @@ router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: 
     }
     profile.venues.map(venue => {
       if(venue._id.toString() === req.params.id) {
-        venue.likes.push(newLike) 
-        
+        venue.likes.push(newLike)
+        const message = `${req.user.name} liked your highlight!`
+        profile.notifications.push({ 
+          user: req.user.id, 
+          name: req.user.name, 
+          avatar: req.user.avatar, 
+          highlight: venue,
+          message 
+        })
       }
+      profile.save().then(profile => res.json(profile)) 
     })
-    profile.save().then(profile => res.json(profile)) 
+    
   })
   .catch(err => console.log(err)) 
 })
