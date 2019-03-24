@@ -167,7 +167,15 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
     // Add user id name and notification message to notification array
     Profile.findOne({ user: post.user }).then(profile => {
       const message = `${req.user.name} liked your post!`
-      profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, postImage: post.media, postText: post.text, message })
+      profile.notifications.push({ 
+        user: req.user.id, 
+        name: req.user.name, 
+        avatar: req.user.avatar, 
+        postImage: post.media, 
+        postText: post.text, 
+        postId: post._id, 
+        message 
+      })
       profile.save().then(profile => res.json(profile)) 
     })
   })
@@ -230,7 +238,15 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
     // Add to notifications array
     Profile.findOne({ user: post.user }).then(profile => {
       const message = `${req.user.name} commented on your post!`
-      profile.notifications.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, postId: post._id, postImage: post.media, postText: post.text, message })
+      profile.notifications.push({ 
+        user: req.user.id, 
+        name: req.user.name, 
+        avatar: req.user.avatar, 
+        postId: post._id, 
+        postImage: post.media, 
+        postText: post.text, 
+        message 
+      })
       profile.save().then(profile => res.json(profile)) 
     })
   })

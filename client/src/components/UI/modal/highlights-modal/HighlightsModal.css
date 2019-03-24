@@ -1,16 +1,11 @@
-#container1{
-  height: 80%;
-  width: 90%;
-}
 
 .HighlightsModal {
   position: fixed;
   background-color: black;
   z-index: 201;
   font-size: 13px;
-  width: 90vw;
+  width: 100vw;
   max-height: 80vh;
-  left: 5vw;
   top: 5vh;
   overflow-y: auto;
   box-shadow: 1px 1px 1px black;

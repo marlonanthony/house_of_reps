@@ -102,8 +102,10 @@ class PostItem extends Component {
 
     const postModal = this.state.showModal ? (
       <CommentsModal>
+        <div style={{height: '80vh'}}>
         <PostModalText postText={post.text} />
-        <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '60vh'}} />
+        <img src={post.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '80vh'}} />
+        </div>
       </CommentsModal>
     ) : null 
 

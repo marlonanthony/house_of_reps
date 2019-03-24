@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 import Moment from 'react-moment' 
 import axios from 'axios'
 import { getPost } from '../../../../actions/postActions'
-import Modal from '../../../UI/modal/Modal'
+// import Modal from '../../../UI/modal/Modal'
 import './Notifications.css'
+import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
+import PostText from '../post_comment_text/PostText'
+import PostModalText from '../post_comment_text/PostModalText'
 
 class Notifications extends Component {
 
@@ -31,13 +34,44 @@ class Notifications extends Component {
 
   render() {
     const { post } = this.props.post
+    let youtubeUrl = post.url
+    
+    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+      ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                             .replace(/watch\?v=/gi, 'embed/')
+                             .replace(/&feature=www\.youtube\.com/gi, '')
+      : youtubeUrl = null 
     return (
       <div>
         { this.state.showPost && post &&
-          <div>
-            <Modal>
-              <p>{post.text && post.text}</p>
-            </Modal>
+          <div className='notifications_modal_wrapper'>
+            <HighlightsModal>
+              { !post.description && !post.image && !post.title && !post.url && !post.media
+                ? <PostText postText={post.text && post.text} />
+                : post.media 
+                ? ( <div>
+                      <PostText postText={post.text && post.text} />
+                      <img className='postfeed-media-pic' onClick={this.modalShow} src={post.media && post.media} alt="uploaded" />
+                    </div>
+                  )
+                : ( <div className='post_content'>
+                      <PostText postText={post.text && post.text} />
+                      <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
+                        { youtubeUrl && youtubeUrl
+                        ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
+                            <iframe title='youtube' width="100%" height="300" src={youtubeUrl && youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
+                          </div>
+                        : <a href={post.url && post.url} target='_blank' rel='noopener noreferrer'>
+                            <img src={post.image && post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
+                          </a> 
+                        }
+                        <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title && post.title}</p>
+                        <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description && post.description}</p>
+                      </div>
+                    </div>
+                  )
+              }
+            </HighlightsModal>
           </div>
         }
 

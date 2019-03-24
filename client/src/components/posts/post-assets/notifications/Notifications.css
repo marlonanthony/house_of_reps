@@ -80,6 +80,10 @@
   color: #666;
 }
 
+.notifications_modal_wrapper {
+  max-height: 80vh;
+}
+
 /*      Large Screens     */
 
 @media(min-width: 1200px) {
