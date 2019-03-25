@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux';
 import Moment from 'react-moment'
+import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import './Highlights.css'
 // import Spinner from '../../../common/Spinner';
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
 
-export default class Highlights extends Component {
+class Highlights extends Component {
 
   state = { 
     currentImageIndex: 0,
@@ -37,6 +39,10 @@ export default class Highlights extends Component {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
 
+  likeHighlight = (venueId, venueUserId) => {
+    this.props.likeVenue(venueId, venueUserId)
+  }
+
   render() {
     const { recentHighlights } = this.props 
 
@@ -61,6 +67,12 @@ export default class Highlights extends Component {
             }
             { recentHighlights[this.state.currentImageIndex].description ? 
               <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null 
+            }
+            {
+              <div style={{display: 'flex', alignItems: 'center', paddingLeft: 10}}>
+                <i onClick={() => this.likeHighlight(recentHighlights[this.state.currentImageIndex]._id, recentHighlights[this.state.currentImageIndex].user)} className='fas fa-thumbs-up icons' style={{color: 'cyan', cursor: 'pointer'}}></i>
+                <p style={{color: 'cyan'}}>{recentHighlights[this.state.currentImageIndex].likes && recentHighlights[this.state.currentImageIndex].likes.length}</p>
+              </div>
             }
             <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
           </div>
@@ -94,6 +106,7 @@ export default class Highlights extends Component {
             : null }
           <br />
           <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='hors' title={'🔥'}/>
+          
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>
@@ -101,4 +114,5 @@ export default class Highlights extends Component {
   }
 }
 
+export default connect(null, { likeVenue })(Highlights)
 

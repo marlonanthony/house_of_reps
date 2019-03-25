@@ -188,6 +188,12 @@ const ProfileSchema = new Schema({
       highlight: {
         type: Object
       },
+      post: {
+        type: Object 
+      },
+      comment: {
+        type: Object
+      },
       postId: {
         type: String
       },

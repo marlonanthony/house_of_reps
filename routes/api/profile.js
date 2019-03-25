@@ -95,13 +95,20 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), (
 
 
 // @route         GET api/profile/notifications
-// @description   GET current users notifications
+// @description   GET notifications
 // @access        Private
 router.get('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // Profile.aggregate( [ 
+  //   { $match: { user: req.user.id } }, 
+  //   { $unwind: "$notifications" },
+  //   { $sort: { "notifications.date": -1 } },
+
+
+  // .then(result => res.json(result.notifications))
   Profile.findOne({ user: req.user.id })
   .then(profile => {
     profile.notifications.map((notification, i, array) => {
-      if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 259200000){
+      if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 172800000){  // 259200000
         array.splice(notification[i], 1)
       }
     })
@@ -113,7 +120,7 @@ router.get('/notifications', passport.authenticate('jwt', { session: false }), (
 // @route            POST api/profile/notifications
 // @desc             Set notification to seen once Notifications.js component unMounts
 // @access           Private
-router.post('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/notifications/seen', passport.authenticate('jwt', { session: false }), (req, res) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
     profile.notifications.map(notification => {
       notification.seen = true 
@@ -230,6 +237,9 @@ router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: 
     }
     profile.venues.map(venue => {
       if(venue._id.toString() === req.params.id) {
+        if(venue.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          return res.status(400).json({ alreadyliked: 'User already liked this highlight' })
+        }
         venue.likes.push(newLike)
         const message = `${req.user.name} liked your highlight!`
         profile.notifications.push({ 

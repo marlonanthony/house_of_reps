@@ -63,13 +63,11 @@ router.get('/profileposts', passport.authenticate('jwt', { session: false }), (r
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.find({ handle: req.query.handle, date: { $gte: new Date('2019-01-01') } })
-    .sort({ date: -1 })
-    .skip(pageOptions.page * pageOptions.limit)
-    .limit(pageOptions.limit)
-    .then(posts => res.json(posts))
-  })
+  Post.find({ handle: req.query.handle, date: { $gte: new Date('2019-01-01') } })
+  .sort({ date: -1 })
+  .skip(pageOptions.page * pageOptions.limit)
+  .limit(pageOptions.limit)
+  .then(posts => res.json(posts))
 })
 
 
@@ -82,15 +80,13 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.find({
-      likes: { $elemMatch: { user: req.user.id } }
-    })
-    .sort({ date: -1 })
-    .skip(pageOptions.page * pageOptions.limit)
-    .limit(pageOptions.limit)
-    .then(posts => res.json(posts))
+  Post.find({
+    likes: { $elemMatch: { user: req.user.id } }
   })
+  .sort({ date: -1 })
+  .skip(pageOptions.page * pageOptions.limit)
+  .limit(pageOptions.limit)
+  .then(posts => res.json(posts))
 })
 
 
@@ -174,6 +170,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
         postImage: post.media, 
         postText: post.text, 
         postId: post._id, 
+        post,
         message 
       })
       profile.save().then(profile => res.json(profile)) 
@@ -294,7 +291,8 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
             postId: post._id, 
             commentId: comment._id, 
             postImage: comment.media, 
-            postText: comment.text, 
+            postText: comment.text,
+            comment,
             message })
           profile.save().then(profile => res.json(profile)) 
         })

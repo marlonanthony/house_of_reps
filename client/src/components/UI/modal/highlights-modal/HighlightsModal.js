@@ -2,11 +2,10 @@ import React from 'react'
 import './HighlightsModal.css'
 
 const HighlightsModal = props => {
+  console.log(props.myes)
   return (
-    <div>
-      <div className='HighlightsModal'>
-        {props.children}
-      </div>
+    <div className='HighlightsModal'>
+      {props.children}
     </div>
   )
 }
