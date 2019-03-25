@@ -92,6 +92,7 @@ class Notifications extends Component {
                   { notification.postText && <p>{ notification.postText.length >= 47 ? notification.postText.slice(0, 50) + '...' : notification.postText }</p> }
                   { notification.postImage && <img src={notification.postImage} className='notification_post_content_image' />}
                   { notification.highlight && <iframe title='youtube' width="100%" height="400" src={notification.highlight.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
+                  { !notification.highlight && notification.video && <iframe title='youtube' width="100%" height="400" src={notification.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
                 </div>
                 <div className='notification_icons'>
                   { notification.message && notification.message.includes('liked') 

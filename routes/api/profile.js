@@ -14,11 +14,6 @@ const Profile = require('../../models/Profile')
 // Load User Model
 const User = require('../../models/User')
 
-// @route         GET api/profile/test
-// @description   Tests profile route
-// @access        Public 
-router.get('/test', (req, res) => res.json({ msg: 'Profile Works' })) 
-
 
 // @route         GET api/profile
 // @description   GET current users profile
@@ -194,7 +189,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 }) 
 
 // @route        POST api/profile/venues
-// @description  Add upcoming venues to profile
+// @description  Add highlight/venue to profile
 // @access       Private
 router.post('/venues', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateVenuesInput(req.body) 

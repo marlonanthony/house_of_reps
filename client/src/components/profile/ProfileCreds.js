@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { likeVenue } from '../../actions/profileActions'
 // import Moment from 'react-moment' 
 import HighlightsModal from '../UI/modal/highlights-modal/HighlightsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
@@ -13,6 +15,10 @@ class ProfileCreds extends Component {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
 
+  likeHighlight = (venueId, venueUserId) => {
+    this.props.likeVenue(venueId, venueUserId)
+  }
+
   render() {
     const { venues } = this.props 
 
@@ -20,7 +26,7 @@ class ProfileCreds extends Component {
       <Fragment>
         <HighlightsModal>
           { venues.map(venue => (
-            <div key={venue._id} style={{ marginBottom: 40 }}>
+            <div key={venue._id} style={{ marginBottom: 40, border: '0.03px solid rgba(0, 255, 255, 0.03)' }}>
               { venue.title && <p style={{color: 'rgb(29, 138, 255)'}}>{venue.title}</p> }
               { venue.video && 
                 <iframe
@@ -29,13 +35,17 @@ class ProfileCreds extends Component {
                   frameBorder={0}
                   allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
                   allowFullScreen={true}
-                  style={{ width: '95%', height: '80vh' }}>
+                  style={{ width: '95%', height: '80vh', marginTop: '15px' }}>
                 </iframe> 
               }
               { !venue.video && venue.image && 
                 <img src={venue.image} style={{maxWidth: '100%', maxHeight: '100%'}} alt='profile_hightlights' />
               }
-              { venue.description && <p style={{ color: '#666' }}>{venue.description}</p> }
+              { venue.description && <p style={{ color: '#666', padding: '0px 10px' }}>{venue.description}</p> }
+              <div style={{display: 'flex', alignItems: 'center', paddingLeft: 10}}>
+                <i onClick={() => this.likeHighlight(venue._id, venue.user)} className='fas fa-thumbs-up icons' style={{color: 'cyan', cursor: 'pointer'}}></i>
+                <p style={{color: 'cyan'}}>{venue.likes && venue.likes.length}</p>
+              </div>
             </div>
           ))
           }
@@ -71,4 +81,8 @@ class ProfileCreds extends Component {
   }
 }
 
-export default ProfileCreds
+const mapStateToProps = state => ({
+  profile: state.profile
+})
+
+export default connect(mapStateToProps, { likeVenue })(ProfileCreds)

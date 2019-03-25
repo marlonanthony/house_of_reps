@@ -83,8 +83,6 @@ class AddVenue extends Component {
   }
 
   render() {
-    console.log(this.props)
-    console.log(this.state.video)
     const { errors } = this.state 
     return (
       <div className='add-venue'>

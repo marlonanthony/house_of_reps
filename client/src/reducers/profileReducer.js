@@ -2,7 +2,8 @@ import {
   GET_PROFILE, 
   GET_PROFILES, 
   PROFILE_LOADING, 
-  CLEAR_CURRENT_PROFILE 
+  CLEAR_CURRENT_PROFILE,
+  LIKE_HIGHLIGHT
 } from '../actions/types'
 
 const initialState = {
@@ -34,6 +35,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: null 
+      }
+    case LIKE_HIGHLIGHT: 
+      return {
+        ...state,
+        profile: action.payload.data,
+        loading: false 
       }
     default: 
       return state 

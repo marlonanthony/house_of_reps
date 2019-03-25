@@ -5,7 +5,8 @@ import {
   CLEAR_CURRENT_PROFILE, 
   GET_ERRORS, 
   SET_CURRENT_USER, 
-  GET_PROFILES } from './types' 
+  GET_PROFILES,
+  LIKE_HIGHLIGHT } from './types' 
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -55,6 +56,24 @@ export const addVenue = (venueData, history) => dispatch => {
   .catch(err => dispatch({
     type: GET_ERRORS,
     payload: err.response.data 
+  }))
+}
+
+// Like Venue
+export const likeVenue = (venueId, userId) => dispatch => {
+  axios
+  .post(`/api/profile/venues/like/${venueId}/${userId}`)
+  .then(profile => dispatch({
+    type: LIKE_HIGHLIGHT,
+    payload: {
+      data: profile.data,
+      venueId,
+      userId 
+    }
+  }))  
+  .catch(err => dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data
   }))
 }
 
