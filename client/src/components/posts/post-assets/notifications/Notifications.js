@@ -83,7 +83,7 @@ class Notifications extends Component {
           <div className='notifications'>
             <h1 id='notifications_header'>Notifications</h1>
             { this.state.notifications.map(notification => (
-              <div className={!notification.seen ? 'notifications_container new_notification' : 'notifications_container' } key={notification._id}>
+              <div className={!notification.seen ? 'new_notification' : 'notifications_container' } key={notification._id}>
                 <div className='notification_avatar_and_message_container'>
                   { notification.avatar && <img src={notification.avatar} className='notification_user_avatar' />}
                   { notification.message && <p><span className='notification_message'>{notification.message}</span></p> }
@@ -91,8 +91,8 @@ class Notifications extends Component {
                 <div className='notification_post_content' onClick={this.postHandler.bind(this, notification.postId)}>
                   { notification.postText && <p>{ notification.postText.length >= 47 ? notification.postText.slice(0, 50) + '...' : notification.postText }</p> }
                   { notification.postImage && <img src={notification.postImage} className='notification_post_content_image' />}
-                  { notification.highlight && <iframe title='youtube' width="100%" height="100%" src={notification.highlight.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
-                  { !notification.highlight && notification.video && <iframe title='youtube' width="100%" height="100%" src={notification.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
+                  { notification.highlight && <iframe title='youtube' className='notification_highlights' src={notification.highlight.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
+                  { !notification.highlight && notification.video && <iframe title='youtube' className='notification_highlights' src={notification.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
                 </div>
                 <div className='notification_icons'>
                   { notification.message && notification.message.includes('liked') 

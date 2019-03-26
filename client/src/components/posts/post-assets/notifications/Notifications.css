@@ -11,13 +11,14 @@
 
 .notifications_container {
   width: 100%;
-  padding: 10px; 
   background: rgb(03, 03, 03); 
   border-radius: 5px;
   margin: 15px 0px; 
+  padding: 10px 0px;
 }
 .notifications_container::before {
-  content: 'Older Notification'
+  content: 'Older Notification';
+  padding-left: 10px;
 }
 
 .notifications_container:hover {
@@ -28,15 +29,17 @@
 .new_notification {
   /* border: 0.5px solid rgba(55, 131, 194, 0.18); */
   margin: 35px 0px;
+  width: 100%;
   background: #000;
-  border-radius: 5px;
+  padding: 10px 0px;
+  /* border-radius: 5px; */
 }
 .new_notification:hover {
-  /* border: .7px solid rgba(55, 131, 194, 0.3); */
+  /* border: .3px solid rgba(55, 131, 194, 0.1); */
 }
 .new_notification::before {
   content: '\01F525 New Notification \01F525';
-  /* margin-left: 50%; */
+  padding-left: 10px;
 }
 
 .notification_avatar_and_message_container { 
@@ -53,15 +56,12 @@
 .notification_message {
   color: #666;
 }
-
 .notification_post_content {
   display: flex; 
   align-items: center; 
   justify-content: space-evenly; 
   border: 0.5px solid rgba(55, 131, 194, 0.1); 
-  width: 50%; 
   border-radius: 5px; 
-  margin-left: 25%; 
   padding: 10px;
   cursor: pointer;
 }
@@ -69,6 +69,10 @@
   width: 30px;
   height: 30px; 
   margin-left: 10px;
+}
+.notification_highlights {
+  height: 100%;
+  width: 90%;
 }
 .notification_icons {
   display: flex; 
@@ -94,5 +98,10 @@
   }
   .new_notification {
     margin: 50px 15%;
+    width: 70%;
+  }
+  .notification_post_content {
+    width: 50%; 
+    margin-left: 25%; 
   }
 }
