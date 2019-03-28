@@ -66,9 +66,9 @@ export default function PostFeedProfileContent(props) {
             border: '0.3px solid rgba(55,131,194, 0.1)',
             borderRadius: '5px',
             outline: 'none'}}>
-            <i className={ props.profile.notifications.filter(notification => !notification.seen).length > 0 ? 'far fa-bell red' : 'far fa-bell' }
+            <i className={props.profile && props.profile.notifications.filter(notification => !notification.seen).length > 0 ? 'far fa-bell red' : 'far fa-bell' }
                style={{fontSize: 15}}>
-              <small className={ props.profile.notifications.filter(notification => !notification.seen).length > 0 
+              <small className={ props.profile && props.profile.notifications.filter(notification => !notification.seen).length > 0 
                 ? ' notification_count red' 
                 : 'notification_count'}>{ props.profile.notifications.filter(notification => !notification.seen).length}
               </small>
