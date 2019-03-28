@@ -70,7 +70,7 @@ export default function PostFeedProfileContent(props) {
                style={{fontSize: 15}}>
               <small className={ props.profile && props.profile.notifications.filter(notification => !notification.seen).length > 0 
                 ? ' notification_count red' 
-                : 'notification_count'}>{ props.profile.notifications.filter(notification => !notification.seen).length}
+                : 'notification_count'}>{ props.profile && props.profile.notifications.filter(notification => !notification.seen).length}
               </small>
             </i>
           </button>

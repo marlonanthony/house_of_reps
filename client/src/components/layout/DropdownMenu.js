@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
+import Spinner from '../common/Spinner'
 import { getCurrentProfile, clearCurrentProfile } from '../../actions/profileActions'
 
 import './DropdownMenu.css'
@@ -39,14 +40,14 @@ class DropdownMenu extends Component {
     if(!profile) {
       return null
     }
-    if( profile &&
-      pathname === '/create-profile' || 
-      pathname === '/login' || 
-      pathname === '/register' ||
-      pathname.includes('/verify')
-    ) {
-      return null 
-    }
+    // if( profile &&
+    //   pathname === '/create-profile' || 
+    //   pathname === '/login' || 
+    //   pathname === '/register' ||
+    //   pathname.includes('/verify')
+    // ) {
+    //   return null 
+    // }
   
     const authLinks = (
       <div>

@@ -23,15 +23,24 @@ class Landing extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.auth.isAuthenticated) {
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.auth.isAuthenticated) {
       this.props.history.push('/feed') 
     }
-
-    if(nextProps.errors) {
-      this.setState({ errors: nextProps.errors })
+    if(prevProps.errors !== this.state.errors) {
+      this.setState({ errors: prevProps.errors })
     }
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if(nextProps.auth.isAuthenticated) {
+  //     this.props.history.push('/feed') 
+  //   }
+
+    // if(nextProps.errors) {
+    //   this.setState({ errors: nextProps.errors })
+    // }
+  // }
 
   // componentWillUnmount() {
   //   this.props.history.push('/dashboard')
@@ -57,6 +66,7 @@ class Landing extends Component {
     }
 
     this.props.loginUser(userData) 
+    this.props.history.push('/feed') 
   }
   
 
