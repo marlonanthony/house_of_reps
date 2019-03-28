@@ -136,14 +136,6 @@ class Register extends Component {
               error={ errors.email }
             />
             <RegisterTextFieldGroup
-              type="text"
-              name='handle'
-              placeholder='userhandle'
-              value={ this.state.handle }
-              onChange={ this.onChangeHandler }
-              error={ errors.handle }
-            />
-            <RegisterTextFieldGroup
               type="password"
               name='password'
               placeholder='Password'
