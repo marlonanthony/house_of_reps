@@ -69,7 +69,7 @@ class Login extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.password }
             />
-            <input type="submit" id='login-page-button' />
+            <input type="submit" id='login-page-button' title='submit' />
           </form>
         </div>
       </div>

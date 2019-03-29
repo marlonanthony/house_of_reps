@@ -1,12 +1,12 @@
-.register-inputs {
-  max-width: 50%; 
-  display: absolute;
-  height: 20px;
+.registers-inputs {
+  width: 100%;
   font-size: 17px;
-  border: none;
-  border-radius: 2px;
+  color: #aaa;
   outline: none;
-  text-decoration: none;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.1);
+  padding: 10px 0px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin: 10px 0px;
+  padding: 10px;
+  /* border-bottom: 1px solid rgb(55, 131, 194); */
 }

@@ -15,10 +15,10 @@ const TextFieldGroup = ({
   disabled
 }) => {
   return (
-    <div style={{marginLeft: '-10%'}}>
+    <div>
       <input 
         type={type}
-        className={classnames('register-inputs', {
+        className={classnames('registers-inputs', {
           'is-invalid': error
         })}
         placeholder={placeholder}

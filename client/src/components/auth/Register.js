@@ -79,24 +79,23 @@ class Register extends Component {
 
     return (
       <div className="register-container">
-        <h2 style={{ textAlign: 'center', color: '#bdc7c1' }}>Sign Up</h2>
+        <h2 style={{ textAlign: 'center', color: '#bdc7c1', marginTop: '50px' }}>Sign Up</h2>
         <p style={{ textAlign: 'center', color: '#7e8889' }}>Create your account</p>
         <div id='register-content'>
-          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
-            <div style={{ display: 'flex', justifyContent: 'center' }} className='FileUpload'>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{  }} className='FileUpload'>
               <Dropzone 
                 style={{ 
+                  maxWidth: '50%',
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '50%', 
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
                   color: '#aaa',
                   border: 'dashed',
-                  borderColor: '#ccc',
-                  marginLeft: '-70px',
+                  borderColor: 'rgb(55, 131, 194)',
                   background: 'rgba(0,0,0,0.4)'
                 }}
                 multiple={ false }
@@ -108,7 +107,7 @@ class Register extends Component {
             <div>
               { this.state.uploadedFileCloudinaryUrl === '' ? null : 
               <div>
-                <div style={{ justifyContent: 'flex-end' }}>
+                <div>
                   <img 
                     src={ this.state.uploadedFileCloudinaryUrl } 
                     style={{ height: '50px', width: '50px', borderRadius: '50%' }}
@@ -151,7 +150,7 @@ class Register extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.password2 }
             />
-            <input type="submit" id='register-button' />
+            <input type="submit" id='register-button' title='submit' />
           </form>
         </div>
       </div>
