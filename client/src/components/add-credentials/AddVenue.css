@@ -1,4 +1,4 @@
-.add-venue {
+/* .add-venue {
   color: #aaa;
   text-align: center;
 }
@@ -19,12 +19,10 @@
 }
 
 .register-inputs::placeholder {
-  /* color: rgb(55, 131, 194); */
   color: #bdc7c1;
 }
 
 .register-text-area {
-  /* border: 1px solid rgb(21, 58, 88); */
   border: none;
   padding: 10px;
   width: 79.5%;
@@ -35,7 +33,6 @@
   resize: none;
   color: #ccc;
   margin-left: 10%;
-  /* background: #142634; */
   background: rgba(2, 0, 7, 0.2);
 }
 
@@ -56,7 +53,7 @@
 #venue-submit-button:hover {
   color: rgb(55, 131, 194);
   background: rgba(0,0,0,0.8);
-}
+} */
 
 #addvenue-back-button {
   position: absolute;
@@ -75,4 +72,4 @@
 
 #addvenue-back-button:active {
   font-size: 33px;
-}
+} 

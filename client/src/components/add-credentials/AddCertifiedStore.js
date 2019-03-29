@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 import { addStore } from '../../actions/profileActions'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import './AddCertifiedStore.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -63,26 +63,24 @@ class AddCertifiedStore extends Component {
   render() {
     const { errors } = this.state 
     return (
-      <div className='add-djpool'>
+      <div className=''>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Certified Store</h1>
+        <h1 style={{ textAlign: 'center', color: '#ccc', marginTop: '70px' }}>Add Certified Store</h1>
         <div className='stores_input_wrapper'>
-          <div className='edit-profile-dropzone'>
+          <div className='certified-store-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
                 style={{ 
+                  maxWidth: '50%',
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '50%', 
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
-                  color: '#aaa',
+                  color: 'rgb(55, 131, 194)',
                   border: 'dashed',
-                  borderColor: '#ccc',
-                  // marginLeft: '-70px',
-                  background: 'rgba(0,0,0,0.4)'
+                  borderColor: 'rgb(55, 131, 194)',
                 }}
                 multiple={false}
                 accept='image/*'
@@ -100,7 +98,7 @@ class AddCertifiedStore extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
                 name='url'
                 type='text'
                 value={ this.state.url }
@@ -108,7 +106,7 @@ class AddCertifiedStore extends Component {
                 error={ errors.url }
                 placeholder='URL'
               />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               name='image'
               type='text'
               value={ this.state.image }
@@ -116,7 +114,7 @@ class AddCertifiedStore extends Component {
               error={ errors.image }
               placeholder='image'
             />
-            <input type="submit" value='Submit' id='venue-submit-button' style={{marginLeft: '10px'}} />
+            <input type="submit" value='Submit' id='certified-store-button'/>
           </form>
         </div>
       </div>

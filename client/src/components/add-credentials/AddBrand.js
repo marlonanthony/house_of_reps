@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 import { addStore, addPerk, addBrand } from '../../actions/profileActions'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 
 // import classnames from 'classnames'
 
@@ -72,22 +72,20 @@ class AddBrand extends Component {
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Brand</h1>
         {/* setting input div classname to djpools for lack of repitition */}
         <div className='djpools_input_wrapper'>
-          <div className='edit-profile-dropzone'>
+          <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
                 style={{ 
+                  maxWidth: '50%',
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '50%', 
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
-                  color: '#aaa',
+                  color: 'rgb(55, 131, 194)',
                   border: 'dashed',
-                  borderColor: '#ccc',
-                  // marginLeft: '-70px',
-                  background: 'rgba(0,0,0,0.4)'
+                  borderColor: 'rgb(55, 131, 194)',
                 }}
                 multiple={false}
                 accept='image/*'
@@ -105,7 +103,7 @@ class AddBrand extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
                 name='url'
                 type='text'
                 value={ this.state.url }
@@ -113,7 +111,7 @@ class AddBrand extends Component {
                 error={ errors.url }
                 placeholder='URL'
               />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               name='image'
               type='text'
               value={ this.state.image }
@@ -121,7 +119,7 @@ class AddBrand extends Component {
               error={ errors.image }
               placeholder='image'
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               name='description'
               type='text'
               value={ this.state.description }
@@ -129,7 +127,7 @@ class AddBrand extends Component {
               error={ errors.description }
               placeholder='description'
             />
-            <input type="submit" value='Submit' id='venue-submit-button' style={{ marginLeft: '10px' }} />
+            <input type="submit" value='Submit' id='add-djpools-submit-button' />
           </form>
         </div>
       </div>

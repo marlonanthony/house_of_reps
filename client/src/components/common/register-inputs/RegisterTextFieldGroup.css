@@ -10,3 +10,7 @@
   padding: 10px;
   /* border-bottom: 1px solid rgb(55, 131, 194); */
 }
+
+.registers-inputs::placeholder {
+  color: rgb(55, 131, 194);
+}

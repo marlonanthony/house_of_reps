@@ -1,0 +1,33 @@
+.djpools_input_wrapper {
+  width: 90%;
+  margin: 10px 5% 10px 2.5%;
+  /* margin: 10px; */
+}
+
+.djpools-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#add-djpools-submit-button {
+  font-size: 17px;
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  color: rgb(55, 131, 194);
+  background: rgba(0, 0, 0, 0.5);
+}
+#add-djpools-submit-button:hover {
+  color: rgb(55, 131, 194);
+  background: rgba(0,0,0,0.9);
+  cursor: pointer;
+}
+
+@media(min-width: 800px) {
+  .djpools_input_wrapper {
+    width: 50%;
+    margin: 0 25%;
+  }
+}

@@ -6,7 +6,8 @@ import Dropzone from 'react-dropzone'
 import request from 'superagent' 
 
 import { addVenue } from '../../actions/profileActions'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
 import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import './AddVenue.css'
 
@@ -89,23 +90,21 @@ class AddVenue extends Component {
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Event</h1>
         <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
-        <div style={{ }}>
-          <div className='edit-profile-dropzone'>
+        <div className='djpools_input_wrapper'>
+          {/* <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
                 style={{ 
+                  maxWidth: '50%',
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '50%', 
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
-                  color: '#aaa',
+                  color: 'rgb(55, 131, 194)',
                   border: 'dashed',
-                  borderColor: '#ccc',
-                  // marginLeft: '-70px',
-                  background: 'rgba(0,0,0,0.4)'
+                  borderColor: 'rgb(55, 131, 194)',
                 }}
                 multiple={false}
                 accept='image/*'
@@ -121,30 +120,23 @@ class AddVenue extends Component {
                   alt={this.state.uploadedFile.name} />
               }
             </div>
-          </div>
+          </div> */}
           <form onSubmit={ this.onSubmit }>
-            <CreateProfileTextFieldGroup 
-              name='date'
-              type='date'
-              value={ this.state.date }
-              onChange={ this.onChange }
-              error={ errors.date }
-            />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Title'
               name='title'
               value={ this.state.title }
               onChange={ this.onChange }
               error={ errors.title }
             />
-            <CreateProfileTextFieldGroup 
+            {/* <RegisterTextFieldGroup 
               placeholder='Location of Event'
               name='location'
               value={ this.state.location }
               onChange={ this.onChange }
               error={ errors.location }
-            />
-            <CreateProfileTextFieldGroup 
+            /> */}
+            <RegisterTextFieldGroup 
               name='video'
               type='text'
               value={ this.state.video }
@@ -153,14 +145,14 @@ class AddVenue extends Component {
               error={ errors.video }
               placeholder='Paste embed code'
             />
-            <CreateProfileTextAreaFieldGroup 
+            <RegisterTextAreaFieldGroup 
               placeholder='Quick description'
               name='description'
               value={ this.state.description }
               onChange={ this.onChange }
               error={ errors.description }
             />
-            <input type="submit" value='Submit' id='venue-submit-button' />
+            <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
           </form>
         </div>
       </div>

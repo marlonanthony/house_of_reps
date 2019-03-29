@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 import { addStore, addPerk } from '../../actions/profileActions'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
@@ -67,24 +67,21 @@ class AddPerk extends Component {
       <div className='add-djpool'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Perk</h1>
-        {/* setting input div classname to djpools for lack of repitition */}
         <div className='djpools_input_wrapper'>
-          <div className='edit-profile-dropzone'>
+          <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
                 style={{ 
+                  maxWidth: '50%',
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '50%', 
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
-                  color: '#aaa',
+                  color: 'rgb(55, 131, 194)',
                   border: 'dashed',
-                  borderColor: '#ccc',
-                  // marginLeft: '-70px',
-                  background: 'rgba(0,0,0,0.4)'
+                  borderColor: 'rgb(55, 131, 194)',
                 }}
                 multiple={false}
                 accept='image/*'
@@ -102,7 +99,7 @@ class AddPerk extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               name='url'
               type='text'
               value={ this.state.url }
@@ -110,7 +107,7 @@ class AddPerk extends Component {
               error={ errors.url }
               placeholder='URL'
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               name='image'
               type='text'
               value={ this.state.image }
@@ -118,7 +115,7 @@ class AddPerk extends Component {
               error={ errors.image }
               placeholder='image'
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               name='description'
               type='text'
               value={ this.state.description }
@@ -126,7 +123,7 @@ class AddPerk extends Component {
               error={ errors.description }
               placeholder='description'
             />
-            <input type="submit" value='Submit' id='venue-submit-button' style={{ marginLeft: '10px' }} />
+            <input type="submit" value='Submit' id='add-djpools-submit-button' />
           </form>
         </div>
       </div>

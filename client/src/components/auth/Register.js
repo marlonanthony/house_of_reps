@@ -96,7 +96,6 @@ class Register extends Component {
                   color: '#aaa',
                   border: 'dashed',
                   borderColor: 'rgb(55, 131, 194)',
-                  background: 'rgba(0,0,0,0.4)'
                 }}
                 multiple={ false }
                 accept='image/*'

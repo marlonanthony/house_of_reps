@@ -8,16 +8,16 @@
   outline: none;
   text-decoration: none;
   padding: 10px;
-  color: #ccc;
+  color: #aaa;
   background: rgba(0, 0, 0, 0.5);
 }
 
 .create-profile-text-field-group-inputs::placeholder {
-  color: #ccc;
+  color: rgb(55, 131, 194);
 }
 
-@media (max-width: 1050px) {
+@media (min-width: 1050px) {
   .create-profile-text-field-group-inputs {
-    width: 90%;
+    width: 100%;
   }
 }
