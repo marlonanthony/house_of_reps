@@ -1,13 +1,6 @@
-.profile-container {
-  /* background: white; */
-}
+.profile-container {}
 
-.profile {
-  /* background: #def; */
-  /* background: #142634; */
-  /* background: #050c14; */
-  /* background: black; */
-}
+.profile {}
 
 #profile-back-button {
   position: absolute;

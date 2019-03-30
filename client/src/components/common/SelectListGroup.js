@@ -28,7 +28,7 @@ const SelectListGroup = ({
         { selectOptions }
       </select>
       <br />
-      { info && <small className=''>{ info }</small>}
+      { info && <small className='info'>{ info }</small>}
       { error && (<div className='invalid-feedback'>{ error }</div>)}
     </div>
   )

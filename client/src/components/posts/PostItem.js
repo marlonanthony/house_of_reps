@@ -130,6 +130,7 @@ class PostItem extends Component {
      <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
      {postModal}
      <div  onClick={this.removePopup} className='posts_container'>
+      <div style={{padding: '10px'}}>
       <div className='post_avatar_and_name'>
         <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
         <div style={{ display: 'flex', flexDirection: 'column'  }}>
@@ -241,6 +242,7 @@ class PostItem extends Component {
           </div> 
           ) : null 
         }
+      </div>
       </div>
      </div>
      </Fragment>

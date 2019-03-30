@@ -13,11 +13,16 @@
 }
 
 .create-profile-text-field-group-inputs::placeholder {
-  color: rgb(55, 131, 194);
+  color: #aaa;
+  /* color: rgb(55, 131, 194); */
 }
 
 @media (min-width: 1050px) {
   .create-profile-text-field-group-inputs {
     width: 100%;
   }
+}
+
+.info {
+  color: rgb(55,131,194);
 }

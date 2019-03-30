@@ -230,7 +230,6 @@ class CreateProfile extends Component {
                   displaySocialInputs: !prevState.displaySocialInputs
                 }))
               }} id="create-profile-social-btn">Add Social Network Links</button>
-              <span className=''>Optional</span>
             </div>
             { socialInputs }
             <input type="submit" value="Submit" id='create-profile-submit-button' />

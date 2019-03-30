@@ -8,7 +8,6 @@
   /* background: rgb(7, 10, 17); */
   /* background: #151515; */
   /* background: #071020; */
-  /* min-height: 100vh; */
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
@@ -153,18 +152,6 @@
   align-items: center;
   flex-direction: column;
 }
-
-/* LikesPopup arrow */
-/* .popup .likespopupcontent::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: rgb(55, 131, 194) transparent transparent transparent;
-} */
 
 .likespopupavatarandname {
   display: flex;

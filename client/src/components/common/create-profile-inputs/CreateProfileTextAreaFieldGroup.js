@@ -23,7 +23,7 @@ class CreateProfileTextAreaFieldGroup extends Component {
           onPaste={onPaste}
         />
         <br />
-        {info && <small className='create-profile-textarea-info'>{info}</small>}
+        {info && <small className='info'>{info}</small>}
         { error && (<div className='error'>{error}</div>)}
       </div>
     )

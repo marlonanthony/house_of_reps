@@ -53,13 +53,10 @@
 }
 
 .nested_comment_textarea {
-  /* background: rgba(55, 131, 194, 0.9); */
-  /* background: rgb(29, 138, 228); */
   background: rgba(0, 0, 0, 0.5);
   color: rgb(55, 131, 194);
   border: .5px solid rgba(55, 131, 194, 0.1);
   border-radius: 2px;
-  /* background: #999; */
   padding: 10px; 
   margin-bottom: 5px;
   font-size: 13px;
@@ -71,7 +68,6 @@
 }
 
 .nested_comment_textarea::placeholder {
-  /* color: rgb(55, 131, 194); */
   color: rgb(55, 131, 194);
 }
 
