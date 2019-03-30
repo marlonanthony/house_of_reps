@@ -26,6 +26,10 @@ class DropdownMenu extends Component {
     this.setState({ displayMenu: false })
   }
 
+  onToggleClick = () => {
+    this.setState(prevState => ({ displayMenu: !prevState.displayMenu }))
+  }
+
   onLogoutClick = e => {
     e.preventDefault()
     this.props.clearCurrentProfile()
@@ -76,7 +80,7 @@ class DropdownMenu extends Component {
 
 
     return (
-      <div className="dropdown" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+      <div className="dropdown" onClick={this.onToggleClick}>
         <button className="dropdown_hover">| | |</button>
         { this.state.displayMenu ? (
            <div className='dropdown_menu'>
@@ -87,6 +91,7 @@ class DropdownMenu extends Component {
     )
   }
 }
+//  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}
 
 DropdownMenu.propTypes = {
   logoutUser: PropTypes.func.isRequired,

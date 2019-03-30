@@ -70,18 +70,7 @@ class AddCertifiedStore extends Component {
           <div className='certified-store-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
-                style={{ 
-                  maxWidth: '50%',
-                  borderRadius: '2px',
-                  fontSize: '15px',
-                  textAlign: 'center',
-                  height: 'auto', 
-                  padding: '10px',
-                  cursor: 'pointer',
-                  color: '#aaa',
-                  border: 'dashed',
-                  borderColor: '#aaa',
-                }}
+                className='dropzone' // In UI/dropzone
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>

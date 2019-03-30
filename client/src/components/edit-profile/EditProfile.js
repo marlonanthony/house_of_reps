@@ -7,8 +7,6 @@ import request from 'superagent'
 
 import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 import { registerUser } from '../../actions/authActions'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
-import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
 import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import SelectListGroup from '../common/SelectListGroup'
@@ -269,20 +267,7 @@ class EditProfile extends Component {
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
-                style={{ 
-                  maxWidth: '50%',
-                  borderRadius: '2px',
-                  fontSize: '15px',
-                  textAlign: 'center',
-                  height: 'auto', 
-                  padding: '10px',
-                  cursor: 'pointer',
-                  color: '#aaa',
-                  // color: 'rgb(55, 131, 194)',
-                  border: 'dashed',
-                  borderColor: '#aaa',
-                  // borderColor: 'rgb(55, 131, 194)',
-                }}
+                className='dropzone'   // In UI/dropzone
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>
@@ -346,13 +331,6 @@ class EditProfile extends Component {
               options={options}
               info='What style best defines you?'
             />
-            {/* <CreateProfileTextAreaFieldGroup 
-              placeholder='Short Bio'
-              name='bio'
-              value={ this.state.bio } 
-              onChange={ this.onChange } 
-              error={ errors.bio } 
-            /> */}
             <div className='add-social-links-button'>
               <button type='button' onClick={() => {
                 this.setState(prevState => ({

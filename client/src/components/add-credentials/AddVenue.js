@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
-import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 
 import { addVenue } from '../../actions/profileActions'
@@ -57,7 +56,6 @@ class AddVenue extends Component {
       title: this.state.title,
       video: this.state.video,
       image: this.state.image,
-      // handle: this.props.profile.profile.handle 
     
     }
 
@@ -91,36 +89,6 @@ class AddVenue extends Component {
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Event</h1>
         <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
         <div className='djpools_input_wrapper'>
-          {/* <div className='djpools-dropzone'>
-            <div className='FileUpload'>
-              <Dropzone 
-                style={{ 
-                  maxWidth: '50%',
-                  borderRadius: '2px',
-                  fontSize: '15px',
-                  textAlign: 'center',
-                  height: 'auto', 
-                  padding: '10px',
-                  cursor: 'pointer',
-                  color: 'rgb(55, 131, 194)',
-                  border: 'dashed',
-                  borderColor: 'rgb(55, 131, 194)',
-                }}
-                multiple={false}
-                accept='image/*'
-                onDrop={this.onImageDrop}>
-                <p>Drop an image or click to select a file to upload.</p>
-              </Dropzone>
-            </div>
-            <div>
-              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
-                <img 
-                  src={this.state.uploadedFileCloudinaryUrl} 
-                  style={{ height: '50px', width: '50px' }}
-                  alt={this.state.uploadedFile.name} />
-              }
-            </div>
-          </div> */}
           <form onSubmit={ this.onSubmit }>
             <RegisterTextFieldGroup 
               placeholder='Title'
@@ -129,13 +97,6 @@ class AddVenue extends Component {
               onChange={ this.onChange }
               error={ errors.title }
             />
-            {/* <RegisterTextFieldGroup 
-              placeholder='Location of Event'
-              name='location'
-              value={ this.state.location }
-              onChange={ this.onChange }
-              error={ errors.location }
-            /> */}
             <RegisterTextFieldGroup 
               name='video'
               type='text'

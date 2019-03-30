@@ -29,8 +29,9 @@ class SearchBar extends Component {
         zIndex: 2,
         height: '40px'
         }}>
-        <InputGroup 
-          placeholder='search reps'
+        <input  
+          style={{ width: '100%', background: 'none', border: 'none', fontSize: '13px' }}
+          placeholder=' search reps'
           name='matches'
           value={ this.state.matches }
           onChange={ this.onChange } 
