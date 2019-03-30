@@ -17,11 +17,11 @@ class Landing extends Component {
   //   showModal: false
   // }
 
-  // componentDidMount() {
-  //   if(this.props.auth.isAuthenticated) {
-  //     this.props.history.push('/feed')
-  //   }
-  // }
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated) {
+      this.props.history.push('/feed')
+    }
+  }
 
   // componentDidUpdate(prevProps, prevState) {
   //   if(prevProps.auth.isAuthenticated) {
