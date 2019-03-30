@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom' 
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
@@ -16,17 +17,20 @@ class DropdownMenu extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile() 
+    document.addEventListener('click', this.onToggleClick, true) 
+  }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onToggleClick, true) 
   }
 
-  onMouseEnter = () => {
-    this.setState({ displayMenu: true })
+  onToggleClick = (e) => {
+    const domNode = ReactDOM.findDOMNode(this) 
+    if(!domNode || !domNode.contains(e.target)) {
+      this.setState({ displayMenu: false })
+    }
+    
   }
-
-  onMouseLeave = () => {
-    this.setState({ displayMenu: false })
-  }
-
-  onToggleClick = () => {
+  toggleClick = () => {
     this.setState(prevState => ({ displayMenu: !prevState.displayMenu }))
   }
 
@@ -60,12 +64,14 @@ class DropdownMenu extends Component {
         <Link to="/feed">Feed</Link>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="#" onClick={this.onLogoutClick}>
-        <img 
-          src={user.avatar}
-          alt={user.name} 
-          style={{ width: '25px', marginRight: '5px' }}
-        />
-          Logout 
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <img 
+              src={user.avatar}
+              alt={user.name} 
+              style={{ width: '25px', height: '22px', marginRight: '5px' }}
+            />
+            Logout 
+          </div>
         </Link>
        
       </div>
@@ -80,18 +86,19 @@ class DropdownMenu extends Component {
 
 
     return (
-      <div className="dropdown" onClick={this.onToggleClick}>
-        <button className="dropdown_hover">| | |</button>
-        { this.state.displayMenu ? (
-           <div className='dropdown_menu'>
-             { isAuthenticated ? authLinks : guestLinks }
-           </div>
-        ) : null }
+      <div>
+        <div className="dropdown" onClick={this.toggleClick}>
+          <button className="dropdown_hover">| | |</button>
+          { this.state.displayMenu ? (
+            <div className='dropdown_menu'>
+              { isAuthenticated ? authLinks : guestLinks }
+            </div>
+          ) : null }
+        </div>
       </div>
     )
   }
 }
-//  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}
 
 DropdownMenu.propTypes = {
   logoutUser: PropTypes.func.isRequired,
