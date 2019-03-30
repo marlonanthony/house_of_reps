@@ -103,7 +103,9 @@ class AddCertifiedStore extends Component {
               error={ errors.image }
               placeholder='image'
             />
-            <input type="submit" value='Submit' id='certified-store-button'/>
+            <div className='certified-store-submit-btn-containing-div'>
+              <input type="submit" value='Submit' id='certified-store-button'/>
+            </div>
           </form>
         </div>
       </div>

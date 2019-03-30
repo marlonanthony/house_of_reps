@@ -116,7 +116,9 @@ class AddBrand extends Component {
               error={ errors.description }
               placeholder='description'
             />
-            <input type="submit" value='Submit' id='add-djpools-submit-button' />
+            <div style={{textAlign: 'center'}}>
+              <input type="submit" value='Submit' id='add-djpools-submit-button' />
+            </div>
           </form>
         </div>
       </div>

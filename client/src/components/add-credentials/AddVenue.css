@@ -55,6 +55,10 @@
   background: rgba(0,0,0,0.8);
 } */
 
+.venue-submit-btn-containing-div {
+  text-align: center;
+}
+
 #addvenue-back-button {
   position: absolute;
   top: 30px;

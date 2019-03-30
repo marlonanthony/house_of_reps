@@ -103,7 +103,9 @@ class AddDjpool extends Component {
               error={ errors.image }
               placeholder='Image URL'
             />
-            <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
+            <div className='add-djpool-submit-btn-containing-div'>
+              <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
+            </div>
           </form>
         </div>
       </div>

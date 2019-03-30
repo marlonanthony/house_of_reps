@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.certified-store-submit-btn-containing-div {
+  text-align: center;
+}
+
 #certified-store-button {
   font-size: 17px;
   padding: 10px;
