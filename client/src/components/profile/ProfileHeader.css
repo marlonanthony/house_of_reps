@@ -28,7 +28,8 @@
   border-radius: 50%;
   height: 140px;
   width: 140px;
-  border: 3px solid rgb(123, 180, 238);
+  border: 2px solid rgb(55, 131, 194);
+  /* border: 3px solid rgb(123, 180, 238); */
 }
 
 #header-items {
@@ -50,7 +51,8 @@
 }
 
 #profile-name {
-  color: #bdc7c1;
+  color: #7e8889;
+  /* color: #bdc7c1; */
 }
 
 #profile-handle {
@@ -64,7 +66,8 @@
   margin-top: 20px;
   font-size: 14px;
   max-width: 200px;
-  color: #bdc7c1;
+  color: #7e8889;
+  /* color: #bdc7c1; */
   font-family: sans-serif;
 }
 
