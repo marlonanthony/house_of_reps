@@ -4,6 +4,10 @@
 
 #login-content {}
 
+.login-page-button-container {
+  text-align: center;
+}
+
 #login-page-button {
   font-size: 16px;
   padding: 10px;
@@ -11,7 +15,6 @@
   border-radius: 2px;
   outline: none;
   color: #aaa;
-  /* color: rgb(55, 131, 194); */
   background: rgba(0, 0, 0, 0.5);
 }
 

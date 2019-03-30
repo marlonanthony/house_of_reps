@@ -85,18 +85,7 @@ class Register extends Component {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{  }} className='FileUpload'>
               <Dropzone 
-                style={{ 
-                  maxWidth: '50%',
-                  borderRadius: '2px',
-                  fontSize: '15px',
-                  textAlign: 'center',
-                  height: 'auto', 
-                  padding: '10px',
-                  cursor: 'pointer',
-                  color: '#aaa',
-                  border: 'dashed',
-                  borderColor: 'rgb(55, 131, 194)',
-                }}
+                className='dropzone'
                 multiple={ false }
                 accept='image/*'
                 onDrop={ this.onImageDrop }>
@@ -149,7 +138,9 @@ class Register extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.password2 }
             />
-            <input type="submit" id='register-button' title='submit' />
+            <div className='register-button-container'>
+              <input type="submit" id='register-button' title='submit' />
+            </div>
           </form>
         </div>
       </div>
