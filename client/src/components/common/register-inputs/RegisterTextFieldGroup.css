@@ -12,5 +12,6 @@
 }
 
 .registers-inputs::placeholder {
-  color: rgb(55, 131, 194);
+  /* color: rgb(55, 131, 194); */
+  color: #aaa;
 }

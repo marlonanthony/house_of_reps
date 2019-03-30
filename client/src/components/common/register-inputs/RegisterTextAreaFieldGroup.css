@@ -11,7 +11,8 @@
 }
 
 .register-text-area-field-group-inputs::placeholder {
-  color: rgb(55,131,194);
+  color: #aaa;
+  /* color: rgb(55,131,194); */
 }
 
 .register-text-area-field-group-inputs:focus {

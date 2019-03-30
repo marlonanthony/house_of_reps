@@ -15,7 +15,8 @@
   border: none;
   border-radius: 2px;
   outline: none;
-  color: rgb(55, 131, 194);
+  color: #aaa;
+  /* color: rgb(55, 131, 194); */
   background: rgba(0, 0, 0, 0.5);
 }
 

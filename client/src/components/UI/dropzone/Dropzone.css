@@ -1,0 +1,13 @@
+.dropzone {
+  max-width: 50%;
+  border-radius: 2px; 
+  font-size: 15px;
+  text-align: center;
+  height: auto;
+  padding: 10px;
+  cursor: pointer;
+  color: #aaa;
+  border: dashed;
+  border-color: #aaa;
+                  
+}

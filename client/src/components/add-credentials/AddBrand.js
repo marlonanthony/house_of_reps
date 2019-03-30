@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone'
 import request from 'superagent' 
 import { addStore, addPerk, addBrand } from '../../actions/profileActions'
 import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
-
+import '../UI/dropzone/Dropzone.css'
 // import classnames from 'classnames'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -75,18 +75,7 @@ class AddBrand extends Component {
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
-                style={{ 
-                  maxWidth: '50%',
-                  borderRadius: '2px',
-                  fontSize: '15px',
-                  textAlign: 'center',
-                  height: 'auto', 
-                  padding: '10px',
-                  cursor: 'pointer',
-                  color: 'rgb(55, 131, 194)',
-                  border: 'dashed',
-                  borderColor: 'rgb(55, 131, 194)',
-                }}
+                className='dropzone'  // In UI/dropzone
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>

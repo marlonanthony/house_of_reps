@@ -11,12 +11,12 @@ const InputGroup = ({
   onChange
 }) => {
   return (
-    <div style={{display: 'flex', justifyContent: 'space-around'}}>
+    <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: '10px'}}>
       <span>
         <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: 'rgb(55, 131, 194)' }} />
       </span>
       <input 
-        className={classnames('social-links', {
+        className={classnames('social-links', { // social links is in CreateProfile.css
           'is-invalid': error
         })}
         placeholder={ placeholder }

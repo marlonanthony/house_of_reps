@@ -9,6 +9,8 @@ import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 import { registerUser } from '../../actions/authActions'
 import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
 import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
+import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 import isEmpty from '../../validation/is-empty'
@@ -263,23 +265,23 @@ class EditProfile extends Component {
       <div className='edit-profile'>
         <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#aaa' }}>Edit Profile</h1>
-        <div className='row'>
-          <div className='edit-profile-dropzone'>
+        <div className='djpools_input_wrapper  '>
+          <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
                 style={{ 
+                  maxWidth: '50%',
                   borderRadius: '2px',
                   fontSize: '15px',
                   textAlign: 'center',
-                  width: '50%', 
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
                   color: '#aaa',
+                  // color: 'rgb(55, 131, 194)',
                   border: 'dashed',
-                  borderColor: '#ccc',
-                  // marginLeft: '-70px',
-                  background: 'rgba(0,0,0,0.4)'
+                  borderColor: '#aaa',
+                  // borderColor: 'rgb(55, 131, 194)',
                 }}
                 multiple={false}
                 accept='image/*'
@@ -297,7 +299,7 @@ class EditProfile extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='A man has no name'
               name='stageName'
               value={ this.state.stageName }
@@ -305,7 +307,7 @@ class EditProfile extends Component {
               error={ errors.stageName }
               info="What's your stage name?"
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Company'
               name='company'
               value={ this.state.company } 
@@ -313,7 +315,7 @@ class EditProfile extends Component {
               error={ errors.company } 
               info="Company you're with."
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Website'
               name='website'
               value={ this.state.website } 
@@ -321,13 +323,20 @@ class EditProfile extends Component {
               error={ errors.website } 
               info='Website domain'
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Location'
               name='location'
               value={ this.state.location } 
               onChange={ this.onChange } 
               error={ errors.location } 
               info='Where are you from?'
+            />
+            <RegisterTextAreaFieldGroup 
+              placeholder='Short Bio'
+              name='bio'
+              value={ this.state.bio } 
+              onChange={ this.onChange } 
+              error={ errors.bio } 
             />
             <SelectListGroup 
               name='style'
@@ -337,13 +346,13 @@ class EditProfile extends Component {
               options={options}
               info='What style best defines you?'
             />
-            <CreateProfileTextAreaFieldGroup 
+            {/* <CreateProfileTextAreaFieldGroup 
               placeholder='Short Bio'
               name='bio'
               value={ this.state.bio } 
               onChange={ this.onChange } 
               error={ errors.bio } 
-            />
+            /> */}
             <div className='add-social-links-button'>
               <button type='button' onClick={() => {
                 this.setState(prevState => ({
@@ -352,7 +361,7 @@ class EditProfile extends Component {
               }} id='create-profile-social-btn'>Add Social Network Links</button>
             </div>
             { socialInputs }
-            <input type="submit" value="Submit" id='create-profile-submit-button' />
+            <input type="submit" value="Submit" id='add-djpools-submit-button' />
           </form>
         </div>
       </div>

@@ -79,9 +79,9 @@ class AddPerk extends Component {
                   height: 'auto', 
                   padding: '10px',
                   cursor: 'pointer',
-                  color: 'rgb(55, 131, 194)',
+                  color: '#aaa',
                   border: 'dashed',
-                  borderColor: 'rgb(55, 131, 194)',
+                  borderColor: '#aaa',
                 }}
                 multiple={false}
                 accept='image/*'

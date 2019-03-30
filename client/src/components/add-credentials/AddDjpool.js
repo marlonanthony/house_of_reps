@@ -70,18 +70,7 @@ class AddDjpool extends Component {
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
-                style={{ 
-                  maxWidth: '50%',
-                  borderRadius: '2px',
-                  fontSize: '15px',
-                  textAlign: 'center',
-                  height: 'auto', 
-                  padding: '10px',
-                  cursor: 'pointer',
-                  color: 'rgb(55, 131, 194)',
-                  border: 'dashed',
-                  borderColor: 'rgb(55, 131, 194)',
-                }}
+                className='dropzone' // In UI/dropzone
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>

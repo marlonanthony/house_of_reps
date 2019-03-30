@@ -14,16 +14,16 @@
 }
 
 .select-list {
-  width: 90%;
+  width: 100%;
   font-size: 16px;
   padding: 5px;
   border: none;
-  background: rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   outline: none;
+  background: rgba(0,0,0,0.5);
   text-decoration: none;
   margin: 10px;
-  height: 30px;
+  height: 40px;
   color: #bdc7c1;
 }
 
@@ -31,11 +31,13 @@
   font-size: 17px;
   border: none;
   margin-right: 10px;
-  padding: 5px;
+  padding: 10px;
+  /* height: 40px; */
   margin: 10px;
   outline: none;
   background: rgba(0, 0, 0, 0.5);
-  color: #ccc;
+  color: #aaa;
+  /* color: rgb(55, 131, 194); */
 }
 
 #create-profile-social-btn:hover {
@@ -43,7 +45,7 @@
 }
 
 #social-inputs {
-  width: 90%;
+  width: 100%;
   padding: 5px;
   outline: none;
   text-decoration: none;
@@ -52,13 +54,13 @@
 }
 
 .social-links {
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   /* width: 50vw; */
   width: 100%;
   outline: none;
   color: #aaa;
-  background: rgba(0,0,0,0.01);
+  background: rgba(0,0,0,1);
   padding: 5px;
   height: 30px;
 }
@@ -84,7 +86,7 @@
 
 @media (min-width: 1050px) {
   .select-list {
-    width: 51%;
+    width: 100%;
     font-size: 16px;
     padding: 5px;
     border: none;
@@ -92,10 +94,10 @@
     border-radius: 2px;
     outline: none;
     text-decoration: none;
-    margin: 10px;
-    height: 30px;
+    /* margin: 10px; */
+    height: 40px;
   }
   #social-inputs {
-    width: 50%;
+    width: 100%;
   }
 }
