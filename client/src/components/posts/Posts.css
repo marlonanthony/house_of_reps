@@ -338,7 +338,7 @@
     margin-top: -30px;
   }
   .post-feed-profile:hover {
-    background: rgba(0,0,0,0.8);
+    /* background: rgba(0,0,0,0.8); */
   }
 
   .test {

@@ -4,7 +4,7 @@ import PostsProfilePopup from '../../../UI/popup_menu/PostsProfilePopup'
 
 export default function PostFeedProfileContent(props) {
   return ( props.profile && 
-    <div className='postscontainertest'>
+    <div>
       <div style={{ padding: '10px', textAlign: 'center' }}>
         <Link style={{textDecoration: 'none'}} to={`/profile/${props.profile.handle}`}>
           <img id='posts-profile-img' src={ props.user.avatar } alt={ props.user.name } />
@@ -23,10 +23,11 @@ export default function PostFeedProfileContent(props) {
             padding: 10, 
             margin: '0px 2px',
             flex: 1,
-            background: 'rgba(0,0,0,0.8)', 
-            color: 'rgb(55, 131, 255)', 
+            background: 'rgba(0,0,0,1)', 
+            color: 'rgb(55, 131, 194)', 
             cursor: 'pointer',
-            border: '0.3px solid rgba(55,131,194, 0.3)',
+            border: '0.3px solid rgba(55,131,194, 0.1)',
+            // border: 'none',
             outline: 'none'}}>
               Liked Post
             </button>)
