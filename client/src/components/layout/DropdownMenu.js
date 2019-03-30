@@ -11,19 +11,18 @@ import './DropdownMenu.css'
 
 class DropdownMenu extends Component {
 
-  state = {
-    displayMenu: false
-  }
+  state = { displayMenu: false }
 
   componentDidMount() {
     this.props.getCurrentProfile() 
-    document.addEventListener('click', this.onToggleOutsideClick, true) 
-  }
-  componentWillUnmount() {
-    document.removeEventListener('click', this.onToggleOutsideClick, true) 
+    document.addEventListener('click', this.onOutsideClick, true) 
   }
 
-  onToggleOutsideClick = (e) => {
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onOutsideClick, true) 
+  }
+
+  onOutsideClick = (e) => {
     const domNode = ReactDOM.findDOMNode(this) 
     if(!domNode || !domNode.contains(e.target)) {
       this.setState({ displayMenu: false })

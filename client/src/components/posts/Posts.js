@@ -178,7 +178,7 @@ class Posts extends Component {
       dataLength={ posts.length}
       next={this.fetchMore}
       hasMore={true}
-      loader={<h4 style={{textAlign: 'center', color: 'cyan'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
+      loader={<h4 style={{textAlign: 'center', color: 'rgb(55,131,194)'}}>THESE ARE NOT THE POSTS YOU'RE LOOKING FOR</h4>}>
         <PostFeed 
           showPreview={ showsPreview } 
           posts={ showMatches ? arr : posts } 
