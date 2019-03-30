@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import ReactDOM from 'react-dom' 
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
@@ -31,6 +32,22 @@ class PostItem extends Component {
     showModal: false,
     showPopup: false,
     showLikesPopup: false
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.onToggleOutsideClick, true) 
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onToggleOutsideClick, true) 
+  }
+
+  // Also using removePopup method below to remove likespopup when clicking inside component but away from popup
+  onToggleOutsideClick = (e) => {
+    const domNode = ReactDOM.findDOMNode(this) 
+    if(!domNode || !domNode.contains(e.target)) {
+      this.setState({ showLikesPopup: false })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

@@ -17,19 +17,19 @@ class DropdownMenu extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile() 
-    document.addEventListener('click', this.onToggleClick, true) 
+    document.addEventListener('click', this.onToggleOutsideClick, true) 
   }
   componentWillUnmount() {
-    document.removeEventListener('click', this.onToggleClick, true) 
+    document.removeEventListener('click', this.onToggleOutsideClick, true) 
   }
 
-  onToggleClick = (e) => {
+  onToggleOutsideClick = (e) => {
     const domNode = ReactDOM.findDOMNode(this) 
     if(!domNode || !domNode.contains(e.target)) {
       this.setState({ displayMenu: false })
     }
-    
   }
+  
   toggleClick = () => {
     this.setState(prevState => ({ displayMenu: !prevState.displayMenu }))
   }
