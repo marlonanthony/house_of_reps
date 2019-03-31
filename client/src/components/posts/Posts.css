@@ -8,6 +8,7 @@
   /* background: rgb(7, 10, 17); */
   /* background: #151515; */
   /* background: #071020; */
+  overflow-x: hidden;
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
