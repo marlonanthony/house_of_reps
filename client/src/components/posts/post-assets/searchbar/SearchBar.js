@@ -30,7 +30,7 @@ class SearchBar extends Component {
         height: '40px'
         }}>
         <input  
-          style={{ width: '100%', background: 'none', border: 'none', fontSize: '13px', color: 'rgb(55,131,194)' }}
+          className='searchbar_input'
           placeholder=' search reps'
           name='matches'
           value={ this.state.matches }

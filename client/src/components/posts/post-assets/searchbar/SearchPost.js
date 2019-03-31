@@ -7,7 +7,7 @@ const SearchPost = props  => (
       name='matches'
       value={ props.matches }
       onChange={ props.onChange }
-      className='searchbarinput'
+      className='searchbarpostinput'
     />
     { props.showMatches
       ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={props.onSearchPostClick} title='toggle filter'>

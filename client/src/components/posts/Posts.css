@@ -4,7 +4,7 @@
   /* background: rgb(4,6,8); */
   /* background: rgb(10, 19, 29); */
   /* background: rgb(6, 9, 14); */
-  /* background: #282c35;  /*Dan Abramov   
+  /* background: #282c35; Dan Abramov  */
   /* background: rgb(7, 10, 17); */
   /* background: #151515; */
   /* background: #071020; */
@@ -30,14 +30,25 @@
 
 .searchbar {
   grid-area: searchbar;
-  right: 3.5vw;
   background: rgba(0,0,0,0.5);
+  height: 40px;
   border-radius: 3px;
+}
+
+.searchbar_input {
+  width: 100%;
+  height: 40px;
+  font-size: 13px;
+  background: none;
+  border: none;
+  color: rgb(55, 131, 194);
+
+  /* style={{ width: '100%', background: 'none', border: 'none', fontSize: '13px', color: 'rgb(55,131,194)' }} */
 }
 
 .searchbar_items {
   padding: 10px; 
-  width: 220px;
+  width: 230px;
   background: rgba(0,0,0,0.5);
 }
 .searchbar_items:hover {
@@ -54,18 +65,20 @@
   grid-area: searchbarpost;
   display: flex;
   justify-content: space-between;
-  margin-right: 20px;
+
+  height: 40px;
+  border-radius: 4px;
 } 
-.searchbarinput {
+.searchbarpostinput {
   flex: 8; 
-  background: rgba(0,0,0,0.5); 
+  background: rgba(0,0,0,0.5);
   border: none; 
-  margin-left: 3.5vw;
-  color: #ccc;
+  color: rgba(200,200,200,0.6);
   font-size: 13px;
+  padding-left: 5px;
   outline: none;
 }
-.searchbarinput::placeholder {
+.searchbarpostinput::placeholder {
   font-size: 13px;
   padding-left: 5px;
 }
@@ -77,8 +90,9 @@
   height: 40; 
   background: rgba(0,0,0,0.5);
   color: rgb(55, 131, 194);
-  padding: 10; 
+  padding: 10px; 
   border: none;
+  outline: none; 
 }
 .searchbarpostbtn:hover {
   background: rgba(0,0,0,1);
@@ -265,54 +279,10 @@
   .searchbar {
     display: flex;
     justify-content: space-between;
-    right: 0;
-    width: 250px;
+    width: 100%;
   }
-  .searchbar_items {
-    padding: 10px; 
-    width: 230px; 
-    /* background: rgba(245, 245, 245, 0.8); */
-    /* background: rgba(0,0,0,0.5); */
-  }
-  .searchbar_items:hover {
-    background: black;
-    cursor: pointer;
-  }
-  .searchbar_links {
-    color: rgb(55, 131, 194);
-    text-decoration: none;
-    list-style: none;
-  }
-  .searchbarpost {
-    grid-area: searchbarpost;
-    display: flex;
-    justify-content: space-between;
-    width: 250px;
-    height: 40px;
-    margin-right: 0;
-    background: rgba(0,0,0,0.5);
-    border-radius: 4px;
-  }
-  .searchbarpost:hover {
-    background: rgba(0,0,0,0.9);
-  }
-
-  .searchbarinput {
-    margin-left: 0;
-    flex: 7;
-    background: none;
-    outline: none;
-  }
-
-  .searchbarpostbtn {
-    cursor: pointer;  
-    flex: 1; 
-    outline: none; 
-    height: 40; 
-    background: rgba(0,0,0,0.3); 
-    color: rgb(55, 131, 194);
-    padding: 10; 
-  }
+  .searchbar_items { width: 230px; }
+  .searchbarpost { width: 250px; }
 
   .post-feed-profile {
     display: flex;
@@ -323,9 +293,6 @@
     width: 250px;
     height: 250px;
     margin-top: -30px;
-  }
-  .post-feed-profile:hover {
-    /* background: rgba(0,0,0,0.8); */
   }
 
   .test {
