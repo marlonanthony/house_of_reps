@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
-import SelectListGroup from '../common/SelectListGroup'
-import InputGroup from '../common/InputGroup'
+import SelectList from '../common/SelectList'
+import SocialLinksInput from '../common/inputs/SocialLinksInput'
 import { createProfile } from '../../actions/profileActions'
 import './CreateProfile.css'
 
@@ -103,7 +103,7 @@ class CreateProfile extends Component {
     if(displaySocialInputs) {
       socialInputs = (
         <div id='social-inputs'>
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Twitter Profile URL'
             name='twitter'
             icon='fab fa-twitter'
@@ -111,7 +111,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.twitter } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Facebook Profile URL'
             name='facebook'
             icon='fab fa-facebook'
@@ -119,7 +119,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.facebook } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Linkedin Profile URL'
             name='linkedin'
             icon='fab fa-linkedin'
@@ -127,7 +127,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.linkedin } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Instagram Profile URL'
             name='instagram'
             icon='fab fa-instagram'
@@ -135,7 +135,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.instagram } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='SoundCloud Profile URL'
             name='soundcloud'
             icon='fab fa-soundcloud'
@@ -143,7 +143,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.soundcloud } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Spotify Profile URL'
             name='spotify'
             icon='fab fa-spotify'
@@ -151,7 +151,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.spotify } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Mixcloud Profile URL'
             name='mixcloud'
             icon='fab fa-mixcloud'
@@ -159,7 +159,7 @@ class CreateProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.mixcloud } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='YouTube Profile URL'
             name='youtube'
             icon='fab fa-youtube'
@@ -215,7 +215,7 @@ class CreateProfile extends Component {
               error={ errors.bio } 
               info='Tell us a little bit about yourself' 
             />
-            <SelectListGroup 
+            <SelectList 
               name='style'
               value={ this.state.style }
               onChange={ this.onChange }

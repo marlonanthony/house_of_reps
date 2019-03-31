@@ -7,7 +7,7 @@ import JSEMOJI from 'emoji-js'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
+import TextAreaForm from '../common/textarea/TextAreaForm' 
 import { addPost } from '../../actions/postActions' 
 import LinkPreview from './LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
@@ -174,7 +174,7 @@ class PostForm extends Component {
           {/* <Embed /> */}
           <div id='post-form-textareafieldgroup'>
             <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
-              <TextAreaFieldGroup
+              <TextAreaForm
                 className='text-area'
                 placeholder="What's the discussion?"
                 name='text'

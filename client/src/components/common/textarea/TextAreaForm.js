@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
 
-class TextAreaFieldGroup extends Component {
+class TextAreaForm extends Component {
 
 
 
@@ -28,7 +28,7 @@ class TextAreaFieldGroup extends Component {
   }
 }
 
-TextAreaFieldGroup.propTypes = {
+TextAreaForm.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -37,4 +37,4 @@ TextAreaFieldGroup.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
-export default TextAreaFieldGroup
+export default TextAreaForm

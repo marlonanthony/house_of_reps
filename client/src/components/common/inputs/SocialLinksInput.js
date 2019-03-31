@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
 
-const InputGroup = ({
+const SocialLinksInput = ({
   name, 
   placeholder,
   value,
@@ -29,7 +29,7 @@ const InputGroup = ({
   )
 }
 
-InputGroup.propTypes = {
+SocialLinksInput.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -39,8 +39,8 @@ InputGroup.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
-InputGroup.defaultProps = {
+SocialLinksInput.defaultProps = {
   type: 'text' 
 }
 
-export default InputGroup
+export default SocialLinksInput

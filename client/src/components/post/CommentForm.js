@@ -7,7 +7,7 @@ import request from 'superagent'
 import EmojiPicker from 'emoji-picker-react' 
 import JSEMOJI from 'emoji-js'
 
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup' 
+import TextAreaForm from '../common/textarea/TextAreaForm' 
 import { addComment } from '../../actions/postActions'
 import LinkPreview from '../posts/LinkPreview'
 import EmojiModal from '../UI/modal/EmojiModal'
@@ -147,7 +147,7 @@ class CommentForm extends Component {
           }
           <div onClick={this.showButtonsHandler}>
             <form onSubmit={this.onSubmit}>
-              <TextAreaFieldGroup 
+              <TextAreaForm 
                 className="" 
                 placeholder="Reply to post" 
                 name='text'

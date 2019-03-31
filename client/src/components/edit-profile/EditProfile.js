@@ -9,8 +9,8 @@ import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 import { registerUser } from '../../actions/authActions'
 import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
-import SelectListGroup from '../common/SelectListGroup'
-import InputGroup from '../common/InputGroup'
+import SelectList from '../common/SelectList'
+import SocialLinksInput from '../common/inputs/SocialLinksInput'
 import isEmpty from '../../validation/is-empty'
 import './EditProfile.css'
 
@@ -192,7 +192,7 @@ class EditProfile extends Component {
     if(displaySocialInputs) {
       socialInputs = (
         <div id='social-inputs'>
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Twitter Profile URL'
             name='twitter'
             icon='fab fa-twitter'
@@ -200,7 +200,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.twitter } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Facebook Profile URL'
             name='facebook'
             icon='fab fa-facebook'
@@ -208,7 +208,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.facebook } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Linkedin Profile URL'
             name='linkedin'
             icon='fab fa-linkedin'
@@ -216,7 +216,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.linkedin } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Instagram Profile URL'
             name='instagram'
             icon='fab fa-instagram'
@@ -224,7 +224,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.instagram } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='SoundCloud Profile URL'
             name='soundcloud'
             icon='fab fa-soundcloud'
@@ -232,7 +232,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.soundcloud } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Spotify Profile URL'
             name='spotify'
             icon='fab fa-spotify'
@@ -240,7 +240,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.spotify } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='Mixcloud Profile URL'
             name='mixcloud'
             icon='fab fa-mixcloud'
@@ -248,7 +248,7 @@ class EditProfile extends Component {
             onChange={ this.onChange } 
             error={ errors.mixcloud } 
           />
-          <InputGroup 
+          <SocialLinksInput 
             placeholder='YouTube Profile URL'
             name='youtube'
             icon='fab fa-youtube'
@@ -323,7 +323,7 @@ class EditProfile extends Component {
               onChange={ this.onChange } 
               error={ errors.bio } 
             />
-            <SelectListGroup 
+            <SelectList 
               name='style'
               value={ this.state.style }
               onChange={ this.onChange }
