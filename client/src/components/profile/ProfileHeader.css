@@ -7,7 +7,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;
-  font-family: Ubuntu, sans-serif;
   grid-template-areas: 
     'headeritems headeritems'
     'profilecredsdiv profilecredsdiv' 
@@ -50,15 +49,14 @@
 }
 
 #profile-name {
-  /* color: #7e8889; */
-  color: #bdc7c1;
+  color: #7e8889;
+  /* color: #bdc7c1; */
 }
 
 #profile-handle {
  margin-top: -10px;
  font-size: 13px;
  color: rgb(55, 131, 194);
- font-family: fantasy;
 }
 
 #profile-bio {
@@ -66,7 +64,6 @@
   font-size: 14px;
   max-width: 200px;
   color: rgba(200,200,200,.6);
-  font-family: sans-serif;
 }
 
 #profile-location {
@@ -157,7 +154,6 @@
     justify-items: center;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto 1fr;
-    font-family: Ubuntu, sans-serif;
     grid-template-areas: 
       'avatar profilefeed profilecredsdiv'
       'headeritems profilefeed profilecredsdiv';

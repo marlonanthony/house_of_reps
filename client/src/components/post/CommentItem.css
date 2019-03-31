@@ -47,7 +47,7 @@
 
 #nested_comments_text {
   padding: 5px;
-  color: rgb(173, 187, 199);
+  color: rgba(200,200,200,.6);
   font-size: 13px;
   margin-left: 30px;
 }
@@ -99,14 +99,14 @@
 }
 
 #comment-feed-text {
-  /* color: #bdc7c1; */
-  color: rgb(173, 187, 199);
   font-size: 15px;
   grid-area: post_content;
 }
 
 #comment-modal-text {
-  color: #ccc;
+  /* color: #ccc; */
+  /* color: rgba(200,200,200,.6); */
+  color: black;
 }
 
 #wrap-comment-link:hover {
