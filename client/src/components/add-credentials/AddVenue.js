@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import request from 'superagent' 
 
 import { addVenue } from '../../actions/profileActions'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
-import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
+import Input from '../common/inputs/Input'
+import TextArea from '../common/textarea/TextArea'
 import './AddVenue.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -85,18 +85,17 @@ class AddVenue extends Component {
     return (
       <div className='add-venue'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Event</h1>
-        <p style={{ textAlign: 'center', color: '#777' }}>Add your upcoming events</p>
+        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Highlight</h1>
         <div className='djpools_input_wrapper'>
           <form onSubmit={ this.onSubmit }>
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Title'
               name='title'
               value={ this.state.title }
               onChange={ this.onChange }
               error={ errors.title }
             />
-            <RegisterTextFieldGroup 
+            <Input 
               name='video'
               type='text'
               value={ this.state.video }
@@ -105,7 +104,7 @@ class AddVenue extends Component {
               error={ errors.video }
               placeholder='Paste embed code'
             />
-            <RegisterTextAreaFieldGroup 
+            <TextArea 
               placeholder='Quick description'
               name='description'
               value={ this.state.description }

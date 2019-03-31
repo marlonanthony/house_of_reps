@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment'
-// import background from '../../img/postbackground.jpg'
 
 class ProfileHighlights extends Component {
   
@@ -14,7 +13,6 @@ class ProfileHighlights extends Component {
       highlights: this.props.profile.venues,
       highlight: this.props.profile.venues[0]
     })
-    console.log(this.props.profile.venues)
   }
 
   nextHighlight = (i) => {

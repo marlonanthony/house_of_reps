@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 import { addStore } from '../../actions/profileActions'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import Input from '../common/inputs/Input'
 import './AddCertifiedStore.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -87,7 +87,7 @@ class AddCertifiedStore extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <RegisterTextFieldGroup 
+            <Input 
                 name='url'
                 type='text'
                 value={ this.state.url }
@@ -95,7 +95,7 @@ class AddCertifiedStore extends Component {
                 error={ errors.url }
                 placeholder='URL'
               />
-            <RegisterTextFieldGroup 
+            <Input 
               name='image'
               type='text'
               value={ this.state.image }

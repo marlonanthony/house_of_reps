@@ -1,13 +1,12 @@
 import React from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
-import './RegisterTextFieldGroup.css'
+import './Input.css'
 
-const TextFieldGroup = ({
+const Input = ({
   name, 
   placeholder,
   value,
-  label,
   error,
   info,
   type,
@@ -33,7 +32,7 @@ const TextFieldGroup = ({
   )
 }
 
-TextFieldGroup.propTypes = {
+Input.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -44,8 +43,8 @@ TextFieldGroup.propTypes = {
   disabled: PropTypes.string,
 }
 
-TextFieldGroup.defaultProps = {
+Input.defaultProps = {
   type: 'text' 
 }
 
-export default TextFieldGroup
+export default Input

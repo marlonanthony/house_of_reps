@@ -7,8 +7,8 @@ import request from 'superagent'
 
 import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 import { registerUser } from '../../actions/authActions'
-import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import Input from '../common/inputs/Input'
+import TextArea from '../common/textarea/TextArea'
 import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 import isEmpty from '../../validation/is-empty'
@@ -284,7 +284,7 @@ class EditProfile extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='A man has no name'
               name='stageName'
               value={ this.state.stageName }
@@ -292,7 +292,7 @@ class EditProfile extends Component {
               error={ errors.stageName }
               info="What's your stage name?"
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Company'
               name='company'
               value={ this.state.company } 
@@ -300,7 +300,7 @@ class EditProfile extends Component {
               error={ errors.company } 
               info="Company you're with."
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Website'
               name='website'
               value={ this.state.website } 
@@ -308,7 +308,7 @@ class EditProfile extends Component {
               error={ errors.website } 
               info='Website domain'
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Location'
               name='location'
               value={ this.state.location } 
@@ -316,7 +316,7 @@ class EditProfile extends Component {
               error={ errors.location } 
               info='Where are you from?'
             />
-            <RegisterTextAreaFieldGroup 
+            <TextArea  
               placeholder='Short Bio'
               name='bio'
               value={ this.state.bio } 

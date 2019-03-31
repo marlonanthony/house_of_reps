@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 import { addStore, addPerk } from '../../actions/profileActions'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import Input from '../common/inputs/Input'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
@@ -89,7 +89,7 @@ class AddPerk extends Component {
             </div>
           </div>
           <form onSubmit={ this.onSubmit }>
-            <RegisterTextFieldGroup 
+            <Input 
               name='url'
               type='text'
               value={ this.state.url }
@@ -97,7 +97,7 @@ class AddPerk extends Component {
               error={ errors.url }
               placeholder='URL'
             />
-            <RegisterTextFieldGroup 
+            <Input 
               name='image'
               type='text'
               value={ this.state.image }
@@ -105,7 +105,7 @@ class AddPerk extends Component {
               error={ errors.image }
               placeholder='image'
             />
-            <RegisterTextFieldGroup 
+            <Input 
               name='description'
               type='text'
               value={ this.state.description }

@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone'
 import request from 'superagent' 
 
 import { registerUser } from '../../actions/authActions'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import Input from '../common/inputs/Input'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -27,7 +27,7 @@ class Register extends Component {
 
   componentDidMount() {
     if(this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard') // Change this to '/profile'
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -106,7 +106,7 @@ class Register extends Component {
             </div>
           </div>
           <form id='register-form' onSubmit={ this.onSubmitHandler }>
-            <RegisterTextFieldGroup
+            <Input
               type="text"
               name='name'
               value={ this.state.name }
@@ -114,7 +114,7 @@ class Register extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.name }
             />
-            <RegisterTextFieldGroup
+            <Input
               type="email"
               name='email'
               placeholder='Email'
@@ -122,7 +122,7 @@ class Register extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.email }
             />
-            <RegisterTextFieldGroup
+            <Input
               type="handle"
               name='handle'
               placeholder='handle'
@@ -130,7 +130,7 @@ class Register extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.handle }
             />
-            <RegisterTextFieldGroup
+            <Input
               type="password"
               name='password'
               placeholder='Password'
@@ -138,7 +138,7 @@ class Register extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.password }
             />
-            <RegisterTextFieldGroup
+            <Input
               type="password"
               name='password2'
               placeholder='Confirm Password'

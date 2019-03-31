@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
-import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
+import Input from '../common/inputs/Input'
+import TextArea from '../common/textarea/TextArea'
 import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 import { createProfile } from '../../actions/profileActions'
@@ -175,7 +175,7 @@ class CreateProfile extends Component {
         <h1 style={{ textAlign: 'center', paddingTop: '60px', color: '#aaa' }}>Create Your Profile</h1>
         <div className='createprofilecontainer'>
           <form onSubmit={ this.onSubmit }>
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='A man has no name'
               name='stageName'
               value={ this.state.stageName }
@@ -183,7 +183,7 @@ class CreateProfile extends Component {
               error={ errors.stageName }
               info="What's your stage name?"
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Company'
               name='company'
               value={ this.state.company } 
@@ -191,7 +191,7 @@ class CreateProfile extends Component {
               error={ errors.company } 
               info="Company you're with."
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Website'
               name='website'
               value={ this.state.website } 
@@ -199,7 +199,7 @@ class CreateProfile extends Component {
               error={ errors.website } 
               info='Website domain'
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Location'
               name='location'
               value={ this.state.location } 
@@ -207,7 +207,7 @@ class CreateProfile extends Component {
               error={ errors.location } 
               info='Where are you from?'
             />
-            <RegisterTextAreaFieldGroup 
+            <TextArea 
               placeholder='Short Bio'
               name='bio'
               value={ this.state.bio } 

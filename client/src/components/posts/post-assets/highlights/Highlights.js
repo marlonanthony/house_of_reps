@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
-import './Highlights.css'
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
+import './Highlights.css'
 
 class Highlights extends Component {
 

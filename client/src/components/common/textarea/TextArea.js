@@ -1,9 +1,9 @@
 import React from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
-import './RegisterTextAreaFieldGroup.css'
+import './TextArea.css'
 
-const RegisterTextAreaFieldGroup = ({
+const TextArea = ({
   name, 
   placeholder,
   value,
@@ -35,7 +35,7 @@ const RegisterTextAreaFieldGroup = ({
   )
 }
 
-RegisterTextAreaFieldGroup.propTypes = {
+TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -45,8 +45,8 @@ RegisterTextAreaFieldGroup.propTypes = {
   disabled: PropTypes.string,
 }
 
-RegisterTextAreaFieldGroup.defaultProps = {
+TextArea.defaultProps = {
   type: 'text' 
 }
 
-export default RegisterTextAreaFieldGroup
+export default TextArea

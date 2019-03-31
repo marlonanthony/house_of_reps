@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../actions/authActions'
-import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import Input from '../common/inputs/Input'
 import './Login.css'
 
 class Login extends Component {
@@ -53,7 +53,7 @@ class Login extends Component {
         <p style={{ textAlign: 'center' }}>Sign in to your account</p>
         <div id='login-content'>
           <form onSubmit={ this.onSubmitHandler }>
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Email Address'
               name='email'
               type='email'
@@ -61,7 +61,7 @@ class Login extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.email }
             />
-            <RegisterTextFieldGroup 
+            <Input 
               placeholder='Password'
               name='password'
               type="password"
