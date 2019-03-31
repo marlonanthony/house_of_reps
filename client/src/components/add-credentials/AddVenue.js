@@ -7,7 +7,6 @@ import request from 'superagent'
 import { addVenue } from '../../actions/profileActions'
 import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
 import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
-import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
 import './AddVenue.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'

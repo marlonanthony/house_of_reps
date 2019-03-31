@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
-import Moment from 'react-moment'
+// import Moment from 'react-moment'
 import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import './Highlights.css'
-// import Spinner from '../../../common/Spinner';
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
 
 class Highlights extends Component {

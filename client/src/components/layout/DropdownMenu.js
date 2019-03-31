@@ -47,14 +47,6 @@ class DropdownMenu extends Component {
     if(!profile) {
       return null
     }
-    // if( profile &&
-    //   pathname === '/create-profile' || 
-    //   pathname === '/login' || 
-    //   pathname === '/register' ||
-    //   pathname.includes('/verify')
-    // ) {
-    //   return null 
-    // }
   
     const authLinks = (
       <div>

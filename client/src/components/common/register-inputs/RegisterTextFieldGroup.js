@@ -27,7 +27,7 @@ const TextFieldGroup = ({
         onChange={onChange}
         disabled={disabled}
       />
-      {info && <small className=''>{info}</small>}
+      {info && <small className='info'>{info}</small>}
       { error && (<div className='error'>{error}</div>)}
     </div>
   )

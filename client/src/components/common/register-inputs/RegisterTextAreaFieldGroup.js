@@ -29,7 +29,7 @@ const RegisterTextAreaFieldGroup = ({
         disabled={disabled}
       />
       <br />
-      {info && <small className=''>{info}</small>}
+      {info && <small className='info'>{info}</small>}
       { error && (<div className='error'>{error}</div>)}
     </div>
   )

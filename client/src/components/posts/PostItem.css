@@ -59,7 +59,8 @@
 }
 
 .post_feed_date {
-  color: #7e8889;
+  /* color: #7e8889; */
+  color: rgba(200,200,200,.6);
   font-size: 13px;
   margin-top: -7px;
 }
@@ -67,7 +68,9 @@
 .post_content {
   grid-area: postcontent;
   padding: 5px;
-  color: #7e8889;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(200,200,200,.6);
+  /* color: #7e8889; */
   text-align: left;
 }
 

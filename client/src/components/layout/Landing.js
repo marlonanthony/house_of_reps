@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions' 
-import TextFieldGroup from '../common/TextFieldGroup'
-import Modal from '.././UI/modal/Modal'
-import Backdrop from '../UI/backdrop/Backdrop'
+// import TextFieldGroup from '../common/TextFieldGroup'
+// import Modal from '.././UI/modal/Modal'
+// import Backdrop from '../UI/backdrop/Backdrop'
 import './Landing.css'
 
 class Landing extends Component {

@@ -64,6 +64,7 @@ class AddPerk extends Component {
   render() {
     const { errors } = this.state 
     return (
+      /*  Set classNames to djpools for lack of repitition  */ 
       <div className='add-djpool'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Perk</h1>

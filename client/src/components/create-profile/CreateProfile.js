@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import CreateProfileTextFieldGroup from '../common/create-profile-inputs/CreateProfileTextFieldGroup'
-import CreateProfileTextAreaFieldGroup from '../common/create-profile-inputs/CreateProfileTextAreaFieldGroup'
+import RegisterTextFieldGroup from '../common/register-inputs/RegisterTextFieldGroup'
+import RegisterTextAreaFieldGroup from '../common/register-inputs/RegisterTextAreaFieldGroup'
 import SelectListGroup from '../common/SelectListGroup'
 import InputGroup from '../common/InputGroup'
 import { createProfile } from '../../actions/profileActions'
@@ -28,7 +28,7 @@ class CreateProfile extends Component {
     spotify: '',
     mixcloud: '',
     youtube: '',
-    errors: {} 
+    errors: {}
   }
 
   componentWillReceiveProps(nextProps) {
@@ -173,10 +173,9 @@ class CreateProfile extends Component {
     return (
       <div className='create-profile'>
         <h1 style={{ textAlign: 'center', paddingTop: '60px', color: '#aaa' }}>Create Your Profile</h1>
-        <p style={{ textAlign: 'center', color: '#888' }}>Let's get some information to make your profile stand out</p>
         <div className='createprofilecontainer'>
           <form onSubmit={ this.onSubmit }>
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='A man has no name'
               name='stageName'
               value={ this.state.stageName }
@@ -184,7 +183,7 @@ class CreateProfile extends Component {
               error={ errors.stageName }
               info="What's your stage name?"
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Company'
               name='company'
               value={ this.state.company } 
@@ -192,7 +191,7 @@ class CreateProfile extends Component {
               error={ errors.company } 
               info="Company you're with."
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Website'
               name='website'
               value={ this.state.website } 
@@ -200,13 +199,21 @@ class CreateProfile extends Component {
               error={ errors.website } 
               info='Website domain'
             />
-            <CreateProfileTextFieldGroup 
+            <RegisterTextFieldGroup 
               placeholder='Location'
               name='location'
               value={ this.state.location } 
               onChange={ this.onChange } 
               error={ errors.location } 
               info='Where are you from?'
+            />
+            <RegisterTextAreaFieldGroup 
+              placeholder='Short Bio'
+              name='bio'
+              value={ this.state.bio } 
+              onChange={ this.onChange } 
+              error={ errors.bio } 
+              info='Tell us a little bit about yourself' 
             />
             <SelectListGroup 
               name='style'
@@ -216,14 +223,6 @@ class CreateProfile extends Component {
               options={ options }
               info='What style best defines you?'
             />
-              <CreateProfileTextAreaFieldGroup 
-                placeholder='Short Bio'
-                name='bio'
-                value={ this.state.bio } 
-                onChange={ this.onChange } 
-                error={ errors.bio } 
-                info='Tell us a little bit about yourself' 
-              />
             <div className='add-social-links-button'>
               <button type='button' onClick={() => {
                 this.setState(prevState => ({

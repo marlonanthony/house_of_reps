@@ -41,7 +41,7 @@ class Posts extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.profile.profile !== prevProps.profile.profile) {
-      this.props.getCurrentProfile() 
+      // this.props.getCurrentProfile() 
     }
   }
 

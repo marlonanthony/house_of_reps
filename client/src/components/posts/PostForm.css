@@ -1,8 +1,9 @@
 .post_form {
-  background: rgba(0,0,0,0.5);
-  width: 92%;
-  margin-left: 3.5%;
-  padding-left: 7px;
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  /* width: 92%; */
+  /* margin-left: 3.5%;
+  padding-left: 7px; */
   border-radius: 5px;
   /* border: 0.1px solid rgba(55, 131, 194, 0.13); */
 }

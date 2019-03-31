@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import InputGroup from '../../../common/InputGroup'
+// import InputGroup from '../../../common/InputGroup'
 
 
 class SearchBar extends Component {

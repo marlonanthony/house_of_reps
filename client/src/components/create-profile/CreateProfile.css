@@ -1,16 +1,10 @@
-.create-profile {
-  /* background-image: url('http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 100vh;
-  overflow: hidden; */
-}
+.create-profile {}
 
 .createprofilecontainer {
   height: auto; 
   width: 100vw; 
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .select-list {
@@ -37,7 +31,6 @@
   outline: none;
   background: rgba(0, 0, 0, 0.5);
   color: #aaa;
-  /* color: rgb(55, 131, 194); */
 }
 
 #create-profile-social-btn:hover {
@@ -85,6 +78,10 @@
 }
 
 @media (min-width: 1050px) {
+  .createprofilecontainer {
+    width: 50%;
+    margin-left: 25%;
+  }
   .select-list {
     width: 100%;
     font-size: 16px;
@@ -94,7 +91,6 @@
     border-radius: 2px;
     outline: none;
     text-decoration: none;
-    /* margin: 10px; */
     height: 40px;
   }
   #social-inputs {
