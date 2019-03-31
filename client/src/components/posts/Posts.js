@@ -195,7 +195,7 @@ class Posts extends Component {
           showMatches={this.state.showMatches} />
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
-        <div className='djpools'>{ djpools }</div>
+        {/* <div className='djpools'>{ djpools }</div> */}
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'><PostForm  showPreview={ showsPreview }/></div>
         <div className='post-feed-post-content'>{ postContent }</div>

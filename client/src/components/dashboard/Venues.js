@@ -13,15 +13,7 @@ class Venues extends Component {
 
   render() {
     const venues = this.props.venues.map(venue => (
-      <div key={venue._id} className='dashboard_venue_items'
-          style={{
-            display: 'flex', 
-            margin: '10px', 
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            maxWidth: '400px',
-            minHeight: '200px',
-            justifyContent: 'space-around', }}>
+      <div key={venue._id} className='dashboard_venue_items'>
         { venue.date ? <p style={{padding: '10px'}}><Moment format='MM/DD/YYYY'>{venue.date}</Moment></p> : null }
         <p style={{padding: '10px'}}>{venue.title}</p>
         <p style={{padding: '10px'}}>{venue.location}</p>
@@ -45,16 +37,10 @@ class Venues extends Component {
     ))
     return (
       <div>
-        <h3 style={{ 
-          textAlign: 'center', 
-          padding: '10px', 
-          color: '#fff', 
-          background: 'rgba(0,0,0,0.5)', 
-          margin: '10px auto', 
-          width: '100px', }} 
-          className=''>Venues
-        </h3>
-        { venues }
+        <h3 className='dashboard_venues_header'>Venues</h3>
+        <div className='dashboard_venues_container'>
+          { venues }
+        </div>
       </div>
     )
   }

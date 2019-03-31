@@ -1,5 +1,4 @@
 #dashboard {
-  color: #aaa;
   padding-top: 80px;
 }
 
@@ -24,7 +23,7 @@
   padding: 10px;
   width: 100px;
   background: rgba(0, 0, 0, 0.4);
-  color: #ccc;
+  color: #aaa;
   border: none;
   outline: none;
   border-radius: 5%;

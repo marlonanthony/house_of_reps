@@ -64,22 +64,22 @@ class Dashboard extends Component {
                 <ProfileActions />
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
                   <Link to="/add-djpool" style={{ padding: '15px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
-                    <i className="fas fa-swimming-pool" /> <span style={{color: '#ccc'}}>Add DJ Pool</span>
+                    <i className="fas fa-swimming-pool" /> <span style={{color: 'rgba(200,200,200,0.6)'}}>Add DJ Pool</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
                   <Link to="/add-store" style={{ padding: '15px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
-                    <i className='fas fa-store' /> <span style={{color: '#ccc'}}>Add Certified Store</span>
+                    <i className='fas fa-store' /> <span style={{color: 'rgba(200,200,200,0.6)'}}>Add Certified Store</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
                   <Link to="/add-perk" style={{ padding: '0px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
-                    <i className='fas fa-gift' /> <span style={{color: '#ccc'}}>Add Perk</span>
+                    <i className='fas fa-gift' /> <span style={{color: 'rgba(200,200,200,0.6)'}}>Add Perk</span>
                   </Link>
                 ) : null }
                 { profile.user._id === "5bad9df3f3dd61183a0fec96" ? (
                   <Link to="/add-brand" style={{ padding: '0px 10px', textDecoration: 'none', color: 'rgb(55, 131, 194' }}>
-                    <i className='far fa-building' /> <span style={{color: '#ccc'}}>Add Brand</span>
+                    <i className='far fa-building' /> <span style={{color: 'rgba(200,200,200,0.6)'}}>Add Brand</span>
                   </Link>
                 ) : null }
               </div>
@@ -88,7 +88,7 @@ class Dashboard extends Component {
             
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '100px', }}>DJ Pools</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', margin: 'auto', width: '100px', }}>DJ Pools</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', }}>
               {profile.djpools.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -106,7 +106,7 @@ class Dashboard extends Component {
 
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '150px',}}>Certified Stores</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', margin: 'auto', width: '150px',}}>Certified Stores</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around',}}>
               {profile.stores.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -124,7 +124,7 @@ class Dashboard extends Component {
 
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '100px',}}>Perks</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', margin: 'auto', width: '100px',}}>Perks</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
               {profile.perks.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -142,7 +142,7 @@ class Dashboard extends Component {
 
             {profile._id === "5bad9e76f3dd61183a0fec97" ? 
             <div style={{padding: '50px 10% 50px 10%'}}>
-              <h3 style={{textAlign: 'center', padding: '10px', color: '#fff', background: 'rgba(0,0,0,0.5)', margin: 'auto', width: '100px',}}>Brands</h3>
+              <h3 style={{textAlign: 'center', padding: '10px', margin: 'auto', width: '100px',}}>Brands</h3>
               <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
               {profile.brands.map(val => (
                 <div key={val._id} style={{padding: '20px'}}>
@@ -162,7 +162,7 @@ class Dashboard extends Component {
               <Venues venues={profile.venues} />
             </div> 
 
-            <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px'}}>
+            <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px', marginBottom: '50px'}}>
               <button 
                 onDoubleClick={ this.onDeleteClick } id="dashboard-delete-btn" title='double-click to delete profile'>
                 Delete My Account
