@@ -13,7 +13,7 @@
 }
 
 .dashboard_venue_items {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 1);
   text-align: center;
   max-width: 400px;
   margin: 10px;
@@ -25,14 +25,14 @@
 }
 
 .dashboard_venue_items:hover {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 
 #venue-delete-btns {
   padding: 10px;
   width: 100px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   color: #ccc;
   border: none;
   outline: none;
@@ -41,7 +41,7 @@
 
 #venue-delete-btns:hover {
   color: rgb(55, 131, 194);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 1);
   cursor: pointer;
 }
 
