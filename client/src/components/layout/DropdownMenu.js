@@ -79,7 +79,7 @@ class DropdownMenu extends Component {
     return (
       <div>
         <div className="dropdown" onClick={this.toggleClick}>
-          <button className="dropdown_hover"><img height='50px' width='50px' src={require('../../img/hors_blue copy.jpg')} /></button>
+          <button className="dropdown_hover"><img style={{width: '100%', height: '100%'}} src={require('../../img/hors_blue copy.jpg')} /></button>
           {/* <button className="dropdown_hover">| | |</button> */}
           { this.state.displayMenu ? (
             <div className='dropdown_menu'>

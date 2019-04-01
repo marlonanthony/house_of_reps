@@ -8,15 +8,17 @@
 
 .dropdown_hover {
   display: inline-block;
-  padding: 10;
+  /* padding: 10; */
   /* background-color: rgba(0, 0, 0, 0.9); */
-  background: none;
+  background: black;
+  /* width: 30%;
+  height: 30%; */
   /* color: #ccc; */
   cursor: pointer; 
   border: none;
   height: 50px;
   width: 50px;
-  font-size: 20px;
+  /* font-size: 20px; */
   /* transform: rotate(90deg);  */
   border-radius: 5%;
   outline: none;
@@ -62,7 +64,6 @@
     display: inline-block;
     z-index: 10;
     top: 20px;
-    right: 50px;
-    /* right: 20px; */
+    right: 20px;
   }
 }
