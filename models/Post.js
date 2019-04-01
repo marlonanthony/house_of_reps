@@ -46,6 +46,9 @@ const PostSchema = new Schema({
       },
       avatar: {
         type: String 
+      },
+      handle: {
+        type: String 
       }
     }
   ],
@@ -78,6 +81,9 @@ const PostSchema = new Schema({
             type: String  
           },
           avatar: {
+            type: String 
+          },
+          handle: {
             type: String 
           }
         }
@@ -112,6 +118,9 @@ const PostSchema = new Schema({
                 type: String 
               },
               avatar: {
+                type: String 
+              },
+              handle: {
                 type: String 
               }
             }

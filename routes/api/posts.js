@@ -157,7 +157,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
     }
 
     // Add user id and name to likes array
-    post.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar }) 
+    post.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, handle: req.user.handle }) 
     post.save().then(post => res.json(post)) 
 
     // Add user id name and notification message to notification array
