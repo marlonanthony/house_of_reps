@@ -53,9 +53,9 @@
 
 @media(max-width: 420px) {
   .dashboard_venue_items {
-    width: 300px;
+    width: 320px;
   }
   .dashboard_iframe {
-    width: 300px;
+    width: 320px;
   }
 }
