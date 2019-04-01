@@ -10,6 +10,7 @@ const Input = ({
   error,
   info,
   type,
+  onPaste,
   onChange,
   disabled
 }) => {
@@ -23,6 +24,7 @@ const Input = ({
         placeholder={placeholder}
         name={name}
         value={value}
+        onPaste={onPaste}
         onChange={onChange}
         disabled={disabled}
       />
@@ -39,7 +41,7 @@ Input.propTypes = {
   info: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  // onChange: PropTypes.func.isRequired,
   disabled: PropTypes.string,
 }
 

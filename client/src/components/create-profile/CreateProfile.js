@@ -181,7 +181,7 @@ class CreateProfile extends Component {
               value={ this.state.stageName }
               onChange={ this.onChange }
               error={ errors.stageName }
-              info="What's your stage name?"
+              info="DJ name?"
             />
             <Input 
               placeholder='Company'
@@ -213,7 +213,7 @@ class CreateProfile extends Component {
               value={ this.state.bio } 
               onChange={ this.onChange } 
               error={ errors.bio } 
-              info='Tell us a little bit about yourself' 
+              info='Say a little bit about yourself' 
             />
             <SelectList 
               name='style'

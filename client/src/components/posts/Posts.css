@@ -43,8 +43,6 @@
   background: none;
   border: none;
   color: rgb(55, 131, 194);
-
-  /* style={{ width: '100%', background: 'none', border: 'none', fontSize: '13px', color: 'rgb(55,131,194)' }} */
 }
 
 .searchbar_items {

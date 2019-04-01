@@ -99,7 +99,6 @@ class AddVenue extends Component {
               name='video'
               type='text'
               value={ this.state.video }
-              // onChange={ this.onChange }
               onPaste={ this.onPaste }
               error={ errors.video }
               placeholder='Paste embed code'

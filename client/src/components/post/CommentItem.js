@@ -151,12 +151,9 @@ class CommentItem extends Component {
       : youtubeUrl = null 
 
     const commentsModal = this.state.showModal ? (
-      <Fragment> 
-        <CommentsModal>
-          <PostModalText postText={comment.text} />
-          <img src={comment.media} alt="uploaded" style={{maxWidth: '100%', maxHeight: '600px'}} />
-        </CommentsModal>
-      </Fragment>
+      <CommentsModal>
+        <img src={comment.media} alt="uploaded" style={{ maxHeight: '70vh', maxWidth: '100%'}} />
+      </CommentsModal>
     ) : null 
 
     if(!this.state.comment) return <div />
