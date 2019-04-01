@@ -127,9 +127,12 @@ class Landing extends Component {
                 <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> 
                 {/* <button onClick={this.showHandler} className='landing_buttons'>Sign In</button>
                 <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> */}
+                <footer className='landing_footer'>
+                  Copyright &copy; 2019 House of Reps
+                </footer>
               </div>
               <footer className='landing_footer'>
-                Copyright &copy; 2018 House of Reps
+                Copyright &copy; 2019 House of Reps
               </footer>
             </div>
           </div>
