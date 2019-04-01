@@ -101,17 +101,20 @@ router.post('/register', (req, res) => {
 router.post('/update/:id', (req, res) => {
   User.findOne({ _id: req.params.id })
   .then(user => {
-    const { email, body, title, subject, recipients, token } = req.body 
-    const emailInfo = {
-      title,
-      subject,
-      body,
-      recipients,
-      token
-    }
+    const handle = req.body.handle
+    user.handle = handle 
+    user.save().then(user => res.json(user)) 
+    // const { email, body, title, subject, recipients, token } = req.body 
+    // const emailInfo = {
+    //   title,
+    //   subject,
+    //   body,
+    //   recipients,
+    //   token
+    // }
     
-    const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
-    mailer.send() 
+    // const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
+    // mailer.send() 
     // await mailer.send() 
     // await user.save()
  

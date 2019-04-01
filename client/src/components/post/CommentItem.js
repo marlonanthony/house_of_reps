@@ -118,6 +118,10 @@ class CommentItem extends Component {
 
   commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
 
+  userNameOrAvatarClickedLikesPopup = handle => {
+    this.props.history.push(`/profile/${handle}`)
+  }
+
   nestedCommentLikesPopupHandler = (nestedId) => { 
     // console.log(nestedId)
     // return this.props.comment.comments.map(nestedComment => {
@@ -216,8 +220,8 @@ class CommentItem extends Component {
                 <div>
                   {comment.likes.length < 1 ? null : comment.likes.map(like => (
                     <div className='likespopupavatarandname' key={like.user}>
-                      <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
-                      <p style={{padding: 10 }}>{like.name}</p>
+                      <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
+                      <p onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{padding: 10 }}>{like.name}</p>
                     </div>
                   ))}
                 </div>
