@@ -9,14 +9,15 @@
 .dropdown_hover {
   display: inline-block;
   padding: 10;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: #ccc;
+  /* background-color: rgba(0, 0, 0, 0.9); */
+  background: none;
+  /* color: #ccc; */
   cursor: pointer; 
   border: none;
   height: 50px;
   width: 50px;
   font-size: 20px;
-  transform: rotate(90deg); 
+  /* transform: rotate(90deg);  */
   border-radius: 5%;
   outline: none;
 }
