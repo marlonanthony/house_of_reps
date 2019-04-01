@@ -69,7 +69,9 @@ class Login extends Component {
               onChange={ this.onChangeHandler }
               error={ errors.password }
             />
-            <div className='login-page-button-container'><input type="submit" id='login-page-button' title='submit' /></div>
+            <div className='login-page-button-container'>
+              <input type="submit" id='login-page-button' title='submit' />
+            </div>
           </form>
         </div>
       </div>
