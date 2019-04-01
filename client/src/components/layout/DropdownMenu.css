@@ -62,6 +62,7 @@
     display: inline-block;
     z-index: 10;
     top: 20px;
-    right: 20px;
+    right: 50px;
+    /* right: 20px; */
   }
 }
