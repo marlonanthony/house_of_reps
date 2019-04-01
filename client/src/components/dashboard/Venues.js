@@ -18,7 +18,7 @@ class Venues extends Component {
         <p style={{padding: '10px'}}>{venue.title}</p>
         <p style={{padding: '10px'}}>{venue.location}</p>
         {venue.video ? 
-          <iframe width="400" height="300" src={venue.video} title={venue.title} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
+          <iframe className='dashboard_iframe' src={venue.video} title={venue.title} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
           : null 
         }
         { venue.image && !venue.video ? 

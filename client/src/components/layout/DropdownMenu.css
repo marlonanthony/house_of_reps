@@ -3,7 +3,7 @@
   display: inline-block;
   z-index: 10;
   top: 20px;
-  right: 50px;
+  right: 30px;
 }
 
 .dropdown_hover {
@@ -60,10 +60,6 @@
 
 @media (max-width: 600px){
   .dropdown {
-    position: absolute;
-    display: inline-block;
-    z-index: 10;
-    top: 20px;
     right: 20px;
   }
 }
