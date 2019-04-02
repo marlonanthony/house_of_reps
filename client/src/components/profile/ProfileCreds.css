@@ -46,18 +46,19 @@
 }
 
 #profile-events-h4 {
-  text-align: center;
-  color: rgb(55, 131, 194); 
+  display: none;
+  /* text-align: center;
+  color: rgb(55, 131, 194);  */
 }
 
-#profile-events-h4::before {
+/* #profile-events-h4::before {
   content: '\01F525';
   margin-right: 10px;
 }
 #profile-events-h4::after {
   content: '\01F525';
   margin-left: 10px;
-}
+} */
 
 #venue_profile_image {
   max-height: 200px;
@@ -76,6 +77,12 @@
     margin-top: 2px;
     min-width: 47vw;
     padding: 10px;
+  }
+
+  #profile-events-h4 {
+    text-align: center;
+    color: rgb(55, 131, 194); 
+    display: block;
   }
 
   #profile_creds_video {

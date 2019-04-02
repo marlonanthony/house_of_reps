@@ -67,10 +67,10 @@ class ProfileCreds extends Component {
       </li>
     ))
     return (
-      <div className='profile-creds'>
+      <div className='profile-creds' style={{marginTop: 70}}>
         <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
         {highlightsModal}
-        <h4 id='profile-events-h4'>Highlights</h4>
+        <h4 id='profile-events-h4'>Media</h4>
         <div className='profile-creds-content'>
           { venueItems.length > 0 ? ( 
             venueItems.filter((val, i) => i < 4 ?  (<ul>{venueItems}</ul>) : null)
