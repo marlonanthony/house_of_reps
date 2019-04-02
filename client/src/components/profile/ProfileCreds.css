@@ -47,8 +47,6 @@
 
 #profile-events-h4 {
   display: none;
-  /* text-align: center;
-  color: rgb(55, 131, 194);  */
 }
 
 /* #profile-events-h4::before {
@@ -97,6 +95,9 @@
     max-height: 500px;
     max-width: 100%;
   }
+  .profile_highlights_toggle_modal {
+    display: none;
+  }
 }
 
 @media(max-width: 780px) {
@@ -116,6 +117,9 @@
   }
   #profile_creds_video {
     width: 100%;
+  }
+  .profile_highlights_toggle_modal {
+    display: none;
   }
 }
 

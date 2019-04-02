@@ -37,7 +37,7 @@ class Venues extends Component {
     ))
     return (
       <div>
-        <h3 className='dashboard_venues_header'>Highlights</h3>
+        <h3 className='dashboard_venues_header'>Media</h3>
         <div className='dashboard_venues_container'>
           { venues }
         </div>

@@ -85,7 +85,7 @@ class AddVenue extends Component {
     return (
       <div className='add-venue'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Highlight</h1>
+        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Media</h1>
         <div className='djpools_input_wrapper'>
           <form onSubmit={ this.onSubmit }>
             <Input 
