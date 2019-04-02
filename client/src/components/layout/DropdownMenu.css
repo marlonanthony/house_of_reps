@@ -3,25 +3,27 @@
   display: inline-block;
   z-index: 10;
   top: 20px;
-  right: 30px;
+  right: 20px;
+}
+
+.btn-line { 
+  width: 28px;
+  height: 3px;
+  margin: 0 0 5px 0;
+  background: rgb(55, 131, 194);
 }
 
 .dropdown_hover {
   display: inline-block;
-  /* padding: 10; */
-  /* background-color: rgba(0, 0, 0, 0.9); */
-  background: black;
-  /* width: 30%;
-  height: 30%; */
-  /* color: #ccc; */
+  padding: 10; 
+  color: rgb(55, 131, 194);
+  width: 30%;
+  height: 30%;
   cursor: pointer; 
   border: none;
   height: 50px;
   width: 50px;
-  /* font-size: 20px; */
-  /* transform: rotate(90deg);  */
-  border-radius: 5%;
-  outline: none;
+  font-size: 20px;
 }
 
 .dropdown_hover:hover {
@@ -30,8 +32,8 @@
 
 .dropdown_menu {
   position: absolute;
-  top: 100%;
-  right: 0;
+  top: 40%;
+  right: 40%;
   min-width: 200px;
   background: rgba(245, 245, 245, 0.7);
   color: #323b40;
@@ -60,6 +62,6 @@
 
 @media (max-width: 600px){
   .dropdown {
-    right: 20px;
+    right: 0px;
   }
 }
