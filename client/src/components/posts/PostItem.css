@@ -1,7 +1,7 @@
 .posts_container {
   background: rgba(0,0,0,.5);
   width: 100%;
-  border:none;
+  border: .5px solid rgba(55, 131, 194, 0.1);
   outline: none;
   margin-bottom: 5px;
   display: grid;
