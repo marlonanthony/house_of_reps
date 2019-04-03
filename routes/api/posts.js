@@ -280,7 +280,7 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
         if(comment.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
           return res.status(400).json({ alreadyliked: 'User already liked this comment' })
         }
-        comment.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar })
+        comment.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, handle: req.user.handle })
 
         Profile.findOne({ user: comment.user }).then(profile => {
           const message = `${req.user.name} liked your comment!`

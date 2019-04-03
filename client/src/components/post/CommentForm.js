@@ -73,10 +73,10 @@ class CommentForm extends Component {
     const { user } = this.props.auth 
     const { postId } = this.props 
     this.setState({ showPreview: false })
-
     const newComment = {
       text: this.state.text,
       name: user.name,
+      handle: user.handle,
       avatar: user.avatar,
       image: this.state.data.image,
       title: this.state.data.title,

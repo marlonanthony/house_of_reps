@@ -127,17 +127,12 @@ class CommentItem extends Component {
 
   commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
 
-  // userNameOrAvatarClickedLikesPopup = handle => {
-  //   this.props.history.push(`/profile/${handle}`)
-  // }
-
 
   userNameOrAvatarClickedLikesPopup = handle => {
-    console.log(handle) //Not getting handle
-    // if(this.props.location.pathname.includes('/profile')) {
-    //   this.props.getProfileByHandle(handle)
-    // }
-    // this.props.getProfileByHandle(handle)
+    if(this.props.location.pathname.includes('/profile')) {
+      this.props.getProfileByHandle(handle)
+    }
+    this.props.history.push(`/profile/${handle}`)
   }
 
   nestedCommentLikesPopupHandler = (nestedId) => { 
