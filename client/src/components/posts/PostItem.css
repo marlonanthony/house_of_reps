@@ -5,6 +5,7 @@
   outline: none;
   margin-bottom: 5px;
   display: grid;
+  overflow: hidden;
   border-radius: 1px;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
