@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
-// import Spinner from '../common/Spinner'
 import { getCurrentProfile, clearCurrentProfile } from '../../actions/profileActions'
 
 import './DropdownMenu.css'
@@ -79,12 +78,10 @@ class DropdownMenu extends Component {
     return (
       <div>
         <div className="dropdown" onClick={this.toggleClick}>
-          {/* <button className="dropdown_hover"><img style={{width: '100%', height: '100%'}} src={require('../../img/hors_blue copy.jpg')} /></button> */}
-          {/* <button className="dropdown_hover">| | |</button> */}
           <div className='dropdown_hover'>
-            <div class="btn-line"></div>
-            <div class="btn-line"></div>
-            <div class="btn-line"></div>
+            <div className="btn-line"></div>
+            <div className="btn-line"></div>
+            <div className="btn-line"></div>
           </div>
           { this.state.displayMenu ? (
             <div className='dropdown_menu'>
@@ -100,6 +97,7 @@ class DropdownMenu extends Component {
 DropdownMenu.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 }

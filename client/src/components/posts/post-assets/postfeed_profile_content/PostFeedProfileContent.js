@@ -54,7 +54,7 @@ export default function PostFeedProfileContent(props) {
             border: '0.3px solid rgba(55,131,194, 0.1)',
             borderRadius: '5px',
             outline: 'none'}}>
-            <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Highlight</Link>
+            <Link to='/add-venue' style={{textDecoration: 'none', color: 'rgb(55,131,194)'}}>Add Media</Link>
           </button>
           <button onClick={props.showNotificationsHandler} style={{
             position: 'relative',

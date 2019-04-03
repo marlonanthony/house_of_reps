@@ -6,10 +6,10 @@ import { withRouter } from 'react-router-dom'
 import classnames from 'classnames' 
 import Moment from 'react-moment' 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
+import { getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import PostText from './post-assets/post_comment_text/PostText'
-import PostModalText from './post-assets/post_comment_text/PostModalText'
 import PostFeedPopup from '../UI/popup_menu/PostFeedPopup'
 
 // For comments 
@@ -92,7 +92,10 @@ class PostItem extends Component {
   }
 
   userNameOrAvatarClickedLikesPopup = handle => {
-      this.props.history.push(`/profile/${handle}`)
+    if(this.props.location.pathname.includes('/profile')) {
+      this.props.getProfileByHandle(handle)
+    }
+    this.props.history.push(`/profile/${handle}`)
   }
 
   popupHandler = () => {
@@ -269,4 +272,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(withRouter(PostItem))
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, getProfileByHandle })(withRouter(PostItem))
