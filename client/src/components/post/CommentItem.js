@@ -4,8 +4,17 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import Moment from 'react-moment' 
 import classnames from 'classnames' 
-import { deleteComment, getPosts, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment, unlikeNestedComment } from '../../actions/postActions' 
-import { getProfiles } from '../../actions/profileActions'
+import { 
+  deleteComment, 
+  getPosts, 
+  addCommentLike, 
+  removeCommentLike, 
+  addNestedComment, 
+  deleteNestedComment, 
+  likeNestedComment, 
+  unlikeNestedComment 
+} from '../../actions/postActions' 
+import { getProfiles, getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import CommentText from '../posts/post-assets/post_comment_text/CommentText'
@@ -118,8 +127,17 @@ class CommentItem extends Component {
 
   commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
 
+  // userNameOrAvatarClickedLikesPopup = handle => {
+  //   this.props.history.push(`/profile/${handle}`)
+  // }
+
+
   userNameOrAvatarClickedLikesPopup = handle => {
-    this.props.history.push(`/profile/${handle}`)
+    console.log(handle) //Not getting handle
+    // if(this.props.location.pathname.includes('/profile')) {
+    //   this.props.getProfileByHandle(handle)
+    // }
+    // this.props.getProfileByHandle(handle)
   }
 
   nestedCommentLikesPopupHandler = (nestedId) => { 
@@ -390,6 +408,9 @@ CommentItem.propTypes = {
   likeNestedComment: PropTypes.func.isRequired,
   unlikeNestedComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  getProfiles: PropTypes.func.isRequired,
+  getProfileByHandle: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
 }
@@ -398,4 +419,15 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { deleteComment, getPosts, getProfiles, addCommentLike, removeCommentLike, addNestedComment, deleteNestedComment, likeNestedComment, unlikeNestedComment })(withRouter(CommentItem))
+export default connect(mapStateToProps, { 
+  deleteComment, 
+  getPosts, 
+  getProfiles, 
+  getProfileByHandle,
+  addCommentLike, 
+  removeCommentLike, 
+  addNestedComment, 
+  deleteNestedComment, 
+  likeNestedComment, 
+  unlikeNestedComment 
+})(withRouter(CommentItem))

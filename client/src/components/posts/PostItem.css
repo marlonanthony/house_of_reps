@@ -1,5 +1,6 @@
 .posts_container {
-  background: rgba(0,0,0,.5);
+  /* background: rgba(0,0,0,.5); */
+  background: #080808;
   width: 100%;
   border:none;
   outline: none;
@@ -15,7 +16,8 @@
 }
 
 .posts_container:hover {
-  background: rgba(0,0,0,0.9);
+  /* background: rgba(0,0,0,0.9); */
+  background: #030303;
 }
 
 .post_avatar_and_name {
