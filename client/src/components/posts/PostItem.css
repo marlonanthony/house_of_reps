@@ -1,6 +1,6 @@
 .posts_container {
-  background: rgba(0,0,0,.5);
-  width: 100%;
+  /* background: rgba(0,0,0,.5); */
+  width: 99.8%;
   border: .5px solid rgba(55, 131, 194, 0.1);
   outline: none;
   margin-bottom: 5px;
@@ -16,8 +16,7 @@
 }
 
 .posts_container:hover {
-  background: rgba(0,0,0,0.9);
-  /* background: #060606; */
+  background: rgba(0,0,0,0.5);
 }
 
 .post_avatar_and_name {
@@ -126,6 +125,6 @@
 
 @media (min-width: 900px) {
   .posts_container {
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
   }
 }

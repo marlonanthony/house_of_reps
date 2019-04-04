@@ -21,18 +21,9 @@
     'post-feed-post-content post-feed-post-content' 
 }
 
-.red {
-  color: rgb(133, 58, 49);
-}
-.notification_count {
-  position: absolute;
-  right: 20%;
-  top: 15%;
-}
-
 .searchbar {
   grid-area: searchbar;
-  background: rgba(0,0,0,0.5);
+  /* background: rgba(0,0,0,0.5); */
   height: 40px;
   border-radius: 3px;
   border: .5px solid rgba(55, 131, 194, .1);
@@ -50,7 +41,8 @@
 .searchbar_items {
   padding: 10px; 
   width: 230px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.8);
+  /* background: #060606; */
 }
 .searchbar_items:hover {
   background: black;
@@ -68,7 +60,7 @@
   justify-content: space-between;
   height: 40px;
   border-radius: 4px;
-  border: 0.5px solid rgba(55, 131, 194, .1);;
+  border: 0.5px solid rgba(55, 131, 194, .1);
 } 
 .searchbarpostinput {
   flex: 8; 
@@ -203,16 +195,6 @@
   border: 2px solid rgb(55, 131, 194);
 }
 
-
-#posts-profile-img {
-  width: 65px;
-  height: 65px; 
-  border-radius: 50%;
-  margin-top: 60px;
-  margin-bottom: -20px;
-  border: 2px solid rgb(55, 131, 194);
-}
-
 .post-feed-form {
   grid-area: postform;
   min-width: 100%;
@@ -289,7 +271,7 @@
     display: flex;
     justify-content: center;
     grid-area: profile;
-    background: rgba(0,0,0,0.5);
+    /* background: rgba(0,0,0,0.5); */
     border-radius: 5px;
     width: 250px;
     height: 250px;
