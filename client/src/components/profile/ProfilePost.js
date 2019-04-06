@@ -29,7 +29,6 @@ class ProfilePost extends Component {
   }
 
   render() {
-    console.log(this.state.count, this.state.start)
     const { posts, loading } = this.props.post 
     let postContent 
     if(posts === null || loading) {
