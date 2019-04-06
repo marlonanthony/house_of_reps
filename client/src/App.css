@@ -2,6 +2,7 @@
 * { 
   outline-width: .5px; 
   outline-color: rgba(55,131,194,0.1);
+  
 }
 html {
   overflow: scroll;
@@ -12,9 +13,9 @@ html {
 body { 
   margin: 0px;  
   background: #060606;  
-  
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(200,200,200,.6);
+  
 }
 
 input {
@@ -24,7 +25,7 @@ input {
 
 ::-webkit-scrollbar {
   display: none;
+  
 }
-/* ::-webkit-scrollbar-thumb {} */
-
-/* ::-webkit-scrollbar-track {} */
+::-webkit-scrollbar-thumb { }
+::-webkit-scrollbar-track { }
