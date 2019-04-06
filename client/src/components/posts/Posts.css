@@ -8,7 +8,7 @@
   /* background: rgb(7, 10, 17); */
   /* background: #151515; */
   /* background: #071020; */
-  /* background: black; */
+  background: black;
   /* overflow-x: hidden; */
   padding-top: 100px;
   display: grid;
@@ -125,7 +125,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 900000000000000;
+  z-index: 90;
 }
 
 /* Popup arrow */
