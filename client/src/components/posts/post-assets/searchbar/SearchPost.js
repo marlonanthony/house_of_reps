@@ -10,11 +10,11 @@ const SearchPost = props  => (
       className='searchbarpostinput'
     />
     { props.showMatches
-      ? (<button  style={{background: 'black'}} className='searchbarpostbtn' onClick={props.onSearchPostClick} title='toggle filter'>
-          <i className='fas fa-search' style={{ color: 'rgb(55, 131, 255)' }} />
+      ? (<button  style={{background: '#060606'}} className='searchbarpostbtn' onClick={props.onSearchPostClick} title='toggle filter'>
+          <i className='fas fa-search'/>
         </button>)
       : (<button className='searchbarpostbtn' onClick={props.onSearchPostClick} title='toggle filter'>
-          <i className='fas fa-search' style={{ color: 'rgb(55, 131, 194)' }}/>
+          <i className='fas fa-search'/>
         </button>)
     }
   </div>

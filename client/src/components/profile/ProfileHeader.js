@@ -81,7 +81,7 @@ class ProfileHeader extends Component {
             </div>
           </div>
           <div id='profile-feed'>
-            <ProfilePost allProps={this.props.allProps} />
+            <ProfilePost />
           </div>
           <div id='profile-creds-div'>
             <ProfileCreds venues={profile.venues} />

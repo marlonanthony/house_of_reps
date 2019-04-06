@@ -8,8 +8,8 @@
   /* background: rgb(7, 10, 17); */
   /* background: #151515; */
   /* background: #071020; */
-  background: black;
-  overflow-x: hidden;
+  /* background: black; */
+  /* overflow-x: hidden; */
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
@@ -23,7 +23,6 @@
 
 .searchbar {
   grid-area: searchbar;
-  /* background: rgba(0,0,0,0.5); */
   height: 40px;
   border-radius: 3px;
   border: .5px solid rgba(55, 131, 194, .1);
@@ -79,12 +78,11 @@
 .searchbarpostbtn {
   flex: 1;
   cursor: pointer;  
-  outline: none; 
   height: 40; 
   background: rgba(0,0,0,0.5);
   color: rgb(55, 131, 194);
   padding: 10px; 
-  border: none;
+  border: 0.5px solid rgba(55, 131, 194, .1);
   outline: none; 
 }
 .searchbarpostbtn:hover {
@@ -102,6 +100,7 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
+  /* z-index: 30000000; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -119,7 +118,6 @@
   border: 0.4px solid rgba(55, 131, 194, 1);
   padding: 8px 0;
   position: absolute;
-  z-index: 1;
   top: 100%;
   left: 50%;
   margin-left: -100px;
@@ -127,6 +125,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 900000000000000;
 }
 
 /* Popup arrow */
@@ -150,8 +149,7 @@
   color: rgb(55, 131, 194);
   border: 1px solid rgb(55, 131, 194);
   position: absolute;
-  z-index: 1;
-  overflow-y: auto;
+  z-index: 1000000000;
   bottom: 100%;
   left: 50%;
   margin-left: -50px;

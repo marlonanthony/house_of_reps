@@ -63,7 +63,7 @@ router.get('/profileposts', passport.authenticate('jwt', { session: false }), (r
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  Post.find({ handle: req.query.handle, date: { $gte: new Date('2019-01-01') } })
+  Post.find({ handle: req.query.handle }) //, date: { $gte: new Date('2019-01-01') }
   .sort({ date: -1 })
   .skip(pageOptions.page * pageOptions.limit)
   .limit(pageOptions.limit)

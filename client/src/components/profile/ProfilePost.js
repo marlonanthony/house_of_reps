@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
+import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
 import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../actions/postActions'
 import PostItem from '../posts/PostItem'
+import PostFeed from '../posts/PostFeed'
 
 class ProfilePost extends Component {
   state = {
@@ -16,7 +18,8 @@ class ProfilePost extends Component {
   componentDidMount() {
     const { count, start } = this.state 
     window.scrollTo(0, 0) 
-    this.props.getProfilePosts(count, start, this.props.allProps.match.params.handle) 
+    this.props.getProfilePosts(count, start, this.props.match.params.handle) 
+    // this.props.getProfilePosts(count, start, this.props.allProps.match.params.handle) 
     this.setState(prevState => ({ start: prevState.start + 1 }))
   }
 
@@ -27,24 +30,26 @@ class ProfilePost extends Component {
   }
 
   render() {
+    console.log(this.state.count, this.state.start)
     const { posts, loading } = this.props.post 
     let postContent 
     if(posts === null || loading) {
       postContent = null
     } else {
-      postContent = posts.map(post => <PostItem key={post._id} post={post} /> )
+      // postContent = posts.map(post => <PostItem key={post._id} post={post} />)
+      postContent = <PostFeed posts={posts} />
     }
 
 
     return (
       <div style={{ marginBottom: 70 }}>
-        <InfinteScroll
+        {/* <InfinteScroll
         dataLength={posts.length}
         next={this.fetchMore}
         hasMore={true}
-        loader={<p style={{textAlign: 'center'}}>These are not the posts you're looking for</p>}>
+        loader={null}> */}
           {postContent}
-        </InfinteScroll>
+        {/* </InfinteScroll> */}
       </div>
     )
   }
@@ -60,4 +65,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts })(ProfilePost) 
+export default connect(mapStateToProps, { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts })(withRouter(ProfilePost))

@@ -7,12 +7,12 @@ class PostFeedPopup extends Component {
     let profileInfo = profiles && profiles.map(profile =>  {
       if(profile.user._id === post.user) {
         return (
-          <React.Fragment key={profile.user._id}>
+          <div key={profile.user._id}>
             <p style={{ color: '#aaa', fontSize: 13, padding: '0px 5px', cursor: 'text' }}>{profile.bio}</p> 
             <a style={{textDecoration: 'none'}} href={profile.website} target='_blank'>
               <p style={{ color: 'rgb(29, 138, 228)', fontSize: 13 }}>{profile.website}</p>
             </a>
-          </React.Fragment>
+          </div>
         )
       }
     })

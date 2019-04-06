@@ -39,12 +39,6 @@ class Posts extends Component {
     this.setState( prevState => ({ start: prevState.start + 1 }))
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(this.props.profile.profile !== prevProps.profile.profile) {
-      // this.props.getCurrentProfile() 
-    }
-  }
-
   fetchMore = () => {
     const { count, start } = this.state 
     if(this.state.showLikes) {

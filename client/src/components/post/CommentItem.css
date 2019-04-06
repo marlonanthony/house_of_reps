@@ -1,7 +1,7 @@
 #comment-feed-container {
   padding: 15px;
   background: rgba(0,0,0,0.4);
-  border: .5px solid rgba(55, 131, 194, 0.1);
+  border: 0.5px solid rgba(55, 131, 194, 0.1);
   border-radius: 4px;
   margin: 1.5px 0;
   position: relative;

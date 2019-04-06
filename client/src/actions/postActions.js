@@ -106,7 +106,7 @@ export const getProfilePosts = (count, start, handle) => dispatch => {
 }
 
 // Get More Profile Posts
-export const getMoreProfilePosts = (count, start) => dispatch => {
+export const getMoreProfilePosts = (count, start, handle) => dispatch => {
   dispatch(setPostLoading())
   axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
   .then(res => dispatch({

@@ -28,7 +28,7 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div>
-          <ProfileHeader profile={profile} user={user} allProps={this.props} />
+          <ProfileHeader profile={profile} user={user} />
         </div>
       )
     }
