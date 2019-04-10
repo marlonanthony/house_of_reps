@@ -12,7 +12,8 @@ html {
 
 body { 
   margin: 0px;  
-  background: #060606;  
+  /* background: #060606;   */
+  background: black;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(200,200,200,.6);
   
