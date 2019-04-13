@@ -50,7 +50,6 @@ class Login extends Component {
     return (
       <div className='login'>
         <h2 style={{ textAlign: 'center', paddingTop: '60px' }}>Log In</h2>
-        <p style={{ textAlign: 'center' }}>Sign in to your account</p>
         <div id='login-content'>
           <form onSubmit={ this.onSubmitHandler }>
             <Input 

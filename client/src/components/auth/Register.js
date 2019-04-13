@@ -80,7 +80,6 @@ class Register extends Component {
     return (
       <div className="register-container">
         <h2 style={{ textAlign: 'center', color: '#bdc7c1', marginTop: '50px' }}>Sign Up</h2>
-        <p style={{ textAlign: 'center', color: '#7e8889' }}>Create your account</p>
         <div id='register-content'>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{  }} className='FileUpload'>
@@ -89,7 +88,7 @@ class Register extends Component {
                 multiple={ false }
                 accept='image/*'
                 onDrop={ this.onImageDrop }>
-                <p>Drop an image or click to select a file to upload.</p>
+                <p>Drop an image or click to select a file to upload your avatar.</p>
               </Dropzone>
             </div>
             <div>
