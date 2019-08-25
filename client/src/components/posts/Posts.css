@@ -6,10 +6,7 @@
   /* background: rgb(6, 9, 14); */
   /* background: #282c35; Dan Abramov  */
   /* background: rgb(7, 10, 17); */
-  /* background: #151515; */
   /* background: #071020; */
-  background: black;
-  /* overflow-x: hidden; */
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
@@ -25,7 +22,7 @@
   grid-area: searchbar;
   height: 40px;
   border-radius: 3px;
-  border: .5px solid rgba(55, 131, 194, .1);
+  border: .5px solid rgba(55, 131, 194, .4);
 }
 
 .searchbar_input {
@@ -41,7 +38,6 @@
   padding: 10px; 
   width: 230px;
   background: rgba(0,0,0,0.8);
-  /* background: #060606; */
 }
 .searchbar_items:hover {
   background: black;
@@ -63,8 +59,8 @@
 } 
 .searchbarpostinput {
   flex: 8; 
-  background: rgba(0,0,0,0.5);
-  border: none; 
+  background: none;
+  border: 0.5px solid rgba(55, 131, 194, .4); 
   color: rgba(200,200,200,0.6);
   font-size: 13px;
   padding-left: 5px;
@@ -79,15 +75,14 @@
   flex: 1;
   cursor: pointer;  
   height: 40; 
-  background: rgba(0,0,0,0.5);
+  background: none;
   color: rgb(55, 131, 194);
   padding: 10px; 
-  border: 0.5px solid rgba(55, 131, 194, .1);
+  border: 0.5px solid rgba(55, 131, 194, .4);
   outline: none; 
 }
 .searchbarpostbtn:hover {
-  background: rgba(0,0,0,1);
-
+  border: .5px solid rgb(55, 131, 194);
 }
 
 .post-feed-profile {
@@ -100,7 +95,6 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
-  /* z-index: 30000000; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -114,7 +108,6 @@
   background-color: #030303;
   color: #fff;
   text-align: center;
-  /* border: 0.5px solid rgb(55, 131, 194); */
   border: 0.4px solid rgba(55, 131, 194, 1);
   padding: 8px 0;
   position: absolute;
@@ -269,12 +262,11 @@
     display: flex;
     justify-content: center;
     grid-area: profile;
-    /* background: rgba(0,0,0,0.5); */
     border-radius: 5px;
     width: 250px;
     height: 250px;
     margin-top: -30px;
-    border: .5px solid rgba(55, 131, 194, .1);
+    border: .5px solid rgba(55, 131, 194, .4);
   }
 
   .test {

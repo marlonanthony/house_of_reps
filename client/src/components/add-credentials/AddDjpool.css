@@ -20,13 +20,11 @@
   border: none;
   border-radius: 2px;
   outline: none;
-  color: #aaa;
-  /* color: rgb(55, 131, 194); */
-  background: rgba(0, 0, 0, 0.5);
+  background: none;
+  color: rgba(100,100,100,0.8);
 }
 #add-djpools-submit-button:hover {
   color: rgb(55, 131, 194);
-  background: rgba(0,0,0,0.9);
   cursor: pointer;
 }
 

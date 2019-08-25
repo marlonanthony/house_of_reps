@@ -4,10 +4,10 @@ import PostsProfilePopup from '../../../UI/popup_menu/PostsProfilePopup'
 import './PostFeedProfileContent.css'
 
 export default function PostFeedProfileContent(props) {
-  return ( props.profile && 
+  return props.profile && (
     <div>
       <div className='post-profile-avatar-container'>
-        <Link style={{textDecoration: 'none'}} to={`/profile/${props.profile.handle}`}>
+        <Link style={{ textDecoration: 'none' }} to={`/profile/${props.profile.handle}`}>
           <img id='posts-profile-img' src={ props.user.avatar } alt={ props.user.name } />
         </Link>
       </div>

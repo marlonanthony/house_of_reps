@@ -28,7 +28,7 @@ const Input = ({
         onChange={onChange}
         disabled={disabled}
       />
-      {info && <small className='info'>{info}</small>}
+      {info && <small className='info'>{info}</small>} {/*  in TextArea.css  */}
       { error && (<div className='error'>{error}</div>)}
     </div>
   )

@@ -11,12 +11,10 @@ const SocialLinksInput = ({
   onChange
 }) => {
   return (
-    <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: '10px'}}>
-      <span>
-        <i className={ icon } style={{ marginRight: '5px', height: '40px', width: '40px', color: 'rgb(55, 131, 194)' }} />
-      </span>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px'}}>
+      <i className={ icon } style={{ marginRight: '5px', fontSize: 19, width: 40, color: 'rgb(55, 131, 194)' }} />
       <input 
-        className={classnames('social-links', { // social links is in CreateProfile.css
+        className={classnames('social-links', { // social-links is in CreateProfile.css
           'is-invalid': error
         })}
         placeholder={ placeholder }

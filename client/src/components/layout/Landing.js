@@ -3,118 +3,18 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions' 
-// import TextFieldGroup from '../common/TextFieldGroup'
-// import Modal from '.././UI/modal/Modal'
-// import Backdrop from '../UI/backdrop/Backdrop'
 import './Landing.css'
 
 class Landing extends Component {
-
-  // state = {
-  //   email: '',
-  //   password: '',
-  //   errors: {},
-  //   showModal: false
-  // }
-
   componentDidMount() {
     if(this.props.auth.isAuthenticated) {
       this.props.history.push('/feed')
     }
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(prevProps.auth.isAuthenticated) {
-  //     this.props.history.push('/feed') 
-  //   }
-  //   if(prevProps.errors !== this.state.errors) {
-  //     this.setState({ errors: prevProps.errors })
-  //   }
-  // }
-
-
-
-/////////////////                  test         ////////////////////////
-
-  // componentWillReceiveProps(nextProps) {
-  //   if(nextProps.auth.isAuthenticated) {
-  //     this.props.history.push('/feed') 
-  //   }
-
-    // if(nextProps.errors) {
-    //   this.setState({ errors: nextProps.errors })
-    // }
-  // }
-
-  // componentWillUnmount() {
-  //   this.props.history.push('/dashboard')
-  // }
-
-
-
-
-
-
-
-  // showHandler = () => {
-  //   this.setState(prevState => ({ showModal: !prevState.showModal }))
-  // }
-
-  // modalToggle = () => {
-  //   this.setState(prevState => ({ showModal: !prevState.showModal }))
-  // }
-
-  // onChangeHandler = e => {
-  //   this.setState({ [e.target.name]: e.target.value })
-  // }
-
-  // onSubmitHandler = e => {
-  //   e.preventDefault() 
-  //   const userData = {
-  //     email: this.state.email,
-  //     password: this.state.password
-  //   }
-
-  //   this.props.loginUser(userData) 
-  //   this.props.history.push('/feed') 
-  // }
-  
-
   render() {
-    // const { showModal, errors } = this.state 
-
-    //  const signInModal = showModal ? (
-    //   <React.Fragment> 
-    //     <Modal show={this.state.showModal}>
-    //       <h2 id='login-title'>Log In</h2>
-    //       <form onSubmit={ this.onSubmitHandler }>
-    //         <TextFieldGroup 
-    //           placeholder='Email Address'
-    //           name='email'
-    //           type='email'
-    //           value={ this.state.email }
-    //           onChange={ this.onChangeHandler }
-    //           error={ errors.email }
-    //         />
-    //         <TextFieldGroup 
-    //           placeholder='Password'
-    //           name='password'
-    //           type='password'
-    //           value={ this.state.password }
-    //           onChange={ this.onChangeHandler }
-    //           error={ errors.password }
-    //         />
-    //         <button type="submit" id='login-button'>Sign In</button>
-    //       </form>
-    //     </Modal>
-    //   </React.Fragment>
-    // ) : null 
-
-    
     return (
       <React.Fragment>
-        {/* <Backdrop clicked={this.modalToggle} show={this.state.showModal} /> */}
-        {/* { signInModal } */}
         <div className='fade-pic'>
           <div className="dark-overlay">
             <div className="landing_content">
@@ -125,8 +25,6 @@ class Landing extends Component {
                 </h6>
                 <Link to='/login'><button className='landing_buttons'>Sign In</button></Link>
                 <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> 
-                {/* <button onClick={this.showHandler} className='landing_buttons'>Sign In</button>
-                <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> */}
               </div>
               <footer className='landing_footer'>
                 Copyright &copy; 2019 House of Reps

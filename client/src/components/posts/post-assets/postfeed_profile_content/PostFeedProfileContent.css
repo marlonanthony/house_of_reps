@@ -36,7 +36,6 @@
   outline: none;
 }
 
-
 .post-profile-liked-posts-unliked {
   padding: 7px 25px;
   margin: 0px 2px;
@@ -44,7 +43,7 @@
   background: none;
   color: rgb(55, 131, 194);
   cursor: pointer;
-  border: 0.5px solid rgba(55,131,194, 0.1);
+  border: 0.5px solid rgba(55,131,194, 0.3);
   outline: none;
 }
 
@@ -55,7 +54,7 @@
     background: none;
     color: rgb(55, 131, 194);
     cursor: pointer;
-    border: 0.3px solid rgba(55,131,194, 0.1);
+    border: 0.5px solid rgba(55,131,194, 0.3);
     outline: none;
 }
 #post-profile-add-media-link {
@@ -71,7 +70,7 @@
   background: none;
   color: rgb(55, 131, 194);
   cursor: pointer;
-  border: 0.3px solid rgba(55,131,194, 0.1);
+  border: 0.5px solid rgba(55,131,194, 0.3);
   outline: none;
 }
 

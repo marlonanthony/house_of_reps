@@ -28,7 +28,7 @@ const SelectList = ({
         { selectOptions }
       </select>
       <br />
-      { info && <small className='info'>{ info }</small>}
+      { info && <small className='info'>{ info }</small>} {/* in TextArea.css */}
       { error && (<div className='invalid-feedback'>{ error }</div>)}
     </div>
   )

@@ -32,21 +32,14 @@ import './App.css';
 
 // Check for token
 if(localStorage.jwtToken) {
-  // Set auth token header auth
-  setAuthToken(localStorage.jwtToken) 
-  // Decode token and get user info and experation
-  const decoded = jwt_decode(localStorage.jwtToken)
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded)) 
-  // Check for expired token
-  const currentTime = Date.now() / 1000
+  setAuthToken(localStorage.jwtToken)                // Set auth token header auth
+  const decoded = jwt_decode(localStorage.jwtToken)  // Decode token and get user info and expiration
+  store.dispatch(setCurrentUser(decoded))            // Set user and isAuthenticated
+  const currentTime = Date.now() / 1000              // Check for expired token
   if(decoded.exp < currentTime) {
-    // Logout user 
-    store.dispatch(logoutUser())
-    // Clear current Profile
-    store.dispatch(clearCurrentProfile())
-    // Redirect to homepage
-    window.location.href = '/' 
+    store.dispatch(logoutUser())                     // Logout user 
+    store.dispatch(clearCurrentProfile())            // Clear current Profile
+    window.location.href = '/'                       // Redirect to homepage
   }
 }
 

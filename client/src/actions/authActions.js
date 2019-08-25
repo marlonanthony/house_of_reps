@@ -17,16 +17,11 @@ export const registerUser = (userData, history) => dispatch => {
 // Login Get user token
 export const loginUser = userData => dispatch => {
   axios.post('/api/users/login', userData).then(res => {
-    // Extract token from response
-    const { token } = res.data 
-    // Set token to local storage
-    localStorage.setItem('jwtToken', token) 
-    // Set token to Auth header
-    setAuthToken(token) 
-    // Decode token to get user data
-    const decoded = jwt_decode(token) 
-    // Set current user
-    dispatch(setCurrentUser(decoded)) 
+    const { token } = res.data                // Extract token from response
+    localStorage.setItem('jwtToken', token)   // Set token to local storage
+    setAuthToken(token)                       // Set token to Auth header
+    const decoded = jwt_decode(token)         // Decode token to get user data
+    dispatch(setCurrentUser(decoded))         // Set current user
   })
   .catch(err => dispatch({
     type: GET_ERRORS,

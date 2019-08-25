@@ -322,6 +322,7 @@ class EditProfile extends Component {
               value={ this.state.bio } 
               onChange={ this.onChange } 
               error={ errors.bio } 
+              info='Say a little bit about yourself' 
             />
             <SelectList 
               name='style'

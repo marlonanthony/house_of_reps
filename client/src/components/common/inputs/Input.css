@@ -1,21 +1,18 @@
 .registers-inputs {
   width: 100%;
   font-size: 17px;
-  /* color: #aaa; */
-  color: #000;
   outline: none;
   padding: 10px 0px;
-  /* background: rgba(0, 0, 0, 0.5); */
-  background: rgb(200,200,200);
+  background: rgba(10,10,10,0.5);
+  color: #aaa;
   border: none;
-  margin: 10px 0px;
+  margin: 15px 0px;
   padding: 10px;
-  /* border-bottom: 1px solid rgb(55, 131, 194); */
+  border-bottom: 1px solid rgb(55, 131, 194);
 }
 
 .registers-inputs::placeholder {
-  /* color: rgb(55, 131, 194); */
-  color: #000;
+  color: rgba(100,100,100,0.8);
 }
 
 .error {
