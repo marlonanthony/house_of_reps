@@ -135,8 +135,8 @@
 /* The like popup */
 .popup .likespopupcontent {
   visibility: hidden;
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 250px;
   background-color: #030303;
   color: rgb(55, 131, 194);
   border: 1px solid rgb(55, 131, 194);

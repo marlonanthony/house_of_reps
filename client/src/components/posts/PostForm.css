@@ -1,13 +1,7 @@
 .post_form {
-  /* background: rgba(0,0,0,0.5); */
-  /* background: #050505; */
   width: 100%;
   border: .5px solid rgba(55,131,194,0.3);
   border-radius: 5px;
-}
-.post_form:hover {
-  /* background: rgba(0,0,0,0.9); */
-  /* background: #060606; */
 }
 
 .disp {
@@ -24,7 +18,7 @@
   overflow: auto;
   font-size: 17px;
   resize: none;
-  color: rgba(200,200,200,.6);
+  color: rgba(200,200,200,.9);
   background: none;
 }
 

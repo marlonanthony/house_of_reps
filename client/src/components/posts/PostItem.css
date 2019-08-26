@@ -64,7 +64,7 @@
   grid-area: postcontent;
   padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgba(200,200,200,.6);
+  color: rgba(200,200,200,.9);
   /* color: #7e8889; */
   text-align: left;
 }

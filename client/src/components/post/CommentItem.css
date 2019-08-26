@@ -35,17 +35,9 @@
   margin-right: 5px;
 }
 
-#nested_comments_text {
-  padding: 5px;
-  color: rgb(200,200,200);
-  font-size: 13px;
-  margin-left: 30px;
-}
-
 .nested_comment_textarea {
-  background: rgb(200,200,200);
+  background: rgba(200,200,200, 0.9);
   color: var(--primary-color);
-  border: .5px solid rgba(55, 131, 194, 0.1);
   border-radius: 2px;
   padding: 10px; 
   margin-bottom: 5px;
@@ -54,6 +46,13 @@
 }
 .nested_comment_textarea::placeholder {
   color: var(--primary-color);
+}
+
+#nested_comments_text {
+  padding: 5px;
+  color: rgba(200,200,200,0.9);
+  font-size: 13px;
+  margin-left: 30px;
 }
 
 #comment-feed-avatar {
