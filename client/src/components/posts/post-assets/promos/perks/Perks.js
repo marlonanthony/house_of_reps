@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import Arrow from '../../UI/arrow_glyph/Arrow'
-import './CertifiedStores.css'
+import Arrow from '../../../../UI/arrow_glyph/Arrow'
+import './Perks.css'
 
-export default class CertifiedStores extends Component {
+export default class Perks extends Component {
 
   state = { currentImageIndex: 0 }
 
   previousSlide = () => {
-    const { stores } = this.props 
+    const { perks } = this.props 
     const { currentImageIndex } = this.state 
-    const lastIndex = stores.length - 1
+    const lastIndex = perks.length - 1
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
 
@@ -17,9 +17,9 @@ export default class CertifiedStores extends Component {
   }
 
   nextSlide = () => {
-    const { stores } = this.props 
+    const { perks } = this.props 
     const { currentImageIndex } = this.state 
-    const lastIndex = stores.length - 1
+    const lastIndex = perks.length - 1
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
 
@@ -27,19 +27,17 @@ export default class CertifiedStores extends Component {
   }
 
   render() {
-    const { stores } = this.props 
+    const { perks } = this.props 
 
     return (
       <div>
-        <div className='store'
+        <div className='perkss'
         style={{ 
           position: 'absolute',
           overflowY: 'hidden',
         }}>
           <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
-          <a href={stores[this.state.currentImageIndex].url} target='_blank'rel='noopener noreferrer'>
-            <img src={stores[this.state.currentImageIndex].image} alt={stores[this.state.currentImageIndex].url} style={{height: '100%', width: '100%' }} />
-          </a>
+          <img src={perks[this.state.currentImageIndex].image} alt={perks[this.state.currentImageIndex].url} style={{height: '100%', width: '100%' }} />
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />
         </div>
       </div>

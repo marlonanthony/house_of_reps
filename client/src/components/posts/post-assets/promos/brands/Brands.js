@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Arrow from '../../UI/arrow_glyph/Arrow'
+import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import './Brands.css'
 
 export default class Brands extends Component {
