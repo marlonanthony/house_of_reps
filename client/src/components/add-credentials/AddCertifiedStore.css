@@ -1,6 +1,6 @@
 .stores_input_wrapper {
-  width: 100%;
-  padding: 5px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .certified-store-dropzone {
@@ -13,26 +13,8 @@
   text-align: center;
 }
 
-#certified-store-button {
-  font-size: 17px;
-  padding: 10px;
-  border: none;
-  border-radius: 2px;
-  outline: none;
-  color: #aaa;
-  /* color: rgb(55, 131, 194); */
-  background: rgba(0, 0, 0, 0.5);
-}
-
-#certified-store-button:hover {
-  color: rgb(55, 131, 194);
-  background: rgba(0,0,0,0.9);
-  cursor: pointer;
-}
-
 @media (min-width: 800px) {
   .stores_input_wrapper {
-    width: 50%;
-    margin: 0 25%;
+    width: 400px;
   }
 }

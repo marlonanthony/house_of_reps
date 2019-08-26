@@ -1,7 +1,6 @@
 .djpools_input_wrapper {
-  width: 90%;
-  margin: 10px 5% 10px 2.5%;
-  /* margin: 10px; */
+  width: 80%;
+  margin: 0 auto;
 }
 
 .djpools-dropzone {
@@ -15,22 +14,22 @@
 }
 
 #add-djpools-submit-button {
-  font-size: 17px;
-  padding: 10px;
+  cursor: pointer;
+  display: inline-block;
   border: none;
-  border-radius: 2px;
-  outline: none;
-  background: none;
-  color: rgba(100,100,100,0.8);
+  background-color: rgb(55,131,194);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: opacity .25s ease-in;
 }
 #add-djpools-submit-button:hover {
-  color: rgb(55, 131, 194);
-  cursor: pointer;
+  opacity: 0.7;
 }
 
 @media(min-width: 800px) {
   .djpools_input_wrapper {
-    width: 50%;
-    margin: 0 25%;
+    width: 400px;
   }
 }

@@ -104,7 +104,7 @@ class AddCertifiedStore extends Component {
               placeholder='image'
             />
             <div className='certified-store-submit-btn-containing-div'>
-              <input type="submit" value='Submit' id='certified-store-button'/>
+              <input type="submit" value='Submit' id='add-djpools-submit-button'/>
             </div>
           </form>
         </div>

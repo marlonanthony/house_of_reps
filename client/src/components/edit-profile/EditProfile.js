@@ -263,7 +263,7 @@ class EditProfile extends Component {
       <div className='edit-profile'>
         <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h1 style={{ textAlign: 'center', color: '#aaa' }}>Edit Profile</h1>
-        <div className='djpools_input_wrapper  '>
+        <div className='djpools_input_wrapper'>
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
