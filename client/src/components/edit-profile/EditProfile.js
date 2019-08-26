@@ -340,7 +340,7 @@ class EditProfile extends Component {
               }} id='create-profile-social-btn'>Add Social Network Links</button>
             </div>
             { socialInputs }
-            <input type="submit" value="Submit" id='add-djpools-submit-button' />
+            <input type="submit" value="Submit" class='create-profile-submit-button' />
           </form>
         </div>
       </div>

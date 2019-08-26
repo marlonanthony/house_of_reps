@@ -26,9 +26,8 @@
   opacity: 0.7;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1025px) {
   #login-content {
-    min-width: 400px;
-    width: 30%;
+    width: 400px;
   }
 }

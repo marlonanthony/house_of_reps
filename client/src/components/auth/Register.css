@@ -27,15 +27,13 @@
   text-decoration: none;
   transition: opacity .25s ease-in;
 }
-
 #register-button:hover {
   opacity: 0.7;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1025px) {
   #register-content {
-    min-width: 400px;
-    width: 30%;
+    width: 400px;
   }
   #register-form {
     padding: 10 0;

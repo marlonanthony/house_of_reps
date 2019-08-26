@@ -8,32 +8,31 @@
 }
 
 .select-list {
-  background: rgba(10,10,10,0.5);
-  color: rgba(100,100,100,0.8);
+  background: rgba(200, 200, 200, 0.9);
+  color: var(--primary-color);
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 5px;
   border: none;
-  border-bottom: 1px solid rgb(55, 131, 194);
   border-radius: 2px;
   outline: none;
-  margin: 15px 10px;
-  height: 40px;
+  margin: 15px 0;
+  height: 35px;
 }
 
 #create-profile-social-btn {
-  font-size: 16px;
-  border: none;
-  margin: 40px;
-  padding: 5px;
-  outline: none;
-  background: rgba(10,10,10,0.5);
-  color: rgba(100,100,100,0.8);
-  /* color: rgb(150,150,150); */
-}
-
-#create-profile-social-btn:hover {
   cursor: pointer;
+  display: inline-block;
+  border: none;
+  background-color: rgb(55,131,194);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: opacity .25s ease-in;
+}
+#create-profile-social-btn:hover {
+  opacity: 0.7;
 }
 
 #social-inputs {
@@ -44,34 +43,31 @@
 
 .social-links {
   font-size: 14px;
-  border: none;
-  width: 100%;
-  outline: none;
-  background: rgba(10,10,10,0.5);
-  color: #aaa;
-  border-bottom: 1px solid rgb(55, 131, 194);
   padding: 5px;
+  width: 100%;
   height: 30px;
-}
-
-.social-links::placeholder {
-  color: rgba(100,100,100,0.8);
-  /* color: rgb(55, 131, 194); */
-}
-
-#create-profile-submit-button {
-  font-size: 17px;
-  padding: 8px;
-  margin: 10px; 
   border: none;
-  border-radius: 2px;
   outline: none;
-  color: #ccc;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(200, 200, 200, 0.9);
+  color: var(--primary-color);
+}
+.social-links::placeholder {
+  color: var(--primary-color);
 }
 
-#create-profile-submit-button:hover {
-  background: rgb(0,0,0,0.7);
+.create-profile-submit-button {
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  background-color: rgb(55,131,194);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: opacity .25s ease-in;
+}
+.create-profile-submit-button:hover {
+  opacity: 0.7;
 }
 
 @media (min-width: 1050px) {
