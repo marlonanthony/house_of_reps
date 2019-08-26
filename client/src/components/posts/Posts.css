@@ -1,12 +1,6 @@
 .feed {
-  /* background: #050c14;   */
-  /* background: #020811; */
-  /* background: rgb(4,6,8); */
-  /* background: rgb(10, 19, 29); */
-  /* background: rgb(6, 9, 14); */
-  /* background: #282c35; Dan Abramov  */
-  /* background: rgb(7, 10, 17); */
-  /* background: #071020; */
+  max-width: 1150px;
+  margin: 0 auto;
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
@@ -242,9 +236,7 @@
 
 @media (min-width: 1200px) {
   .feed {
-    padding: 100px 5vw 0 5vw;  
     display: grid;
-    grid-gap: 35px;
     justify-items: center;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto 1fr;
@@ -346,11 +338,5 @@
     justify-content: center;
     height: 110px;
     width: 240px;
-  }
-}
-
-@media(min-width: 1500px) {
-  .feed {
-    padding: 100px 14vw 0 14vw;
   }
 }

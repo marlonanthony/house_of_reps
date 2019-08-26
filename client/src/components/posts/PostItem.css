@@ -1,7 +1,6 @@
 .posts_container {
-  /* background: rgba(0,0,0,.5); */
   width: 99.8%;
-  border: .5px solid rgba(55, 131, 194, 0.1);
+  border: .5px solid rgba(55, 131, 194, 0.3);
   outline: none;
   margin-bottom: 5px;
   display: grid;
@@ -12,10 +11,6 @@
     'postavatarandname'
     'postcontent'
     'icons'
-}
-
-.posts_container:hover {
-  background: rgba(0,0,0,0.5);
 }
 
 .post_avatar_and_name {

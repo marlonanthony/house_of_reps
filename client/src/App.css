@@ -1,8 +1,8 @@
-/* * { box-sizing: border-box; } */
 * { 
+  /* box-sizing: border-box; */
   outline-width: .5px; 
-  outline-color: rgba(55,131,194,0.1);
-  
+  outline-color: rgba(55,131,194,0.3);
+  --primary-color: black;
 }
 html {
   overflow: scroll;
@@ -12,8 +12,7 @@ html {
 
 body { 
   margin: 0px;  
-  /* background: #060606;   */
-  background: black;
+  background: var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(200,200,200,.6);
   
@@ -30,3 +29,13 @@ input {
 }
 /* ::-webkit-scrollbar-thumb { }
 ::-webkit-scrollbar-track { } */
+
+
+/* background: #050c14;   */
+/* background: #020811; */
+/* background: rgb(4,6,8); */
+/* background: rgb(10, 19, 29); */
+/* background: rgb(6, 9, 14); */
+/* background: #282c35; Dan Abramov  */
+/* background: rgb(7, 10, 17); */
+/* background: #071020; */

@@ -1,7 +1,6 @@
 #comment-feed-container {
   padding: 15px;
-  background: rgba(0,0,0,0.4);
-  border: 0.5px solid rgba(55, 131, 194, 0.1);
+  border: 0.5px solid rgba(55, 131, 194, 0.3);
   border-radius: 4px;
   margin: 1.5px 0;
   position: relative;
@@ -16,10 +15,6 @@
     'nested_comments nested_comments';
 }
 
-#comment-feed-container:hover {
-  background: rgb(03, 03, 03);
-}
-
 .nested_comments {
   grid-area: nested_comments;
   width: 100%;
@@ -28,14 +23,9 @@
 
 .nested_comments_container {
   margin-left: 50px; 
-  background: rgba(0,0,0,0.5);
   margin-bottom: 5px;
   padding: 10px;
-  border: .1px solid rgba(55, 131, 194, 0.1);
-}
-
-.nested_comments_container:hover {
-  background: #030303;
+  border: .1px solid rgba(55, 131, 194, 0.3);
 }
 
 .nested_comment_avatar {
@@ -47,14 +37,14 @@
 
 #nested_comments_text {
   padding: 5px;
-  color: rgba(200,200,200,.6);
+  color: rgb(200,200,200);
   font-size: 13px;
   margin-left: 30px;
 }
 
 .nested_comment_textarea {
-  background: rgba(0, 0, 0, 0.5);
-  color: rgb(55, 131, 194);
+  background: rgb(200,200,200);
+  color: var(--primary-color);
   border: .5px solid rgba(55, 131, 194, 0.1);
   border-radius: 2px;
   padding: 10px; 
@@ -62,13 +52,8 @@
   font-size: 13px;
   outline: none;
 }
-
-.nested_comment_textarea:hover {
-  background: #030303;
-}
-
 .nested_comment_textarea::placeholder {
-  color: rgb(55, 131, 194);
+  color: var(--primary-color);
 }
 
 #comment-feed-avatar {

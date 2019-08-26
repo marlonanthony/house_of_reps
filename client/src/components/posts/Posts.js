@@ -238,4 +238,5 @@ export default connect(mapStateToProps, {
   getMorePosts, 
   getLikedPosts, 
   getMoreLikedPosts, 
-  getMatchingPosts })(withRouter(Posts)) 
+  getMatchingPosts 
+})(withRouter(Posts)) 
