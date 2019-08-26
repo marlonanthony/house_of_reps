@@ -2,7 +2,7 @@
   /* background: rgba(0,0,0,0.5); */
   /* background: #050505; */
   width: 100%;
-  border: .5px solid rgba(55,131,194,0.1);
+  border: .5px solid rgba(55,131,194,0.3);
   border-radius: 5px;
 }
 .post_form:hover {

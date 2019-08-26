@@ -32,7 +32,7 @@
   background: rgb(55,131,194);
   color: rgb(225,225,225); 
   cursor: pointer;
-  border: .5px solid rgba(55,131,194,0.1);
+  border: .5px solid rgba(55,131,194,0.3);
   outline: none;
 }
 
