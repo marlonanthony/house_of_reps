@@ -10,35 +10,29 @@
 }
 
 .notifications_container {
-  width: 100%;
-  background: rgb(03, 03, 03); 
+  width: 90%;
+  max-width: 500px;
+  border: 0.5px solid rgba(200,200,200,0.1);
   border-radius: 5px;
-  margin: 15px 0px; 
+  margin: 15px auto; 
   padding: 10px 0px;
 }
 .notifications_container::before {
-  content: 'Older Notification';
+  content: 'Seen';
   padding-left: 10px;
 }
 
-.notifications_container:hover {
-  background: #000;
-  /* border: .5px solid rgba(55,131,194,0.3); */
-}
-
 .new_notification {
-  /* border: 0.5px solid rgba(55, 131, 194, 0.18); */
-  margin: 35px 0px;
-  width: 100%;
+  width: 90%;
+  max-width: 500px;
+  border: 0.5px solid var(--border-color);
+  margin: 35px auto;
   background: #000;
   padding: 10px 0px;
-  /* border-radius: 5px; */
-}
-.new_notification:hover {
-  /* border: .3px solid rgba(55, 131, 194, 0.1); */
+  border-radius: 2px;
 }
 .new_notification::before {
-  content: '\01F525 New Notification \01F525';
+  content: '\01F525 New \01F525';
   padding-left: 10px;
 }
 
@@ -54,13 +48,15 @@
   margin-right: 10px;
 }
 .notification_message {
-  color: #666;
+  color: var(--text-color);
 }
 .notification_post_content {
+  width: 70%; 
+  margin: auto; 
   display: flex; 
   align-items: center; 
   justify-content: space-evenly; 
-  border: 0.5px solid rgba(55, 131, 194, 0.1); 
+  border: 0.5px solid var(--border-color);
   border-radius: 5px; 
   padding: 10px;
   cursor: pointer;
@@ -81,27 +77,10 @@
 }
 
 .notification_date {
-  color: #666;
+  color: var(--text-color);
   margin-left: 10px;
 }
 
 .notifications_modal_wrapper {
   max-height: 80vh;
-}
-
-/*      Large Screens     */
-
-@media(min-width: 1200px) {
-  .notifications_container {
-    width: 70%;
-    margin: 15px 15%;
-  }
-  .new_notification {
-    margin: 50px 15%;
-    width: 70%;
-  }
-  .notification_post_content {
-    width: 50%; 
-    margin-left: 25%; 
-  }
 }
