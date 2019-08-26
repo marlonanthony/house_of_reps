@@ -3,6 +3,9 @@
   outline-width: .5px; 
   outline-color: rgba(55,131,194,0.3);
   --primary-color: black;
+  --secondary-color: rgb(55, 131, 194);
+  --border-color: rgba(55, 131, 194, 0.3);
+  --text-color: rgba(200, 200, 200, 0.9);
 }
 html {
   overflow: scroll;

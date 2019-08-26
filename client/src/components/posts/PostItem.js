@@ -160,7 +160,7 @@ class PostItem extends Component {
               )
             : ( <div className='post_content'>
                   <PostText postText={post.text} />
-                  <div style={{ background: 'rgba(0, 0, 0, .5)', borderRadius: '5px' }}>
+                  <div style={{ borderRadius: '5px', border: '0.5px solid rgba(55, 131, 194, 0.3)' }}>
                     { youtubeUrl 
                     ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
                         <iframe title='youtube' width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
@@ -179,10 +179,10 @@ class PostItem extends Component {
 
           <div className='popup' >
             { likes.length < 1 ? null : likes.length === 2 
-              ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Liked by {likes[0].name} and {likes[1].name}</div>
+              ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '12px', color: 'rgb(29, 138, 255)', marginLeft: 5, padding: '10px 0px'}}>Liked by {likes[0].name} and {likes[1].name}</div>
               : likes.length > 2 
-              ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-              : <div  onClick={this.likesPopupHandler} style={{ fontSize: '13px', color: 'rgb(29, 138, 255)'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+              ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '12px', color: 'rgb(29, 138, 255)', marginLeft: 5, padding: '10px 0px'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+              : <div  onClick={this.likesPopupHandler} style={{ fontSize: '12px', color: 'rgb(29, 138, 255)', marginLeft: 5, padding: '10px 0px'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
             }
             <div onMouseLeave={this.likesPopupHandler} className={ this.state.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
               <div style={{ position: 'absolute', top: 5, left: 5 }}>

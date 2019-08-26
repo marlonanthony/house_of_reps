@@ -1,6 +1,6 @@
 .posts_container {
-  width: 99.8%;
-  border: .5px solid rgba(55, 131, 194, 0.3);
+  width: 100%;
+  border: 0.5px solid var(--border-color);
   outline: none;
   margin-bottom: 5px;
   display: grid;
@@ -22,7 +22,7 @@
 
 .post_avatar_img {
   border-radius: 50%;
-  border: 2px solid rgb(55, 131, 194);
+  border: 2px solid var(--secondary-color);
   width: 50px;
   height: 50px;
   margin-right: 5px;
@@ -47,15 +47,11 @@
   grid-area: name;
   color: rgb(29, 138, 228);
   font-size: 13px;
-}
-
-.post_name:hover {
   cursor: pointer;
 }
 
 .post_feed_date {
-  /* color: #7e8889; */
-  color: rgba(200,200,200,.6);
+  color: var(--text-color);
   font-size: 13px;
   margin-top: -7px;
 }
@@ -64,16 +60,12 @@
   grid-area: postcontent;
   padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgba(200,200,200,.9);
-  /* color: #7e8889; */
+  color: var(--text-color);
   text-align: left;
 }
 
 .postfeed-media-pic {
   width: 100%;
-}
-
-.postfeed-media-pic:hover {
   cursor: pointer;
 }
 
@@ -115,10 +107,4 @@
 
 .delete:hover {
   color: red;
-}
-
-@media (min-width: 900px) {
-  .posts_container {
-    /* margin-bottom: 5px; */
-  }
 }
