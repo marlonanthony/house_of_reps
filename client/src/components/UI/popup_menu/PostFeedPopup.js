@@ -9,7 +9,7 @@ class PostFeedPopup extends Component {
         return (
           <div key={profile.user._id}>
             <p style={{ color: '#aaa', fontSize: 13, padding: '0px 5px', cursor: 'text' }}>{ profile.bio }</p> 
-            <a style={{textDecoration: 'none'}} href={profile.website} target='_blank'>
+            <a style={{textDecoration: 'none'}} href={profile.website} target='_blank' rel='noopener noreferrer'>
               <p style={{ color: 'rgb(29, 138, 228)', fontSize: 13 }}>{ profile.website }</p>
             </a>
           </div>

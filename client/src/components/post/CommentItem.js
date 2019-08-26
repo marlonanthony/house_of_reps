@@ -18,7 +18,6 @@ import { getProfiles, getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import CommentText from '../posts/post-assets/post_comment_text/CommentText'
-import PostModalText from '../posts/post-assets/post_comment_text/PostModalText'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -233,7 +232,7 @@ class CommentItem extends Component {
                 <div>
                   {comment.likes.length < 1 ? null : comment.likes.map(like => (
                     <div className='likespopupavatarandname' key={like.user}>
-                      <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
+                      <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} alt='avatar' src={like.avatar} />
                       <p onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{padding: 10 }}>{like.name}</p>
                     </div>
                   ))}
@@ -332,7 +331,7 @@ class CommentItem extends Component {
                             <div>
                               {nestedComment.likes.length < 1 ? null : nestedComment.likes.map(like => (
                                 <div className='likespopupavatarandname' key={like.user}>
-                                  <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
+                                  <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} alt='avatar' src={like.avatar} />
                                   <p style={{padding: 10 }}>{like.name}</p>
                                 </div>
                               ))}

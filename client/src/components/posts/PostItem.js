@@ -176,13 +176,13 @@ class PostItem extends Component {
               )
           }
 
-
-          <div className='popup' >
+          {/*   All popup css is in Posts.css   */}
+          <div className='popup' >  
             { likes.length < 1 ? null : likes.length === 2 
-              ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '12px', color: 'rgb(29, 138, 255)', marginLeft: 5, padding: '10px 0px'}}>Liked by {likes[0].name} and {likes[1].name}</div>
+              ? <div  onClick={this.likesPopupHandler} className='popup_likes'>Liked by {likes[0].name} and {likes[1].name}</div>
               : likes.length > 2 
-              ? <div  onClick={this.likesPopupHandler} style={{ fontSize: '12px', color: 'rgb(29, 138, 255)', marginLeft: 5, padding: '10px 0px'}}>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-              : <div  onClick={this.likesPopupHandler} style={{ fontSize: '12px', color: 'rgb(29, 138, 255)', marginLeft: 5, padding: '10px 0px'}}> Liked by {likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+              ? <div  onClick={this.likesPopupHandler} className='popup_likes'>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
+              : <div  onClick={this.likesPopupHandler} className='popup_likes'> Liked by {likes.map(like => <span key={like.user}>{ like.name }</span>)}</div>
             }
             <div onMouseLeave={this.likesPopupHandler} className={ this.state.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
               <div style={{ position: 'absolute', top: 5, left: 5 }}>
@@ -192,7 +192,7 @@ class PostItem extends Component {
               <div>
                 {likes.length < 1 ? null : likes.map(like => (
                   <div className='likespopupavatarandname' key={like.user}>
-                    <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} src={like.avatar} />
+                    <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} className='popup_likes_avatar' alt='avatar' src={like.avatar} />
                     <p onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{padding: 10 }}>{like.name}</p>
                   </div>
                 ))}
