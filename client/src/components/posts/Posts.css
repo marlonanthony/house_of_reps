@@ -118,6 +118,8 @@
   align-items: center;
   flex-direction: column;
   z-index: 90;
+  opacity: 0;
+  transition: opacity .5s ease-in;
 }
 
 /* Popup arrow */
@@ -148,6 +150,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  opacity: 0;
+  transition: opacity .5s ease-in;
 }
 
 .likespopupavatarandname {
@@ -163,18 +167,7 @@
 /* Toggle this class - hide and show the popup */
 .popup .show {
   visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
-}
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  opacity: 1;
 }
 
 .popup_likes {
