@@ -7,13 +7,11 @@
   line-height: 24px;
   font-size: 16px;
   resize: none;
-  background: rgba(10,10,10,0.5);
-  color: #aaa;
-  border-bottom: 1px solid rgb(55, 131, 194);
+  background: rgba(200,200,200,0.9);
 }
 
 .register-text-area-field-group-inputs::placeholder {
-  color: rgba(100,100,100,0.8);
+  color: var(--primary-color);
 }
 
 .register-text-area-field-group-inputs:focus {
