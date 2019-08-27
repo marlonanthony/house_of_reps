@@ -43,6 +43,7 @@ class Notifications extends Component {
                              .replace(/watch\?v=/gi, 'embed/')
                              .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null 
+      
     return (
       <div>
         { this.state.showPost && post &&
@@ -53,7 +54,6 @@ class Notifications extends Component {
             youtubeUrl={youtubeUrl}
           />
         }
-
         { this.state.notifications &&
           <NotificationList 
             notifications={this.state.notifications} 

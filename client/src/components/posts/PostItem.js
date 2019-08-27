@@ -5,20 +5,17 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import classnames from 'classnames' 
 import Moment from 'react-moment' 
+
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
 import { getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
 import PostText from './post-assets/post_comment_text/PostText'
 import PostFeedPopup from '../UI/popup_menu/PostFeedPopup'
-
+import './PostItem.css'
 // For comments 
 import CommentFeed from '../post/CommentFeed'
 import CommentForm from '../post/CommentForm'
-
-import './PostItem.css'
-
-
  
 class PostItem extends Component {
 
