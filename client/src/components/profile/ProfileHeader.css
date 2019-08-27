@@ -23,7 +23,7 @@
   text-align: center;
   max-height: 200px;
   width: 200px;
-  border: 0.5px solid rgba(55, 131, 194, 0.3);
+  border: none;
 }
 
 #profile-avatar {
@@ -48,16 +48,14 @@
   margin-bottom: 0;
   min-width: 200px;
   max-height: 300px;
-  border: 0.5px solid rgba(55, 131, 194, 0.3);
+  border: none;
 }
 
 #profile-name {
-  color: #7e8889;
-  /* color: #bdc7c1; */
+  color: var(--text-color);
 }
 
 #profile-handle {
- /* margin-top: -10px; */
  font-size: 13px;
  color: rgb(55, 131, 194);
 }
@@ -66,7 +64,7 @@
   margin-top: 20px;
   font-size: 14px;
   max-width: 200px;
-  color: rgba(200,200,200,.9);
+  color: var(--text-color);
 }
 
 #profile-location {
@@ -84,7 +82,7 @@
   justify-items: center;
   align-content: center;
   grid-gap: 10px;
-  border: 0.5px solid rgba(55, 131, 194, 0.3);
+  border: none;
 }
 
 .profile-header-icon {
@@ -105,7 +103,7 @@
   justify-items: center;
   align-content: center;
   grid-gap: 10px;
-  border: 0.5px solid rgba(55, 131, 194, 0.3);
+  border: none;
 } 
 
 .reps_banner_icons {
@@ -137,10 +135,6 @@
       'avatar profilefeed profilecredsdiv'
       'headeritems profilefeed profilecredsdiv';
   }
-  #profile-avatar-div {
-    border: 1px solid rgba(55, 131, 194, 0.3);
-    border-bottom: none;
-  }
   #header-items {
     display: block;
     margin-top: 55px;
@@ -153,8 +147,6 @@
     margin-top: 0;
     margin-bottom: 10px;
     max-width: 200px;
-    border: 1px solid rgba(55, 131, 194, 0.3);
-    border-top: none;
   }
   /* #profile-creds-div {
     grid-area: profilecredsdiv;
@@ -163,16 +155,10 @@
 }
 
 @media (max-width: 600px) {
-  #profile-avatar-div {
-    border: 1px solid rgba(55, 131, 194, 0.3);
-    border-bottom: none;
-  }
-
   #profile-avatar {
     height: 70px;
     width: 70px;
   }
-
   #header-items {
     display: block;
     margin: 0 auto;
@@ -181,7 +167,5 @@
     margin-top: 0;
     margin-bottom: 10px;
     max-width: 200px;
-    border: 1px solid rgba(55, 131, 194, 0.3);
-    border-top: none;
   }
 }
