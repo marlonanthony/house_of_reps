@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
-import ProfileHeader from './ProfileHeader' 
-import Spinner from '../common/Spinner'
-import { getProfileByHandle } from '../../actions/profileActions'
 
+import ProfileHeader from '../profile_header/ProfileHeader' 
+import Spinner from '../../common/Spinner'
+import { getProfileByHandle } from '../../../actions/profileActions'
 import './Profile.css'
 
 class Profile extends Component {

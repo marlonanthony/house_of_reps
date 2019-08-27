@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../actions/postActions'
-import PostItem from '../posts/PostItem'
-import PostFeed from '../posts/PostFeed'
+import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../../actions/postActions'
+import PostItem from '../../posts/PostItem'
+import PostFeed from '../../posts/PostFeed'
 
 class ProfilePost extends Component {
   state = {

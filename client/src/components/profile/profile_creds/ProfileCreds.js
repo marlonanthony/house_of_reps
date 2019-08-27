@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { likeVenue } from '../../actions/profileActions'
-import HighlightsModal from '../UI/modal/highlights-modal/HighlightsModal'
-import Backdrop from '../UI/backdrop/Backdrop'
-import VenueItems from './profile_assets/VenueItems'
-import ModalVenues from './profile_assets/ModalVenues'
+
+import { likeVenue } from '../../../actions/profileActions'
+import HighlightsModal from '../../UI/modal/highlights-modal/HighlightsModal'
+import Backdrop from '../../UI/backdrop/Backdrop'
+import VenueItems from '../profile_assets/VenueItems'
+import ModalVenues from '../profile_assets/ModalVenues'
 import './ProfileCreds.css'
 
 class ProfileCreds extends Component {
