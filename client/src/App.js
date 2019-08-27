@@ -23,7 +23,6 @@ import AddBrand from './components/add-credentials/AddBrand'
 import Profiles from './components/profiles/Profiles'
 import Profile from './components/profile/profile/Profile'
 import Posts from './components/posts/Posts'
-import Post from './components/post/Post'
 import Verify from './components/auth/Verify'
 import ConfirmEmail from './components/auth/ConfirmEmail'
 import Notifications from './components/posts/post-assets/notifications/Notifications'
@@ -90,9 +89,6 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path='/djs' component={ Profiles } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/post/:id' component={ Post } />
               </Switch>
               <Switch>
                 <PrivateRoute exact path='/notifications' component={ Notifications } />

@@ -344,8 +344,8 @@ class CommentItem extends Component {
                      
                      
                      
-{/*                       
-                      <div>
+                                            
+                      {/* <div>
                         { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
                         { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
                           ? <div style={{ marginLeft: 35, fontSize: '10px', color: 'rgb(29, 138, 255)'}}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>
