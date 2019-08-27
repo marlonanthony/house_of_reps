@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
-import { logoutUser } from '../../actions/authActions'
-import { getCurrentProfile, clearCurrentProfile } from '../../actions/profileActions'
+
+import { logoutUser } from '../../../actions/authActions'
+import { getCurrentProfile, clearCurrentProfile } from '../../../actions/profileActions'
 
 import './DropdownMenu.css'
 

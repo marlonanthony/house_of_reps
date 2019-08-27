@@ -1,6 +1,6 @@
 .fade-pic {
   position: relative;
-  background: url('../../img/dj.jpg') no-repeat;
+  background: url('../../../img/dj.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -41,7 +41,20 @@
   cursor: pointer;
 }
 
-/* .landing_content {} */
+.landing_content > div {
+  margin-top: 40vh; 
+  text-align: center;
+}
+.landing_content > div > h1 {
+  font-size: 3em; 
+  color: #bdc7c1;
+}
+.landing_content > div > h6 {
+  font-size: 1em; 
+  color: #7e8889; 
+  margin-bottom: 15px; 
+  margin-top: -15px;
+}
 
 .landing_footer {
   text-align: center;
@@ -78,7 +91,6 @@
   border: none;
   border-radius: 2px;
   outline: none;
-  /* color: rgb(55, 131, 194); */
   background: rgba(0, 0, 0, 0.1);
 }
 

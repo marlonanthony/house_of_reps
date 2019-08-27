@@ -2,14 +2,14 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
+
 import { setCurrentUser, logoutUser } from './actions/authActions'
 import { clearCurrentProfile } from './actions/profileActions';
 import { Provider } from 'react-redux' 
 import store from './store' 
-
 import PrivateRoute from './components/common/PrivateRoute'
-import DropdownMenu from './components/layout/DropdownMenu'
-import Landing from './components/layout/Landing'
+import DropdownMenu from './components/layout/dropdown_menu/DropdownMenu'
+import Landing from './components/layout/landing/Landing'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Dashboard from './components/dashboard/Dashboard'
