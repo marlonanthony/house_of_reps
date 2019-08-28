@@ -9,11 +9,6 @@
   outline-color: var(--border-color);
 }
 
-html {
-  overflow: scroll;
-  overflow-x: hidden;
-}
-
 body::-webkit-scrollbar {
   width: 5px;
 }

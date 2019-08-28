@@ -18,7 +18,7 @@
   overflow: auto;
   font-size: 17px;
   resize: none;
-  color: rgba(200,200,200,.9);
+  color: var(--text-color);
   background: none;
 }
 
