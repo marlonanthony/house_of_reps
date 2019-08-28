@@ -147,7 +147,7 @@ export default function(state = initialState, action) {
     case ADD_COMMENT_LIKE:
       const updateCommentLikes = state.posts.map(post => {
         if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
+          post.comments.forEach(comment => {
             if(comment._id === action.payload.commentId) {
               post = action.payload.data
             }
@@ -165,7 +165,7 @@ export default function(state = initialState, action) {
     case REMOVE_COMMENT_LIKE:
       const removeCommentLike = state.posts.map(post => {
         if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
+          post.comments.forEach(comment => {
             if(comment._id === action.payload.commentId) {
               post = action.payload.data
             }
@@ -195,7 +195,7 @@ export default function(state = initialState, action) {
     case ADD_NESTED_COMMENT:
       const updatePost = state.posts.map(post => {
         if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
+          post.comments.forEach(comment => {
             if(comment._id === action.payload.commentId) {
               post = action.payload.data
             }
@@ -212,7 +212,7 @@ export default function(state = initialState, action) {
     case REMOVE_NESTED_COMMENT:
       const updateRomoveNestedCommentPosts = state.posts.map(post => {
         if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
+          post.comments.forEach(comment => {
             if(comment._id === action.payload.commentId) {
               comment.comments.filter(nestedComment => nestedComment._id !== action.payload.nestedCommentId) 
               post = action.payload.data
@@ -230,9 +230,9 @@ export default function(state = initialState, action) {
     case ADD_NESTED_COMMENT_LIKE:
       const updateNestedCommentLikes = state.posts.map(post => {
         if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
+          post.comments.forEach(comment => {
             if(comment._id === action.payload.commentId) {
-              comment.comments.map(nestedComment => {
+              comment.comments.forEach(nestedComment => {
                 if(nestedComment._id === action.payload.nestedCommentId) {
                   post = action.payload.data
                 }
@@ -251,9 +251,9 @@ export default function(state = initialState, action) {
     case REMOVE_NESTED_COMMENT_LIKE:
       const removeNestedCommentLike = state.posts.map(post => {
         if(post._id === action.payload.postId) {
-          post.comments.map(comment => {
+          post.comments.forEach(comment => {
             if(comment._id === action.payload.commentId) {
-              comment.comments.map(nestedComment => {
+              comment.comments.forEach(nestedComment => {
                 if(nestedComment._id === action.payload.nestedCommentId) {
                   post = action.payload.data 
                 }

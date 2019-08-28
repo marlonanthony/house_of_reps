@@ -80,13 +80,12 @@ class CommentItem extends Component {
     this.setState({ showModal: true })
   }
 
-  userNameOrAvatarClicked = commentId => {
-    this.props.profiles.map(profile =>  {
-      if(profile.user._id === commentId) {
+  userNameOrAvatarClicked = commentId => (
+    this.props.profiles.map(profile =>  (
+      profile.user._id === commentId &&
         this.props.history.push(`/profile/${profile.handle}`)
-      }
-    })
-  }
+    ))
+  )
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
