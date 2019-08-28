@@ -9,19 +9,28 @@
   outline-color: var(--border-color);
 }
 
-body::-webkit-scrollbar {
-  width: 5px;
-}
+
 *::-webkit-scrollbar-thumb {
   background-color: var(--secondary-color);
 }
+body::-webkit-scrollbar {
+  width: 5px;
+}
+textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
 
 body { 
   margin: 0px;  
   background: var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
   color: var(--text-color);
+}
 
+h2 {
+  text-align: center; 
+  padding-top: 70px;
 }
 
 a { color: var(--secondary-color); }

@@ -10,9 +10,10 @@ class Verify extends Component {
   }
 
   componentDidMount() {
-    const { pathname, search } = this.props.location
+    const { search } = this.props.location
     let userData = { token: search.slice(7) }
-    axios.post('/api/users/confirm', userData).then(res => {
+    axios.post('/api/users/confirm', userData)
+    .then(res => {
       if(res.data.isVerified){
         this.setState({ isVerified: true })
       }
@@ -20,19 +21,12 @@ class Verify extends Component {
   }
 
   render() {
-    if(this.state.isVerified){
-      return (
-        <div style={{textAlign: 'center', color: 'rgb(55,131,194)'}}>
+    return this.state.isVerified 
+      ? <div style={{textAlign: 'center', color: 'rgb(55,131,194)'}}>
           <h1>Congrats You're Verified!!!!</h1>
           <Link to='/login'>Log In</Link>
         </div>
-      )
-    } 
-    return (
-      <div>
-        <h1 style={{textAlign: 'center', color: 'rgb(55,131,194)'}}>POOR SAP!!</h1>
-      </div>
-    )
+      : <h2>POOR SAP!!</h2>
   }
 }
 
