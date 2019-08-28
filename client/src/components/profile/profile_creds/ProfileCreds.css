@@ -72,10 +72,10 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    margin: 0 5px;
+    margin: 5px;
   }
   .profile-creds-content::-webkit-scrollbar {
-    height: 6px;
+    height: 8px;
   }
   .profile-creds-content li {
     width: 200px;
