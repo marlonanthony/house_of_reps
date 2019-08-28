@@ -65,7 +65,7 @@ class AddCertifiedStore extends Component {
     return (
       <div className=''>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', marginTop: '70px' }}>Add Certified Store</h1>
+        <h2>Add Store</h2>
         <div className='stores_input_wrapper'>
           <div className='certified-store-dropzone'>
             <div className='FileUpload'>

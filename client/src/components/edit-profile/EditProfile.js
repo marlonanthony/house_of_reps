@@ -159,8 +159,7 @@ class EditProfile extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state 
-
-    // Select options for dj style
+    
     const options = [
       { label: "What's Your DJ Style?", value: 0 },
       { label: 'MC', value: 'MC' },
@@ -262,7 +261,7 @@ class EditProfile extends Component {
     return (
       <div className='edit-profile'>
         <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#aaa' }}>Edit Profile</h1>
+        <h2>Edit Profile</h2>
         <div className='djpools_input_wrapper'>
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
@@ -340,7 +339,7 @@ class EditProfile extends Component {
               }} id='create-profile-social-btn'>Add Social Network Links</button>
             </div>
             { socialInputs }
-            <input type="submit" value="Submit" class='create-profile-submit-button' />
+            <input type="submit" value="Submit" className='create-profile-submit-button' />
           </form>
         </div>
       </div>

@@ -68,7 +68,7 @@ class AddBrand extends Component {
     return (
       <div className='add-djpool'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Brand</h1>
+        <h2>Add Brand</h2>
         {/* setting input div classname to djpools for lack of repitition */}
         <div className='djpools_input_wrapper'>
           <div className='djpools-dropzone'>

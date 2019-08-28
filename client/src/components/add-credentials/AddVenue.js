@@ -84,8 +84,13 @@ class AddVenue extends Component {
     const { errors } = this.state 
     return (
       <div className='add-venue'>
-        <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Media</h1>
+        <i 
+          onClick={ this.props.history.goBack } 
+          id='addvenue-back-button' 
+          className='fas fa-arrow-alt-circle-left' 
+          alt='back-button' 
+        />
+        <h2>Add Media</h2>
         <div className='djpools_input_wrapper'>
           <form onSubmit={ this.onSubmit }>
             <Input 

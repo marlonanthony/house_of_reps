@@ -67,7 +67,7 @@ class AddPerk extends Component {
       /*  Set classNames to djpools for lack of repitition  */ 
       <div className='add-djpool'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h1 style={{ textAlign: 'center', color: '#ccc', paddingTop: '70px' }}>Add Perk</h1>
+        <h2>Add Perk</h2>
         <div className='djpools_input_wrapper'>
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
