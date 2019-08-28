@@ -44,7 +44,7 @@ class ProfileCreds extends Component {
     ))
 
     return (
-      <div className='profile-creds' style={{marginTop: 70}}>
+      <div className='profile-creds'>
         <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
         { highlightsModal }
         <div className='profile-creds-content'>

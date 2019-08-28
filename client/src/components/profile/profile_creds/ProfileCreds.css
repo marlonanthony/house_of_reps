@@ -1,5 +1,8 @@
+.profile-creds {
+}
+
 .profile-creds-content {
-  
+
 }
 
 .venue-items {
@@ -82,3 +85,8 @@
   }
 }
 
+@media (min-width: 1250px) {
+  .profile-creds {
+    margin: 70px;
+  }
+}
