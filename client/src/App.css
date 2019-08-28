@@ -1,37 +1,39 @@
 * { 
-  box-sizing: border-box;
-  outline-width: .5px; 
-  outline-color: rgba(55,131,194,0.3);
-  --primary-color: black;
+  --primary-color: #000;
   --secondary-color: rgb(55, 131, 194);
   --border-color: rgba(55, 131, 194, 0.3);
   --text-color: rgba(200, 200, 200, 0.9);
+  box-sizing: border-box;
+  text-decoration: none;
+  outline-width: .5px; 
+  outline-color: var(--border-color);
 }
+
 html {
   overflow: scroll;
   overflow-x: hidden;
-  
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
 }
 
 body { 
   margin: 0px;  
   background: var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
-  color: rgba(200,200,200,.6);
-  
+  color: var(--text-color);
+
 }
+
+a { color: var(--secondary-color); }
 
 input {
   -webkit-appearance: none;
-  
 }
-
-::-webkit-scrollbar {
-  display: none;
-  
-}
-/* ::-webkit-scrollbar-thumb { }
-::-webkit-scrollbar-track { } */
 
 
 /* background: #050c14;   */

@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
+import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 
 import { setCurrentUser, logoutUser } from './actions/authActions'
-import { clearCurrentProfile } from './actions/profileActions';
-import { Provider } from 'react-redux' 
-import store from './store' 
+import { clearCurrentProfile } from './actions/profileActions'
+import { Provider } from 'react-redux'
+import store from './store'
 import PrivateRoute from './components/common/PrivateRoute'
 import DropdownMenu from './components/layout/dropdown_menu/DropdownMenu'
 import Landing from './components/layout/landing/Landing'
@@ -26,7 +26,7 @@ import Posts from './components/posts/Posts'
 import Verify from './components/auth/Verify'
 import ConfirmEmail from './components/auth/ConfirmEmail'
 import Notifications from './components/posts/post-assets/notifications/Notifications'
-import './App.css';
+import './App.css'
 
 
 // Check for token

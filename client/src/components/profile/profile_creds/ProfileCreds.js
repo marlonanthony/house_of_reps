@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { likeVenue } from '../../../actions/profileActions'
 import HighlightsModal from '../../UI/modal/highlights-modal/HighlightsModal'
@@ -49,7 +50,7 @@ class ProfileCreds extends Component {
         <div className='profile-creds-content'>
           { venueItems.length > 0 ? ( 
             venueItems.filter((val, i) => i < 4 ?  (<ul>{venueItems}</ul>) : null)
-          ) : (<p id='no_venues'>Add some content</p>)}
+          ) : (<p id='no_venues'><Link to='/add-venue'>Add some content</Link></p>)}
         </div>
       </div>
     )
