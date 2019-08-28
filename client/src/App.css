@@ -17,7 +17,7 @@ html {
 body::-webkit-scrollbar {
   width: 5px;
 }
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: var(--secondary-color);
 }
 

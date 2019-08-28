@@ -1,4 +1,5 @@
 .profile-creds {
+
 }
 
 .profile-creds-content {
@@ -61,7 +62,7 @@
 
 @media(max-width: 600px) {
   .venue-items {
-    margin: 0px 5px;
+    margin: 5px;
   }
   #no_venues {
     margin: auto;
@@ -70,7 +71,11 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow-x: scroll;
+    margin: 0 5px;
+  }
+  .profile-creds-content::-webkit-scrollbar {
+    height: 6px;
   }
   .profile-creds-content li {
     width: 200px;
