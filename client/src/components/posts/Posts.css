@@ -16,7 +16,7 @@
   grid-area: searchbar;
   height: 40px;
   border-radius: 3px;
-  border: .5px solid rgba(55, 131, 194, .3);
+  border: .5px solid var(--border-color);
 }
 
 .searchbar_input {
@@ -30,7 +30,7 @@
   color: rgba(200,200,200,0.6);
 }
 .searchbar_input::placeholder {
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
 }
 
 .searchbar_items {
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 .searchbar_links {
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
   text-decoration: none;
   list-style: none;
 }
@@ -59,7 +59,7 @@
 .searchbarpostinput {
   flex: 8; 
   background: none;
-  border: 0.5px solid rgba(55, 131, 194, .3); 
+  border: 0.5px solid var(--border-color); 
   color: rgba(200,200,200,0.6);
   font-size: 13px;
   padding-left: 5px;
@@ -75,13 +75,13 @@
   cursor: pointer;  
   height: 40; 
   background: none;
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
   padding: 10px; 
-  border: 0.5px solid rgba(55, 131, 194, .3);
+  border: 0.5px solid var(--border-color);
   outline: none; 
 }
 .searchbarpostbtn:hover {
-  border: .5px solid rgb(55, 131, 194);
+  border: .5px solid var(--secondary-color);
 }
 
 .post-feed-profile {
@@ -131,7 +131,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent rgb(55, 131, 194) transparent;
+  border-color: transparent transparent var(--secondary-color) transparent;
 }
 
 /* The like popup */
@@ -140,8 +140,8 @@
   width: 280px;
   height: 250px;
   background-color: #030303;
-  color: rgb(55, 131, 194);
-  border: 1px solid rgb(55, 131, 194);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   position: absolute;
   z-index: 1000000000;
   bottom: 100%;
@@ -192,6 +192,11 @@
   border: 2px solid var(--secondary-color);
 }
 
+.popup > a > p {
+  color: var(--secondary-color); 
+  font-size: 13px;
+}
+
 .postfeed_popup_profile_info {
   padding: 10px; 
   display: flex;
@@ -201,6 +206,9 @@
 }
 .postfeed_popup_profile_info > small {
   padding-top: 10px;
+}
+.postfeed_popup_profile_info > p {
+  font-size: 13px;
 }
 .postfeed_popup_profile_info > a > p {
   color: var(--secondary-color); 
@@ -257,7 +265,7 @@
   text-align: center;
   font-size: 13px;
   border: none;
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
   font-size: 12px;
 }
 
@@ -290,7 +298,7 @@
     width: 250px;
     height: 250px;
     margin-top: -30px;
-    border: .5px solid rgba(55, 131, 194, .3);
+    border: .5px solid var(--border-color);
   }
 
   .test {

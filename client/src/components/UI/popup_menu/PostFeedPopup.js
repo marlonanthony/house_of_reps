@@ -23,7 +23,7 @@ export default function PostFeedPopup(props) {
 
   return (
     <div className='popup' onMouseOver={popupHandler} onMouseOut={popupHandler}>
-      <p className='post_name' 
+      <p className='post_name' // PostItem.css
         onClick={() => props.userNameOrAvatarClicked(post.user)}>
         { post.name }
       </p>
