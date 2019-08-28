@@ -189,7 +189,27 @@
   height: 50px; 
   margin: 5px 0;
   border-radius: 50%;
-  border: 2px solid rgb(55, 131, 194);
+  border: 2px solid var(--secondary-color);
+}
+
+.postfeed_popup_profile_info {
+  padding: 10px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.postfeed_popup_profile_info > small {
+  padding-top: 10px;
+}
+.postfeed_popup_profile_info > a > p {
+  color: var(--secondary-color); 
+  font-size: 13px;
+}
+
+.popupcontent span {
+  color: var(--secondary-color); 
+  font-size: 13px;
 }
 
 .post-feed-form {
