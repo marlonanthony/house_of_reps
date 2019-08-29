@@ -13,12 +13,6 @@ class Login extends Component {
     errors: {}
   }
 
-  // componentWillUnmount() {
-  //   if(this.props.auth.isAuthenticated) {
-  //     this.props.history.push('/feed')
-  //   }
-  // }
-
   componentWillReceiveProps(nextProps) {
     if(nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard') 
@@ -41,7 +35,6 @@ class Login extends Component {
     }
 
     this.props.loginUser(userData) 
-    // this.props.history.push('/dashboard') 
   }
 
   render() {
@@ -49,7 +42,7 @@ class Login extends Component {
 
     return (
       <div className='login'>
-        <h2 style={{ textAlign: 'center', paddingTop: '60px' }}>Log In</h2>
+        <h2>Log In</h2>
         <div id='login-content'>
           <form onSubmit={ this.onSubmitHandler }>
             <Input 

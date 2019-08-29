@@ -26,270 +26,324 @@ import {
 } from './types' 
 
 // Add Post 
-export const addPost = postData => dispatch => {
-  dispatch(clearErrors()) 
-  axios.post('/api/posts', postData)
-  .then(res => dispatch({
-    type: ADD_POST,
-    payload: res.data 
-  })) 
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addPost = postData => async dispatch => {
+  try {
+    dispatch(clearErrors()) 
+    const res = await axios.post('/api/posts', postData)
+    dispatch({
+      type: ADD_POST,
+      payload: res.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Get Posts 
-export const getPosts = (count, start) => dispatch => {
-  dispatch(setPostLoading()) 
-  axios.get(`/api/posts?page=${start}&limit=${count}`)
-  .then(res => dispatch({
-    type: GET_POSTS,
-    payload: res.data 
-  })) 
-  .catch(err => dispatch({
-    type: GET_POSTS,
-    payload: null
-  }))
+export const getPosts = (count, start) => async dispatch => {
+  try {
+    dispatch(setPostLoading()) 
+    const res = await axios.get(`/api/posts?page=${start}&limit=${count}`)
+    dispatch({
+      type: GET_POSTS,
+      payload: res.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_POSTS,
+      payload: null
+    })
+  }
 }
 
 // Get Post 
-export const getPost = (id) => dispatch => {
-  dispatch(setPostLoading()) 
-  axios.get(`/api/posts/${id}`)
-  .then(res => dispatch({
-    type: GET_POST,
-    payload: res.data 
-  })) 
-  .catch(err => dispatch({
-    type: GET_POST,
-    payload: null
-  }))   
+export const getPost = id => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.get(`/api/posts/${id}`)
+    dispatch({
+      type: GET_POST,
+      payload: res.data
+    })
+  } catch(err) {
+      dispatch({
+      type: GET_POST,
+      payload: null
+    })
+  }
 }
 
 
 // Get Liked Posts 
-export const getLikedPosts = (count, start) => dispatch => {
-  dispatch(setPostLoading()) 
-  axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
-  .then(res => dispatch({
-    type: GET_LIKED_POSTS,
-    payload: res.data 
-  }))
-  .catch(err => console.log(err)) 
+export const getLikedPosts = (count, start) => async dispatch => {
+  try {
+    dispatch(setPostLoading()) 
+    const res = await axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
+    dispatch({
+      type: GET_LIKED_POSTS,
+      payload: res.data 
+    })
+  } catch(err) {
+    console.log(err)
+  }
 }
 
 // Get More Liked Posts 
-export const getMoreLikedPosts = (count, start) => dispatch => {
-  dispatch(setPostLoading()) 
-  axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
-  .then(res => dispatch({
-    type: GET_MORE_LIKED_POSTS,
-    payload: res.data 
-  }))
-  .catch(err => console.log(err)) 
+export const getMoreLikedPosts = (count, start) => async dispatch => {
+  try {
+    dispatch(setPostLoading()) 
+    const res = await axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
+    dispatch({
+      type: GET_MORE_LIKED_POSTS,
+      payload: res.data 
+    })
+  } catch(err) {
+    console.log(err)
+  }
 }
 
 
 // Get Profile Posts 
-export const getProfilePosts = (count, start, handle) => dispatch => {
-  dispatch(setPostLoading()) 
-  axios.get(`/api/posts/profileposts?page=${start}&limit=${count}&handle=${handle}`)
-  .then(res => dispatch({
-    type: GET_PROFILE_POSTS,
-    payload: res.data 
-  })) 
-  .catch(err => dispatch({
-    type: GET_PROFILE_POSTS,
-    payload: null
-  }))
+export const getProfilePosts = (count, start, handle) => async dispatch => {
+  try {
+    dispatch(setPostLoading()) 
+    const res = await axios.get(`/api/posts/profileposts?page=${start}&limit=${count}&handle=${handle}`)
+    dispatch({
+      type: GET_PROFILE_POSTS,
+      payload: res.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_PROFILE_POSTS,
+      payload: null
+    })
+  }
 }
 
 // Get More Profile Posts
-export const getMoreProfilePosts = (count, start, handle) => dispatch => {
-  dispatch(setPostLoading())
-  axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
-  .then(res => dispatch({
-    type: GET_MORE_PROFILE_POSTS,
-    payload: res.data,
-  }))
-  .catch(err => console.log(err)) 
+export const getMoreProfilePosts = (count, start, handle) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
+    dispatch({
+      type: GET_MORE_PROFILE_POSTS,
+      payload: res.data,
+    }) 
+  } catch(err) { console.log(err) }
 }
 
 // Get More Posts
-export const getMorePosts = (count, start) => dispatch => {
-  dispatch(setPostLoading())
-  axios.get(`/api/posts?page=${start}&limit=${count}`)
-  .then(res => dispatch({
-    type: GET_MORE_POSTS,
-    payload: res.data
-  }))
-  .catch(err => console.log(err)) 
+export const getMorePosts = (count, start) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.get(`/api/posts?page=${start}&limit=${count}`)
+    .then(res => dispatch({
+      type: GET_MORE_POSTS,
+      payload: res.data
+    }))
+  } catch(err) { console.log(err) }
 }
 
 // Get Matching Posts
-export const getMatchingPosts = (matches) => dispatch => {
-  dispatch(setPostLoading())
-  axios.get(`/api/posts/search/:${matches}`)
-  .then(res => dispatch({
-    type: GET_MATCHING_POSTS,
-    payload: res.data
-  }))
-  .catch(err => console.log(err)) 
+export const getMatchingPosts = (matches) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.get(`/api/posts/search/:${matches}`)
+    .then(res => dispatch({
+      type: GET_MATCHING_POSTS,
+      payload: res.data
+    }))
+  } catch(err) { console.log(err) } 
 }
 
 
 // Delete Post 
-export const deletePost = id => dispatch => {
-  axios.delete(`/api/posts/${id}`)
-  .then(res => dispatch({
-    type: DELETE_POST,
-    payload: id
-  })) 
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const deletePost = id => async dispatch => {
+  try {
+    await axios.delete(`/api/posts/${id}`)
+    dispatch({
+      type: DELETE_POST,
+      payload: id
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add Like
-export const addLike = id => dispatch => {
-  axios.post(`/api/posts/like/${id}`)
-  .then(post => dispatch({
-    type: ADD_LIKE,
-    payload: post.data 
-  }))  
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data
-  }))
+export const addLike = id => async dispatch => {
+  try {
+    const post = await axios.post(`/api/posts/like/${id}`)
+    dispatch({
+      type: ADD_LIKE,
+      payload: post.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
 }
 
 // Remove Like
-export const removeLike = id => dispatch => {
-  axios.post(`/api/posts/unlike/${id}`)
-  .then(post => dispatch({
-    type: REMOVE_LIKE,
-    payload: post.data 
-  }))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data
-  }))
+export const removeLike = id => async dispatch => {
+  try {
+    const post = await axios.post(`/api/posts/unlike/${id}`)
+    dispatch({
+      type: REMOVE_LIKE,
+      payload: post.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
 }
 
 // Add Comment to Post 
-export const addComment = (postId, commentData) => dispatch => {
-  dispatch(clearErrors()) 
-  axios.post(`/api/posts/comment/${postId}`, commentData)
-  .then(res => dispatch({
-    type: ADD_COMMENT,
-    payload: res.data, 
-  })) 
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addComment = (postId, commentData) => async dispatch => {
+  try {
+    dispatch(clearErrors()) 
+    const res = await axios.post(`/api/posts/comment/${postId}`, commentData)
+    dispatch({
+      type: ADD_COMMENT,
+      payload: res.data, 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Delete comment from post 
-export const deleteComment = (postId, commentId) => dispatch => {
-  axios.delete(`/api/posts/comment/${postId}/${commentId}`)
-  .then(res => dispatch({
-    type: DELETE_COMMENT,
-    payload: { commentId, postId }
-  })) 
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const deleteComment = (postId, commentId) => async dispatch => {
+  try {
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`)
+    dispatch({
+      type: DELETE_COMMENT,
+      payload: { commentId, postId }
+    })
+  } catch(err) { 
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add Like to Comment
-export const addCommentLike = (postId, commentId) => dispatch => {
-  axios.post(`/api/posts/comment/like/${postId}/${commentId}`)
-  .then(post => dispatch({
-    type: ADD_COMMENT_LIKE,
-    payload: {
-      data: post.data,
-      postId,
-      commentId
-    }
-  }))  
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addCommentLike = (postId, commentId) => async dispatch => {
+  try {
+    const post = await axios.post(`/api/posts/comment/like/${postId}/${commentId}`)
+    dispatch({
+      type: ADD_COMMENT_LIKE,
+      payload: {
+        data: post.data,
+        postId,
+        commentId
+      }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Unlike Comment
-export const removeCommentLike = (postId, commentId) => dispatch => {
-  axios.post(`/api/posts/comment/unlike/${postId}/${commentId}`)
-  .then(post => dispatch({
-    type: REMOVE_COMMENT_LIKE,
-    payload: {
-      data: post.data,
-      postId,
-      commentId
-    }
-  }))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const removeCommentLike = (postId, commentId) => async dispatch => {
+  try {
+    const post = await axios.post(`/api/posts/comment/unlike/${postId}/${commentId}`)
+    dispatch({
+      type: REMOVE_COMMENT_LIKE,
+      payload: {
+        data: post.data,
+        postId,
+        commentId
+      }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add NestedComment 
-export const addNestedComment = (postId, commentId, nestedCommentData) => dispatch => {
-  dispatch(clearErrors()) 
-  axios.post(`/api/posts/comment/comment/${postId}/${commentId}`, nestedCommentData)
-  .then(res => dispatch({
-    type: ADD_NESTED_COMMENT,
-    payload: { data: res.data, postId, commentId, nestedCommentData }, 
-  })) 
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addNestedComment = (postId, commentId, nestedCommentData) => async dispatch => {
+  try {
+    dispatch(clearErrors()) 
+    const res = await axios.post(`/api/posts/comment/comment/${postId}/${commentId}`, nestedCommentData)
+    dispatch({
+      type: ADD_NESTED_COMMENT,
+      payload: { data: res.data, postId, commentId, nestedCommentData }, 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Delete NestedComment
-export const deleteNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
-  axios.delete(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`)
-  .then(res => dispatch({
-    type: REMOVE_NESTED_COMMENT,
-    payload: { data: res.data, postId, commentId, nestedCommentId }
-  }))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const deleteNestedComment = (postId, commentId, nestedCommentId) => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`)
+    dispatch({
+      type: REMOVE_NESTED_COMMENT,
+      payload: { data: res.data, postId, commentId, nestedCommentId }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Like NestedComment
-export const likeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
-  axios.post(`/api/posts/comment/comment/like/${postId}/${commentId}/${nestedCommentId}`)
-  .then(res => dispatch({
-    type: ADD_NESTED_COMMENT_LIKE,
-    payload: { data: res.data, postId, commentId, nestedCommentId }
-  }))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const likeNestedComment = (postId, commentId, nestedCommentId) => async dispatch => {
+  try {
+    const res = await axios.post(`/api/posts/comment/comment/like/${postId}/${commentId}/${nestedCommentId}`)
+    dispatch({
+      type: ADD_NESTED_COMMENT_LIKE,
+      payload: { data: res.data, postId, commentId, nestedCommentId }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Unlike NestedComment
-export const unlikeNestedComment = (postId, commentId, nestedCommentId) => dispatch => {
-  axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}/${nestedCommentId}`)
-  .then(res => dispatch({
-    type: REMOVE_NESTED_COMMENT_LIKE,
-    payload: { data: res.data, postId, commentId, nestedCommentId }
-  }))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const unlikeNestedComment = (postId, commentId, nestedCommentId) => async dispatch => {
+  try {
+    const res = await axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}/${nestedCommentId}`)
+    dispatch({
+      type: REMOVE_NESTED_COMMENT_LIKE,
+      payload: { data: res.data, postId, commentId, nestedCommentId }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Set loading state

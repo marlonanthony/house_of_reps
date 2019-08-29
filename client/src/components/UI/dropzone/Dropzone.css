@@ -6,8 +6,8 @@
   height: auto;
   padding: 10px;
   cursor: pointer;
-  color: rgb(55,131,194);
+  color: var(--secondary-color);
   border: dashed;
-  border-color: rgb(55,131,194);
+  border-color: var(--secondary-color);
                   
 }

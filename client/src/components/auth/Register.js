@@ -79,10 +79,10 @@ class Register extends Component {
 
     return (
       <div className="register-container">
-        <h2 style={{ textAlign: 'center', color: '#bdc7c1', marginTop: '50px' }}>Sign Up</h2>
+        <h2>Sign Up</h2>
         <div id='register-content'>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{  }} className='FileUpload'>
+            <div className='FileUpload'>
               <Dropzone 
                 className='dropzone'
                 multiple={ false }
@@ -93,14 +93,10 @@ class Register extends Component {
             </div>
             <div>
               { this.state.uploadedFileCloudinaryUrl === '' ? null : 
-              <div>
-                <div>
-                  <img 
-                    src={ this.state.uploadedFileCloudinaryUrl } 
-                    style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                    alt={ this.state.uploadedFile.name } />
-                </div>
-              </div>
+                <img 
+                  src={ this.state.uploadedFileCloudinaryUrl } 
+                  style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+                  alt={ this.state.uploadedFile.name } />
               }
             </div>
           </div>

@@ -61,7 +61,8 @@ class AddCertifiedStore extends Component {
   }
 
   render() {
-    const { errors } = this.state 
+    const { errors } = this.state
+    
     return (
       <div className=''>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />

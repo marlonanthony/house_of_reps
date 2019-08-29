@@ -70,8 +70,7 @@ class CreateProfile extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state 
-
-    // Select options for dj style
+    
     const options = [
       { label: "What's Your DJ Style?", value: 0 },
       { label: 'MC', value: 'MC' },
@@ -170,9 +169,10 @@ class CreateProfile extends Component {
         </div>
       )
     }
+
     return (
       <div className='create-profile'>
-        <h1 style={{ textAlign: 'center', paddingTop: '60px', color: '#aaa' }}>Create Your Profile</h1>
+        <h2>Create Your Profile</h2>
         <div className='createprofilecontainer'>
           <form onSubmit={ this.onSubmit }>
             <Input 
