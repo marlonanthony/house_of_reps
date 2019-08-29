@@ -2,19 +2,9 @@ const router = require('express').Router()
 const mongoose = require('mongoose') 
 const passport = require('passport') 
 
-// Post model
 const Post = require('../../models/Post')
-// Profile model
 const Profile = require('../../models/Profile')
-
-// Validation
 const validatePostInput = require('../../validation/post')
-
-// @route         GET api/posts/test
-// @description   Tests posts route
-// @access        Public 
-router.get('/test', (req, res) => res.json({ msg: 'Posts Works' })) 
-
 
 // @route         GET api/posts
 // @description   Get posts
@@ -23,7 +13,6 @@ router.get('/', (req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
-
   }
 
   Post.find()
@@ -132,18 +121,13 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 // @description   Delete post
 // @access        Private
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
     Post.findById(req.params.id).then(post => {
-      // Check if post owner
       if(post.user.toString() !== req.user.id) {
         return res.status(401).json({ notauthorized: 'User not authorized' }) 
       }
-
-      // DELETE
       post.remove().then(() => res.json({ success: true }))
     })
     .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
-  })
 })
 
 

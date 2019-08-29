@@ -1,10 +1,6 @@
 import React from 'react'
 import './PhotoIcon.css'
 
-const PhotoIcon = props => (
-  <React.Fragment>
-    <i className="fas fa-image" id='add-photo' title='Upload Photo' />
-  </React.Fragment>
-)
+const PhotoIcon = () => <i className="fas fa-image" id='add-photo' title='Upload Photo' />
 
 export default PhotoIcon

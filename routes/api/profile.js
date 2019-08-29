@@ -1,6 +1,5 @@
 const router = require('express').Router() 
-const mongoose = require('mongoose') 
-const passport = require('passport') 
+const passport = require('passport')
 
 // Load Validation
 const validateProfileInput = require('../../validation/profile')
@@ -9,9 +8,7 @@ const validateDjpoolsInput = require('../../validation/djpools')
 const validatePerksInput = require('../../validation/djpools')
 const validateBrandsInput = require('../../validation/djpools')
 
-// Load Profile Model
 const Profile = require('../../models/Profile')
-// Load User Model
 const User = require('../../models/User')
 
 
@@ -108,7 +105,7 @@ router.get('/notifications', passport.authenticate('jwt', { session: false }), (
   Profile.findOne({ user: req.user.id })
   .then(profile => {
     profile.notifications.map((notification, i, array) => {
-      if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 172800000){  // 259200000
+      if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 604800000) { // 1 week
         array.splice(notification[i], 1)
       }
     })
@@ -136,9 +133,7 @@ router.post('/notifications/seen', passport.authenticate('jwt', { session: false
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateProfileInput(req.body) 
 
-  // Check Validation
   if(!isValid) {
-    // Return any errors with 400 status
     return res.status(400).json(errors)
   }
   
@@ -201,9 +196,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 router.post('/venues', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateVenuesInput(req.body) 
 
-  // Check Validation
   if(!isValid) {
-    // Return any errors with 400 status
     return res.status(400).json(errors) 
   }
   
@@ -264,9 +257,7 @@ router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: 
 router.post('/djpools', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateDjpoolsInput(req.body) 
 
-  // Check Validation
   if(!isValid) {
-    // Return any errors with 400 status
     return res.status(400).json(errors) 
   }
   
@@ -289,9 +280,7 @@ router.post('/djpools', passport.authenticate('jwt', { session: false }), (req, 
 router.post('/stores', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateDjpoolsInput(req.body) 
 
-  // Check Validation
   if(!isValid) {
-    // Return any errors with 400 status
     return res.status(400).json(errors) 
   }
   
@@ -314,9 +303,7 @@ router.post('/stores', passport.authenticate('jwt', { session: false }), (req, r
 router.post('/perks', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validatePerksInput(req.body) 
 
-  // Check Validation
   if(!isValid) {
-    // Return any errors with 400 status
     return res.status(400).json(errors) 
   }
   
@@ -340,9 +327,7 @@ router.post('/perks', passport.authenticate('jwt', { session: false }), (req, re
 router.post('/brands', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateBrandsInput(req.body) 
 
-  // Check Validation
   if(!isValid) {
-    // Return any errors with 400 status
     return res.status(400).json(errors) 
   }
   
@@ -354,7 +339,6 @@ router.post('/brands', passport.authenticate('jwt', { session: false }), (req, r
       description: req.body.description
     }
 
-    // Add Perk to array
     profile.brands.unshift(newBrand) 
     profile.save().then(profile => res.json(profile)) 
   })
@@ -365,15 +349,10 @@ router.post('/brands', passport.authenticate('jwt', { session: false }), (req, r
 // @description  Delete venue from profile
 // @access       Private
 router.delete('/venues/:venue_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    // Get remove index
-    const removeIndex = profile.venues.map(item => item.id).indexOf(req.params.venue_id) 
-
-    // Splice out of array
-    profile.venues.splice(removeIndex, 1) 
-
-    // Save
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const index = profile.venues.map(item => item.id).indexOf(req.params.venue_id) 
+    profile.venues.splice(index, 1) 
     profile.save().then(profile => res.json(profile))  
   }).catch(err => res.status(404).json(err)) 
 })
@@ -382,68 +361,48 @@ router.delete('/venues/:venue_id', passport.authenticate('jwt', { session: false
 // @description  Delete djpool
 // @access       Private
 router.delete('/djpools/:djpool_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    // Get remove index
-    const removeIndex = profile.djpools.map(item => item.id).indexOf(req.params.djpool_id) 
-
-    // Splice out of array
-    profile.djpools.splice(removeIndex, 1) 
-
-    // Save
-    profile.save().then(profile => res.json(profile))  
-  }).catch(err => res.status(404).json(err)) 
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const index = profile.djpools.map(item => item.id).indexOf(req.params.djpool_id)
+    profile.djpools.splice(index, 1)
+    profile.save().then(profile => res.json(profile))
+  }).catch(err => res.status(404).json(err))
 })
 
 // @route        DELETE api/profile/stores/:store_id
 // @description  Delete store
 // @access       Private
 router.delete('/stores/:store_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    // Get remove index
-    const removeIndex = profile.stores.map(item => item.id).indexOf(req.params.store_id) 
-
-    // Splice out of array
-    profile.stores.splice(removeIndex, 1) 
-
-    // Save
-    profile.save().then(profile => res.json(profile))  
-  }).catch(err => res.status(404).json(err)) 
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const index = profile.stores.map(item => item.id).indexOf(req.params.store_id)
+    profile.stores.splice(index, 1)
+    profile.save().then(profile => res.json(profile))
+  }).catch(err => res.status(404).json(err))
 })
 
 // @route        DELETE api/profile/perks/:perk_id
 // @description  Delete perk
 // @access       Private
 router.delete('/perks/:perk_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    // Get remove index
-    const removeIndex = profile.perks.map(item => item.id).indexOf(req.params.perk_id) 
-
-    // Splice out of array
-    profile.perks.splice(removeIndex, 1) 
-
-    // Save
-    profile.save().then(profile => res.json(profile))  
-  }).catch(err => res.status(404).json(err)) 
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const index = profile.perks.map(item => item.id).indexOf(req.params.perk_id)
+    profile.perks.splice(index, 1)
+    profile.save().then(profile => res.json(profile))
+  }).catch(err => res.status(404).json(err))
 })
 
 // @route        DELETE api/profile/brands/:brand_id
 // @description  Delete brand
 // @access       Private
 router.delete('/brands/:brand_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    // Get remove index
-    const removeIndex = profile.brands.map(item => item.id).indexOf(req.params.brand_id) 
-
-    // Splice out of array
-    profile.brands.splice(removeIndex, 1) 
-
-    // Save
-    profile.save().then(profile => res.json(profile))  
-  }).catch(err => res.status(404).json(err)) 
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    const index = profile.brands.map(item => item.id).indexOf(req.params.brand_id)
+    profile.brands.splice(index, 1)
+    profile.save().then(profile => res.json(profile))
+  }).catch(err => res.status(404).json(err))
 })
 
 
@@ -456,4 +415,4 @@ router.delete('/', passport.authenticate('jwt', { session: false }), (req, res) 
   })
 })
 
-module.exports = router  
+module.exports = router
