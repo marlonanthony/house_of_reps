@@ -15,115 +15,107 @@ const User = require('../../models/User')
 // @route         GET api/profile
 // @description   GET current users profile
 // @access        Private
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const errors = {} 
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const errors = {}
+    const profile = await Profile
+    .findOne({ user: req.user.id })
+    .populate('user', ['name', 'avatar'])
 
-  Profile.findOne({ user: req.user.id })
-  .populate('user', ['name', 'avatar'])
-  .then(profile => {
     if(!profile) {
       errors.noprofile = 'There is no profile for this user'
       return res.status(404).json(errors)
     }
-    res.json(profile) 
-  })
-  .catch(err => res.status(404).json(err))
+    return res.json(profile) 
+  } catch(err) { res.status(404).json(err) }
 }) 
 
 
 // @route         GET api/profile/all
 // @description   Get all profiles
 // @access        Private
-router.get('/all', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const errors = {} 
-
-  Profile.find()
-  .populate('user', [ 'name', 'avatar' ])
-  .then(profiles => {
+router.get('/all', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const errors = {} 
+    const profiles = await Profile
+    .find()
+    .populate('user', [ 'name', 'avatar' ])
+  
     if(!profiles) {
       errors.noprofile = 'No profiles yet'
       return res.status(404).json(errors)
     }
-
-    res.json(profiles) 
-  })
-  .catch(err => res.status(404).json({ profile: 'No profiles yet'}))
+    return res.json(profiles) 
+  } catch(err) { res.status(404).json({ profile: 'No profiles yet'}) }
 }) 
 
 
 // @route         GET api/profile/handle/:handle
 // @description   Get profile by handle
 // @access        Private
-  router.get('/handle/:handle', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const errors = {} 
+router.get('/handle/:handle', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const errors = {}
+    const profile = await Profile
+    .findOne({ handle: req.params.handle })
+    .populate('user', [ 'name', 'avatar' ])
 
-  Profile.findOne({ handle: req.params.handle })
-  .populate('user', [ 'name', 'avatar' ])
-  .then(profile => {
     if(!profile) {
       errors.noprofile = 'There is no profile for this user'
-      res.status(404).json(errors) 
+      return res.status(404).json(errors) 
     }
-
-    res.json(profile) 
-  })
-  .catch(err => res.status(404).json(err)) 
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 
 // @route         GET api/profile/user/:user_id
 // @description   Get profile by user id
 // @access        Private
-router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const errors = {} 
+router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const errors = {} 
+    const profile = await Profile
+    .findOne({ user: req.params.user_id })
+    .populate('user', [ 'name', 'avatar' ])
 
-  Profile.findOne({ user: req.params.user_id })
-  .populate('user', [ 'name', 'avatar' ])
-  .then(profile => {
     if(!profile) {
       errors.noprofile = 'There is no profile for this user'
-      res.status(404).json(errors) 
+      return res.status(404).json(errors) 
     }
-
-    res.json(profile) 
-  })
-  .catch(err => res.status(404).json({profile: 'There is no profile for this user'})) 
+    return res.json(profile) 
+  } catch(err) { res.status(404).json({ profile: 'There is no profile for this user' }) }
 })
 
 
 // @route         GET api/profile/notifications
 // @description   GET notifications
 // @access        Private
-router.get('/notifications', passport.authenticate('jwt', { session: false }), (req, res) => {
-  // Profile.aggregate( [ 
-  //   { $match: { user: req.user.id } }, 
-  //   { $unwind: "$notifications" },
-  //   { $sort: { "notifications.date": -1 } },
-
-
-  // .then(result => res.json(result.notifications))
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
-    profile.notifications.map((notification, i, array) => {
+router.get('/notifications', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    profile.notifications.forEach((notification, i, array) => {
       if(notification.seen && Math.abs(new Date(notification.date) - new Date()) > 604800000) { // 1 week
         array.splice(notification[i], 1)
       }
     })
-    profile.save().then(profile => res.json(profile.notifications.reverse()))
-  })
-  .catch(err => res.status(404).json(err))
+    await profile.save()
+    return res.json(profile.notifications.reverse())
+  } catch(err) { res.status(404).json(err) }
 }) 
 
 // @route            POST api/profile/notifications
 // @desc             Set notification to seen once Notifications.js component unMounts
 // @access           Private
-router.post('/notifications/seen', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    profile.notifications.map(notification => {
+router.post('/notifications/seen', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    profile.notifications.forEach(notification => {
       notification.seen = true 
     })
-    profile.save().then(profile => res.json(profile))
-  })
+    await profile.save()
+    return res.json(profile)
+  } catch (err) { res.status(404).json(err) }
 })
 
 
@@ -134,7 +126,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   const { errors, isValid } = validateProfileInput(req.body) 
 
   if(!isValid) {
-    return res.status(400).json(errors)
+    return res.status(404).json(errors)
   }
   
   // Get fields
@@ -193,15 +185,15 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 // @route        POST api/profile/venues
 // @description  Add highlight/venue to profile
 // @access       Private
-router.post('/venues', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validateVenuesInput(req.body) 
+router.post('/venues', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const { errors, isValid } = validateVenuesInput(req.body) 
 
-  if(!isValid) {
-    return res.status(400).json(errors) 
-  }
-  
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+    if(!isValid) {
+      return res.status(400).json(errors) 
+    }
+    
+    const profile = await Profile.findOne({ user: req.user.id })
     const newVenue = {
       title: req.body.title,
       location: req.body.location,
@@ -214,8 +206,9 @@ router.post('/venues', passport.authenticate('jwt', { session: false }), (req, r
 
     // Add to venues array
     profile.venues.unshift(newVenue) 
-    profile.save().then(profile => res.json(profile)) 
-  })
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err)  }
 })
 
 // @route        POST api/profile/venues/like

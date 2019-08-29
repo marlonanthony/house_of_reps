@@ -24,7 +24,10 @@
     transform: translateY(0);
   }
 }
-
+.HighlightsModal::-webkit-scrollbar {
+  width: 5px;
+}
+ 
 .ProfileHighlightsModal {
   position: fixed;
   background-color: black;

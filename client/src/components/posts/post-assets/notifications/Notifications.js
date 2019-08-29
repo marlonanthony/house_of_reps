@@ -36,7 +36,7 @@ class Notifications extends Component {
 
   render() {
     const { post } = this.props.post
-    let youtubeUrl = post.url
+    let youtubeUrl = post && post.url
     
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
       ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
