@@ -9,195 +9,225 @@ import {
   LIKE_HIGHLIGHT } from './types' 
 
 // Get current profile
-export const getCurrentProfile = () => dispatch => {
-  dispatch(setProfileLoading())
-  axios.get('/api/profile').then(res => {
+export const getCurrentProfile = () => async dispatch => {
+  try {
+    dispatch(setProfileLoading())
+    const res = await axios.get('/api/profile')
     dispatch({
       type: GET_PROFILE,
       payload: res.data 
     })
-  })
-  .catch(err => dispatch({
-    type: GET_PROFILE,
-    payload: {} 
-  }))
+  } catch(err) { 
+    dispatch({
+      type: GET_PROFILE,
+      payload: {} 
+    })
+  }
 }
 
 // Get profile by handle
-export const getProfileByHandle = (handle) => dispatch => {
-  dispatch(setProfileLoading())
-  axios.get(`/api/profile/handle/${handle}`).then(res => dispatch({
-    type: GET_PROFILE,
-    payload: res.data 
-  }))
-  .catch(err => dispatch({
-    type: GET_PROFILE,
-    payload: null  
-  }))
+export const getProfileByHandle = handle => async dispatch => {
+  try {
+    dispatch(setProfileLoading())
+    const res = await axios.get(`/api/profile/handle/${handle}`)
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data 
+    })
+  } catch (err) {
+    dispatch({
+      type: GET_PROFILE,
+      payload: null  
+    })
+  }
 }
 
-
 // Create Profile
-export const createProfile = (profileData, history) => dispatch => {
-  axios
-  .post('/api/profile', profileData) 
-  .then(res => history.push('/dashboard')) 
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const createProfile = (profileData, history) => async dispatch => {
+  try {
+    await axios.post('/api/profile', profileData) 
+    history.push('/dashboard')
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add Venue
-export const addVenue = (venueData, history) => dispatch => {
-  axios
-  .post('/api/profile/venues', venueData)
-  .then(res => history.push('/dashboard'))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addVenue = (venueData, history) => async dispatch => {
+  try {
+    await axios.post('/api/profile/venues', venueData)
+    history.push('/dashboard')
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Like Venue
-export const likeVenue = (venueId, userId) => dispatch => {
-  axios
-  .post(`/api/profile/venues/like/${venueId}/${userId}`)
-  .then(profile => dispatch({
-    type: LIKE_HIGHLIGHT,
-    payload: {
-      data: profile.data,
-      venueId,
-      userId 
-    }
-  }))  
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data
-  }))
+export const likeVenue = (venueId, userId) => async dispatch => {
+  try {
+    const profile = await axios.post(`/api/profile/venues/like/${venueId}/${userId}`)
+    dispatch({
+      type: LIKE_HIGHLIGHT,
+      payload: {
+        data: profile.data,
+        venueId,
+        userId 
+      }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
 }
 
 // Add Djpool
-export const addDjpool = (djpoolData, history) => dispatch => {
-  axios
-  .post('/api/profile/djpools', djpoolData)
-  .then(res => history.push('/dashboard'))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addDjpool = (djpoolData, history) => async dispatch => {
+  try {
+    await axios.post('/api/profile/djpools', djpoolData)
+    history.push('/dashboard')
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add Certified Store
-export const addStore = (storeData, history) => dispatch => {
-  axios
-  .post('/api/profile/stores', storeData)
-  .then(res => history.push('/dashboard'))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addStore = (storeData, history) => async dispatch => {
+  try {
+    await axios.post('/api/profile/stores', storeData)
+    history.push('/dashboard')
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add Perk
-export const addPerk = (perkData, history) => dispatch => {
-  axios
-  .post('/api/profile/perks', perkData)
-  .then(res => history.push('/dashboard'))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addPerk = (perkData, history) => async dispatch => {
+  try {
+    await axios.post('/api/profile/perks', perkData)
+    history.push('/dashboard')
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Add Brand
-export const addBrand = (brandData, history) => dispatch => {
-  axios
-  .post('/api/profile/brands', brandData)
-  .then(res => history.push('/dashboard'))
-  .catch(err => dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data 
-  }))
+export const addBrand = (brandData, history) => async dispatch => {
+  try {
+    await axios.post('/api/profile/brands', brandData)
+    history.push('/dashboard')
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 // Delete Venue
-export const deleteVenue = id => dispatch => {
-  axios
-  .delete(`/api/profile/venues/${id}`)
-  .then(res => dispatch({
-    type: GET_PROFILE,
-    payload: res.data 
-  }))
+export const deleteVenue = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/profile/venues/${id}`)
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data 
+    })
+  } catch (err) { console.log(err) }
 }
 
 // Delete Djpool
-export const deleteDjpool = id => dispatch => {
-  axios
-  .delete(`/api/profile/djpools/${id}`)
-  .then(res => dispatch({
-    type: GET_PROFILE,
-    payload: res.data 
-  }))
+export const deleteDjpool = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/profile/djpools/${id}`)
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data 
+    })
+  } catch(err) { console.log(err) }
 }
 
 // Delete Store
-export const deleteStore = id => dispatch => {
-  axios
-  .delete(`/api/profile/stores/${id}`)
-  .then(res => dispatch({
-    type: GET_PROFILE,
-    payload: res.data 
-  }))
+export const deleteStore = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/profile/stores/${id}`)
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data 
+    })
+  } catch (err) { console.log(err) }
 }
 
 // Delete Perk
-export const deletePerk = id => dispatch => {
-  axios
-  .delete(`/api/profile/perks/${id}`)
-  .then(res => dispatch({
-    type: GET_PROFILE,
-    payload: res.data 
-  }))
+export const deletePerk = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/profile/perks/${id}`)
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data 
+    })
+  } catch(err) { console.log(err) }
 }
 
 // Delete Brand
-export const deleteBrand = id => dispatch => {
-  axios
-  .delete(`/api/profile/brands/${id}`)
-  .then(res => dispatch({
-    type: GET_PROFILE,
-    payload: res.data 
-  }))
+export const deleteBrand = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/profile/brands/${id}`)
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data 
+    })
+  } catch(err) { console.log(err) }
 }
 
 // Get all profiles
-export const getProfiles = () => dispatch => {
-  dispatch(setProfileLoading())
-  axios
-  .get('/api/profile/all')
-  .then(res => dispatch({
-    type: GET_PROFILES,
-    payload: res.data 
-  }))
-  .catch(err => dispatch({
-    type: GET_PROFILES,
-    payload: null 
-  }))
+export const getProfiles = () => async dispatch => {
+  try {
+    dispatch(setProfileLoading())
+    const res = await axios.get('/api/profile/all')
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_PROFILES,
+      payload: null 
+    })
+  }
 }
 
 
 // Delete account & profile
-export const deleteAccount = () => dispatch => {
-  if(window.confirm('Are you sure? This can not be undone')) {
-    axios.delete('/api/profile').then(res => dispatch({
-      type: SET_CURRENT_USER,
-      payload: {} 
-    }))
-    .catch(err => dispatch({
+export const deleteAccount = () => async dispatch => {
+  try {
+    if(window.confirm('Are you sure? This can not be undone')) {
+      await axios.delete('/api/profile')
+      dispatch({
+        type: SET_CURRENT_USER,
+        payload: {} 
+      })
+    }
+  } catch(err) {
+    dispatch({
       type: GET_ERRORS,
       payload: err.response.data 
-    }))
+    })
   }
 }
 

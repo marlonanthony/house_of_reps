@@ -140,10 +140,10 @@ export const getMorePosts = (count, start) => async dispatch => {
   try {
     dispatch(setPostLoading())
     const res = await axios.get(`/api/posts?page=${start}&limit=${count}`)
-    .then(res => dispatch({
+    dispatch({
       type: GET_MORE_POSTS,
       payload: res.data
-    }))
+    })
   } catch(err) { console.log(err) }
 }
 
@@ -152,10 +152,10 @@ export const getMatchingPosts = (matches) => async dispatch => {
   try {
     dispatch(setPostLoading())
     const res = await axios.get(`/api/posts/search/:${matches}`)
-    .then(res => dispatch({
+    dispatch({
       type: GET_MATCHING_POSTS,
       payload: res.data
-    }))
+    })
   } catch(err) { console.log(err) } 
 }
 
