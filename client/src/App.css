@@ -39,6 +39,11 @@ input {
   -webkit-appearance: none;
 }
 
+@media(max-width: 600px) {
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+}
 
 /* background: #050c14;   */
 /* background: #020811; */
