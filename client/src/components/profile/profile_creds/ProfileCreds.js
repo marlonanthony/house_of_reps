@@ -8,6 +8,7 @@ import Backdrop from '../../UI/backdrop/Backdrop'
 import VenueItems from '../profile_assets/VenueItems'
 import ModalVenues from '../profile_assets/ModalVenues'
 import './ProfileCreds.css'
+import FadeIn from '../../UI/fade_in/FadeIn';
 
 class ProfileCreds extends Component {
 
@@ -25,22 +26,24 @@ class ProfileCreds extends Component {
     const { venues } = this.props 
 
     const highlightsModal = this.state.showModal && (
-      <Fragment>
+      <>
         <HighlightsModal>
           <ModalVenues
             venues={venues}
             likeHighlight={this.likeHighlight}
           />
         </HighlightsModal>
-      </Fragment>
+      </>
     ) 
 
     const venueItems = venues.map(venue => (
-      <VenueItems 
-        key={venue._id}
-        venue={venue}
-        modalToggle={this.modalToggle}
-      />
+      <FadeIn>
+        <VenueItems 
+          key={venue._id}
+          venue={venue}
+          modalToggle={this.modalToggle}
+        />
+      </FadeIn>
     ))
 
     return (
@@ -49,7 +52,7 @@ class ProfileCreds extends Component {
         { highlightsModal }
         <div className='profile-creds-content'>
           { venueItems.length > 0 ? (
-            venueItems.filter((_, i) => i < 4 ?  (<ul>{venueItems}</ul>) : null)
+            venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
           ) : (<p id='no_venues'><Link to='/add-venue'>Add some content</Link></p>)}
         </div>
       </div>

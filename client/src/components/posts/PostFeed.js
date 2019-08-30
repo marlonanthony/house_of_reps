@@ -11,7 +11,7 @@ class PostFeed extends Component {
         key={post._id} 
         post={post} 
         profiles={this.props.profiles} 
-      /> 
+      />
     ))
   }
 }

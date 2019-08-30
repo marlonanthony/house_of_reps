@@ -176,7 +176,8 @@ class Posts extends Component {
         <PostFeed 
           showPreview={ showsPreview } 
           posts={ showMatches ? arr : posts } 
-          profiles={ profiles } />
+          profiles={ profiles } 
+        />
       </InfinteScroll>
     )
 
