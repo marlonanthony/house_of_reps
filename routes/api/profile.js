@@ -214,14 +214,16 @@ router.post('/venues', passport.authenticate('jwt', { session: false }), async (
 // @route        POST api/profile/venues/like
 // @description  Like Highlight/venue
 // @access       Private 
-router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.params.userId }).then(profile => {
+router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.params.userId })
     const newLike = {
       user: req.user.id,
       avatar: req.user.avatar,
       name: req.user.name 
     }
-    profile.venues.map(venue => {
+
+    profile.venues.forEach(venue => {
       if(venue._id.toString() === req.params.id) {
         if(venue.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
           return res.status(400).json({ alreadyliked: 'User already liked this highlight' })
@@ -236,176 +238,172 @@ router.post('/venues/like/:id/:userId', passport.authenticate('jwt', { session: 
           message 
         })
       }
-      profile.save().then(profile => res.json(profile)) 
     })
-    
-  })
-  .catch(err => console.log(err)) 
+
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 
 // @route        POST api/profile/djpools
 // @description  Add a djpool
 // @access       Private
-router.post('/djpools', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validateDjpoolsInput(req.body) 
-
-  if(!isValid) {
-    return res.status(400).json(errors) 
-  }
-  
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.post('/djpools', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const { errors, isValid } = validateDjpoolsInput(req.body) 
+    if(!isValid) {
+      return res.status(400).json(errors) 
+    }
+    const profile = await Profile.findOne({ user: req.user.id })
     const newDjpool = {
       image: req.body.image,
       url: req.body.url
     }
-
-    // Add djpool to array
     profile.djpools.unshift(newDjpool) 
-    profile.save().then(profile => res.json(profile)) 
-  })
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        POST api/profile/stores
 // @description  Add a certified store
 // @access       Private
-router.post('/stores', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validateDjpoolsInput(req.body) 
-
-  if(!isValid) {
-    return res.status(400).json(errors) 
-  }
-  
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.post('/stores', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const { errors, isValid } = validateDjpoolsInput(req.body)
+    if(!isValid) {
+      return res.status(400).json(errors) 
+    }
+    const profile = await Profile.findOne({ user: req.user.id })
     const newStore = {
       image: req.body.image,
       url: req.body.url
     }
-
-    // Add store to array
     profile.stores.unshift(newStore) 
-    profile.save().then(profile => res.json(profile)) 
-  })
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        POST api/profile/perks
 // @description  Add a Perk
 // @access       Private
-router.post('/perks', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validatePerksInput(req.body) 
-
-  if(!isValid) {
-    return res.status(400).json(errors) 
-  }
-  
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.post('/perks', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const { errors, isValid } = validatePerksInput(req.body) 
+    if(!isValid) {
+      return res.status(400).json(errors) 
+    }
+    const profile = await Profile.findOne({ user: req.user.id })
     const newPerk = {
       image: req.body.image,
       url: req.body.url,
       description: req.body.description
     }
-
-    // Add Perk to array
     profile.perks.unshift(newPerk) 
-    profile.save().then(profile => res.json(profile)) 
-  })
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        POST api/profile/brands
 // @description  Add a Brand
 // @access       Private
-router.post('/brands', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const { errors, isValid } = validateBrandsInput(req.body) 
-
-  if(!isValid) {
-    return res.status(400).json(errors) 
-  }
-  
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.post('/brands', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const { errors, isValid } = validateBrandsInput(req.body) 
+    if(!isValid) {
+      return res.status(400).json(errors) 
+    }
+    const profile = await Profile.findOne({ user: req.user.id })
     const newBrand = {
       image: req.body.image,
       url: req.body.url,
       description: req.body.description
     }
-
     profile.brands.unshift(newBrand) 
-    profile.save().then(profile => res.json(profile)) 
-  })
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 
 // @route        DELETE api/profile/venues/:venue_id
 // @description  Delete venue from profile
 // @access       Private
-router.delete('/venues/:venue_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
-    const index = profile.venues.map(item => item.id).indexOf(req.params.venue_id) 
-    profile.venues.splice(index, 1) 
-    profile.save().then(profile => res.json(profile))  
-  }).catch(err => res.status(404).json(err)) 
+router.delete('/venues/:venue_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
+    const index = profile.venues.map(item => item.id).indexOf(req.params.venue_id)
+    profile.venues.splice(index, 1)
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        DELETE api/profile/djpools/:djpool_id
 // @description  Delete djpool
 // @access       Private
-router.delete('/djpools/:djpool_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.delete('/djpools/:djpool_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
     const index = profile.djpools.map(item => item.id).indexOf(req.params.djpool_id)
     profile.djpools.splice(index, 1)
-    profile.save().then(profile => res.json(profile))
-  }).catch(err => res.status(404).json(err))
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        DELETE api/profile/stores/:store_id
 // @description  Delete store
 // @access       Private
-router.delete('/stores/:store_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.delete('/stores/:store_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
     const index = profile.stores.map(item => item.id).indexOf(req.params.store_id)
     profile.stores.splice(index, 1)
-    profile.save().then(profile => res.json(profile))
-  }).catch(err => res.status(404).json(err))
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        DELETE api/profile/perks/:perk_id
 // @description  Delete perk
 // @access       Private
-router.delete('/perks/:perk_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.delete('/perks/:perk_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
     const index = profile.perks.map(item => item.id).indexOf(req.params.perk_id)
     profile.perks.splice(index, 1)
-    profile.save().then(profile => res.json(profile))
-  }).catch(err => res.status(404).json(err))
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 // @route        DELETE api/profile/brands/:brand_id
 // @description  Delete brand
 // @access       Private
-router.delete('/brands/:brand_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+router.delete('/brands/:brand_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id })
     const index = profile.brands.map(item => item.id).indexOf(req.params.brand_id)
     profile.brands.splice(index, 1)
-    profile.save().then(profile => res.json(profile))
-  }).catch(err => res.status(404).json(err))
+    await profile.save()
+    return res.json(profile)
+  } catch(err) { res.status(404).json(err) }
 })
 
 
 // @route        DELETE api/profile
 // @description  Delete user and profile
 // @access       Private
-router.delete('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-    User.findOneAndRemove({ _id: req.user.id }).then(() => res.json({ success: true }))
-  })
+router.delete('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    await Profile.findOneAndRemove({ user: req.user.id })
+    await User.findOneAndRemove({ _id: req.user.id })
+    return res.json({ success: true })
+  } catch(err) { res.status(404).json(err) }
 })
 
 module.exports = router
