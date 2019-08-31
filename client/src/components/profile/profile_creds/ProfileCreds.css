@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1200px) {
   .profile-creds-content {
     display: flex;
     flex-wrap: wrap;
@@ -90,7 +90,7 @@
   }
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1200px) {
   .profile-creds {
     margin-top: 70px;
   }

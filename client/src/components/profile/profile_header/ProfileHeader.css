@@ -117,7 +117,7 @@
   grid-area: profilecredsdiv;
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1200px) {
   .profile-header {
     display: grid;
     justify-items: center;

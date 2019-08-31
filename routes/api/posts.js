@@ -80,7 +80,7 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
 
 
 // @route        GET api/posts/hashtags/:id
-// @desc         Get posts with hashtag
+// @desc         Get posts by hashtag
 // @access       Public
 router.get('/hashtag/:hashtag', async (req, res) => {
   try {

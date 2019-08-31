@@ -26,14 +26,12 @@ class ProfileCreds extends Component {
     const { venues } = this.props 
 
     const highlightsModal = this.state.showModal && (
-      <>
-        <HighlightsModal>
-          <ModalVenues
-            venues={venues}
-            likeHighlight={this.likeHighlight}
-          />
-        </HighlightsModal>
-      </>
+      <HighlightsModal>
+        <ModalVenues
+          venues={venues}
+          likeHighlight={this.likeHighlight}
+        />
+      </HighlightsModal>
     ) 
 
     const venueItems = venues.map(venue => (

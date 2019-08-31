@@ -11,7 +11,7 @@ export default function ModalVenues({ venues, likeHighlight }) {
           frameBorder={0}
           allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen={true}
-          style={{ width: '95%', height: '80vh', marginTop: '15px' }}>
+          style={{ width: '95%', height: '62vh', marginTop: '15px' }}>
         </iframe> 
       }
       { !venue.video && venue.image && 
