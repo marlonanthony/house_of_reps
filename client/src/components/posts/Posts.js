@@ -188,16 +188,16 @@ class Posts extends Component {
 
     postContent = (
       <InfinteScroll
-      dataLength={ posts.length}
-      next={this.fetchMore}
-      hasMore={true}
-      loader={null}>
+        dataLength={ posts.length}
+        next={this.fetchMore}
+        hasMore={true}
+        loader={null}>
         <PostFeed 
           showPreview={ showsPreview } 
           posts={ showMatches ? arr : posts } 
           profiles={ profiles } 
         />
-      </InfinteScroll>
+        </InfinteScroll>
     )
 
     return (

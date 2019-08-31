@@ -15,7 +15,7 @@
   width: 100%;
   height: auto;
   line-height: 24px;
-  overflow: auto;
+  /* overflow: auto; */
   font-size: 17px;
   resize: none;
   color: var(--text-color);
@@ -38,7 +38,7 @@
   width: 79.5%;
   height: auto;
   line-height: 24px;
-  overflow: auto;
+  /* overflow: auto; */
   font-size: 17px;
   resize: none;
   color: rgba(200,200,200,.6);;

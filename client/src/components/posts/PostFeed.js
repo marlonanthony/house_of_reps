@@ -1,23 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types' 
 import PostItem from './PostItem'
 
 
-class PostFeed extends Component {
-  render() {
-    const { posts } = this.props
-    return posts.map(post => (
+export default function PostFeed(props) {
+  const { posts, profiles } = props
+  return (
+    <div style={{ overflow: 'hidden' }}>
+    { posts.map(post => (
       <PostItem 
         key={post._id} 
         post={post} 
-        profiles={this.props.profiles} 
+        profiles={profiles} 
       />
-    ))
-  }
+    ))}
+    </div>
+  )
 }
 
 PostFeed.propTypes = {
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  profiles: PropTypes.array.isRequired
 }
-
-export default PostFeed
