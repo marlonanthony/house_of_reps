@@ -112,6 +112,6 @@
 
 @media (min-width: 1200px) {
   .posts_container {
-    min-width: 600px;
+    width: 620px;
   }
 }
