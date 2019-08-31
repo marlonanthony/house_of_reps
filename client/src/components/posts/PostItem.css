@@ -5,6 +5,7 @@
   margin-bottom: 5px;
   display: grid;
   border-radius: 1px;
+  overflow: hidden;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-template-areas:  
@@ -107,4 +108,10 @@
 
 .delete:hover {
   color: red;
+}
+
+@media (min-width: 1200px) {
+  .posts_container {
+    min-width: 600px;
+  }
 }

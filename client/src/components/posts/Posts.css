@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding-top: 100px;
   display: grid;
+  overflow-x: hidden;
   grid-gap: 15px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto 1fr;
@@ -271,6 +272,7 @@
 
 @media (min-width: 1200px) {
   .feed {
+    overflow-x: hidden;
     display: grid;
     justify-items: center;
     grid-template-columns: auto 1fr auto;
@@ -287,7 +289,7 @@
     justify-content: space-between;
     width: 100%;
   }
-  .searchbar_items { width: 230px; }
+  .searchbar_items { width: 250px; }
   .searchbarpost { width: 250px; }
 
   .post-feed-profile {
@@ -356,7 +358,6 @@
     width: 250px;
     height: 250px;
     overflow-x: hidden;
-    color: #555;
   }
 
   .certified_brands {

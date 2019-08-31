@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts, getMoreLikedPosts } from '../../actions/postActions'
+import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts, getMoreLikedPosts, getPostsByHashtag } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
 import Spinner from '../common/Spinner' 
@@ -26,6 +26,8 @@ class Posts extends Component {
     matches: '',
     showMatches: false,
     showLikes: false,
+    showHashtags: false,
+    hashtag: '',
     count: 10, 
     start: 0,
     showPopup: false,
@@ -67,6 +69,18 @@ class Posts extends Component {
         this.props.getLikedPosts()
       } else {
         this.props.getPosts() 
+      }
+    })
+  }
+
+  showPostByHashtag = () => {
+    this.setState(prevState => ({
+      showHashtags: !prevState.showHashtags
+    }), () => {
+      if(this.state.showHashtags) {
+        this.props.getPostsByHashtag(this.state.hashtag)
+      } else {
+        this.props.getPosts()
       }
     })
   }
@@ -153,6 +167,10 @@ class Posts extends Component {
           showLikesHandler={this.showLikesHandler}
           showLikes={this.state.showLikes}
           showNotificationsHandler={this.showNotificationsHandler}
+          showPostByHashtag={this.showPostByHashtag}
+          showHashtags={this.state.showHashtags}
+          onChange={this.onChange}
+          hashtag={this.state.hashtag}
         />
       )
     }
@@ -167,6 +185,7 @@ class Posts extends Component {
         arr.push(post)
       }
     })
+
     postContent = (
       <InfinteScroll
       dataLength={ posts.length}
@@ -239,5 +258,6 @@ export default connect(mapStateToProps, {
   getMorePosts, 
   getLikedPosts, 
   getMoreLikedPosts, 
-  getMatchingPosts 
+  getMatchingPosts,
+  getPostsByHashtag
 })(withRouter(Posts)) 

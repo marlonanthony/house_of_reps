@@ -35,6 +35,11 @@ const PostSchema = new Schema({
   media: {
     type: String
   },
+  tags: [
+    { 
+      type: String
+    }
+  ],
   likes: [
     {
       user: {

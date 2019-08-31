@@ -18,6 +18,12 @@ export default function PostFeedProfileContent(props) {
           user={props.user} 
           showPopup={props.showPopup}
         />
+          <div>
+            <input onChange={props.onChange} value={props.hashtag} name='hashtag' />
+            <button onClick={props.showPostByHashtag} title='posts by hashtag'>
+              Hashtags
+            </button>
+          </div>
         <div className='post-profile-buttons-container'>
           { props.showLikes 
             ? (
@@ -31,6 +37,7 @@ export default function PostFeedProfileContent(props) {
               </button>
               )
           }
+            
           <button className='post-profile-add-media' title='add media' >
             <Link to='/add-venue' id='post-profile-add-media-link'>Add Media</Link>
           </button>

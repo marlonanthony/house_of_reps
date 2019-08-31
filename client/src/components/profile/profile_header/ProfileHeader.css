@@ -121,7 +121,7 @@
   .profile-header {
     display: grid;
     justify-items: center;
-    grid-template-columns: auto 1fr 320px;
+    grid-template-columns: auto 1fr 330px;
     grid-template-rows: auto 1fr;
     grid-template-areas: 
       'avatar profilefeed profilecredsdiv'

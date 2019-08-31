@@ -25,6 +25,12 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/u
 class PostForm extends Component {
   state = {
     text: '',
+    tags: [],
+    showTags: false,
+    tag1: '',
+    tag2: '',
+    tag3: '',
+    tag4: '',
     errors: {},
     rows: 2,
     minRows: 2,
@@ -102,6 +108,7 @@ class PostForm extends Component {
 
     const newPost = {
       text: this.state.text,
+      tags: this.state.tags,
       name: user.name,
       avatar: user.avatar,
       image: this.state.data.image,
@@ -112,7 +119,7 @@ class PostForm extends Component {
       handle: this.props.profile.profile.handle
     }
     this.props.addPost(newPost) 
-    this.setState({ text: '', data: {}, media: '' })
+    this.setState({ text: '', data: {}, media: '', tag1: '', tag2: '', tag3: '', tag4: '' })
     e.target.reset() 
   }
 
@@ -159,6 +166,20 @@ class PostForm extends Component {
     let emoji = String.fromCodePoint(parseInt(emojiName, 16))
     this.setState({ text: this.state.text + emoji })
   }
+
+  toggleShowTags = () => this.setState(prevState => ({ showTags: !prevState.showTags }))
+
+  onTagSubmit = e => {
+    e.preventDefault()
+    const arr = []
+    if(this.state.tag1) arr.push(this.state.tag1)
+    if(this.state.tag2) arr.push(this.state.tag2)
+    if(this.state.tag3) arr.push(this.state.tag3)
+    if(this.state.tag4) arr.push(this.state.tag4)
+
+    this.setState({ tags: arr })
+    this.toggleShowTags()
+  }
   
   render() {
     const { errors, data, text, showPreview, media, rows, show } = this.state 
@@ -171,7 +192,18 @@ class PostForm extends Component {
             <EmojiPicker onEmojiClick={this.addEmoji} />
           </EmojiModal>
           : null }
-          {/* <Embed /> */}
+          { this.state.showTags ?
+            <EmojiModal>
+              <form onSubmit={this.onTagSubmit}>
+                <p style={{ textAlign: 'center' }}><span role='img' aria-label='fire emoji'>🔥</span> hashtags yonder</p>
+                <input type="text" onChange={this.onChange} name='tag1' value={this.state.tag1} />
+                <input type="text" onChange={this.onChange} name='tag2' value={this.state.tag2} />
+                <input type="text" onChange={this.onChange} name='tag3' value={this.state.tag3} />
+                <input type="text" onChange={this.onChange} name='tag4' value={this.state.tag4} />
+                <button>ok</button>
+              </form>
+            </EmojiModal> : null
+          }
           <div id='post-form-textareafieldgroup'>
             <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
               <TextAreaForm
@@ -185,6 +217,7 @@ class PostForm extends Component {
                 rows={rows}
               />
               <div className={ show ? 'otherstuff' : 'disp'}>
+                <i className="fas fa-hashtag" onClick={this.toggleShowTags} style={{cursor: 'pointer', color: 'var(--secondary-color)'}}></i>
                 <Dropzone 
                   style={{ border: 'none' }}
                   multiple={false}

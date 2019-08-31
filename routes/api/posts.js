@@ -1,6 +1,5 @@
-const router = require('express').Router() 
-const mongoose = require('mongoose') 
-const passport = require('passport') 
+const router = require('express').Router()
+const passport = require('passport')
 
 const Post = require('../../models/Post')
 const Profile = require('../../models/Profile')
@@ -11,7 +10,7 @@ const validatePostInput = require('../../validation/post')
 // @access        Public
 router.get('/', (req, res) => {
   const pageOptions = {
-    page: parseInt(req.query.page) || 0, 
+    page: parseInt(req.query.page) || 0,
     limit: parseInt(req.query.limit) || 10
   }
 
@@ -76,6 +75,21 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
   .skip(pageOptions.page * pageOptions.limit)
   .limit(pageOptions.limit)
   .then(posts => res.json(posts))
+  .catch(err => res.json(err)) 
+})
+
+
+// @route        GET api/posts/hashtags/:id
+// @desc         Get posts with hashtag
+// @access       Public
+router.get('/hashtag/:hashtag', async (req, res) => {
+  try {
+    const post = await Post.find({
+      tags: { $in: req.params.hashtag }
+    })
+    if(!post) return res.status(404).json({ nopostfound: 'No post found with that hashtag' })
+    return res.json(post)
+  } catch(err) { res.json(err) }
 })
 
 
@@ -92,11 +106,9 @@ router.get('/:id', (req, res) => {
 // @route         POST api/posts
 // @description   Create post
 // @access        Private
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const { errors, isValid } = validatePostInput(req.body) 
-  // Check Validation
   if(!isValid) {
-    // If errors send 400 with errors object
     return res.status(400).json(errors) 
   }
 
@@ -110,10 +122,11 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     title: req.body.title,
     description: req.body.description,
     url: req.body.url,
-    media: req.body.media 
+    media: req.body.media,
+    tags: req.body.tags && req.body.tags
   })
 
-  newPost.save().then(post => res.json(post)) 
+  newPost.save().then(post => res.json(post))
 })
 
 
@@ -123,7 +136,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Post.findById(req.params.id).then(post => {
       if(post.user.toString() !== req.user.id) {
-        return res.status(401).json({ notauthorized: 'User not authorized' }) 
+        return res.status(401).json({ notauthorized: 'User not authorized' })
       }
       post.remove().then(() => res.json({ success: true }))
     })
@@ -292,18 +305,16 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
 // @sdescription    Unlike comment
 // @access          Private
 router.post('/comment/unlike/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    Post.findById(req.params.id).then(post => {
-      post.comments.map(comment => comment._id.toString() === req.params.comment_id
-        ? comment.likes.filter(like => like.user.toString() === req.user.id).length === 0
-        ? res.status(400).json({ notliked: 'You have not yet liked this comment' })
-        : comment.likes.splice(comment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
-        : null
-      )
-      post.save().then(post => res.json(post))
-    })
-    .catch(err => res.status(404).json(err)) 
+  Post.findById(req.params.id).then(post => {
+    post.comments.map(comment => comment._id.toString() === req.params.comment_id
+      ? comment.likes.filter(like => like.user.toString() === req.user.id).length === 0
+      ? res.status(400).json({ notliked: 'You have not yet liked this comment' })
+      : comment.likes.splice(comment.likes.map(item => item.user.toString()).indexOf(req.user.id), 1)
+      : null
+    )
+    post.save().then(post => res.json(post))
   })
+  .catch(err => res.status(404).json(err)) 
 })
 
 
