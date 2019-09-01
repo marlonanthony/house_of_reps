@@ -34,25 +34,21 @@ class SearchBar extends Component {
           value={ this.state.matches }
           onChange={ this.onChange }
         />
-        { this.state.showMatches
-          ? <div>
-            { this.props.profiles
-              ? this.props.profiles.map(profile => (
-                profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) ||
-                profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) ||
-                profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase())
-                  ? <Link
-                      key={profile.user._id}
-                      to={`/profile/${profile.handle}`}
-                      className='searchbar_items'>
-                        @{profile.handle}
-                    </Link>
-                  : null
-                ))
-              : null
-            }
-            </div>
-          : null
+        { this.state.showMatches && 
+          <div>
+            { this.props.profiles && this.props.profiles.map(profile => (
+              profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) ||
+              profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) ||
+              profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase())
+                ? <Link
+                    key={profile.user._id}
+                    to={`/profile/${profile.handle}`}
+                    className='searchbar_items'>
+                      @{profile.handle}
+                  </Link>
+                : null
+            ))}
+          </div>
         }
       </div>
     )
