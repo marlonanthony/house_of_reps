@@ -112,15 +112,15 @@ class Posts extends Component {
         highlights,
         orderedHighlights
 
-    if(profiles === null || loading) highlights = null
+    if(!profiles || loading) highlights = null
     else {
-      let hls = profiles.map(profile => profile.venues).map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
+      let hls = profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null)
       highlights = [].concat.apply([], hls)
       orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
     }
     
 
-    if(profiles === null || loading) {
+    if(!profiles || loading) {
       brands = null
     } else {
       brands = profiles.map(val => (
@@ -130,7 +130,7 @@ class Posts extends Component {
       ))
     }
 
-    if(profiles === null || loading) {
+    if(!profiles || loading) {
       perks = null
     } else {
       perks = profiles.map(val => (
@@ -140,7 +140,7 @@ class Posts extends Component {
       ))
     }
 
-    if(profiles === null || loading) {
+    if(!profiles || loading) {
       stores = null
     } else {
       stores = profiles.map(val => (
@@ -150,7 +150,7 @@ class Posts extends Component {
       ))
     }
 
-    if(profiles === null || loading) {
+    if(!profiles || loading) {
       djpools = null
     } else {
       djpools  = profiles.map(val => (
@@ -206,9 +206,7 @@ class Posts extends Component {
           <PostForm  showPreview={ showsPreview }/>
         </div>
         <SearchBar profiles={ profiles } />
-        <Buttons 
-          showPostByHashtag={this.showPostByHashtag}
-        />
+        <Buttons showPostByHashtag={this.showPostByHashtag} />
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
