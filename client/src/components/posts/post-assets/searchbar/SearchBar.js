@@ -23,42 +23,36 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div 
-        className='searchbar' 
-        onMouseEnter={this.onMouseEnter} 
-        onMouseLeave={this.onMouseLeave} 
-        style={{
-          position: 'relative',
-          zIndex: 2,
-          height: '40px'
-        }}>
-        <input  
+      <div
+        className='searchbar'
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}>
+        <input
           className='searchbar_input'
           placeholder=' search reps'
           name='matches'
           value={ this.state.matches }
-          onChange={ this.onChange } 
+          onChange={ this.onChange }
         />
-        { this.state.showMatches 
-          ? <ul style={{ listStyle: 'none', textAlign: 'end', position: 'absolute', top: '60%', right: 0 }}>
-            { this.props.profiles 
+        { this.state.showMatches
+          ? <div>
+            { this.props.profiles
               ? this.props.profiles.map(profile => (
-                profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-                profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-                profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase()) 
-                  ? <li className='searchbar_items'  key={profile.user._id}>
-                      <Link 
-                        to={`/profile/${profile.handle}`} 
-                        className='searchbar_links'>
-                          @{profile.handle}
-                      </Link>
-                    </li> 
+                profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) ||
+                profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) ||
+                profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase())
+                  ? <Link
+                      key={profile.user._id}
+                      to={`/profile/${profile.handle}`}
+                      className='searchbar_items'>
+                        @{profile.handle}
+                    </Link>
                   : null
-                )) 
-              : null 
-            } 
-            </ul> 
-          : null 
+                ))
+              : null
+            }
+            </div>
+          : null
         }
       </div>
     )

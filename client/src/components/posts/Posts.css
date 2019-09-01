@@ -213,30 +213,32 @@
 
   .searchbar {
     grid-area: searchbar;
+    position: relative;
     width: 250px;
     height: 40px;
     display: flex;
     justify-content: space-between;
     border-radius: 3px;
     border: .5px solid var(--border-color);
+    z-index: 2;
   }
-  .searchbar_items { 
+  .searchbar > div {
+    position: absolute; 
+    top: 100%; 
+    right: 0px;
+  }
+  .searchbar_items {
+    display: flex;
     width: 250px; 
     padding: 10px;
-    background: rgba(0,0,0,0.9);
+    font-size: 13px;
+    color: var(--text-color);
+    background: rgba(0,0,0,0.89);
   }
   .searchbar_items:hover {
-    color: white;
-    background: black;
-    cursor: pointer;
-  }
-  .searchbar_links {
     color: var(--secondary-color);
-    text-decoration: none;
-    list-style: none;
-  }
-  .searchbar_links:hover {
-    color: white;
+    background: var(--primary-color);
+    cursor: pointer;
   }
   .searchbar_input {
     width: 100%;
@@ -246,7 +248,7 @@
     font-size: 13px;
     background: none;
     border: none;
-    color: rgba(200,200,200,0.6);
+    color: var(--text-color);
   }
   .searchbar_input::placeholder {
     color: var(--secondary-color);
