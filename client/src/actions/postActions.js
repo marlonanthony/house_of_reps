@@ -77,6 +77,17 @@ export const getPost = id => async dispatch => {
   }
 }
 
+// Get Posts By Hashtag
+export const getPostsByHashtag = hashtag => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.get(`/api/posts/hashtag/${hashtag}`)
+    dispatch({
+      type: GET_POSTS_BY_HASHTAG,
+      payload: res.data
+    })
+  } catch(err) { console.log(err) }
+}
 
 // Get Liked Posts 
 export const getLikedPosts = (count, start) => async dispatch => {
@@ -90,18 +101,6 @@ export const getLikedPosts = (count, start) => async dispatch => {
   } catch(err) {
     console.log(err)
   }
-}
-
-// Get Posts By Hashtag
-export const getPostsByHashtag = hashtag => async dispatch => {
-  try {
-    dispatch(setPostLoading())
-    const res = await axios.get(`/api/posts/hashtag/${hashtag}`)
-    dispatch({
-      type: GET_POSTS_BY_HASHTAG,
-      payload: res.data
-    })
-  } catch(err) { console.log(err) }
 }
 
 // Get More Liked Posts 

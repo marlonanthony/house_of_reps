@@ -46,9 +46,11 @@ class Posts extends Component {
     if(this.state.showLikes) {
       this.props.getMoreLikedPosts(count, start) 
       this.setState( prevState => ({ start: prevState.start + 1 }))
+    } else if(this.state.showHashtags) {
+      return                      ////             finish this      //////////////////////
     } else {
-    this.props.getMorePosts(count, start)
-    this.setState( prevState => ({ start: prevState.start + 1 }))
+      this.props.getMorePosts(count, start)
+      this.setState( prevState => ({ start: prevState.start + 1 }))
     }
   }
 
@@ -75,7 +77,8 @@ class Posts extends Component {
 
   showPostByHashtag = () => {
     this.setState(prevState => ({
-      showHashtags: !prevState.showHashtags
+      showHashtags: !prevState.showHashtags,
+      start: 1
     }), () => {
       if(this.state.showHashtags) {
         this.props.getPostsByHashtag(this.state.hashtag)

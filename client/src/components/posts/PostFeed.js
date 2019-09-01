@@ -19,6 +19,5 @@ export default function PostFeed(props) {
 }
 
 PostFeed.propTypes = {
-  posts: PropTypes.array.isRequired,
-  profiles: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired
 }
