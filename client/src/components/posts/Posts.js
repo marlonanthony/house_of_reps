@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts, getMatchingPosts, getLikedPosts, getMoreLikedPosts, getPostsByHashtag } from '../../actions/postActions'
+import { 
+  getPosts, 
+  getMorePosts, 
+  getMatchingPosts, 
+  getLikedPosts, 
+  getMoreLikedPosts, 
+  getPostsByHashtag 
+} from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
 import Spinner from '../common/Spinner' 
@@ -196,7 +203,7 @@ class Posts extends Component {
         />
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
-        <div className='test'>{ djpools }</div>
+        <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'>
           <PostForm  showPreview={ showsPreview }/>
@@ -211,17 +218,6 @@ class Posts extends Component {
         }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
-        {/* <div className='test'> */}
-                             {/*                 testing animation                          */}
-                             {/*              good place to map over array                  */}
-          {/* <div className='test2'>
-            <img src={require('../../img/repsbuttons.jpg')} width='100%' height='100%' alt=""/>
-            <img src={require('../../img/djpoolsdjcity.jpg')} width='100%' height='100%' alt=""/>
-            <img src={require('../../img/djpoolsDMS.jpg')} width='100%' height='100%' alt=""/>
-            <img src={require('../../img/djpoolsCKillers.jpg')} width='100%' height='100%' alt=""/>
-            <img src={require('../../img/hor-icon.jpg')} width='100%' height='100%' alt=""/>
-          </div>
-        </div> */}
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
       </div>
     )

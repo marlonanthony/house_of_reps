@@ -234,10 +234,6 @@
   display: none;
 }
 
-.test {
-  display: none;
-}
-
 .img_test {
   display: none;
 }
@@ -280,7 +276,7 @@
     grid-template-areas: 
       'searchbarpost postform searchbar'
       'profile post-feed-post-content postfeedhighlights'
-      'test post-feed-post-content stores'
+      'djpools post-feed-post-content stores'
       'perks post-feed-post-content brands'; 
   }
 
@@ -303,30 +299,6 @@
     border: .5px solid var(--border-color);
   }
 
-  .test {
-    grid-area: test;
-    display: flex;
-    width: 250px;
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .test2 {
-    display: flex;
-    height: 250px;
-    width: 250px;
-    margin-left: 0;
-    transition: margin-left 6s;
-    transition-timing-function: linear;
-    /* cubic-bezier(0.2, .6, .7, 0.15); */
-    /* cubic-bezier(0.4,0,0.58,1); */
-  }
-  .test2:hover {
-    margin-left: calc(-250px * 4);
-    /* margin-left: -750px; */
-  }
-
   .post-feed-highlights {
     grid-area: postfeedhighlights;
     display: flex;
@@ -346,9 +318,10 @@
 
   .djpools {
     grid-area: djpools;
-    display: none;
+    display: flex;
     width: 250px;
     height: 250px;
+    position: relative;
     overflow-x: hidden;
   }
 
