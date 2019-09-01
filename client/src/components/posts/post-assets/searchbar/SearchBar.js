@@ -23,11 +23,14 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className='searchbar' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} style={{
-        // width: '100%',
-        position: 'relative',
-        zIndex: 2,
-        height: '40px'
+      <div 
+        className='searchbar' 
+        onMouseEnter={this.onMouseEnter} 
+        onMouseLeave={this.onMouseLeave} 
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          height: '40px'
         }}>
         <input  
           className='searchbar_input'
@@ -36,17 +39,27 @@ class SearchBar extends Component {
           value={ this.state.matches }
           onChange={ this.onChange } 
         />
-        { this.state.showMatches ?
-        <ul style={{listStyle: 'none', textAlign: 'end', position: 'absolute', top: '60%', right: 0 }}>
-          { this.props.profiles ? this.props.profiles.map(profile => (
-            profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-            profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 
-            profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase()) ?
-            <li className='searchbar_items'  key={profile.user._id}>
-              <Link to={`/profile/${profile.handle}`} className='searchbar_links'><small>@{profile.handle}</small></Link>
-            </li> : null
-          )) : null } 
-        </ul> : null }
+        { this.state.showMatches 
+          ? <ul style={{ listStyle: 'none', textAlign: 'end', position: 'absolute', top: '60%', right: 0 }}>
+            { this.props.profiles 
+              ? this.props.profiles.map(profile => (
+                profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
+                profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 
+                profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase()) 
+                  ? <li className='searchbar_items'  key={profile.user._id}>
+                      <Link 
+                        to={`/profile/${profile.handle}`} 
+                        className='searchbar_links'>
+                          @{profile.handle}
+                      </Link>
+                    </li> 
+                  : null
+                )) 
+              : null 
+            } 
+            </ul> 
+          : null 
+        }
       </div>
     )
   }

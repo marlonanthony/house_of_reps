@@ -23,6 +23,7 @@ import Highlights from './post-assets/highlights/Highlights'
 import SearchBar from './post-assets/searchbar/SearchBar'
 import PostFeedProfileContent from './post-assets/postfeed_profile_content/PostFeedProfileContent'
 import SearchPost from './post-assets/searchbar/SearchPost'
+import Buttons from './post-assets/buttons/Buttons'
 
 import './Posts.css'
 
@@ -201,13 +202,14 @@ class Posts extends Component {
           hashtag={this.state.hashtag.toLowerCase()}
           showHashtags={this.state.showHashtags}
         />
-        <SearchBar profiles={ profiles } />
-        <div className='post-feed-profile'>{ profileContent }</div>
-        <div className='djpools'>{ djpools }</div>
-        <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-form'>
           <PostForm  showPreview={ showsPreview }/>
         </div>
+        <SearchBar profiles={ profiles } />
+        <Buttons />
+        <div className='post-feed-profile'>{ profileContent }</div>
+        <div className='djpools'>{ djpools }</div>
+        <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-post-content'>
           { postContent }
         </div>

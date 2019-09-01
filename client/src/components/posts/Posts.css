@@ -158,29 +158,16 @@
   grid-area: post-feed-post-content;
 }
 
-.post-feed-highlights {
-  display: none;
-}
+.post-feed-highlights { display: none; }
+.img_test { display: none; }
+.stores_container { display: none; }
+.djpools { display: none; }
+.perks_and_hookups { display: none; }
+.certified_brands { display: none; }
+.searchbarpost { display: none; }
+.searchbar { display: none; }
 
-.img_test {
-  display: none;
-}
-
-.stores_container {
-  display: none;
-}
-
-.djpools {
-  display: none;
-}
-
-.perks_and_hookups {
-  display: none;
-}
-
-.certified_brands {
-  display: none;
-}
+.postfeed_reps_btns { display: none; }
 
 .post-feed-footer {
   display: none;
@@ -200,12 +187,28 @@
     display: grid;
     justify-items: center;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto 1fr;
     grid-template-areas: 
       'searchbarpost postform searchbar'
+      'profile btns postfeedhighlights'
       'profile post-feed-post-content postfeedhighlights'
       'djpools post-feed-post-content stores'
       'perks post-feed-post-content brands'; 
+  }
+
+  .postfeed_reps_btns {
+    grid-area: btns;
+    height: 40px;
+    width: 620px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .postfeed_reps_btns > img {
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    cursor: pointer;
   }
 
   .searchbar {
@@ -223,6 +226,7 @@
     background: rgba(0,0,0,0.9);
   }
   .searchbar_items:hover {
+    color: white;
     background: black;
     cursor: pointer;
   }
@@ -230,6 +234,9 @@
     color: var(--secondary-color);
     text-decoration: none;
     list-style: none;
+  }
+  .searchbar_links:hover {
+    color: white;
   }
   .searchbar_input {
     width: 100%;
