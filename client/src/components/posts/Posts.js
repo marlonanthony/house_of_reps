@@ -77,13 +77,13 @@ class Posts extends Component {
     })
   }
 
-  showPostByHashtag = () => {
+  showPostByHashtag = (tag) => {
     this.setState(prevState => ({
       showHashtags: !prevState.showHashtags,
       start: 1
     }), () => {
       if(this.state.showHashtags) {
-        this.props.getPostsByHashtag(this.state.hashtag)
+        this.props.getPostsByHashtag(tag.length ? tag : this.state.hashtag.toLowerCase())
       } else {
         this.props.getPosts()
       }
@@ -199,14 +199,16 @@ class Posts extends Component {
         <SearchPost
           showPostByHashtag={this.showPostByHashtag}
           onChange={this.onChange}
-          hashtag={this.state.hashtag.toLowerCase()}
+          hashtag={this.state.hashtag}
           showHashtags={this.state.showHashtags}
         />
         <div className='post-feed-form'>
           <PostForm  showPreview={ showsPreview }/>
         </div>
         <SearchBar profiles={ profiles } />
-        <Buttons />
+        <Buttons 
+          showPostByHashtag={this.showPostByHashtag}
+        />
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
