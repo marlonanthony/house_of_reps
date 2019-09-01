@@ -37,7 +37,7 @@ class SearchBar extends Component {
           onChange={ this.onChange } 
         />
         { this.state.showMatches ?
-        <ul style={{color: '#ccc', listStyle: 'none', textAlign: 'end', position: 'absolute', top: '60%', right: 0 }}>
+        <ul style={{listStyle: 'none', textAlign: 'end', position: 'absolute', top: '60%', right: 0 }}>
           { this.props.profiles ? this.props.profiles.map(profile => (
             profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) || 
             profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) || 

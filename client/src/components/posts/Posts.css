@@ -6,83 +6,11 @@
   overflow-x: hidden;
   grid-gap: 15px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-areas:  
-    'searchbarpost searchbar'
+    /* 'searchbarpost searchbar' */
     'postform postform'
     'post-feed-post-content post-feed-post-content' 
-}
-
-.searchbar {
-  grid-area: searchbar;
-  height: 40px;
-  border-radius: 3px;
-  border: .5px solid var(--border-color);
-}
-
-.searchbar_input {
-  width: 100%;
-  height: 40px;
-  outline: none;
-  padding-left: 5px;
-  font-size: 13px;
-  background: none;
-  border: none;
-  color: rgba(200,200,200,0.6);
-}
-.searchbar_input::placeholder {
-  color: var(--secondary-color);
-}
-
-.searchbar_items {
-  padding: 10px; 
-  width: 230px;
-  background: rgba(0,0,0,0.8);
-}
-.searchbar_items:hover {
-  background: black;
-  cursor: pointer;
-}
-.searchbar_links {
-  color: var(--secondary-color);
-  text-decoration: none;
-  list-style: none;
-}
-
-.searchbarpost {
-  grid-area: searchbarpost;
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
-  border-radius: 4px;
-  border: 0.5px solid rgba(55, 131, 194, .1);
-} 
-.searchbarpostinput {
-  flex: 8; 
-  background: none;
-  border: 0.5px solid var(--border-color); 
-  color: rgba(200,200,200,0.6);
-  font-size: 13px;
-  padding-left: 5px;
-  outline: none;
-}
-.searchbarpostinput::placeholder {
-  font-size: 13px;
-  padding-left: 5px;
-}
-
-.searchbarpostbtn {
-  flex: 1;
-  cursor: pointer;  
-  height: 40; 
-  background: none;
-  color: var(--secondary-color);
-  padding: 10px; 
-  border: 0.5px solid var(--border-color);
-  outline: none; 
-}
-.searchbarpostbtn:hover {
-  border: .5px solid var(--secondary-color);
 }
 
 .post-feed-profile {
@@ -281,12 +209,79 @@
   }
 
   .searchbar {
+    grid-area: searchbar;
+    width: 250px;
+    height: 40px;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    border-radius: 3px;
+    border: .5px solid var(--border-color);
   }
-  .searchbar_items { width: 250px; }
-  .searchbarpost { width: 250px; }
+  .searchbar_items { 
+    width: 250px; 
+    padding: 10px;
+    background: rgba(0,0,0,0.9);
+  }
+  .searchbar_items:hover {
+    background: black;
+    cursor: pointer;
+  }
+  .searchbar_links {
+    color: var(--secondary-color);
+    text-decoration: none;
+    list-style: none;
+  }
+  .searchbar_input {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    padding-left: 5px;
+    font-size: 13px;
+    background: none;
+    border: none;
+    color: rgba(200,200,200,0.6);
+  }
+  .searchbar_input::placeholder {
+    color: var(--secondary-color);
+  }
+
+  .searchbarpost {
+    grid-area: searchbarpost;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 250px;
+    border-radius: 4px;
+    border: 0.5px solid rgba(55, 131, 194, .1);
+  }
+  
+  .searchbarpostinput {
+    flex: 8; 
+    background: none;
+    border: 0.5px solid var(--border-color); 
+    color: rgba(200,200,200,0.6);
+    font-size: 13px;
+    padding-left: 5px;
+    outline: none;
+  }
+  .searchbarpostinput::placeholder {
+    font-size: 13px;
+    padding-left: 5px;
+  }
+  
+  .searchbarpostbtn {
+    flex: 1;
+    cursor: pointer;  
+    height: 40; 
+    background: none;
+    color: var(--secondary-color);
+    padding: 10px; 
+    border: 0.5px solid var(--border-color);
+    outline: none; 
+  }
+  .searchbarpostbtn:hover {
+    border: .5px solid var(--secondary-color);
+  }
 
   .post-feed-profile {
     display: flex;

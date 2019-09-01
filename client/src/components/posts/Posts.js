@@ -198,7 +198,7 @@ class Posts extends Component {
         <SearchPost
           showPostByHashtag={this.showPostByHashtag}
           onChange={this.onChange}
-          hashtag={this.state.hashtag}
+          hashtag={this.state.hashtag.toLowerCase()}
           showHashtags={this.state.showHashtags}
         />
         <SearchBar profiles={ profiles } />
