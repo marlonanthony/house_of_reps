@@ -68,9 +68,8 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  Post.find({
-    likes: { $elemMatch: { user: req.user.id } }
-  })
+  Post
+  .find({ likes: { $elemMatch: { user: req.user.id } } })
   .sort({ date: -1 })
   .skip(pageOptions.page * pageOptions.limit)
   .limit(pageOptions.limit)
@@ -84,9 +83,9 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
 // @access       Public
 router.get('/hashtag/:hashtag', async (req, res) => {
   try {
-    const post = await Post.find({
-      tags: { $in: req.params.hashtag }
-    })
+    const post = await Post
+    .find({ tags: { $in: req.params.hashtag } })
+    .sort({ date: -1 })
     if(!post) return res.status(404).json({ nopostfound: 'No post found with that hashtag' })
     return res.json(post)
   } catch(err) { res.json(err) }
