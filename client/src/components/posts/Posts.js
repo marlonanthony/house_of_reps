@@ -8,7 +8,7 @@ import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
 import Spinner from '../common/Spinner' 
 import PostFeed from './PostFeed'
-// import DjPools from './post-assets/promos/djpools/DjPools'
+import DjPools from './post-assets/promos/djpools/DjPools'
 import CertifiedStores from './post-assets/promos/stores/CertifiedStores'
 import Perks from './post-assets/promos/perks/Perks'
 import Brands from './post-assets/promos/brands/Brands'
@@ -23,8 +23,6 @@ class Posts extends Component {
 
   state = { 
     showsPreview: false,
-    matches: '',
-    showMatches: false,
     showLikes: false,
     showHashtags: false,
     hashtag: '',
@@ -56,10 +54,6 @@ class Posts extends Component {
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
-  }
-
-  onSearchPostClick = () => {
-    this.setState( prevState => ({ showMatches: !prevState.showMatches }))
   }
 
   showLikesHandler = () => {
@@ -99,11 +93,11 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
-    const { showsPreview, showMatches, matches } = this.state
+    const { showsPreview } = this.state
     const { user } = this.props.auth
     let postContent, 
         profileContent,
-        // djpools,
+        djpools,
         stores,
         perks, 
         brands, 
@@ -148,15 +142,15 @@ class Posts extends Component {
       ))
     }
 
-    // if(profiles === null || loading) {
-    //   djpools = null
-    // } else {
-    //   djpools  = profiles.map(val => (
-    //     val.djpools.length > 0 && val.djpools !== null 
-    //     ? val.djpools.map(djpool => ( <DjPools key={djpool._id} djpools={val.djpools} djpool={djpool} /> ))
-    //     : null 
-    //   ))
-    // }
+    if(profiles === null || loading) {
+      djpools = null
+    } else {
+      djpools  = profiles.map(val => (
+        val.djpools.length > 0 && val.djpools !== null 
+        ? val.djpools.map(djpool => ( <DjPools key={djpool._id} djpools={val.djpools} djpool={djpool} /> ))
+        : null 
+      ))
+    }
 
     if(!profile) {
       profileContent = null
@@ -170,10 +164,6 @@ class Posts extends Component {
           showLikesHandler={this.showLikesHandler}
           showLikes={this.state.showLikes}
           showNotificationsHandler={this.showNotificationsHandler}
-          showPostByHashtag={this.showPostByHashtag}
-          showHashtags={this.state.showHashtags}
-          onChange={this.onChange}
-          hashtag={this.state.hashtag}
         />
       )
     }
@@ -181,13 +171,6 @@ class Posts extends Component {
     if(!posts || !profiles || loading) {
       postContent = <Spinner />
     }
-
-    const arr = []
-    posts.forEach(post => {
-      if(post.text.toLowerCase().includes(matches.toLowerCase())) {
-        arr.push(post)
-      }
-    })
 
     postContent = (
       <InfinteScroll
@@ -197,7 +180,7 @@ class Posts extends Component {
         loader={null}>
         <PostFeed 
           showPreview={ showsPreview } 
-          posts={ showMatches ? arr : posts } 
+          posts={ posts } 
           profiles={ profiles } 
         />
         </InfinteScroll>
@@ -205,31 +188,40 @@ class Posts extends Component {
 
     return (
       <div className='feed'>
-        <SearchPost 
-          onSearchPostClick={this.onSearchPostClick}
-          matches={matches}
+        <SearchPost
+          showPostByHashtag={this.showPostByHashtag}
           onChange={this.onChange}
-          showMatches={this.state.showMatches} />
+          hashtag={this.state.hashtag}
+          showHashtags={this.state.showHashtags}
+        />
         <SearchBar profiles={ profiles } />
         <div className='post-feed-profile'>{ profileContent }</div>
-        {/* <div className='djpools'>{ djpools }</div> */}
+        <div className='test'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
-        <div className='post-feed-form'><PostForm  showPreview={ showsPreview }/></div>
-        <div className='post-feed-post-content'>{ postContent }</div>
-        { highlights && <div className='post-feed-highlights'><Highlights recentHighlights={ orderedHighlights } /></div>}
+        <div className='post-feed-form'>
+          <PostForm  showPreview={ showsPreview }/>
+        </div>
+        <div className='post-feed-post-content'>
+          { postContent }
+        </div>
+        { highlights && 
+          <div className='post-feed-highlights'>
+            <Highlights recentHighlights={ orderedHighlights } />
+          </div>
+        }
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
-        <div className='test'>
+        {/* <div className='test'> */}
                              {/*                 testing animation                          */}
                              {/*              good place to map over array                  */}
-          <div className='test2'>
+          {/* <div className='test2'>
             <img src={require('../../img/repsbuttons.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsdjcity.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsDMS.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/djpoolsCKillers.jpg')} width='100%' height='100%' alt=""/>
             <img src={require('../../img/hor-icon.jpg')} width='100%' height='100%' alt=""/>
           </div>
-        </div>
+        </div> */}
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
       </div>
     )

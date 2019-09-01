@@ -18,24 +18,14 @@ export default function PostFeedProfileContent(props) {
           user={props.user} 
           showPopup={props.showPopup}
         />
-        <div>
-          <input placeholder='Search by hashtag' onChange={props.onChange} value={props.hashtag} name='hashtag' />
-          <button onClick={props.showPostByHashtag} title='posts by hashtag'>
-            Hashtags
-          </button>
-        </div>
         <div className='post-profile-buttons-container'>
           { props.showLikes 
-            ? (
-              <button className='post-profile-liked-posts-liked' onClick={props.showLikesHandler}  title='liked posts' >
+            ? <button className='post-profile-liked-posts-liked' onClick={props.showLikesHandler}  title='liked posts' >
                 Liked Post
               </button>
-              )
-            : (
-              <button className='post-profile-liked-posts-unliked' onClick={props.showLikesHandler}  title='liked posts'>
+            : <button className='post-profile-liked-posts-unliked' onClick={props.showLikesHandler}  title='liked posts'>
                   Liked Post
               </button>
-              )
           }
             
           <button className='post-profile-add-media' title='add media' >
