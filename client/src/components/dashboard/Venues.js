@@ -13,13 +13,18 @@ class Venues extends Component {
   render() {
     const venues = this.props.venues.map(venue => (
       <div key={venue._id} className='dashboard_venue_items'>
-        {venue.video ? 
-          <iframe className='dashboard_iframe' src={venue.video} title={venue.title} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
-          : null 
+        { venue.video &&
+          <iframe 
+            className='dashboard_iframe' 
+            src={venue.video}
+            title={venue.title} 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen={true}
+          />
         }
-        { venue.image && !venue.video ? 
+        { venue.image && !venue.video && 
             <img src={venue.image} alt='highlight' width='100%' height='100%'/>
-            : null 
         }
         <div style={{padding: '10px'}}>
           <button

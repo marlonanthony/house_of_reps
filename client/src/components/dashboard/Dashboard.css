@@ -11,26 +11,45 @@
   padding: 10px;
 }
 
+.handle_actions_container > a {
+  padding: 10px;
+}
+
 .dashboard_ad_container {
   text-align: center;
   padding: 50px 10%;
 }
 
+.dashboard_ad_container > div {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-around;
+}
+
+.ad_img_btn_container {
+  padding: 20px;
+}
+
+.ad_img_btn_container > img {
+  height: 100px; 
+  width: 100px; 
+}
+
 #dashboard-delete-btn {
   font-size: 17px; 
   padding: 10px;
-  background: rgba(0,0,0,0.4);
-  color: #aaa;
+  background: none;
+  color: var(--text-color);
   border: none;
   border-radius: 2%;
-  margin-top: 30px;
+  margin: 30px;
   cursor: pointer;
   outline: none;
 }
 
 #dashboard-delete-btn:hover {
-  color: rgb(55, 131, 194);
-  background: rgba(0,0,0,0.8);
+  color: var(--secondary-color);
+  background: var(--primary-color);
 }
 
 #djpools_delete_btn {
@@ -65,4 +84,11 @@
 .dashboard_profile_actions > a > span {
   color: var(--text-color); 
   padding: 0px 5px;
+}
+
+.dashboard_no_profile {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
 }
