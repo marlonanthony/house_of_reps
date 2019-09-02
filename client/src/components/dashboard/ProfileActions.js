@@ -1,23 +1,41 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ProfileActions = () => {
-  return (
-    <React.Fragment>
-      <Link to="/edit-profile" 
-        style={{
-          margin: '0 10px', 
-          textDecoration: 'none',
-          color: 'rgb(55, 131, 194)'
-        }}>
-        <i className='fab fa-black-tie'/><span style={{color: 'rgba(200,200,200,0.6)', padding: '0 5px'}}>Edit Profile</span>
+const ProfileActions = ({ profile }) => (
+  <div className='dashboard_profile_actions'>
+    <Link to="/edit-profile">
+      <i className='fab fa-black-tie'/>
+      <span>Edit Profile</span>
+    </Link>
+    <Link to="/add-venue">
+      <i className="fas fa-clipboard" />
+      <span>Add Media</span>
+    </Link>
+    { profile.user._id === "5bad9df3f3dd61183a0fec96" && (
+      <Link to="/add-djpool">
+        <i className="fas fa-swimming-pool" /> 
+        <span>Add DJ Pool</span>
       </Link>
-      <Link to="/add-venue" style={{ margin: '0 10px', textDecoration: 'none', color: 'rgb(55, 131, 194)' }}>
-        <i className="fas fa-clipboard" />
-        <span style={{color: 'rgba(200,200,200,0.6)', padding: '0 5px'}}>Add Media</span>
+    )}
+    { profile.user._id === "5bad9df3f3dd61183a0fec96" && (
+      <Link to="/add-store">
+        <i className='fas fa-store' /> 
+        <span>Add Store</span>
       </Link>
-    </React.Fragment>
-  )
-}
+    )}
+    { profile.user._id === "5bad9df3f3dd61183a0fec96" && (
+      <Link to="/add-perk">
+        <i className='fas fa-gift' /> 
+        <span>Add Perk</span>
+      </Link>
+    )}
+    { profile.user._id === "5bad9df3f3dd61183a0fec96" && (
+      <Link to="/add-brand">
+        <i className='far fa-building' /> 
+        <span>Add Brand</span>
+      </Link>
+    )}
+  </div>
+)
 
 export default ProfileActions
