@@ -31,6 +31,13 @@ export default function(state = initialState, action) {
         loading: true 
       }
 
+    case GET_POST: 
+      return {
+        ...state,
+        post: action.payload,
+        loading: false 
+      }
+
     case GET_POSTS: 
       return {
         ...state,
@@ -42,13 +49,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         posts: [...state.posts, ...action.payload],
-        loading: false 
-      }
-
-    case GET_POST: 
-      return {
-        ...state,
-        post: action.payload,
         loading: false 
       }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
 import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../../actions/postActions'
-import PostItem from '../../posts/PostItem'
+// import PostItem from '../../posts/PostItem'
 import PostFeed from '../../posts/PostFeed'
 
 class ProfilePost extends Component {
@@ -39,7 +39,7 @@ class ProfilePost extends Component {
 
 
     return (
-      <div className='hi' style={{ marginBottom: 70 }}>
+      <div style={{ marginBottom: 70 }}>
         <InfinteScroll
           dataLength={posts.length}
           next={this.fetchMore}

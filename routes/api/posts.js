@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     .skip(pageOptions.page * pageOptions.limit)
     .limit(pageOptions.limit)
     return res.json(posts)
-  } catch(err) { res.status(404).json({ nopostsfound: 'No posts found' }) }
+  } catch(err) { res.status(404).json(err) }
 })
 
 
@@ -41,7 +41,7 @@ router.get(`/search/:search`, async (req, res) => {
     .skip(pageOptions.page * pageOptions.limit)
     .limit(pageOptions.limit)
     return res.json(posts)
-  } catch(err) { res.status(404).json({ nopostsfound: 'No posts found' }) }
+  } catch(err) { res.status(404).json(err) }
 })
 
 
@@ -61,7 +61,7 @@ router.get('/profileposts/:handle', passport.authenticate('jwt', { session: fals
     .skip(pageOptions.page * pageOptions.limit)
     .limit(pageOptions.limit)
     return res.json(posts)
-  } catch(err) { res.status(404).json({ nopostfound: 'No posts found' }) }
+  } catch(err) { res.status(404).json(err) }
 })
 
 
@@ -69,18 +69,19 @@ router.get('/profileposts/:handle', passport.authenticate('jwt', { session: fals
 // @route         GET api/posts/likedposts
 // @desc          Get liked posts
 // @access        Private
-router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/likedposts', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  Post
-  .find({ likes: { $elemMatch: { user: req.user.id } } })
-  .sort({ date: -1 })
-  .skip(pageOptions.page * pageOptions.limit)
-  .limit(pageOptions.limit)
-  .then(posts => res.json(posts))
-  .catch(err => res.json(err)) 
+  try {
+    const posts = await Post
+    .find({ likes: { $elemMatch: { user: req.user.id } } })
+    .sort({ date: -1 })
+    .skip(pageOptions.page * pageOptions.limit)
+    .limit(pageOptions.limit)
+    return res.json(posts)
+  } catch(err) { res.status(404).json(err) }
 })
 
 
@@ -122,22 +123,23 @@ router.post('/', passport.authenticate('jwt', { session: false }), async (req, r
   if(!isValid) {
     return res.status(400).json(errors) 
   }
-
-  const newPost = new Post({
-    text: req.body.text,
-    name: req.body.name,
-    handle: req.user.handle,
-    avatar: req.body.avatar,
-    user: req.user.id,
-    image: req.body.image,
-    title: req.body.title,
-    description: req.body.description,
-    url: req.body.url,
-    media: req.body.media,
-    tags: req.body.tags && req.body.tags
-  })
-
-  newPost.save().then(post => res.json(post))
+  try {
+    const newPost = new Post({
+      text: req.body.text,
+      name: req.body.name,
+      handle: req.user.handle,
+      avatar: req.body.avatar,
+      user: req.user.id,
+      image: req.body.image,
+      title: req.body.title,
+      description: req.body.description,
+      url: req.body.url,
+      media: req.body.media,
+      tags: req.body.tags && req.body.tags
+    })
+    const post = await newPost.save()
+    return res.json(post)
+  } catch(err) { res.json(err) }
 })
 
 

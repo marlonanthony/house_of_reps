@@ -225,14 +225,14 @@ class PostItem extends Component {
                   <i className='fas fa-comment icons' id='comment'/>
                   <span>{post.comments.length}</span>
                 </button>
-                { post.user === auth.user.id ? (
+                { post.user === auth.user.id && 
                   <button 
-                    title='double click to delete'
+                    title='Delete post'
                     className='postfeed_buttons delete'
-                    onDoubleClick={this.onDeleteClick.bind(this, post._id)}>
+                    onClick={this.onDeleteClick.bind(this, post._id)}>
                     <i className="fas fa-times icons" />
                   </button> 
-                ) : null }
+                }
               </span>) 
             }
             { showComments ? (
