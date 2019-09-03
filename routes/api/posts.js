@@ -160,33 +160,31 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
 // @route         POST api/posts/like/:id
 // @description   Like post
 // @access        Private
-router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Post.findById(req.params.id).then(post => {
-    if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-      return res.status(400).json({ alreadyliked: 'User already liked this post' })
-    }
-
-    // Add user id and name to likes array
+router.post('/like/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const post = await Post.findById(req.params.id)
+  if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+    return res.status(400).json({ alreadyliked: 'User already liked this post' })
+  }
+  try {
     post.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, handle: req.user.handle }) 
-    post.save().then(post => res.json(post)) 
+    const savedPost = await post.save()
 
     // Add user id name and notification message to notification array
-    Profile.findOne({ user: post.user }).then(profile => {
-      const message = `${req.user.name} liked your post!`
-      profile.notifications.push({ 
-        user: req.user.id, 
-        name: req.user.name, 
-        avatar: req.user.avatar, 
-        postImage: post.media, 
-        postText: post.text, 
-        postId: post._id, 
-        post,
-        message 
-      })
-      profile.save().then(profile => res.json(profile)) 
+    const profile = await Profile.findOne({ user: post.user })
+    const message = `${req.user.name} liked your post!`
+    profile.notifications.push({ 
+      user: req.user.id, 
+      name: req.user.name, 
+      avatar: req.user.avatar, 
+      postImage: post.media, 
+      postText: post.text, 
+      postId: post._id, 
+      post,
+      message 
     })
-  })
-  .catch(err => res.status(404).json(err)) 
+    profile.save()
+    return res.json(savedPost)
+  } catch(err) { res.status(404).json(err) }
 })
 
 

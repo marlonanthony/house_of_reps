@@ -273,9 +273,9 @@ class CommentItem extends Component {
             </button>
             { comment.user === auth.user.id ? (
             <button 
-              title='double click to delete'
+              title='Delete comment'
               className='postfeed_buttons delete'
-              onDoubleClick={this.onDeleteClick.bind(this, postId, comment._id)}>
+              onClick={this.onDeleteClick.bind(this, postId, comment._id)}>
               <i className="fas fa-times icons" />
             </button> 
             ) : null }
@@ -372,9 +372,9 @@ class CommentItem extends Component {
                         </button>
                         { nestedComment.user === auth.user.id && (
                         <button 
-                          title='double click to delete'
+                          title='delete comment'
                           className='postfeed_buttons delete'
-                          onDoubleClick={this.onDeleteNestedComment.bind(this, postId, comment._id, nestedComment._id)}>
+                          onClick={this.onDeleteNestedComment.bind(this, postId, comment._id, nestedComment._id)}>
                           <i className="fas fa-times icons" />
                         </button> 
                         )}
