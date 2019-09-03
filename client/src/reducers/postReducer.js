@@ -15,6 +15,7 @@ import {
   GET_LIKED_POSTS,
   GET_MORE_LIKED_POSTS,
   GET_POSTS_BY_HASHTAG,
+  GET_MORE_POSTS_BY_HASHTAG,
   ADD_LIKE,
   REMOVE_LIKE,
   ADD_COMMENT_LIKE,
@@ -50,6 +51,13 @@ export default function(state = initialState, action) {
         posts: action.payload,
         loading: false 
       }
+    
+    case GET_MORE_LIKED_POSTS:
+      return {
+        ...state,
+        posts: [ ...state.posts, ...action.payload ],
+        loading: false 
+      }
 
     case GET_POSTS_BY_HASHTAG:
       return {
@@ -58,11 +66,11 @@ export default function(state = initialState, action) {
         loading: false
       }
     
-    case GET_MORE_LIKED_POSTS:
+    case GET_MORE_POSTS_BY_HASHTAG:
       return {
         ...state,
         posts: [ ...state.posts, ...action.payload ],
-        loading: false 
+        loading: false
       }
 
     case GET_PROFILE_POSTS:

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
+
 import { addStore } from '../../actions/profileActions'
 import Input from '../common/inputs/Input'
 import './AddCertifiedStore.css'

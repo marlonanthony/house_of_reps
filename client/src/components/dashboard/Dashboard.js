@@ -9,7 +9,8 @@ import {
   deleteDjpool, 
   deleteStore, 
   deletePerk, 
-  deleteBrand 
+  deleteBrand,
+  deleteVenue
 } from '../../actions/profileActions'
 import Spinner from '../common/Spinner'
 import ProfileActions from './ProfileActions'
@@ -42,6 +43,10 @@ class Dashboard extends Component {
     this.props.deleteBrand(id) 
   }
 
+  onDeleteVenue = id => {
+    this.props.deleteVenue(id) 
+  }
+
   render() {
     const { user } = this.props.auth
     const { profile, loading } = this.props.profile
@@ -65,7 +70,7 @@ class Dashboard extends Component {
               onDeletePerk={this.onDeletePerk}
               onDeleteStore={this.onDeleteStore}
             />
-            <Venues venues={profile.venues} />
+            <Venues venues={profile.venues} onDeleteVenue={this.onDeleteVenue} />
             <button
               onClick={ this.onDeleteClick } 
               id="dashboard-delete-btn" 
@@ -115,5 +120,6 @@ export default connect(mapStateToProps, {
   deleteDjpool, 
   deleteStore, 
   deletePerk , 
-  deleteBrand
+  deleteBrand,
+  deleteVenue
 })(Dashboard)

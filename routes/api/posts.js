@@ -82,10 +82,16 @@ router.get('/likedposts', passport.authenticate('jwt', { session: false }), (req
 // @desc         Get posts by hashtag
 // @access       Public
 router.get('/hashtag/:hashtag', async (req, res) => {
+  const pageOptions = {
+    page: parseInt(req.query.page) || 0,
+    limit: parseInt(req.query.limit) || 10
+  }
   try {
     const post = await Post
     .find({ tags: { $in: req.params.hashtag } })
     .sort({ date: -1 })
+    .skip(pageOptions.page * pageOptions.limit)
+    .limit(pageOptions.limit)
     if(!post) return res.status(404).json({ nopostfound: 'No post found with that hashtag' })
     return res.json(post)
   } catch(err) { res.json(err) }

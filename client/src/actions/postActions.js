@@ -18,6 +18,7 @@ import {
   GET_LIKED_POSTS,
   GET_MORE_LIKED_POSTS, 
   GET_POSTS_BY_HASHTAG,
+  GET_MORE_POSTS_BY_HASHTAG,
   ADD_LIKE,
   REMOVE_LIKE,
   ADD_COMMENT_LIKE,
@@ -84,6 +85,18 @@ export const getPostsByHashtag = hashtag => async dispatch => {
     const res = await axios.get(`/api/posts/hashtag/${hashtag}`)
     dispatch({
       type: GET_POSTS_BY_HASHTAG,
+      payload: res.data
+    })
+  } catch(err) { console.log(err) }
+}
+
+// Get More Posts By Hashtag
+export const getMorePostsByHashtag = (hashtag, count, start) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.get(`/api/posts/hashtag/${hashtag}?page=${start}&limit=${count}`)
+    dispatch({
+      type: GET_MORE_POSTS_BY_HASHTAG,
       payload: res.data
     })
   } catch(err) { console.log(err) }

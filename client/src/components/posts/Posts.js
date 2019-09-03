@@ -9,7 +9,8 @@ import {
   getMatchingPosts, 
   getLikedPosts, 
   getMoreLikedPosts, 
-  getPostsByHashtag 
+  getPostsByHashtag,
+  getMorePostsByHashtag
 } from '../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from './PostForm' 
@@ -48,12 +49,13 @@ class Posts extends Component {
   }
 
   fetchMore = () => {
-    const { count, start } = this.state 
+    const { count, start, hashtag } = this.state 
     if(this.state.showLikes) {
       this.props.getMoreLikedPosts(count, start) 
       this.setState( prevState => ({ start: prevState.start + 1 }))
     } else if(this.state.showHashtags) {
-      return                      ////             finish this      //////////////////////
+      this.props.getMorePostsByHashtag(hashtag, count, start)
+      this.setState( prevState => ({ start: prevState.start + 1 }))
     } else {
       this.props.getMorePosts(count, start)
       this.setState( prevState => ({ start: prevState.start + 1 }))
@@ -77,7 +79,9 @@ class Posts extends Component {
     })
   }
 
-  showPostByHashtag = (tag) => {
+  showPostByHashtag = tag => {
+    // set hashtag to tag if tag exist lest hashtag will be empty when not using buttons
+    if(tag.length) this.setState({ hashtag: tag })
     this.setState(prevState => ({
       showHashtags: !prevState.showHashtags,
       start: 1
@@ -247,10 +251,11 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { 
   getPosts, 
   getCurrentProfile, 
-  getProfiles, 
+  getProfiles,
   getMorePosts, 
   getLikedPosts, 
   getMoreLikedPosts, 
   getMatchingPosts,
-  getPostsByHashtag
+  getPostsByHashtag,
+  getMorePostsByHashtag
 })(withRouter(Posts)) 

@@ -35,9 +35,8 @@ class ProfileCreds extends Component {
     ) 
 
     const venueItems = venues.map(venue => (
-      <FadeIn>
+      <FadeIn key={venue._id}>
         <VenueItems 
-          key={venue._id}
           venue={venue}
           modalToggle={this.modalToggle}
         />

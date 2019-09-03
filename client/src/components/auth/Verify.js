@@ -22,11 +22,11 @@ class Verify extends Component {
 
   render() {
     return this.state.isVerified 
-      ? <div style={{textAlign: 'center', color: 'rgb(55,131,194)'}}>
+      ? <div style={{ textAlign: 'center', color: 'var(--secondary-color)' }}>
           <h1>Congrats You're Verified!!!!</h1>
           <Link to='/login'>Log In</Link>
         </div>
-      : <h2>POOR SAP!!</h2>
+      : <h2>POOR SAP!!</h2> // Make this the resend route
   }
 }
 
