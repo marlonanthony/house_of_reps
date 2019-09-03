@@ -8,37 +8,40 @@ const validatePostInput = require('../../validation/post')
 // @route         GET api/posts
 // @description   Get posts
 // @access        Public
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page) || 0,
     limit: parseInt(req.query.limit) || 10
   }
 
-  Post.find()
-  .sort({ date: -1 })
-  .skip(pageOptions.page * pageOptions.limit)
-  .limit(pageOptions.limit)
-  .then(posts => res.json(posts))
-  .catch(err => res.status(404).json({ nopostsfound: 'No posts found' })) 
+  try {
+    const posts = await Post
+    .find()
+    .sort({ date: -1 })
+    .skip(pageOptions.page * pageOptions.limit)
+    .limit(pageOptions.limit)
+    return res.json(posts)
+  } catch(err) { res.status(404).json({ nopostsfound: 'No posts found' }) }
 })
 
 
 // @route         GET api/posts/search
-// @description   Get posts
+// @description   Get posts by searching text
 // @access        Public
-router.get(`/search/:search`, (req, res) => {
+router.get(`/search/:search`, async (req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10,
     search: req.params.search
   }
-
-  Post.find({$text: {$search: pageOptions.search}})
-  .sort({ date: -1 })
-  .skip(pageOptions.page * pageOptions.limit)
-  .limit(pageOptions.limit)
-  .then(posts => res.json(posts))
-  .catch(err => res.status(404).json({ nopostsfound: 'No posts found' })) 
+  try {
+    const posts = await Post
+    .find({$text: {$search: pageOptions.search}})
+    .sort({ date: -1 })
+    .skip(pageOptions.page * pageOptions.limit)
+    .limit(pageOptions.limit)
+    return res.json(posts)
+  } catch(err) { res.status(404).json({ nopostsfound: 'No posts found' }) }
 })
 
 
@@ -46,16 +49,19 @@ router.get(`/search/:search`, (req, res) => {
 // @route         GET api/posts/profileposts
 // @desc          Get profile posts
 // @access        Private
-router.get('/profileposts', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/profileposts/:handle', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page) || 0, 
     limit: parseInt(req.query.limit) || 10
   }
-  Post.find({ handle: req.query.handle }) //, date: { $gte: new Date('2019-01-01') }
-  .sort({ date: -1 })
-  .skip(pageOptions.page * pageOptions.limit)
-  .limit(pageOptions.limit)
-  .then(posts => res.json(posts))
+  try {
+    const posts = await Post
+    .find({ handle: req.params.handle }) //, date: { $gte: new Date('2019-01-01') }
+    .sort({ date: -1 })
+    .skip(pageOptions.page * pageOptions.limit)
+    .limit(pageOptions.limit)
+    return res.json(posts)
+  } catch(err) { res.status(404).json({ nopostfound: 'No posts found' }) }
 })
 
 
@@ -87,13 +93,13 @@ router.get('/hashtag/:hashtag', async (req, res) => {
     limit: parseInt(req.query.limit) || 10
   }
   try {
-    const post = await Post
+    const posts = await Post
     .find({ tags: { $in: req.params.hashtag } })
     .sort({ date: -1 })
     .skip(pageOptions.page * pageOptions.limit)
     .limit(pageOptions.limit)
-    if(!post) return res.status(404).json({ nopostfound: 'No post found with that hashtag' })
-    return res.json(post)
+    if(!posts) return res.status(404).json({ nopostfound: 'No posts found with that hashtag' })
+    return res.json(posts)
   } catch(err) { res.json(err) }
 })
 

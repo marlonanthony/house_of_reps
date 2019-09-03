@@ -195,7 +195,7 @@ class Posts extends Component {
           posts={ posts } 
           profiles={ profiles } 
         />
-        </InfinteScroll>
+      </InfinteScroll>
     )
 
     return (

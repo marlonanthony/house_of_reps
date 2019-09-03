@@ -10,15 +10,8 @@ import {
   CLEAR_ERRORS,
   DELETE_COMMENT,
   GET_MORE_POSTS,
-  GET_MATCHING_POSTS,
   ADD_NESTED_COMMENT,
   REMOVE_NESTED_COMMENT,
-  GET_PROFILE_POSTS,
-  GET_MORE_PROFILE_POSTS,
-  GET_LIKED_POSTS,
-  GET_MORE_LIKED_POSTS, 
-  GET_POSTS_BY_HASHTAG,
-  GET_MORE_POSTS_BY_HASHTAG,
   ADD_LIKE,
   REMOVE_LIKE,
   ADD_COMMENT_LIKE,
@@ -84,7 +77,7 @@ export const getPostsByHashtag = hashtag => async dispatch => {
     dispatch(setPostLoading())
     const res = await axios.get(`/api/posts/hashtag/${hashtag}`)
     dispatch({
-      type: GET_POSTS_BY_HASHTAG,
+      type: GET_POSTS,
       payload: res.data
     })
   } catch(err) { console.log(err) }
@@ -96,7 +89,7 @@ export const getMorePostsByHashtag = (hashtag, count, start) => async dispatch =
     dispatch(setPostLoading())
     const res = await axios.get(`/api/posts/hashtag/${hashtag}?page=${start}&limit=${count}`)
     dispatch({
-      type: GET_MORE_POSTS_BY_HASHTAG,
+      type: GET_MORE_POSTS,
       payload: res.data
     })
   } catch(err) { console.log(err) }
@@ -108,7 +101,7 @@ export const getLikedPosts = (count, start) => async dispatch => {
     dispatch(setPostLoading()) 
     const res = await axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
     dispatch({
-      type: GET_LIKED_POSTS,
+      type: GET_POSTS,
       payload: res.data 
     })
   } catch(err) {
@@ -122,7 +115,7 @@ export const getMoreLikedPosts = (count, start) => async dispatch => {
     dispatch(setPostLoading()) 
     const res = await axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
     dispatch({
-      type: GET_MORE_LIKED_POSTS,
+      type: GET_MORE_POSTS,
       payload: res.data 
     })
   } catch(err) {
@@ -135,14 +128,14 @@ export const getMoreLikedPosts = (count, start) => async dispatch => {
 export const getProfilePosts = (count, start, handle) => async dispatch => {
   try {
     dispatch(setPostLoading()) 
-    const res = await axios.get(`/api/posts/profileposts?page=${start}&limit=${count}&handle=${handle}`)
+    const res = await axios.get(`/api/posts/profileposts/${handle}?page=${start}&limit=${count}`)
     dispatch({
-      type: GET_PROFILE_POSTS,
+      type: GET_POSTS,
       payload: res.data 
     })
   } catch(err) {
     dispatch({
-      type: GET_PROFILE_POSTS,
+      type: GET_POSTS,
       payload: null
     })
   }
@@ -152,9 +145,9 @@ export const getProfilePosts = (count, start, handle) => async dispatch => {
 export const getMoreProfilePosts = (count, start, handle) => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.get(`/api/posts/profileposts?page=${start}&limit=${count}`)
+    const res = await axios.get(`/api/posts/profileposts/${handle}?page=${start}&limit=${count}`)
     dispatch({
-      type: GET_MORE_PROFILE_POSTS,
+      type: GET_MORE_POSTS,
       payload: res.data,
     }) 
   } catch(err) { console.log(err) }
@@ -178,7 +171,7 @@ export const getMatchingPosts = (matches) => async dispatch => {
     dispatch(setPostLoading())
     const res = await axios.get(`/api/posts/search/:${matches}`)
     dispatch({
-      type: GET_MATCHING_POSTS,
+      type: GET_POSTS,
       payload: res.data
     })
   } catch(err) { console.log(err) } 
