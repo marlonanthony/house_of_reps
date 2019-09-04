@@ -10,6 +10,7 @@ const validateBrandsInput = require('../../validation/djpools')
 
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
+const Post = require('../../models/Post')
 
 
 // @route         GET api/profile
@@ -125,9 +126,7 @@ router.post('/notifications/seen', passport.authenticate('jwt', { session: false
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateProfileInput(req.body) 
 
-  if(!isValid) {
-    return res.status(404).json(errors)
-  }
+  if(!isValid) return res.status(404).json(errors)
   
   // Get fields
   const profileFields = {}
@@ -155,15 +154,27 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if(req.body.mixcloud) profileFields.social.mixcloud = req.body.mixcloud 
   if(req.body.youtube) profileFields.social.youtube = req.body.youtube 
 
-  Profile.findOne({ user: req.user.id })
-  .then(profile => {
+  Profile.findOne({ user: req.user.id }).then(async profile => {
     if(profile) {
       // Update
+      // update users avatar
+      const user = await User.findOneAndUpdate(
+        { _id: req.user.id }, 
+        { avatar: req.body.avatar }, 
+        { new: true })
+      await user.save()
+      // update users profile
       Profile.findOneAndUpdate(
         { user: req.user.id },
-        { $set: profileFields },
+        { $set: profileFields }, 
         { new: true } 
-      ).then(profile => res.json(profile)) 
+      ).then(async profile => res.json(profile))
+      // update past posts avatar
+      const posts = await Post.find({ user: req.user.id })
+      posts.forEach(post => {
+        post.avatar = req.body.avatar
+        post.save()
+      })
     } else {
       // Create
 

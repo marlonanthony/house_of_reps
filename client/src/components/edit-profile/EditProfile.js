@@ -125,16 +125,7 @@ class EditProfile extends Component {
       mixcloud: this.state.mixcloud
     }
 
-    this.props.createProfile(profileData, this.props.history) 
-
-    const newUser = {
-      name: user.name,
-      email: user.email,
-      avatar: this.state.avatar,
-      password: user.password,
-      password2: user.password2
-    }
-    this.props.registerUser(newUser, this.props.history) 
+    this.props.createProfile(profileData, this.props.history)
   }
 
   onImageDrop = files => {
@@ -151,7 +142,7 @@ class EditProfile extends Component {
       if(err) console.log(err) 
       if(response.body.secure_url !== '') {
         this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
-        this.setState({ banner: response.body.secure_url })
+        this.setState({ avatar: response.body.secure_url })
       }
     })
   }
