@@ -8,7 +8,7 @@ export default function PostFeedProfileContent(props) {
     <div>
       <div className='post-profile-avatar-container'>
         <Link style={{ textDecoration: 'none' }} to={`/profile/${props.profile.handle}`}>
-          <img id='posts-profile-img' src={ props.user.avatar } alt={ props.user.name } />
+          <img id='posts-profile-img' src={ props.profile.user.avatar } alt={ props.user.name } />
         </Link>
       </div>
       <div className='post-profile-popup-and-buttons-container'>

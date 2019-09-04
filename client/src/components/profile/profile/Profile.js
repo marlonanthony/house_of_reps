@@ -15,7 +15,7 @@ class Profile extends Component {
     }
     if(this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle) 
-    } 
+    }
   }
 
   render() {
@@ -23,16 +23,11 @@ class Profile extends Component {
     const { user } = this.props.auth
     let profileContent
 
-    if(profile === null || loading) {
+    if(!profile || loading) {
       profileContent = <Spinner />
     } else {
-      profileContent = (
-        <div>
-          <ProfileHeader profile={profile} user={user} />
-        </div>
-      )
+      profileContent = <ProfileHeader profile={profile} user={user} />
     }
-
     return (
       <div className='profile-container'>
         <div className='profile'>

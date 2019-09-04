@@ -162,7 +162,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         { _id: req.user.id }, 
         { avatar: req.body.avatar }, 
         { new: true })
-      await user.save()
+      user.save()
       // update users profile
       Profile.findOneAndUpdate(
         { user: req.user.id },
@@ -177,15 +177,12 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
       })
     } else {
       // Create
-
       // Check if handle exists 
       Profile.findOne({ handle: profileFields.handle }).then(profile => {
         if(profile) {
           errors.handle = 'That username already exists'
           res.status(400).json(errors) 
         }
-
-        // Save Profile
         new Profile(profileFields).save().then(profile => res.json(profile))
       })
     }
