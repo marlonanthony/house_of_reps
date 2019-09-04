@@ -146,14 +146,15 @@ router.post('/', passport.authenticate('jwt', { session: false }), async (req, r
 // @route         DELETE api/posts/:id
 // @description   Delete post
 // @access        Private
-router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Post.findById(req.params.id).then(post => {
-      if(post.user.toString() !== req.user.id) {
-        return res.status(401).json({ notauthorized: 'User not authorized' })
-      }
-      post.remove().then(() => res.json({ success: true }))
-    })
-    .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
+router.delete('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+    if(post.user.toString() !== req.user.id) {
+      return res.status(401).json({ notauthorized: 'User not authorized' })
+    }
+    post.remove()
+    return res.json({ success: true })
+  } catch(err) { res.status(404).json({ postnotfound: 'No post found' }) }
 })
 
 
@@ -208,11 +209,11 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), asy
 // @route         POST api/posts/comment/:id
 // @description   Add comment to post
 // @access        Private
-router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/comment/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const { errors, isValid } = validatePostInput(req.body) 
   if(!isValid) return res.status(400).json(errors)
-  
-  Post.findById(req.params.id).then(post => {
+  try {
+    const post = await Post.findById(req.params.id)
     const newComment = {
       text: req.body.text,
       name: req.body.name,
@@ -228,46 +229,40 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
 
     // Add to comments array
     post.comments.unshift(newComment) 
-    post.save().then(post => res.json(post)) 
+    await post.save()
 
     // Add to notifications array
-    Profile.findOne({ user: post.user }).then(profile => {
-      const message = `${req.user.name} commented on your post!`
-      profile.notifications.push({ 
-        user: req.user.id, 
-        name: req.user.name, 
-        avatar: req.user.avatar, 
-        postId: post._id, 
-        postImage: post.media, 
-        postText: post.text, 
-        message 
-      })
-      profile.save().then(profile => res.json(profile)) 
+    const profile = await Profile.findOne({ user: post.user })
+    const message = `${req.user.name} commented on your post!`
+    profile.notifications.push({ 
+      user: req.user.id, 
+      name: req.user.name, 
+      avatar: req.user.avatar, 
+      postId: post._id, 
+      postImage: post.media, 
+      postText: post.text, 
+      message 
     })
-  })
-  .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
+    await profile.save()
+    return res.json(post)
+  } catch(err) { res.status(404).json({ postnotfound: 'No post found' }) }
 })
 
 
 // @route         DELETE api/posts/comment/:id/:comment_id
 // @description   Delete a comment from post
 // @access        Private
-router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  
-  Post.findById(req.params.id).then(post => {
-    // Check to see if comment exists
+router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
     if(post.comments.filter(comment => comment._id.toString() === req.params.comment_id).length === 0) {
       return res.status(404).json({ commentdoesntexist: 'Comment does not exist' })
     }
-
-    // Get remove index
     const removeIndex = post.comments.map(item => item._id.toString()).indexOf(req.params.comment_id)
-
-    // Splice comment out of array
     post.comments.splice(removeIndex, 1) 
-    post.save().then(post => res.json(post)) 
-  })
-  .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
+    await post.save()
+    return res.json(post)
+  } catch(err) { res.status(404).json({ postnotfound: 'No post found' }) }
 })
 
 
@@ -295,7 +290,7 @@ router.post('/comment/like/:id/:comment_id', passport.authenticate('jwt', { sess
             postText: comment.text,
             comment,
             message })
-          profile.save().then(profile => res.json(profile)) 
+          profile.save()
         })
       }
     })
@@ -356,7 +351,7 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
             postText: comment.text, 
             message 
           })
-          profile.save().then(profile => res.json(profile))
+          profile.save()
         })
       }
     })

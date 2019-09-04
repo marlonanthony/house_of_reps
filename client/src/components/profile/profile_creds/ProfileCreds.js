@@ -7,8 +7,8 @@ import HighlightsModal from '../../UI/modal/highlights-modal/HighlightsModal'
 import Backdrop from '../../UI/backdrop/Backdrop'
 import VenueItems from '../profile_assets/VenueItems'
 import ModalVenues from '../profile_assets/ModalVenues'
+import FadeIn from '../../UI/fade_in/FadeIn'
 import './ProfileCreds.css'
-import FadeIn from '../../UI/fade_in/FadeIn';
 
 class ProfileCreds extends Component {
 
@@ -49,9 +49,9 @@ class ProfileCreds extends Component {
           <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
           { highlightsModal }
           <div className='profile-creds-content'>
-            { venueItems.length > 0 ? (
-              venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
-            ) : (<p id='no_venues'><Link to='/add-venue'>Add some content</Link></p>)}
+            { venueItems.length > 0 
+              ? venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
+              : <p id='no_venues'><Link to='/add-venue'>Add some content</Link></p> }
           </div>
         </div>
       </div>
