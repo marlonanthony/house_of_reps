@@ -44,13 +44,15 @@ class ProfileCreds extends Component {
     ))
 
     return (
-      <div className='profile-creds'>
-        <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-        { highlightsModal }
-        <div className='profile-creds-content'>
-          { venueItems.length > 0 ? (
-            venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
-          ) : (<p id='no_venues'><Link to='/add-venue'>Add some content</Link></p>)}
+      <div id='profile-creds-div'>
+        <div className='profile-creds'>
+          <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+          { highlightsModal }
+          <div className='profile-creds-content'>
+            { venueItems.length > 0 ? (
+              venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
+            ) : (<p id='no_venues'><Link to='/add-venue'>Add some content</Link></p>)}
+          </div>
         </div>
       </div>
     )

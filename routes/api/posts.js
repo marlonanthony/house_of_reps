@@ -161,14 +161,13 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
 // @description   Like post
 // @access        Private
 router.post('/like/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  const post = await Post.findById(req.params.id)
-  if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-    return res.status(400).json({ alreadyliked: 'User already liked this post' })
-  }
   try {
+    const post = await Post.findById(req.params.id)
+    if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ alreadyliked: 'User already liked this post' })
+    }
     post.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, handle: req.user.handle }) 
     const savedPost = await post.save()
-
     // Add user id name and notification message to notification array
     const profile = await Profile.findOne({ user: post.user })
     const message = `${req.user.name} liked your post!`
@@ -183,6 +182,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), async
       message 
     })
     profile.save()
+
     return res.json(savedPost)
   } catch(err) { res.status(404).json(err) }
 })
@@ -191,19 +191,17 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), async
 // @route         POST api/posts/unlike/:id
 // @description   Unlike post
 // @access        Private
-router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Post.findById(req.params.id).then(post => {
-    if(post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
-      return res.status(400).json({ notliked: 'You have not yet liked this post' })
-    }
-    // Get Index
-    const removeIndex = post.likes.map(item => item.user.toString()).indexOf(req.user.id) 
-
-    // Splice out of array
+router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const post = await Post.findById(req.params.id)
+  if(post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+    return res.status(400).json({ notliked: 'You have not yet liked this post' })
+  }
+  try {
+    const removeIndex = post.likes.map(item => item.user.toString()).indexOf(req.user.id)
     post.likes.splice(removeIndex, 1) 
-    post.save().then(post => res.json(post)) 
-  })
-  .catch(err => res.status(404).json(err)) 
+    const savedPost = await post.save()
+    return res.json(savedPost)
+  } catch(err) { res.status(404).json(err) } 
 })
 
 
@@ -212,12 +210,7 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
 // @access        Private
 router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validatePostInput(req.body) 
-
-  // Check Validation
-  if(!isValid) {
-    // If errors send 400 with errors object
-    return res.status(400).json(errors) 
-  }
+  if(!isValid) return res.status(400).json(errors)
   
   Post.findById(req.params.id).then(post => {
     const newComment = {

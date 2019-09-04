@@ -34,7 +34,7 @@ class PostForm extends Component {
     errors: {},
     rows: 2,
     minRows: 2,
-    maxRows: 10,
+    maxRows: 3,
     show: false,
     data: {},
     showPreview: false,
@@ -87,7 +87,6 @@ class PostForm extends Component {
     e.stopPropagation() 
     let clipboardData = e.clipboardData || window.clipboardData
     let pastedData = clipboardData.getData('Text') 
-
     // Check for URL 
     const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/
     if(!regex.test(pastedData)) {

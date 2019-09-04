@@ -36,10 +36,8 @@ class ProfilePost extends Component {
       // postContent = posts.map(post => <PostItem key={post._id} post={post} />)
       postContent = <PostFeed posts={posts} />
     }
-
-
     return (
-      <div style={{ marginBottom: 70 }}>
+      <div id='profile-feed'>
         <InfinteScroll
           dataLength={posts.length}
           next={this.fetchMore}

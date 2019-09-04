@@ -14,18 +14,17 @@ export default function ProfileHeader({ profile, user }) {
       <div className="profile-header">
         <div id='header-items'>
           <div id='profile-avatar-div'>
-            {isEmpty(user.avatar) ? <p>create profile</p> : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" />}
+            { isEmpty(user.avatar) 
+              ? <p>create profile</p> 
+              : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" /> 
+            }
           </div>
           <ProfileAbout profile={profile} />
           <ProfileIcons profile={profile} />
           <Banners />
         </div>
-        <div id='profile-feed'>
-          <ProfilePost />
-        </div>
-        <div id='profile-creds-div'>
-          <ProfileCreds venues={profile.venues} />
-        </div>
+        <ProfilePost />
+        <ProfileCreds venues={profile.venues} />
       </div>
     </div>
   )
