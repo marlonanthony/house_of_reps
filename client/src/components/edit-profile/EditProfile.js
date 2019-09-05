@@ -103,7 +103,6 @@ class EditProfile extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    const { user } = this.props.auth 
     
     const profileData = {
       avatar: this.state.avatar,
