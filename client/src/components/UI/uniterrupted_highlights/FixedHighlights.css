@@ -1,0 +1,21 @@
+.fixed_highlights_container {
+  margin: 0 auto; 
+  max-width: 548px;
+}
+
+.fixed_highlights {
+  position: fixed; 
+  max-width: 548px; 
+  width: 100%; 
+  z-index: 10; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.fixed_highlights > iframe {
+  height: 75px;
+  width: 100%;
+  max-width: 500px;
+  top: 0;
+}

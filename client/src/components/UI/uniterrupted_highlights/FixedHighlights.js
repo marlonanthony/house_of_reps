@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import { getProfiles } from '../../../actions/profileActions'
 import Arrow from '../arrow_glyph/Arrow'
+import './FixedHighlights.css'
 
 class FixedHighlights extends Component {
   state = { 
@@ -15,8 +16,8 @@ class FixedHighlights extends Component {
     this.props.getProfiles()
     .then(() => {
       const hls = this.props.profile.profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null),
-          highlights = [].concat.apply([], hls),
-          recentHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+            highlights = [].concat.apply([], hls),
+            recentHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
       this.setState({ recentHighlights })
     })
   }
@@ -46,31 +47,22 @@ class FixedHighlights extends Component {
   }
 
   render() {
+    const { recentHighlights, currentImageIndex } = this.state
     const { profiles, loading } = this.props.profile
     if(!this.props.showHighlight) return null
-    if(!profiles || loading || !this.state.recentHighlights) return null
+    if(!profiles || loading || !recentHighlights) return null
 
-    return (
-      <div style={{  margin: '0 auto', maxWidth: 550 }}>
-        <div style={{position: 'fixed', maxWidth: 550, width: '100%', zIndex: 10, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    return  recentHighlights[currentImageIndex] && recentHighlights[currentImageIndex].video && (
+      <div className='fixed_highlights_container'>
+        <div className='fixed_highlights'>
           <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-          {this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].video ?
-          <iframe 
-            title={this.state.recentHighlights[this.state.currentImageIndex].video} 
-            style={{
-              height: '75px',
-              width: '100%',
-              maxWidth: '500px',
-              top: 0
-            }}
-            src={this.state.recentHighlights[this.state.currentImageIndex].video} 
+          <iframe
+            title={recentHighlights[currentImageIndex].video}
+            src={recentHighlights[currentImageIndex].video} 
             frameBorder={0}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowFullScreen={true}>
           </iframe>
-            : this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].image 
-            ? <img src={this.state.recentHighlights[this.state.currentImageIndex].image} alt="highlights"/>
-            : null }
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>
