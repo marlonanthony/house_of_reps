@@ -57,7 +57,7 @@
 
 #nested_comments_text {
   padding: 5px;
-  color: rgba(200,200,200,0.9);
+  color: var(--text-color);
   font-size: 13px;
   margin-left: 30px;
 }
@@ -77,7 +77,7 @@
 }
 
 .comment-feed-name {
-  color: rgb(29, 138, 228);
+  color: var(--secondary-color);
   font-size: 13px;
 }
 
@@ -93,8 +93,6 @@
 }
 
 #comment-modal-text {
-  /* color: #ccc; */
-  /* color: rgba(200,200,200,.6); */
   color: black;
 }
 
@@ -127,7 +125,7 @@
   margin-left: -60px;
   max-height: 120px;
   overflow: auto;
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
 }
 
 .comments_image {

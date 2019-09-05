@@ -219,7 +219,7 @@ class Posts extends Component {
         />
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
-        <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
+        <div className='post-feed-footer'><footer>Copyright &copy; 2019 House of Reps</footer></div>
       </div>
     )
   }

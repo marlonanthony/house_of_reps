@@ -17,7 +17,7 @@ export default function CommentText({ commentText }) {
    
   // Match hashtags
   replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => (
-    <a className='post_text_hashtags' key={match + i} target='_blank' rel='noopener noreferrer' href={`https://twitter.com/hashtag/${match}`}>#{match}</a>
+    <Link className='post_text_hashtags' key={match + i} to={`/hashtag/${match}`} >#{match}</Link>
   ));
     
   
