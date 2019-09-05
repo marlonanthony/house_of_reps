@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 // import Moment from 'react-moment'
 import { likeVenue } from '../../../../actions/profileActions'
@@ -43,10 +43,11 @@ class Highlights extends Component {
   }
 
   render() {
+    if(!this.props.recentHighlights) return null
     const { recentHighlights } = this.props 
 
     const highlightsModal = this.state.showModal && (
-      <Fragment>
+      <>
         <HighlightsModal>
           <div style={{ color: '#ccc' }}>
             <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
@@ -61,7 +62,11 @@ class Highlights extends Component {
                 allowFullScreen={true}>
               </iframe>
               : recentHighlights[this.state.currentImageIndex].image 
-              ? <img src={recentHighlights[this.state.currentImageIndex].image} style={{maxWidth: '100%', maxHeight: '50vh'}} alt="highlights"/>
+              ? <img 
+                  src={recentHighlights[this.state.currentImageIndex].image} 
+                  style={{maxWidth: '100%', maxHeight: '50vh'}} 
+                  alt="highlights"
+                />
               : null
             }
             { recentHighlights[this.state.currentImageIndex].description ? 
@@ -76,37 +81,44 @@ class Highlights extends Component {
             <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
           </div>
         </HighlightsModal>
-      </Fragment>
+      </>
     ) 
 
     return (
-      <div className='highlightss'>
-        <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-        {highlightsModal}
-        <div 
-        style={{ 
-          position: 'absolute',
-          // transform: `translateX(-${this.state.currentImageIndex*100}%)`, 
-          // transition: 'transform 300ms cubic-bezier(0.1, 0.7, 1.0, 0.1)',
-          // overflowY: 'hidden',
-        }}>
-          <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-          {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
-            (<iframe 
-              title={recentHighlights[this.state.currentImageIndex].video} 
-              style={{width: '250px', height: '250px'}} 
-              src={recentHighlights[this.state.currentImageIndex].video} 
-              frameBorder={0}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen={true}>
-            </iframe>) 
-            : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
-            ? <img src={recentHighlights[this.state.currentImageIndex].image} height={250} width={250} alt="highlights"/>
-            : null }
-          <br />
-          <img onClick={this.modalToggle} className='highlightss_icon' src={require('../../../../img/hor-icon.jpg')} alt='hors' title={'🔥'}/>
-          
-          <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+      <div className='post-feed-highlights'>
+        <div className='highlightss'>
+          <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+          {highlightsModal}
+          <div 
+          style={{ 
+            position: 'absolute',
+            // transform: `translateX(-${this.state.currentImageIndex*100}%)`, 
+            // transition: 'transform 300ms cubic-bezier(0.1, 0.7, 1.0, 0.1)',
+            // overflowY: 'hidden',
+          }}>
+            <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+            {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
+              (<iframe 
+                title={recentHighlights[this.state.currentImageIndex].video} 
+                style={{width: '250px', height: '250px'}} 
+                src={recentHighlights[this.state.currentImageIndex].video} 
+                frameBorder={0}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen={true}>
+              </iframe>) 
+              : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
+              ? <img src={recentHighlights[this.state.currentImageIndex].image} height={250} width={250} alt="highlights"/>
+              : null }
+            <br />
+            <img 
+              onClick={() => this.props.toggleShowHighlight(this.state.currentImageIndex)}
+              className='highlightss_icon' 
+              src={require('../../../../img/hor-icon.jpg')} 
+              alt='hors' 
+              title={'🔥'}
+            />
+            <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+          </div>
         </div>
       </div>
     )

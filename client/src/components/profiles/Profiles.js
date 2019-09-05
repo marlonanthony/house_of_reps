@@ -1,98 +1,91 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types' 
-import Spinner from '../common/Spinner'
-import ProfileItem from './ProfileItem'
-// import Moment from 'react-moment'
-// import ProfileHighlights from './ProfileHighlights'
-import { getProfiles } from '../../actions/profileActions'
-import './Profiles.css'
-// import background from 'http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg'
+// import React, { Component } from 'react'
+// import { connect } from 'react-redux'
+// import PropTypes from 'prop-types' 
+// import { getProfiles } from '../../actions/profileActions'
+// import Arrow from '../UI/arrow_glyph/Arrow'
+// import './Profiles.css'
 
-class Profiles extends Component {
-  componentDidMount() {
-    this.props.getProfiles()
-  }
+// class Profiles extends Component {
+//   state = { 
+//     currentImageIndex: 0,
+//     recentHighlights: []
+//   }
 
-  render() {
-    const { profiles, loading } = this.props.profile
-    let profileItems, highlights 
+//   componentDidMount() {
+//     this.props.getProfiles()
+//     .then(() => {
+//       const hls = this.props.profile.profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null),
+//           highlights = [].concat.apply([], hls),
+//           recentHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+//       this.setState({ recentHighlights })
+//     })
+//   }
 
-    if(profiles === null || loading) {
-      profileItems = <Spinner />
-    } else if(profiles.length > 0) {
-      profileItems = profiles.map(profile => (
-        <ProfileItem key={profile._id} profile={profile} />
-      ))
-    } else {
-      profileItems = <h4>No profiles found...</h4>
-    }
+//   componentDidUpdate(prevProps) {
+//     if(this.props.currentIndex !== prevProps.currentIndex) {
+//       this.setState({ currentImageIndex: this.props.currentIndex })
+//     }
+//   }
 
-    if(profiles === null || loading) highlights = null
-    else highlights = profiles.map(profile => profile.venues)
-    let firstHighlight = highlights && highlights.map(val => val.length > 0 ? val[0] : null).filter(val => val !== null)
-    let first = [].concat.apply([], firstHighlight)
-    
+//   previousSlide = () => {
+//     const { recentHighlights } = this.state 
+//     const { currentImageIndex } = this.state 
+//     const lastIndex = recentHighlights.length - 1
+//     const shouldResetIndex = currentImageIndex === 0
+//     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
+//     this.setState({ currentImageIndex: index })
+//   }
 
-    return (
-      <div>
-        <div style={{
-          backgroundImage: `url(http://outdoor.lv/wp-content/uploads/2018/10/vIjpM9.jpg)`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          minHeight: '100vh', }}>
-          <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', padding: '10px', alignItems: 'center'}}>
-          { first[2] ?
-            <iframe id='profile_creds_video' title={first[0].video} width="330" height="200" src={first[2].video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
-            : null
-          }
-          {/* { first.map(venue => (
-            <li key={venue._id} className='firstHighlight'>
-              { venue.date ? 
-              <p style={{color: 'rgb(55, 131, 194)'}}>
-                <Moment format='MM/DD/YYYY'>{venue.date}</Moment>
-              </p> : null
-              }
-              <h4 style={{ color: '#ccc' }}>{venue.title}</h4>
-              <p>{venue.location === '' ? null : (<span style={{color: '#7e8889'}}>{venue.location}</span>)}</p>
-              { venue.video
-                ? <iframe id='profile_creds_video' title={venue._id} width="330" height="200" src={venue.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
-                : null 
-              }
-              { !venue.video && venue.image 
-                ? <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <img src={venue.image} style={{maxHeight: '200px', maxWidth: '100%'}} alt="venue"/>
-                  </div>
-                : null 
-              }
-              <p style={{ color: '#7e8889', textAlign: 'center' }}>{venue.description === '' ? null : (<span>{venue.description}</span>)}</p>
-            </li>
-          ))} */}
-          </div>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            padding: '100px 5px 20px 5px',
-            alignItems: 'center' }}>
-            { profileItems }
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+//   nextSlide = () => {
+//     const { recentHighlights } = this.state 
+//     const { currentImageIndex } = this.state 
+//     const lastIndex = recentHighlights.length - 1
+//     const shouldResetIndex = currentImageIndex === lastIndex
+//     const index = shouldResetIndex ? 0 : currentImageIndex + 1
+//     this.setState({ currentImageIndex: index })
+//   }
 
-Profiles.propTypes = {
-  getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
-}
+//   render() {
+//     const { profiles, loading } = this.props.profile
+//     if(!this.props.showHighlight) return null
+//     if(!profiles || loading || !this.state.recentHighlights) return null
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  loading: state.loading
-})
+//     return (
+//       <div style={{  margin: '0 auto', maxWidth: 500 }}>
+//         <div style={{position: 'fixed', maxWidth: 500, width: '100%', zIndex: 10}}>
+//           <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+//           {this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].video ?
+//           <iframe 
+//             title={this.state.recentHighlights[this.state.currentImageIndex].video} 
+//             style={{
+//               height: '75px',
+//               width: '100%',
+//               maxWidth: '1150px',
+//               top: 0
+//             }}
+//             src={this.state.recentHighlights[this.state.currentImageIndex].video} 
+//             frameBorder={0}
+//             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+//             allowFullScreen={true}>
+//           </iframe>
+//             : this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].image 
+//             ? <img src={this.state.recentHighlights[this.state.currentImageIndex].image} alt="highlights"/>
+//             : null }
+//           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+//         </div>
+//       </div>
+//     )
+//   }
+// }
 
-export default connect(mapStateToProps, { getProfiles })(Profiles) 
+// Profiles.propTypes = {
+//   getProfiles: PropTypes.func.isRequired,
+//   profile: PropTypes.object.isRequired
+// }
+
+// const mapStateToProps = state => ({
+//   profile: state.profile,
+//   loading: state.loading
+// })
+
+// export default connect(mapStateToProps, { getProfiles })(Profiles) 

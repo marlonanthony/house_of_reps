@@ -1,7 +1,7 @@
 .dropdown {
   position: fixed;
   display: inline-block;
-  z-index: 10;
+  z-index: 11;
   top: 20px;
   right: 20px;
 }

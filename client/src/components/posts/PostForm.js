@@ -183,56 +183,58 @@ class PostForm extends Component {
   render() {
     const { errors, data, text, showPreview, media, rows, show } = this.state 
     return (
-      <div>
-        <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
-        <div className='post_form'>
-          { this.state.showEmojis ? 
-          <EmojiModal>
-            <EmojiPicker onEmojiClick={this.addEmoji} />
-          </EmojiModal>
-          : null }
-          { this.state.showTags ?
+      <div className='post-feed-form'>
+        <div>
+          <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
+          <div className='post_form'>
+            { this.state.showEmojis ? 
             <EmojiModal>
-              <form onSubmit={this.onTagSubmit}>
-                <p style={{ textAlign: 'center' }}><span role='img' aria-label='fire emoji'>🔥</span> hashtags yonder</p>
-                <input type="text" onChange={this.onChange} name='tag1' value={this.state.tag1} />
-                <input type="text" onChange={this.onChange} name='tag2' value={this.state.tag2} />
-                <input type="text" onChange={this.onChange} name='tag3' value={this.state.tag3} />
-                <input type="text" onChange={this.onChange} name='tag4' value={this.state.tag4} />
-                <button>ok</button>
-              </form>
-            </EmojiModal> : null
-          }
-          <div id='post-form-textareafieldgroup'>
-            <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
-              <TextAreaForm
-                className='text-area'
-                placeholder="What's the discussion?"
-                name='text'
-                value={text} 
-                onChange={this.onChange} 
-                onPaste={this.onPaste}
-                error={errors.text} 
-                rows={rows}
-              />
-              <div className={ show ? 'otherstuff' : 'disp'}>
-                <i className="fas fa-hashtag" onClick={this.toggleShowTags} style={{cursor: 'pointer', color: 'var(--secondary-color)'}}></i>
-                <Dropzone 
-                  style={{ border: 'none' }}
-                  multiple={false}
-                  accept='image/*, video/*'
-                  onDrop={this.onImageDrop}>
-                  <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                    <PhotoIcon />
+              <EmojiPicker onEmojiClick={this.addEmoji} />
+            </EmojiModal>
+            : null }
+            { this.state.showTags ?
+              <EmojiModal>
+                <form onSubmit={this.onTagSubmit}>
+                  <p style={{ textAlign: 'center' }}><span role='img' aria-label='fire emoji'>🔥</span> hashtags yonder</p>
+                  <input type="text" onChange={this.onChange} name='tag1' value={this.state.tag1} />
+                  <input type="text" onChange={this.onChange} name='tag2' value={this.state.tag2} />
+                  <input type="text" onChange={this.onChange} name='tag3' value={this.state.tag3} />
+                  <input type="text" onChange={this.onChange} name='tag4' value={this.state.tag4} />
+                  <button>ok</button>
+                </form>
+              </EmojiModal> : null
+            }
+            <div id='post-form-textareafieldgroup'>
+              <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
+                <TextAreaForm
+                  className='text-area'
+                  placeholder="What's the discussion?"
+                  name='text'
+                  value={text} 
+                  onChange={this.onChange} 
+                  onPaste={this.onPaste}
+                  error={errors.text} 
+                  rows={rows}
+                />
+                <div className={ show ? 'otherstuff' : 'disp'}>
+                  <i className="fas fa-hashtag" onClick={this.toggleShowTags} style={{cursor: 'pointer', color: 'var(--secondary-color)'}}></i>
+                  <Dropzone 
+                    style={{ border: 'none' }}
+                    multiple={false}
+                    accept='image/*, video/*'
+                    onDrop={this.onImageDrop}>
+                    <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
+                      <PhotoIcon />
+                    </button>
+                  </Dropzone>
+                  <EmojiIcon toggleEmoji={this.toggleEmoji} />
+                  <button className='post_submit_button' title='Submit'>
+                    <PostSubmitIcon />
                   </button>
-                </Dropzone>
-                <EmojiIcon toggleEmoji={this.toggleEmoji} />
-                <button className='post_submit_button' title='Submit'>
-                  <PostSubmitIcon />
-                </button>
-              </div>
-              { showPreview ? <LinkPreview post={data} media={media} /> : null }
-            </form>
+                </div>
+                { showPreview ? <LinkPreview post={data} media={media} /> : null }
+              </form>
+            </div>
           </div>
         </div>
       </div>

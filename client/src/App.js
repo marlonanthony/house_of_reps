@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
@@ -26,8 +26,8 @@ import Posts from './components/posts/Posts'
 import Verify from './components/auth/Verify'
 import ConfirmEmail from './components/auth/ConfirmEmail'
 import Notifications from './components/posts/post-assets/notifications/Notifications'
+import FixedHighlights from './components/UI/uniterrupted_highlights/FixedHighlights'
 import './App.css'
-
 
 // Check for token
 if(localStorage.jwtToken) {
@@ -43,15 +43,32 @@ if(localStorage.jwtToken) {
 }
 
 class App extends Component {
+  state = {
+    showHighlight: false,
+    currentIndex: 0
+  }
+
+  toggleShowHighlight = (currentIndex) => {
+    this.setState(prevState => ({
+      showHighlight: !prevState.showHighlight,
+      currentIndex
+    }))
+  }
+
   render() {
     return (
       <Provider store={ store }>
         <Router>
-          <Fragment>
-            <Fragment>
+          <>
+            <>
               <DropdownMenu />
+              <FixedHighlights 
+                showHighlight={this.state.showHighlight} 
+                toggleShowHighlight={this.toggleShowHighlight}
+                currentIndex={this.state.currentIndex}
+              />
               <Route exact path='/' component={ Landing } />
-            </Fragment>
+            </>
             <div>
               <Route exact path='/register' component={ Register } />
               <Route exact path='/login' component={ Login } />
@@ -82,7 +99,7 @@ class App extends Component {
                 <PrivateRoute exact path='/add-brand' component={ AddBrand } />
               </Switch>
               <Switch>
-                <PrivateRoute exact path='/feed' component={ Posts } />
+                <PrivateRoute exact path='/feed' component={() => <Posts toggleShowHighlight={this.toggleShowHighlight} /> } />
               </Switch>
               <Switch>
                 <PrivateRoute exact path='/profile/:handle' component={ Profile } />
@@ -94,7 +111,7 @@ class App extends Component {
                 <PrivateRoute exact path='/notifications' component={ Notifications } />
               </Switch>
             </div>
-          </Fragment>
+          </>
         </Router>
       </Provider>
     );

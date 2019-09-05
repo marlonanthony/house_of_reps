@@ -206,22 +206,17 @@ class Posts extends Component {
           hashtag={this.state.hashtag}
           showHashtags={this.state.showHashtags}
         />
-        <div className='post-feed-form'>
-          <PostForm  showPreview={ showsPreview }/>
-        </div>
+        <PostForm  showPreview={ showsPreview }/>
         <SearchBar profiles={ profiles } />
         <Buttons showPostByHashtag={this.showPostByHashtag} />
         <div className='post-feed-profile'>{ profileContent }</div>
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
-        <div className='post-feed-post-content'>
-          { postContent }
-        </div>
-        { highlights && 
-          <div className='post-feed-highlights'>
-            <Highlights recentHighlights={ orderedHighlights } />
-          </div>
-        }
+        <div className='post-feed-post-content'>{ postContent }</div>
+        <Highlights 
+          recentHighlights={ orderedHighlights } 
+          toggleShowHighlight={this.props.toggleShowHighlight} 
+        />
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>
         <div className='post-feed-footer'><footer>Copyright &copy; 2018 House of Reps</footer></div>
