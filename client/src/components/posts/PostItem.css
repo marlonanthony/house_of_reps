@@ -62,6 +62,11 @@
   color: var(--text-color);
   text-align: left;
 }
+.post_content > div {
+  padding: 0.5px;
+  border-radius: 5px; 
+  /* border: .5px solid var(--border-color); */
+}
 
 .postfeed-media-pic {
   width: 100%;

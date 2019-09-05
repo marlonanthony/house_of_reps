@@ -101,7 +101,7 @@
 
 .popup_likes {
   font-size: 12px; 
-  color: rgb(29, 138, 255); 
+  color: var(--secondary-color); 
   margin-left: 5px; 
   padding: 10px 0px;
 }
@@ -261,14 +261,13 @@
     height: 40px;
     width: 250px;
     border-radius: 4px;
-    border: 0.5px solid rgba(55, 131, 194, .1);
   }
   
   .searchbarpostinput {
     flex: 8; 
     background: none;
     border: 0.5px solid var(--border-color); 
-    color: rgba(200,200,200,0.6);
+    color: var(--text-color);
     font-size: 13px;
     padding-left: 5px;
     outline: none;

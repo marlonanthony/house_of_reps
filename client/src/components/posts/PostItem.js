@@ -154,11 +154,9 @@ class PostItem extends Component {
                 )
               : ( <div className='post_content'>
                     <PostText postText={post.text} />
-                    <div style={{ borderRadius: '5px', border: '0.5px solid rgba(55, 131, 194, 0.3)' }}>
+                    <div>
                       { youtubeUrl 
-                      ? <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
-                          <iframe title='youtube' width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
-                        </div>
+                      ? <iframe title='youtube' width="100%" height="300" src={youtubeUrl} frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
                       : <a href={post.url} target='_blank' rel='noopener noreferrer'>
                           <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
                         </a> 

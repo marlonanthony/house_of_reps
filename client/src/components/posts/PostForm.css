@@ -1,6 +1,6 @@
 .post_form {
   width: 100%;
-  border: .5px solid rgba(55,131,194,0.3);
+  border: .5px solid var(--border-color);
   border-radius: 5px;
 }
 
@@ -23,7 +23,7 @@
 }
 
 ::placeholder {
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
 }
 
 #post-form-textareafieldgroup {
@@ -41,13 +41,13 @@
   /* overflow: auto; */
   font-size: 17px;
   resize: none;
-  color: rgba(200,200,200,.6);;
+  color: var(--text-color);
   margin-left: 10%;
  
 }
 
 .post-form-text-area::placeholder {
-  color: rgba(200,200,200,.6);;
+  color: var(--text-color);
 }
 
 .otherstuff {
@@ -58,7 +58,7 @@
 
 .post_submit_button {
   cursor: pointer;
-  color: rgb(55,131,194);
+  color: var(--secondary-color);
   background: none;
   border: none;
   outline: none;

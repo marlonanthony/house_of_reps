@@ -48,4 +48,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { getProfileByHandle })(withRouter(Profile))
+export default connect(mapStateToProps, { getProfileByHandle })(withRouter(React.memo(Profile)))
