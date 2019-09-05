@@ -63,6 +63,12 @@ class FixedHighlights extends Component {
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowFullScreen={true}>
           </iframe>
+          <img 
+              onClick={() => this.props.toggleShowHighlight(currentImageIndex)}
+              src={require('../../../img/hor-icon.jpg')} 
+              alt='hors' 
+              title='toggle modal'
+            />
           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
         </div>
       </div>

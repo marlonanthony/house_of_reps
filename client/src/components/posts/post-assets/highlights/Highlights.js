@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-// import Moment from 'react-moment'
+import { connect } from 'react-redux'
 import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
-import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
+import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal'
 import './Highlights.css'
 
 class Highlights extends Component {
@@ -52,7 +51,7 @@ class Highlights extends Component {
           <div style={{ color: '#ccc' }}>
             <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
             { recentHighlights[this.state.currentImageIndex].title && <p style={{color: 'rgb(29, 138, 255)'}}>{recentHighlights[this.state.currentImageIndex].title}</p> }
-            { recentHighlights[this.state.currentImageIndex].video ?
+            { recentHighlights[this.state.currentImageIndex].video &&
               <iframe 
                 title={recentHighlights[this.state.currentImageIndex].video} 
                 style={{width: '95%', height: '50vh'}} 
@@ -61,16 +60,6 @@ class Highlights extends Component {
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen={true}>
               </iframe>
-              : recentHighlights[this.state.currentImageIndex].image 
-              ? <img 
-                  src={recentHighlights[this.state.currentImageIndex].image} 
-                  style={{maxWidth: '100%', maxHeight: '50vh'}} 
-                  alt="highlights"
-                />
-              : null
-            }
-            { recentHighlights[this.state.currentImageIndex].description ? 
-              <p>{recentHighlights[this.state.currentImageIndex].description}</p> : null 
             }
             {
               <div style={{display: 'flex', alignItems: 'center', paddingLeft: 10}}>
@@ -89,15 +78,9 @@ class Highlights extends Component {
         <div className='highlightss'>
           <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
           {highlightsModal}
-          <div 
-          style={{ 
-            position: 'absolute',
-            // transform: `translateX(-${this.state.currentImageIndex*100}%)`, 
-            // transition: 'transform 300ms cubic-bezier(0.1, 0.7, 1.0, 0.1)',
-            // overflowY: 'hidden',
-          }}>
+          <div style={{ position: 'absolute' }}>
             <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-            {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video ?
+            {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video &&
               (<iframe 
                 title={recentHighlights[this.state.currentImageIndex].video} 
                 style={{width: '250px', height: '250px'}} 
@@ -106,16 +89,13 @@ class Highlights extends Component {
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen={true}>
               </iframe>) 
-              : recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].image 
-              ? <img src={recentHighlights[this.state.currentImageIndex].image} height={250} width={250} alt="highlights"/>
-              : null }
-            <br />
+            }
             <img 
               onClick={() => this.props.toggleShowHighlight(this.state.currentImageIndex)}
               className='highlightss_icon' 
               src={require('../../../../img/hor-icon.jpg')} 
               alt='hors' 
-              title={'🔥'}
+              title='toggle modal'
             />
             <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
           </div>

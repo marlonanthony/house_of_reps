@@ -19,3 +19,31 @@
   max-width: 500px;
   top: 0;
 }
+
+.fixed_highlights > img {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  right: 0;
+  top: 0;
+  animation-name: highlights;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  opacity: .5;
+  cursor: pointer;
+}
+.fixed_highlights > img:hover {
+  opacity: 1;
+}
+
+@keyframes highlights {
+  0% {
+    transform: translateX(100vw);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

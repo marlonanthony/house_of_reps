@@ -7,6 +7,7 @@
   text-decoration: none;
   outline-width: .5px; 
   outline-color: var(--border-color);
+  /* margin: 0px; */
 }
 
 
@@ -21,8 +22,8 @@ textarea::-webkit-scrollbar {
 }
 
 
-body { 
-  margin: 0px;  
+body {
+  margin: 0px;
   background: var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
   color: var(--text-color);
@@ -30,7 +31,7 @@ body {
 
 h2 {
   text-align: center; 
-  padding-top: 70px;
+  padding-top: 80px;
 }
 
 a { color: var(--secondary-color); }

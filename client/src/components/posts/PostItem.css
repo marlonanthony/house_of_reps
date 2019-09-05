@@ -17,6 +17,7 @@
 .post_avatar_and_name {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   padding: 5px;
   grid-area: postavatarandname;
 }
@@ -24,14 +25,11 @@
 .post_avatar_img {
   border-radius: 50%;
   border: 2px solid var(--secondary-color);
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: 5px;
-  grid-area: avatar;
-}
-
-.post_avatar_img:hover {
   cursor: pointer;
+  grid-area: avatar;
 }
 
 .hashtag_match {
@@ -113,5 +111,9 @@
 @media (min-width: 1200px) {
   .posts_container {
     width: 620px;
+  }
+  .post_avatar_img {
+    height: 45px;
+    width: 45px;
   }
 }
