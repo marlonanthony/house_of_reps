@@ -14,7 +14,7 @@ const PostItemButtons = ({
     auth
   }) => {
   return showActions && ( 
-    <span>
+    <div>
       <button 
         title='like'
         className={liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
@@ -46,7 +46,7 @@ const PostItemButtons = ({
           <i className="fas fa-times icons" />
         </button> 
       }
-    </span>
+    </div>
   )
 }
 

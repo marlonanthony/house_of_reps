@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom' 
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
@@ -9,11 +9,12 @@ import { deletePost, addLike, removeLike } from '../../actions/postActions'
 import { getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
-import PostText from './post-assets/post_comment_text/PostText'
 import PostFeedPopup from '../UI/popup_menu/PostFeedPopup'
 import CommentFeed from '../post/CommentFeed'
 import CommentForm from '../post/CommentForm'
 import PostItemButtons from './post-assets/PostItemButtons'
+import PostBody from './post-assets/PostBody'
+import PostItemLikes from './post-assets/PostItemLikes'
 import './PostItem.css'
  
 class PostItem extends Component {
@@ -113,7 +114,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions, profile } = this.props 
-    const { showComments, text, postComments, likes } = this.state 
+    const { showComments, text, postComments, likes, showLikesPopup } = this.state 
 
     let youtubeUrl = post.url
     
@@ -130,7 +131,7 @@ class PostItem extends Component {
     ) : null 
 
     return (
-     <Fragment>
+     <>
       <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
       {postModal}
       <div  onClick={this.removePopup} className='posts_container'>
@@ -150,54 +151,17 @@ class PostItem extends Component {
           </div>
 
           <div>
-            { !post.description && !post.image && !post.title && !post.url && !post.media
-              ? <PostText postText={post.text} />
-              : post.media 
-              ? ( <div>
-                    <PostText postText={post.text} />
-                    <img className='postfeed-media-pic' onClick={this.modalShow} src={post.media} alt="uploaded" />
-                  </div>
-                )
-              : ( <div className='post_content'>
-                    <PostText postText={post.text} />
-                    <div>
-                      { youtubeUrl 
-                      ? <iframe title='youtube' width="100%" height="300" src={youtubeUrl} frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
-                      : <a href={post.url} target='_blank' rel='noopener noreferrer'>
-                          <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
-                        </a> 
-                      }
-                      <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
-                      <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
-                    </div>
-                  </div>
-                )
-            }
-
-            {/*   All popup css is in Posts.css   */}
-            <div className='popup' >  
-              { likes.length < 1 ? null : likes.length === 2 
-                ? <div  onClick={this.likesPopupHandler} className='popup_likes'>Liked by {likes[0].name} and {likes[1].name}</div>
-                : likes.length > 2 
-                ? <div  onClick={this.likesPopupHandler} className='popup_likes'>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-                : <div  onClick={this.likesPopupHandler} className='popup_likes'> Liked by {likes.map(like => <span key={like.user}>{ like.name }</span>)}</div>
-              }
-              <div onMouseLeave={this.likesPopupHandler} className={ this.state.showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
-                <div style={{ position: 'absolute', top: 5, left: 5 }}>
-                  <i className='fas fa-thumbs-up icons likespopupicon'></i>
-                  <small>{likes.length}</small>
-                </div>
-                <div>
-                  {likes.length < 1 ? null : likes.map(like => (
-                    <div className='likespopupavatarandname' key={like.user}>
-                      <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} className='popup_likes_avatar' alt='avatar' src={like.avatar} />
-                      <p onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{padding: 10 }}>{like.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <br />
+            <PostBody 
+              post={post}
+              modalShow={this.modalShow}
+              youtubeUrl={youtubeUrl}
+            />
+            <PostItemLikes
+                likes={likes}
+                likesPopupHandler={this.likesPopupHandler}
+                showLikesPopup={showLikesPopup}
+                userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            />
             <PostItemButtons
               post={post}
               likes={likes}
@@ -210,17 +174,16 @@ class PostItem extends Component {
               onDeleteClick={this.onDeleteClick}
               onPostCommentClick={this.onPostCommentClick}
             />
-            { showComments ? (
+            { showComments &&
               <div>
                 <CommentForm postId={text} /> 
                 <CommentFeed postId={text} comments={postComments} profiles={this.props.profiles}/>
-              </div> 
-              ) : null 
+              </div>
             }
           </div>
         </div>
       </div>
-     </Fragment>
+     </>
     )
   }
 }
@@ -243,5 +206,9 @@ const mapStateToProps = state => ({
   profile: state.profile
 })
 
-
-export default connect(mapStateToProps, { deletePost, addLike, removeLike, getProfileByHandle })(withRouter(PostItem))
+export default connect(mapStateToProps, { 
+  deletePost, 
+  addLike, 
+  removeLike, 
+  getProfileByHandle 
+})(withRouter(PostItem))
