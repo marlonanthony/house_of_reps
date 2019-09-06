@@ -77,7 +77,7 @@ class CommentForm extends Component {
       text: this.state.text,
       name: user.name,
       handle: user.handle,
-      avatar: user.avatar,
+      avatar: this.props.avatar,
       image: this.state.data.image,
       title: this.state.data.title,
       description: this.state.data.description,
@@ -184,7 +184,8 @@ CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  avatar: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({

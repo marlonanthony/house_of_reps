@@ -18,7 +18,7 @@ import {
 import { getProfiles, getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
-import CommentText from '../posts/post-assets/post_comment_text/CommentText'
+import CommentText from '../posts/post-assets/text/CommentText'
 import './CommentItem.css'
 
 class CommentItem extends Component {

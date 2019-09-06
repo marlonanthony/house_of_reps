@@ -168,12 +168,20 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         { user: req.user.id },
         { $set: profileFields }, 
         { new: true } 
-      ).then(async profile => res.json(profile))
+      ).then(profile => res.json(profile))
       // update past posts avatar
       const posts = await Post.find({ user: req.user.id })
       posts.forEach(post => {
         post.avatar = req.body.avatar
         post.save()
+      })
+      // update past posts comments avatar
+      const allPosts = await Post.find()
+      allPosts.forEach(post => {
+        post.comments.forEach(comment => {
+          if(String(comment.user) === req.user.id) comment.avatar = req.body.avatar
+          post.save()
+        })
       })
     } else {
       // Create

@@ -213,9 +213,9 @@ class Posts extends Component {
         <div className='djpools'>{ djpools }</div>
         <div className='perks_and_hookups'>{ perks }</div>
         <div className='post-feed-post-content'>{ postContent }</div>
-        <Highlights 
-          recentHighlights={ orderedHighlights } 
-          toggleShowHighlight={this.props.toggleShowHighlight} 
+        <Highlights
+          recentHighlights={ orderedHighlights }
+          toggleShowHighlight={this.props.toggleShowHighlight}
         />
         <div className='stores_container'>{ stores }</div>
         <div className='certified_brands'>{ brands }</div>

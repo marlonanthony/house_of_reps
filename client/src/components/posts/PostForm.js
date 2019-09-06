@@ -101,6 +101,7 @@ class PostForm extends Component {
   }
 
   onSubmit = e => {
+    const { avatar } = this.props.profile.profile
     e.preventDefault()
     const { user } = this.props.auth 
     this.setState({ showPreview: false })
@@ -109,7 +110,7 @@ class PostForm extends Component {
       text: this.state.text,
       tags: this.state.tags,
       name: user.name,
-      avatar: user.avatar,
+      avatar,
       image: this.state.data.image,
       title: this.state.data.title,
       description: this.state.data.description,

@@ -25,16 +25,4 @@ export default function CommentText({ commentText }) {
       { replacedText }
     </p>
   )
-  // return (
-  //   <Fragment>
-  //     <p className='post_content' >
-  //       { <span className='hashtags' style={{color: 'rgb(205,205,205)', fontSize: '13.5px' }}
-  //           dangerouslySetInnerHTML={{
-  //             __html : commentText.replace(/((\#|@)\w+)/gi, "<a href='#'>$&</a>")
-  //           }}
-  //         /> 
-  //       }
-  //     </p>
-  //   </Fragment>
-  // )
 }
