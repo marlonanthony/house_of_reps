@@ -62,6 +62,16 @@
   border-style: solid;
   border-color: transparent transparent var(--secondary-color) transparent;
 }
+.popup .likespopupcontent::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--secondary-color) transparent transparent transparent;
+}
 
 /* The like popup */
 .popup .likespopupcontent {
@@ -90,7 +100,7 @@
 }
 
 .likespopupicon {
-  color: rgb(29, 138, 255);
+  color: var(--secondary-color);
 }
 
 /* Toggle this class - hide and show the popup */
