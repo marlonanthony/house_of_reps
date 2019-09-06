@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
-import classnames from 'classnames' 
 import Moment from 'react-moment' 
 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
@@ -14,6 +13,7 @@ import PostText from './post-assets/post_comment_text/PostText'
 import PostFeedPopup from '../UI/popup_menu/PostFeedPopup'
 import CommentFeed from '../post/CommentFeed'
 import CommentForm from '../post/CommentForm'
+import PostItemButtons from './post-assets/PostItemButtons'
 import './PostItem.css'
  
 class PostItem extends Component {
@@ -103,6 +103,12 @@ class PostItem extends Component {
       this.setState(prevState => ({ showLikesPopup: false }))
     }
   }
+
+  onPostCommentClick = () => this.setState((prevState, props) => ({ 
+    text: props.post._id, 
+    postComments: props.post.comments, 
+    showComments: !prevState.showComments 
+  }))
   
 
   render() {
@@ -133,11 +139,11 @@ class PostItem extends Component {
             <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
             <div style={{ display: 'flex', flexDirection: 'column'  }}>
               <PostFeedPopup 
-                  popupHandler={this.popupHandler}
-                  profile={profile} 
-                  post={post}
-                  showPopup={this.state.showPopup}
-                  userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+                popupHandler={this.popupHandler}
+                profile={profile} 
+                post={post}
+                showPopup={this.state.showPopup}
+                userNameOrAvatarClicked={this.userNameOrAvatarClicked}
               />
               <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
             </div>
@@ -192,45 +198,18 @@ class PostItem extends Component {
               </div>
             </div>
             <br />
-
-            { showActions && ( 
-              <span>
-                <button 
-                  title='like'
-                  className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-                    'liked' : this.findUserLike(post.likes) 
-                  })}
-                  onClick={this.onLikeClick.bind(this, post._id)}
-                  >
-                  <i className='fas fa-thumbs-up icons like'></i>
-                  <span>{likes.length}</span>
-                </button>
-                <button 
-                  title='unlike'
-                  className='postfeed_buttons'
-                  onClick={this.onUnlikeClick.bind(this, post._id)}>
-                  <i className="fas fa-thumbs-down icons" id='unlike'></i>
-                </button>
-                <button 
-                  title='comment'
-                  onClick={() => this.setState((prevState, props) => ({ 
-                    text: props.post._id, 
-                    postComments: props.post.comments, 
-                    showComments: !prevState.showComments }))} 
-                  className='postfeed_buttons'>  
-                  <i className='fas fa-comment icons' id='comment'/>
-                  <span>{post.comments.length}</span>
-                </button>
-                { post.user === auth.user.id && 
-                  <button 
-                    title='Delete post'
-                    className='postfeed_buttons delete'
-                    onClick={this.onDeleteClick.bind(this, post._id)}>
-                    <i className="fas fa-times icons" />
-                  </button> 
-                }
-              </span>) 
-            }
+            <PostItemButtons
+              post={post}
+              likes={likes}
+              auth={auth}
+              showActions={showActions}
+              liked={this.state.liked}
+              findUserLike={this.findUserLike}
+              onLikeClick={this.onLikeClick}
+              onUnlikeClick={this.onUnlikeClick}
+              onDeleteClick={this.onDeleteClick}
+              onPostCommentClick={this.onPostCommentClick}
+            />
             { showComments ? (
               <div>
                 <CommentForm postId={text} /> 

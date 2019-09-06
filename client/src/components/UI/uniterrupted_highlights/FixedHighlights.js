@@ -15,7 +15,7 @@ class FixedHighlights extends Component {
   componentDidMount() {
     this.props.getProfiles()
     .then(() => {
-      const hls = this.props.profile.profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null),
+      const hls = this.props.profile &&  this.props.profile.profiles && this.props.profile.profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null),
             highlights = [].concat.apply([], hls),
             recentHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
       this.setState({ recentHighlights })
