@@ -8,21 +8,34 @@ const PostItemLikes = ({
 }) => (
   <div className='popup' >  
     { likes.length < 1 ? null : likes.length === 2 
-      ? <div  onClick={likesPopupHandler} className='popup_likes'>Liked by {likes[0].name} and {likes[1].name}</div>
+      ? <div className='popup_likes' onClick={likesPopupHandler}>
+          Liked by {likes[0].name} and {likes[1].name}
+        </div>
       : likes.length > 2 
-      ? <div  onClick={likesPopupHandler} className='popup_likes'>Like by {likes[likes.length - 1].name} and {likes.length -1} others.</div>
-      : <div  onClick={likesPopupHandler} className='popup_likes'> Liked by {likes.map(like => <span key={like.user}>{ like.name }</span>)}</div>
+        ? <div className='popup_likes' onClick={likesPopupHandler}>
+            Like by {likes[likes.length - 1].name} and {likes.length -1} others.
+          </div>
+        : <div className='popup_likes' onClick={likesPopupHandler}>
+            Liked by {likes[0].name }
+          </div>
     }
-    <div onMouseLeave={likesPopupHandler} className={ showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
+    <div onMouseLeave={likesPopupHandler} className={showLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
       <div>
-        <i className='fas fa-thumbs-up icons likespopupicon'></i>
+        <i className='fas fa-thumbs-up icons likespopupicon' />
         <small>{likes.length}</small>
       </div>
       <div>
-        { likes.length < 1 ? null : likes.map(like => (
+        { likes.length >= 1 && likes.map(like => (
           <div className='likespopupavatarandname' key={like.user}>
-            <img onClick={() => userNameOrAvatarClickedLikesPopup(like.handle)} className='popup_likes_avatar' alt='avatar' src={like.avatar} />
-            <p onClick={() => userNameOrAvatarClickedLikesPopup(like.handle)}>{like.name}</p>
+            <img 
+              onClick={() => userNameOrAvatarClickedLikesPopup(like.handle)} 
+              className='popup_likes_avatar' 
+              alt='avatar' 
+              src={like.avatar} 
+            />
+            <p onClick={() => userNameOrAvatarClickedLikesPopup(like.handle)}>
+              {like.name}
+            </p>
           </div>
         ))}
       </div>
