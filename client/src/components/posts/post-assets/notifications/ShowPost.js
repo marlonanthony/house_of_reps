@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal';
-import PostText from '../post_comment_text/PostText'
+import PostText from '../text/PostText'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 
 class ShowPost extends React.Component {
