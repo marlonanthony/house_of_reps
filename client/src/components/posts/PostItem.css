@@ -2,10 +2,10 @@
   width: 100%;
   border: 0.5px solid var(--border-color);
   outline: none;
+  padding: 10px;
   margin-bottom: 5px;
   display: grid;
   border-radius: 1px;
-  /* overflow: hidden; */
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-template-areas:  

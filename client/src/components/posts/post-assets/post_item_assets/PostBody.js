@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import PostText from './post_comment_text/PostText'
+import PostText from '../post_comment_text/PostText'
 
 export default function PostBody({
   post,

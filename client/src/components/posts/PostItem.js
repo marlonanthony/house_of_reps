@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
-import Moment from 'react-moment' 
 
 import { deletePost, addLike, removeLike } from '../../actions/postActions'
 import { getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
-import PostFeedPopup from '../UI/popup_menu/PostFeedPopup'
 import CommentFeed from '../post/CommentFeed'
 import CommentForm from '../post/CommentForm'
-import PostItemButtons from './post-assets/PostItemButtons'
-import PostBody from './post-assets/PostBody'
-import PostItemLikes from './post-assets/PostItemLikes'
+import PostItemButtons from './post-assets/post_item_assets/PostItemButtons'
+import PostBody from './post-assets/post_item_assets/PostBody'
+import PostItemLikes from './post-assets/post_item_assets/PostItemLikes'
+import NameAvatarDate from './post-assets/post_item_assets/NameAvatarDate'
 import './PostItem.css'
  
 class PostItem extends Component {
@@ -114,7 +113,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions, profile } = this.props 
-    const { showComments, text, postComments, likes, showLikesPopup } = this.state 
+    const { showComments, text, postComments, likes, showLikesPopup, showModal, showPopup } = this.state
 
     let youtubeUrl = post.url
     
@@ -124,43 +123,34 @@ class PostItem extends Component {
                              .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null 
 
-    const postModal = this.state.showModal ? (
+    const postModal = showModal &&
       <CommentsModal>
-        <img src={post.media} alt="uploaded" style={{ maxHeight: '70vh', maxWidth: '100vw'}} />
+        <img src={post.media} alt="uploaded" />
       </CommentsModal>
-    ) : null 
 
     return (
-     <>
-      <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-      {postModal}
-      <div  onClick={this.removePopup} className='posts_container'>
-        <div style={{padding: '10px'}}>
-          <div className='post_avatar_and_name'>
-            <img className='post_avatar_img' onClick={()=> this.userNameOrAvatarClicked(post.user)} src={post.avatar} alt={post.name} />
-            <div style={{ display: 'flex', flexDirection: 'column'  }}>
-              <PostFeedPopup 
-                popupHandler={this.popupHandler}
-                profile={profile} 
-                post={post}
-                showPopup={this.state.showPopup}
-                userNameOrAvatarClicked={this.userNameOrAvatarClicked}
-              />
-              <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
-            </div>
-          </div>
-
+      <>
+        <Backdrop clicked={this.modalToggle} show={showModal} />
+        { postModal }
+        <div className='posts_container' onClick={this.removePopup}>
+          <NameAvatarDate
+            popupHandler={this.popupHandler}
+            profile={profile}
+            post={post}
+            showPopup={showPopup}
+            userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+          />
           <div>
-            <PostBody 
+            <PostBody
               post={post}
               modalShow={this.modalShow}
               youtubeUrl={youtubeUrl}
             />
             <PostItemLikes
-                likes={likes}
-                likesPopupHandler={this.likesPopupHandler}
-                showLikesPopup={showLikesPopup}
-                userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+              likes={likes}
+              likesPopupHandler={this.likesPopupHandler}
+              showLikesPopup={showLikesPopup}
+              userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             />
             <PostItemButtons
               post={post}
@@ -182,8 +172,7 @@ class PostItem extends Component {
             }
           </div>
         </div>
-      </div>
-     </>
+      </>
     )
   }
 }
