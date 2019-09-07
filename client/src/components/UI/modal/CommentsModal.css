@@ -11,6 +11,11 @@
   animation-iteration-count: 1;
 }
 
+.CommentsModal > img {
+  max-height: 70vh; 
+  max-width: 100%;
+}
+
 @keyframes commentsmodal {
   0% {
     transform: translateX(100vw);
