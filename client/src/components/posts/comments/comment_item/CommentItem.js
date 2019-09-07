@@ -192,29 +192,6 @@ class CommentItem extends Component {
               showCommentLikesPopup={showCommentLikesPopup}
               userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             />
-            {/* <div className='popup' >
-              { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
-                ? <div  onClick={this.commentLikesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
-                : comment.likes.length > 2 
-                ? <div  onClick={this.commentLikesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.</div>
-                : <div  onClick={this.commentLikesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}> Liked by {comment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
-              }
-              <div onMouseLeave={this.commentLikesPopupHandler} className={this.state.showCommentLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
-                <div style={{ position: 'absolute', top: 5, left: 5 }}>
-                  <i className='fas fa-thumbs-up icons likespopupicon'></i>
-                  <small>{comment.likes.length}</small>
-                </div>
-                <div>
-                  {comment.likes.length < 1 ? null : comment.likes.map(like => (
-                    <div className='likespopupavatarandname' key={like.user}>
-                      <img onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} alt='avatar' src={like.avatar} />
-                      <p onClick={() => this.userNameOrAvatarClickedLikesPopup(like.handle)} style={{padding: 10 }}>{like.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div> */}
-
           </div>
           <div>
             <button 
