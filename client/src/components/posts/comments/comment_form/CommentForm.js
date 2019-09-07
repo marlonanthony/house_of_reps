@@ -135,12 +135,12 @@ class CommentForm extends Component {
   }
 
   render() {
-    const { errors, data, media, show, showPreview, text } = this.state 
+    const { errors, data, media, show, showPreview, text, showEmojis } = this.state 
     return (
       <>
-        <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
+        <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
         <div className="post-form ">
-          { this.state.showEmojis &&
+          { showEmojis &&
             <EmojiModal>
               <EmojiPicker onEmojiClick={this.addEmoji} />
             </EmojiModal>

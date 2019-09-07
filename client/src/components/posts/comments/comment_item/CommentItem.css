@@ -1,67 +1,22 @@
 #comment-feed-container {
   padding: 15px;
-  border: 0.5px solid rgba(55, 131, 194, 0.3);
+  border: 0.5px solid var(--border-color);
   border-radius: 4px;
   margin: 1.5px 0;
-  position: relative;
-  /* display: grid;
-  align-items: start;
-  grid-template-columns: 50px 1fr;
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas: 
-    'avatar comment_name_and_date'
-    'avatar post_content'
-    'avatar post_image'
-    'nested_comments nested_comments'; */
 }
 
 .nested_comments {
-  grid-area: nested_comments;
-  width: 100%;
   padding-top: 10px;
 }
 
 .nested_comments_container {
   margin-bottom: 5px;
   padding: 10px;
-  border: .1px solid rgba(55, 131, 194, 0.3);
-}
-
-.comment_avatar_name_date {
-  display: flex;
-  align-items: center;
-}
-
-#comment-feed-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--border-color);
-  cursor: pointer;
-  margin-right: 5px;
-  grid-area: avatar;
-}
-
-#comment_name_and_date_container {
-  grid-area: comment_name_and_date;
-  /* margin-top: -10px; */
-}
-
-.comment-feed-name {
-  color: var(--secondary-color);
-  font-size: 12px;
-  cursor: pointer;
-}
-
-#comment-feed-date {
-  font-size: 12px;
-  margin-top: -5px;
-  color: var(--text-color);
+  border: .5px solid var(--border-color);
 }
 
 #comment-feed-text {
   font-size: 15px;
-  grid-area: post_content;
 }
 
 #comment-modal-text {
@@ -89,7 +44,6 @@
 #comment-link-img {
   grid-area: image;
   max-width: 110px;
-  /* min-height: 120px; */
 }
 #comments-grandson {
   grid-area: title;

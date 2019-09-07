@@ -1,0 +1,29 @@
+.comment_avatar_name_date {
+  display: flex;
+  align-items: center;
+}
+
+#comment-feed-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+#comment_name_and_date_container {
+
+}
+
+.comment-feed-name {
+  color: var(--secondary-color);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+#comment-feed-date {
+  font-size: 11px;
+  margin-top: -5px;
+  color: var(--text-color);
+}

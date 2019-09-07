@@ -1,6 +1,8 @@
 import React from 'react'
 import Moment from 'react-moment'
 
+import './NameAvatarDate.css'
+
 const NameAvatarDate = ({ userNameOrAvatarClicked, comment }) => (
   <div className='comment_avatar_name_date'>
     <img 

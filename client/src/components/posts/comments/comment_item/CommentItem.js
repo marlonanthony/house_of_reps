@@ -18,7 +18,7 @@ import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import CommentBody from '../comment_assets/CommentBody'
 import CommentLikes from '../comment_assets/CommentLikes'
-import NameAvatarDate from '../comment_assets/NameAvatarDate'
+import NameAvatarDate from '../comment_assets/name_avatar_date/NameAvatarDate'
 import CommentButtons from '../comment_assets/CommentButtons'
 import NestedComments from '../../nested_comments/nested_comments/NestedComments'
 import './CommentItem.css'
@@ -175,15 +175,13 @@ class CommentItem extends Component {
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
           />
-          <div id='comment_content_container'>
-            <CommentBody comment={comment} modalShow={this.modalShow} youtubeUrl={youtubeUrl} />
-            <CommentLikes
-              comment={comment}
-              commentLikesPopupHandler={this.commentLikesPopupHandler}
-              showCommentLikesPopup={showCommentLikesPopup}
-              userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
-            />
-          </div>
+          <CommentBody comment={comment} modalShow={this.modalShow} youtubeUrl={youtubeUrl} />
+          <CommentLikes
+            comment={comment}
+            commentLikesPopupHandler={this.commentLikesPopupHandler}
+            showCommentLikesPopup={showCommentLikesPopup}
+            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+          />
           <CommentButtons
             auth={auth}
             postId={postId}

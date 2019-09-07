@@ -7,6 +7,8 @@
   text-decoration: none;
   outline-width: .5px; 
   outline-color: var(--border-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* margin: 0px; */
 }
 
