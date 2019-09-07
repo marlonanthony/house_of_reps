@@ -28,13 +28,6 @@
   border: .1px solid rgba(55, 131, 194, 0.3);
 }
 
-#nested_comments_text {
-  padding: 5px;
-  color: var(--text-color);
-  font-size: 13px;
-  margin-left: 30px;
-}
-
 #comment-feed-avatar {
   width: 40px;
   height: 40px;

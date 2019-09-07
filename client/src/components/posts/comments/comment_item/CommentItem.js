@@ -22,7 +22,8 @@ import CommentLikes from '../comment_assets/CommentLikes'
 import NameAvatarDate from '../comment_assets/NameAvatarDate'
 import CommentButtons from '../comment_assets/CommentButtons'
 import NestedCommentForm from '../../nested_comments/nested_comment_form/NestedCommentForm'
-import NestedCommentNameAvatarDate from '../../nested_comments/nested_comment_assets/NestedCommentNameAvatarDate'
+import NestedCommentNameAvatarDate from '../../nested_comments/nested_comment_assets/name_avatar_date/NestedCommentNameAvatarDate'
+import NestedCommentBody from '../../nested_comments/nested_comment_assets/nested_comment_body/NestedCommentBody'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -215,13 +216,11 @@ class CommentItem extends Component {
               />
               <div>
                 { comment.comments.map(nestedComment => (
-                <div  key={nestedComment._id}>
+                <div key={nestedComment._id}>
                   <div className='nested_comments_container'>
-                    <NestedCommentNameAvatarDate
-                      nestedComment={nestedComment}
-                    />
-                    
-                    { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
+                    <NestedCommentNameAvatarDate nestedComment={nestedComment} />
+                    <NestedCommentBody nestedComment={nestedComment} />
+                    {/* { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> } */}
                     
                       <div className='popup' >
                         { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
