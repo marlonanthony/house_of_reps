@@ -215,7 +215,7 @@ class CommentItem extends Component {
                 { comment.comments.map(nestedComment => (
                 <div key={nestedComment._id}>
                   <div className='nested_comments_container'>
-                    <NestedCommentNameAvatarDate nestedComment={nestedComment} />
+                    <NestedCommentNameAvatarDate nestedComment={nestedComment} userNameOrAvatarClicked={this.userNameOrAvatarClicked} />
                     <NestedCommentBody nestedComment={nestedComment} />
                     <NestedLikes 
                       nestedComment={nestedComment}
