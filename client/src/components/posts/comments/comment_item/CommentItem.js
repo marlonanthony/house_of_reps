@@ -24,7 +24,6 @@ import NestedComments from '../../nested_comments/nested_comments/NestedComments
 import './CommentItem.css'
 
 class CommentItem extends Component {
-
   state = {
     comment: this.props.comment,
     showModal: false,

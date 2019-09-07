@@ -78,10 +78,10 @@
 }
 
 .postfeed_buttons { 
-  background: rgba(0,0,0,0.4);
+  background: none;
   color: rgb(5, 54, 100);
   outline: none;
-  margin: 2px;
+  margin-right: 2px;
   margin-bottom: 5px;
   border: none;
   border-radius: 5%;
@@ -95,7 +95,7 @@
 
 .icons {
   grid-area: icons;
-  padding: 10px;
+  padding: 4px 4px 0 0;
 }
 
 .like {}
@@ -105,7 +105,7 @@
 }
 
 .liked {
-  background: rgba(0,0,0,0.8);
+  background: var(--primary-color);
   color: rgb(29, 138, 255);
 }
 
