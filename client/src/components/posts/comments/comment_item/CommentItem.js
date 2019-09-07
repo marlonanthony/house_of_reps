@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import classnames from 'classnames' 
 
 import { 
   deleteComment, 
@@ -24,6 +23,7 @@ import CommentButtons from '../comment_assets/CommentButtons'
 import NestedCommentForm from '../../nested_comments/nested_comment_form/NestedCommentForm'
 import NestedCommentNameAvatarDate from '../../nested_comments/nested_comment_assets/name_avatar_date/NestedCommentNameAvatarDate'
 import NestedCommentBody from '../../nested_comments/nested_comment_assets/nested_comment_body/NestedCommentBody'
+import NestedCommentButtons from '../../nested_comments/nested_comment_assets/nested_comment_btns/NestedCommentButtons'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -220,36 +220,28 @@ class CommentItem extends Component {
                   <div className='nested_comments_container'>
                     <NestedCommentNameAvatarDate nestedComment={nestedComment} />
                     <NestedCommentBody nestedComment={nestedComment} />
-                    {/* { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> } */}
-                    
-                      <div className='popup' >
-                        { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
-                          ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>
-                          : nestedComment.likes.length > 2 
-                          ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and {nestedComment.likes.length -1} others.</div>
-                          : <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}> Liked by {nestedComment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
-                        }
-                        <div onMouseLeave={this.nestedCommentLikesPopupHandler} className={this.state.showNestedCommentsLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
-                          <div style={{ position: 'absolute', top: 5, left: 5 }}>
-                            <i className='fas fa-thumbs-up icons likespopupicon'></i>
-                            <small>{nestedComment.likes.length}</small>
-                          </div>
-                          <div>
-                            {nestedComment.likes.length < 1 ? null : nestedComment.likes.map(like => (
-                              <div className='likespopupavatarandname' key={like.user}>
-                                <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} alt='avatar' src={like.avatar} />
-                                <p style={{padding: 10 }}>{like.name}</p>
-                              </div>
-                            ))}
-                          </div>
+                    <div className='popup' >
+                      { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
+                        ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>
+                        : nestedComment.likes.length > 2 
+                        ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and {nestedComment.likes.length -1} others.</div>
+                        : <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}> Liked by {nestedComment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
+                      }
+                      <div onMouseLeave={this.nestedCommentLikesPopupHandler} className={this.state.showNestedCommentsLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
+                        <div style={{ position: 'absolute', top: 5, left: 5 }}>
+                          <i className='fas fa-thumbs-up icons likespopupicon'></i>
+                          <small>{nestedComment.likes.length}</small>
+                        </div>
+                        <div>
+                          {nestedComment.likes.length < 1 ? null : nestedComment.likes.map(like => (
+                            <div className='likespopupavatarandname' key={like.user}>
+                              <img style={{width: '30px', height: '30px', marginRight: 10, borderRadius: '50%'}} alt='avatar' src={like.avatar} />
+                              <p style={{padding: 10 }}>{like.name}</p>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    {/* </div> */}
-                    
-                    
-                    
-                    
-                                          
+                    </div>             
                     {/* <div>
                       { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
                       { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
@@ -259,33 +251,17 @@ class CommentItem extends Component {
                         : <div style={{ marginLeft: 35, fontSize: '10px', color: 'rgb(29, 138, 255)'}}> Liked by {nestedComment.likes.map(like => <span key={like.user} style={{color: 'rgb(29, 138, 255)'}}>{like.name} </span>)}</div>
                       }
                     </div> */}
-
-                    <div style={{ marginLeft: 30 }}>
-                      <button 
-                        title='like nested comment'
-                        onClick={this.onLikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}
-                        className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-                          'liked' : this.findUserLike(nestedComment.likes)
-                        })}>
-                        <i className='fas fa-thumbs-up icons like'></i>
-                        <span>{nestedComment.likes.length}</span>
-                      </button>
-                      <button 
-                        title='unlike'
-                        className='postfeed_buttons'
-                        onClick={this.onUnlikeNestedCommentClick.bind(this, postId, comment._id, nestedComment._id)}>
-                        <i className="fas fa-thumbs-down icons" id='unlike'></i>
-                      </button>
-                      { nestedComment.user === auth.user.id && (
-                      <button 
-                        title='delete comment'
-                        className='postfeed_buttons delete'
-                        onClick={this.onDeleteNestedComment.bind(this, postId, comment._id, nestedComment._id)}>
-                        <i className="fas fa-times icons" />
-                      </button> 
-                      )}
-                    </div>
-
+                    <NestedCommentButtons
+                      auth={auth}
+                      postId={postId}
+                      comment={comment}
+                      nestedComment={nestedComment}
+                      liked={liked}
+                      findUserLike={this.findUserLike}
+                      onLikeNestedCommentClick={this.onLikeNestedCommentClick}
+                      onUnlikeNestedCommentClick={this.onUnlikeNestedCommentClick}
+                      onDeleteNestedComment={this.onDeleteNestedComment}
+                    />
                   </div>
                 </div>
                 ))}
