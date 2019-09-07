@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types' 
-import PostItem from './PostItem'
+import PostItem from '../post_item/PostItem'
 
 
 export default function PostFeed(props) {

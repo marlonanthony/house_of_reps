@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { getPostsByHashtag, getMorePostsByHashtag } from '../../actions/postActions'
-import PostFeed from '../posts/PostFeed'
+import PostFeed from '../posts/post_feed/PostFeed'
 import './Hashtag.css'
 
 class Hashtag extends Component {

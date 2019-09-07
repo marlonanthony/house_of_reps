@@ -14,11 +14,11 @@ import {
   deleteNestedComment, 
   likeNestedComment, 
   unlikeNestedComment 
-} from '../../actions/postActions' 
-import { getProfiles, getProfileByHandle } from '../../actions/profileActions'
-import CommentsModal from '../UI/modal/CommentsModal'
-import Backdrop from '../UI/backdrop/Backdrop'
-import PostText from '../posts/post-assets/text/PostText'
+} from '../../../actions/postActions' 
+import { getProfiles, getProfileByHandle } from '../../../actions/profileActions'
+import CommentsModal from '../../UI/modal/CommentsModal'
+import Backdrop from '../../UI/backdrop/Backdrop'
+import PostText from '../../posts/post-assets/text/PostText'
 import './CommentItem.css'
 
 class CommentItem extends Component {
