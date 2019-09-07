@@ -18,7 +18,7 @@ import {
 import { getProfiles, getProfileByHandle } from '../../../../actions/profileActions'
 import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
-import PostText from '../../post-assets/text/PostText'
+import CommentBody from '../comment_assets/CommentBody'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -184,7 +184,8 @@ class CommentItem extends Component {
             <p id='comment-feed-date'><Moment format='ddd, ll LT'>{comment.date}</Moment></p>
           </div>
           <div id='comment_content_container'>
-            { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
+            <CommentBody comment={comment} modalShow={this.modalShow} youtubeUrl={youtubeUrl} />
+            {/* { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
               ? <PostText fontSize='13px' postText={comment.text} />
               : comment.media
               ? ( <div onClick={this.modalShow}>
@@ -214,7 +215,7 @@ class CommentItem extends Component {
                     </div>
                   </div>
                 )
-            }
+            } */}
 
             <div className='popup' >
               { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
