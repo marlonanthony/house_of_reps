@@ -20,12 +20,8 @@ import CommentBody from '../comment_assets/CommentBody'
 import CommentLikes from '../comment_assets/CommentLikes'
 import NameAvatarDate from '../comment_assets/NameAvatarDate'
 import CommentButtons from '../comment_assets/CommentButtons'
-import NestedCommentForm from '../../nested_comments/nested_comment_form/NestedCommentForm'
-import NestedCommentNameAvatarDate from '../../nested_comments/nested_comment_assets/name_avatar_date/NestedCommentNameAvatarDate'
-import NestedCommentBody from '../../nested_comments/nested_comment_assets/nested_comment_body/NestedCommentBody'
-import NestedCommentButtons from '../../nested_comments/nested_comment_assets/nested_comment_btns/NestedCommentButtons'
+import NestedComments from '../../nested_comments/nested_comments/NestedComments'
 import './CommentItem.css'
-import NestedLikes from '../../nested_comments/nested_comment_assets/nested_likes/NestedLikes'
 
 class CommentItem extends Component {
 
@@ -154,8 +150,10 @@ class CommentItem extends Component {
       liked, 
       showForm,
       text,
+      showNestedComments,
       showNestedSubmitBtn,
-      showNestedCommentsLikes
+      showNestedCommentsLikes,
+      showNestedCommentsLikesPopup
     } = this.state
 
     if(!comment) return null
@@ -199,47 +197,28 @@ class CommentItem extends Component {
             toggleForm={this.toggleForm}
             toggleShowNestedComment={this.toggleShowNestedComment}
           />
-          { comment.comments && this.state.showNestedComments && (
-            <section className='nested_comments'>
-              <NestedCommentForm
-                showForm={showForm}
-                showNestedSubmitBtnHandler={this.showNestedSubmitBtnHandler}
-                onChange={this.onChange}
-                text={text}
-                postId={postId}
-                comment={comment}
-                addNewNestedComment={this.addNewNestedComment}
-                showNestedSubmitBtn={showNestedSubmitBtn}
-              />
-              <div>
-                { comment.comments.map(nestedComment => (
-                <div key={nestedComment._id}>
-                  <div className='nested_comments_container'>
-                    <NestedCommentNameAvatarDate nestedComment={nestedComment} userNameOrAvatarClicked={this.userNameOrAvatarClicked} />
-                    <NestedCommentBody nestedComment={nestedComment} />
-                    <NestedLikes 
-                      nestedComment={nestedComment}
-                      nestedCommentLikesPopupHandler={this.nestedCommentLikesPopupHandler}
-                      showNestedCommentsLikesPopup={showNestedCommentsLikes}
-                      userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
-                    />
-                    <NestedCommentButtons
-                      auth={auth}
-                      postId={postId}
-                      comment={comment}
-                      nestedComment={nestedComment}
-                      liked={liked}
-                      findUserLike={this.findUserLike}
-                      onLikeNestedCommentClick={this.onLikeNestedCommentClick}
-                      onUnlikeNestedCommentClick={this.onUnlikeNestedCommentClick}
-                      onDeleteNestedComment={this.onDeleteNestedComment}
-                    />
-                  </div>
-                </div>
-                ))}
-              </div>
-            </section>
-          )}
+          <NestedComments
+            comment={comment}
+            showNestedComments={showNestedComments}
+            showForm={showForm}
+            showNestedSubmitBtnHandler={this.showNestedSubmitBtnHandler}
+            onChange={this.onChange}
+            text={text}
+            postId={postId}
+            addNewNestedComment={this.addNewNestedComment}
+            showNestedSubmitBtn={showNestedSubmitBtn}
+            userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+            nestedCommentLikesPopupHandler={this.nestedCommentLikesPopupHandler}
+            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            showNestedCommentsLikes={showNestedCommentsLikes}
+            showNestedCommentsLikesPopup={showNestedCommentsLikesPopup}
+            liked={liked}
+            auth={auth}
+            onLikeNestedCommentClick={this.onLikeNestedCommentClick}
+            onUnlikeNestedCommentClick={this.onUnlikeNestedCommentClick}
+            onDeleteNestedComment={this.onDeleteNestedComment}
+            findUserLike={this.findUserLike}
+          />
         </div>
       </>
     )
