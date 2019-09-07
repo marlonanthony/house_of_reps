@@ -18,7 +18,7 @@ import {
 import { getProfiles, getProfileByHandle } from '../../actions/profileActions'
 import CommentsModal from '../UI/modal/CommentsModal'
 import Backdrop from '../UI/backdrop/Backdrop'
-import CommentText from '../posts/post-assets/text/CommentText'
+import PostText from '../posts/post-assets/text/PostText'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -186,16 +186,16 @@ class CommentItem extends Component {
           </div>
           <div id='comment_content_container'>
             { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
-              ? <CommentText commentText={comment.text} />
+              ? <PostText fontSize='13px' postText={comment.text} />
               : comment.media
               ? ( <div onClick={this.modalShow}>
-                    <CommentText commentText={comment.text} />
+                    <PostText fontSize='13px' postText={comment.text} />
                     <img src={comment.media} alt="uploaded" className='comments_image' />
                   </div>
                 )
               : ( 
                   <div className='comment-wrapper'>
-                    <CommentText commentText={comment.text} />
+                    <PostText fontSize='13px' postText={comment.text} />
                     <div style={{ background: 'rgba(0, 0, 0, 0.5)', borderRadius: '5px' }}>
                       { youtubeUrl 
                       ? 

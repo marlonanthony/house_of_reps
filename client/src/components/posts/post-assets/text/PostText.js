@@ -2,10 +2,11 @@ import React from 'react'
 import reactStringReplace from 'react-string-replace'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
 import './PostText.css'
 
 
-export default function PostText({ postText }) {
+export default function PostText({ postText, color, fontSize }) {
   let replacedText;
 
   // Match URLs
@@ -24,12 +25,19 @@ export default function PostText({ postText }) {
   ))
 
   return (
-    <p className='post_content' >
+    <p className='post_content' style={{color, fontSize}}>
       { replacedText }
     </p>
   )
 }
 
+PostText.defaultProps = {
+  color: 'var(--text-color)',
+  fontSize: '16px'
+}
+
 PostText.propTypes = {
-  postText: PropTypes.string.isRequired
+  postText: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  fontSize: PropTypes.string
 }

@@ -1,7 +1,7 @@
 /*       Mobile         */
 
 .notifications {
-  color: rgb(55, 131, 194); 
+  color: var(--secondary-color); 
   margin-top: 100px;
 }
 
