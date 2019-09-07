@@ -21,6 +21,7 @@ import Backdrop from '../../../UI/backdrop/Backdrop'
 import CommentBody from '../comment_assets/CommentBody'
 import CommentLikes from '../comment_assets/CommentLikes'
 import NameAvatarDate from '../comment_assets/NameAvatarDate'
+import CommentButtons from '../comment_assets/CommentButtons'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -73,13 +74,11 @@ class CommentItem extends Component {
     this.setState({ comment: false })
   }
 
-  modalToggle = () => {
-    this.setState(prevState => ({ showModal: !prevState.showModal }))
-  }
+  modalToggle = () => this.setState(prevState => ({ showModal: !prevState.showModal }))
 
-  modalShow = () => {
-    this.setState({ showModal: true })
-  }
+  modalShow = () => this.setState({ showModal: true })
+
+  toggleForm = () => this.setState(prevState => ({ showForm: !prevState.showForm }))
 
   userNameOrAvatarClicked = commentId => (
     this.props.profiles.map(profile =>  (
@@ -103,6 +102,10 @@ class CommentItem extends Component {
 
     this.props.addNestedComment(postId, commentId, newNestedComment)
     this.setState({ text: '' })
+  }
+
+  toggleShowNestedComment = () => {
+    this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))
   }
 
   showNestedSubmitBtnHandler = () => {
@@ -141,7 +144,7 @@ class CommentItem extends Component {
 
   render() {
     const { postId, auth } = this.props 
-    const { comment, showCommentLikesPopup, showModal } = this.state
+    const { comment, showCommentLikesPopup, showModal, liked } = this.state
 
     let youtubeUrl = comment.url
     
@@ -177,45 +180,18 @@ class CommentItem extends Component {
               userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             />
           </div>
-          <div>
-            <button 
-              title='like comment'
-              onClick={this.onLikeClick.bind(this, postId, comment._id, comment)}
-              className={this.state.liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-                'liked' : this.findUserLike(comment.likes)
-              })}
-              >
-              <i className='fas fa-thumbs-up icons like'></i>
-              {<span>{this.props.comment.likes.length}</span>}
-            </button>
-            <button 
-              title='unlike'
-              className='postfeed_buttons'
-              onClick={this.onUnlikeClick.bind(this, postId, comment._id)}>
-              <i className="fas fa-thumbs-down icons" id='unlike'></i>
-            </button>
-            <button 
-              title='show comments'
-              onClick={() => this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))} 
-              className='postfeed_buttons'>  
-              <i className='fas fa-comment icons' id='comment'/>
-              <span>{comment.comments.length}</span>
-            </button>
-            <button 
-              title='reply'
-              onClick={() => this.setState(prevState => ({ showForm: !prevState.showForm }))} 
-              className='postfeed_buttons'>  
-              <i className='fas fa-user-edit icons' id='comment'/>
-            </button>
-            { comment.user === auth.user.id && (
-              <button 
-                title='Delete comment'
-                className='postfeed_buttons delete'
-                onClick={this.onDeleteClick.bind(this, postId, comment._id)}>
-                <i className="fas fa-times icons" />
-              </button> 
-            )}
-          </div>
+          <CommentButtons
+            auth={auth}
+            postId={postId}
+            comment={comment}
+            liked={liked}
+            findUserLike={this.findUserLike}
+            onUnlikeClick={this.onUnlikeClick}
+            onLikeClick={this.onLikeClick}
+            onDeleteClick={this.onDeleteClick}
+            toggleForm={this.toggleForm}
+            toggleShowNestedComment={this.toggleShowNestedComment}
+          />
           { comment.comments && this.state.showNestedComments ? 
             (
               <section className='nested_comments'>
