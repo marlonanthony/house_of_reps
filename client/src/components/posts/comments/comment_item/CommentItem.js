@@ -19,6 +19,7 @@ import { getProfiles, getProfileByHandle } from '../../../../actions/profileActi
 import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import CommentBody from '../comment_assets/CommentBody'
+import CommentLikes from '../comment_assets/CommentLikes'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -155,7 +156,7 @@ class CommentItem extends Component {
 
   render() {
     const { postId, auth } = this.props 
-    const { comment } = this.state
+    const { comment, showCommentLikesPopup, showModal } = this.state
 
     let youtubeUrl = comment.url
     
@@ -165,17 +166,17 @@ class CommentItem extends Component {
                              .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null 
 
-    const commentsModal = this.state.showModal ? (
+    const commentsModal = showModal ? (
       <CommentsModal>
         <img src={comment.media} alt="uploaded" style={{ maxHeight: '70vh', maxWidth: '100%'}} />
       </CommentsModal>
     ) : null 
 
-    if(!this.state.comment) return <div />
+    if(!comment) return <div />
 
     return (
       <Fragment>
-        <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+        <Backdrop clicked={this.modalToggle} show={showModal} />
         {commentsModal}
         <div id='comment-feed-container'>
           <img id='comment-feed-avatar' onClick={()=> this.userNameOrAvatarClicked(comment.user)} src={comment.avatar} alt={comment.avatar} />
@@ -185,39 +186,13 @@ class CommentItem extends Component {
           </div>
           <div id='comment_content_container'>
             <CommentBody comment={comment} modalShow={this.modalShow} youtubeUrl={youtubeUrl} />
-            {/* { !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
-              ? <PostText fontSize='13px' postText={comment.text} />
-              : comment.media
-              ? ( <div onClick={this.modalShow}>
-                    <PostText fontSize='13px' postText={comment.text} />
-                    <img src={comment.media} alt="uploaded" className='comments_image' />
-                  </div>
-                )
-              : ( 
-                  <div className='comment-wrapper'>
-                    <PostText fontSize='13px' postText={comment.text} />
-                    <div style={{ background: 'rgba(0, 0, 0, 0.5)', borderRadius: '5px' }}>
-                      { youtubeUrl 
-                      ? 
-                        // <div style={{ display: 'flex', justifyContent: 'center', margin: '0 auto' }}>
-                          <iframe title='youtube' width="100%" height="300" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> 
-                        // </div>
-                      : <a href={comment.url} target='_blank' rel='noopener noreferrer' id='comment-anchor-container'>
-                          <div id='comment-link-container'>
-                            <img src={comment.image} alt='thumbnail' id='comment-link-img' />
-                            <div id='comments-grandson'>
-                              <p id='comments-title'>{comment.title}</p>
-                              <p id='comments-description'>{comment.description}</p>
-                            </div>
-                          </div>
-                        </a>
-                      }
-                    </div>
-                  </div>
-                )
-            } */}
-
-            <div className='popup' >
+            <CommentLikes
+              comment={comment}
+              commentLikesPopupHandler={this.commentLikesPopupHandler}
+              showCommentLikesPopup={showCommentLikesPopup}
+              userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            />
+            {/* <div className='popup' >
               { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
                 ? <div  onClick={this.commentLikesPopupHandler} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 5 }}>Liked by {comment.likes[0].name} and {comment.likes[1].name}</div>
                 : comment.likes.length > 2 
@@ -238,7 +213,7 @@ class CommentItem extends Component {
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
 
           </div>
           <div>
