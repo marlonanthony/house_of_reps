@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import axios from 'axios'
@@ -137,7 +137,7 @@ class CommentForm extends Component {
   render() {
     const { errors, data, media, show, showPreview, text } = this.state 
     return (
-      <Fragment>
+      <>
         <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
         <div className="post-form ">
           { this.state.showEmojis && 
@@ -175,7 +175,7 @@ class CommentForm extends Component {
             </form>
           </div>
         </div>
-      </Fragment>
+      </>
     )
   }
 }
