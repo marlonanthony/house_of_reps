@@ -140,21 +140,21 @@ class CommentForm extends Component {
       <>
         <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
         <div className="post-form ">
-          { this.state.showEmojis && 
+          { this.state.showEmojis &&
             <EmojiModal>
               <EmojiPicker onEmojiClick={this.addEmoji} />
             </EmojiModal>
           }
           <div onClick={this.showButtonsHandler}>
             <form onSubmit={this.onSubmit}>
-              <TextAreaForm 
-                className="" 
-                placeholder="Reply to post" 
+              <TextAreaForm
+                className=""
+                placeholder="Reply to post"
                 name='text'
-                value={text} 
-                onChange={this.onChange} 
+                value={text}
+                onChange={this.onChange}
                 onPaste={this.onPaste}
-                error={errors.text} 
+                error={errors.text}
               />
               <div className={ show ? 'otherstuff' : 'display-none' }>
                 <Dropzone 

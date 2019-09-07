@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types' 
-import Moment from 'react-moment' 
+import PropTypes from 'prop-types'
 import classnames from 'classnames' 
 
 import { 
@@ -23,6 +22,7 @@ import CommentLikes from '../comment_assets/CommentLikes'
 import NameAvatarDate from '../comment_assets/NameAvatarDate'
 import CommentButtons from '../comment_assets/CommentButtons'
 import NestedCommentForm from '../../nested_comments/nested_comment_form/NestedCommentForm'
+import NestedCommentNameAvatarDate from '../../nested_comments/nested_comment_assets/NestedCommentNameAvatarDate'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -217,17 +217,12 @@ class CommentItem extends Component {
                 { comment.comments.map(nestedComment => (
                 <div  key={nestedComment._id}>
                   <div className='nested_comments_container'>
-                    <div style={{display: 'flex', alignItems: 'center' }}>
-                      { nestedComment.avatar && <img className='nested_comment_avatar' src={nestedComment.avatar} alt="user avatar"/> }
-                      <div style={{display: 'flex', flexDirection: 'column'}}>
-                        { nestedComment.name && <p style={{color: 'rgb(55, 131, 194)', fontSize: 12 }}>{nestedComment.name}</p> }
-                        <p style={{color: 'gray', fontSize: '11px', marginTop: '-5px'}}><Moment format='ddd, ll LT'>{nestedComment.date}</Moment></p>
-                      </div>
-                    </div>
+                    <NestedCommentNameAvatarDate
+                      nestedComment={nestedComment}
+                    />
                     
-                    {/* <div> */}
-                      { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
-                    {/* </div> */}
+                    { nestedComment.text && <p id='nested_comments_text'>{nestedComment.text}</p> }
+                    
                       <div className='popup' >
                         { nestedComment && nestedComment.likes.length < 1 ? null : nestedComment.likes.length === 2 
                           ? <div  onClick={this.nestedCommentLikesPopupHandler.bind(this, nestedComment._id)} style={{ fontSize: '11px', color: 'rgb(29, 138, 255)', marginLeft: 35 }}>Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}</div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import './NestedCommentForm.css'
 
 export default function NestedCommentForm({
   showForm,
@@ -11,8 +12,7 @@ export default function NestedCommentForm({
   showNestedSubmitBtn
 }) {
   return showForm &&
-    <div onClick={showNestedSubmitBtnHandler} 
-         style={{marginLeft: 50, display: 'flex', flexDirection: 'column', background: 'none'}}>
+    <div className='nested_comment_form' onClick={showNestedSubmitBtnHandler}>
       <textarea 
         placeholder="Reply to comment" 
         name='text'
@@ -22,10 +22,10 @@ export default function NestedCommentForm({
         // error={errors.text} 'rgb(173, 187, 199)'
       />
       { showNestedSubmitBtn &&
-        <div style={{padding: '10px 0px', display: 'flex', justifyContent: 'center'}}>
+        <div>
           <i onClick={() => addNewNestedComment(postId, comment._id)} 
              id='post-submit-icon' 
-             className="far fa-paper-plane" 
+             className='far fa-paper-plane'
           />
         </div>
       }

@@ -182,17 +182,17 @@ class PostForm extends Component {
   }
   
   render() {
-    const { errors, data, text, showPreview, media, rows, show } = this.state 
+    const { errors, data, text, showPreview, media, rows, show, showEmojis } = this.state 
     return (
       <div className='post-feed-form'>
         <div>
-          <LightBackdrop clicked={this.toggleEmoji} show={this.state.showEmojis} />
+          <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
           <div className='post_form'>
-            { this.state.showEmojis ? 
-            <EmojiModal>
-              <EmojiPicker onEmojiClick={this.addEmoji} />
-            </EmojiModal>
-            : null }
+            { showEmojis &&
+              <EmojiModal>
+                <EmojiPicker onEmojiClick={this.addEmoji} />
+              </EmojiModal>
+            }
             { this.state.showTags ?
               <EmojiModal>
                 <form onSubmit={this.onTagSubmit}>
@@ -205,7 +205,7 @@ class PostForm extends Component {
                 </form>
               </EmojiModal> : null
             }
-            <div id='post-form-textareafieldgroup'>
+            <div>
               <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
                 <TextAreaForm
                   className='text-area'

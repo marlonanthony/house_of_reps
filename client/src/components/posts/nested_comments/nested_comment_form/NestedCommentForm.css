@@ -1,0 +1,25 @@
+.nested_comment_form {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column; 
+  background: none;
+}
+
+.nested_comment_textarea {
+  background: var(--text-color);
+  color: var(--primary-color);
+  border-radius: 2px;
+  padding: 10px; 
+  margin-bottom: 5px;
+  font-size: 13px;
+  outline: none;
+}
+.nested_comment_textarea::placeholder {
+  color: var(--primary-color);
+}
+
+.nested_comment_form > div {
+  padding: 10px 0px; 
+  display: flex; 
+  justify-content: center;
+}

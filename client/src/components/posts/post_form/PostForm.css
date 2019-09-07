@@ -15,7 +15,6 @@
   width: 100%;
   height: auto;
   line-height: 24px;
-  /* overflow: auto; */
   font-size: 17px;
   resize: none;
   color: var(--text-color);
@@ -24,9 +23,6 @@
 
 ::placeholder {
   color: var(--secondary-color);
-}
-
-#post-form-textareafieldgroup {
 }
 
 .text-area:focus {
@@ -38,12 +34,10 @@
   width: 79.5%;
   height: auto;
   line-height: 24px;
-  /* overflow: auto; */
   font-size: 17px;
   resize: none;
   color: var(--text-color);
   margin-left: 10%;
- 
 }
 
 .post-form-text-area::placeholder {
@@ -63,7 +57,4 @@
   border: none;
   outline: none;
   font-family: 'Ubuntu', sans-serif;
-}
-
-.post_submit_button:hover {
 }
