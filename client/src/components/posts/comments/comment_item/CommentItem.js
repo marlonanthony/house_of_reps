@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types' 
@@ -20,6 +20,7 @@ import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import CommentBody from '../comment_assets/CommentBody'
 import CommentLikes from '../comment_assets/CommentLikes'
+import NameAvatarDate from '../comment_assets/NameAvatarDate'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -93,7 +94,6 @@ class CommentItem extends Component {
 
   addNewNestedComment = (postId, commentId) => {
     const { user } = this.props.auth 
-    // const { postId } = this.props 
 
     const newNestedComment = {
       text: this.state.text,
@@ -111,7 +111,6 @@ class CommentItem extends Component {
 
   onDeleteNestedComment = (postId, commentId, nestedCommentId) => {
     this.props.deleteNestedComment(postId, commentId, nestedCommentId)
-    // this.setState({ comment: false })
   }
 
   onLikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
@@ -134,24 +133,10 @@ class CommentItem extends Component {
     this.props.history.push(`/profile/${handle}`)
   }
 
-  nestedCommentLikesPopupHandler = (nestedId) => { 
-    // console.log(nestedId)
-    // return this.props.comment.comments.map(nestedComment => {
-    //   console.log(nestedComment._id, nestedComment)
-    //   if(nestedComment._id === nestedId) {
-    //      this.setState(prevState => ({ showNestedCommentsLikesPopup: !prevState.showNestedCommentsLikesPopup })) 
-    //   }
-    // })
+  nestedCommentLikesPopupHandler = (nestedId) => {
     this.setState(prevState => ({ nestedcommentid: nestedId }, () => {
       this.setState(prevState => ({ showNestedCommentsLikesPopup: !prevState.showNestedCommentsLikesPopup })) 
     }))
-    // this.state.comment.comments.map(nested => {
-    //   console.log(nested)
-    //   if(nested._id === nestedId){
-    //     this.setState(prevState => ({ showNestedCommentsLikesPopup: !prevState.showNestedCommentsLikesPopup })) 
-    //   }
-    // })
-    
   }
 
   render() {
@@ -166,24 +151,23 @@ class CommentItem extends Component {
                              .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null 
 
-    const commentsModal = showModal ? (
+    const commentsModal = showModal && (
       <CommentsModal>
         <img src={comment.media} alt="uploaded" style={{ maxHeight: '70vh', maxWidth: '100%'}} />
       </CommentsModal>
-    ) : null 
+    )
 
     if(!comment) return <div />
 
     return (
-      <Fragment>
+      <>
         <Backdrop clicked={this.modalToggle} show={showModal} />
         {commentsModal}
         <div id='comment-feed-container'>
-          <img id='comment-feed-avatar' onClick={()=> this.userNameOrAvatarClicked(comment.user)} src={comment.avatar} alt={comment.avatar} />
-          <div id='comment_name_and_date_container' style={{ display: 'flex', flexDirection: 'column', paddingLeft: '7px' }}>
-            <p className='comment-feed-name'>{comment.name}</p>
-            <p id='comment-feed-date'><Moment format='ddd, ll LT'>{comment.date}</Moment></p>
-          </div>
+          <NameAvatarDate
+            comment={comment}
+            userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+          />
           <div id='comment_content_container'>
             <CommentBody comment={comment} modalShow={this.modalShow} youtubeUrl={youtubeUrl} />
             <CommentLikes
@@ -223,14 +207,14 @@ class CommentItem extends Component {
               className='postfeed_buttons'>  
               <i className='fas fa-user-edit icons' id='comment'/>
             </button>
-            { comment.user === auth.user.id ? (
-            <button 
-              title='Delete comment'
-              className='postfeed_buttons delete'
-              onClick={this.onDeleteClick.bind(this, postId, comment._id)}>
-              <i className="fas fa-times icons" />
-            </button> 
-            ) : null }
+            { comment.user === auth.user.id && (
+              <button 
+                title='Delete comment'
+                className='postfeed_buttons delete'
+                onClick={this.onDeleteClick.bind(this, postId, comment._id)}>
+                <i className="fas fa-times icons" />
+              </button> 
+            )}
           </div>
           { comment.comments && this.state.showNestedComments ? 
             (
@@ -340,7 +324,7 @@ class CommentItem extends Component {
             ) : null 
           }
         </div>
-      </Fragment>
+      </>
     )
   }
 }

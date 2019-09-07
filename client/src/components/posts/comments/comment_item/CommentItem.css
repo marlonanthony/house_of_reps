@@ -79,6 +79,7 @@
 .comment-feed-name {
   color: var(--secondary-color);
   font-size: 13px;
+  cursor: pointer;
 }
 
 #comment-feed-date {
