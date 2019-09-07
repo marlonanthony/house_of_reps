@@ -14,11 +14,11 @@ import {
   deleteNestedComment, 
   likeNestedComment, 
   unlikeNestedComment 
-} from '../../../actions/postActions' 
-import { getProfiles, getProfileByHandle } from '../../../actions/profileActions'
-import CommentsModal from '../../UI/modal/CommentsModal'
-import Backdrop from '../../UI/backdrop/Backdrop'
-import PostText from '../../posts/post-assets/text/PostText'
+} from '../../../../actions/postActions' 
+import { getProfiles, getProfileByHandle } from '../../../../actions/profileActions'
+import CommentsModal from '../../../UI/modal/CommentsModal'
+import Backdrop from '../../../UI/backdrop/Backdrop'
+import PostText from '../../post-assets/text/PostText'
 import './CommentItem.css'
 
 class CommentItem extends Component {
@@ -62,8 +62,7 @@ class CommentItem extends Component {
   }
 
   findUserLike = likes => {
-    const { auth } = this.props 
-  
+    const { auth } = this.props
     return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
