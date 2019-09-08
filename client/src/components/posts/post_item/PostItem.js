@@ -162,7 +162,7 @@ class PostItem extends Component {
             />
             { showComments &&
               <div>
-                <CommentForm postId={text} avatar={this.props.profile.profile.avatar} /> 
+                <CommentForm postId={text} /> 
                 <CommentFeed postId={text} comments={postComments} profiles={this.props.profiles}/>
               </div>
             }
