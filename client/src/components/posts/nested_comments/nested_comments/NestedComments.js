@@ -5,6 +5,7 @@ import NestedCommentNameAvatarDate from '../nested_comment_assets/name_avatar_da
 import NestedCommentBody from '../nested_comment_assets/nested_comment_body/NestedCommentBody'
 import NestedCommentButtons from '../nested_comment_assets/nested_comment_btns/NestedCommentButtons'
 import NestedLikes from '../nested_comment_assets/nested_likes/NestedLikes'
+import './NestedComments.css'
 
 export default function NestedComments({
   comment,

@@ -1,0 +1,38 @@
+.youtube_link_title_desc_wrapper > p {
+  font-size: 12px;
+  text-align: center;
+}
+
+.comment-anchor-container {
+  text-decoration: none;
+}
+#comment-link-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 90px;
+  grid-template-areas:  
+    'image title'
+    'image title';
+}
+#comment-link-img {
+  grid-area: image;
+  max-width: 110px;
+}
+#comment-link-title-desc {
+  grid-area: title;
+  font-size: 12px;
+  margin-left: -60px;
+  max-height: 120px;
+  overflow: auto;
+  color: var(--secondary-color);
+}
+#comment-link-title-desc::-webkit-scrollbar {
+  width: 1px;
+}
+
+.comments_image {
+  max-width: 100%;
+  grid-area: post_image;
+  cursor: pointer;
+}

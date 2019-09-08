@@ -74,10 +74,6 @@ class PostItem extends Component {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
 
-  modalShow = () => {
-    this.setState({ showModal: true })
-  }
-
   userNameOrAvatarClicked = postId => (
     this.props.profile.profiles.map(profile => (
       profile.user._id === postId && 
@@ -124,7 +120,7 @@ class PostItem extends Component {
       : youtubeUrl = null 
 
     const postModal = showModal &&
-      <CommentsModal>
+      <CommentsModal showModal={showModal}>
         <img src={post.media} alt="uploaded" />
       </CommentsModal>
 
@@ -143,8 +139,8 @@ class PostItem extends Component {
           <div>
             <PostBody
               post={post}
-              modalShow={this.modalShow}
               youtubeUrl={youtubeUrl}
+              modalToggle={this.modalToggle}
             />
             <PostItemLikes
               likes={likes}

@@ -16,7 +16,7 @@ import {
 import { getProfiles, getProfileByHandle } from '../../../../actions/profileActions'
 import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
-import CommentBody from '../comment_assets/CommentBody'
+import CommentBody from '../comment_assets/comment_body/CommentBody'
 import CommentLikes from '../comment_assets/CommentLikes'
 import NameAvatarDate from '../comment_assets/name_avatar_date/NameAvatarDate'
 import CommentButtons from '../comment_assets/CommentButtons'
@@ -126,7 +126,6 @@ class CommentItem extends Component {
 
   commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
 
-
   userNameOrAvatarClickedLikesPopup = handle => {
     if(this.props.location.pathname.includes('/profile')) {
       this.props.getProfileByHandle(handle)
@@ -170,7 +169,7 @@ class CommentItem extends Component {
         <CommentsModal showModal={showModal}>
           <img src={comment.media} alt="comment pic" />
         </CommentsModal>
-        <div id='comment-feed-container'>
+        <div className='comment-feed-container'>
           <NameAvatarDate
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}

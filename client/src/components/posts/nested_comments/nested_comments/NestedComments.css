@@ -1,0 +1,9 @@
+.nested_comments {
+  padding-top: 10px;
+}
+
+.nested_comments_container {
+  margin-bottom: 5px;
+  padding: 10px;
+  border: .5px solid var(--border-color);
+}
