@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 
-import { loginUser } from '../../../actions/authActions' 
+import { loginUser } from '../../actions/authActions' 
 import './Landing.css'
 
 class Landing extends Component {
@@ -15,7 +15,7 @@ class Landing extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <main>
         <div className='fade-pic'>
           <div className="dark-overlay">
             <div className="landing_content">
@@ -31,7 +31,7 @@ class Landing extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </main>
     )
   }
 }

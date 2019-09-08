@@ -132,7 +132,7 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password)
     if(isMatch) {
       // User Matched 
-      const payload = { id: user.id, name: user.name, avatar: user.avatar, handle: user.handle }
+      const payload = { id: user.id, name: user.name, avatar: user.avatar, handle: user.handle, isAdmin: user.isAdmin }
       // Sign Token
       jwt.sign(payload, keys.secretOrKey, { expiresIn: 10800 }, (err, token) => {
         res.json({

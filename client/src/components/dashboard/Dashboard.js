@@ -63,7 +63,8 @@ class Dashboard extends Component {
               <Link to={`/profile/${profile.handle}`} >@{ profile.handle }</Link>
               <ProfileActions profile={profile} />
             </div>
-            <AdContent 
+            <AdContent
+              user={user}
               profile={profile} 
               onDeleteBrand={this.onDeleteBrand}
               onDeleteDjpool={this.onDeleteDjpool}

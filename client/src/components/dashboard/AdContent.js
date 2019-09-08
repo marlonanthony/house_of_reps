@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default function AdContent(props) {
-  return (
-    props.profile._id === "5bad9e76f3dd61183a0fec97" &&
+  return props.user.isAdmin &&
     <>
       <div className='dashboard_ad_container'>
         <h3>DJ Pools</h3>
@@ -70,5 +69,4 @@ export default function AdContent(props) {
         </div>
       </div>
     </>
-  )
 }

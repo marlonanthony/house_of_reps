@@ -18,6 +18,6 @@
   outline: none;
 }
 .info {
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
 
 }

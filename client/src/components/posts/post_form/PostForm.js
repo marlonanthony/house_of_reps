@@ -13,6 +13,7 @@ import LinkPreview from '../post-assets/link_preview/LinkPreview'
 import EmojiModal from '../../UI/modal/EmojiModal'
 import LightBackdrop from '../../UI/backdrop/LightBackdrop'
 import Icon from "../../UI/icons/Icon"
+import HashtagInputs from '../post-assets/hashtag_inputs/HashtagInputs';
 import './PostForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -97,7 +98,7 @@ class PostForm extends Component {
   }
 
   onSubmit = e => {
-    const { avatar } = this.props.profile.profile
+    // const { avatar } = this.props.profile.profile
     e.preventDefault()
     const { user } = this.props.auth 
     this.setState({ showPreview: false })
@@ -106,7 +107,7 @@ class PostForm extends Component {
       text: this.state.text,
       tags: this.state.tags,
       name: user.name,
-      avatar,
+      avatar: user.avatar,
       image: this.state.data.image,
       title: this.state.data.title,
       description: this.state.data.description,
@@ -167,18 +168,32 @@ class PostForm extends Component {
 
   onTagSubmit = e => {
     e.preventDefault()
+    const { tag1, tag2, tag3, tag4 } = this.state
     const arr = []
-    if(this.state.tag1) arr.push(this.state.tag1)
-    if(this.state.tag2) arr.push(this.state.tag2)
-    if(this.state.tag3) arr.push(this.state.tag3)
-    if(this.state.tag4) arr.push(this.state.tag4)
-
+    if(tag1) arr.push(tag1)
+    if(tag2) arr.push(tag2)
+    if(tag3) arr.push(tag3)
+    if(tag4) arr.push(tag4)
     this.setState({ tags: arr })
     this.toggleShowTags()
   }
   
   render() {
-    const { errors, data, text, showPreview, media, rows, show, showEmojis } = this.state 
+    const { 
+      errors, 
+      data, 
+      text, 
+      showPreview, 
+      media, 
+      rows, 
+      show, 
+      showEmojis, 
+      showTags,
+      tag1,
+      tag2,
+      tag3,
+      tag4
+    } = this.state 
     return (
       <div className='post-feed-form'>
         <div>
@@ -189,18 +204,15 @@ class PostForm extends Component {
                 <EmojiPicker onEmojiClick={this.addEmoji} />
               </EmojiModal>
             }
-            { this.state.showTags ?
-              <EmojiModal>
-                <form onSubmit={this.onTagSubmit}>
-                  <p style={{ textAlign: 'center' }}><span role='img' aria-label='fire emoji'>🔥</span> hashtags yonder</p>
-                  <input type="text" onChange={this.onChange} name='tag1' value={this.state.tag1} />
-                  <input type="text" onChange={this.onChange} name='tag2' value={this.state.tag2} />
-                  <input type="text" onChange={this.onChange} name='tag3' value={this.state.tag3} />
-                  <input type="text" onChange={this.onChange} name='tag4' value={this.state.tag4} />
-                  <button>ok</button>
-                </form>
-              </EmojiModal> : null
-            }
+            <HashtagInputs
+              showTags={showTags} 
+              onTagSubmit={this.onTagSubmit} 
+              onChange={this.onChange} 
+              tag1={tag1} 
+              tag2={tag2} 
+              tag3={tag3} 
+              tag4={tag4}
+            />
             <div>
               <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
                 <TextAreaForm

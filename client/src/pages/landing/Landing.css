@@ -1,6 +1,6 @@
 .fade-pic {
   position: relative;
-  background: url('../../../img/dj.jpg') no-repeat;
+  background: url('../../img/dj.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
