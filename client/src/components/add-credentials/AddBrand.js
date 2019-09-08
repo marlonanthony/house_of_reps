@@ -79,7 +79,7 @@ class AddBrand extends Component {
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>
-                <p>Drop an image or click to select a file to upload.</p>
+                <p>Drag or click here to upload a file.</p>
               </Dropzone>
             </div>
             <div>

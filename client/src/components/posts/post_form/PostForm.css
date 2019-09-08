@@ -4,10 +4,6 @@
   border-radius: 5px;
 }
 
-.disp {
-  display: none; 
-}
-
 .text-area {
   border: none;
   padding: 10px;
@@ -48,6 +44,10 @@
   display: flex;
   justify-content: space-around;
   padding-bottom: 10px;
+}
+
+.disp {
+  display: none; 
 }
 
 .post_submit_button {
