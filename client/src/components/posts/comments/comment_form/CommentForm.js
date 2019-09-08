@@ -12,9 +12,7 @@ import { addComment } from '../../../../actions/postActions'
 import LinkPreview from '../../post-assets/link_preview/LinkPreview'
 import EmojiModal from '../../../UI/modal/EmojiModal'
 import LightBackdrop from '../../../UI/backdrop/LightBackdrop'
-import EmojiIcon from '../../../UI/emoji-icon/EmojiIcon'
-import PostSubmitIcon from '../../../UI/post_submit_icon/PostSubmitIcon'
-import PhotoIcon from '../../../UI/photo_icon/PhotoIcon'
+import Icon from '../../../UI/icons/Icon'
 import './CommentForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -148,7 +146,6 @@ class CommentForm extends Component {
           <div onClick={this.showButtonsHandler}>
             <form onSubmit={this.onSubmit}>
               <TextAreaForm
-                className=""
                 placeholder="Reply to post"
                 name='text'
                 value={text}
@@ -156,22 +153,22 @@ class CommentForm extends Component {
                 onPaste={this.onPaste}
                 error={errors.text}
               />
-              <div className={ show ? 'otherstuff' : 'display-none' }>
+              <div className={ show ? 'otherstuff' : 'disp' }>
                 <Dropzone 
                   style={{ border: 'none' }}
                   multiple={false}
                   accept='image/*, video/*'
                   onDrop={this.onImageDrop}>
-                  <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                    <PhotoIcon />
+                  <button className='comment_form_btns' onClick={this.addPhoto}>
+                    <Icon icon='fas fa-image' title='upload photo' />
                   </button>
                 </Dropzone>
-                <EmojiIcon toggleEmoji={this.toggleEmoji} />
-                <button type='submit' style={{ background: 'none', border: 'none', outline: 'none' }}>
-                  <PostSubmitIcon />
+                <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
+                <button type='submit' className='comment_form_btns'>
+                  <Icon icon='far fa-paper-plane' title='submit' />
                 </button>
               </div>
-              { showPreview ? <LinkPreview post={data} media={media} /> : null }
+              <LinkPreview showPreview={showPreview} post={data} media={media} />
             </form>
           </div>
         </div>

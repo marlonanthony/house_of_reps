@@ -1,3 +1,5 @@
-.display-none {
-  display: none;
+.comment_form_btns {
+  background: none; 
+  border: none; 
+  outline: none;
 }

@@ -1,0 +1,8 @@
+.post_icon {
+  color: var(--secondary-color);
+  font-size: 17px;
+  cursor: pointer;
+}
+.post_icon:hover {
+  color: rgb(78, 168, 241);
+}

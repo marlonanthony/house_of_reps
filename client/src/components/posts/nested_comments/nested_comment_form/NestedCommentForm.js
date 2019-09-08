@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from '../../../UI/icons/Icon'
 import './NestedCommentForm.css'
 
 export default function NestedCommentForm({
@@ -21,12 +22,9 @@ export default function NestedCommentForm({
         className='nested_comment_textarea'
         // error={errors.text} 'rgb(173, 187, 199)'
       />
-      { showNestedSubmitBtn &&
+      { showNestedSubmitBtn && 
         <div>
-          <i onClick={() => addNewNestedComment(postId, comment._id)} 
-             id='post-submit-icon' 
-             className='far fa-paper-plane'
-          />
+          <Icon icon='far fa-paper-plane' title='submit' toggleIcon={() => addNewNestedComment(postId, comment._id)} />
         </div>
       }
     </div>

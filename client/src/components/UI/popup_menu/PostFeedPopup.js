@@ -1,4 +1,5 @@
 import React from 'react'
+import './Popup.css'
 
 export default function PostFeedPopup(props) {
   const { profile: { profiles }, popupHandler, post, showPopup, userNameOrAvatarClicked  } = props

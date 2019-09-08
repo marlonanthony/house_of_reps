@@ -12,11 +12,7 @@ import { addPost } from '../../../actions/postActions'
 import LinkPreview from '../post-assets/link_preview/LinkPreview'
 import EmojiModal from '../../UI/modal/EmojiModal'
 import LightBackdrop from '../../UI/backdrop/LightBackdrop'
-import EmojiIcon from '../../UI/emoji-icon/EmojiIcon'
-import PostSubmitIcon from '../../UI/post_submit_icon/PostSubmitIcon'
-import PhotoIcon from '../../UI/photo_icon/PhotoIcon'
-
-// import Embed from '../slate/embed/Embed'
+import Icon from "../../UI/icons/Icon"
 import './PostForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -218,22 +214,22 @@ class PostForm extends Component {
                   rows={rows}
                 />
                 <div className={ show ? 'otherstuff' : 'disp'}>
-                  <i className="fas fa-hashtag" onClick={this.toggleShowTags} style={{cursor: 'pointer', color: 'var(--secondary-color)'}}></i>
-                  <Dropzone 
+                  <Icon icon='fas fa-hashtag' title='hashtags' toggleIcon={this.toggleShowTags} />
+                  <Dropzone
                     style={{ border: 'none' }}
                     multiple={false}
                     accept='image/*, video/*'
                     onDrop={this.onImageDrop}>
-                    <button style={{ background: 'none', border: 'none', outline: 'none' }} onClick={this.addPhoto}>
-                      <PhotoIcon />
+                    <button className='comment_form_btns' onClick={this.addPhoto}>
+                      <Icon icon='fas fa-image' title='upload photo' />
                     </button>
                   </Dropzone>
-                  <EmojiIcon toggleEmoji={this.toggleEmoji} />
+                  <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
                   <button className='post_submit_button' title='Submit'>
-                    <PostSubmitIcon />
+                    <Icon icon='far fa-paper-plane' title='submit' />
                   </button>
                 </div>
-                { showPreview ? <LinkPreview post={data} media={media} /> : null }
+                <LinkPreview post={data} media={media} showPreview={showPreview} />
               </form>
             </div>
           </div>
