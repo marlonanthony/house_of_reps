@@ -20,7 +20,6 @@ export default function NestedCommentForm({
         value={text} 
         onChange={onChange} 
         className='nested_comment_textarea'
-        // error={errors.text} 'rgb(173, 187, 199)'
       />
       { showNestedSubmitBtn && 
         <div>

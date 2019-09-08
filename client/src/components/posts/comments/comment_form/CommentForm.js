@@ -75,7 +75,7 @@ class CommentForm extends Component {
       text: this.state.text,
       name: user.name,
       handle: user.handle,
-      avatar: this.props.avatar,
+      avatar: user.avatar,
       image: this.state.data.image,
       title: this.state.data.title,
       description: this.state.data.description,
