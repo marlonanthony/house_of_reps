@@ -26,7 +26,8 @@ class PostItem extends Component {
     liked: false,
     showModal: false,
     showPopup: false,
-    showLikesPopup: false
+    showLikesPopup: false,
+    editPost: false
   }
 
   componentDidMount() {
@@ -107,12 +108,12 @@ class PostItem extends Component {
   }))
 
   moreVertClicked = () => {
-    let text
-    let res = window.confirm('Edit post')
-    if(res === true) text = 'You pressed OK!'
-    else text = 'You pressed Cancel!'
-    console.log(text)
+    let res = window.confirm('Edit post?')
+    if(res === true) this.setState({ editPost: true })
+    else this.setState({ editPost: false })
   }
+
+  toggleEditPost = () => this.setState(prevState => ({editPost: !prevState.editPost}))
   
 
   render() {
@@ -125,7 +126,8 @@ class PostItem extends Component {
       showLikesPopup, 
       showModal, 
       showPopup,
-      liked
+      liked,
+      editPost
     } = this.state
 
     let youtubeUrl = post.url
@@ -159,6 +161,8 @@ class PostItem extends Component {
               post={post}
               youtubeUrl={youtubeUrl}
               modalToggle={this.modalToggle}
+              editPost={editPost}
+              toggleEditPost={this.toggleEditPost}
             />
             <PostItemLikes
               likes={likes}

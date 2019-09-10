@@ -179,10 +179,10 @@ export const getMatchingPosts = (matches) => async dispatch => {
 }
 
 // Edit Post
-export const editPost = (id, text) => async dispatch => {
+export const editPostAction = (id, editedPost) => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.put(`/api/posts/${id}`, text)
+    const res = await axios.put(`/api/posts/${id}`, editedPost)
     dispatch({
       type: EDIT_POST,
       payload: res.data 

@@ -60,10 +60,14 @@ export default function(state = initialState, action) {
       }
     
     case EDIT_POST:
-      console.log(action.payload)
       return {
         ...state,
-        posts: [ ...state.posts ],
+        posts: state.posts.map(post => {
+          if(post._id === action.payload._id) {
+            post = action.payload
+          }
+          return post
+        }),
         loading: false
       }
 
