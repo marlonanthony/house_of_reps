@@ -142,6 +142,17 @@ router.post('/', passport.authenticate('jwt', { session: false }), async (req, r
   } catch(err) { res.json(err) }
 })
 
+// @route         PUT api/posts
+// @desc          Edit post
+// @access        Private
+// router.put('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+//   const { errors, isValid } = validatePostInput(req.body)
+//   if(!isValid) return res.status(400).json(errors)
+//   try {
+//     const post = await Post.findById(req.body.postId)
+//   } catch (err) { res.status(404).json(err) }
+// })
+
 
 // @route         DELETE api/posts/:id
 // @description   Delete post

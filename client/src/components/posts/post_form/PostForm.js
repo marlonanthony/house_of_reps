@@ -205,24 +205,24 @@ class PostForm extends Component {
               </EmojiModal>
             }
             <HashtagInputs
-              showTags={showTags} 
-              onTagSubmit={this.onTagSubmit} 
-              onChange={this.onChange} 
-              tag1={tag1} 
-              tag2={tag2} 
-              tag3={tag3} 
+              showTags={showTags}
+              onTagSubmit={this.onTagSubmit}
+              onChange={this.onChange}
+              tag1={tag1}
+              tag2={tag2}
+              tag3={tag3}
               tag4={tag4}
             />
             <div>
-              <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler} >
+              <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler}>
                 <TextAreaForm
                   className='text-area'
                   placeholder="What's the discussion?"
                   name='text'
-                  value={text} 
-                  onChange={this.onChange} 
+                  value={text}
+                  onChange={this.onChange}
                   onPaste={this.onPaste}
-                  error={errors.text} 
+                  error={errors.text}
                   rows={rows}
                 />
                 <div className={ show ? 'otherstuff' : 'disp'}>

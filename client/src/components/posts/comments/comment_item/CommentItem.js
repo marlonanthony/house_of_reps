@@ -40,6 +40,10 @@ class CommentItem extends Component {
     nestedcommentid: ''
   }
 
+  componentDidMount() {
+    this.props.getProfiles()
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if(this.props.comment !== prevState.comment) {
       this.setState({ comment: this.props.comment })
@@ -79,7 +83,7 @@ class CommentItem extends Component {
   toggleForm = () => this.setState(prevState => ({ showForm: !prevState.showForm }))
 
   userNameOrAvatarClicked = commentId => (
-    this.props.profiles.map(profile =>  (
+    this.props.profile.profiles && this.props.profile.profiles.map(profile => (
       profile.user._id === commentId &&
         this.props.history.push(`/profile/${profile.handle}`)
     ))
@@ -239,6 +243,7 @@ CommentItem.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { 

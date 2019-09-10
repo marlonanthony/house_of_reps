@@ -45,7 +45,10 @@ export default function NestedComments({
         { comment.comments.map(nestedComment => (
         <div key={nestedComment._id}>
           <div className='nested_comments_container'>
-            <NestedCommentNameAvatarDate nestedComment={nestedComment} userNameOrAvatarClicked={userNameOrAvatarClicked} />
+            <NestedCommentNameAvatarDate 
+              nestedComment={nestedComment} 
+              userNameOrAvatarClicked={userNameOrAvatarClicked} 
+            />
             <NestedCommentBody nestedComment={nestedComment} />
             <NestedLikes
               nestedComment={nestedComment}

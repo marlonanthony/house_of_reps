@@ -10,18 +10,18 @@ export default function NestedLikes({
   return (
     <div className='popup'>
       { nestedComment && !nestedComment.likes.length ? null : nestedComment.likes.length === 2 
-        ? <div className='popup_likes' style={{fontSize: 10}} onClick={() => nestedCommentLikesPopupHandler(nestedComment._id)}>
+        ? <div className='popup_likes' style={{fontSize: 11}} onClick={() => nestedCommentLikesPopupHandler(nestedComment._id)}>
             Liked by {nestedComment.likes[0].name} and {nestedComment.likes[1].name}
           </div>
         : nestedComment.likes.length > 2 
-          ? <div className='popup_likes' style={{fontSize: 10}} onClick={() => nestedCommentLikesPopupHandler(nestedComment._id)}>
+          ? <div className='popup_likes' style={{fontSize: 11}} onClick={() => nestedCommentLikesPopupHandler(nestedComment._id)}>
               Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and {nestedComment.likes.length -1} others.
             </div>
-          : <div className='popup_likes' style={{fontSize: 10}} onClick={() => nestedCommentLikesPopupHandler(nestedComment._id)}>
+          : <div className='popup_likes' style={{fontSize: 11}} onClick={() => nestedCommentLikesPopupHandler(nestedComment._id)}>
               Liked by { nestedComment.likes[0].name }
             </div>
       }
-      <div 
+      <div
         onMouseLeave={nestedCommentLikesPopupHandler} 
         className={showNestedCommentsLikesPopup ? 'show likespopupcontent' : 'likespopupcontent'}>
         <div>

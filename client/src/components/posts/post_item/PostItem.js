@@ -20,7 +20,7 @@ class PostItem extends Component {
   // For comments 
   state = { 
     showComments: false, 
-    text: '',
+    postId: '',
     postComments: [],
     likes: [...this.props.post.likes],
     liked: false,
@@ -100,20 +100,35 @@ class PostItem extends Component {
     }
   }
 
-  onPostCommentClick = () => this.setState((prevState, props) => ({ 
-    text: props.post._id, 
+  onPostCommentClick = () => this.setState((prevState, props) => {
+    console.log(props)
+    return {
+    postId: props.post._id, 
     postComments: props.post.comments, 
     showComments: !prevState.showComments 
-  }))
+  }})
 
   moreVertClicked = () => {
-    alert('yiiiippppppp')
+    let text
+    let res = window.confirm('Edit post')
+    if(res === true) text = 'You pressed OK!'
+    else text = 'You pressed Cancel!'
+    console.log(text)
   }
   
 
   render() {
     const { post, auth, showActions, profile } = this.props 
-    const { showComments, text, postComments, likes, showLikesPopup, showModal, showPopup } = this.state
+    const { 
+      showComments, 
+      postId, 
+      postComments, 
+      likes, 
+      showLikesPopup, 
+      showModal, 
+      showPopup,
+      liked
+    } = this.state
 
     let youtubeUrl = post.url
     
@@ -158,7 +173,7 @@ class PostItem extends Component {
               likes={likes}
               auth={auth}
               showActions={showActions}
-              liked={this.state.liked}
+              liked={liked}
               findUserLike={this.findUserLike}
               onLikeClick={this.onLikeClick}
               onUnlikeClick={this.onUnlikeClick}
@@ -167,8 +182,8 @@ class PostItem extends Component {
             />
             { showComments &&
               <div>
-                <CommentForm postId={text} /> 
-                <CommentFeed postId={text} comments={postComments} profiles={this.props.profiles}/>
+                <CommentForm postId={postId} /> 
+                <CommentFeed postId={postId} comments={postComments} />
               </div>
             }
           </div>
