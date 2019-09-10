@@ -3,7 +3,14 @@ import React from 'react'
 import PostText from '../../../post-assets/text/PostText'
 import './CommentBody.css'
 
-export default function CommentBody({ comment, modalShow, youtubeUrl }) {
+export default function CommentBody({ comment, modalShow }) {
+  let youtubeUrl = comment.url
+  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+    ? youtubeUrl = comment.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                              .replace(/watch\?v=/gi, 'embed/')
+                              .replace(/&feature=www\.youtube\.com/gi, '')
+    : youtubeUrl = null
+
   return !comment.description && !comment.image && !comment.title && !comment.url && !comment.media
     ? <PostText fontSize='13px' postText={comment.text} />
     : comment.media

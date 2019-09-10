@@ -156,13 +156,6 @@ class CommentItem extends Component {
 
     if(!comment) return null
 
-    let youtubeUrl = comment.url
-    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
-      ? youtubeUrl = comment.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                                .replace(/watch\?v=/gi, 'embed/')
-                                .replace(/&feature=www\.youtube\.com/gi, '')
-      : youtubeUrl = null
-
     return (
       <>
         <Backdrop clicked={this.modalToggle} show={showModal} />
@@ -174,7 +167,7 @@ class CommentItem extends Component {
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
           />
-          <CommentBody comment={comment} modalShow={this.modalShow} youtubeUrl={youtubeUrl} />
+          <CommentBody comment={comment} modalShow={this.modalShow} />
           <CommentLikes
             comment={comment}
             commentLikesPopupHandler={this.commentLikesPopupHandler}
