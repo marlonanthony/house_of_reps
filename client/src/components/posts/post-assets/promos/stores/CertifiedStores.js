@@ -30,18 +30,16 @@ export default class CertifiedStores extends Component {
     const { stores } = this.props 
 
     return (
-      <div>
-        <div className='store'
-        style={{ 
-          position: 'absolute',
-          overflowY: 'hidden',
-        }}>
-          <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
-          <a href={stores[this.state.currentImageIndex].url} target='_blank'rel='noopener noreferrer'>
-            <img src={stores[this.state.currentImageIndex].image} alt={stores[this.state.currentImageIndex].url} style={{height: '100%', width: '100%' }} />
-          </a>
-          <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />
-        </div>
+      <div className='store' style={{ position: 'absolute', overflowY: 'hidden' }}>
+        <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
+        <a href={stores[this.state.currentImageIndex].url} target='_blank'rel='noopener noreferrer'>
+          <img 
+            src={stores[this.state.currentImageIndex].image} 
+            alt={stores[this.state.currentImageIndex].url} 
+            style={{height: '100%', width: '100%' }} 
+          />
+        </a>
+        <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />
       </div>
     )
   }

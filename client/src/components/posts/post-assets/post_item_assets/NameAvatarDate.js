@@ -23,6 +23,7 @@ export default function NameAvatarDate({
         />
         <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
       </div>
+      <i className="material-icons post_item_more_vert">more_vert</i>
     </div>
   )
 }

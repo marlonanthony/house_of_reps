@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
-import InfinteScroll from 'react-infinite-scroll-component'
+// import InfinteScroll from 'react-infinite-scroll-component'
 import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../../actions/postActions'
 // import PostItem from '../../posts/post_item/PostItem'
 import PostFeed from '../../posts/post_feed/PostFeed'
@@ -38,13 +38,13 @@ class ProfilePost extends Component {
     }
     return (
       <div id='profile-feed'>
-        <InfinteScroll
+        {/* <InfinteScroll
           dataLength={posts.length}
           next={this.fetchMore}
           hasMore={true}
-          loader={null}>
+          loader={null}> */}
           { postContent }
-        </InfinteScroll>
+        {/* </InfinteScroll> */}
       </div>
     )
   }

@@ -15,11 +15,20 @@
 }
 
 .post_avatar_and_name {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 5px;
   grid-area: postavatarandname;
+}
+
+.post_item_more_vert {
+  position: absolute; 
+  top: 0; 
+  right: 0;
+  cursor: pointer;
+  color: var(--secondary-color);
 }
 
 .post_avatar_img {
