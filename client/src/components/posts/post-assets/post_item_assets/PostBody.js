@@ -33,10 +33,18 @@ class PostBody extends Component {
     const { text } = this.state
     const {   
       post,
-      youtubeUrl,
       modalToggle,
       editPost
     } = this.props
+
+    let youtubeUrl = post.url
+    
+    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+      ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                             .replace(/watch\?v=/gi, 'embed/')
+                             .replace(/&feature=www\.youtube\.com/gi, '')
+      : youtubeUrl = null 
+
     if(!editPost) {
       return !post.description && !post.image && !post.title && !post.url && !post.media
         ? <PostText postText={post.text} />
@@ -90,6 +98,7 @@ class PostBody extends Component {
                     name='text'
                     value={text}
                     onChange={this.onChange}
+                    autoFocus
                   />
                   <button type='submit' className='comment_form_btns' style={{position: 'absolute', top: 0, right: 0}}>
                     <Icon icon='far fa-paper-plane' title='submit' />

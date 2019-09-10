@@ -20,6 +20,7 @@ class TextAreaForm extends Component {
           onChange={ onChange }
           rows={ rows }
           onPaste={ onPaste }
+          autoFocus
         />
         { info && <small className=''>{ info }</small> }
         { error && (<div className='error'>{error}</div>) }

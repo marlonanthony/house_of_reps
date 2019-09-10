@@ -20,6 +20,7 @@ export default function NestedCommentForm({
         value={text} 
         onChange={onChange} 
         className='nested_comment_textarea'
+        autoFocus
       />
       { showNestedSubmitBtn && 
         <div>

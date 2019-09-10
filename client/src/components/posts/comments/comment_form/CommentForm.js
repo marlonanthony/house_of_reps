@@ -152,6 +152,7 @@ class CommentForm extends Component {
                 onChange={this.onChange}
                 onPaste={this.onPaste}
                 error={errors.text}
+                autoFocus
               />
               <div className={ show ? 'otherstuff' : 'disp' }>
                 <Dropzone 

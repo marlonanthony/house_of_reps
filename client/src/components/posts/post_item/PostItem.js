@@ -130,14 +130,6 @@ class PostItem extends Component {
       editPost
     } = this.state
 
-    let youtubeUrl = post.url
-    
-    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
-      ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                             .replace(/watch\?v=/gi, 'embed/')
-                             .replace(/&feature=www\.youtube\.com/gi, '')
-      : youtubeUrl = null 
-
     const postModal = showModal &&
       <CommentsModal showModal={showModal}>
         <img src={post.media} alt="uploaded" />
@@ -159,7 +151,6 @@ class PostItem extends Component {
           <div>
             <PostBody
               post={post}
-              youtubeUrl={youtubeUrl}
               modalToggle={this.modalToggle}
               editPost={editPost}
               toggleEditPost={this.toggleEditPost}
