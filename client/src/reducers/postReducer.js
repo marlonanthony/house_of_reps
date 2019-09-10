@@ -1,5 +1,6 @@
 import { 
-  ADD_POST, 
+  ADD_POST,
+  EDIT_POST,
   GET_POSTS,
   POST_LOADING, 
   DELETE_POST, 
@@ -56,6 +57,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         posts: [action.payload, ...state.posts]
+      }
+    
+    case EDIT_POST:
+      console.log(action.payload)
+      return {
+        ...state,
+        posts: [ ...state.posts ],
+        loading: false
       }
 
     case DELETE_POST:

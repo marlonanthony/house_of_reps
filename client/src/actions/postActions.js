@@ -1,6 +1,7 @@
 import axios from 'axios' 
 import { 
   ADD_POST,
+  EDIT_POST,
   GET_ERRORS,
   GET_POSTS,
   POST_LOADING,
@@ -175,6 +176,23 @@ export const getMatchingPosts = (matches) => async dispatch => {
       payload: res.data
     })
   } catch(err) { console.log(err) } 
+}
+
+// Edit Post
+export const editPost = (id, text) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.put(`/api/posts/${id}`, text)
+    dispatch({
+      type: EDIT_POST,
+      payload: res.data 
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data 
+    })
+  }
 }
 
 

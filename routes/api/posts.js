@@ -145,13 +145,19 @@ router.post('/', passport.authenticate('jwt', { session: false }), async (req, r
 // @route         PUT api/posts
 // @desc          Edit post
 // @access        Private
-// router.put('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
-//   const { errors, isValid } = validatePostInput(req.body)
-//   if(!isValid) return res.status(400).json(errors)
-//   try {
-//     const post = await Post.findById(req.body.postId)
-//   } catch (err) { res.status(404).json(err) }
-// })
+router.put('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const { errors, isValid } = validatePostInput(req.body)
+  if(!isValid) return res.status(400).json(errors)
+  try {
+    const post = await Post.findById(req.params.id)
+    if(post.user.toString() !== req.user.id) {
+      return res.status(401).json({ notauthorized: 'User not authorized' })
+    }
+    post.text = req.body.text
+    await post.save()
+    return res.json(post)
+  } catch (err) { res.status(404).json(err) }
+})
 
 
 // @route         DELETE api/posts/:id
