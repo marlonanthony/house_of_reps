@@ -105,6 +105,10 @@ class PostItem extends Component {
     postComments: props.post.comments, 
     showComments: !prevState.showComments 
   }))
+
+  moreVertClicked = () => {
+    alert('yiiiippppppp')
+  }
   
 
   render() {
@@ -130,6 +134,7 @@ class PostItem extends Component {
         { postModal }
         <div className='posts_container' onClick={this.removePopup}>
           <NameAvatarDate
+            moreVertClicked={this.moreVertClicked}
             popupHandler={this.popupHandler}
             profile={profile}
             post={post}

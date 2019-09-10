@@ -4,6 +4,7 @@ import Moment from 'react-moment'
 import PostFeedPopup from '../../../UI/popup_menu/PostFeedPopup'
 
 export default function NameAvatarDate({
+  moreVertClicked,
   popupHandler,
   profile,
   post,
@@ -23,7 +24,9 @@ export default function NameAvatarDate({
         />
         <p className='post_feed_date'><Moment format='ddd, ll LT'>{post.date}</Moment></p>
       </div>
-      <i className="material-icons post_item_more_vert">more_vert</i>
+      <i className="material-icons post_item_more_vert" onClick={moreVertClicked}>
+        more_vert
+      </i>
     </div>
   )
 }
