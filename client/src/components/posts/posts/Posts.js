@@ -192,7 +192,7 @@ class Posts extends Component {
         loader={null}>
         <PostFeed 
           showPreview={ showsPreview } 
-          posts={ posts } 
+          posts={ posts }
           profiles={ profiles } 
         />
       </InfinteScroll>

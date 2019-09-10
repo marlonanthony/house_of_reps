@@ -100,13 +100,11 @@ class PostItem extends Component {
     }
   }
 
-  onPostCommentClick = () => this.setState((prevState, props) => {
-    console.log(props)
-    return {
+  onPostCommentClick = () => this.setState((prevState, props) => ({
     postId: props.post._id, 
     postComments: props.post.comments, 
     showComments: !prevState.showComments 
-  }})
+  }))
 
   moreVertClicked = () => {
     let text

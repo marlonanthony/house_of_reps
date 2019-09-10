@@ -8,9 +8,10 @@ class CommentFeed extends Component {
     const { comments, postId } = this.props 
     return comments.map(comment => (
       <CommentItem 
-        key={comment._id}
-        comments={comments}
-        comment={comment}
+        key={comment._id} 
+        profiles={this.props.profiles} 
+        comments={comments} 
+        comment={comment} 
         postId={postId} />
       )).reverse()
   }
