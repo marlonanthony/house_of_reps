@@ -10,13 +10,13 @@
   width: 28px;
   height: 3px;
   margin: 0 0 5px 0;
-  background: rgb(55, 131, 194);
+  background: var(--secondary-color);
 }
 
 .dropdown_hover {
   display: inline-block;
   padding: 10; 
-  /* color: rgb(55, 131, 194); */
+  /* color: var(--secondary-color); */
   cursor: pointer; 
   border: none;
   height: 50px;
@@ -25,7 +25,7 @@
 }
 
 .dropdown_hover:hover {
-  color: rgb(55, 131, 194);
+  color: var(--secondary-color);
 }
 
 .dropdown_menu {
@@ -49,13 +49,13 @@
   text-decoration: none;
   border: none;
   text-decoration: none;
-  color: black;
+  color: var(--primary-color);
   /* color: #aaa; */
 }
 
 .dropdown_menu a:hover {
-  background: black;
-  color: #088cd3;
+  background: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 @media (max-width: 600px){

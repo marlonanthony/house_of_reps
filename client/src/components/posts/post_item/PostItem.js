@@ -17,12 +17,11 @@ import NameAvatarDate from '../post-assets/post_item_assets/NameAvatarDate'
 import './PostItem.css'
  
 class PostItem extends Component {
-  // For comments 
   state = { 
     showComments: false, 
     postId: '',
     postComments: [],
-    likes: [...this.props.post.likes],
+    likes: this.props.post.likes && [...this.props.post.likes],
     liked: false,
     showModal: false,
     showPopup: false,
@@ -114,7 +113,6 @@ class PostItem extends Component {
   }
 
   toggleEditPost = () => this.setState(prevState => ({editPost: !prevState.editPost}))
-  
 
   render() {
     const { post, auth, showActions, profile } = this.props 
@@ -134,7 +132,7 @@ class PostItem extends Component {
       <CommentsModal showModal={showModal}>
         <img src={post.media} alt="uploaded" />
       </CommentsModal>
-
+      
     return (
       <>
         <Backdrop clicked={this.modalToggle} show={showModal} />
@@ -146,7 +144,7 @@ class PostItem extends Component {
             profile={profile}
             post={post}
             showPopup={showPopup}
-            userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
           />
           <div>
             <PostBody
@@ -175,8 +173,12 @@ class PostItem extends Component {
             />
             { showComments &&
               <div>
-                <CommentForm postId={postId} /> 
-                <CommentFeed postId={postId} comments={postComments} profiles={this.props.profiles}/>
+                <CommentForm postId={postId} />
+                <CommentFeed
+                  postId={postId}
+                  comments={postComments}
+                  profiles={this.props.profiles}
+                />
               </div>
             }
           </div>

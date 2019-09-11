@@ -89,7 +89,7 @@ class CommentForm extends Component {
   }
 
   showButtonsHandler = () => {
-    this.setState(prevState => ({ show: !prevState.show }))
+    this.setState(prevState => ({ show: !prevState.show, errors: {} }))
   }
 
   onImageDrop = files => {

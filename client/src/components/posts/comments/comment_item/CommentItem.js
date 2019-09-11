@@ -95,7 +95,8 @@ class CommentItem extends Component {
     const newNestedComment = {
       text: this.state.text,
       name: user.name,
-      avatar: user.avatar
+      avatar: user.avatar,
+      handle: user.handle
     }
 
     this.props.addNestedComment(postId, commentId, newNestedComment)
@@ -141,7 +142,8 @@ class CommentItem extends Component {
 
   render() {
     const { postId, auth } = this.props 
-    const { 
+    const {
+      errors,
       comment, 
       showCommentLikesPopup, 
       showModal, 
@@ -166,6 +168,7 @@ class CommentItem extends Component {
           <NameAvatarDate
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
+            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
           />
           <CommentBody comment={comment} modalShow={this.modalShow} />
           <CommentLikes
@@ -187,6 +190,7 @@ class CommentItem extends Component {
             toggleShowNestedComment={this.toggleShowNestedComment}
           />
           <NestedComments
+            errors={errors}
             comment={comment}
             showNestedComments={showNestedComments}
             showForm={showForm}

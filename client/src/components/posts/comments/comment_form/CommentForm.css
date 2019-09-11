@@ -3,3 +3,8 @@
   border: none; 
   outline: none;
 }
+.edit_post_submit_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

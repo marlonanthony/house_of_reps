@@ -1,8 +1,10 @@
 import React from 'react'
 import Icon from '../../../UI/icons/Icon'
 import './NestedCommentForm.css'
+import TextAreaForm from '../../../common/textarea/TextAreaForm'
 
 export default function NestedCommentForm({
+  errors,
   showForm,
   showNestedSubmitBtnHandler,
   onChange,
@@ -14,13 +16,13 @@ export default function NestedCommentForm({
 }) {
   return showForm &&
     <div className='nested_comment_form' onClick={showNestedSubmitBtnHandler}>
-      <textarea 
+      <TextAreaForm 
         placeholder="Reply to comment" 
         name='text'
         value={text} 
-        onChange={onChange} 
-        className='nested_comment_textarea'
+        onChange={onChange}
         autoFocus
+        error={errors.text}
       />
       { showNestedSubmitBtn && 
         <div>

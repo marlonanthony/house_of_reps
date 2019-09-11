@@ -121,10 +121,10 @@ class PostForm extends Component {
   }
 
   showButtonsHandler = () => {
-    this.setState(prevState => ({ show: !prevState.show }))
+    this.setState(prevState => ({ show: !prevState.show, errors: {} }))
   }
 
-  onImageDrop = files => {
+  onImageDrop = (files, e) => {
     this.setState({ uploadedFile: files[0]})
     this.handleImageUpload(files[0])
   }

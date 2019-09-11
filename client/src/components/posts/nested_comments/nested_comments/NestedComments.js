@@ -8,6 +8,7 @@ import NestedLikes from '../nested_comment_assets/nested_likes/NestedLikes'
 import './NestedComments.css'
 
 export default function NestedComments({
+  errors,
   comment,
   showNestedComments,
   showForm,
@@ -17,7 +18,6 @@ export default function NestedComments({
   postId,
   addNewNestedComment,
   showNestedSubmitBtn,
-  userNameOrAvatarClicked,
   nestedCommentLikesPopupHandler,
   userNameOrAvatarClickedLikesPopup,
   showNestedCommentsLikes,
@@ -32,6 +32,7 @@ export default function NestedComments({
   return comment.comments && showNestedComments && (
     <section className='nested_comments'>
       <NestedCommentForm
+        errors={errors}
         showForm={showForm}
         showNestedSubmitBtnHandler={showNestedSubmitBtnHandler}
         onChange={onChange}
@@ -46,8 +47,8 @@ export default function NestedComments({
         <div key={nestedComment._id}>
           <div className='nested_comments_container'>
             <NestedCommentNameAvatarDate 
-              nestedComment={nestedComment} 
-              userNameOrAvatarClicked={userNameOrAvatarClicked} 
+              nestedComment={nestedComment}
+              userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
             />
             <NestedCommentBody nestedComment={nestedComment} />
             <NestedLikes

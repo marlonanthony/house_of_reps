@@ -16,7 +16,7 @@
   background-color: #030303;
   color: #fff;
   text-align: center;
-  border: 0.4px solid rgba(55, 131, 194, 1);
+  border: 0.4px solid var(--border-color);
   padding: 8px 0;
   position: absolute;
   top: 100%;
@@ -40,7 +40,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent var(--secondary-color) transparent;
+  border-color: transparent transparent var(--border-color) transparent;
 }
 .popup .likespopupcontent::after {
   content: '';
@@ -50,7 +50,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--secondary-color) transparent transparent transparent;
+  border-color: var(--border-color) transparent transparent transparent;
 }
 
 /* The like popup */
@@ -61,7 +61,7 @@
   font-size: 12px;
   background-color: #030303;
   color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--border-color);
   position: absolute;
   z-index: 100;
   bottom: 100%;

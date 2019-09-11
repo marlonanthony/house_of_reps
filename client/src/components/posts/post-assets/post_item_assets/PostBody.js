@@ -76,7 +76,7 @@ class PostBody extends Component {
             </div>
     } else {
       return !post.description && !post.image && !post.title && !post.url && !post.media
-        ? <div style={{position: 'relative'}}>
+        ? <div style={{ position: 'relative' }}>
            <form onSubmit={this.onSubmit}>
               <TextAreaForm
                 placeholder="Edit post"
@@ -84,14 +84,14 @@ class PostBody extends Component {
                 value={text}
                 onChange={this.onChange}
               />
-              <button type='submit' className='comment_form_btns' style={{position: 'absolute', top: 0, right: 0}}>
+              <button type='submit' className='comment_form_btns edit_post_submit_btn'>
                 <Icon icon='far fa-paper-plane' title='submit' />
               </button>
             </form>
           </div>
         : post.media 
           ? <div>
-              <div style={{position: 'relative'}}>
+              <div style={{ position: 'relative' }}>
                 <form onSubmit={this.onSubmit}>
                   <TextAreaForm
                     placeholder="Edit post"
@@ -100,7 +100,7 @@ class PostBody extends Component {
                     onChange={this.onChange}
                     autoFocus
                   />
-                  <button type='submit' className='comment_form_btns' style={{position: 'absolute', top: 0, right: 0}}>
+                  <button type='submit' className='comment_form_btns edit_post_submit_btn'>
                     <Icon icon='far fa-paper-plane' title='submit' />
                   </button>
                 </form>
@@ -108,7 +108,7 @@ class PostBody extends Component {
               <img className='postfeed-media-pic' onClick={modalToggle} src={post.media} alt="uploaded" />
             </div>
           : <div className='post_content'>
-              <div style={{position: 'relative'}}>
+              <div style={{ position: 'relative' }}>
                 <form onSubmit={this.onSubmit}>
                   <TextAreaForm
                     placeholder="Edit post"
@@ -116,7 +116,7 @@ class PostBody extends Component {
                     value={text}
                     onChange={this.onChange}
                   />
-                  <button type='submit' className='comment_form_btns' style={{position: 'absolute', right: 0, top: 0}}>
+                  <button type='submit' className='comment_form_btns edit_post_submit_btn'>
                     <Icon icon='far fa-paper-plane' title='submit' />
                   </button>
                 </form>

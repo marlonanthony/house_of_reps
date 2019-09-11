@@ -42,7 +42,7 @@
 }
 
 .hashtag_match {
-  color: rgb(29, 138, 228);
+  color: var(--secondary-color);
 }
 
 .hashtags a {
@@ -53,7 +53,7 @@
 
 .post_name {
   grid-area: name;
-  color: rgb(29, 138, 228);
+  color: var(--secondary-color);
   font-size: 13px;
   cursor: pointer;
 }
@@ -98,7 +98,6 @@
 }
 
 .postfeed_buttons:hover {
-  background: rgba(0,0,0,0.8);
   color: rgb(29, 138, 255);
 }
 

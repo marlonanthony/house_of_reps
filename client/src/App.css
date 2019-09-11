@@ -1,7 +1,10 @@
-* { 
-  --primary-color: #000;
+* {
+  /* --primary-color: #000; */
+  --primary-color: rgb(12, 13, 22);
+  /* --primary-color: rgb(9, 10, 15); */
+  /* --secondary-color: rgb(151, 36, 132); */
   --secondary-color: rgb(55, 131, 194);
-  --border-color: rgba(55, 131, 194, 0.3);
+  --border-color: rgba(55,131,194, 0.3);
   --text-color: rgba(200, 200, 200, 0.9);
   box-sizing: border-box;
   text-decoration: none;
