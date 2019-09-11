@@ -1,33 +1,34 @@
-import React, { Component } from 'react'
+import React from 'react'
 import classnames from 'classnames' 
 import PropTypes from 'prop-types' 
 
-class TextAreaForm extends Component {
-
-
-
-  render() {
-    const { name, placeholder, value, error, info, onChange, onPaste, rows } = this.props 
-    return (
-      <div>
-        <textarea 
-          className={classnames('text-area', { // text-area is in PostForm.css
-            '': error
-          })}
-          placeholder={ placeholder }
-          name={ name }
-          value={ value }
-          onChange={ onChange }
-          rows={ rows }
-          onPaste={ onPaste }
-          autoFocus
-        />
-        { info && <small className=''>{ info }</small> }
-        { error && (<div className='error'>{error}</div>) }
-      </div>
-    )
-  }
-}
+const TextAreaForm = ({
+  name,
+  placeholder,
+  value,
+  error,
+  info,
+  onChange,
+  onPaste,
+  rows
+}) => (
+  <div>
+    <textarea 
+      className={classnames('text-area', { // text-area is in PostForm.css
+        '': error
+      })}
+      placeholder={ placeholder }
+      name={ name }
+      value={ value }
+      onChange={ onChange }
+      rows={ rows }
+      onPaste={ onPaste }
+      autoFocus
+    />
+    { info && <small className=''>{ info }</small> }
+    { error && (<div className='error'>{error}</div>) }
+  </div>
+)
 
 TextAreaForm.propTypes = {
   name: PropTypes.string.isRequired,

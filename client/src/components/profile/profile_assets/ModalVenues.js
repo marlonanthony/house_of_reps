@@ -19,7 +19,11 @@ export default function ModalVenues({ venues, likeHighlight }) {
       }
       { venue.description && <p style={{ color: '#666', padding: '0px 10px' }}>{venue.description}</p> }
       <div style={{display: 'flex', alignItems: 'center', paddingLeft: 10}}>
-        <i onClick={() => likeHighlight(venue._id, venue.user)} className='fas fa-thumbs-up icons' style={{color: 'cyan', cursor: 'pointer'}}></i>
+        <i 
+          onClick={() => likeHighlight(venue._id, venue.user)} 
+          className='fas fa-thumbs-up icons' 
+          style={{color: 'var(--secondary-color)', cursor: 'pointer'}}>
+        </i>
         <p style={{color: 'cyan'}}>{venue.likes && venue.likes.length}</p>
       </div>
     </div>

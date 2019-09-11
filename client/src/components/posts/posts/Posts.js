@@ -105,7 +105,7 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post 
     const { profile, profiles } = this.props.profile 
-    const { showsPreview } = this.state
+    const { showsPreview, showHashtags, hashtag, showPopup, showLikes } = this.state
     const { user } = this.props.auth
     let postContent, 
         profileContent,
@@ -172,9 +172,9 @@ class Posts extends Component {
           profile={profile}
           user={user} 
           popupHandler={this.popupHandler}
-          showPopup={this.state.showPopup}
+          showPopup={showPopup}
           showLikesHandler={this.showLikesHandler}
-          showLikes={this.state.showLikes}
+          showLikes={showLikes}
           showNotificationsHandler={this.showNotificationsHandler}
         />
       )
@@ -203,8 +203,8 @@ class Posts extends Component {
         <SearchPost
           showPostByHashtag={this.showPostByHashtag}
           onChange={this.onChange}
-          hashtag={this.state.hashtag}
-          showHashtags={this.state.showHashtags}
+          hashtag={hashtag}
+          showHashtags={showHashtags}
         />
         <PostForm  showPreview={ showsPreview }/>
         <SearchBar profiles={ profiles } />

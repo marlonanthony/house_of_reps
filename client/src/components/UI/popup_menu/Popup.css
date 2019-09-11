@@ -13,7 +13,7 @@
 .popup .popupcontent {
   visibility: hidden;
   width: 200px;
-  background-color: #030303;
+  background-color: var(--primary-color);
   color: #fff;
   text-align: center;
   border: 0.4px solid var(--border-color);
@@ -59,7 +59,7 @@
   width: 170px;
   height: 250px;
   font-size: 12px;
-  background-color: #030303;
+  background-color: var(--primary-color);
   color: var(--secondary-color);
   border: 1px solid var(--border-color);
   position: absolute;

@@ -1,8 +1,15 @@
 * {
-  /* --primary-color: #000; */
-  --primary-color: rgb(12, 13, 22);
-  /* --primary-color: rgb(9, 10, 15); */
-  /* --secondary-color: rgb(151, 36, 132); */
+  /* --primary-color: rgb(225,225,255);
+  --secondary-color: rgb(51, 149, 230);
+  --border-color: rgba(51, 149, 230, 0.3);
+  --text-color: #000; */
+  
+  /* --primary-color: rgb(9, 10, 15);
+  --secondary-color: rgb(192, 52, 169);
+  --border-color: rgba(192, 52, 169, 0.3);
+  --text-color: #fff; */
+
+  --primary-color: #000;
   --secondary-color: rgb(55, 131, 194);
   --border-color: rgba(55,131,194, 0.3);
   --text-color: rgba(200, 200, 200, 0.9);
