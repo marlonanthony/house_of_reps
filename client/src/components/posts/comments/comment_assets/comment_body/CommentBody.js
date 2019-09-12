@@ -85,6 +85,7 @@ class CommentBody extends Component {
                 value={text}
                 onChange={this.onChange}
                 autoFocus
+                fontSize='14px'
               />
               <button type='submit' className='comment_form_btns edit_post_submit_btn'>
                 <Icon icon='far fa-paper-plane' title='submit' />
@@ -101,6 +102,7 @@ class CommentBody extends Component {
                     value={text}
                     onChange={this.onChange}
                     autoFocus
+                    fontSize='14px'
                   />
                   <button type='submit' className='comment_form_btns edit_post_submit_btn'>
                     <Icon icon='far fa-paper-plane' title='submit' />
@@ -118,6 +120,7 @@ class CommentBody extends Component {
                     value={text}
                     onChange={this.onChange}
                     autoFocus
+                    fontSize='14px'
                   />
                   <button type='submit' className='comment_form_btns edit_post_submit_btn'>
                     <Icon icon='far fa-paper-plane' title='submit' />

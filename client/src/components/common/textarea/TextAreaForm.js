@@ -10,7 +10,8 @@ const TextAreaForm = ({
   info,
   onChange,
   onPaste,
-  rows
+  rows,
+  fontSize
 }) => (
   <div>
     <textarea 
@@ -24,6 +25,7 @@ const TextAreaForm = ({
       rows={ rows }
       onPaste={ onPaste }
       autoFocus
+      style={fontSize && { fontSize }}
     />
     { info && <small className=''>{ info }</small> }
     { error && (<div className='error'>{error}</div>) }
