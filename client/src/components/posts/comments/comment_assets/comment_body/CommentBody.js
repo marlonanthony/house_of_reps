@@ -18,8 +18,6 @@ class CommentBody extends Component {
     const { _id } = this.props.comment
     const { toggleEditPost, postId } = this.props
     const editedComment = { text }
-    console.log(_id)
-    console.log(postId)
     this.props.editedCommentAction(postId, _id, editedComment)
     toggleEditPost()
     this.setState({ text: '' })
