@@ -1,6 +1,7 @@
 import { 
   ADD_POST,
   EDIT_POST,
+  EDIT_COMMENT,
   GET_POSTS,
   POST_LOADING, 
   DELETE_POST, 
@@ -65,6 +66,22 @@ export default function(state = initialState, action) {
         posts: state.posts.map(post => {
           if(post._id === action.payload._id) {
             post = action.payload
+          }
+          return post
+        }),
+        loading: false
+      }
+
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if(post._id === action.payload.postId) {
+            post.comments.forEach(comment => {
+              if(comment._id === action.payload.commentId) {
+                post = action.payload.data
+              }
+            })
           }
           return post
         }),

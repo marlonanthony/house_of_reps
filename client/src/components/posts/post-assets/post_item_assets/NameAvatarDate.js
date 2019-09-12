@@ -15,8 +15,7 @@ export default function NameAvatarDate({
     <div className='post_avatar_and_name'>
       <img 
         className='post_avatar_img' 
-        onClick={()=> userNameOrAvatarClickedLikesPopup(post.handle)} 
-        // onClick={()=> userNameOrAvatarClicked(post.user)} 
+        onClick={()=> userNameOrAvatarClickedLikesPopup(post.handle)}
         src={post.avatar} 
         alt={post.name} 
       />

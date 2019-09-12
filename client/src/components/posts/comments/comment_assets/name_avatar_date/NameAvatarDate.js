@@ -3,8 +3,8 @@ import Moment from 'react-moment'
 
 import './NameAvatarDate.css'
 
-const NameAvatarDate = ({ comment, userNameOrAvatarClickedLikesPopup }) => (
-  <div className='comment_avatar_name_date'>
+const NameAvatarDate = ({ comment, userNameOrAvatarClickedLikesPopup, moreVertClicked }) => (
+  <div className='comment_avatar_name_date' style={{position: 'relative'}}>
     <img 
       id='comment-feed-avatar' 
       onClick={() => userNameOrAvatarClickedLikesPopup(comment.handle)} 
@@ -17,6 +17,9 @@ const NameAvatarDate = ({ comment, userNameOrAvatarClickedLikesPopup }) => (
       </p>
       <p id='comment-feed-date'><Moment format='ddd, ll LT'>{comment.date}</Moment></p>
     </div>
+    <i className="material-icons post_item_more_vert" onClick={moreVertClicked}>
+      more_vert
+    </i>
   </div>
 )
 

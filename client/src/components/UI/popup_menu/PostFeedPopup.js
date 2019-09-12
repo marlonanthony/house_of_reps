@@ -2,7 +2,13 @@ import React from 'react'
 import './Popup.css'
 
 export default function PostFeedPopup(props) {
-  const { profile: { profiles }, popupHandler, post, showPopup, userNameOrAvatarClicked, userNameOrAvatarClickedLikesPopup } = props
+  const { 
+    profile: { profiles }, 
+    popupHandler, 
+    post, 
+    showPopup, 
+    userNameOrAvatarClickedLikesPopup 
+  } = props
   
   const profileInfo = profiles && profiles.map(profile => (
     profile.user._id === post.user && 

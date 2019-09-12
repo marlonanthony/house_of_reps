@@ -2,6 +2,7 @@ import axios from 'axios'
 import { 
   ADD_POST,
   EDIT_POST,
+  EDIT_COMMENT,
   GET_ERRORS,
   GET_POSTS,
   POST_LOADING,
@@ -195,6 +196,26 @@ export const editPostAction = (id, editedPost) => async dispatch => {
   }
 }
 
+// Edit Comment
+export const editedCommentAction = (postId, commentId, editedComment) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.put(`/api/posts/comment/${postId}/${commentId}`, editedComment)
+    dispatch({
+      type: EDIT_COMMENT,
+      payload: {
+        data: res.data,
+        postId,
+        commentId
+      }
+    })
+  } catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
+}
 
 // Delete Post 
 export const deletePost = id => async dispatch => {

@@ -37,7 +37,8 @@ class CommentItem extends Component {
     comments: this.props.comments,
     showCommentLikesPopup: false,
     showNestedCommentsLikesPopup: false,
-    nestedcommentid: ''
+    nestedcommentid: '',
+    editPost: false
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -140,6 +141,14 @@ class CommentItem extends Component {
     }))
   }
 
+  moreVertClicked = () => {
+    let res = window.confirm('Edit post?')
+    if(res) this.setState({ editPost: true })
+    else this.setState({ editPost: false }) 
+  }
+  
+  toggleEditPost = () => this.setState(prevState => ({ editPost: !prevState.editPost }))
+
   render() {
     const { postId, auth } = this.props 
     const {
@@ -153,7 +162,8 @@ class CommentItem extends Component {
       showNestedComments,
       showNestedSubmitBtn,
       showNestedCommentsLikes,
-      showNestedCommentsLikesPopup
+      showNestedCommentsLikesPopup,
+      editPost
     } = this.state
 
     if(!comment) return null
@@ -169,8 +179,15 @@ class CommentItem extends Component {
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            moreVertClicked={this.moreVertClicked}
           />
-          <CommentBody comment={comment} modalShow={this.modalShow} />
+          <CommentBody 
+            comment={comment} 
+            modalShow={this.modalShow}
+            editPost={editPost}
+            toggleEditPost={this.toggleEditPost}
+            postId={postId}
+          />
           <CommentLikes
             comment={comment}
             commentLikesPopupHandler={this.commentLikesPopupHandler}
