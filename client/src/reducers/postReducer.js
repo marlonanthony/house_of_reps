@@ -72,22 +72,6 @@ export default function(state = initialState, action) {
         loading: false
       }
 
-    case EDIT_COMMENT:
-      return {
-        ...state,
-        posts: state.posts.map(post => {
-          if(post._id === action.payload.postId) {
-            post.comments.forEach(comment => {
-              if(comment._id === action.payload.commentId) {
-                post = action.payload.data
-              }
-            })
-          }
-          return post
-        }),
-        loading: false
-      }
-
     case DELETE_POST:
       return {
         ...state,
@@ -121,8 +105,7 @@ export default function(state = initialState, action) {
       }
 
     case ADD_COMMENT: 
-      const { posts } = state 
-      const updatedPost = posts.map(comment => {
+      const updatedPost = state.posts.map(comment => {
         if(comment._id === action.payload._id) {
           comment = action.payload
         }
@@ -131,6 +114,22 @@ export default function(state = initialState, action) {
       return {
         ...state,
         posts: updatedPost,
+        loading: false
+      }
+    
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if(post._id === action.payload.postId) {
+            post.comments.forEach(comment => {
+              if(comment._id === action.payload.commentId) {
+                post = action.payload.data
+              }
+            })
+          }
+          return post
+        }),
         loading: false
       }
 

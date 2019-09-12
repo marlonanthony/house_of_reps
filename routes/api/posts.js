@@ -397,6 +397,31 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
   .catch(err => res.status(404).json(err)) 
 })
 
+// @route PUT     api/posts/comment/comment/:id/:comment_id/:nested_comment_id
+// @desc          Edit a nested comment
+// @access        Private
+router.put('/comment/comment/:id/:comment_id/:nested_comment_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const { errors, isValid } = validatePostInput(req.body)
+  if(!isValid) return res.status(400).json(errors)
+  try {
+    const post = await Post.findById(req.params.id)
+    post.comments.forEach(comment => {
+      if(comment._id.toString() === req.params.comment_id) {
+        comment.comments.forEach(async nestedComment => {
+          if(nestedComment._id.toString() === req.params.nested_comment_id){
+            if(nestedComment.user.toString() !== req.user.id) {
+              return res.status(401).json({ notauthorized: 'User not authorized' })
+            }
+            nestedComment.text = req.body.text
+            await post.save()
+          }
+        })
+      }
+    })
+    return res.json(post)
+  } catch(err) { res.status(404).json(err) }
+})
+
 
 // @route DELETE  api/posts/comment/comment/:id/:comment_id/:nested_comment_id
 // @desc          Delete a nested comment
