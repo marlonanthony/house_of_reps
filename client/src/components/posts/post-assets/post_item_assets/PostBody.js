@@ -9,8 +9,7 @@ import { editPostAction } from '../../../../actions/postActions'
 
 class PostBody extends Component {
   state = {
-    text: '',
-    errors: {}
+    text: ''
   }
 
   onChange = e => {
@@ -31,13 +30,12 @@ class PostBody extends Component {
   }
 
   render() {
-    const { text,errors } = this.state
+    const { text } = this.state
     const {   
       post,
       modalToggle,
       editPost
     } = this.props
-    console.log(errors)
     let youtubeUrl = post.url
     
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
@@ -84,7 +82,6 @@ class PostBody extends Component {
                 name='text'
                 value={text}
                 onChange={this.onChange}
-                error={errors.text}
                 autoFocus
               />
               <button type='submit' className='comment_form_btns edit_post_submit_btn'>
@@ -101,7 +98,6 @@ class PostBody extends Component {
                     name='text'
                     value={text}
                     onChange={this.onChange}
-                    error={errors.text}
                     autoFocus
                   />
                   <button type='submit' className='comment_form_btns edit_post_submit_btn'>
@@ -119,7 +115,6 @@ class PostBody extends Component {
                     name='text'
                     value={text}
                     onChange={this.onChange}
-                    error={errors.text}
                     autoFocus
                   />
                   <button type='submit' className='comment_form_btns edit_post_submit_btn'>

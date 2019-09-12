@@ -222,7 +222,6 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), asy
   } catch(err) { res.status(404).json(err) } 
 })
 
-
 // @route         POST api/posts/comment/:id
 // @description   Add comment to post
 // @access        Private
@@ -263,6 +262,28 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), as
     await profile.save()
     return res.json(post)
   } catch(err) { res.status(404).json({ postnotfound: 'No post found' }) }
+})
+
+
+// @route         PUT api/posts/comment/:id/:comment_id
+// @desc          Edit comment
+// @access        Private
+router.put('/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const { errors, isValid } = validatePostInput(req.body)
+  if(!isValid) return res.status(400).json(errors)
+  try {
+    const post = await Post.findById(req.params.id)
+    post.comments.forEach(async comment => {
+      if(req.user.id !== comment.user.toString()) {
+        return res.status(401).json({ notauthorized: 'User not authorized' })
+      }
+      if(comment._id.toString() === req.params.comment_id) {
+        comment.text = req.body.text
+        await post.save()
+      }
+    })
+    return res.json(post)
+  } catch(err) { res.status(404).json(err) }
 })
 
 
