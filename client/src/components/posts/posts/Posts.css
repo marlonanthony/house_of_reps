@@ -12,6 +12,13 @@
     'post-feed-post-content post-feed-post-content' 
 }
 
+.edit_icon_container {
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  padding-bottom: 5px;
+}
+
 .post-feed-profile {
   grid-area: profile;
   display: none;

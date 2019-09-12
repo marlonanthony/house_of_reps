@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux' 
+import { connect } from 'react-redux'
+import EmojiPicker from 'emoji-picker-react' 
+import JSEMOJI from 'emoji-js'
 
 import PostText from '../text/PostText'
 import TextAreaForm from '../../../common/textarea/TextAreaForm'
 import Icon from '../../../UI/icons/Icon'
 import { editPostAction } from '../../../../actions/postActions'
+import LightBackdrop from '../../../UI/backdrop/LightBackdrop'
+import EmojiModal from '../../../UI/modal/EmojiModal'
 
 class PostBody extends Component {
   state = {
-    text: ''
+    text: '',
+    showEmojis: false
   }
 
   onChange = e => {
@@ -29,8 +34,28 @@ class PostBody extends Component {
     e.target.reset() 
   }
 
+  toggleEmoji = () => {
+    this.setState(prevState => ({ showEmojis: !prevState.showEmojis }))
+  }
+
+  addEmoji = emojiName => {
+    const jsemoji = new JSEMOJI() 
+    jsemoji.img_set = 'emojione' 
+    jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
+    jsemoji.supports_css = false 
+    jsemoji.allow_native = false  
+    jsemoji.replace_mode = 'unified' 
+    jsemoji.text_mode = true 
+    jsemoji.include_title = true 
+    jsemoji.replace_unified(`:${emojiName}:`)
+    jsemoji.replace_colons(`:${emojiName}:`)
+    
+    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
+    this.setState({ text: this.state.text + emoji })
+  }
+
   render() {
-    const { text } = this.state
+    const { text, showEmojis } = this.state
     const {   
       post,
       modalToggle,
@@ -74,73 +99,93 @@ class PostBody extends Component {
               </div>
             </div>
     } else {
-      return !post.description && !post.image && !post.title && !post.url && !post.media
-        ? <div style={{ position: 'relative' }}>
-           <form onSubmit={this.onSubmit}>
-              <TextAreaForm
-                placeholder="Edit post"
-                name='text'
-                value={text}
-                onChange={this.onChange}
-                autoFocus
-              />
-              <button type='submit' className='comment_form_btns edit_post_submit_btn'>
-                <Icon icon='far fa-paper-plane' title='submit' />
-              </button>
-            </form>
-          </div>
-        : post.media 
-          ? <div>
-              <div style={{ position: 'relative' }}>
-                <form onSubmit={this.onSubmit}>
-                  <TextAreaForm
-                    placeholder="Edit post"
-                    name='text'
-                    value={text}
-                    onChange={this.onChange}
-                    autoFocus
-                  />
-                  <button type='submit' className='comment_form_btns edit_post_submit_btn'>
-                    <Icon icon='far fa-paper-plane' title='submit' />
+      return (
+        <>
+          <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
+          { showEmojis &&
+            <EmojiModal>
+              <EmojiPicker onEmojiClick={this.addEmoji} />
+            </EmojiModal>
+          }
+          {!post.description && !post.image && !post.title && !post.url && !post.media
+          ? <div style={{ position: 'relative' }}>
+            <form onSubmit={this.onSubmit}>
+                <TextAreaForm
+                  placeholder="Edit post"
+                  name='text'
+                  value={text}
+                  onChange={this.onChange}
+                  autoFocus
+                />
+                <div className='edit_icon_container'>
+                  <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
+                  <button type='submit' className='comment_form_btns'>
+                    <Icon icon='far fa-paper-plane' title='submit'/>
                   </button>
-                </form>
-              </div>
-              <img className='postfeed-media-pic' onClick={modalToggle} src={post.media} alt="uploaded" />
+                </div>
+              </form>
             </div>
-          : <div className='post_content'>
-              <div style={{ position: 'relative' }}>
-                <form onSubmit={this.onSubmit}>
-                  <TextAreaForm
-                    placeholder="Edit post"
-                    name='text'
-                    value={text}
-                    onChange={this.onChange}
-                    autoFocus
-                  />
-                  <button type='submit' className='comment_form_btns edit_post_submit_btn'>
-                    <Icon icon='far fa-paper-plane' title='submit' />
-                  </button>
-                </form>
+          : post.media 
+            ? <div>
+                <div style={{ position: 'relative' }}>
+                  <form onSubmit={this.onSubmit}>
+                    <TextAreaForm
+                      placeholder="Edit post"
+                      name='text'
+                      value={text}
+                      onChange={this.onChange}
+                      autoFocus
+                    />
+                    <div className='edit_icon_container'>
+                      <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
+                      <button type='submit' className='comment_form_btns'>
+                        <Icon icon='far fa-paper-plane' title='submit'/>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <img className='postfeed-media-pic' onClick={modalToggle} src={post.media} alt="uploaded" />
               </div>
-            <div>
-              { youtubeUrl 
-                ? <iframe 
-                    title='youtube' 
-                    width="100%" 
-                    height="300" 
-                    src={youtubeUrl} 
-                    frameBorder={0} 
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen={true}>
-                  </iframe>
-                : <a href={post.url} target='_blank' rel='noopener noreferrer'>
-                    <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
-                  </a> 
-              }
-              <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
-              <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
+            : <div className='post_content'>
+                <div style={{ position: 'relative' }}>
+                  <form onSubmit={this.onSubmit}>
+                    <TextAreaForm
+                      placeholder="Edit post"
+                      name='text'
+                      value={text}
+                      onChange={this.onChange}
+                      autoFocus
+                    />
+                    <div className='edit_icon_container'>
+                      <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
+                      <button type='submit' className='comment_form_btns'>
+                        <Icon icon='far fa-paper-plane' title='submit'/>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              <div>
+                { youtubeUrl 
+                  ? <iframe 
+                      title='youtube' 
+                      width="100%" 
+                      height="300" 
+                      src={youtubeUrl} 
+                      frameBorder={0} 
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen={true}>
+                    </iframe>
+                  : <a href={post.url} target='_blank' rel='noopener noreferrer'>
+                      <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
+                    </a> 
+                }
+                <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
+                <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
+              </div>
             </div>
-          </div>
+          }
+        </>
+      )
     }
   }
 }
