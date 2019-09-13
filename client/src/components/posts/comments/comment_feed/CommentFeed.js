@@ -1,20 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types' 
 import CommentItem from '../comment_item/CommentItem'
 
-class CommentFeed extends Component {
-
-  render() {
-    const { comments, postId } = this.props 
-    return comments.map(comment => (
-      <CommentItem 
-        key={comment._id} 
-        profiles={this.props.profiles} 
-        comments={comments} 
-        comment={comment} 
-        postId={postId} />
-      )).reverse()
-  }
+const CommentFeed = ({ comments, postId, profiles }) => {
+  return comments.map(comment => (
+    <CommentItem 
+      key={comment._id} 
+      profiles={profiles} 
+      comments={comments} 
+      comment={comment} 
+      postId={postId} />
+    )).reverse()
 }
 
 CommentFeed.propTypes = {

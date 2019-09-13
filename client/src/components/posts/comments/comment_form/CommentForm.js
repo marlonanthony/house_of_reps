@@ -105,9 +105,11 @@ class CommentForm extends Component {
     upload.end((err, response) => {
       if(err) console.log(err) 
       if(response.body.secure_url !== '') {
-        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
-        this.setState({ media: response.body.secure_url })
-        this.setState({ showPreview: true })
+        this.setState({ 
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+          media: response.body.secure_url,
+          showPreview: true
+        })
       }
     })
   }
@@ -133,7 +135,15 @@ class CommentForm extends Component {
   }
 
   render() {
-    const { errors, data, media, show, showPreview, text, showEmojis } = this.state 
+    const { 
+      errors, 
+      data, 
+      media, 
+      show, 
+      showPreview, 
+      text, 
+      showEmojis 
+    } = this.state 
     return (
       <>
         <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />

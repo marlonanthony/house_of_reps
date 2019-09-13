@@ -8,7 +8,6 @@ import {
   getPosts, 
   addCommentLike, 
   removeCommentLike, 
-  addNestedComment, 
   deleteNestedComment, 
   likeNestedComment, 
   unlikeNestedComment 
@@ -29,9 +28,6 @@ class CommentItem extends Component {
     showModal: false,
     liked: false,
     showNestedComments: false,
-    text: '',
-    errors: {},
-    data: {},
     showNestedSubmitBtn: false,
     showForm: false,
     comments: this.props.comments,
@@ -86,24 +82,6 @@ class CommentItem extends Component {
     ))
   )
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  addNewNestedComment = (postId, commentId) => {
-    const { user } = this.props.auth 
-
-    const newNestedComment = {
-      text: this.state.text,
-      name: user.name,
-      avatar: user.avatar,
-      handle: user.handle
-    }
-
-    this.props.addNestedComment(postId, commentId, newNestedComment)
-    this.setState({ text: '' })
-  }
-
   toggleShowNestedComment = () => {
     this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))
   }
@@ -152,13 +130,11 @@ class CommentItem extends Component {
   render() {
     const { postId, auth } = this.props 
     const {
-      errors,
       comment, 
       showCommentLikesPopup, 
       showModal, 
       liked, 
       showForm,
-      text,
       showNestedComments,
       showNestedSubmitBtn,
       showNestedCommentsLikes,
@@ -207,15 +183,11 @@ class CommentItem extends Component {
             toggleShowNestedComment={this.toggleShowNestedComment}
           />
           <NestedComments
-            errors={errors}
             comment={comment}
             showNestedComments={showNestedComments}
             showForm={showForm}
             showNestedSubmitBtnHandler={this.showNestedSubmitBtnHandler}
-            onChange={this.onChange}
-            text={text}
             postId={postId}
-            addNewNestedComment={this.addNewNestedComment}
             showNestedSubmitBtn={showNestedSubmitBtn}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
             nestedCommentLikesPopupHandler={this.nestedCommentLikesPopupHandler}
@@ -239,7 +211,6 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   addCommentLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
-  addNestedComment: PropTypes.func.isRequired,
   deleteNestedComment: PropTypes.func.isRequired,
   likeNestedComment: PropTypes.func.isRequired,
   unlikeNestedComment: PropTypes.func.isRequired,
@@ -261,8 +232,7 @@ export default connect(mapStateToProps, {
   getProfiles, 
   getProfileByHandle,
   addCommentLike, 
-  removeCommentLike, 
-  addNestedComment, 
+  removeCommentLike,
   deleteNestedComment, 
   likeNestedComment, 
   unlikeNestedComment 
