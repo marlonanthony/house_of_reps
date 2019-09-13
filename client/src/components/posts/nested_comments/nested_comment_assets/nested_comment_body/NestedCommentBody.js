@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import EmojiPicker from 'emoji-picker-react' 
 import JSEMOJI from 'emoji-js'
 
@@ -40,7 +41,8 @@ class NestedCommentBody extends Component {
     this.setState({ text: this.state.text + emoji })
   }
 
-  editNestedComment = (e) => {
+  editNestedComment = e => {
+    e.preventDefault()
     const { text } = this.state
     const { comment: { _id }, nestedComment, postId, toggleEditPost } = this.props
     const editedNestedComment = { text }
@@ -51,23 +53,14 @@ class NestedCommentBody extends Component {
   }
 
   render() {
-    const {
-      auth,
-      nestedComment, 
-      comment, 
-      postId, 
-      modalShow, 
-      editPost, 
-      toggleEditPost
-    } = this.props
-
-    const { text, showEmojis, errors } = this.state
+    const { nestedComment, modalShow, editPost } = this.props,
+          { text, showEmojis, errors } = this.state
 
     let youtubeUrl = nestedComment.url
     youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
       ? youtubeUrl = nestedComment.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                                .replace(/watch\?v=/gi, 'embed/')
-                                .replace(/&feature=www\.youtube\.com/gi, '')
+                                      .replace(/watch\?v=/gi, 'embed/')
+                                      .replace(/&feature=www\.youtube\.com/gi, '')
       : youtubeUrl = null
 
     return !editPost ? (
@@ -141,7 +134,7 @@ class NestedCommentBody extends Component {
           : nestedComment.media
             ? <div>
                 <div style={{ position: 'relative' }}>
-                  <form onSubmit={this.editNestedComment}>
+                  <form>
                     <TextAreaForm
                       placeholder="Edit comment"
                       name='text'
@@ -153,9 +146,9 @@ class NestedCommentBody extends Component {
                     />
                     <div className='edit_icon_container'>
                       <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
-                      <button type='submit' className='comment_form_btns'>
-                        <Icon icon='far fa-paper-plane' title='submit'/>
-                      </button>
+                      {/* <button type='submit' className='comment_form_btns'> */}
+                        <Icon icon='far fa-paper-plane' title='submit' toggleIcon={this.editNestedComment}/>
+                      {/* </button> */}
                     </div>
                   </form>
                 </div>
@@ -216,6 +209,15 @@ class NestedCommentBody extends Component {
 
     )
   }
+}
+
+NestedCommentBody.propTypes = {
+  comment: PropTypes.object.isRequired,
+  nestedComment: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
+  editPost: PropTypes.bool.isRequired,
+  modalShow: PropTypes.func.isRequired,
+  toggleEditPost: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

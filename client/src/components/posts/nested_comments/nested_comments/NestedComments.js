@@ -34,7 +34,7 @@ export default class NestedComments extends Component {
       nestedCommentLikesPopupHandler,
       userNameOrAvatarClickedLikesPopup,
       showNestedCommentsLikes,
-      showNestedCommentsLikesPopup,
+      // showNestedCommentsLikesPopup,
       liked,
       auth,
       onLikeNestedCommentClick,
@@ -65,7 +65,6 @@ export default class NestedComments extends Component {
                 userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
               />
               <NestedCommentBody
-                auth={auth}
                 nestedComment={nestedComment} 
                 postId={postId}
                 comment={comment}

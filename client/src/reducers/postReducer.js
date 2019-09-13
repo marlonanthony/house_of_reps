@@ -134,26 +134,6 @@ export default function(state = initialState, action) {
         loading: false
       }
 
-    case EDIT_NESTED_COMMENT:
-      return {
-        ...state,
-        posts: state.posts.map(post => {
-          if(post._id === action.payload.postId) {
-            post.comments.forEach(comment => {
-              if(comment._id === action.payload.commentId) {
-                comment.comments.forEach(nestedComment => {
-                  if(nestedComment._id === action.payload.nestedCommentId) {
-                    post = action.payload.data
-                  }
-                })
-              }
-            })
-          }
-          return post
-        }),
-        loading: false
-      }
-
     case ADD_COMMENT_LIKE:
       const updateCommentLikes = state.posts.map(post => {
         if(post._id === action.payload.postId) {
@@ -217,6 +197,26 @@ export default function(state = initialState, action) {
         ...state,
         posts: updatePost,
         loading: false 
+      }
+
+    case EDIT_NESTED_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if(post._id === action.payload.postId) {
+            post.comments.forEach(comment => {
+              if(comment._id === action.payload.commentId) {
+                comment.comments.forEach(nestedComment => {
+                  if(nestedComment._id === action.payload.nestedCommentId) {
+                    post = action.payload.data
+                  }
+                })
+              }
+            })
+          }
+          return post
+        }),
+        loading: false
       }
 
     case REMOVE_NESTED_COMMENT:

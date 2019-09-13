@@ -18,7 +18,7 @@ const NestedCommentNameAvatarDate = ({ nestedComment, userNameOrAvatarClickedLik
       <p className='nested_comment_date'>
         <Moment format='ddd, ll LT'>{ nestedComment.date }</Moment>
       </p>
-      <i className='material-icons post_item_more_vert' onClick={() => moreVertClicked(nestedComment._id)}>
+      <i className='material-icons post_item_more_vert' onClick={moreVertClicked}>
         more_vert
       </i>
     </div>
