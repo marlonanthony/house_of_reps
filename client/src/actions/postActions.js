@@ -3,6 +3,7 @@ import {
   ADD_POST,
   EDIT_POST,
   EDIT_COMMENT,
+  EDIT_NESTED_COMMENT,
   GET_ERRORS,
   GET_POSTS,
   POST_LOADING,
@@ -353,6 +354,26 @@ export const addNestedComment = (postId, commentId, nestedCommentData) => async 
       payload: err.response.data 
     })
   }
+}
+
+// Edit Nested Comment
+export const editNestedCommentAction = (postId, commentId, nestedCommentId, editedNestedComment) => async dispatch => {
+  try {
+    dispatch(setPostLoading())
+    const res = await axios.put(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`, editedNestedComment)
+    dispatch({
+      type: EDIT_NESTED_COMMENT,
+      payload: {
+        data: res.data,
+        postId,
+        commentId,
+        nestedCommentId
+      }
+    })
+  } catch(err) { dispatch({
+    type: GET_ERRORS,
+    payload: err.response.data
+  }) }
 }
 
 // Delete NestedComment

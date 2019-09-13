@@ -2,6 +2,7 @@ import {
   ADD_POST,
   EDIT_POST,
   EDIT_COMMENT,
+  EDIT_NESTED_COMMENT,
   GET_POSTS,
   POST_LOADING, 
   DELETE_POST, 
@@ -125,6 +126,26 @@ export default function(state = initialState, action) {
             post.comments.forEach(comment => {
               if(comment._id === action.payload.commentId) {
                 post = action.payload.data
+              }
+            })
+          }
+          return post
+        }),
+        loading: false
+      }
+
+    case EDIT_NESTED_COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if(post._id === action.payload.postId) {
+            post.comments.forEach(comment => {
+              if(comment._id === action.payload.commentId) {
+                comment.comments.forEach(nestedComment => {
+                  if(nestedComment._id === action.payload.nestedCommentId) {
+                    post = action.payload.data
+                  }
+                })
               }
             })
           }
