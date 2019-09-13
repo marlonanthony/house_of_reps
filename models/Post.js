@@ -113,6 +113,21 @@ const PostSchema = new Schema({
           avatar: {
             type: String 
           },
+          image: {
+            type: String
+          },
+          title: {
+            type: String
+          },
+          description: {
+            type: String
+          },
+          url: {
+            type: String
+          },
+          media: {
+            type: String
+          },
           likes: [
             {
               user: {

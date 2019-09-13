@@ -49,8 +49,8 @@ class CommentForm extends Component {
 
   onPaste = e => {
     e.stopPropagation() 
-    let clipboardData = e.clipboardData || window.clipboardData
-    let pastedData = clipboardData.getData('Text') 
+    let clipboardData = e.clipboardData || window.clipboardData,
+        pastedData = clipboardData.getData('Text') 
 
     // Check for URL 
     const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/

@@ -363,18 +363,24 @@ router.post('/comment/comment/:id/:comment_id', passport.authenticate('jwt', { s
   if(!isValid) {
     return res.status(400).json(errors) 
   }
+  const newComment = {
+    text: req.body.text,
+    name: req.body.name,
+    handle: req.body.handle,
+    avatar: req.body.avatar,
+    user: req.user.id,
+    image: req.body.image,
+    title: req.body.title,
+    description: req.body.description,
+    url: req.body.url,
+    media: req.body.media
+  }
+
   Post.findById(req.params.id).then(post => {
-    const newComment = {
-      text: req.body.text,
-      name: req.body.name,
-      handle: req.body.handle,
-      avatar: req.body.avatar,
-      user: req.user.id,
-    }
     post.comments.map(comment => {
       if(comment._id.toString() === req.params.comment_id) {
         comment.comments.unshift(newComment) 
-        post.save().then(post => res.json(post)) 
+        post.save().then(post => res.json(post))
 
         // Add to notifications array
         Profile.findOne({ user: comment.user }).then(profile => {

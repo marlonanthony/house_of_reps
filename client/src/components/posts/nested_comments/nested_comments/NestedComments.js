@@ -28,6 +28,7 @@ export default function NestedComments({
   return comment.comments && showNestedComments && (
     <section className='nested_comments'>
       <NestedCommentForm
+        auth={auth}
         showForm={showForm}
         showNestedSubmitBtnHandler={showNestedSubmitBtnHandler}
         postId={postId}
