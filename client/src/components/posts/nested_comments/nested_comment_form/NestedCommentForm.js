@@ -144,7 +144,7 @@ class NestedCommentForm extends Component {
       media,
       showPreview 
     } = this.state
-    console.log(comment._id, postId)
+
     return showForm && (
       <>
         <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
@@ -164,11 +164,7 @@ class NestedCommentForm extends Component {
             error={errors.text}
           />
           { showNestedSubmitBtn && 
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center'
-            }}>
+            <div className='nested_comments_form_buttons'>
               <Dropzone 
                 style={{ border: 'none' }}
                 multiple={false}

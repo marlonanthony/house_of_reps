@@ -4,22 +4,10 @@
   background: none;
 }
 
-.nested_comment_textarea {
-  background: #a5a8aa;
-  color: var(--primary-color);
-  border-radius: 2px;
-  padding: 10px; 
-  margin-bottom: 5px;
-  font-size: 13px;
-  outline: none;
-}
-.nested_comment_textarea::placeholder {
-  color: var(--primary-color);
-}
-
 /* form buttons */
-.nested_comment_form > div {
-  padding: 10px 0px; 
-  display: flex; 
-  justify-content: center;
+.nested_comments_form_buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 5px;
 }
