@@ -17,10 +17,10 @@
   margin: 15px auto; 
   padding: 10px 0px;
 }
-.notifications_container::before {
+/* .notifications_container::before {
   content: 'Seen';
   padding-left: 10px;
-}
+} */
 
 .new_notification {
   width: 90%;
@@ -32,7 +32,7 @@
   border-radius: 2px;
 }
 .new_notification::before {
-  content: '\01F525 New \01F525';
+  content: '\01F525';
   padding-left: 10px;
 }
 
