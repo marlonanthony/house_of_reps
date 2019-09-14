@@ -17,10 +17,6 @@
   margin: 15px auto; 
   padding: 10px 0px;
 }
-/* .notifications_container::before {
-  content: 'Seen';
-  padding-left: 10px;
-} */
 
 .new_notification {
   width: 90%;
