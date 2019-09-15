@@ -34,7 +34,8 @@ class CommentItem extends Component {
     showCommentLikesPopup: false,
     showNestedCommentsLikesPopup: false,
     nestedcommentid: '',
-    editPost: false
+    editPost: false,
+    showPopup: false,
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -127,8 +128,12 @@ class CommentItem extends Component {
   
   toggleEditPost = () => this.setState(prevState => ({ editPost: !prevState.editPost }))
 
+  popupHandler = () => {
+    this.setState(prevState => ({ showPopup: !prevState.showPopup }))
+  }
+
   render() {
-    const { postId, auth } = this.props 
+    const { postId, auth, profile, profiles } = this.props 
     const {
       comment, 
       showCommentLikesPopup, 
@@ -139,7 +144,8 @@ class CommentItem extends Component {
       showNestedSubmitBtn,
       showNestedCommentsLikes,
       showNestedCommentsLikesPopup,
-      editPost
+      editPost,
+      showPopup
     } = this.state
 
     if(!comment) return null
@@ -152,6 +158,10 @@ class CommentItem extends Component {
         </CommentsModal>
         <div className='comment-feed-container'>
           <NameAvatarDate
+            showPopup={showPopup}
+            popupHandler={this.popupHandler}
+            postId={postId}
+            profiles={profiles}
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}

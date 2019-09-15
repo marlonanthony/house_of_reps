@@ -1,9 +1,19 @@
 import React from 'react'
 import Moment from 'react-moment'
 
+import PostFeedPopup from '../../../../UI/popup_menu/PostFeedPopup'
+
 import './NameAvatarDate.css'
 
-const NameAvatarDate = ({ comment, userNameOrAvatarClickedLikesPopup, moreVertClicked }) => (
+const NameAvatarDate = ({
+  showPopup,
+  popupHandler,
+  profiles,
+  postId,
+  comment, 
+  userNameOrAvatarClickedLikesPopup, 
+  moreVertClicked 
+}) => (
   <div className='comment_avatar_name_date' style={{ position: 'relative' }}>
     <img 
       id='comment-feed-avatar' 
@@ -12,9 +22,14 @@ const NameAvatarDate = ({ comment, userNameOrAvatarClickedLikesPopup, moreVertCl
       alt='user avatar' 
     />
     <div id='comment_name_and_date_container'>
-      <p className='comment-feed-name' onClick={() => userNameOrAvatarClickedLikesPopup(comment.handle)}>
-        {comment.name}
-      </p>
+      <PostFeedPopup
+        comment={comment}
+        popupHandler={popupHandler}
+        profilesArr={profiles}
+        postId={postId}
+        showPopup={showPopup}
+        userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
+      />
       <p id='comment-feed-date'><Moment format='ddd, ll LT'>{comment.date}</Moment></p>
     </div>
     <i className="material-icons post_item_more_vert" onClick={moreVertClicked}>

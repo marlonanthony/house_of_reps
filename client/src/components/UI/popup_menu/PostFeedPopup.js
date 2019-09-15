@@ -2,15 +2,19 @@ import React from 'react'
 import './Popup.css'
 
 export default function PostFeedPopup(props) {
-  const { 
-    profile: { profiles }, 
+  const {
+    profilesArr,
+    comment,
+    profile, 
     popupHandler, 
-    post, 
+    post,
     showPopup, 
     userNameOrAvatarClickedLikesPopup 
   } = props
+
+  let profileInfo
   
-  const profileInfo = profiles && profiles.map(profile => (
+  if(!comment && !profilesArr) profileInfo = profile.profiles && profile.profiles.map(profile => (
     profile.user._id === post.user && 
       <div className='postfeed_popup_profile_info' key={profile.user._id}>
         <img 
@@ -27,12 +31,31 @@ export default function PostFeedPopup(props) {
         </a>
       </div>
   ))
+  else profileInfo = profilesArr && profilesArr.map(profile => (
+    profile.user._id === comment.user && 
+      <div className='postfeed_popup_profile_info' key={profile.user._id}>
+        <img 
+          onClick={() => userNameOrAvatarClickedLikesPopup(comment.handle)} 
+          className='popup-profile-img' 
+          src={ comment.avatar } 
+          alt={ comment.name } />
+        <span onClick={() => userNameOrAvatarClickedLikesPopup(comment.handle)}>
+          { comment.name }
+        </span>
+        <small>{ profile.bio }</small> 
+        <a href={profile.website} target='_blank' rel='noopener noreferrer'>
+          <p>{ profile.website }</p>
+        </a>
+      </div>
+  ))
 
   return (
     <div className='popup' onMouseOver={popupHandler} onMouseOut={popupHandler}>
-      <p className='post_name' // PostItem.css
-        onClick={() => userNameOrAvatarClickedLikesPopup(post.handle)}>
-        { post.name }
+      <p className={ !comment ? 'post_name' : 'comment-feed-name' } // post_name is in PostItem.css
+        onClick={() => !comment 
+        ? userNameOrAvatarClickedLikesPopup(post.handle)
+        : userNameOrAvatarClickedLikesPopup(comment.handle)}>
+        { !comment ? post.name : comment.name }
       </p>
       <div className={showPopup ? 'show popupcontent' : 'popupcontent'}>
         { profileInfo && profileInfo }
