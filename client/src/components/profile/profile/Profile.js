@@ -19,15 +19,16 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile, loading } = this.props.profile
+    const { profile, loading, profiles } = this.props.profile
     const { user } = this.props.auth
     let profileContent
 
     if(!profile || loading) {
       profileContent = <Spinner />
     } else {
-      profileContent = <ProfileHeader profile={profile} user={user} />
+      profileContent = <ProfileHeader profiles={profiles} profile={profile} user={user} />
     }
+    
     return (
       <div className='profile-container'>
         <div className='profile'>

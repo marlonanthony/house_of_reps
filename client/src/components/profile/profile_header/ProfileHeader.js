@@ -8,7 +8,7 @@ import Banners from '../profile_assets/Banners'
 import ProfileAbout from '../profile_assets/ProfileAbout'
 import './ProfileHeader.css'
 
-export default function ProfileHeader({ profile, user }) {
+export default function ProfileHeader({ profiles, profile, user }) {
   return (
     <div className='profile-header-container'>
       <div className="profile-header">
@@ -23,7 +23,7 @@ export default function ProfileHeader({ profile, user }) {
           <ProfileIcons profile={profile} />
           <Banners />
         </div>
-        <ProfilePost />
+        <ProfilePost profiles={profiles} />
         <ProfileCreds venues={profile.venues} />
       </div>
     </div>

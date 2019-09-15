@@ -53,8 +53,8 @@ export default function PostFeedPopup(props) {
     <div className='popup' onMouseOver={popupHandler} onMouseOut={popupHandler}>
       <p className={ !comment ? 'post_name' : 'comment-feed-name' } // post_name is in PostItem.css
         onClick={() => !comment 
-        ? userNameOrAvatarClickedLikesPopup(post.handle)
-        : userNameOrAvatarClickedLikesPopup(comment.handle)}>
+          ? userNameOrAvatarClickedLikesPopup(post.handle)
+          : userNameOrAvatarClickedLikesPopup(comment.handle)}>
         { !comment ? post.name : comment.name }
       </p>
       <div className={showPopup ? 'show popupcontent' : 'popupcontent'}>

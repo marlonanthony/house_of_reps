@@ -133,11 +133,11 @@ class CommentItem extends Component {
   }
 
   render() {
-    const { postId, auth, profile, profiles } = this.props 
+    const { postId, auth, profiles } = this.props 
     const {
       comment, 
       showCommentLikesPopup, 
-      showModal, 
+      showModal,
       liked, 
       showForm,
       showNestedComments,
@@ -160,7 +160,6 @@ class CommentItem extends Component {
           <NameAvatarDate
             showPopup={showPopup}
             popupHandler={this.popupHandler}
-            postId={postId}
             profiles={profiles}
             comment={comment}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}

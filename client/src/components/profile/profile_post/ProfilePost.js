@@ -28,13 +28,14 @@ class ProfilePost extends Component {
   }
 
   render() {
-    const { posts, loading } = this.props.post 
+    const { posts, loading } = this.props.post
+    const { profiles } = this.props
     let postContent 
     if(!posts || loading) {
       postContent = null
     } else {
       // postContent = posts.map(post => <PostItem key={post._id} post={post} />)
-      postContent = <PostFeed posts={posts} />
+      postContent = <PostFeed profiles={profiles} posts={posts} />
     }
     return (
       <div id='profile-feed'>
@@ -64,5 +65,5 @@ export default connect(mapStateToProps, {
   getPosts, 
   getMorePosts, 
   getProfilePosts, 
-  getMoreProfilePosts 
+  getMoreProfilePosts
 })(withRouter(ProfilePost))

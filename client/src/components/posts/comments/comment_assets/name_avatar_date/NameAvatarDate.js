@@ -2,14 +2,12 @@ import React from 'react'
 import Moment from 'react-moment'
 
 import PostFeedPopup from '../../../../UI/popup_menu/PostFeedPopup'
-
 import './NameAvatarDate.css'
 
 const NameAvatarDate = ({
   showPopup,
   popupHandler,
   profiles,
-  postId,
   comment, 
   userNameOrAvatarClickedLikesPopup, 
   moreVertClicked 
@@ -26,7 +24,6 @@ const NameAvatarDate = ({
         comment={comment}
         popupHandler={popupHandler}
         profilesArr={profiles}
-        postId={postId}
         showPopup={showPopup}
         userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
       />
