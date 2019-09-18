@@ -184,7 +184,12 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), async
     if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
       return res.status(400).json({ alreadyliked: 'User already liked this post' })
     }
-    post.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar, handle: req.user.handle }) 
+    post.likes.push({
+      user: req.user.id, 
+      name: req.user.name, 
+      avatar: req.user.avatar, 
+      handle: req.user.handle 
+    }) 
     const savedPost = await post.save()
     // Add user id name and notification message to notification array
     const profile = await Profile.findOne({ user: post.user })
