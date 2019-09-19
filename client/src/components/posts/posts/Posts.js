@@ -255,4 +255,4 @@ export default connect(mapStateToProps, {
   getMatchingPosts,
   getPostsByHashtag,
   getMorePostsByHashtag
-})(withRouter(React.memo(Posts)))
+})(withRouter(Posts))
