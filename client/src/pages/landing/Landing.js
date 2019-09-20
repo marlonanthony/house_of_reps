@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
@@ -6,34 +6,33 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions' 
 import './Landing.css'
 
-class Landing extends Component {
-  componentDidMount() {
-    if(this.props.auth.isAuthenticated) {
-      this.props.history.push('/feed')
+const Landing = ({ auth, loginUser, errors, ...props }) => {
+  useEffect(() => {
+    if(auth.isAuthenticated) {
+      props.history.push('/feed')
     }
-  }
+  }, [auth])
 
-  render() {
-    return (
-      <main>
-        <div className='fade-pic'>
-          <div className="dark-overlay">
-            <div className="landing_content">
-              <div>
-                <h1>House of Reps</h1>
-                <h6>Community of DJs by DJs for DJs</h6>
-                <Link to='/login'><button className='landing_buttons'>Sign In</button></Link>
-                <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> 
-              </div>
-              <footer className='landing_footer'>
-                Copyright &copy; 2019 House of Reps
-              </footer>
+
+  return (
+    <main>
+      <div className='fade-pic'>
+        <div className="dark-overlay">
+          <div className="landing_content">
+            <div>
+              <h1>House of Reps</h1>
+              <h6>Community of DJs by DJs for DJs</h6>
+              <Link to='/login'><button className='landing_buttons'>Sign In</button></Link>
+              <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> 
             </div>
+            <footer className='landing_footer'>
+              Copyright &copy; 2019 House of Reps
+            </footer>
           </div>
         </div>
-      </main>
-    )
-  }
+      </div>
+    </main>
+  )
 }
 
 Landing.propTypes = {
