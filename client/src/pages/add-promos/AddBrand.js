@@ -5,17 +5,18 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 
-import { addStore } from '../../actions/profileActions'
-import Input from '../common/inputs/Input'
-import './AddCertifiedStore.css'
+import { addStore, addPerk, addBrand } from '../../actions/profileActions'
+import Input from '../../components/common/inputs/Input'
+import '../../components/UI/dropzone/Dropzone.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-class AddCertifiedStore extends Component {
+class AddBrand extends Component {
   state = {
     image: '',
     url: '',
+    description: '',
     errors: {},
     uploadedFileCloudinaryUrl: '',
     uploadedFile: ''
@@ -34,13 +35,15 @@ class AddCertifiedStore extends Component {
   onSubmit = e => {
     e.preventDefault()
     
-    const storeData = {
+    const brandData = {
       image: this.state.image,
-      url: this.state.url
+      url: this.state.url,
+      description: this.state.description
     }
 
-    this.props.addStore(storeData, this.props.history)
+    this.props.addBrand(brandData, this.props.history)
   }
+
 
   onImageDrop = files => {
     this.setState({ uploadedFile: files[0]})
@@ -62,17 +65,17 @@ class AddCertifiedStore extends Component {
   }
 
   render() {
-    const { errors } = this.state
-    
+    const { errors } = this.state 
     return (
-      <div className=''>
+      <div className='add-djpool'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h2>Add Store</h2>
-        <div className='stores_input_wrapper'>
-          <div className='certified-store-dropzone'>
+        <h2>Add Brand</h2>
+        {/* setting input div classname to djpools for lack of repitition */}
+        <div className='djpools_input_wrapper'>
+          <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
-                className='dropzone' // In UI/dropzone
+                className='dropzone'  // In UI/dropzone
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>
@@ -105,8 +108,16 @@ class AddCertifiedStore extends Component {
               error={ errors.image }
               placeholder='image'
             />
-            <div className='certified-store-submit-btn-containing-div'>
-              <input type="submit" value='Submit' id='add-djpools-submit-button'/>
+            <Input 
+              name='description'
+              type='text'
+              value={ this.state.description }
+              onChange={ this.onChange }
+              error={ errors.description }
+              placeholder='description'
+            />
+            <div style={{textAlign: 'center'}}>
+              <input type="submit" value='Submit' id='add-djpools-submit-button' />
             </div>
           </form>
         </div>
@@ -115,10 +126,12 @@ class AddCertifiedStore extends Component {
   }
 }
 
-AddCertifiedStore.propTypes = {
+AddBrand.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  addStore: PropTypes.func.isRequired
+  addStore: PropTypes.func.isRequired,
+  addPerk: PropTypes.func.isRequired,
+  addBrand: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -127,4 +140,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { addStore })(withRouter(AddCertifiedStore))
+export default connect(mapStateToProps, { addStore, addPerk, addBrand })(withRouter(AddBrand))

@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import request from 'superagent' 
 
 import { addVenue } from '../../actions/profileActions'
-import Input from '../common/inputs/Input'
-import TextArea from '../common/textarea/TextArea'
+import Input from '../../components/common/inputs/Input'
+import TextArea from '../../components/common/textarea/TextArea'
 import './AddVenue.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'

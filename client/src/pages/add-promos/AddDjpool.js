@@ -5,17 +5,17 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone' 
 import request from 'superagent'
 
-import { addStore, addPerk } from '../../actions/profileActions'
-import Input from '../common/inputs/Input'
+import { addDjpool } from '../../actions/profileActions'
+import Input from '../../components/common/inputs/Input'
+import './AddDjpool.css' 
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-class AddPerk extends Component {
+class AddDjpool extends Component {
   state = {
     image: '',
     url: '',
-    description: '',
     errors: {},
     uploadedFileCloudinaryUrl: '',
     uploadedFile: ''
@@ -34,13 +34,12 @@ class AddPerk extends Component {
   onSubmit = e => {
     e.preventDefault()
     
-    const perkData = {
+    const djpoolData = {
       image: this.state.image,
-      url: this.state.url,
-      description: this.state.description
+      url: this.state.url
     }
 
-    this.props.addPerk(perkData, this.props.history)
+    this.props.addDjpool(djpoolData, this.props.history)
   }
 
   onImageDrop = files => {
@@ -65,15 +64,14 @@ class AddPerk extends Component {
   render() {
     const { errors } = this.state 
     return (
-      /*  Set classNames to djpools for lack of repitition  */ 
-      <div className='add-djpool'>
+      <div className=''>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h2>Add Perk</h2>
+        <h2>Add DJ Pool</h2>
         <div className='djpools_input_wrapper'>
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
               <Dropzone 
-                className='dropzone'  // In UI/dropzone
+                className='dropzone' // In UI/dropzone
                 multiple={false}
                 accept='image/*'
                 onDrop={this.onImageDrop}>
@@ -96,7 +94,7 @@ class AddPerk extends Component {
               value={ this.state.url }
               onChange={ this.onChange }
               error={ errors.url }
-              placeholder='URL'
+              placeholder='DJ Pool URL'
             />
             <Input 
               name='image'
@@ -104,18 +102,10 @@ class AddPerk extends Component {
               value={ this.state.image }
               onChange={ this.onChange }
               error={ errors.image }
-              placeholder='image'
+              placeholder='Image URL'
             />
-            <Input 
-              name='description'
-              type='text'
-              value={ this.state.description }
-              onChange={ this.onChange }
-              error={ errors.description }
-              placeholder='description'
-            />
-            <div style={{textAlign: 'center'}}>
-              <input type="submit" value='Submit' id='add-djpools-submit-button' />
+            <div className='add-djpool-submit-btn-containing-div'>
+              <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
             </div>
           </form>
         </div>
@@ -124,11 +114,10 @@ class AddPerk extends Component {
   }
 }
 
-AddPerk.propTypes = {
+AddDjpool.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  addStore: PropTypes.func.isRequired,
-  addPerk: PropTypes.func.isRequired
+  addDjpool: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -137,4 +126,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { addStore, addPerk })(withRouter(AddPerk))
+export default connect(mapStateToProps, { addDjpool })(withRouter(AddDjpool))

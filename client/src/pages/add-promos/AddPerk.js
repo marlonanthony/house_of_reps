@@ -3,16 +3,15 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
 import PropTypes from 'prop-types' 
 import Dropzone from 'react-dropzone' 
-import request from 'superagent' 
+import request from 'superagent'
 
-import { addStore, addPerk, addBrand } from '../../actions/profileActions'
-import Input from '../common/inputs/Input'
-import '../UI/dropzone/Dropzone.css'
+import { addStore, addPerk } from '../../actions/profileActions'
+import Input from '../../components/common/inputs/Input'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-class AddBrand extends Component {
+class AddPerk extends Component {
   state = {
     image: '',
     url: '',
@@ -35,15 +34,14 @@ class AddBrand extends Component {
   onSubmit = e => {
     e.preventDefault()
     
-    const brandData = {
+    const perkData = {
       image: this.state.image,
       url: this.state.url,
       description: this.state.description
     }
 
-    this.props.addBrand(brandData, this.props.history)
+    this.props.addPerk(perkData, this.props.history)
   }
-
 
   onImageDrop = files => {
     this.setState({ uploadedFile: files[0]})
@@ -67,10 +65,10 @@ class AddBrand extends Component {
   render() {
     const { errors } = this.state 
     return (
+      /*  Set classNames to djpools for lack of repitition  */ 
       <div className='add-djpool'>
         <i onClick={this.props.history.goBack} id='addvenue-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
-        <h2>Add Brand</h2>
-        {/* setting input div classname to djpools for lack of repitition */}
+        <h2>Add Perk</h2>
         <div className='djpools_input_wrapper'>
           <div className='djpools-dropzone'>
             <div className='FileUpload'>
@@ -93,13 +91,13 @@ class AddBrand extends Component {
           </div>
           <form onSubmit={ this.onSubmit }>
             <Input 
-                name='url'
-                type='text'
-                value={ this.state.url }
-                onChange={ this.onChange }
-                error={ errors.url }
-                placeholder='URL'
-              />
+              name='url'
+              type='text'
+              value={ this.state.url }
+              onChange={ this.onChange }
+              error={ errors.url }
+              placeholder='URL'
+            />
             <Input 
               name='image'
               type='text'
@@ -126,12 +124,11 @@ class AddBrand extends Component {
   }
 }
 
-AddBrand.propTypes = {
+AddPerk.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   addStore: PropTypes.func.isRequired,
-  addPerk: PropTypes.func.isRequired,
-  addBrand: PropTypes.func.isRequired,
+  addPerk: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -140,4 +137,4 @@ const mapStateToProps = state => ({
   auth: state.auth 
 })
 
-export default connect(mapStateToProps, { addStore, addPerk, addBrand })(withRouter(AddBrand))
+export default connect(mapStateToProps, { addStore, addPerk })(withRouter(AddPerk))
