@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
@@ -43,83 +43,78 @@ if(localStorage.jwtToken) {
   }
 }
 
-class App extends Component {
-  state = {
-    showHighlight: false,
-    currentIndex: 0
+const App = () => {
+
+  const [showHighlight, setShowHighlight] = useState(false),
+        [currentIndex, setCurrentIndex] = useState(0)
+
+  const toggleShowHighlight = (currentIndex) => {
+    setShowHighlight(!showHighlight)
+    setCurrentIndex(index => index || 0)
   }
 
-  toggleShowHighlight = (currentIndex) => {
-    this.setState(prevState => ({
-      showHighlight: !prevState.showHighlight,
-      currentIndex: currentIndex || 0
-    }))
-  }
-
-  render() {
-    return (
-      <Provider store={ store }>
-        <Router>
+  return (
+    <Provider store={ store }>
+      <Router>
+        <>
           <>
-            <>
-              <DropdownMenu />
-              <FixedHighlights 
-                showHighlight={this.state.showHighlight} 
-                toggleShowHighlight={this.toggleShowHighlight}
-                currentIndex={this.state.currentIndex}
-              />
-              <Route exact path='/' component={ Landing } />
-            </>
-            <div>
-              <Route exact path='/register' component={ Register } />
-              <Route exact path='/login' component={ Login } />
-              <Route exact path='/checkemail' component={ ConfirmEmail } />
-              <Route exact path='/verify' component={ Verify } />
-              <Switch>
-                <PrivateRoute exact path='/dashboard' component={ Dashboard } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/add-venue' component={ AddVenue } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/add-djpool' component={ AddDjpool } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/add-store' component={ AddCertifiedStore } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/add-perk' component={ AddPerk } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/add-brand' component={ AddBrand } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/feed' component={() => <Posts toggleShowHighlight={this.toggleShowHighlight} /> } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/profile/:handle' component={ Profile } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/djs' component={ Profiles } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/notifications' component={ Notifications } />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path='/hashtag/:hashtag' component={ Hashtag } />
-              </Switch>
-            </div>
+            <DropdownMenu />
+            <FixedHighlights 
+              showHighlight={showHighlight} 
+              toggleShowHighlight={toggleShowHighlight}
+              currentIndex={currentIndex}
+            />
+            <Route exact path='/' component={ Landing } />
           </>
-        </Router>
-      </Provider>
-    );
-  }
+          <div>
+            <Route exact path='/register' component={ Register } />
+            <Route exact path='/login' component={ Login } />
+            <Route exact path='/checkemail' component={ ConfirmEmail } />
+            <Route exact path='/verify' component={ Verify } />
+            <Switch>
+              <PrivateRoute exact path='/dashboard' component={ Dashboard } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-venue' component={ AddVenue } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-djpool' component={ AddDjpool } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-store' component={ AddCertifiedStore } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-perk' component={ AddPerk } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/add-brand' component={ AddBrand } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/feed' component={() => <Posts toggleShowHighlight={toggleShowHighlight} /> } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/profile/:handle' component={ Profile } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/djs' component={ Profiles } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/notifications' component={ Notifications } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/hashtag/:hashtag' component={ Hashtag } />
+            </Switch>
+          </div>
+        </>
+      </Router>
+    </Provider>
+  )
 }
 
-export default App;
+export default App
