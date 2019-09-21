@@ -13,7 +13,6 @@ const Landing = ({ auth, loginUser, errors, ...props }) => {
     }
   }, [auth])
 
-
   return (
     <main>
       <div className='fade-pic'>
@@ -22,8 +21,12 @@ const Landing = ({ auth, loginUser, errors, ...props }) => {
             <div>
               <h1>House of Reps</h1>
               <h6>Community of DJs by DJs for DJs</h6>
-              <Link to='/login'><button className='landing_buttons'>Sign In</button></Link>
-              <Link to='/register'><button className='landing_buttons'>Sign Up</button></Link> 
+              <Link to='/login'>
+                <button className='landing_buttons'>Sign In</button>
+              </Link>
+              <Link to='/register'>
+                <button className='landing_buttons'>Sign Up</button>
+              </Link> 
             </div>
             <footer className='landing_footer'>
               Copyright &copy; 2019 House of Reps
