@@ -4,7 +4,7 @@ import {
   PROFILE_LOADING, 
   CLEAR_CURRENT_PROFILE,
   LIKE_HIGHLIGHT,
-  ADD_DJPOOL
+  ADD_PROMOS
 } from '../actions/types'
 
 const initialState = {
@@ -43,7 +43,7 @@ export default function(state = initialState, action) {
         profile: action.payload.data,
         loading: false 
       }
-    case ADD_DJPOOL:
+    case ADD_PROMOS:
       return {
         ...state,
         profile: action.payload,

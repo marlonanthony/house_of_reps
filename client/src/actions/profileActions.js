@@ -7,7 +7,7 @@ import {
   SET_CURRENT_USER, 
   GET_PROFILES,
   LIKE_HIGHLIGHT,
-  ADD_DJPOOL
+  ADD_PROMOS
 } from './types' 
 
 // Get current profile
@@ -60,7 +60,12 @@ export const createProfile = (profileData, history) => async dispatch => {
 // Add Venue
 export const addVenue = (venueData, history) => async dispatch => {
   try {
-    await axios.post('/api/profile/venues', venueData)
+    dispatch(setProfileLoading())
+    const res = await axios.post('/api/profile/venues', venueData)
+    dispatch({
+      type: ADD_PROMOS,
+      payload: res.data
+    })
     history.push('/dashboard')
   } catch(err) {
     dispatch({
@@ -94,10 +99,10 @@ export const likeVenue = (venueId, userId) => async dispatch => {
 export const addDjpool = (djpoolData, history) => async dispatch => {
   try {
     dispatch(setProfileLoading())
-    const djPools = await axios.post('/api/profile/djpools', djpoolData)
+    const res = await axios.post('/api/profile/djpools', djpoolData)
     dispatch({
-      type: ADD_DJPOOL,
-      payload: djPools.data
+      type: ADD_PROMOS,
+      payload: res.data
     })
     history.push('/dashboard')
   } catch(err) {
@@ -111,7 +116,12 @@ export const addDjpool = (djpoolData, history) => async dispatch => {
 // Add Certified Store
 export const addStore = (storeData, history) => async dispatch => {
   try {
-    await axios.post('/api/profile/stores', storeData)
+    dispatch(setProfileLoading())
+    const res = await axios.post('/api/profile/stores', storeData)
+    dispatch({
+      type: ADD_PROMOS,
+      payload: res.data
+    })
     history.push('/dashboard')
   } catch(err) {
     dispatch({
@@ -124,7 +134,12 @@ export const addStore = (storeData, history) => async dispatch => {
 // Add Perk
 export const addPerk = (perkData, history) => async dispatch => {
   try {
-    await axios.post('/api/profile/perks', perkData)
+    dispatch(setProfileLoading())
+    const res = await axios.post('/api/profile/perks', perkData)
+    dispatch({
+      type: ADD_PROMOS,
+      payload: res.data
+    })
     history.push('/dashboard')
   } catch(err) {
     dispatch({
@@ -137,7 +152,12 @@ export const addPerk = (perkData, history) => async dispatch => {
 // Add Brand
 export const addBrand = (brandData, history) => async dispatch => {
   try {
-    await axios.post('/api/profile/brands', brandData)
+    dispatch(setProfileLoading())
+    const res = await axios.post('/api/profile/brands', brandData)
+    dispatch({
+      type: ADD_PROMOS,
+      payload: res.data
+    })
     history.push('/dashboard')
   } catch(err) {
     dispatch({
