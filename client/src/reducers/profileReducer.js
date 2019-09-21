@@ -3,7 +3,8 @@ import {
   GET_PROFILES, 
   PROFILE_LOADING, 
   CLEAR_CURRENT_PROFILE,
-  LIKE_HIGHLIGHT
+  LIKE_HIGHLIGHT,
+  ADD_DJPOOL
 } from '../actions/types'
 
 const initialState = {
@@ -41,6 +42,12 @@ export default function(state = initialState, action) {
         ...state,
         profile: action.payload.data,
         loading: false 
+      }
+    case ADD_DJPOOL:
+      return {
+        ...state,
+        profile: action.payload,
+        loading: false
       }
     default: 
       return state 

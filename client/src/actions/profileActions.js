@@ -6,7 +6,9 @@ import {
   GET_ERRORS, 
   SET_CURRENT_USER, 
   GET_PROFILES,
-  LIKE_HIGHLIGHT } from './types' 
+  LIKE_HIGHLIGHT,
+  ADD_DJPOOL
+} from './types' 
 
 // Get current profile
 export const getCurrentProfile = () => async dispatch => {
@@ -91,7 +93,12 @@ export const likeVenue = (venueId, userId) => async dispatch => {
 // Add Djpool
 export const addDjpool = (djpoolData, history) => async dispatch => {
   try {
-    await axios.post('/api/profile/djpools', djpoolData)
+    dispatch(setProfileLoading())
+    const djPools = await axios.post('/api/profile/djpools', djpoolData)
+    dispatch({
+      type: ADD_DJPOOL,
+      payload: djPools.data
+    })
     history.push('/dashboard')
   } catch(err) {
     dispatch({

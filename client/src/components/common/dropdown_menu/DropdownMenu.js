@@ -14,7 +14,7 @@ class DropdownMenu extends Component {
   state = { displayMenu: false }
 
   componentDidMount() {
-    this.props.getCurrentProfile() 
+    if(!this.props.auth.isAuthenticated) this.props.getCurrentProfile() 
     document.addEventListener('click', this.onOutsideClick, true) 
   }
 

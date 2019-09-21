@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
-import { Link } from 'react-router-dom'
 
+import DashboardContent from './DashboardContent'
 import { 
   getCurrentProfile, 
   deleteAccount, 
@@ -12,91 +12,56 @@ import {
   deleteBrand,
   deleteVenue
 } from '../../actions/profileActions'
-import Spinner from '../common/Spinner'
-import ProfileActions from './ProfileActions'
-import Venues from './Venues'
-import AdContent from './AdContent'
 import './Dashboard.css'
 
-class Dashboard extends Component {
-  componentDidMount() {
-    this.props.getCurrentProfile()
+const Dashboard = ({ auth, ...props}) => {
+
+  useEffect(() => {
+    if(!props.profile.profile) props.getCurrentProfile()
+  }, [])
+
+  const onDeleteClick = () => {
+    props.deleteAccount()
   }
 
-  onDeleteClick = () => {
-    this.props.deleteAccount()
+  const onDeleteDjpool = id => {
+    props.deleteDjpool(id) 
   }
 
-  onDeleteDjpool = id => {
-    this.props.deleteDjpool(id) 
+  const onDeleteStore = id => {
+    props.deleteStore(id) 
   }
 
-  onDeleteStore = id => {
-    this.props.deleteStore(id) 
+  const onDeletePerk = id => {
+    props.deletePerk(id) 
   }
 
-  onDeletePerk = id => {
-    this.props.deletePerk(id) 
+  const onDeleteBrand = id => {
+    props.deleteBrand(id) 
   }
 
-  onDeleteBrand = id => {
-    this.props.deleteBrand(id) 
+  const onDeleteVenue = id => {
+    props.deleteVenue(id) 
   }
 
-  onDeleteVenue = id => {
-    this.props.deleteVenue(id) 
-  }
+  const { user } = auth
+  const { profile, loading } = props.profile
 
-  render() {
-    const { user } = this.props.auth
-    const { profile, loading } = this.props.profile
 
-    let dashboardContent
 
-    if(profile === null || loading) {
-      dashboardContent = <Spinner />
-    } else {
-      if(Object.keys(profile).length > 0) {
-        dashboardContent = (
-          <div style={{ textAlign: 'center'}}>
-            <div className='handle_actions_container'>
-              <Link to={`/profile/${profile.handle}`} >@{ profile.handle }</Link>
-              <ProfileActions profile={profile} />
-            </div>
-            <AdContent
-              user={user}
-              profile={profile} 
-              onDeleteBrand={this.onDeleteBrand}
-              onDeleteDjpool={this.onDeleteDjpool}
-              onDeletePerk={this.onDeletePerk}
-              onDeleteStore={this.onDeleteStore}
-            />
-            <Venues venues={profile.venues} onDeleteVenue={this.onDeleteVenue} />
-            <button
-              onClick={ this.onDeleteClick } 
-              id="dashboard-delete-btn" 
-              title='delete profile'>
-              Delete My Account
-            </button>
-          </div>
-        )
-      } else {
-        dashboardContent = (
-          <div className='dashboard_no_profile'>
-            <p className="">{ user.name }</p>
-            <p>You have not yet set up a profile, please add some info</p>
-            <Link to='/create-profile' className=''>Create Profile</Link>
-          </div>
-        )
-      }
-    }
-
-    return (
-      <div id='dashboard'>
-        { dashboardContent }
-      </div>
-    )
-  }
+  return (
+    <DashboardContent 
+      profile={ profile }
+      loading={ loading }
+      user={ user }
+      onDeleteBrand={ onDeleteBrand }
+      onDeleteDjpool={ onDeleteDjpool }
+      onDeletePerk={ onDeletePerk }
+      onDeleteStore={ onDeleteStore }
+      onDeleteVenue={ onDeleteVenue }
+      onDeleteClick={ onDeleteClick }
+    />
+  )
 }
 
 Dashboard.propTypes = {

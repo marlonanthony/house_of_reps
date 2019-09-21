@@ -39,7 +39,8 @@ const Venues = ({ venues, onDeleteVenue }) => {
 }
 
 Venues.propTypes = {
-  onDeleteVenue: PropTypes.func.isRequired
+  onDeleteVenue: PropTypes.func.isRequired,
+  venues: PropTypes.array.isRequired
 }
 
 export default Venues
