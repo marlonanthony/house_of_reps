@@ -52,7 +52,7 @@ class App extends Component {
   toggleShowHighlight = (currentIndex) => {
     this.setState(prevState => ({
       showHighlight: !prevState.showHighlight,
-      currentIndex
+      currentIndex: currentIndex || 0
     }))
   }
 
