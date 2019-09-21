@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import ProfileActions from './ProfileActions'
 import Venues from './Venues'
-import AdContent from './AdContent'
+import PromoContent from './PromoContent'
 
 export default function DashboardContent({
   profile,
@@ -28,7 +28,7 @@ export default function DashboardContent({
             <Link to={`/profile/${profile.handle}`} >@{ profile.handle }</Link>
             <ProfileActions user={user} />
           </div>
-          <AdContent
+          <PromoContent
             user={user}
             profile={profile} 
             onDeleteBrand={onDeleteBrand}

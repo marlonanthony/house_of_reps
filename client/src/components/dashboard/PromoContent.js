@@ -1,18 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function AdContent(props) {
-  return props.user.isAdmin &&
+export default function PromoContent({
+  user,
+  profile,
+  onDeleteBrand,
+  onDeleteDjpool,
+  onDeletePerk,
+  onDeleteStore
+}) {
+  return user.isAdmin &&
     <>
       <div className='dashboard_ad_container'>
         <h3>DJ Pools</h3>
         <div>
-        { props.profile.djpools.map(val => (
+        { profile.djpools.map(val => (
           <div key={val._id} className='ad_img_btn_container'>
             <img src={val.image} alt={val._id} />
             <br />
             <button 
               id='djpools_delete_btn'
-              onClick={() => props.onDeleteDjpool(val._id) }>
+              onClick={() => onDeleteDjpool(val._id) }>
                 Delete
             </button>
           </div>
@@ -23,13 +31,13 @@ export default function AdContent(props) {
       <div className='dashboard_ad_container'>
         <h3>Certified Stores</h3>
         <div>
-        { props.profile.stores.map(val => (
+        { profile.stores.map(val => (
           <div key={val._id} className='ad_img_btn_container'>
             <img src={val.image} alt={val._id} />
             <br />
             <button 
               id='djpools_delete_btn'
-              onClick={() => props.onDeleteStore(val._id) }>
+              onClick={() => onDeleteStore(val._id) }>
                 Delete
             </button>
           </div>
@@ -39,13 +47,13 @@ export default function AdContent(props) {
       <div className='dashboard_ad_container'>
         <h3>Perks</h3>
         <div>
-        { props.profile.perks.map(val => (
+        { profile.perks.map(val => (
           <div key={val._id} className='ad_img_btn_container'>
             <img src={val.image} alt={val._id} />
             <br />
             <button 
               id='djpools_delete_btn'
-              onClick={() => props.onDeletePerk(val._id) }>
+              onClick={() => onDeletePerk(val._id) }>
                 Delete
             </button>
           </div>
@@ -55,13 +63,13 @@ export default function AdContent(props) {
       <div className='dashboard_ad_container'>
         <h3>Brands</h3>
         <div>
-        { props.profile.brands.map(val => (
+        { profile.brands.map(val => (
           <div key={val._id} className='ad_img_btn_container'>
             <img src={val.image} alt={val._id} />
             <br />
             <button 
               id='djpools_delete_btn'
-              onClick={() => props.onDeleteBrand(val._id) }>
+              onClick={() => onDeleteBrand(val._id) }>
                 Delete
             </button>
           </div>
@@ -69,4 +77,13 @@ export default function AdContent(props) {
         </div>
       </div>
     </>
+}
+
+PromoContent.propTypes = {
+  user: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  onDeleteBrand: PropTypes.func.isRequired,
+  onDeleteDjpool: PropTypes.func.isRequired,
+  onDeletePerk: PropTypes.func.isRequired,
+  onDeleteStore: PropTypes.func.isRequired
 }

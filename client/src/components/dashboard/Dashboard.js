@@ -18,7 +18,7 @@ const Dashboard = ({ auth, ...props}) => {
 
   useEffect(() => {
     if(!props.profile.profile) props.getCurrentProfile()
-  }, [])
+  }, [props.profile.profile, props.getCurrentProfile])
 
   const onDeleteClick = () => {
     props.deleteAccount()
