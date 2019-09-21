@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
@@ -12,7 +12,7 @@ import DropdownMenu from './components/common/dropdown_menu/DropdownMenu'
 import Landing from './pages/landing/Landing'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import Dashboard from './components/dashboard/Dashboard'
+import Dashboard from './pages/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
 import AddVenue from './pages/add-promos/AddVenue'
@@ -48,7 +48,7 @@ const App = () => {
   const [showHighlight, setShowHighlight] = useState(false),
         [currentIndex, setCurrentIndex] = useState(0)
 
-  const toggleShowHighlight = (currentIndex) => {
+  const toggleShowHighlight = () => {
     setShowHighlight(!showHighlight)
     setCurrentIndex(index => index || 0)
   }

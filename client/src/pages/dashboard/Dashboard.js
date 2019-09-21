@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 
-import DashboardContent from './DashboardContent'
+import DashboardContent from '../../components/dashboard_content/DashboardContent'
 import { 
   getCurrentProfile, 
   deleteAccount, 

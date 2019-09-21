@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -7,26 +7,23 @@ import { getPostsByHashtag, getMorePostsByHashtag } from '../../actions/postActi
 import PostFeed from '../posts/post_feed/PostFeed'
 import './Hashtag.css'
 
-class Hashtag extends Component {
-  componentDidMount() {
-    window.scrollTo(0, 0)
-    if(this.props.match.params.hashtag === 'undefined') {
-      return this.props.history.push('/feed')
+const Hashtag = props => {
+  const { posts } = props.post
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+    if(props.match.params.hashtag) {
+      props.getPostsByHashtag(props.match.params.hashtag)
     }
-    if(this.props.match.params.hashtag) {
-      this.props.getPostsByHashtag(this.props.match.params.hashtag) 
-    }
-  }
-  render() {
-    const { posts } = this.props.post
-    return (
-      <div className='hashtag_route'>
-        <PostFeed
-          posts={ posts } 
-        />
-      </div>
-    )
-  }
+  }, [props.match.params.hashtag])
+  
+  return (
+    <div className='hashtag_route'>
+      <PostFeed
+        posts={ posts } 
+      />
+    </div>
+  )
 }
 
 Hashtag.propTypes = {
