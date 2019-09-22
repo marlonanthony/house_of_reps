@@ -23,7 +23,7 @@ class NestedCommentForm extends Component {
     errors: {},
     showEmojis: false,
     text: '',
-    showSubmitBtn: false,
+    showBtns: false,
     data: {},
     showPreview: false,
     uploadedFileCloudinaryUrl: '',
@@ -127,7 +127,7 @@ class NestedCommentForm extends Component {
     })
   }
 
-  showSubmitBtnHandler = () => this.setState(prevState => ({ showSubmitBtn: !prevState.showSubmitBtn }))
+  showBtnsHandler = () => this.setState(prevState => ({ showBtns: !prevState.showBtns }))
 
   render() {
     const {
@@ -143,7 +143,7 @@ class NestedCommentForm extends Component {
       data,
       media,
       showPreview,
-      showSubmitBtn
+      showBtns
     } = this.state
 
     return showForm && (
@@ -154,7 +154,7 @@ class NestedCommentForm extends Component {
             <EmojiPicker onEmojiClick={this.addEmoji} />
           </EmojiModal>
         }
-        <div className='nested_comment_form' onClick={this.showSubmitBtnHandler}>
+        <div className='nested_comment_form' onClick={this.showBtnsHandler}>
           <TextAreaForm 
             placeholder="Reply to comment" 
             name='text'
@@ -164,7 +164,7 @@ class NestedCommentForm extends Component {
             autoFocus
             error={errors.text}
           />
-          { showSubmitBtn && 
+          { showBtns && 
             <div className='nested_comments_form_buttons'>
               <Dropzone 
                 style={{ border: 'none' }}

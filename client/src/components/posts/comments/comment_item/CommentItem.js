@@ -3,12 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { 
-  deleteComment, 
-  getPosts, 
-  addCommentLike, 
-  removeCommentLike,
-} from '../../../../actions/postActions' 
 import { getProfiles, getProfileByHandle } from '../../../../actions/profileActions'
 import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
@@ -22,13 +16,12 @@ import './CommentItem.css'
 class CommentItem extends Component {
   state = {
     comment: this.props.comment,
+    comments: this.props.comments,
+    nestedcommentid: '',
     showModal: false,
     liked: false,
     showNestedComments: false,
     showForm: false,
-    comments: this.props.comments,
-    showCommentLikesPopup: false,
-    nestedcommentid: '',
     editPost: false,
     showPopup: false,
   }
@@ -45,24 +38,9 @@ class CommentItem extends Component {
     }
   }
 
-  onLikeClick = (postId, commentId, comment) => {
-    this.props.addCommentLike(postId, commentId, comment)
-    this.setState(prevState => ({ liked: true, comment: this.props.comment }))
-  }
-
-  onUnlikeClick = (postId, commentId) => {
-    this.props.removeCommentLike(postId, commentId)
-    this.setState( prevState => ({ liked: false, comment: this.props.comment }))
-  }
-
   findUserLike = likes => {
     const { auth } = this.props
     return likes.filter(like => like.user === auth.user.id).length > 0
-  }
-
-  onDeleteClick = (postId, commentId) => {
-    this.props.deleteComment(postId, commentId)
-    this.setState({ comment: false })
   }
 
   modalToggle = () => this.setState(prevState => ({ showModal: !prevState.showModal }))
@@ -81,8 +59,6 @@ class CommentItem extends Component {
   toggleShowNestedComment = () => {
     this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))
   }
-
-  commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
 
   userNameOrAvatarClickedLikesPopup = handle => {
     if(this.props.location.pathname.includes('/profile')) {
@@ -107,7 +83,6 @@ class CommentItem extends Component {
     const { postId, auth, profiles } = this.props 
     const {
       comment, 
-      showCommentLikesPopup, 
       showModal,
       liked, 
       showForm,
@@ -143,8 +118,6 @@ class CommentItem extends Component {
           />
           <CommentLikes
             comment={comment}
-            commentLikesPopupHandler={this.commentLikesPopupHandler}
-            showCommentLikesPopup={showCommentLikesPopup}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
           />
           <CommentButtons
@@ -153,9 +126,6 @@ class CommentItem extends Component {
             comment={comment}
             liked={liked}
             findUserLike={this.findUserLike}
-            onUnlikeClick={this.onUnlikeClick}
-            onLikeClick={this.onLikeClick}
-            onDeleteClick={this.onDeleteClick}
             toggleForm={this.toggleForm}
             toggleShowNestedComment={this.toggleShowNestedComment}
           />
@@ -164,7 +134,6 @@ class CommentItem extends Component {
             showNestedComments={showNestedComments}
             showForm={showForm}
             postId={postId}
-            userNameOrAvatarClicked={this.userNameOrAvatarClicked}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             liked={liked}
             auth={auth}
@@ -177,11 +146,7 @@ class CommentItem extends Component {
 }
 
 CommentItem.propTypes = {
-  deleteComment: PropTypes.func.isRequired,
-  addCommentLike: PropTypes.func.isRequired,
-  removeCommentLike: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired,
   getProfiles: PropTypes.func.isRequired,
   getProfileByHandle: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
@@ -192,11 +157,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { 
-  deleteComment, 
-  getPosts, 
+export default connect(mapStateToProps, {
   getProfiles, 
   getProfileByHandle,
-  addCommentLike, 
-  removeCommentLike
 })(withRouter(CommentItem))

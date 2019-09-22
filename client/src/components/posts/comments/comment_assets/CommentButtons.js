@@ -1,23 +1,31 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-export default function CommentButtons({
+import {
+  addCommentLike,
+  removeCommentLike,
+  deleteComment 
+} from '../../../../actions/postActions'
+
+const CommentButtons = ({
   auth,
   postId,
   comment,
   liked,
   findUserLike,
-  onUnlikeClick,
-  onLikeClick,
-  onDeleteClick,
   toggleForm,
-  toggleShowNestedComment
-}) {
+  toggleShowNestedComment,
+  addCommentLike,
+  removeCommentLike,
+  deleteComment
+}) => {
   return (
     <div>
       <button 
         title='like comment'
-        onClick={() => onLikeClick(postId, comment._id, comment)}
+        onClick={() => addCommentLike(postId, comment._id, comment)}
         className={liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
           'liked' : findUserLike(comment.likes)
         })}
@@ -28,7 +36,7 @@ export default function CommentButtons({
       <button 
         title='unlike'
         className='postfeed_buttons'
-        onClick={() => onUnlikeClick(postId, comment._id)}>
+        onClick={() => removeCommentLike(postId, comment._id)}>
         <i className="fas fa-thumbs-down icons" id='unlike'></i>
       </button>
       <button 
@@ -48,10 +56,29 @@ export default function CommentButtons({
         <button 
           title='Delete comment'
           className='postfeed_buttons delete'
-          onClick={() => onDeleteClick(postId, comment._id)}>
+          onClick={() => deleteComment(postId, comment._id)}>
           <i className="fas fa-times icons" />
         </button> 
       )}
     </div>
   )
 }
+
+CommentButtons.propTypes = {
+  postId: PropTypes.string.isRequired,
+  auth: PropTypes.object.isRequired,
+  comment: PropTypes.object.isRequired,
+  liked: PropTypes.bool.isRequired,
+  findUserLike: PropTypes.func.isRequired,
+  addCommentLike: PropTypes.func.isRequired,
+  removeCommentLike: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  toggleForm: PropTypes.func.isRequired,
+  toggleShowNestedComment: PropTypes.func.isRequired
+}
+
+export default connect(null, { 
+  deleteComment,
+  removeCommentLike,
+  addCommentLike
+})(CommentButtons)
