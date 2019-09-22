@@ -461,7 +461,12 @@ router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport
             if(nestedComment.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
               return res.status(400).json({ alreadyliked: 'User already liked this nested comment' })
             }
-            nestedComment.likes.push({ user: req.user.id, name: req.user.name, avatar: req.user.avatar })
+            nestedComment.likes.push({ 
+              user: req.user.id, 
+              name: req.user.name, 
+              avatar: req.user.avatar,
+              handle: req.user.handle
+            })
 
             // Add to notifications array 
             Profile.findOne({ user: nestedComment.user }).then(profile => {
@@ -469,7 +474,8 @@ router.post('/comment/comment/like/:id/:comment_id/:nested_comment_id', passport
               profile.notifications.push({ 
                 user: req.user.id, 
                 name: req.user.name, 
-                avatar: req.user.avatar, 
+                avatar: req.user.avatar,
+                handle: req.user.handle,
                 postId: post._id, 
                 commentId: nestedComment._id, 
                 postImage: nestedComment.media, 
