@@ -19,7 +19,7 @@ export default function DashboardContent({
 }) {
   let dashboardContent
 
-  if(!profile|| loading) dashboardContent = null
+  if(profile === null || loading) dashboardContent = null
   else {
     if(Object.keys(profile).length) {
       dashboardContent = (
