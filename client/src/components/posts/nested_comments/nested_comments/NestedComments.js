@@ -18,9 +18,6 @@ const NestedComments = ({
   userNameOrAvatarClickedLikesPopup,
   liked,
   auth,
-  onLikeNestedCommentClick,
-  onUnlikeNestedCommentClick,
-  onDeleteNestedComment,
   findUserLike
 }) => {
   const [editPost, setEditPost] = useState(false)
@@ -70,9 +67,6 @@ const NestedComments = ({
               nestedComment={nestedComment}
               liked={liked}
               findUserLike={findUserLike}
-              onLikeNestedCommentClick={onLikeNestedCommentClick}
-              onUnlikeNestedCommentClick={onUnlikeNestedCommentClick}
-              onDeleteNestedComment={onDeleteNestedComment}
             />
           </div>
         </div>
@@ -92,9 +86,6 @@ NestedComments.propTypes = {
   userNameOrAvatarClickedLikesPopup: PropTypes.func.isRequired,
   liked: PropTypes.bool.isRequired,
   auth: PropTypes.object.isRequired,
-  onLikeNestedCommentClick: PropTypes.func.isRequired,
-  onUnlikeNestedCommentClick: PropTypes.func.isRequired,
-  onDeleteNestedComment: PropTypes.func.isRequired,
   findUserLike: PropTypes.func.isRequired
 }
 

@@ -7,10 +7,7 @@ import {
   deleteComment, 
   getPosts, 
   addCommentLike, 
-  removeCommentLike, 
-  deleteNestedComment, 
-  likeNestedComment, 
-  unlikeNestedComment 
+  removeCommentLike,
 } from '../../../../actions/postActions' 
 import { getProfiles, getProfileByHandle } from '../../../../actions/profileActions'
 import CommentsModal from '../../../UI/modal/CommentsModal'
@@ -88,20 +85,6 @@ class CommentItem extends Component {
 
   showNestedSubmitBtnHandler = () => {
     this.setState(prevState => ({ showNestedSubmitBtn: !prevState.showNestedSubmitBtn }))
-  }
-
-  onDeleteNestedComment = (postId, commentId, nestedCommentId) => {
-    this.props.deleteNestedComment(postId, commentId, nestedCommentId)
-  }
-
-  onLikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
-    this.props.likeNestedComment(postId, commentId, nestedCommentId)
-    this.setState(prevState => ({ nestedCommentLiked: true, comment: this.props.comment }))
-  }
-
-  onUnlikeNestedCommentClick = (postId, commentId, nestedCommentId) => {
-    this.props.unlikeNestedComment(postId, commentId, nestedCommentId)
-    this.setState( prevState => ({ nestedCommentLiked: false, comment: this.props.comment }))
   }
 
   commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
@@ -193,9 +176,6 @@ class CommentItem extends Component {
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             liked={liked}
             auth={auth}
-            onLikeNestedCommentClick={this.onLikeNestedCommentClick}
-            onUnlikeNestedCommentClick={this.onUnlikeNestedCommentClick}
-            onDeleteNestedComment={this.onDeleteNestedComment}
             findUserLike={this.findUserLike}
           />
         </div>
@@ -208,9 +188,6 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
   addCommentLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
-  deleteNestedComment: PropTypes.func.isRequired,
-  likeNestedComment: PropTypes.func.isRequired,
-  unlikeNestedComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
   getProfiles: PropTypes.func.isRequired,
@@ -229,8 +206,5 @@ export default connect(mapStateToProps, {
   getProfiles, 
   getProfileByHandle,
   addCommentLike, 
-  removeCommentLike,
-  deleteNestedComment, 
-  likeNestedComment, 
-  unlikeNestedComment 
+  removeCommentLike
 })(withRouter(CommentItem))
