@@ -1,15 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './Popup.css'
 
 export default function PostFeedPopup(props) {
   const {
-    profilesArr,
-    comment,
-    profile, 
-    popupHandler, 
     post,
-    showPopup, 
-    userNameOrAvatarClickedLikesPopup 
+    comment,
+    profile,
+    profilesArr,
+    showPopup,
+    setShowPopup,
+    popupHandler,
+    userNameOrAvatarClickedLikesPopup
   } = props
 
   let profileInfo
@@ -50,7 +52,14 @@ export default function PostFeedPopup(props) {
   ))
 
   return (
-    <div className='popup' onMouseOver={popupHandler} onMouseOut={popupHandler}>
+    <div 
+      className='popup' 
+      onMouseOver={ setShowPopup 
+        ? () => setShowPopup(!showPopup) 
+        : popupHandler} 
+      onMouseOut={ setShowPopup
+        ? () => setShowPopup(!showPopup)
+        : popupHandler}>
       <p className={ !comment ? 'post_name' : 'comment-feed-name' } // post_name is in PostItem.css
         onClick={() => !comment 
           ? userNameOrAvatarClickedLikesPopup(post.handle)
@@ -62,4 +71,15 @@ export default function PostFeedPopup(props) {
       </div>
     </div>
   )
+}
+
+PostFeedPopup.propTypes = {
+  post: PropTypes.object,
+  comment: PropTypes.object,
+  profile: PropTypes.object,
+  profilesArr: PropTypes.array,
+  showPopup: PropTypes.bool,
+  setShowPopup: PropTypes.func,
+  popupHandler: PropTypes.func,
+  userNameOrAvatarClickedLikesPopup: PropTypes.func.isRequired
 }

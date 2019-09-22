@@ -10,14 +10,23 @@ const CommentLikes = ({
   return (
     <div className='popup' >
       { comment && comment.likes.length < 1 ? null : comment.likes.length === 2 
-        ? <div className='popup_likes' onClick={() => setShowLikesPopup(!showLikesPopup)} style={{fontSize: '11px'}}>
+        ? <div 
+            className='popup_likes' 
+            onClick={() => setShowLikesPopup(!showLikesPopup)} 
+            style={{fontSize: '11px'}}>
             Liked by {comment.likes[0].name} and {comment.likes[1].name}
           </div>
         : comment.likes.length > 2 
-          ? <div className='popup_likes' onClick={() => setShowLikesPopup(!showLikesPopup)} style={{fontSize: '11px'}}>
+          ? <div 
+              className='popup_likes' 
+              onClick={() => setShowLikesPopup(!showLikesPopup)} 
+              style={{fontSize: '11px'}}>
               Like by {comment.likes[comment.likes.length - 1].name} and {comment.likes.length -1} others.
             </div>
-          : <div className='popup_likes' style={{ fontSize: '11px' }} onClick={() => setShowLikesPopup(!showLikesPopup)}>
+          : <div 
+              className='popup_likes' 
+              style={{ fontSize: '11px' }} 
+              onClick={() => setShowLikesPopup(!showLikesPopup)}>
               Liked by {comment.likes[0].name}
             </div>
       }
