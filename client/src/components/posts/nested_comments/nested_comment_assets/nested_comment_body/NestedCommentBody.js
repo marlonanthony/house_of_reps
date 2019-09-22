@@ -53,7 +53,7 @@ class NestedCommentBody extends Component {
   }
 
   render() {
-    const { nestedComment, modalShow, editPost } = this.props,
+    const { nestedComment, editPost } = this.props,
           { text, showEmojis, errors } = this.state
 
     let youtubeUrl = nestedComment.url
@@ -67,7 +67,7 @@ class NestedCommentBody extends Component {
     !nestedComment.description && !nestedComment.image && !nestedComment.title && !nestedComment.url && !nestedComment.media
       ? <PostText fontSize='13px' postText={nestedComment.text} />
       : nestedComment.media
-        ? <div onClick={modalShow}>
+        ? <div>
             <PostText fontSize='13px' postText={nestedComment.text} />
             <img src={nestedComment.media} alt="uploaded" className='comments_image' />
           </div>
@@ -152,7 +152,7 @@ class NestedCommentBody extends Component {
                     </div>
                   </form>
                 </div>
-                <img onClick={modalShow} src={nestedComment.media} alt="uploaded" className='comments_image' />
+                <img src={nestedComment.media} alt="uploaded" className='comments_image' />
               </div>
             : <div className='comment-wrapper'>
                 <div style={{ position: 'relative' }}>
@@ -216,7 +216,6 @@ NestedCommentBody.propTypes = {
   nestedComment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   editPost: PropTypes.bool.isRequired,
-  modalShow: PropTypes.func.isRequired,
   toggleEditPost: PropTypes.func.isRequired
 }
 

@@ -19,7 +19,8 @@ const PostFeed = ({ posts, profiles }) => (
 )
 
 PostFeed.propTypes = {
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  profiles: PropTypes.array
 }
 
 export default PostFeed

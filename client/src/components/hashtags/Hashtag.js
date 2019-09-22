@@ -28,7 +28,8 @@ const Hashtag = props => {
 
 Hashtag.propTypes = {
   post: PropTypes.object.isRequired,
-  getPostsByHashtag: PropTypes.func.isRequired
+  getPostsByHashtag: PropTypes.func.isRequired,
+  getMorePostsByHashtag: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

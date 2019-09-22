@@ -114,6 +114,8 @@ class CommentItem extends Component {
     this.props.history.push(`/profile/${handle}`)
   }
 
+  // removed logic from NestedComments to show modal. Will add useState to individual components
+  // once they've been refactored to hooks
   nestedCommentLikesPopupHandler = (nestedId) => {
     this.setState(prevState => ({ nestedcommentid: nestedId }, () => {
       this.setState(prevState => ({ showNestedCommentsLikesPopup: !prevState.showNestedCommentsLikesPopup })) 
@@ -142,8 +144,6 @@ class CommentItem extends Component {
       showForm,
       showNestedComments,
       showNestedSubmitBtn,
-      showNestedCommentsLikes,
-      showNestedCommentsLikesPopup,
       editPost,
       showPopup
     } = this.state
@@ -201,8 +201,6 @@ class CommentItem extends Component {
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
             nestedCommentLikesPopupHandler={this.nestedCommentLikesPopupHandler}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
-            showNestedCommentsLikes={showNestedCommentsLikes}
-            showNestedCommentsLikesPopup={showNestedCommentsLikesPopup}
             liked={liked}
             auth={auth}
             onLikeNestedCommentClick={this.onLikeNestedCommentClick}
