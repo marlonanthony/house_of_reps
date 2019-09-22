@@ -25,7 +25,6 @@ class CommentItem extends Component {
     showModal: false,
     liked: false,
     showNestedComments: false,
-    showNestedSubmitBtn: false,
     showForm: false,
     comments: this.props.comments,
     showCommentLikesPopup: false,
@@ -83,10 +82,6 @@ class CommentItem extends Component {
     this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))
   }
 
-  showNestedSubmitBtnHandler = () => {
-    this.setState(prevState => ({ showNestedSubmitBtn: !prevState.showNestedSubmitBtn }))
-  }
-
   commentLikesPopupHandler = () => { this.setState(prevState => ({ showCommentLikesPopup: !prevState.showCommentLikesPopup })) }
 
   userNameOrAvatarClickedLikesPopup = handle => {
@@ -117,7 +112,6 @@ class CommentItem extends Component {
       liked, 
       showForm,
       showNestedComments,
-      showNestedSubmitBtn,
       editPost,
       showPopup
     } = this.state
@@ -169,9 +163,7 @@ class CommentItem extends Component {
             comment={comment}
             showNestedComments={showNestedComments}
             showForm={showForm}
-            showNestedSubmitBtnHandler={this.showNestedSubmitBtnHandler}
             postId={postId}
-            showNestedSubmitBtn={showNestedSubmitBtn}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             liked={liked}

@@ -12,9 +12,7 @@ const NestedComments = ({
   comment,
   showNestedComments,
   showForm,
-  showNestedSubmitBtnHandler,
   postId,
-  showNestedSubmitBtn,
   userNameOrAvatarClickedLikesPopup,
   liked,
   auth,
@@ -35,10 +33,8 @@ const NestedComments = ({
       <NestedCommentForm
         auth={auth}
         showForm={showForm}
-        showNestedSubmitBtnHandler={showNestedSubmitBtnHandler}
         postId={postId}
         comment={comment}
-        showNestedSubmitBtn={showNestedSubmitBtn}
       />
       <div>
         { comment.comments.map(nestedComment => (
@@ -80,9 +76,7 @@ NestedComments.propTypes = {
   comment: PropTypes.object.isRequired,
   showNestedComments: PropTypes.bool.isRequired,
   showForm: PropTypes.bool.isRequired,
-  showNestedSubmitBtnHandler: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
-  showNestedSubmitBtn: PropTypes.bool.isRequired,
   userNameOrAvatarClickedLikesPopup: PropTypes.func.isRequired,
   liked: PropTypes.bool.isRequired,
   auth: PropTypes.object.isRequired,

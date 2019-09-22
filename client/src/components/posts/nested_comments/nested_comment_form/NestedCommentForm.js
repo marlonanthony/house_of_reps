@@ -23,7 +23,7 @@ class NestedCommentForm extends Component {
     errors: {},
     showEmojis: false,
     text: '',
-
+    showSubmitBtn: false,
     data: {},
     showPreview: false,
     uploadedFileCloudinaryUrl: '',
@@ -127,13 +127,13 @@ class NestedCommentForm extends Component {
     })
   }
 
+  showSubmitBtnHandler = () => this.setState(prevState => ({ showSubmitBtn: !prevState.showSubmitBtn }))
+
   render() {
     const {
       showForm,
-      showNestedSubmitBtnHandler,
       postId,
       comment,
-      showNestedSubmitBtn
     } = this.props
 
     const { 
@@ -142,7 +142,8 @@ class NestedCommentForm extends Component {
       text,
       data,
       media,
-      showPreview 
+      showPreview,
+      showSubmitBtn
     } = this.state
 
     return showForm && (
@@ -153,7 +154,7 @@ class NestedCommentForm extends Component {
             <EmojiPicker onEmojiClick={this.addEmoji} />
           </EmojiModal>
         }
-        <div className='nested_comment_form' onClick={showNestedSubmitBtnHandler}>
+        <div className='nested_comment_form' onClick={this.showSubmitBtnHandler}>
           <TextAreaForm 
             placeholder="Reply to comment" 
             name='text'
@@ -163,7 +164,7 @@ class NestedCommentForm extends Component {
             autoFocus
             error={errors.text}
           />
-          { showNestedSubmitBtn && 
+          { showSubmitBtn && 
             <div className='nested_comments_form_buttons'>
               <Dropzone 
                 style={{ border: 'none' }}
@@ -193,9 +194,7 @@ NestedCommentForm.propTypes = {
   postId: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired,
   showForm: PropTypes.bool.isRequired,
-  showNestedSubmitBtnHandler: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
-  showNestedSubmitBtn: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
