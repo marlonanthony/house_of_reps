@@ -32,7 +32,6 @@ class CommentItem extends Component {
     showForm: false,
     comments: this.props.comments,
     showCommentLikesPopup: false,
-    showNestedCommentsLikesPopup: false,
     nestedcommentid: '',
     editPost: false,
     showPopup: false,
@@ -114,14 +113,6 @@ class CommentItem extends Component {
     this.props.history.push(`/profile/${handle}`)
   }
 
-  // removed logic from NestedComments to show modal. Will add useState to individual components
-  // once they've been refactored to hooks
-  nestedCommentLikesPopupHandler = (nestedId) => {
-    this.setState(prevState => ({ nestedcommentid: nestedId }, () => {
-      this.setState(prevState => ({ showNestedCommentsLikesPopup: !prevState.showNestedCommentsLikesPopup })) 
-    }))
-  }
-
   moreVertClicked = () => {
     let res = window.confirm('Edit post?')
     if(res) this.setState({ editPost: true })
@@ -199,7 +190,6 @@ class CommentItem extends Component {
             postId={postId}
             showNestedSubmitBtn={showNestedSubmitBtn}
             userNameOrAvatarClicked={this.userNameOrAvatarClicked}
-            nestedCommentLikesPopupHandler={this.nestedCommentLikesPopupHandler}
             userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
             liked={liked}
             auth={auth}

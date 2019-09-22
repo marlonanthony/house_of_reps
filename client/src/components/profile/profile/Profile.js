@@ -11,7 +11,7 @@ import './Profile.css'
 class Profile extends Component {
   componentDidMount() {
     if(this.props.match.params.handle === 'undefined') {
-      return this.props.history.push('/dashboard')
+      this.props.history.push('/dashboard')
     }
     if(this.props.match.params.handle) {
       this.props.getProfileByHandle(this.props.match.params.handle) 

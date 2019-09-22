@@ -15,7 +15,6 @@ const NestedComments = ({
   showNestedSubmitBtnHandler,
   postId,
   showNestedSubmitBtn,
-  nestedCommentLikesPopupHandler,
   userNameOrAvatarClickedLikesPopup,
   liked,
   auth,
@@ -62,7 +61,6 @@ const NestedComments = ({
             />
             <NestedLikes
               nestedComment={nestedComment}
-              nestedCommentLikesPopupHandler={nestedCommentLikesPopupHandler}
               userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
             />
             <NestedCommentButtons
@@ -91,7 +89,6 @@ NestedComments.propTypes = {
   showNestedSubmitBtnHandler: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
   showNestedSubmitBtn: PropTypes.bool.isRequired,
-  nestedCommentLikesPopupHandler: PropTypes.func.isRequired,
   userNameOrAvatarClickedLikesPopup: PropTypes.func.isRequired,
   liked: PropTypes.bool.isRequired,
   auth: PropTypes.object.isRequired,

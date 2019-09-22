@@ -3,20 +3,20 @@ import Moment from 'react-moment'
 
 import './NestedCommentNameAvatarDate.css'
 
-const NestedCommentNameAvatarDate = ({ 
-  nestedComment, 
-  userNameOrAvatarClickedLikesPopup, 
-  moreVertClicked 
+const NestedCommentNameAvatarDate = ({
+  nestedComment,
+  userNameOrAvatarClickedLikesPopup,
+  moreVertClicked
 }) => nestedComment && (
-  <div className='nested_comment_name_avatar_date_container' 
+  <div className='nested_comment_name_avatar_date_container'
        style={{position: 'relative'}}>
-    <img className='nested_comment_avatar' 
-         onClick={() => userNameOrAvatarClickedLikesPopup(nestedComment.handle)} 
-         src={nestedComment.avatar} 
+    <img className='nested_comment_avatar'
+         onClick={() => userNameOrAvatarClickedLikesPopup(nestedComment.handle)}
+         src={nestedComment.avatar}
          alt="user avatar"
     />
     <div>
-      <p className='nested_comment_name' 
+      <p className='nested_comment_name'
          onClick={() => userNameOrAvatarClickedLikesPopup(nestedComment.handle)}>
          {nestedComment.name}
       </p>
