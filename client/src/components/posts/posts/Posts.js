@@ -16,9 +16,9 @@ import { getCurrentProfile, getProfiles } from '../../../actions/profileActions'
 import PostForm from '../post_form/PostForm' 
 import Spinner from '../../common/Spinner' 
 import PostFeed from '../post_feed/PostFeed'
-import DjPools from '../post-assets/promos/djpools/DjPools'
+import PoolsContainer from '../post-assets/promos/djpools/PoolsContainer'
 import StoresContainer from '../post-assets/promos/stores/StoresContainer'
-import Perks from '../post-assets/promos/perks/Perks'
+import PerksContainer from '../post-assets/promos/perks/PerksContainer'
 import Highlights from '../post-assets/highlights/Highlights'
 import SearchBar from '../post-assets/searchbar/SearchBar'
 import PostFeedProfileContent from '../post-assets/postfeed_profile_content/PostFeedProfileContent'
@@ -109,8 +109,6 @@ class Posts extends Component {
     const { user } = this.props.auth
     let postContent, 
         profileContent,
-        djpools,
-        perks,
         highlights,
         orderedHighlights
 
@@ -119,26 +117,6 @@ class Posts extends Component {
       let hls = profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null)
       highlights = [].concat.apply([], hls)
       orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-    }
-
-    if(!profiles || loading) {
-      perks = null
-    } else {
-      perks = profiles.map(val => (
-        val.perks.length > 0 && val.perks !== null 
-        ? val.perks.map(perk => ( <Perks key={perk._id} perks={val.perks} perk={perk} />))
-        : null 
-      ))
-    }
-
-    if(!profiles || loading) {
-      djpools = null
-    } else {
-      djpools  = profiles.map(val => (
-        val.djpools.length > 0 && val.djpools !== null 
-        ? val.djpools.map(djpool => ( <DjPools key={djpool._id} djpools={val.djpools} djpool={djpool} /> ))
-        : null 
-      ))
     }
 
     if(!profile) {
@@ -187,8 +165,14 @@ class Posts extends Component {
         <SearchBar profiles={ profiles } />
         <Buttons showPostByHashtag={this.showPostByHashtag} />
         <div className='post-feed-profile'>{ profileContent }</div>
-        <div className='djpools'>{ djpools }</div>
-        <div className='perks_and_hookups'>{ perks }</div>
+        <PoolsContainer
+          profiles={profiles}
+          loading={loading}
+        />
+        <PerksContainer
+          profiles={profiles}
+          loading={loading}
+        />
         <div className='post-feed-post-content'>{ postContent }</div>
         <Highlights
           recentHighlights={ orderedHighlights }
