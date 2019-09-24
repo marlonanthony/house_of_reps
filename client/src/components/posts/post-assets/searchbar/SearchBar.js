@@ -1,58 +1,54 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import InputGroup from '../../../common/InputGroup'
+import PropTypes from 'prop-types'
 
 
-class SearchBar extends Component {
-  state = {
-    matches: '',
-    showMatches: ''
+const SearchBar = ({ profiles }) => {
+  const [matches, setMatches] = useState(''),
+        [showMatches, setShowMatches] = useState(false)
+
+  const onMouseEnter = () => {
+    setShowMatches(true)
   }
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  const onMouseLeave = () => {
+    setShowMatches(false)
   }
 
-  onMouseEnter = () => {
-    this.setState({ showMatches: true })
-  }
+  return (
+    <div
+      className='searchbar'
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
+      <input
+        className='searchbar_input'
+        placeholder=' search reps'
+        name='matches'
+        value={ matches }
+        onChange={ e => setMatches(e.target.value) }
+      />
+      { showMatches && 
+        <div>
+          { profiles && profiles.map(profile => (
+            profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
+            profile.user.name.toLowerCase().includes(matches.toLowerCase()) ||
+            profile.stageName.toLowerCase().includes(matches.toLowerCase())
+              ? <Link
+                  key={profile.user._id}
+                  to={`/profile/${profile.handle}`}
+                  className='searchbar_items'>
+                    @{profile.handle}
+                </Link>
+              : null
+          ))}
+        </div>
+      }
+    </div>
+  )
+}
 
-  onMouseLeave = () => {
-    this.setState({ showMatches: false })
-  }
-
-  render() {
-    return (
-      <div
-        className='searchbar'
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}>
-        <input
-          className='searchbar_input'
-          placeholder=' search reps'
-          name='matches'
-          value={ this.state.matches }
-          onChange={ this.onChange }
-        />
-        { this.state.showMatches && 
-          <div>
-            { this.props.profiles && this.props.profiles.map(profile => (
-              profile.handle.toLowerCase().includes(this.state.matches.toLowerCase()) ||
-              profile.user.name.toLowerCase().includes(this.state.matches.toLowerCase()) ||
-              profile.stageName.toLowerCase().includes(this.state.matches.toLowerCase())
-                ? <Link
-                    key={profile.user._id}
-                    to={`/profile/${profile.handle}`}
-                    className='searchbar_items'>
-                      @{profile.handle}
-                  </Link>
-                : null
-            ))}
-          </div>
-        }
-      </div>
-    )
-  }
+SearchBar.propTypes = {
+  profiles: PropTypes.array.isRequired
 }
 
 export default SearchBar
