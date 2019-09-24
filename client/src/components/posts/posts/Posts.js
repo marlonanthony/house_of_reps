@@ -17,7 +17,7 @@ import PostForm from '../post_form/PostForm'
 import Spinner from '../../common/Spinner' 
 import PostFeed from '../post_feed/PostFeed'
 import DjPools from '../post-assets/promos/djpools/DjPools'
-import CertifiedStores from '../post-assets/promos/stores/CertifiedStores'
+import StoresContainer from '../post-assets/promos/stores/StoresContainer'
 import Perks from '../post-assets/promos/perks/Perks'
 import Highlights from '../post-assets/highlights/Highlights'
 import SearchBar from '../post-assets/searchbar/SearchBar'
@@ -110,7 +110,6 @@ class Posts extends Component {
     let postContent, 
         profileContent,
         djpools,
-        stores,
         perks,
         highlights,
         orderedHighlights
@@ -128,16 +127,6 @@ class Posts extends Component {
       perks = profiles.map(val => (
         val.perks.length > 0 && val.perks !== null 
         ? val.perks.map(perk => ( <Perks key={perk._id} perks={val.perks} perk={perk} />))
-        : null 
-      ))
-    }
-
-    if(!profiles || loading) {
-      stores = null
-    } else {
-      stores = profiles.map(val => (
-        val.stores.length > 0 && val.stores !== null 
-        ? val.stores.map(store => ( <CertifiedStores key={store._id} stores={val.stores} store={store} />))
         : null 
       ))
     }
@@ -205,7 +194,10 @@ class Posts extends Component {
           recentHighlights={ orderedHighlights }
           toggleShowHighlight={this.props.toggleShowHighlight}
         />
-        <div className='stores_container'>{ stores }</div>
+        <StoresContainer
+          profiles={profiles}
+          loading={loading}
+        />
         <BrandContainer
           profiles={profiles}
           loading={loading}
