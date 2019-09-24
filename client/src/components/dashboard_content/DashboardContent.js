@@ -1,22 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { deleteAccount } from '../../actions/profileActions'
 import PropTypes from 'prop-types'
 
 import ProfileActions from './ProfileActions'
 import Venues from './Venues'
 import PromoContent from './PromoContent'
 
-export default function DashboardContent({
+const DashboardContent = ({
   profile,
   loading,
   user,
-  onDeleteBrand,
-  onDeleteDjpool,
-  onDeletePerk,
-  onDeleteStore,
-  onDeleteVenue,
-  onDeleteClick
-}) {
+  deleteAccount
+}) => {
   let dashboardContent
 
   if(profile === null || loading) dashboardContent = null
@@ -30,15 +27,11 @@ export default function DashboardContent({
           </div>
           <PromoContent
             user={user}
-            profile={profile} 
-            onDeleteBrand={onDeleteBrand}
-            onDeleteDjpool={onDeleteDjpool}
-            onDeletePerk={onDeletePerk}
-            onDeleteStore={onDeleteStore}
+            profile={profile}
           />
-          <Venues venues={profile.venues} onDeleteVenue={onDeleteVenue} />
+          <Venues venues={profile.venues} />
           <button
-            onClick={ onDeleteClick } 
+            onClick={ deleteAccount } 
             id="dashboard-delete-btn" 
             title='delete profile'>
             Delete My Account
@@ -63,11 +56,8 @@ export default function DashboardContent({
 DashboardContent.propTypes = {
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
-  onDeleteVenue: PropTypes.func.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
-  onDeleteDjpool: PropTypes.func.isRequired,
-  onDeleteStore: PropTypes.func.isRequired,
-  onDeletePerk: PropTypes.func.isRequired,
-  onDeleteBrand: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   profile: PropTypes.object
 }
+
+export default connect(null, { deleteAccount })(DashboardContent)

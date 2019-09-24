@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { deleteVenue } from '../../actions/profileActions'
 
 import './Venue.css'
 
-const Venues = ({ venues, onDeleteVenue }) => {
+const Venues = ({ venues, deleteVenue }) => {
   const media = venues.map(venue => (
     <div key={venue._id} className='dashboard_venue_items'>
       { venue.video &&
@@ -22,7 +24,7 @@ const Venues = ({ venues, onDeleteVenue }) => {
       <div style={{padding: '10px'}}>
         <button
           id='venue-delete-btns'
-          onClick={() => onDeleteVenue(venue._id) }>
+          onClick={() => deleteVenue(venue._id) }>
             Delete
         </button>
       </div>
@@ -39,8 +41,8 @@ const Venues = ({ venues, onDeleteVenue }) => {
 }
 
 Venues.propTypes = {
-  onDeleteVenue: PropTypes.func.isRequired,
+  deleteVenue: PropTypes.func.isRequired,
   venues: PropTypes.array.isRequired
 }
 
-export default Venues
+export default connect(null, { deleteVenue })(Venues)
