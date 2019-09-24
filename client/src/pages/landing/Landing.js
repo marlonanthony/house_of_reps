@@ -7,6 +7,8 @@ import { loginUser } from '../../actions/authActions'
 import './Landing.css'
 
 const Landing = ({ auth, loginUser, errors, ...props }) => {
+  const date = new Date()
+
   useEffect(() => {
     if(auth.isAuthenticated) {
       props.history.push('/feed')
@@ -29,7 +31,7 @@ const Landing = ({ auth, loginUser, errors, ...props }) => {
               </Link> 
             </div>
             <footer className='landing_footer'>
-              Copyright &copy; 2019 House of Reps
+              Copyright &copy; { date.getFullYear() } House of Reps
             </footer>
           </div>
         </div>

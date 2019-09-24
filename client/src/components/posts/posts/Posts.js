@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
-import { connect } from 'react-redux' 
-import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { 
   getPosts, 
   getMorePosts, 
@@ -23,19 +22,19 @@ import Buttons from '../post-assets/buttons/Buttons'
 import BrandContainer from '../post-assets/promos/brands/BrandContainer'
 import PostsContainer from '../posts_container/PostsContainer'
 import HighlightsContainer from '../post-assets/highlights/HighlightsContainer'
+import Footer from '../post-assets/footer/Footer'
 import './Posts.css'
 
 
 class Posts extends Component {
 
   state = { 
-    showsPreview: false,
+    showPreview: false,
     showLikes: false,
     showHashtags: false,
     hashtag: '',
     count: 10, 
     start: 0,
-    showPopup: false,
   }
 
   componentDidMount() {
@@ -92,19 +91,11 @@ class Posts extends Component {
     })
   }
 
-  showNotificationsHandler = () => {
-    this.props.history.push('/notifications')
-  }
-
-  popupHandler = () => {
-    this.setState(prevState => ({ showPopup: !prevState.showPopup }))
-  }
-
   render() {
-    const { posts, loading } = this.props.post 
-    const { profile, profiles } = this.props.profile 
-    const { showsPreview, showHashtags, hashtag, showPopup, showLikes } = this.state
-    const { user } = this.props.auth
+    const { posts, loading } = this.props.post,
+          { profile, profiles } = this.props.profile,
+          { showPreview, showHashtags, hashtag, showLikes } = this.state,
+          { user } = this.props.auth
 
     return (
       <div className='feed'>
@@ -114,17 +105,14 @@ class Posts extends Component {
           hashtag={hashtag}
           showHashtags={showHashtags}
         />
-        <PostForm  showPreview={ showsPreview }/>
+        <PostForm  showPreview={ showPreview }/>
         <SearchBar profiles={ profiles } />
         <Buttons showPostByHashtag={this.showPostByHashtag} />
         <PostFeedProfileContent
           profile={profile}
-          user={user} 
-          popupHandler={this.popupHandler}
-          showPopup={showPopup}
+          user={user}
           showLikesHandler={this.showLikesHandler}
           showLikes={showLikes}
-          showNotificationsHandler={this.showNotificationsHandler}
         />
         <PoolsContainer
           profiles={profiles}
@@ -135,11 +123,11 @@ class Posts extends Component {
           loading={loading}
         />
         <PostsContainer
-            posts={posts}
-            profiles={profiles}
-            loading={loading}
-            fetchMore={this.fetchMore}
-            showsPreview={showsPreview}
+          posts={posts}
+          profiles={profiles}
+          loading={loading}
+          fetchMore={this.fetchMore}
+          showsPreview={showPreview}
         />
         <HighlightsContainer
           profiles={profiles}
@@ -154,9 +142,7 @@ class Posts extends Component {
           profiles={profiles}
           loading={loading}
         />
-        <div className='post-feed-footer'>
-          <footer>Copyright &copy; 2019 House of Reps</footer>
-        </div>
+        <Footer />
       </div>
     )
   }
@@ -191,4 +177,4 @@ export default connect(mapStateToProps, {
   getMatchingPosts,
   getPostsByHashtag,
   getMorePostsByHashtag
-})(withRouter(Posts))
+})(Posts)

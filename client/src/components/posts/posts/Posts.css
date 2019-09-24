@@ -62,13 +62,14 @@
     display: grid;
     justify-items: center;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto 1fr;
     grid-template-areas: 
       'searchbarpost postform searchbar'
       'profile btns postfeedhighlights'
       'profile post-feed-post-content postfeedhighlights'
       'djpools post-feed-post-content stores'
-      'perks post-feed-post-content brands'; 
+      'perks post-feed-post-content brands'
+      'perks post-feed-post-content footer'; 
   }
 
   .postfeed_reps_btns {
@@ -220,10 +221,8 @@
   }
 
   .post-feed-footer {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    height: 110px;
-    width: 240px;
+    display: flex;
+    grid-area: footer;
+    color: var(--secondary-color);
   }
 }
