@@ -7,10 +7,10 @@ import { getCurrentProfile } from '../../actions/profileActions'
 import isEmpty from '../../validation/is-empty'
 import './Dashboard.css'
 
-const Dashboard = ({ auth, ...props}) => {
+const Dashboard = ({ auth, getCurrentProfile, ...props}) => {
 
   useEffect(() => {
-    if(isEmpty(props.profile.profile)) props.getCurrentProfile()
+    if(isEmpty(props.profile.profile)) getCurrentProfile()
   }, [props.profile.profile])
 
   const { user } = auth

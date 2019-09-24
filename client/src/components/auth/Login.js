@@ -4,17 +4,18 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { loginUser } from '../../actions/authActions'
+import { getCurrentProfile } from '../../actions/profileActions'
 import Input from '../common/inputs/Input'
 import useForm from '../common/hooks/useForm'
 import './Login.css'
 
-const Login = ({ auth, loginUser, ...props }) => {
+const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
   const [values, setValues] = useForm({ email: '', password: ''}),
         [errors, setErrors] = useState({})
 
   useEffect(() => {
     if(auth.isAuthenticated) {
-      props.history.push('/dashboard')
+      getCurrentProfile().then(() => props.history.push('/dashboard'))
     }
     setErrors(props.errors)
   }, [auth.isAuthenticated, props.errors])
@@ -61,7 +62,8 @@ const Login = ({ auth, loginUser, ...props }) => {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -69,4 +71,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-export default connect(mapStateToProps, { loginUser })(withRouter(Login))
+export default connect(mapStateToProps, { 
+  loginUser, 
+  getCurrentProfile 
+})(withRouter(Login))
