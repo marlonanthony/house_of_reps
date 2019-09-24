@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
-import InfinteScroll from 'react-infinite-scroll-component'
 import { 
   getPosts, 
   getMorePosts, 
@@ -13,9 +12,7 @@ import {
   getMorePostsByHashtag
 } from '../../../actions/postActions'
 import { getCurrentProfile, getProfiles } from '../../../actions/profileActions'
-import PostForm from '../post_form/PostForm' 
-import Spinner from '../../common/Spinner' 
-import PostFeed from '../post_feed/PostFeed'
+import PostForm from '../post_form/PostForm'
 import PoolsContainer from '../post-assets/promos/djpools/PoolsContainer'
 import StoresContainer from '../post-assets/promos/stores/StoresContainer'
 import PerksContainer from '../post-assets/promos/perks/PerksContainer'
@@ -27,6 +24,7 @@ import Buttons from '../post-assets/buttons/Buttons'
 import BrandContainer from '../post-assets/promos/brands/BrandContainer'
 
 import './Posts.css'
+import PostsContainer from '../posts_container/PostsContainer'
 
 class Posts extends Component {
 
@@ -107,9 +105,7 @@ class Posts extends Component {
     const { profile, profiles } = this.props.profile 
     const { showsPreview, showHashtags, hashtag, showPopup, showLikes } = this.state
     const { user } = this.props.auth
-    let postContent, 
-        profileContent,
-        highlights,
+    let highlights,
         orderedHighlights
 
     if(!profiles || loading) highlights = null
@@ -118,40 +114,6 @@ class Posts extends Component {
       highlights = [].concat.apply([], hls)
       orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
     }
-
-    if(!profile) {
-      profileContent = null
-    } else {
-      profileContent = (
-        <PostFeedProfileContent
-          profile={profile}
-          user={user} 
-          popupHandler={this.popupHandler}
-          showPopup={showPopup}
-          showLikesHandler={this.showLikesHandler}
-          showLikes={showLikes}
-          showNotificationsHandler={this.showNotificationsHandler}
-        />
-      )
-    }
-
-    if(!posts || !profiles || loading) {
-      postContent = <Spinner />
-    }
-
-    postContent = (
-      <InfinteScroll
-        dataLength={ posts.length}
-        next={this.fetchMore}
-        hasMore={true}
-        loader={null}>
-        <PostFeed 
-          showPreview={ showsPreview } 
-          posts={ posts }
-          profiles={ profiles } 
-        />
-      </InfinteScroll>
-    )
 
     return (
       <div className='feed'>
@@ -164,7 +126,15 @@ class Posts extends Component {
         <PostForm  showPreview={ showsPreview }/>
         <SearchBar profiles={ profiles } />
         <Buttons showPostByHashtag={this.showPostByHashtag} />
-        <div className='post-feed-profile'>{ profileContent }</div>
+        <PostFeedProfileContent
+          profile={profile}
+          user={user} 
+          popupHandler={this.popupHandler}
+          showPopup={showPopup}
+          showLikesHandler={this.showLikesHandler}
+          showLikes={showLikes}
+          showNotificationsHandler={this.showNotificationsHandler}
+        />
         <PoolsContainer
           profiles={profiles}
           loading={loading}
@@ -173,7 +143,13 @@ class Posts extends Component {
           profiles={profiles}
           loading={loading}
         />
-        <div className='post-feed-post-content'>{ postContent }</div>
+        <PostsContainer
+            posts={posts}
+            profiles={profiles}
+            loading={loading}
+            fetchMore={this.fetchMore}
+            showsPreview={showsPreview}
+        />
         <Highlights
           recentHighlights={ orderedHighlights }
           toggleShowHighlight={this.props.toggleShowHighlight}
