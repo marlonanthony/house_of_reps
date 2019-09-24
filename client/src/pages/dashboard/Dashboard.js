@@ -12,13 +12,14 @@ import {
   deleteBrand,
   deleteVenue
 } from '../../actions/profileActions'
+import isEmpty from '../../validation/is-empty'
 import './Dashboard.css'
 
 const Dashboard = ({ auth, ...props}) => {
 
   useEffect(() => {
-    if(!props.profile.profile) props.getCurrentProfile()
-  }, [props.profile.profile, props.getCurrentProfile])
+    if(isEmpty(props.profile.profile)) props.getCurrentProfile()
+  }, [props.profile.profile])
 
   const onDeleteClick = () => {
     props.deleteAccount()

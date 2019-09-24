@@ -6,9 +6,9 @@ const CommentFeed = ({ comments, postId, profiles }) => {
   return comments.map(comment => (
     <CommentItem 
       key={comment._id} 
-      profiles={profiles} 
-      comments={comments} 
-      comment={comment} 
+      profiles={profiles}
+      comment={comment}
+      comments={comments}
       postId={postId} />
     )).reverse()
 }
