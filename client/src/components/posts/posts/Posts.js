@@ -19,12 +19,12 @@ import PostFeed from '../post_feed/PostFeed'
 import DjPools from '../post-assets/promos/djpools/DjPools'
 import CertifiedStores from '../post-assets/promos/stores/CertifiedStores'
 import Perks from '../post-assets/promos/perks/Perks'
-import Brands from '../post-assets/promos/brands/Brands'
 import Highlights from '../post-assets/highlights/Highlights'
 import SearchBar from '../post-assets/searchbar/SearchBar'
 import PostFeedProfileContent from '../post-assets/postfeed_profile_content/PostFeedProfileContent'
 import SearchPost from '../post-assets/searchbar/SearchPost'
 import Buttons from '../post-assets/buttons/Buttons'
+import BrandContainer from '../post-assets/promos/brands/BrandContainer'
 
 import './Posts.css'
 
@@ -111,8 +111,7 @@ class Posts extends Component {
         profileContent,
         djpools,
         stores,
-        perks, 
-        brands, 
+        perks,
         highlights,
         orderedHighlights
 
@@ -121,17 +120,6 @@ class Posts extends Component {
       let hls = profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null)
       highlights = [].concat.apply([], hls)
       orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-    }
-    
-
-    if(!profiles || loading) {
-      brands = null
-    } else {
-      brands = profiles.map(val => (
-        val.brands.length > 0 && val.brands !== null 
-        ? val.brands.map(brand => ( <Brands key={brand._id} brands={val.brands} brand={brand} />))
-        : null 
-      ))
     }
 
     if(!profiles || loading) {
@@ -218,7 +206,10 @@ class Posts extends Component {
           toggleShowHighlight={this.props.toggleShowHighlight}
         />
         <div className='stores_container'>{ stores }</div>
-        <div className='certified_brands'>{ brands }</div>
+        <BrandContainer
+          profiles={profiles}
+          loading={loading}
+        />
         <div className='post-feed-footer'>
           <footer>Copyright &copy; 2019 House of Reps</footer>
         </div>

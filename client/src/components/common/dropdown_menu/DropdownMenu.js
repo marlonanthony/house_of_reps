@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 
 import { logoutUser } from '../../../actions/authActions'
 import { getCurrentProfile, clearCurrentProfile } from '../../../actions/profileActions'
+import isEmpty from '../../../validation/is-empty'
 
 import './DropdownMenu.css'
 
@@ -43,9 +44,7 @@ class DropdownMenu extends Component {
     const { isAuthenticated, user } = this.props.auth 
     const { profile } = this.props.profile
     
-    if(!profile) {
-      return null
-    }
+    if(isEmpty(profile)) return null
   
     const authLinks = (
       <>
