@@ -16,37 +16,35 @@ const DashboardContent = ({
 }) => {
   let dashboardContent
 
-  if(profile === null || loading) dashboardContent = null
-  else {
-    if(Object.keys(profile).length) {
-      dashboardContent = (
-        <div style={{ textAlign: 'center'}}>
-          <div className='handle_actions_container'>
-            <Link to={`/profile/${profile.handle}`} >@{ profile.handle }</Link>
-            <ProfileActions user={user} />
-          </div>
-          <PromoContent
-            user={user}
-            profile={profile}
-          />
-          <Venues venues={profile.venues} />
-          <button
-            onClick={ deleteAccount } 
-            id="dashboard-delete-btn" 
-            title='delete profile'>
-            Delete My Account
-          </button>
+  if(loading) dashboardContent = null
+  else if(Object.keys(profile).length) {
+    dashboardContent = (
+      <div style={{ textAlign: 'center'}}>
+        <div className='handle_actions_container'>
+          <Link to={`/profile/${profile.handle}`} >@{ profile.handle }</Link>
+          <ProfileActions user={user} />
         </div>
-      )
-    } else {
-      dashboardContent = (
-        <div className='dashboard_no_profile'>
-          <p className="">{ user.name }</p>
-          <p>You have not yet set up a profile, please add some info</p>
-          <Link to='/create-profile'>Create Profile</Link>
-        </div>
-      )
-    }
+        <PromoContent
+          user={user}
+          profile={profile}
+        />
+        <Venues venues={profile.venues} />
+        <button
+          onClick={ deleteAccount } 
+          id="dashboard-delete-btn" 
+          title='delete profile'>
+          Delete My Account
+        </button>
+      </div>
+    )
+  } else {
+    dashboardContent = (
+      <div className='dashboard_no_profile'>
+        <p className="">{ user.name }</p>
+        <p>You have not yet set up a profile, please add some info</p>
+        <Link to='/create-profile'>Create Profile</Link>
+      </div>
+    )
   }
 
   return <div id='dashboard'>{dashboardContent}</div>
