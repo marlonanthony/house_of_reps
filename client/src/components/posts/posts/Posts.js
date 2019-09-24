@@ -16,15 +16,15 @@ import PostForm from '../post_form/PostForm'
 import PoolsContainer from '../post-assets/promos/djpools/PoolsContainer'
 import StoresContainer from '../post-assets/promos/stores/StoresContainer'
 import PerksContainer from '../post-assets/promos/perks/PerksContainer'
-import Highlights from '../post-assets/highlights/Highlights'
 import SearchBar from '../post-assets/searchbar/SearchBar'
 import PostFeedProfileContent from '../post-assets/postfeed_profile_content/PostFeedProfileContent'
 import SearchPost from '../post-assets/searchbar/SearchPost'
 import Buttons from '../post-assets/buttons/Buttons'
 import BrandContainer from '../post-assets/promos/brands/BrandContainer'
-
-import './Posts.css'
 import PostsContainer from '../posts_container/PostsContainer'
+import HighlightsContainer from '../post-assets/highlights/HighlightsContainer'
+import './Posts.css'
+
 
 class Posts extends Component {
 
@@ -105,15 +105,6 @@ class Posts extends Component {
     const { profile, profiles } = this.props.profile 
     const { showsPreview, showHashtags, hashtag, showPopup, showLikes } = this.state
     const { user } = this.props.auth
-    let highlights,
-        orderedHighlights
-
-    if(!profiles || loading) highlights = null
-    else {
-      let hls = profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null)
-      highlights = [].concat.apply([], hls)
-      orderedHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-    }
 
     return (
       <div className='feed'>
@@ -150,8 +141,9 @@ class Posts extends Component {
             fetchMore={this.fetchMore}
             showsPreview={showsPreview}
         />
-        <Highlights
-          recentHighlights={ orderedHighlights }
+        <HighlightsContainer
+          profiles={profiles}
+          loading={loading}
           toggleShowHighlight={this.props.toggleShowHighlight}
         />
         <StoresContainer
@@ -179,7 +171,8 @@ Posts.propTypes = {
   getMorePosts: PropTypes.func.isRequired,
   getMatchingPosts: PropTypes.func.isRequired,
   getLikedPosts: PropTypes.func.isRequired, 
-  getMoreLikedPosts: PropTypes.func.isRequired
+  getMoreLikedPosts: PropTypes.func.isRequired,
+  toggleShowHighlight: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
