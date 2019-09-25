@@ -1,7 +1,8 @@
 import React from 'react'
-import Moment from 'react-moment' 
+import Moment from 'react-moment'
+import PropTypes from 'prop-types'
 
-const NotificationList = ({ notifications, postHandler }) => (
+const NotificationList = ({ notifications, postHandler }) => notifications && (
   <div className='notifications'>
     <h1 id='notifications_header'>Notifications</h1>
     { notifications.map(notification => (
@@ -10,7 +11,7 @@ const NotificationList = ({ notifications, postHandler }) => (
           { notification.avatar && <img src={notification.avatar} alt='avatar' className='notification_user_avatar' />}
           { notification.message && <p><span className='notification_message'>{notification.message}</span></p> }
         </div>
-        <div className='notification_post_content' onClick={postHandler.bind(this, notification.postId)}>
+        <div className='notification_post_content' onClick={() => postHandler(notification.postId)}>
           { notification.postText && <p>{ notification.postText.length >= 47 ? notification.postText.slice(0, 50) + '...' : notification.postText }</p> }
           { notification.postImage && <img src={notification.postImage} alt='post img' className='notification_post_content_image' />}
           { notification.highlight && <iframe title='youtube' className='notification_highlights' src={notification.highlight.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe> }
@@ -47,6 +48,11 @@ const NotificationList = ({ notifications, postHandler }) => (
     ))}
   </div>
 )
+
+NotificationList.propTypes = {
+  notifications: PropTypes.array.isRequired,
+  postHandler: PropTypes.func.isRequired
+}
 
 export default NotificationList
 

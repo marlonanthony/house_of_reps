@@ -28,10 +28,6 @@ const Notifications = ({ getPost, ...props }) => {
     setShowPost(p => !p)
   }
 
-  const modalToggle = () => {
-    setShowPost(p => !p)
-  }
-
   const { post } = props.post
   let youtubeUrl = post && post.url
   
@@ -51,13 +47,10 @@ const Notifications = ({ getPost, ...props }) => {
           youtubeUrl={youtubeUrl}
         />
       }
-      { notifications &&
-        <NotificationList 
-          notifications={notifications} 
-          postHandler={postHandler}
-          modalToggle={modalToggle}
-        />
-      }
+      <NotificationList 
+        notifications={notifications} 
+        postHandler={postHandler}
+      />
     </div>
   )
 }
