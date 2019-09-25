@@ -1,139 +1,92 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux' 
-import PropTypes from 'prop-types' 
-import request from 'superagent' 
+import PropTypes from 'prop-types'
 
 import { addVenue } from '../../actions/profileActions'
 import Input from '../../components/common/inputs/Input'
 import TextArea from '../../components/common/textarea/TextArea'
 import './AddVenue.css'
 
-const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
+const AddVenue = ({ addVenue, ...props }) => {
+  const [description, setDiscription] = useState(''),
+        [errors, setErrors] = useState({}),
+        [title, setTitle] = useState(''),
+        [video, setVideo] = useState('')
 
-class AddVenue extends Component {
-  state = {
-    location: '',
-    date: '',
-    description: '',
-    errors: {},
-    title: '',
-    video: '',
-    image: '',
-    uploadedFileCloudinaryUrl: '',
-    uploadedFile: ''
-  }
+  useEffect(() => {
+    setErrors(props.errors)
+  }, [props.errors])
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
-      this.setState({ errors: nextProps.errors })
-    }
-  }
-
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  onPaste = e => {
+  const onPaste = e => {
     let clipboardData = e.clipboardData || window.clipboardData
     let urlData = `${''+clipboardData.getData('Text')}`
     let parsedUrl = urlData.slice(7, -10)
-    parsedUrl = parsedUrl.includes('soundcloud') ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
-      : parsedUrl.includes('youtube' || 'youtu.be') ? parsedUrl = parsedUrl.match(/http(.*?)[\s]/g).toString().slice(0, -2)
-      :  null
-    this.setState({ video: parsedUrl })
+    parsedUrl = parsedUrl.includes('soundcloud') 
+      ? parsedUrl = parsedUrl.match(/src.*/g).toString().slice(5, -1) 
+      : parsedUrl.includes('youtube' || 'youtu.be') 
+        ? parsedUrl = parsedUrl.match(/http(.*?)[\s]/g).toString().slice(0, -2)
+        :  null
+    setVideo(parsedUrl)
   }
 
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault()
-    
     const venueData = {
-      date: this.state.date,
-      location: this.state.location,
-      description: this.state.description,
-      title: this.state.title,
-      video: this.state.video,
-      image: this.state.image,
-    
+      description,
+      title,
+      video,
     }
-
-    this.props.addVenue(venueData, this.props.history)
+    addVenue(venueData, props.history)
   }
 
-  onImageDrop = files => {
-    this.setState({ uploadedFile: files[0]})
-    this.handleImageUpload(files[0])
-  }
-
-  handleImageUpload = (file) => {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                        .field('file', file) 
-    
-    upload.end((err, response) => {
-      if(err) console.log(err) 
-      if(response.body.secure_url !== '') {
-        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url})
-        this.setState({ image: response.body.secure_url })
-      }
-    })
-  }
-
-  render() {
-    const { errors } = this.state 
-    return (
-      <div className='add-venue'>
-        <i 
-          onClick={ this.props.history.goBack } 
-          id='addvenue-back-button' 
-          className='fas fa-arrow-alt-circle-left' 
-          alt='back-button' 
-        />
-        <h2>Add Media</h2>
-        <div className='djpools_input_wrapper'>
-          <form onSubmit={ this.onSubmit }>
-            <Input 
-              placeholder='Title'
-              name='title'
-              value={ this.state.title }
-              onChange={ this.onChange }
-              error={ errors.title }
-            />
-            <Input 
-              name='video'
-              type='text'
-              value={ this.state.video }
-              onPaste={ this.onPaste }
-              error={ errors.video }
-              placeholder='Paste embed code'
-            />
-            <TextArea 
-              placeholder='Quick description'
-              name='description'
-              value={ this.state.description }
-              onChange={ this.onChange }
-              error={ errors.description }
-            />
-            <div className='venue-submit-btn-containing-div'>
-              <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
-            </div>
-          </form>
-        </div>
+  return (
+    <div className='add-venue'>
+      <i 
+        onClick={ props.history.goBack } 
+        id='addvenue-back-button' 
+        className='fas fa-arrow-alt-circle-left' 
+        alt='back-button' 
+      />
+      <h2>Add Media</h2>
+      <div className='djpools_input_wrapper'>
+        <form onSubmit={ onSubmit }>
+          <Input 
+            placeholder='Title'
+            name='title'
+            value={ title }
+            onChange={ e => setTitle(e.target.value) }
+            error={ errors.title }
+          />
+          <Input 
+            name='video'
+            type='text'
+            value={ video }
+            onPaste={ onPaste }
+            error={ errors.video }
+            placeholder='Paste embed code'
+          />
+          <TextArea 
+            placeholder='Quick description'
+            name='description'
+            value={ description }
+            onChange={ e => setDiscription(e.target.value) }
+            error={ errors.description }
+          />
+          <div className='venue-submit-btn-containing-div'>
+            <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
+          </div>
+        </form>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 AddVenue.propTypes = {
-  profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   addVenue: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  errors: state.errors
-})
+const mapStateToProps = state => ({ errors: state.errors })
 
 export default connect(mapStateToProps, { addVenue })(withRouter(AddVenue))

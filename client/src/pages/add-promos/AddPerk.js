@@ -11,11 +11,7 @@ import Input from '../../components/common/inputs/Input'
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-const AddPerk = ({
-  addPerk,
-  ...props
-}) => {
-
+const AddPerk = ({ addPerk, ...props }) => {
   const [image, setImage] = useState(''),
   [url, setUrl] = useState(''),
   [description, setDiscription] = useState(''),
