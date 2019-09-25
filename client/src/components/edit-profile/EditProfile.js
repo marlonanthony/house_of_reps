@@ -53,8 +53,6 @@ const EditProfile = ({
   useEffect(() => {
     if(!isEmpty(profile.profile)) {
       const p = profile.profile
-      console.log(p)
-      // If p field doesnt exist, make empty string
       p.avatar = !isEmpty(p.avatar) ? p.avatar : '' 
       p.banner = !isEmpty(p.banner) ? p.banner : ''
       p.stageName = !isEmpty(p.stageName) ? p.stageName : ''
