@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -7,60 +7,55 @@ import request from 'superagent'
 
 import { registerUser } from '../../actions/authActions'
 import Input from '../common/inputs/Input'
+import useForm from '../common/hooks/useForm'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-class Register extends Component {
-  state = {
-    name: '',
+const Register = ({
+  auth,
+  registerUser,
+  ...props
+}) => {
+  const [values, setValues] = useForm({ 
+    name: '', 
     email: '',
     handle: '',
     password: '',
-    password2: '',
-    errors: {},
-    avatar: '',
-    uploadedFileCloudinaryUrl: '',
-    uploadedFile: ''
-  }
+    password2: ''
+  })
+  const [avatar, setAvatar] = useState(''),
+        [errors, setErrors] = useState({}),
+        [uploadedFile, setUploadedFile] = useState(''),
+        [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl ] = useState('')
 
-  componentDidMount() {
-    if(this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
+  useEffect(() => {
+    if(auth.isAuthenticated) {
+      props.history.push('/dashboard')
     }
-  }
+    setErrors(props.errors)
+  }, [auth.isAuthenticated, props.errors])
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
-      this.setState({ errors: nextProps.errors })
-    }
-  }
-
-  onChangeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  onSubmitHandler = e => {
+  const onSubmitHandler = e => {
     e.preventDefault()
-    const { name, email, handle, avatar, password, password2 } = this.state
     const newUser = {
-      name,
-      email,
-      handle,
+      name: values.name,
+      email: values.email,
+      handle: values.handle,
       avatar,
-      password,
-      password2
+      password: values.password,
+      password2: values.password2
     }
-    this.props.registerUser(newUser, this.props.history) 
+    registerUser(newUser, props.history) 
   }
 
-  onImageDrop = files => {
-    this.setState({ uploadedFile: files[0]})
-    this.handleImageUpload(files[0])
+  const onImageDrop = files => {
+    setUploadedFile(files[0])
+    handleImageUpload(files[0])
   }
 
-  handleImageUpload = file => {
+  const handleImageUpload = file => {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file) 
@@ -68,87 +63,83 @@ class Register extends Component {
     upload.end((err, response) => {
       if(err) console.log(err) 
       if(response.body.secure_url !== '') {
-        this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url })
-        this.setState({ avatar: response.body.secure_url })
+        setUploadedFileCloudinaryUrl(response.body.secure_url)
+        setAvatar(response.body.secure_url)
       }
     })
   }
 
-  render() {
-    const { errors } = this.state  
-
-    return (
-      <div className="register-container">
-        <h2>Sign Up</h2>
-        <div id='register-content'>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div className='FileUpload'>
-              <Dropzone 
-                className='dropzone'
-                multiple={ false }
-                accept='image/*'
-                onDrop={ this.onImageDrop }>
-                <p>Drop an image or click to select a file to upload your avatar.</p>
-              </Dropzone>
-            </div>
-            <div>
-              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
-                <img 
-                  src={ this.state.uploadedFileCloudinaryUrl } 
-                  style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                  alt={ this.state.uploadedFile.name } />
-              }
-            </div>
+  return (
+    <div className="register-container">
+      <h2>Sign Up</h2>
+      <div id='register-content'>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className='FileUpload'>
+            <Dropzone 
+              className='dropzone'
+              multiple={ false }
+              accept='image/*'
+              onDrop={ onImageDrop }>
+              <p>Drop an image or click to select a file to upload your avatar.</p>
+            </Dropzone>
           </div>
-          <form id='register-form' onSubmit={ this.onSubmitHandler }>
-            <Input
-              type="text"
-              name='name'
-              value={ this.state.name }
-              placeholder='Name'
-              onChange={ this.onChangeHandler }
-              error={ errors.name }
-            />
-            <Input
-              type="email"
-              name='email'
-              placeholder='Email'
-              value={ this.state.email }
-              onChange={ this.onChangeHandler }
-              error={ errors.email }
-            />
-            <Input
-              type="handle"
-              name='handle'
-              placeholder='handle'
-              value={ this.state.handle }
-              onChange={ this.onChangeHandler }
-              error={ errors.handle }
-            />
-            <Input
-              type="password"
-              name='password'
-              placeholder='Password'
-              value={ this.state.password }
-              onChange={ this.onChangeHandler }
-              error={ errors.password }
-            />
-            <Input
-              type="password"
-              name='password2'
-              placeholder='Confirm Password'
-              value={ this.state.password2 }
-              onChange={ this.onChangeHandler }
-              error={ errors.password2 }
-            />
-            <div className='register-button-container'>
-              <input type="submit" id='register-button' title='submit' />
-            </div>
-          </form>
+          <div>
+            { uploadedFileCloudinaryUrl === '' ? null : 
+              <img 
+                src={ uploadedFileCloudinaryUrl } 
+                style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+                alt={ uploadedFile.name } />
+            }
+          </div>
         </div>
+        <form id='register-form' onSubmit={ onSubmitHandler }>
+          <Input
+            type="text"
+            name='name'
+            value={ values.name }
+            placeholder='Name'
+            onChange={ setValues }
+            error={ errors.name }
+          />
+          <Input
+            type="email"
+            name='email'
+            placeholder='Email'
+            value={ values.email }
+            onChange={ setValues }
+            error={ errors.email }
+          />
+          <Input
+            type="handle"
+            name='handle'
+            placeholder='handle'
+            value={ values.handle }
+            onChange={ setValues }
+            error={ errors.handle }
+          />
+          <Input
+            type="password"
+            name='password'
+            placeholder='Password'
+            value={ values.password }
+            onChange={ setValues }
+            error={ errors.password }
+          />
+          <Input
+            type="password"
+            name='password2'
+            placeholder='Confirm Password'
+            value={ values.password2 }
+            onChange={ setValues }
+            error={ errors.password2 }
+          />
+          <div className='register-button-container'>
+            <input type="submit" id='register-button' title='submit' />
+          </div>
+        </form>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 Register.propTypes = {
