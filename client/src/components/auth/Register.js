@@ -18,6 +18,7 @@ const Register = ({
   registerUser,
   ...props
 }) => {
+  
   const [values, setValues] = useForm({ 
     name: '', 
     email: '',
@@ -25,6 +26,7 @@ const Register = ({
     password: '',
     password2: ''
   })
+
   const [avatar, setAvatar] = useState(''),
         [errors, setErrors] = useState({}),
         [uploadedFile, setUploadedFile] = useState(''),
