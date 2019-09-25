@@ -11,12 +11,12 @@ const Dashboard = ({ auth, getCurrentProfile, ...props}) => {
 
   useEffect(() => {
     if(isEmpty(props.profile.profile)) getCurrentProfile()
-  }, [])
+  }, [props.profile.profile])
 
   const { user } = auth
   const { profile, loading } = props.profile
 
-  return (
+  return profile && (
     <DashboardContent 
       profile={ profile }
       loading={ loading }
