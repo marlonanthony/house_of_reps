@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import JSEMOJI from 'emoji-js'
@@ -7,34 +7,35 @@ import { editPostAction } from '../../../../../actions/postActions'
 import EditPostBody from './EditPostBody'
 import DefaultPostBody from './DefaultPostBody'
 
-class PostBody extends Component {
-  state = {
-    text: '',
-    showEmojis: false
-  }
+const PostBody = ({
+  post,
+  modalToggle,
+  editPostAction,
+  editPost,
+  ...props 
+}) => {
+  const [text, setText] = useState(''),
+        [showEmojis, setShowEmojis] = useState(false)
+    
+  const onChange = e => setText(e.target.value)
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault()
-    const { text } = this.state
-    const { _id } = this.props.post
-    const { toggleEditPost } = this.props
+    const { _id } = post
+    const { toggleEditPost } = props
     const editedPost = { text }
 
-    this.props.editPostAction(_id, editedPost) 
-    this.setState({ text: '' })
+    editPostAction(_id, editedPost)
+    setText('')
     toggleEditPost()
     e.target.reset() 
   }
 
-  toggleEmoji = () => {
-    this.setState(prevState => ({ showEmojis: !prevState.showEmojis }))
+  const toggleEmoji = () => {
+    setShowEmojis(p => !p)
   }
 
-  addEmoji = emojiName => {
+  const addEmoji = emojiName => {
     const jsemoji = new JSEMOJI() 
     jsemoji.img_set = 'emojione' 
     jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
@@ -47,53 +48,41 @@ class PostBody extends Component {
     jsemoji.replace_colons(`:${emojiName}:`)
     
     let emoji = String.fromCodePoint(parseInt(emojiName, 16))
-    this.setState({ text: this.state.text + emoji })
+    setText(text => text + emoji)
   }
 
-  render() {
-    const { text, showEmojis } = this.state
-    const {   
-      post,
-      modalToggle,
-      editPost
-    } = this.props
-    let youtubeUrl = post.url
-    
-    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
-      ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                             .replace(/watch\?v=/gi, 'embed/')
-                             .replace(/&feature=www\.youtube\.com/gi, '')
-      : youtubeUrl = null 
+  let youtubeUrl = post.url
+  
+  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+    ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                            .replace(/watch\?v=/gi, 'embed/')
+                            .replace(/&feature=www\.youtube\.com/gi, '')
+    : youtubeUrl = null 
 
-    return !editPost
-      ? <DefaultPostBody
-          post={post}
-          modalToggle={modalToggle}
-          youtubeUrl={youtubeUrl}
-        />
-      : <EditPostBody 
-          showEmojis={showEmojis}
-          toggleEmoji={this.toggleEmoji}
-          addEmoji={this.addEmoji}
-          onSubmit={this.onSubmit}
-          post={post}
-          onChange={this.onChange}
-          text={text}
-          modalToggle={modalToggle}
-          youtubeUrl={youtubeUrl}
-        />
-  }
+  return !editPost
+    ? <DefaultPostBody
+        post={post}
+        modalToggle={modalToggle}
+        youtubeUrl={youtubeUrl}
+      />
+    : <EditPostBody 
+        showEmojis={showEmojis}
+        toggleEmoji={toggleEmoji}
+        addEmoji={addEmoji}
+        onSubmit={onSubmit}
+        post={post}
+        onChange={onChange}
+        text={text}
+        modalToggle={modalToggle}
+        youtubeUrl={youtubeUrl}
+      />
 }
 
 PostBody.propTypes = {
   post: PropTypes.object.isRequired,
   modalToggle: PropTypes.func.isRequired,
-  youtubeUrl: PropTypes.string,
+  editPost: PropTypes.bool.isRequired,
   editPostAction: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => ({
-  errors: state.errors
-})
-
-export default connect(mapStateToProps, { editPostAction })(PostBody)
+export default connect(null, { editPostAction })(PostBody)

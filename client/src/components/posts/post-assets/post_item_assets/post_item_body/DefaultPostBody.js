@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import PostText from '../../text/PostText'
 
 export default function DefaultPostBody({
@@ -34,4 +36,10 @@ export default function DefaultPostBody({
             <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
           </div>
         </div>
+}
+
+DefaultPostBody.propTypes = {
+  post: PropTypes.object.isRequired,
+  modalToggle: PropTypes.func.isRequired,
+  youtubeUrl: PropTypes.string
 }
