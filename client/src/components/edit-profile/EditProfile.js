@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Dropzone from 'react-dropzone' 
 import request from 'superagent' 
 
 import { createProfile, getCurrentProfile } from '../../actions/profileActions'
@@ -11,6 +10,7 @@ import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
 import SocialLinksInput from '../common/inputs/SocialLinksInput'
+import Avatar from './Avatar'
 import isEmpty from '../../validation/is-empty'
 import './EditProfile.css'
 
@@ -148,7 +148,12 @@ class EditProfile extends Component {
 
 
   render() {
-    const { errors, displaySocialInputs } = this.state 
+    const { 
+      errors, 
+      displaySocialInputs, 
+      uploadedFile, 
+      uploadedFileCloudinaryUrl 
+    } = this.state 
     
     const options = [
       { label: "What's Your DJ Style?", value: 0 },
@@ -253,25 +258,11 @@ class EditProfile extends Component {
         <i onClick={this.props.history.goBack} id='edit-profile-back-button' className='fas fa-arrow-alt-circle-left' alt='back-button' />
         <h2>Edit Profile</h2>
         <div className='djpools_input_wrapper'>
-          <div className='djpools-dropzone'>
-            <div className='FileUpload'>
-              <Dropzone 
-                className='dropzone'   // In UI/dropzone
-                multiple={false}
-                accept='image/*'
-                onDrop={this.onImageDrop}>
-                <p>Drag or click here to upload a file.</p>
-              </Dropzone>
-            </div>
-            <div>
-              { this.state.uploadedFileCloudinaryUrl === '' ? null : 
-                <img 
-                  src={this.state.uploadedFileCloudinaryUrl} 
-                  style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                  alt={this.state.uploadedFile.name} />
-              }
-            </div>
-          </div>
+          <Avatar
+              onImageDrop={this.onImageDrop}
+              uploadedFile={uploadedFile}
+              uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
+          />
           <form onSubmit={ this.onSubmit }>
             <Input 
               placeholder='A man has no name'
