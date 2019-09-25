@@ -46,7 +46,7 @@ const Notifications = ({ getPost, ...props }) => {
       { showPost && post &&
         <ShowPost 
           post={post}
-          modalToggle={modalToggle} 
+          setShowPost={setShowPost}
           showPost={showPost}
           youtubeUrl={youtubeUrl}
         />
