@@ -1,69 +1,70 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux' 
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 import { getPost } from '../../../../actions/postActions'
 import ShowPost from './ShowPost'
 import NotificationList from './NotificationList'
 import './Notifications.css'
 
-class Notifications extends Component {
+const Notifications = ({ getPost, ...props }) => {
 
-  state = {
-    notifications: [],
-    showPost: false, 
-  }
+  const [notifications, setNotifications] = useState([]),
+        [showPost, setShowPost] = useState(false)
 
-  componentDidMount() {
-    axios.get('/api/profile/notifications') 
+  useEffect(() => {
+    axios.get('/api/profile/notifications')
     .then(res => {
-      this.setState({ notifications: res.data })
+      setNotifications(res.data)
     })
+    return () => {
+      axios.post('/api/profile/notifications/seen')
+    }
+  }, [])
+
+  const postHandler = async postId => {
+    await getPost(postId)
+    setShowPost(p => !p)
   }
 
-  postHandler = (postId) => {
-    this.props.getPost(postId)
-    this.setState(prevState => ({ showPost: !prevState.showPost }))
+  const modalToggle = () => {
+    setShowPost(p => !p)
   }
 
-  modalToggle = () => {
-    this.setState(prevState => ({ showPost: !prevState.showPost }))
-  }
-
-  componentWillUnmount() {
-    axios.post('/api/profile/notifications/seen')
-  }
-
-  render() {
-    const { post } = this.props.post
-    let youtubeUrl = post && post.url
+  const { post } = props.post
+  let youtubeUrl = post && post.url
+  
+  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
+    ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
+                            .replace(/watch\?v=/gi, 'embed/')
+                            .replace(/&feature=www\.youtube\.com/gi, '')
+    : youtubeUrl = null 
     
-    youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
-      ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                             .replace(/watch\?v=/gi, 'embed/')
-                             .replace(/&feature=www\.youtube\.com/gi, '')
-      : youtubeUrl = null 
-      
-    return (
-      <div>
-        { this.state.showPost && post &&
-          <ShowPost 
-            post={post}
-            modalToggle={this.modalToggle} 
-            showPost={this.showPost}
-            youtubeUrl={youtubeUrl}
-          />
-        }
-        { this.state.notifications &&
-          <NotificationList 
-            notifications={this.state.notifications} 
-            postHandler={this.postHandler}
-            modalToggle={this.modalToggle}
-          />
-        }
-      </div>
-    )
-  }
+  return (
+    <div>
+      { showPost && post &&
+        <ShowPost 
+          post={post}
+          modalToggle={modalToggle} 
+          showPost={showPost}
+          youtubeUrl={youtubeUrl}
+        />
+      }
+      { notifications &&
+        <NotificationList 
+          notifications={notifications} 
+          postHandler={postHandler}
+          modalToggle={modalToggle}
+        />
+      }
+    </div>
+  )
+}
+
+Notifications.propTypes = {
+  post: PropTypes.object.isRequired,
+  getPost: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
