@@ -13,7 +13,12 @@ export default function DefaultPostBody({
     : post.media 
       ? <div>
           <PostText postText={post.text} />
-          <img className='postfeed-media-pic' onClick={modalToggle} src={post.media} alt="uploaded" />
+          <img 
+            className='postfeed-media-pic' 
+            onClick={modalToggle} 
+            src={post.media} 
+            alt="uploaded" 
+          />
         </div>
       : <div className='post_content'>
           <PostText postText={post.text} />
@@ -29,11 +34,18 @@ export default function DefaultPostBody({
                   allowFullScreen={true}>
                 </iframe>
               : <a href={post.url} target='_blank' rel='noopener noreferrer'>
-                  <img src={post.image} alt='thumbnail' style={{ width: '100%' }} id='post-link-img' />
+                  <img 
+                    src={post.image} 
+                    alt='thumbnail' 
+                    style={{ width: '100%' }} 
+                    id='post-link-img' 
+                  />
                 </a> 
             }
             <p style={{textAlign: 'center', fontSize: '12px'}}>{post.title}</p>
-            <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>{post.description}</p>
+            <p style={{textAlign: 'center', fontSize: '12px', padding: '0 5px 20px 5px'}}>
+              {post.description}
+            </p>
           </div>
         </div>
 }

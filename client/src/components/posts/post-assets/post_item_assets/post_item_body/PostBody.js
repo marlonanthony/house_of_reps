@@ -12,7 +12,7 @@ const PostBody = ({
   modalToggle,
   editPostAction,
   editPost,
-  ...props 
+  toggleEditPost
 }) => {
   const [text, setText] = useState(''),
         [showEmojis, setShowEmojis] = useState(false)
@@ -22,7 +22,6 @@ const PostBody = ({
   const onSubmit = e => {
     e.preventDefault()
     const { _id } = post
-    const { toggleEditPost } = props
     const editedPost = { text }
 
     editPostAction(_id, editedPost)
@@ -82,7 +81,8 @@ PostBody.propTypes = {
   post: PropTypes.object.isRequired,
   modalToggle: PropTypes.func.isRequired,
   editPost: PropTypes.bool.isRequired,
-  editPostAction: PropTypes.func.isRequired
+  editPostAction: PropTypes.func.isRequired,
+  toggleEditPost: PropTypes.func.isRequired
 }
 
 export default connect(null, { editPostAction })(PostBody)
