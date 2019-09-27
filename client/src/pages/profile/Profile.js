@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
 
-import ProfileHeader from '../profile_header/ProfileHeader'
-import { getProfileByHandle } from '../../../actions/profileActions'
+import Spinner from '../../components/common/Spinner'
+import ProfileContent from '../../components/profile/profile_content/ProfileContent'
+import { getProfileByHandle } from '../../actions/profileActions'
 import './Profile.css'
 
 const Profile = ({
@@ -24,21 +25,9 @@ const Profile = ({
 
   const { profile, loading, profiles } = props.profile
   const { user } = auth
-  let profileContent
 
-  if(!profile || loading) {
-    profileContent = null
-  } else {
-    profileContent = <ProfileHeader profiles={profiles} profile={profile} user={user} />
-  }
-
-  return (
-    <div className='profile-container'>
-      <div className='profile'>
-        {profileContent}
-      </div>
-    </div>
-  )
+  if(!profile || loading) return <Spinner />
+  return <ProfileContent profiles={profiles} profile={profile} user={user} />
 }
 
 Profile.propTypes = {

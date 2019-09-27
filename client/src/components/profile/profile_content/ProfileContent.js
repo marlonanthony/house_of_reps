@@ -6,12 +6,12 @@ import ProfilePost from '../profile_post/ProfilePost'
 import ProfileIcons from '../profile_assets/ProfileIcons'
 import Banners from '../profile_assets/Banners'
 import ProfileAbout from '../profile_assets/ProfileAbout'
-import './ProfileHeader.css'
+import './ProfileContent.css'
 
-export default function ProfileHeader({ profiles, profile, user }) {
+export default function ProfileContent({ profiles, profile, user }) {
   return (
-    <div className='profile-header-container'>
-      <div className="profile-header">
+    <div className='profile-content-container'>
+      <div className="profile-content">
         <div id='header-items'>
           <div id='profile-avatar-div'>
             { isEmpty(user.avatar) 
