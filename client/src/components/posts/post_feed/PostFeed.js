@@ -7,7 +7,7 @@ import PostItem from '../post_item/PostItem'
 const PostFeed = ({ posts, profiles }) => (
   <div style={{ overflow: 'hidden' }}>
     { !posts.length
-        ? <div>Tumbleweed just blew by</div>
+        ? <div>These are not the posts you're looking for.</div>
         : posts.map(post => (
           <PostItem 
             key={post._id} 

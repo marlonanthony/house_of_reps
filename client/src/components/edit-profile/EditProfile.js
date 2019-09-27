@@ -94,6 +94,7 @@ const EditProfile = ({
 
   const onSubmit = e => {
     e.preventDefault()
+    
     const profileData = {
       avatar,
       banner,

@@ -11,7 +11,7 @@ const Dashboard = ({ auth, getCurrentProfile, ...props}) => {
 
   useEffect(() => {
     if(isEmpty(props.profile.profile)) getCurrentProfile()
-  }, [props.profile.profile])
+  }, [])
 
   const { user } = auth
   const { profile, loading } = props.profile
@@ -36,6 +36,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { 
-  getCurrentProfile
-})(Dashboard)
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard)
