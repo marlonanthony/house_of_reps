@@ -1,6 +1,5 @@
 import React from 'react'
 
-import isEmpty from '../../../validation/is-empty'
 import ProfileCreds from '../profile_creds/ProfileCreds'
 import ProfilePost from '../profile_post/ProfilePost'
 import ProfileIcons from '../profile_assets/ProfileIcons'

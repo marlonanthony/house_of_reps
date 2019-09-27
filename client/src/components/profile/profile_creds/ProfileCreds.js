@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -10,53 +10,41 @@ import ModalVenues from '../profile_assets/ModalVenues'
 import FadeIn from '../../UI/fade_in/FadeIn'
 import './ProfileCreds.css'
 
-class ProfileCreds extends Component {
+const ProfileCreds = ({ likeVenue, venues }) => {
 
-  state = { showModal: false  }
+  const [showModal, setShowModal] = useState(false)
 
-  modalToggle = () => {
-    this.setState(prevState => ({ showModal: !prevState.showModal }))
-  }
+  const highlightsModal = showModal && (
+    <HighlightsModal>
+      <ModalVenues
+        venues={venues}
+        likeVenue={likeVenue}
+      />
+    </HighlightsModal>
+  ) 
 
-  likeHighlight = (venueId, venueUserId) => {
-    this.props.likeVenue(venueId, venueUserId)
-  }
+  const venueItems = venues.map(venue => (
+    <FadeIn key={venue._id}>
+      <VenueItems 
+        venue={venue}
+        setShowModal={setShowModal}
+      />
+    </FadeIn>
+  ))
 
-  render() {
-    const { venues } = this.props 
-
-    const highlightsModal = this.state.showModal && (
-      <HighlightsModal>
-        <ModalVenues
-          venues={venues}
-          likeHighlight={this.likeHighlight}
-        />
-      </HighlightsModal>
-    ) 
-
-    const venueItems = venues.map(venue => (
-      <FadeIn key={venue._id}>
-        <VenueItems 
-          venue={venue}
-          modalToggle={this.modalToggle}
-        />
-      </FadeIn>
-    ))
-
-    return (
-      <div id='profile-creds-div'>
-        <div className='profile-creds'>
-          <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-          { highlightsModal }
-          <div className='profile-creds-content'>
-            { venueItems.length > 0 
-              ? venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
-              : <p id='no_venues'><Link to='/add-venue'>Add some content</Link></p> }
-          </div>
+  return (
+    <div id='profile-creds-div'>
+      <div className='profile-creds'>
+        <Backdrop clicked={() => setShowModal(prev => !prev)} show={showModal} />
+        { highlightsModal }
+        <div className='profile-creds-content'>
+          { venueItems.length > 0 
+            ? venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
+            : <p id='no_venues'><Link to='/add-venue'>Add some content</Link></p> }
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({
