@@ -13,13 +13,7 @@ export default function ProfileContent({ profiles, profile, user }) {
     <div className='profile-content-container'>
       <div className="profile-content">
         <div id='header-items'>
-          <div id='profile-avatar-div'>
-            { isEmpty(user.avatar) 
-              ? <p>create profile</p> 
-              : <img id='profile-avatar' src={profile.user.avatar} alt="avatar" /> 
-            }
-          </div>
-          <ProfileAbout profile={profile} />
+          <ProfileAbout profile={profile} user={user} />
           <ProfileIcons profile={profile} />
           <Banners />
         </div>
