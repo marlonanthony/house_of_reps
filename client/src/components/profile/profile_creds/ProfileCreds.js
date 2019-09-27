@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -39,7 +39,7 @@ const ProfileCreds = ({ likeVenue, venues }) => {
         { highlightsModal }
         <div className='profile-creds-content'>
           { venueItems.length > 0 
-            ? venueItems.filter((_, i) => i < 6 ?  (<ul>{venueItems}</ul>) : null)
+            ? venueItems.filter((_, i) => i < 6 ?  <ul>{venueItems}</ul> : null)
             : <p id='no_venues'><Link to='/add-venue'>Add some content</Link></p> }
         </div>
       </div>

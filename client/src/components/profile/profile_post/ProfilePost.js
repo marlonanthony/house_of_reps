@@ -1,59 +1,55 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types' 
 import { connect } from 'react-redux' 
 import { withRouter } from 'react-router-dom'
-// import InfinteScroll from 'react-infinite-scroll-component'
-import { getPosts, getMorePosts, getProfilePosts, getMoreProfilePosts } from '../../../actions/postActions'
-// import PostItem from '../../posts/post_item/PostItem'
+import InfinteScroll from 'react-infinite-scroll-component'
+
+import {
+  getProfilePosts, 
+  getMoreProfilePosts 
+} from '../../../actions/postActions'
 import PostFeed from '../../posts/post_feed/PostFeed'
 
-class ProfilePost extends Component {
-  state = {
-    showLikes: false,
-    count: 10,
-    start: 0
-  }
+const ProfilePost = ({
+  getProfilePosts,
+  getMoreProfilePosts,
+  profiles,
+  post,
+  ...props
+}) => {
+  const [count] = useState(10),
+        [start, setStart] = useState(0)
 
-  componentDidMount() {
-    const { count, start } = this.state 
+  useEffect(() => {
     window.scrollTo(0, 0) 
-    this.props.getProfilePosts(count, start, this.props.match.params.handle) 
-    this.setState(prevState => ({ start: prevState.start + 1 }))
-  }
+    getProfilePosts(count, start, props.match.params.handle)
+  }, [getProfilePosts])
 
-  fetchMore = () => {
-    const { count, start } = this.state 
-    this.props.getMoreProfilePosts(count, start, this.props.match.params.handle) 
-    this.setState( prevState => ({ start: prevState.start + 1 }))
-  }
-
-  render() {
-    const { posts, loading } = this.props.post
-    const { profiles } = this.props
-    let postContent 
-    if(!posts || loading) {
-      postContent = null
-    } else {
-      // postContent = posts.map(post => <PostItem key={post._id} post={post} />)
-      postContent = <PostFeed profiles={profiles} posts={posts} />
+  useEffect(() => {
+    if(start > 0) {
+      getMoreProfilePosts(count, start, props.match.params.handle)
     }
-    return (
-      <div id='profile-feed'>
-        {/* <InfinteScroll
-          dataLength={posts.length}
-          next={this.fetchMore}
-          hasMore={true}
-          loader={null}> */}
-          { postContent }
-        {/* </InfinteScroll> */}
-      </div>
-    )
-  }
+  }, [start])
+
+  const { posts } = post
+
+  return (
+    <div id='profile-feed'>
+      <InfinteScroll
+        dataLength={posts.length}
+        next={() => setStart(prev => prev + 1)}
+        hasMore={true}
+        loader={null}>
+        <PostFeed profiles={profiles} posts={posts} />
+      </InfinteScroll>
+    </div>
+  )
 }
 
 ProfilePost.propTypes = {
   post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired,
+  profiles: PropTypes.array.isRequired,
+  getMoreProfilePosts: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -61,9 +57,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps, { 
-  getPosts, 
-  getMorePosts, 
-  getProfilePosts, 
+export default connect(mapStateToProps, {
+  getProfilePosts,
   getMoreProfilePosts
 })(withRouter(ProfilePost))
