@@ -1,19 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types' 
-import { connect } from 'react-redux'
-
-import { loginUser } from '../../actions/authActions' 
+import Guest from '../../components/auth/Guest'
 import './Landing.css'
 
-const Landing = ({ auth, loginUser, errors, ...props }) => {
+const Landing = () => {
   const date = new Date()
-
-  useEffect(() => {
-    if(auth.isAuthenticated) {
-      props.history.push('/feed')
-    }
-  }, [auth])
 
   return (
     <main>
@@ -23,12 +14,15 @@ const Landing = ({ auth, loginUser, errors, ...props }) => {
             <div>
               <h1>House of Reps</h1>
               <h6>Community of DJs by DJs for DJs</h6>
-              <Link to='/login'>
-                <button className='landing_buttons'>Sign In</button>
-              </Link>
-              <Link to='/register'>
-                <button className='landing_buttons'>Sign Up</button>
-              </Link> 
+              <div className='landing_btn_container'>
+                <Link to='/login'>
+                  <button className='landing_buttons'>Sign In</button>
+                </Link>
+                <Link to='/register'>
+                  <button className='landing_buttons'>Sign Up</button>
+                </Link>
+                <Guest />
+              </div>
             </div>
             <footer className='landing_footer'>
               Copyright &copy; { date.getFullYear() } House of Reps
@@ -40,15 +34,4 @@ const Landing = ({ auth, loginUser, errors, ...props }) => {
   )
 }
 
-Landing.propTypes = {
-  auth: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
-}
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-})
-
-export default connect(mapStateToProps, { loginUser })(Landing)
+export default Landing

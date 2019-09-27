@@ -7,6 +7,7 @@ import { loginUser } from '../../actions/authActions'
 import { getCurrentProfile } from '../../actions/profileActions'
 import Input from '../common/inputs/Input'
 import useForm from '../common/hooks/useForm'
+import Guest from '../auth/Guest'
 import './Login.css'
 
 const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {

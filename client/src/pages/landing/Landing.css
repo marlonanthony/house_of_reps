@@ -24,7 +24,7 @@
 }
 
 .landing_buttons {
-  margin: 0 13px 0 13px;
+  margin: 13px;
   padding: 10px;
   width: 120px;
   background: rgba(0, 0, 0, 0.4);
@@ -56,53 +56,18 @@
   margin-top: -15px;
 }
 
+.landing_btn_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .landing_footer {
   text-align: center;
   margin-top: 15%;
   color: rgb(55, 131, 194);
 }
-
-#login-title {
-  /* color: rgb(55, 131, 194); */
-}
-
-.inputs {
-  margin: 10px;
-  height: 20px;
-  width: 50%;
-  font-size: 17px;
-  border: none;
-  border-radius: 2px;
-  outline: none;
-  text-decoration: none;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.inputs::placeholder {
-  /* color: rgb(55, 131, 194); */
-  color: black;
-}
-
-#login-button {
-  font-size: 17px;
-  padding: 8px;
-  margin: 10px; 
-  border: none;
-  border-radius: 2px;
-  outline: none;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-#login-button:hover {
-  /* background: rgba(0, 0, 0, 0.8); */
-  font-size: 15px;
-  cursor: pointer;
-}
-
-/* .is-invalid {
-  border: 1px solid red;
-} */
 
 .error {
   color: red;
