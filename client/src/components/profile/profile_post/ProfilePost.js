@@ -22,14 +22,14 @@ const ProfilePost = ({
 
   useEffect(() => {
     window.scrollTo(0, 0) 
-    getProfilePosts(count, start, props.match.params.handle)
+    getProfilePosts(10, 0, props.match.params.handle)
   }, [getProfilePosts])
 
   useEffect(() => {
     if(start > 0) {
       getMoreProfilePosts(count, start, props.match.params.handle)
     }
-  }, [start])
+  }, [start, count, getMoreProfilePosts])
 
   const { posts } = post
 
