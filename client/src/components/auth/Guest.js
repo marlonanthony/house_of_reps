@@ -12,8 +12,7 @@ const Guest = ({ auth, loginUser, getCurrentProfile, ...props }) => {
     }
   }, [auth.isAuthenticated])
 
-  const onSubmitHandler = async e => {
-    e.preventDefault() 
+  const onSubmitHandler = () => {
     const userData = {
       email: 'anthonysojo@gmail.com',
       password: '123456'
@@ -22,17 +21,16 @@ const Guest = ({ auth, loginUser, getCurrentProfile, ...props }) => {
   }
 
   return (
-    <>
-      <button className='landing_buttons' onClick={onSubmitHandler}>
-        Guest
-      </button>
-    </>
+    <button className='landing_buttons' onClick={onSubmitHandler}>
+      Guest
+    </button>
   )
 }
 
 Guest.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

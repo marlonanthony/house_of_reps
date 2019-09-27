@@ -1,47 +1,50 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types' 
 import { withRouter } from 'react-router-dom'
 
-import ProfileHeader from '../profile_header/ProfileHeader' 
-import Spinner from '../../common/Spinner'
+import ProfileHeader from '../profile_header/ProfileHeader'
 import { getProfileByHandle } from '../../../actions/profileActions'
 import './Profile.css'
 
-class Profile extends Component {
-  componentDidMount() {
-    if(this.props.match.params.handle === 'undefined') {
-      this.props.history.push('/dashboard')
+const Profile = ({
+  auth,
+  getProfileByHandle,
+  ...props
+}) => {
+
+  useEffect(() => {
+    if(props.match.params.handle === 'undefined') {
+      props.history.push('/dashboard')
     }
-    if(this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle) 
+    if(props.match.params.handle) {
+      getProfileByHandle(props.match.params.handle) 
     }
+  },[props.match.params.handle, getProfileByHandle])
+
+  const { profile, loading, profiles } = props.profile
+  const { user } = auth
+  let profileContent
+
+  if(!profile || loading) {
+    profileContent = null
+  } else {
+    profileContent = <ProfileHeader profiles={profiles} profile={profile} user={user} />
   }
 
-  render() {
-    const { profile, loading, profiles } = this.props.profile
-    const { user } = this.props.auth
-    let profileContent
-
-    if(!profile || loading) {
-      profileContent = <Spinner />
-    } else {
-      profileContent = <ProfileHeader profiles={profiles} profile={profile} user={user} />
-    }
-    
-    return (
-      <div className='profile-container'>
-        <div className='profile'>
-          {profileContent}
-        </div>
+  return (
+    <div className='profile-container'>
+      <div className='profile'>
+        {profileContent}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  getProfileByHandle: PropTypes.func.isRequired
+  getProfileByHandle: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -8,7 +8,6 @@ import request from 'superagent'
 import { registerUser } from '../../actions/authActions'
 import Input from '../common/inputs/Input'
 import useForm from '../common/hooks/useForm'
-import Guest from '../auth/Guest'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
