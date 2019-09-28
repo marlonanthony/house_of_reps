@@ -77,7 +77,7 @@ router.post('/register', async (req, res) => {
         const emailInfo = {
           subject: 'Testing the register route',
           body: "Bruh, I'm fittin to write all the emails!",
-          recipients: 'mad1083@yahoo.com', // change this to email after testing
+          recipients: email, // change this to email after testing
           token: token.token
         }
         const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))

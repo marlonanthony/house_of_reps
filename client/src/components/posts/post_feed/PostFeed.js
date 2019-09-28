@@ -12,7 +12,7 @@ const PostFeed = ({ posts, profiles }) => (
           <PostItem 
             key={post._id} 
             post={post} 
-            profiles={profiles} 
+            profiles={profiles}
           />
     ))}
   </div>

@@ -9,10 +9,10 @@ import DefaultPostBody from './DefaultPostBody'
 
 const PostBody = ({
   post,
-  modalToggle,
   editPostAction,
   editPost,
-  toggleEditPost
+  toggleEditPost,
+  modalToggle
 }) => {
   const [text, setText] = useState(''),
         [showEmojis, setShowEmojis] = useState(false)
