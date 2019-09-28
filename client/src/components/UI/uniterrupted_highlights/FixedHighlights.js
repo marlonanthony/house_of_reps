@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { getProfiles } from '../../../actions/profileActions'
 import Arrow from '../arrow_glyph/Arrow'
 import './FixedHighlights.css'
-import Spinner from '../../common/Spinner'
 
 class FixedHighlights extends Component {
   state = { 
@@ -60,11 +59,10 @@ class FixedHighlights extends Component {
   }
 
   render() {
-    console.log(`rendered`)
     const { recentHighlights, currentImageIndex } = this.state
-    const { profiles, loading } = this.props.profile
+    const { profiles } = this.props.profile
     if(!this.props.showHighlight) return null
-    if(!profiles || loading || !recentHighlights.length) return null
+    if(!profiles || !recentHighlights.length) return null
 
     return  recentHighlights[currentImageIndex] && recentHighlights[currentImageIndex].video && (
       <div className='fixed_highlights_container'>
@@ -96,8 +94,7 @@ FixedHighlights.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  loading: state.loading
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { getProfiles })(FixedHighlights) 
