@@ -15,7 +15,7 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/u
 const AddCertifiedStore = ({ addStore, ...props }) => {
   const [image, setImage] = useState(''),
         [url, setUrl] = useState(''),
-        // [description, setDiscription] = useState(''),
+        [description, setDescription] = useState(''),
         [errors, setErrors] = useState({}),
         [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
         [uploadedFile, setUploadedFile] = useState('')
@@ -28,7 +28,8 @@ const AddCertifiedStore = ({ addStore, ...props }) => {
     e.preventDefault()
     const storeData = {
       image,
-      url
+      url,
+      description
     }
     addStore(storeData, props.history)
   }
@@ -97,6 +98,14 @@ const AddCertifiedStore = ({ addStore, ...props }) => {
             onChange={ e => setImage(e.target.value) }
             error={ errors.image }
             placeholder='image'
+          />
+          <Input 
+            name='description'
+            type='text'
+            value={ description }
+            onChange={ e => setDescription(e.target.value) }
+            error={ errors.description }
+            placeholder='description'
           />
           <div className='certified-store-submit-btn-containing-div'>
             <input type="submit" value='Submit' id='add-djpools-submit-button'/>

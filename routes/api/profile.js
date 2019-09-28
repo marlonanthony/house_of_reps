@@ -274,7 +274,8 @@ router.post('/djpools', passport.authenticate('jwt', { session: false }), async 
     const profile = await Profile.findOne({ user: req.user.id })
     const newDjpool = {
       image: req.body.image,
-      url: req.body.url
+      url: req.body.url,
+      description: req.body.description
     }
     profile.djpools.unshift(newDjpool) 
     await profile.save()
@@ -294,7 +295,8 @@ router.post('/stores', passport.authenticate('jwt', { session: false }), async (
     const profile = await Profile.findOne({ user: req.user.id })
     const newStore = {
       image: req.body.image,
-      url: req.body.url
+      url: req.body.url,
+      description: req.body.description
     }
     profile.stores.unshift(newStore) 
     await profile.save()

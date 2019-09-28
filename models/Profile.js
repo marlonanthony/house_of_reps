@@ -95,6 +95,9 @@ const ProfileSchema = new Schema({
       },
       url: {
         type: String 
+      },
+      description: {
+        type: String
       }
     }
   ],
@@ -105,6 +108,9 @@ const ProfileSchema = new Schema({
       },
       url: { 
         type: String 
+      },
+      description: {
+        type: String
       }
     }
   ],

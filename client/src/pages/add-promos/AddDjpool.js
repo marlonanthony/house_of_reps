@@ -15,7 +15,7 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/u
 const AddDjpool = ({ addDjpool, ...props }) => {
   const [image, setImage] = useState(''),
   [url, setUrl] = useState(''),
-  // [description, setDiscription] = useState(''),
+  [description, setDescription] = useState(''),
   [errors, setErrors] = useState({}),
   [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
   [uploadedFile, setUploadedFile] = useState('')
@@ -28,7 +28,8 @@ const AddDjpool = ({ addDjpool, ...props }) => {
     e.preventDefault()
     const djpoolData = {
       image,
-      url
+      url,
+      description
     }
     addDjpool(djpoolData, props.history)
   }
@@ -97,6 +98,14 @@ const AddDjpool = ({ addDjpool, ...props }) => {
             onChange={ e => setImage(e.target.value) }
             error={ errors.image }
             placeholder='Image URL'
+          />
+          <Input 
+            name='description'
+            type='text'
+            value={ description }
+            onChange={ e => setDescription(e.target.value) }
+            error={ errors.description }
+            placeholder='Description'
           />
           <div className='add-djpool-submit-btn-containing-div'>
             <input type="submit" value='Submit' id='add-djpools-submit-button' title='submit' />
