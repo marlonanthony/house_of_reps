@@ -25,7 +25,6 @@ import PostsContainer from '../posts_container/PostsContainer'
 import HighlightsContainer from '../post-assets/highlights/HighlightsContainer'
 import Footer from '../post-assets/footer/Footer'
 import './Posts.css'
-import MobileNotifications from '../post-assets/notifications/MobileNotifications'
 
 
 class Posts extends Component {
@@ -116,7 +115,6 @@ class Posts extends Component {
           showLikesHandler={this.showLikesHandler}
           showLikes={showLikes}
         />
-        <MobileNotifications profile={profile} />
         <PoolsContainer
           profiles={profiles}
           loading={loading}

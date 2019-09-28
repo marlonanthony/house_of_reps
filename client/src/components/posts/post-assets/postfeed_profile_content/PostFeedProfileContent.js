@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PostsProfilePopup from '../../../UI/popup_menu/PostsProfilePopup'
+import MobileNotifications from '../notifications/MobileNotifications'
 import './PostFeedProfileContent.css'
 
 const PostFeedProfileContent = ({
@@ -15,6 +16,8 @@ const PostFeedProfileContent = ({
   const [showPopup, setShowPopup] = useState(false)
 
   return profile && user && (
+    <>
+    <MobileNotifications profile={profile} />
     <div className='post-feed-profile'>
       <div>
         <div className='post-profile-avatar-container'>
@@ -73,6 +76,7 @@ const PostFeedProfileContent = ({
         </div>
       </div>
     </div>
+    </>
   )
 }
 
