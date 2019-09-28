@@ -37,8 +37,7 @@ class FixedHighlights extends Component {
   }
 
   previousSlide = () => {
-    const { recentHighlights } = this.state 
-    const { currentImageIndex } = this.state 
+    const { recentHighlights, currentImageIndex } = this.state 
     const lastIndex = recentHighlights.length - 1
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
@@ -46,8 +45,7 @@ class FixedHighlights extends Component {
   }
 
   nextSlide = () => {
-    const { recentHighlights } = this.state 
-    const { currentImageIndex } = this.state 
+    const { recentHighlights, currentImageIndex } = this.state 
     const lastIndex = recentHighlights.length - 1
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
@@ -63,7 +61,7 @@ class FixedHighlights extends Component {
     return  recentHighlights[currentImageIndex] && recentHighlights[currentImageIndex].video && (
       <div className='fixed_highlights_container'>
         <div className='fixed_highlights'>
-          <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+          <Arrow direction='left' styleClass='slide-arrow' clickFunction={this.previousSlide} glyph='&#9664;' />
           <iframe
             title={recentHighlights[currentImageIndex].video}
             src={recentHighlights[currentImageIndex].video} 
@@ -77,7 +75,7 @@ class FixedHighlights extends Component {
               alt='hors' 
               title='toggle modal'
             />
-          <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+          <Arrow direction='right' styleClass='slide-arrow' clickFunction={this.nextSlide} glyph='&#9654;' />
         </div>
       </div>
     )
