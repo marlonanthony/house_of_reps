@@ -23,9 +23,9 @@ export default function PostsContainer({
       hasMore={true}
       loader={null}>
       <PostFeed 
-        showPreview={ showsPreview } 
+        showPreview={ showsPreview }
         posts={ posts }
-        profiles={ profiles } 
+        profiles={ profiles }
       />
     </InfinteScroll>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 
 const PostItemButtons = ({
     liked,
@@ -11,7 +12,8 @@ const PostItemButtons = ({
     showActions,
     post,
     likes,
-    auth
+    auth,
+    toggleShowForm
   }) => {
   return showActions && ( 
     <div>
@@ -31,12 +33,18 @@ const PostItemButtons = ({
         onClick={() => onUnlikeClick(post._id)}>
         <i className="fas fa-thumbs-down icons" id='unlike'></i>
       </button>
-      <button 
+      <button
         title='comment'
         onClick={onPostCommentClick} 
         className='postfeed_buttons'>  
         <i className='fas fa-comment icons' id='comment'/>
         <span>{post.comments.length}</span>
+      </button>
+      <button 
+        title='reply'
+        onClick={toggleShowForm} 
+        className='postfeed_buttons'>  
+        <i className='fas fa-user-edit icons' id='comment'/>
       </button>
       { post.user === auth.user.id && 
         <button 
@@ -48,6 +56,20 @@ const PostItemButtons = ({
       }
     </div>
   )
+}
+
+PostItemButtons.propTypes = {
+  liked: PropTypes.bool.isRequired,
+  findUserLike: PropTypes.func.isRequired,
+  onLikeClick: PropTypes.func.isRequired,
+  onUnlikeClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onPostCommentClick: PropTypes.func.isRequired,
+  showActions: PropTypes.bool.isRequired,
+  post: PropTypes.object.isRequired,
+  likes: PropTypes.array.isRequired,
+  auth: PropTypes.object.isRequired,
+  toggleShowForm: PropTypes.func.isRequired
 }
 
 export default PostItemButtons
