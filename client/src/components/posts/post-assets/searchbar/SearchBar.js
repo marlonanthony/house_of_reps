@@ -22,7 +22,7 @@ const SearchBar = ({ profiles }) => {
       onMouseLeave={onMouseLeave}>
       <input
         className='searchbar_input'
-        placeholder=' search reps'
+        placeholder=' Search reps'
         name='matches'
         value={ matches }
         onChange={ e => setMatches(e.target.value) }

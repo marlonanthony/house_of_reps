@@ -6,9 +6,10 @@
   overflow-x: hidden;
   grid-gap: 15px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-template-areas:
     'postform postform'
+    'btns btns'
     'post-feed-post-content post-feed-post-content' 
 }
 
@@ -41,8 +42,20 @@
 .certified_brands { display: none; }
 .searchbarpost { display: none; }
 .searchbar { display: none; }
-
-.postfeed_reps_btns { display: none; }
+.postfeed_reps_btns {
+  grid-area: btns;
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+.postfeed_reps_btns img {
+  height: 30px;
+  width: 30px;
+}
 
 .post-feed-footer {
   display: none;
