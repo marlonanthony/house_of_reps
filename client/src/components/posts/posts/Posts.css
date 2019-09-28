@@ -8,8 +8,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
-    'postform postform'
     'btns btns'
+    'postform postform'
     'post-feed-post-content post-feed-post-content' 
 }
 
@@ -44,13 +44,15 @@
 .searchbar { display: none; }
 .postfeed_reps_btns {
   grid-area: btns;
-  height: 30px;
+  height: 50px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   cursor: pointer;
+  border-radius: 3px;
+  border: .5px solid var(--border-color);
 }
 .postfeed_reps_btns img {
   height: 30px;
@@ -92,6 +94,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border: none;
   }
   .postfeed_reps_btns > img {
     height: 40px;
