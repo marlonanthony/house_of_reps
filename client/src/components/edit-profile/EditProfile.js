@@ -20,6 +20,7 @@ const EditProfile = ({
   getCurrentProfile,
   createProfile,
   profile,
+  auth,
   ...props
 }) => {
 
@@ -51,9 +52,10 @@ const EditProfile = ({
   }, [props.errors])
 
   useEffect(() => {
+    console.log(auth.user)
     if(!isEmpty(profile.profile)) {
       const p = profile.profile
-      p.avatar = !isEmpty(p.avatar) ? p.avatar : '' 
+      p.avatar = !isEmpty(auth.user.avatar) ? auth.user.avatar : '' 
       p.banner = !isEmpty(p.banner) ? p.banner : ''
       p.stageName = !isEmpty(p.stageName) ? p.stageName : ''
       p.phoneNumber = !isEmpty(p.phoneNumber) ? p.phoneNumber : ''
