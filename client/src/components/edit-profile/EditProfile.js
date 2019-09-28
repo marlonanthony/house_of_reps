@@ -52,7 +52,6 @@ const EditProfile = ({
   }, [props.errors])
 
   useEffect(() => {
-    console.log(auth.user)
     if(!isEmpty(profile.profile)) {
       const p = profile.profile
       p.avatar = !isEmpty(auth.user.avatar) ? auth.user.avatar : '' 
