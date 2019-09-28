@@ -23,10 +23,10 @@ const Profile = ({
     }
   },[props.match.params.handle, getProfileByHandle])
 
-  const { profile, loading, profiles } = props.profile
+  const { profile, profiles } = props.profile
   const { user } = auth
 
-  if(!profile || loading) return <Spinner />
+  if(!profile) return <Spinner />
   return <ProfileContent profiles={profiles} profile={profile} user={user} />
 }
 
