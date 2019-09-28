@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { getProfiles } from '../../../actions/profileActions'
 import Arrow from '../arrow_glyph/Arrow'
 import './FixedHighlights.css'
+import Spinner from '../../common/Spinner'
 
 class FixedHighlights extends Component {
   state = { 
@@ -29,6 +30,15 @@ class FixedHighlights extends Component {
     if(this.props.currentIndex !== prevProps.currentIndex) {
       this.setState({ currentImageIndex: this.props.currentIndex })
     }
+    if(this.props.profile !== prevProps.profile) {
+      const hls = this.props.profile &&  this.props.profile.profiles && this.props.profile.profiles
+      .map(profile => profile.venues)
+      .map(val => val.length ? val[0] : null)
+      .filter(val => val !== null)
+      const highlights = [].concat.apply([], hls)
+      const recentHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+      this.setState({ recentHighlights })
+    }
   }
 
   previousSlide = () => {
@@ -50,10 +60,11 @@ class FixedHighlights extends Component {
   }
 
   render() {
+    console.log(`rendered`)
     const { recentHighlights, currentImageIndex } = this.state
     const { profiles, loading } = this.props.profile
     if(!this.props.showHighlight) return null
-    if(!profiles || loading || !recentHighlights) return null
+    if(!profiles || loading || !recentHighlights.length) return null
 
     return  recentHighlights[currentImageIndex] && recentHighlights[currentImageIndex].video && (
       <div className='fixed_highlights_container'>
