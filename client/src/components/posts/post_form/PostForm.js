@@ -224,7 +224,7 @@ class PostForm extends Component {
                   onPaste={this.onPaste}
                   error={errors.text}
                   rows={rows}
-                  autoFocus
+                  noFocus
                 />
                 <div className={ show ? 'otherstuff' : 'disp'}>
                   <Icon icon='fas fa-hashtag' title='hashtags' toggleIcon={this.toggleShowTags} />
