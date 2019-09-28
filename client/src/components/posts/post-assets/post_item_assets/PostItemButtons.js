@@ -9,13 +9,12 @@ const PostItemButtons = ({
     onUnlikeClick,
     onDeleteClick,
     onPostCommentClick,
-    showActions,
     post,
     likes,
     auth,
     toggleShowForm
   }) => {
-  return showActions && ( 
+  return ( 
     <div>
       <button 
         title='like'
@@ -65,7 +64,6 @@ PostItemButtons.propTypes = {
   onUnlikeClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   onPostCommentClick: PropTypes.func.isRequired,
-  showActions: PropTypes.bool.isRequired,
   post: PropTypes.object.isRequired,
   likes: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired,

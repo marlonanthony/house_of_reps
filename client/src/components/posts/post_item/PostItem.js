@@ -118,7 +118,7 @@ class PostItem extends Component {
   toggleShowForm = () => this.setState(prevState => ({ showForm: !prevState.showForm })) 
 
   render() {
-    const { post, auth, showActions, profile } = this.props 
+    const { post, auth, profile } = this.props 
     const { 
       showComments, 
       postId, 
@@ -167,7 +167,6 @@ class PostItem extends Component {
               post={post}
               likes={likes}
               auth={auth}
-              showActions={showActions}
               liked={liked}
               findUserLike={this.findUserLike}
               onLikeClick={this.onLikeClick}
@@ -191,10 +190,6 @@ class PostItem extends Component {
       </>
     )
   }
-}
-
-PostItem.defaultProps = {
-  showActions: true 
 }
 
 PostItem.propTypes = {
