@@ -68,7 +68,7 @@
   height: 8px;
 }
 .postfeed_highlights_mobile {
-  display: flex;
+  display: none;
   grid-area: mobile-hls;
   overflow-x: scroll;
 }
