@@ -26,7 +26,6 @@ import HighlightsContainer from '../post-assets/highlights/HighlightsContainer'
 import Footer from '../post-assets/footer/Footer'
 import './Posts.css'
 
-
 class Posts extends Component {
 
   state = { 

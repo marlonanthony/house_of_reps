@@ -32,7 +32,6 @@ textarea::-webkit-scrollbar {
   width: 5px;
 }
 
-
 body {
   margin: 0px;
   background: var(--primary-color);

@@ -3,11 +3,12 @@
   margin: 0 auto;
   padding-top: 100px;
   display: grid;
-  overflow-x: hidden;
+  /* overflow-x: scroll; */
   grid-gap: 15px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto 1fr;
   grid-template-areas:
+    'mobile-hls mobile-hls'
     'postform postform'
     'btns btns'
     'post-feed-post-content post-feed-post-content' 
@@ -51,14 +52,25 @@
   flex-wrap: wrap;
   cursor: pointer;
 }
+
 .postfeed_reps_btns img {
   height: 30px;
   width: 30px;
 }
+
 .notifications_on_mobile {
   position: absolute;
   left: 0;
   top: 20px;
+}
+
+.postfeed_highlights_mobile::-webkit-scrollbar {
+  height: 8px;
+}
+.postfeed_highlights_mobile {
+  display: flex;
+  grid-area: mobile-hls;
+  overflow-x: scroll;
 }
 
 .post-feed-footer {
@@ -90,6 +102,10 @@
   }
 
   .notifications_on_mobile {
+    display: none;
+  }
+
+  .postfeed_highlights_mobile {
     display: none;
   }
 

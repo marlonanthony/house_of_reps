@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function VenueItems({ venue, setShowModal }) {
+export default function VenueItems({ venue, setShowModal, toggleShowHighlight, ...props }) {
   return (
     <li className='venue-items'>
       { venue.video &&
@@ -19,7 +19,7 @@ export default function VenueItems({ venue, setShowModal }) {
         </div>
       }
       <img 
-        onClick={() =>  setShowModal(prev => !prev) } 
+        onClick={() => props.postfeed ? toggleShowHighlight(0) : setShowModal(prev => !prev) } 
         className='profile_highlights_toggle_modal'
         src={ require('../../../img/hor-icon.jpg') } 
         alt='hors' 

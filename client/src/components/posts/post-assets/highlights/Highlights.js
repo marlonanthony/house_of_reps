@@ -4,6 +4,8 @@ import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal'
+import VenueItems from '../../../profile/profile_assets/VenueItems'
+import FadeIn from '../../../UI/fade_in/FadeIn'
 import './Highlights.css'
 
 class Highlights extends Component {
@@ -71,36 +73,52 @@ class Highlights extends Component {
           </div>
         </HighlightsModal>
       </>
-    ) 
+    )
+
+    const venueItems = recentHighlights && recentHighlights.map(venue => (
+      <FadeIn key={venue._id}>
+        <VenueItems 
+          venue={venue}
+          setShowModal={this.state.showModal}
+          toggleShowHighlight={this.props.toggleShowHighlight}
+          postfeed
+        />
+      </FadeIn>
+    ))
 
     return (
-      <div className='post-feed-highlights'>
-        <div className='highlightss'>
-          <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
-          {highlightsModal}
-          <div style={{ position: 'absolute' }}>
-            <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-            {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video &&
-              (<iframe 
-                title={recentHighlights[this.state.currentImageIndex].video} 
-                style={{width: '250px', height: '250px'}} 
-                src={recentHighlights[this.state.currentImageIndex].video} 
-                frameBorder={0}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen={true}>
-              </iframe>) 
-            }
-            <img 
-              onClick={() => this.props.toggleShowHighlight(this.state.currentImageIndex)}
-              className='highlightss_icon' 
-              src={require('../../../../img/hor-icon.jpg')} 
-              alt='hors' 
-              title='toggle modal'
-            />
-            <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+      <>
+        <div className='postfeed_highlights_mobile'>
+          {venueItems}
+        </div>
+        <div className='post-feed-highlights'>
+          <div className='highlightss'>
+            <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
+            {highlightsModal}
+            <div style={{ position: 'absolute' }}>
+              <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
+              {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video &&
+                (<iframe 
+                  title={recentHighlights[this.state.currentImageIndex].video} 
+                  style={{width: '250px', height: '250px'}} 
+                  src={recentHighlights[this.state.currentImageIndex].video} 
+                  frameBorder={0}
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen={true}>
+                </iframe>) 
+              }
+              <img 
+                onClick={() => this.props.toggleShowHighlight(this.state.currentImageIndex)}
+                className='highlightss_icon' 
+                src={require('../../../../img/hor-icon.jpg')} 
+                alt='hors' 
+                title='toggle modal'
+              />
+              <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )
   }
 }

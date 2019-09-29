@@ -56,7 +56,7 @@
     max-width: 100%;
   }
   .profile_highlights_toggle_modal {
-    display: none;
+    /* display: none; */
   }
 }
 
@@ -86,7 +86,7 @@
     height: 250px;
   }
   .profile_highlights_toggle_modal {
-    display: none;
+    /* display: none; */
   }
 }
 
