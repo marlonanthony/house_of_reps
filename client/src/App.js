@@ -75,7 +75,7 @@ const App = () => {
           <PrivateRoute exact path='/add-brand' component={ AddBrand } />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/feed' component={() => <Posts toggleShowHighlight={toggleShowHighlight} /> } />
+          <PrivateRoute exact path='/feed' component={() => <Posts toggleShowHighlight={toggleShowHighlight} showHighlight={showHighlight} /> } />
         </Switch>
         <Switch>
           <PrivateRoute exact path='/profile/:handle' component={ Profile } />

@@ -11,13 +11,23 @@ const PostFeedProfileContent = ({
   profile,
   user,
   showLikes,
+  showHighlight,
+  toggleShowHighlight,
   ...props
 }) => {
   const [showPopup, setShowPopup] = useState(false)
 
   return profile && user && (
     <>
-      <MobileNotifications profile={profile} />
+      <div className='mobile_icons_container'>
+        <MobileNotifications profile={profile} />
+        <div onClick={() => toggleShowHighlight(0)}>
+          <i className={showHighlight 
+            ? "far fa-play-circle notification-color" 
+            : 'far fa-play-circle'} 
+          />
+        </div>
+      </div>
       <div className='post-feed-profile'>
         <div>
           <div className='post-profile-avatar-container'>
@@ -85,6 +95,7 @@ PostFeedProfileContent.propTypes = {
   profile: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   showLikes: PropTypes.bool.isRequired,
+  toggleShowHighlight: PropTypes.func.isRequired
 }
 
 export default withRouter(PostFeedProfileContent)

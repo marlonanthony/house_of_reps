@@ -4,7 +4,7 @@
 }
 
 .fixed_highlights {
-  position: fixed; 
+  position: fixed;
   max-width: 548px; 
   width: 100%; 
   z-index: 10; 
@@ -17,7 +17,6 @@
   height: 75px;
   width: 100%;
   max-width: 500px;
-  top: 0;
 }
 
 .fixed_highlights > img {
@@ -45,5 +44,11 @@
   100% {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@media(max-width: 750px) {
+  .fixed_highlights {
+    bottom: 0;
   }
 }

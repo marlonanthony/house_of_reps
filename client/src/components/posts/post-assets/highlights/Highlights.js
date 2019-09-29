@@ -75,22 +75,22 @@ class Highlights extends Component {
       </>
     )
 
-    const venueItems = recentHighlights && recentHighlights.map(venue => (
-      <FadeIn key={venue._id}>
-        <VenueItems 
-          venue={venue}
-          setShowModal={this.state.showModal}
-          toggleShowHighlight={this.props.toggleShowHighlight}
-          postfeed
-        />
-      </FadeIn>
-    ))
+    // const venueItems = recentHighlights && recentHighlights.map(venue => (
+    //   <FadeIn key={venue._id}>
+    //     <VenueItems 
+    //       venue={venue}
+    //       setShowModal={this.state.showModal}
+    //       toggleShowHighlight={this.props.toggleShowHighlight}
+    //       postfeed
+    //     />
+    //   </FadeIn>
+    // ))
 
     return (
       <>
-        <div className='postfeed_highlights_mobile'>
+        {/* <div className='postfeed_highlights_mobile'>
           {venueItems}
-        </div>
+        </div> */}
         <div className='post-feed-highlights'>
           <div className='highlightss'>
             <Backdrop clicked={this.modalToggle} show={this.state.showModal} />

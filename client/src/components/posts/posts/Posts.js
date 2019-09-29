@@ -113,6 +113,8 @@ class Posts extends Component {
           user={user}
           showLikesHandler={this.showLikesHandler}
           showLikes={showLikes}
+          showHighlight={this.props.showHighlight}
+          toggleShowHighlight={this.props.toggleShowHighlight}
         />
         <PoolsContainer
           profiles={profiles}
