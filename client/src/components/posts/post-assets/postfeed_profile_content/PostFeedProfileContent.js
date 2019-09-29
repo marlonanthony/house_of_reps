@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PostsProfilePopup from '../../../UI/popup_menu/PostsProfilePopup'
-import MobileNotifications from '../notifications/MobileNotifications'
+import MobileIcons from './MobileIcons'
 import './PostFeedProfileContent.css'
 
 const PostFeedProfileContent = ({
@@ -19,15 +19,12 @@ const PostFeedProfileContent = ({
 
   return profile && user && (
     <>
-      <div className='mobile_icons_container'>
-        <MobileNotifications profile={profile} />
-        <div onClick={() => toggleShowHighlight(0)}>
-          <i className={showHighlight 
-            ? "far fa-play-circle notification-color" 
-            : 'far fa-play-circle'} 
-          />
-        </div>
-      </div>
+      <MobileIcons 
+        profile={profile}
+        showHighlight={showHighlight}
+        toggleShowHighlight={toggleShowHighlight}
+        showLikesHandler={showLikesHandler}
+      />
       <div className='post-feed-profile'>
         <div>
           <div className='post-profile-avatar-container'>

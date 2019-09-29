@@ -27,7 +27,6 @@
 
 .post-profile-liked-posts-liked {
   padding: 7px 25px;
-  margin: 0px 2px;
   flex: 1;
   background: var(--secondary-color);
   color: rgb(225,225,225); 
@@ -38,7 +37,6 @@
 
 .post-profile-liked-posts-unliked {
   padding: 7px 25px;
-  margin: 0px 2px;
   flex: 1;
   background: none;
   color: var(--secondary-color);
@@ -65,8 +63,6 @@
 .post-profile-notifications {
   position: relative;
   padding: 7px 25px;
-  margin: 0px 2px;
-  flex: 1;
   background: none;
   color: var(--secondary-color);
   cursor: pointer;

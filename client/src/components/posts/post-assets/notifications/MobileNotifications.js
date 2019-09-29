@@ -8,7 +8,7 @@ const MobileNotifications = ({
 }) => {
   return (
     <div className='notifications_on_mobile'>
-      <button 
+      <button
         className='post-profile-notifications'
         style={{ border: 'none'}}
         onClick={() => props.history.push('/notifications')}  
@@ -25,7 +25,6 @@ const MobileNotifications = ({
               .filter(notification => !notification.seen).length > 0 
                 ? ' notification_count notification-color' 
                 : 'notification_count'}
-              style={{ fontSize: 14}}
             >
               { profile.notifications
                 .filter(notification => !notification.seen).length }

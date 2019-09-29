@@ -5,8 +5,9 @@
   display: grid;
   grid-gap: 15px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto 1fr;
   grid-template-areas:
+    'mobile_icons mobile_icons'
     'postform postform'
     'btns btns'
     'post-feed-post-content post-feed-post-content' 
@@ -56,13 +57,10 @@
 }
 
 .mobile_icons_container {
-  position: absolute;
+  grid-area: mobile_icons;
   display: flex;
-  justify-content: start;
+  justify-content: space-around;
   align-items: center;
-  left: 0;
-  top: 20px;
-  width: 150px;
   color: var(--secondary-color);
 }
 .mobile_icons_container div {
@@ -84,10 +82,8 @@
 .post-feed-footer {
   display: none;
   grid-area: footer;
-  background: rgba(0,0,0,0.5);
   padding: 5px;
   text-align: center;
-  font-size: 13px;
   border: none;
   color: var(--secondary-color);
   font-size: 12px;
@@ -264,7 +260,5 @@
 
   .post-feed-footer {
     display: flex;
-    grid-area: footer;
-    color: var(--secondary-color);
   }
 }
