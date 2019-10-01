@@ -11,19 +11,23 @@ const SocialLinksInput = ({
   onChange
 }) => {
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px'}}>
-      <i className={ icon } style={{ marginRight: '5px', fontSize: 19, width: 40, color: 'rgb(55, 131, 194)' }} />
-      <input 
-        className={classnames('social-links', { // social-links is in CreateProfile.css
-          'is-invalid': error
-        })}
-        placeholder={ placeholder }
-        name={ name }
-        value={ value }
-        onChange={ onChange }
-      />
-      { error && (<div className='invalid-feedback'>{ error }</div>)}
-    </div>
+    <>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px'}}>
+        <i className={ icon } style={{ marginRight: '5px', fontSize: 19, width: 40, color: 'rgb(55, 131, 194)' }} />
+        <input 
+          className={classnames('social-links', { // social-links is in CreateProfile.css
+            'is-invalid': error
+          })}
+          placeholder={ placeholder }
+          name={ name }
+          value={ value }
+          onChange={ onChange }
+        />
+      </div>
+      <div>
+        { error && (<div className='invalid-feedback'>{ error }</div>)}
+      </div>
+    </>
   )
 }
 

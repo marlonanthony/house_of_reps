@@ -50,6 +50,8 @@ input {
   -webkit-appearance: none;
 }
 
+.invalid-feedback { color: red; }
+
 /* background: #050c14;   */
 /* background: #020811; */
 /* background: rgb(4,6,8); */

@@ -145,14 +145,14 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
   // Social
   profileFields.social = {}
-  if(req.body.twitter) profileFields.social.twitter = req.body.twitter 
-  if(req.body.instagram) profileFields.social.instagram = req.body.instagram 
-  if(req.body.facebook) profileFields.social.facebook = req.body.facebook 
-  if(req.body.linkedin) profileFields.social.linkedin = req.body.linkedin 
-  if(req.body.soundcloud) profileFields.social.soundcloud = req.body.soundcloud 
-  if(req.body.spotify) profileFields.social.spotify = req.body.spotify 
-  if(req.body.mixcloud) profileFields.social.mixcloud = req.body.mixcloud 
-  if(req.body.youtube) profileFields.social.youtube = req.body.youtube 
+  if(req.body.twitter) profileFields.social.twitter = req.body.twitter.replace(/^(www.)/gi, 'https://')
+  if(req.body.instagram) profileFields.social.instagram = req.body.instagram.replace(/^(www.)/gi, 'https://')
+  if(req.body.facebook) profileFields.social.facebook = req.body.facebook.replace(/^(www.)/gi, 'https://')
+  if(req.body.linkedin) profileFields.social.linkedin = req.body.linkedin.replace(/^(www.)/gi, 'https://')
+  if(req.body.soundcloud) profileFields.social.soundcloud = req.body.soundcloud.replace(/^(www.)/gi, 'https://')
+  if(req.body.spotify) profileFields.social.spotify = req.body.spotify.replace(/^(www.)/gi, 'https://')
+  if(req.body.mixcloud) profileFields.social.mixcloud = req.body.mixcloud.replace(/^(www.)/gi, 'https://')
+  if(req.body.youtube) profileFields.social.youtube = req.body.youtube.replace(/^(www.)/gi, 'https://')
 
   Profile.findOne({ user: req.user.id }).then(async profile => {
     if(profile) {
