@@ -1,11 +1,7 @@
 import React from 'react'
 import Brands from './Brands'
 
-export default function BrandContainer({
-  profiles,
-  loading,
-
-}) {
+const BrandContainer = ({ profiles, loading }) => {
   let brands
   if(!profiles || loading) {
     brands = null
@@ -20,3 +16,5 @@ export default function BrandContainer({
     <div className='certified_brands'>{ brands }</div>
   )
 }
+
+export default BrandContainer
