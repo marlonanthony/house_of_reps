@@ -2,7 +2,7 @@ const Validator = require('validator')
 const isEmpty = require('./is-empty')
 
 module.exports = function validateProfileInput(data) {
-  let errors = {} 
+  const errors = {} 
 
   if(!Validator.isLength(data.bio, { max: 280 })) {
     errors.bio = 'Bio needs to be 280 characters or less'

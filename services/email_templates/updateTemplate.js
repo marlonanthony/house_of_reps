@@ -14,4 +14,4 @@ module.exports = emailInfo => {
   `
 }
 
-//email=${emailInfo.recipients}&
+// email=${emailInfo.recipients}&

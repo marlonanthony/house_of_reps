@@ -1,17 +1,17 @@
-const mongoose = require('mongoose') 
-const Schema = mongoose.Schema
+const mongoose = require('mongoose')
 
-// Create Schema
+const { Schema } = mongoose
+
 const ProfileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users'   // Reference the collection
+    ref: 'users'
   },
   avatar: {
     type: String
   },
   banner: {
-    type: String 
+    type: String
   },
   handle: {
     type: String,
@@ -19,10 +19,10 @@ const ProfileSchema = new Schema({
     max: 40
   },
   stageName: {
-    type: String 
+    type: String
   },
   phoneNumber: {
-    type: String 
+    type: String
   },
   company: {
     type: String
@@ -52,17 +52,17 @@ const ProfileSchema = new Schema({
         type: Date
       },
       description: {
-        type: String 
+        type: String
       },
       video: {
-        type: String 
+        type: String
       },
-      image: { 
-        type: String 
+      image: {
+        type: String
       },
       dateCreated: {
         type: Date,
-        default: Date.now  
+        default: Date.now
       },
       user: {
         type: Schema.Types.ObjectId,
@@ -75,26 +75,26 @@ const ProfileSchema = new Schema({
             ref: 'users'
           },
           name: {
-            type: String  
+            type: String
           },
           avatar: {
-            type: String 
+            type: String
           },
           date: {
             type: Date,
-            default: Date.now 
+            default: Date.now
           }
         }
-      ],
+      ]
     }
   ],
   djpools: [
     {
       image: {
-        type: String 
+        type: String
       },
       url: {
-        type: String 
+        type: String
       },
       description: {
         type: String
@@ -103,11 +103,11 @@ const ProfileSchema = new Schema({
   ],
   stores: [
     {
-      image: { 
-        type: String 
+      image: {
+        type: String
       },
-      url: { 
-        type: String 
+      url: {
+        type: String
       },
       description: {
         type: String
@@ -117,50 +117,50 @@ const ProfileSchema = new Schema({
   perks: [
     {
       image: {
-        type: String 
+        type: String
       },
       url: {
-        type: String 
-      }, 
+        type: String
+      },
       description: {
-        type: String 
+        type: String
       }
     }
   ],
   brands: [
     {
       image: {
-        type: String 
+        type: String
       },
       url: {
-        type: String 
-      }, 
+        type: String
+      },
       description: {
-        type: String 
+        type: String
       }
     }
   ],
   social: {
     twitter: {
-      type: String 
+      type: String
     },
     instagram: {
-      type: String 
+      type: String
     },
     facebook: {
-      type: String 
+      type: String
     },
     linkedin: {
-      type: String 
+      type: String
     },
     soundcloud: {
-      type: String 
+      type: String
     },
     spotify: {
-      type: String 
+      type: String
     },
     mixcloud: {
-      type: String 
+      type: String
     },
     youtube: {
       type: String
@@ -177,25 +177,25 @@ const ProfileSchema = new Schema({
       },
       date: {
         type: Date,
-        default: Date.now 
+        default: Date.now
       },
       avatar: {
         type: String
       },
       postImage: {
-        type: String 
+        type: String
       },
       postText: {
-        type: String 
+        type: String
       },
       video: {
-        type: String 
+        type: String
       },
       highlight: {
         type: Object
       },
       post: {
-        type: Object 
+        type: Object
       },
       comment: {
         type: Object
@@ -204,21 +204,21 @@ const ProfileSchema = new Schema({
         type: String
       },
       commentId: {
-        type: String 
+        type: String
       },
       message: {
         type: String
       },
       seen: {
         type: Boolean,
-        default: false 
+        default: false
       }
     }
   ],
   date: {
     type: Date,
-    default: Date.now 
+    default: Date.now
   }
 })
 
-module.exports = Profile = mongoose.model('profile', ProfileSchema) 
+module.exports = mongoose.model('profile', ProfileSchema)

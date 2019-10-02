@@ -2,7 +2,7 @@ const Validator = require('validator')
 const isEmpty = require('./is-empty')
 
 module.exports = function validateVenuesInput(data) {
-  let errors = {} 
+  const errors = {} 
   
   data.title = !isEmpty(data.title) ? data.title : '' 
   data.location = !isEmpty(data.location) ? data.location : '' 

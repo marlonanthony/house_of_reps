@@ -1,7 +1,7 @@
-const mongoose = require('mongoose') 
-const Schema = mongoose.Schema
+const mongoose = require('mongoose')
 
-// Create Schema 
+const { Schema } = mongoose
+
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -9,34 +9,34 @@ const PostSchema = new Schema({
   },
   text: {
     type: String,
-    required: true 
+    required: true
   },
   name: {
     type: String
   },
   handle: {
-    type: String 
+    type: String
   },
   avatar: {
-    type: String 
+    type: String
   },
   image: {
-    type: String 
+    type: String
   },
   title: {
-    type: String 
+    type: String
   },
   description: {
-    type: String 
+    type: String
   },
   url: {
-    type: String 
+    type: String
   },
   media: {
     type: String
   },
   tags: [
-    { 
+    {
       type: String
     }
   ],
@@ -50,10 +50,10 @@ const PostSchema = new Schema({
         type: String
       },
       avatar: {
-        type: String 
+        type: String
       },
       handle: {
-        type: String 
+        type: String
       }
     }
   ],
@@ -65,16 +65,16 @@ const PostSchema = new Schema({
       },
       text: {
         type: String,
-        required: true 
+        required: true
       },
       name: {
-        type: String 
+        type: String
       },
       handle: {
-        type: String 
+        type: String
       },
       avatar: {
-        type: String 
+        type: String
       },
       likes: [
         {
@@ -83,13 +83,13 @@ const PostSchema = new Schema({
             ref: 'users'
           },
           name: {
-            type: String  
+            type: String
           },
           avatar: {
-            type: String 
+            type: String
           },
           handle: {
-            type: String 
+            type: String
           }
         }
       ],
@@ -102,16 +102,16 @@ const PostSchema = new Schema({
           },
           text: {
             type: String,
-            required: true 
+            required: true
           },
           name: {
             type: String
           },
           handle: {
-            type: String 
+            type: String
           },
           avatar: {
-            type: String 
+            type: String
           },
           image: {
             type: String
@@ -135,51 +135,51 @@ const PostSchema = new Schema({
                 ref: 'users'
               },
               name: {
-                type: String 
+                type: String
               },
               avatar: {
-                type: String 
+                type: String
               },
               handle: {
-                type: String 
+                type: String
               }
             }
           ],
           date: {
             type: Date,
-            default: Date.now 
+            default: Date.now
           }
         }
       ],
       date: {
         type: Date,
-        default: Date.now 
+        default: Date.now
       },
-      // linkpreview 
+      // linkpreview
       image: {
         type: String
       },
       title: {
-        type: String 
+        type: String
       },
       description: {
-        type: String 
+        type: String
       },
       url: {
-        type: String 
+        type: String
       },
       // upload image
       media: {
-        type: String 
+        type: String
       }
     }
   ],
   date: {
     type: Date,
-    default: Date.now 
+    default: Date.now
   }
 })
 
 PostSchema.index({ text: 'text' })
 
-module.exports = Post = mongoose.model('post', PostSchema)
+module.exports = mongoose.model('post', PostSchema)

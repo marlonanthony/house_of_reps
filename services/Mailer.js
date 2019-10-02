@@ -1,6 +1,7 @@
-const sendgrid = require('sendgrid') 
-const helpler = sendgrid.mail 
+const sendgrid = require('sendgrid')
 const keys = require('../config/keys')
+
+const helpler = sendgrid.mail
 
 class Mailer extends helpler.Mail {
   constructor({ subject, recipients }, content) {

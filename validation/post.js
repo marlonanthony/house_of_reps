@@ -2,7 +2,7 @@ const Validator = require('validator')
 const isEmpty = require('./is-empty')
 
 module.exports = function validatePostInput(data) {
-  let errors = {} 
+  const errors = {} 
   if(data) data.text = !isEmpty(data.text) ? data.text : ''
   if(data) data.media = !isEmpty(data.media) ? data.media : ''
 

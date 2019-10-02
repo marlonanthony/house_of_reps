@@ -2,7 +2,7 @@ const Validator = require('validator')
 const isEmpty = require('./is-empty')
 
 module.exports = function validateStoresInput(data) {
-  let errors = {} 
+  const errors = {} 
   
   data.image = !isEmpty(data.image) ? data.image : '' 
   data.url = !isEmpty(data.url) ? data.url : '' 
