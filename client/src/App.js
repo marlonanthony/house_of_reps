@@ -25,9 +25,8 @@ import Hashtag from './components/hashtags/Hashtag'
 import './App.css'
 
 const App = () => {
-
   const [showHighlight, setShowHighlight] = useState(false),
-        [currentIndex, setCurrentIndex] = useState(0)
+    [currentIndex, setCurrentIndex] = useState(0)
 
   const toggleShowHighlight = index => {
     setCurrentIndex(index)
@@ -38,56 +37,69 @@ const App = () => {
     <>
       <>
         <DropdownMenu />
-        <FixedHighlights 
-          showHighlight={showHighlight} 
+        <FixedHighlights
+          showHighlight={showHighlight}
           toggleShowHighlight={toggleShowHighlight}
           currentIndex={currentIndex}
         />
-        <Route exact path='/' component={ Landing } />
+        <Route exact path="/" component={Landing} />
       </>
       <div>
-        <Route exact path='/register' component={ Register } />
-        <Route exact path='/login' component={ Login } />
-        <Route exact path='/checkemail' component={ ConfirmEmail } />
-        <Route exact path='/verify' component={ Verify } />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/checkemail" component={ConfirmEmail} />
+        <Route exact path="/verify" component={Verify} />
         <Switch>
-          <PrivateRoute exact path='/dashboard' component={ Dashboard } />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
+          <PrivateRoute
+            exact
+            path="/create-profile"
+            component={CreateProfile}
+          />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/edit-profile' component={ EditProfile } />
+          <PrivateRoute exact path="/edit-profile" component={EditProfile} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/add-venue' component={ AddVenue } />
+          <PrivateRoute exact path="/add-venue" component={AddVenue} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/add-djpool' component={ AddDjpool } />
+          <PrivateRoute exact path="/add-djpool" component={AddDjpool} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/add-store' component={ AddCertifiedStore } />
+          <PrivateRoute exact path="/add-store" component={AddCertifiedStore} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/add-perk' component={ AddPerk } />
+          <PrivateRoute exact path="/add-perk" component={AddPerk} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/add-brand' component={ AddBrand } />
+          <PrivateRoute exact path="/add-brand" component={AddBrand} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/feed' component={() => <Posts toggleShowHighlight={toggleShowHighlight} showHighlight={showHighlight} /> } />
+          <PrivateRoute
+            exact
+            path="/feed"
+            component={() => (
+              <Posts
+                toggleShowHighlight={toggleShowHighlight}
+                showHighlight={showHighlight}
+              />
+            )}
+          />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/profile/:handle' component={ Profile } />
+          <PrivateRoute exact path="/profile/:handle" component={Profile} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/djs' component={ Profiles } />
+          <PrivateRoute exact path="/djs" component={Profiles} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/notifications' component={ Notifications } />
+          <PrivateRoute exact path="/notifications" component={Notifications} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path='/hashtag/:hashtag' component={ Hashtag } />
+          <PrivateRoute exact path="/hashtag/:hashtag" component={Hashtag} />
         </Switch>
       </div>
     </>

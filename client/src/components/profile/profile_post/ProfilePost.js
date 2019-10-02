@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types' 
-import { connect } from 'react-redux' 
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import InfinteScroll from 'react-infinite-scroll-component'
 
 import {
-  getProfilePosts, 
-  getMoreProfilePosts 
+  getProfilePosts,
+  getMoreProfilePosts
 } from '../../../actions/postActions'
 import PostFeed from '../../posts/post_feed/PostFeed'
 
@@ -18,15 +18,15 @@ const ProfilePost = ({
   ...props
 }) => {
   const [count] = useState(10),
-        [start, setStart] = useState(0)
+    [start, setStart] = useState(0)
 
   useEffect(() => {
-    window.scrollTo(0, 0) 
+    window.scrollTo(0, 0)
     getProfilePosts(10, 0, props.match.params.handle)
   }, [getProfilePosts])
 
   useEffect(() => {
-    if(start > 0) {
+    if (start > 0) {
       getMoreProfilePosts(count, start, props.match.params.handle)
     }
   }, [start, count, getMoreProfilePosts])
@@ -34,12 +34,13 @@ const ProfilePost = ({
   const { posts } = post
 
   return (
-    <div id='profile-feed'>
+    <div id="profile-feed">
       <InfinteScroll
         dataLength={posts.length}
         next={() => setStart(prev => prev + 1)}
         hasMore={true}
-        loader={null}>
+        loader={null}
+      >
         <PostFeed profiles={profiles} posts={posts} />
       </InfinteScroll>
     </div>
@@ -54,10 +55,13 @@ ProfilePost.propTypes = {
 
 const mapStateToProps = state => ({
   post: state.post,
-  auth: state.auth,
+  auth: state.auth
 })
 
-export default connect(mapStateToProps, {
-  getProfilePosts,
-  getMoreProfilePosts
-})(withRouter(ProfilePost))
+export default connect(
+  mapStateToProps,
+  {
+    getProfilePosts,
+    getMoreProfilePosts
+  }
+)(withRouter(ProfilePost))

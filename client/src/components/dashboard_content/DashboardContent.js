@@ -8,48 +8,40 @@ import ProfileActions from './ProfileActions'
 import Venues from './Venues'
 import PromoContent from './PromoContent'
 
-const DashboardContent = ({
-  profile,
-  loading,
-  user,
-  deleteAccount
-}) => {
+const DashboardContent = ({ profile, loading, user, deleteAccount }) => {
   let dashboardContent
 
-  if(loading) dashboardContent = null
-  else if(Object.keys(profile).length) {
+  if (loading) dashboardContent = null
+  else if (Object.keys(profile).length) {
     dashboardContent = (
-      <div style={{ textAlign: 'center'}}>
-        <div className='handle_actions_container'>
-          <Link to={`/profile/${profile.handle}`} >@{ profile.handle }</Link>
+      <div style={{ textAlign: 'center' }}>
+        <div className="handle_actions_container">
+          <Link to={`/profile/${profile.handle}`}>@{profile.handle}</Link>
           <ProfileActions user={user} />
         </div>
-        <PromoContent
-          user={user}
-          profile={profile}
-        />
+        <PromoContent user={user} profile={profile} />
         <Venues venues={profile.venues} />
         <button
-          onClick={ deleteAccount } 
-          id="dashboard-delete-btn" 
-          title='delete profile'>
+          onClick={deleteAccount}
+          id="dashboard-delete-btn"
+          title="delete profile"
+        >
           Delete My Account
         </button>
       </div>
     )
   } else {
     dashboardContent = (
-      <div className='dashboard_no_profile'>
-        <p className="">{ user.name }</p>
+      <div className="dashboard_no_profile">
+        <p className="">{user.name}</p>
         <p>You have not yet set up a profile, please add some info</p>
-        <Link to='/create-profile'>Create Profile</Link>
+        <Link to="/create-profile">Create Profile</Link>
       </div>
     )
   }
 
-  return <div id='dashboard'>{dashboardContent}</div>
+  return <div id="dashboard">{dashboardContent}</div>
 }
-
 
 DashboardContent.propTypes = {
   loading: PropTypes.bool.isRequired,
@@ -58,4 +50,7 @@ DashboardContent.propTypes = {
   profile: PropTypes.object
 }
 
-export default connect(null, { deleteAccount })(DashboardContent)
+export default connect(
+  null,
+  { deleteAccount }
+)(DashboardContent)

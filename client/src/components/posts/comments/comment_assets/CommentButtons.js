@@ -6,7 +6,7 @@ import classnames from 'classnames'
 import {
   addCommentLike,
   removeCommentLike,
-  deleteComment 
+  deleteComment
 } from '../../../../actions/postActions'
 
 const CommentButtons = ({
@@ -23,42 +23,46 @@ const CommentButtons = ({
 }) => {
   return (
     <div>
-      <button 
-        title='like comment'
+      <button
+        title="like comment"
         onClick={() => addCommentLike(postId, comment._id, comment)}
-        className={liked ? 'postfeed_buttons liked' : classnames('postfeed_buttons', {
-          'liked' : findUserLike(comment.likes)
-        })}
-        >
-        <i className='fas fa-thumbs-up icons like'></i>
+        className={
+          liked
+            ? 'postfeed_buttons liked'
+            : classnames('postfeed_buttons', {
+                liked: findUserLike(comment.likes)
+              })
+        }
+      >
+        <i className="fas fa-thumbs-up icons like"></i>
         {<span>{comment.likes.length}</span>}
       </button>
-      <button 
-        title='unlike'
-        className='postfeed_buttons'
-        onClick={() => removeCommentLike(postId, comment._id)}>
-        <i className="fas fa-thumbs-down icons" id='unlike'></i>
+      <button
+        title="unlike"
+        className="postfeed_buttons"
+        onClick={() => removeCommentLike(postId, comment._id)}
+      >
+        <i className="fas fa-thumbs-down icons" id="unlike"></i>
       </button>
-      <button 
-        title='show comments'
-        onClick={toggleShowNestedComment} 
-        className='postfeed_buttons'>  
-        <i className='fas fa-comment icons' id='comment'/>
+      <button
+        title="show comments"
+        onClick={toggleShowNestedComment}
+        className="postfeed_buttons"
+      >
+        <i className="fas fa-comment icons" id="comment" />
         <span>{comment.comments.length}</span>
       </button>
-      <button 
-        title='reply'
-        onClick={toggleForm} 
-        className='postfeed_buttons'>  
-        <i className='fas fa-user-edit icons' id='comment'/>
+      <button title="reply" onClick={toggleForm} className="postfeed_buttons">
+        <i className="fas fa-user-edit icons" id="comment" />
       </button>
-      { comment.user === auth.user.id && (
-        <button 
-          title='Delete comment'
-          className='postfeed_buttons delete'
-          onClick={() => deleteComment(postId, comment._id)}>
+      {comment.user === auth.user.id && (
+        <button
+          title="Delete comment"
+          className="postfeed_buttons delete"
+          onClick={() => deleteComment(postId, comment._id)}
+        >
           <i className="fas fa-times icons" />
-        </button> 
+        </button>
       )}
     </div>
   )
@@ -77,8 +81,11 @@ CommentButtons.propTypes = {
   toggleShowNestedComment: PropTypes.func.isRequired
 }
 
-export default connect(null, { 
-  deleteComment,
-  removeCommentLike,
-  addCommentLike
-})(CommentButtons)
+export default connect(
+  null,
+  {
+    deleteComment,
+    removeCommentLike,
+    addCommentLike
+  }
+)(CommentButtons)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import EmojiPicker from 'emoji-picker-react' 
+import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
 import axios from 'axios'
 import Dropzone from 'react-dropzone'
@@ -16,7 +16,8 @@ import { addNestedComment } from '../../../../actions/postActions'
 import LinkPreview from '../../post-assets/link_preview/LinkPreview'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 class NestedCommentForm extends Component {
   state = {
@@ -28,36 +29,42 @@ class NestedCommentForm extends Component {
     showPreview: false,
     uploadedFileCloudinaryUrl: '',
     uploadedFile: '',
-    media: '',
+    media: ''
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.data !== this.state.data) {
+    if (prevState.data !== this.state.data) {
       this.setState({ data: this.state.data })
     }
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.errors) {
+    if (newProps.errors) {
       this.setState({ errors: newProps.errors })
     }
   }
 
   onPaste = e => {
-    e.stopPropagation() 
+    e.stopPropagation()
     let clipboardData = e.clipboardData || window.clipboardData,
-        pastedData = clipboardData.getData('Text') 
+      pastedData = clipboardData.getData('Text')
 
-    // Check for URL 
-    const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/
-    if(!regex.test(pastedData)) {
+    // Check for URL
+    const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-/]))?/
+    if (!regex.test(pastedData)) {
       this.setState({ text: pastedData })
     } else {
       axios
-      .get(`https://api.linkpreview.net/?key=5beb6c4718c9c4851e9a2a49e54a3adc2dcbacd64fffc&q=${pastedData}`)
-      .then(res => this.setState({ data: res.data }, () => (console.log(this.state.data))))
-      .then(this.setState((prevState) => ({ showPreview: !prevState.showPreview })))
-      .catch(err => console.log(err)) 
+        .get(
+          `https://api.linkpreview.net/?key=5beb6c4718c9c4851e9a2a49e54a3adc2dcbacd64fffc&q=${pastedData}`
+        )
+        .then(res =>
+          this.setState({ data: res.data }, () => console.log(this.state.data))
+        )
+        .then(
+          this.setState(prevState => ({ showPreview: !prevState.showPreview }))
+        )
+        .catch(err => console.log(err))
     }
   }
 
@@ -70,17 +77,18 @@ class NestedCommentForm extends Component {
   }
 
   addEmoji = emojiName => {
-    const jsemoji = new JSEMOJI() 
-    jsemoji.img_set = 'emojione' 
-    jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
-    jsemoji.supports_css = false 
-    jsemoji.allow_native = false  
-    jsemoji.replace_mode = 'unified' 
-    jsemoji.text_mode = true 
-    jsemoji.include_title = true 
+    const jsemoji = new JSEMOJI()
+    jsemoji.img_set = 'emojione'
+    jsemoji.img_sets.emojione.path =
+      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
+    jsemoji.supports_css = false
+    jsemoji.allow_native = false
+    jsemoji.replace_mode = 'unified'
+    jsemoji.text_mode = true
+    jsemoji.include_title = true
     jsemoji.replace_unified(`:${emojiName}:`)
     jsemoji.replace_colons(`:${emojiName}:`)
-    
+
     let emoji = String.fromCodePoint(parseInt(emojiName, 16))
     this.setState({ text: this.state.text + emoji })
   }
@@ -106,19 +114,20 @@ class NestedCommentForm extends Component {
   }
 
   onImageDrop = files => {
-    this.setState({ uploadedFile: files[0]})
+    this.setState({ uploadedFile: files[0] })
     this.handleImageUpload(files[0])
   }
 
-  handleImageUpload = (file) => {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                        .field('file', file) 
-    
+  handleImageUpload = file => {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file)
+
     upload.end((err, response) => {
-      if(err) console.log(err) 
-      if(response.body.secure_url !== '') {
-        this.setState({ 
+      if (err) console.log(err)
+      if (response.body.secure_url !== '') {
+        this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url,
           media: response.body.secure_url,
           showPreview: true
@@ -127,18 +136,15 @@ class NestedCommentForm extends Component {
     })
   }
 
-  showBtnsHandler = () => this.setState(prevState => ({ showBtns: !prevState.showBtns }))
+  showBtnsHandler = () =>
+    this.setState(prevState => ({ showBtns: !prevState.showBtns }))
 
   render() {
-    const {
-      showForm,
-      postId,
-      comment,
-    } = this.props
+    const { showForm, postId, comment } = this.props
 
-    const { 
-      errors, 
-      showEmojis, 
+    const {
+      errors,
+      showEmojis,
       text,
       data,
       media,
@@ -146,45 +152,55 @@ class NestedCommentForm extends Component {
       showBtns
     } = this.state
 
-    return showForm && (
-      <>
-        <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
-        { showEmojis &&
-          <EmojiModal>
-            <EmojiPicker onEmojiClick={this.addEmoji} />
-          </EmojiModal>
-        }
-        <div className='nested_comment_form' onClick={this.showBtnsHandler}>
-          <TextAreaForm 
-            placeholder="Reply to comment" 
-            name='text'
-            value={text} 
-            onChange={this.onChange}
-            onPaste={this.onPaste}
-            autoFocus
-            error={errors.text}
-          />
-          { showBtns && 
-            <div className='nested_comments_form_buttons'>
-              <Dropzone 
-                style={{ border: 'none' }}
-                multiple={false}
-                accept='image/*, video/*'
-                onDrop={this.onImageDrop}>
-                <button className='comment_form_btns' onClick={this.addPhoto}>
-                  <Icon icon='fas fa-image' title='upload photo' />
-                </button>
-              </Dropzone>
-              <Icon icon='far fa-smile-wink' title='emojis' toggleIcon={this.toggleEmoji} />
-              <Icon 
-                icon='far fa-paper-plane' 
-                title='submit' 
-                toggleIcon={() => this.addNewNestedComment(postId, comment._id)} />
-            </div>
-          }
-          <LinkPreview showPreview={showPreview} post={data} media={media} />
-        </div>
-      </>
+    return (
+      showForm && (
+        <>
+          <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
+          {showEmojis && (
+            <EmojiModal>
+              <EmojiPicker onEmojiClick={this.addEmoji} />
+            </EmojiModal>
+          )}
+          <div className="nested_comment_form" onClick={this.showBtnsHandler}>
+            <TextAreaForm
+              placeholder="Reply to comment"
+              name="text"
+              value={text}
+              onChange={this.onChange}
+              onPaste={this.onPaste}
+              autoFocus
+              error={errors.text}
+            />
+            {showBtns && (
+              <div className="nested_comments_form_buttons">
+                <Dropzone
+                  style={{ border: 'none' }}
+                  multiple={false}
+                  accept="image/*, video/*"
+                  onDrop={this.onImageDrop}
+                >
+                  <button className="comment_form_btns" onClick={this.addPhoto}>
+                    <Icon icon="fas fa-image" title="upload photo" />
+                  </button>
+                </Dropzone>
+                <Icon
+                  icon="far fa-smile-wink"
+                  title="emojis"
+                  toggleIcon={this.toggleEmoji}
+                />
+                <Icon
+                  icon="far fa-paper-plane"
+                  title="submit"
+                  toggleIcon={() =>
+                    this.addNewNestedComment(postId, comment._id)
+                  }
+                />
+              </div>
+            )}
+            <LinkPreview showPreview={showPreview} post={data} media={media} />
+          </div>
+        </>
+      )
     )
   }
 }
@@ -194,11 +210,14 @@ NestedCommentForm.propTypes = {
   postId: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired,
   showForm: PropTypes.bool.isRequired,
-  comment: PropTypes.object.isRequired,
+  comment: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   errors: state.errors
 })
 
-export default connect(mapStateToProps, { addNestedComment })(NestedCommentForm)
+export default connect(
+  mapStateToProps,
+  { addNestedComment }
+)(NestedCommentForm)

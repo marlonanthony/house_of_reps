@@ -2,7 +2,7 @@
 // import Moment from 'react-moment'
 
 // class ProfileHighlights extends Component {
-  
+
 //   state = {
 //     highlight: '',
 //     highlights: ''
@@ -31,11 +31,11 @@
 
 //   render() {
 //     const { highlight, highlights } = this.state
-    
-//     return  highlights ? ( 
+
+//     return  highlights ? (
 //       <div>
-//         { highlights.map((venue, i, array) => (  
-//         <div key={i}>  
+//         { highlights.map((venue, i, array) => (
+//         <div key={i}>
 //         <button onClick={() => this.nextHighlight(i)}
 //           disabled={i === -1}
 //           style={{ background: 'black', position: 'absolute', right: '10', color: 'white', }}>Next</button>
@@ -49,9 +49,9 @@
 //         </div>
 //         </div>
 //         ))}
-        
+
 //         </div>
-//       ) : null 
+//       ) : null
 //     }
 //   }
 

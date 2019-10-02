@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types' 
-import { connect } from 'react-redux' 
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import DashboardContent from '../../components/dashboard_content/DashboardContent'
 import { getCurrentProfile } from '../../actions/profileActions'
 import isEmpty from '../../validation/is-empty'
 import './Dashboard.css'
 
-const Dashboard = ({ auth, getCurrentProfile, ...props}) => {
-
+const Dashboard = ({ auth, getCurrentProfile, ...props }) => {
   useEffect(() => {
-    if(isEmpty(props.profile.profile)) getCurrentProfile()
+    if (isEmpty(props.profile.profile)) getCurrentProfile()
   }, [])
 
   const { user } = auth
   const { profile, loading } = props.profile
 
-  return profile && (
-    <DashboardContent 
-      profile={ profile }
-      loading={ loading }
-      user={ user }
-    />
+  return (
+    profile && (
+      <DashboardContent profile={profile} loading={loading} user={user} />
+    )
   )
 }
 
@@ -36,4 +33,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard)
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile }
+)(Dashboard)

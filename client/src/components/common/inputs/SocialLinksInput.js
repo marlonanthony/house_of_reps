@@ -1,9 +1,9 @@
 import React from 'react'
-import classnames from 'classnames' 
-import PropTypes from 'prop-types' 
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 
 const SocialLinksInput = ({
-  name, 
+  name,
   placeholder,
   value,
   error,
@@ -12,21 +12,35 @@ const SocialLinksInput = ({
 }) => {
   return (
     <>
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px'}}>
-        <i className={ icon } style={{ marginRight: '5px', fontSize: 19, width: 40, color: 'rgb(55, 131, 194)' }} />
-        <input 
-          className={classnames('social-links', { // social-links is in CreateProfile.css
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: '10px'
+        }}
+      >
+        <i
+          className={icon}
+          style={{
+            marginRight: '5px',
+            fontSize: 19,
+            width: 40,
+            color: 'rgb(55, 131, 194)'
+          }}
+        />
+        <input
+          className={classnames('social-links', {
+            // social-links is in CreateProfile.css
             'is-invalid': error
           })}
-          placeholder={ placeholder }
-          name={ name }
-          value={ value }
-          onChange={ onChange }
+          placeholder={placeholder}
+          name={name}
+          value={value}
+          onChange={onChange}
         />
       </div>
-      <div>
-        { error && (<div className='invalid-feedback'>{ error }</div>)}
-      </div>
+      <div>{error && <div className="invalid-feedback">{error}</div>}</div>
     </>
   )
 }
@@ -42,7 +56,7 @@ SocialLinksInput.propTypes = {
 }
 
 SocialLinksInput.defaultProps = {
-  type: 'text' 
+  type: 'text'
 }
 
 export default SocialLinksInput

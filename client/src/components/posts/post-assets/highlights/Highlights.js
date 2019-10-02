@@ -4,20 +4,19 @@ import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal'
-import VenueItems from '../../../profile/profile_assets/VenueItems'
-import FadeIn from '../../../UI/fade_in/FadeIn'
+// import VenueItems from '../../../profile/profile_assets/VenueItems'
+// import FadeIn from '../../../UI/fade_in/FadeIn'
 import './Highlights.css'
 
 class Highlights extends Component {
-
-  state = { 
+  state = {
     currentImageIndex: 0,
-    showModal: false 
+    showModal: false
   }
 
   previousSlide = () => {
-    const { recentHighlights } = this.props 
-    const { currentImageIndex } = this.state 
+    const { recentHighlights } = this.props
+    const { currentImageIndex } = this.state
     const lastIndex = recentHighlights.length - 1
     const shouldResetIndex = currentImageIndex === 0
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
@@ -26,8 +25,8 @@ class Highlights extends Component {
   }
 
   nextSlide = () => {
-    const { recentHighlights } = this.props 
-    const { currentImageIndex } = this.state 
+    const { recentHighlights } = this.props
+    const { currentImageIndex } = this.state
     const lastIndex = recentHighlights.length - 1
     const shouldResetIndex = currentImageIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentImageIndex + 1
@@ -44,32 +43,64 @@ class Highlights extends Component {
   }
 
   render() {
-    if(!this.props.recentHighlights) return null
-    const { recentHighlights } = this.props 
+    if (!this.props.recentHighlights) return null
+    const { recentHighlights } = this.props
 
     const highlightsModal = this.state.showModal && (
       <>
         <HighlightsModal>
           <div style={{ color: '#ccc' }}>
-            <Arrow direction='left' styleClass='modal-slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-            { recentHighlights[this.state.currentImageIndex].title && <p style={{color: 'rgb(29, 138, 255)'}}>{recentHighlights[this.state.currentImageIndex].title}</p> }
-            { recentHighlights[this.state.currentImageIndex].video &&
-              <iframe 
-                title={recentHighlights[this.state.currentImageIndex].video} 
-                style={{width: '95%', height: '50vh'}} 
-                src={recentHighlights[this.state.currentImageIndex].video} 
+            <Arrow
+              direction="left"
+              styleClass="modal-slide-arrow"
+              clickFunction={() => this.previousSlide()}
+              glyph="&#9664;"
+            />
+            {recentHighlights[this.state.currentImageIndex].title && (
+              <p style={{ color: 'rgb(29, 138, 255)' }}>
+                {recentHighlights[this.state.currentImageIndex].title}
+              </p>
+            )}
+            {recentHighlights[this.state.currentImageIndex].video && (
+              <iframe
+                title={recentHighlights[this.state.currentImageIndex].video}
+                style={{ width: '95%', height: '50vh' }}
+                src={recentHighlights[this.state.currentImageIndex].video}
                 frameBorder={0}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen={true}>
-              </iframe>
-            }
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen={true}
+              ></iframe>
+            )}
             {
-              <div style={{display: 'flex', alignItems: 'center', paddingLeft: 10}}>
-                <i onClick={() => this.likeHighlight(recentHighlights[this.state.currentImageIndex]._id, recentHighlights[this.state.currentImageIndex].user)} className='fas fa-thumbs-up icons' style={{color: 'cyan', cursor: 'pointer'}}></i>
-                <p style={{color: 'cyan'}}>{recentHighlights[this.state.currentImageIndex].likes && recentHighlights[this.state.currentImageIndex].likes.length}</p>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  paddingLeft: 10
+                }}
+              >
+                <i
+                  onClick={() =>
+                    this.likeHighlight(
+                      recentHighlights[this.state.currentImageIndex]._id,
+                      recentHighlights[this.state.currentImageIndex].user
+                    )
+                  }
+                  className="fas fa-thumbs-up icons"
+                  style={{ color: 'cyan', cursor: 'pointer' }}
+                ></i>
+                <p style={{ color: 'cyan' }}>
+                  {recentHighlights[this.state.currentImageIndex].likes &&
+                    recentHighlights[this.state.currentImageIndex].likes.length}
+                </p>
               </div>
             }
-            <Arrow direction='right' styleClass='modal-slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+            <Arrow
+              direction="right"
+              styleClass="modal-slide-arrow"
+              clickFunction={() => this.nextSlide()}
+              glyph="&#9654;"
+            />
           </div>
         </HighlightsModal>
       </>
@@ -77,7 +108,7 @@ class Highlights extends Component {
 
     // const venueItems = recentHighlights && recentHighlights.map(venue => (
     //   <FadeIn key={venue._id}>
-    //     <VenueItems 
+    //     <VenueItems
     //       venue={venue}
     //       setShowModal={this.state.showModal}
     //       toggleShowHighlight={this.props.toggleShowHighlight}
@@ -91,30 +122,43 @@ class Highlights extends Component {
         {/* <div className='postfeed_highlights_mobile'>
           {venueItems}
         </div> */}
-        <div className='post-feed-highlights'>
-          <div className='highlightss'>
+        <div className="post-feed-highlights">
+          <div className="highlightss">
             <Backdrop clicked={this.modalToggle} show={this.state.showModal} />
             {highlightsModal}
             <div style={{ position: 'absolute' }}>
-              <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-              {recentHighlights[this.state.currentImageIndex] && recentHighlights[this.state.currentImageIndex].video &&
-                (<iframe 
-                  title={recentHighlights[this.state.currentImageIndex].video} 
-                  style={{width: '250px', height: '250px'}} 
-                  src={recentHighlights[this.state.currentImageIndex].video} 
-                  frameBorder={0}
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen={true}>
-                </iframe>) 
-              }
-              <img 
-                onClick={() => this.props.toggleShowHighlight(this.state.currentImageIndex)}
-                className='highlightss_icon' 
-                src={require('../../../../img/hor-icon.jpg')} 
-                alt='hors' 
-                title='toggle modal'
+              <Arrow
+                direction="left"
+                styleClass="slide-arrow"
+                clickFunction={() => this.previousSlide()}
+                glyph="&#9664;"
               />
-              <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
+              {recentHighlights[this.state.currentImageIndex] &&
+                recentHighlights[this.state.currentImageIndex].video && (
+                  <iframe
+                    title={recentHighlights[this.state.currentImageIndex].video}
+                    style={{ width: '250px', height: '250px' }}
+                    src={recentHighlights[this.state.currentImageIndex].video}
+                    frameBorder={0}
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen={true}
+                  ></iframe>
+                )}
+              <img
+                onClick={() =>
+                  this.props.toggleShowHighlight(this.state.currentImageIndex)
+                }
+                className="highlightss_icon"
+                src={require('../../../../img/hor-icon.jpg')}
+                alt="hors"
+                title="toggle modal"
+              />
+              <Arrow
+                direction="right"
+                styleClass="slide-arrow"
+                clickFunction={() => this.nextSlide()}
+                glyph="&#9654;"
+              />
             </div>
           </div>
         </div>
@@ -123,5 +167,7 @@ class Highlights extends Component {
   }
 }
 
-export default connect(null, { likeVenue })(Highlights)
-
+export default connect(
+  null,
+  { likeVenue }
+)(Highlights)

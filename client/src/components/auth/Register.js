@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types' 
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Dropzone from 'react-dropzone' 
-import request from 'superagent' 
+import Dropzone from 'react-dropzone'
+import request from 'superagent'
 
 import { registerUser } from '../../actions/authActions'
 import Input from '../common/inputs/Input'
@@ -11,16 +11,12 @@ import useForm from '../common/hooks/useForm'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-const Register = ({
-  auth,
-  registerUser,
-  ...props
-}) => {
-  
-  const [values, setValues] = useForm({ 
-    name: '', 
+const Register = ({ auth, registerUser, ...props }) => {
+  const [values, setValues] = useForm({
+    name: '',
     email: '',
     handle: '',
     password: '',
@@ -28,12 +24,12 @@ const Register = ({
   })
 
   const [avatar, setAvatar] = useState(''),
-        [errors, setErrors] = useState({}),
-        [uploadedFile, setUploadedFile] = useState(''),
-        [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl ] = useState('')
+    [errors, setErrors] = useState({}),
+    [uploadedFile, setUploadedFile] = useState(''),
+    [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState('')
 
   useEffect(() => {
-    if(auth.isAuthenticated) {
+    if (auth.isAuthenticated) {
       props.history.push('/dashboard')
     }
     setErrors(props.errors)
@@ -49,7 +45,7 @@ const Register = ({
       password: values.password,
       password2: values.password2
     }
-    registerUser(newUser, props.history) 
+    registerUser(newUser, props.history)
   }
 
   const onImageDrop = files => {
@@ -58,13 +54,14 @@ const Register = ({
   }
 
   const handleImageUpload = file => {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                        .field('file', file) 
-    
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file)
+
     upload.end((err, response) => {
-      if(err) console.log(err) 
-      if(response.body.secure_url !== '') {
+      if (err) console.log(err)
+      if (response.body.secure_url !== '') {
         setUploadedFileCloudinaryUrl(response.body.secure_url)
         setAvatar(response.body.secure_url)
       }
@@ -74,69 +71,79 @@ const Register = ({
   return (
     <div className="register-container">
       <h2>Sign Up</h2>
-      <div id='register-content'>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div className='FileUpload'>
-            <Dropzone 
-              className='dropzone'
-              multiple={ false }
-              accept='image/*'
-              onDrop={ onImageDrop }>
-              <p>Drop an image or click to select a file to upload your avatar.</p>
+      <div id="register-content">
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+        >
+          <div className="FileUpload">
+            <Dropzone
+              className="dropzone"
+              multiple={false}
+              accept="image/*"
+              onDrop={onImageDrop}
+            >
+              <p>
+                Drop an image or click to select a file to upload your avatar.
+              </p>
             </Dropzone>
           </div>
           <div>
-            { uploadedFileCloudinaryUrl === '' ? null : 
-              <img 
-                src={ uploadedFileCloudinaryUrl } 
+            {uploadedFileCloudinaryUrl === '' ? null : (
+              <img
+                src={uploadedFileCloudinaryUrl}
                 style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                alt={ uploadedFile.name } />
-            }
+                alt={uploadedFile.name}
+              />
+            )}
           </div>
         </div>
-        <form id='register-form' onSubmit={ onSubmitHandler }>
+        <form id="register-form" onSubmit={onSubmitHandler}>
           <Input
             type="text"
-            name='name'
-            value={ values.name }
-            placeholder='Name'
-            onChange={ setValues }
-            error={ errors.name }
+            name="name"
+            value={values.name}
+            placeholder="Name"
+            onChange={setValues}
+            error={errors.name}
           />
           <Input
             type="email"
-            name='email'
-            placeholder='Email'
-            value={ values.email }
-            onChange={ setValues }
-            error={ errors.email }
+            name="email"
+            placeholder="Email"
+            value={values.email}
+            onChange={setValues}
+            error={errors.email}
           />
           <Input
             type="handle"
-            name='handle'
-            placeholder='handle'
-            value={ values.handle }
-            onChange={ setValues }
-            error={ errors.handle }
+            name="handle"
+            placeholder="handle"
+            value={values.handle}
+            onChange={setValues}
+            error={errors.handle}
           />
           <Input
             type="password"
-            name='password'
-            placeholder='Password'
-            value={ values.password }
-            onChange={ setValues }
-            error={ errors.password }
+            name="password"
+            placeholder="Password"
+            value={values.password}
+            onChange={setValues}
+            error={errors.password}
           />
           <Input
             type="password"
-            name='password2'
-            placeholder='Confirm Password'
-            value={ values.password2 }
-            onChange={ setValues }
-            error={ errors.password2 }
+            name="password2"
+            placeholder="Confirm Password"
+            value={values.password2}
+            onChange={setValues}
+            error={errors.password2}
           />
-          <div className='register-button-container'>
-            <input type="submit" id='register-button' title='submit' />
+          <div className="register-button-container">
+            <input type="submit" id="register-button" title="submit" />
           </div>
         </form>
       </div>
@@ -152,7 +159,10 @@ Register.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors 
+  errors: state.errors
 })
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Register))
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register))

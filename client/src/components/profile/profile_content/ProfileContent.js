@@ -9,9 +9,9 @@ import './ProfileContent.css'
 
 export default function ProfileContent({ profiles, profile, user }) {
   return (
-    <div className='profile-content-container'>
+    <div className="profile-content-container">
       <div className="profile-content">
-        <div id='header-items'>
+        <div id="header-items">
           <ProfileAbout profile={profile} user={user} />
           <ProfileIcons profile={profile} />
           <Banners />

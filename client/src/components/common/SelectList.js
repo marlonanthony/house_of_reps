@@ -1,35 +1,33 @@
 import React from 'react'
-import classnames from 'classnames' 
-import PropTypes from 'prop-types' 
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 
-const SelectList = ({
-  name, 
-  value,
-  error,
-  info,
-  onChange,
-  options
-}) => {
+const SelectList = ({ name, value, error, info, onChange, options }) => {
   const selectOptions = options.map(option => (
-    <option className='select-list-options' key={ option.label } value={ option.value }>
-      { option.label }
+    <option
+      className="select-list-options"
+      key={option.label}
+      value={option.value}
+    >
+      {option.label}
     </option>
   ))
 
   return (
     <div className="">
-      <select 
+      <select
         className={classnames('select-list', {
           'is-invalid': error
         })}
-        name={ name }
-        value={ value }
-        onChange={ onChange }>
-        { selectOptions }
+        name={name}
+        value={value}
+        onChange={onChange}
+      >
+        {selectOptions}
       </select>
       <br />
-      { info && <small className='info'>{ info }</small>} {/* in TextArea.css */}
-      { error && (<div className='invalid-feedback'>{ error }</div>)}
+      {info && <small className="info">{info}</small>} {/* in TextArea.css */}
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
   )
 }

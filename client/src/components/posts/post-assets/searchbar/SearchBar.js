@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-
 const SearchBar = ({ profiles }) => {
   const [matches, setMatches] = useState(''),
-        [showMatches, setShowMatches] = useState(false)
+    [showMatches, setShowMatches] = useState(false)
 
   const onMouseEnter = () => {
     setShowMatches(true)
@@ -17,32 +16,37 @@ const SearchBar = ({ profiles }) => {
 
   return (
     <div
-      className='searchbar'
+      className="searchbar"
       onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}>
+      onMouseLeave={onMouseLeave}
+    >
       <input
-        className='searchbar_input'
-        placeholder=' Search reps'
-        name='matches'
-        value={ matches }
-        onChange={ e => setMatches(e.target.value) }
+        className="searchbar_input"
+        placeholder=" Search reps"
+        name="matches"
+        value={matches}
+        onChange={e => setMatches(e.target.value)}
       />
-      { showMatches && 
+      {showMatches && (
         <div>
-          { profiles && profiles.map(profile => (
-            profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
-            profile.user.name.toLowerCase().includes(matches.toLowerCase()) ||
-            profile.stageName.toLowerCase().includes(matches.toLowerCase())
-              ? <Link
+          {profiles &&
+            profiles.map(profile =>
+              profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
+              profile.user.name.toLowerCase().includes(matches.toLowerCase()) ||
+              profile.stageName
+                .toLowerCase()
+                .includes(matches.toLowerCase()) ? (
+                <Link
                   key={profile.user._id}
                   to={`/profile/${profile.handle}`}
-                  className='searchbar_items'>
-                    @{profile.handle}
+                  className="searchbar_items"
+                >
+                  @{profile.handle}
                 </Link>
-              : null
-          ))}
+              ) : null
+            )}
         </div>
-      }
+      )}
     </div>
   )
 }

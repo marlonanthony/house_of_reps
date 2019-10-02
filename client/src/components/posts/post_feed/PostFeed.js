@@ -3,20 +3,17 @@ import PropTypes from 'prop-types'
 
 import PostItem from '../post_item/PostItem'
 
-
 const PostFeed = ({ posts, profiles }) => (
   <div style={{ overflow: 'hidden' }}>
-    { !posts.length
-        ? <div style={{textAlign: 'center'}}>
-            These are not the posts you're looking for.
-          </div>
-        : posts.map(post => (
-          <PostItem 
-            key={post._id} 
-            post={post} 
-            profiles={profiles}
-          />
-    ))}
+    {!posts.length ? (
+      <div style={{ textAlign: 'center' }}>
+        These are not the posts you're looking for.
+      </div>
+    ) : (
+      posts.map(post => (
+        <PostItem key={post._id} post={post} profiles={profiles} />
+      ))
+    )}
   </div>
 )
 

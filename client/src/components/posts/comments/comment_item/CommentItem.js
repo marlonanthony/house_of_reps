@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux' 
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { getProfiles, getProfileByHandle } from '../../../../actions/profileActions'
+import {
+  getProfiles,
+  getProfileByHandle
+} from '../../../../actions/profileActions'
 import CommentsModal from '../../../UI/modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import CommentBody from '../comment_assets/comment_body/CommentBody'
@@ -21,18 +24,18 @@ class CommentItem extends Component {
     liked: false,
     showNestedComments: false,
     showForm: false,
-    editPost: false,
+    editPost: false
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.comment !== prevState.comment) {
+    if (this.props.comment !== prevState.comment) {
       this.setState({ comment: this.props.comment })
     }
-    if(this.props.comment.comments !== prevState.comment.comments) {
+    if (this.props.comment.comments !== prevState.comment.comments) {
       this.setState({ comment: this.props.comment })
     }
-    if(this.props.profiles !== prevProps.profiles){
-      this.props.getProfiles() 
+    if (this.props.profiles !== prevProps.profiles) {
+      this.props.getProfiles()
     }
   }
 
@@ -41,25 +44,29 @@ class CommentItem extends Component {
     return likes.filter(like => like.user === auth.user.id).length > 0
   }
 
-  modalToggle = () => this.setState(prevState => ({ showModal: !prevState.showModal }))
+  modalToggle = () =>
+    this.setState(prevState => ({ showModal: !prevState.showModal }))
 
   modalShow = () => this.setState({ showModal: true })
 
-  toggleForm = () => this.setState(prevState => ({ showForm: !prevState.showForm }))
+  toggleForm = () =>
+    this.setState(prevState => ({ showForm: !prevState.showForm }))
 
-  userNameOrAvatarClicked = commentId => (
-    this.props.profiles.map(profile =>  (
-      profile.user._id === commentId &&
+  userNameOrAvatarClicked = commentId =>
+    this.props.profiles.map(
+      profile =>
+        profile.user._id === commentId &&
         this.props.history.push(`/profile/${profile.handle}`)
-    ))
-  )
+    )
 
   toggleShowNestedComment = () => {
-    this.setState(prevState => ({ showNestedComments: !prevState.showNestedComments }))
+    this.setState(prevState => ({
+      showNestedComments: !prevState.showNestedComments
+    }))
   }
 
   userNameOrAvatarClickedLikesPopup = handle => {
-    if(this.props.location.pathname.includes('/profile')) {
+    if (this.props.location.pathname.includes('/profile')) {
       this.props.getProfileByHandle(handle)
     }
     this.props.history.push(`/profile/${handle}`)
@@ -67,24 +74,25 @@ class CommentItem extends Component {
 
   moreVertClicked = () => {
     let res = window.confirm('Edit post?')
-    if(res) this.setState({ editPost: true })
-    else this.setState({ editPost: false }) 
+    if (res) this.setState({ editPost: true })
+    else this.setState({ editPost: false })
   }
-  
-  toggleEditPost = () => this.setState(prevState => ({ editPost: !prevState.editPost }))
+
+  toggleEditPost = () =>
+    this.setState(prevState => ({ editPost: !prevState.editPost }))
 
   render() {
-    const { postId, auth, profiles } = this.props 
+    const { postId, auth, profiles } = this.props
     const {
-      comment, 
+      comment,
       showModal,
-      liked, 
+      liked,
       showForm,
       showNestedComments,
       editPost
     } = this.state
 
-    if(!comment) return null
+    if (!comment) return null
 
     return (
       <>
@@ -92,15 +100,17 @@ class CommentItem extends Component {
         <CommentsModal showModal={showModal}>
           <img src={comment.media} alt="comment pic" />
         </CommentsModal>
-        <div className='comment-feed-container'>
+        <div className="comment-feed-container">
           <NameAvatarDate
             profiles={profiles}
             comment={comment}
-            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            userNameOrAvatarClickedLikesPopup={
+              this.userNameOrAvatarClickedLikesPopup
+            }
             moreVertClicked={this.moreVertClicked}
           />
-          <CommentBody 
-            comment={comment} 
+          <CommentBody
+            comment={comment}
             modalShow={this.modalShow}
             editPost={editPost}
             toggleEditPost={this.toggleEditPost}
@@ -108,7 +118,9 @@ class CommentItem extends Component {
           />
           <CommentLikes
             comment={comment}
-            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            userNameOrAvatarClickedLikesPopup={
+              this.userNameOrAvatarClickedLikesPopup
+            }
           />
           <CommentButtons
             auth={auth}
@@ -124,7 +136,9 @@ class CommentItem extends Component {
             showNestedComments={showNestedComments}
             showForm={showForm}
             postId={postId}
-            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            userNameOrAvatarClickedLikesPopup={
+              this.userNameOrAvatarClickedLikesPopup
+            }
             liked={liked}
             auth={auth}
             findUserLike={this.findUserLike}
@@ -144,10 +158,13 @@ CommentItem.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
 })
 
-export default connect(mapStateToProps, {
-  getProfiles, 
-  getProfileByHandle,
-})(withRouter(CommentItem))
+export default connect(
+  mapStateToProps,
+  {
+    getProfiles,
+    getProfileByHandle
+  }
+)(withRouter(CommentItem))

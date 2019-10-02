@@ -1,10 +1,10 @@
 import React from 'react'
-import classnames from 'classnames' 
-import PropTypes from 'prop-types' 
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import './Input.css'
 
 const Input = ({
-  name, 
+  name,
   placeholder,
   value,
   error,
@@ -16,7 +16,7 @@ const Input = ({
 }) => {
   return (
     <div>
-      <input 
+      <input
         type={type}
         className={classnames('registers-inputs', {
           'is-invalid': error
@@ -28,8 +28,8 @@ const Input = ({
         onChange={onChange}
         disabled={disabled}
       />
-      {info && <small className='info'>{info}</small>} {/*  in TextArea.css  */}
-      { error && (<div className='error'>{error}</div>)}
+      {info && <small className="info">{info}</small>} {/*  in TextArea.css  */}
+      {error && <div className="error">{error}</div>}
     </div>
   )
 }
@@ -42,11 +42,11 @@ Input.propTypes = {
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
   // onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.string,
+  disabled: PropTypes.string
 }
 
 Input.defaultProps = {
-  type: 'text' 
+  type: 'text'
 }
 
 export default Input

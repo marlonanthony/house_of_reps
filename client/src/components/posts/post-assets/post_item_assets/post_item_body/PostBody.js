@@ -15,8 +15,8 @@ const PostBody = ({
   modalToggle
 }) => {
   const [text, setText] = useState(''),
-        [showEmojis, setShowEmojis] = useState(false)
-    
+    [showEmojis, setShowEmojis] = useState(false)
+
   const onChange = e => setText(e.target.value)
 
   const onSubmit = e => {
@@ -27,7 +27,7 @@ const PostBody = ({
     editPostAction(_id, editedPost)
     setText('')
     toggleEditPost()
-    e.target.reset() 
+    e.target.reset()
   }
 
   const toggleEmoji = () => {
@@ -35,46 +35,50 @@ const PostBody = ({
   }
 
   const addEmoji = emojiName => {
-    const jsemoji = new JSEMOJI() 
-    jsemoji.img_set = 'emojione' 
-    jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
-    jsemoji.supports_css = false 
-    jsemoji.allow_native = false  
-    jsemoji.replace_mode = 'unified' 
-    jsemoji.text_mode = true 
-    jsemoji.include_title = true 
+    const jsemoji = new JSEMOJI()
+    jsemoji.img_set = 'emojione'
+    jsemoji.img_sets.emojione.path =
+      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
+    jsemoji.supports_css = false
+    jsemoji.allow_native = false
+    jsemoji.replace_mode = 'unified'
+    jsemoji.text_mode = true
+    jsemoji.include_title = true
     jsemoji.replace_unified(`:${emojiName}:`)
     jsemoji.replace_colons(`:${emojiName}:`)
-    
+
     let emoji = String.fromCodePoint(parseInt(emojiName, 16))
     setText(text => text + emoji)
   }
 
   let youtubeUrl = post.url
-  
-  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
-    ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                            .replace(/watch\?v=/gi, 'embed/')
-                            .replace(/&feature=www\.youtube\.com/gi, '')
-    : youtubeUrl = null 
 
-  return !editPost
-    ? <DefaultPostBody
-        post={post}
-        modalToggle={modalToggle}
-        youtubeUrl={youtubeUrl}
-      />
-    : <EditPostBody 
-        showEmojis={showEmojis}
-        toggleEmoji={toggleEmoji}
-        addEmoji={addEmoji}
-        onSubmit={onSubmit}
-        post={post}
-        onChange={onChange}
-        text={text}
-        modalToggle={modalToggle}
-        youtubeUrl={youtubeUrl}
-      />
+  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be')
+    ? (youtubeUrl = post.url
+        .replace(/youtu\.be/gi, 'www.youtube.com')
+        .replace(/watch\?v=/gi, 'embed/')
+        .replace(/&feature=www\.youtube\.com/gi, ''))
+    : (youtubeUrl = null)
+
+  return !editPost ? (
+    <DefaultPostBody
+      post={post}
+      modalToggle={modalToggle}
+      youtubeUrl={youtubeUrl}
+    />
+  ) : (
+    <EditPostBody
+      showEmojis={showEmojis}
+      toggleEmoji={toggleEmoji}
+      addEmoji={addEmoji}
+      onSubmit={onSubmit}
+      post={post}
+      onChange={onChange}
+      text={text}
+      modalToggle={modalToggle}
+      youtubeUrl={youtubeUrl}
+    />
+  )
 }
 
 PostBody.propTypes = {
@@ -85,4 +89,7 @@ PostBody.propTypes = {
   toggleEditPost: PropTypes.func.isRequired
 }
 
-export default connect(null, { editPostAction })(PostBody)
+export default connect(
+  null,
+  { editPostAction }
+)(PostBody)

@@ -22,53 +22,60 @@ const NestedComments = ({
 
   const moreVertClicked = () => {
     let res = window.confirm('Edit post?')
-    if(res) setEditPost(true)
+    if (res) setEditPost(true)
     else setEditPost(false)
   }
-  
+
   const toggleEditPost = () => setEditPost(!editPost)
 
-  return comment.comments && showNestedComments && (
-    <section className='nested_comments'>
-      <NestedCommentForm
-        auth={auth}
-        showForm={showForm}
-        postId={postId}
-        comment={comment}
-      />
-      <div>
-        { comment.comments.map(nestedComment => (
-        <div key={nestedComment._id}>
-          <div className='nested_comments_container'>
-            <NestedCommentNameAvatarDate
-              moreVertClicked={moreVertClicked}
-              nestedComment={nestedComment}
-              userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
-            />
-            <NestedCommentBody
-              nestedComment={nestedComment} 
-              postId={postId}
-              comment={comment}
-              editPost={editPost}
-              toggleEditPost={toggleEditPost}
-            />
-            <NestedLikes
-              nestedComment={nestedComment}
-              userNameOrAvatarClickedLikesPopup={userNameOrAvatarClickedLikesPopup}
-            />
-            <NestedCommentButtons
-              auth={auth}
-              postId={postId}
-              comment={comment}
-              nestedComment={nestedComment}
-              liked={liked}
-              findUserLike={findUserLike}
-            />
-          </div>
+  return (
+    comment.comments &&
+    showNestedComments && (
+      <section className="nested_comments">
+        <NestedCommentForm
+          auth={auth}
+          showForm={showForm}
+          postId={postId}
+          comment={comment}
+        />
+        <div>
+          {comment.comments.map(nestedComment => (
+            <div key={nestedComment._id}>
+              <div className="nested_comments_container">
+                <NestedCommentNameAvatarDate
+                  moreVertClicked={moreVertClicked}
+                  nestedComment={nestedComment}
+                  userNameOrAvatarClickedLikesPopup={
+                    userNameOrAvatarClickedLikesPopup
+                  }
+                />
+                <NestedCommentBody
+                  nestedComment={nestedComment}
+                  postId={postId}
+                  comment={comment}
+                  editPost={editPost}
+                  toggleEditPost={toggleEditPost}
+                />
+                <NestedLikes
+                  nestedComment={nestedComment}
+                  userNameOrAvatarClickedLikesPopup={
+                    userNameOrAvatarClickedLikesPopup
+                  }
+                />
+                <NestedCommentButtons
+                  auth={auth}
+                  postId={postId}
+                  comment={comment}
+                  nestedComment={nestedComment}
+                  liked={liked}
+                  findUserLike={findUserLike}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-        ))}
-      </div>
-    </section>
+      </section>
+    )
   )
 }
 

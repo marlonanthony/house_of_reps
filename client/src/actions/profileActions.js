@@ -1,14 +1,14 @@
-import axios from 'axios' 
-import { 
-  GET_PROFILE, 
-  PROFILE_LOADING, 
-  CLEAR_CURRENT_PROFILE, 
-  GET_ERRORS, 
-  SET_CURRENT_USER, 
+import axios from 'axios'
+import {
+  GET_PROFILE,
+  PROFILE_LOADING,
+  CLEAR_CURRENT_PROFILE,
+  GET_ERRORS,
+  SET_CURRENT_USER,
   GET_PROFILES,
   LIKE_HIGHLIGHT,
   ADD_PROMOS
-} from './types' 
+} from './types'
 
 // Get current profile
 export const getCurrentProfile = () => async dispatch => {
@@ -17,12 +17,12 @@ export const getCurrentProfile = () => async dispatch => {
     const res = await axios.get('/api/profile')
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) { 
+  } catch (err) {
     dispatch({
       type: GET_PROFILE,
-      payload: {} 
+      payload: {}
     })
   }
 }
@@ -34,12 +34,12 @@ export const getProfileByHandle = handle => async dispatch => {
     const res = await axios.get(`/api/profile/handle/${handle}`)
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
   } catch (err) {
     dispatch({
       type: GET_PROFILE,
-      payload: null  
+      payload: null
     })
   }
 }
@@ -47,12 +47,12 @@ export const getProfileByHandle = handle => async dispatch => {
 // Create Profile
 export const createProfile = (profileData, history) => async dispatch => {
   try {
-    await axios.post('/api/profile', profileData) 
+    await axios.post('/api/profile', profileData)
     history.push('/dashboard')
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -67,10 +67,10 @@ export const addVenue = (venueData, history) => async dispatch => {
       payload: res.data
     })
     history.push('/dashboard')
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -78,16 +78,18 @@ export const addVenue = (venueData, history) => async dispatch => {
 // Like Venue
 export const likeVenue = (venueId, userId) => async dispatch => {
   try {
-    const profile = await axios.post(`/api/profile/venues/like/${venueId}/${userId}`)
+    const profile = await axios.post(
+      `/api/profile/venues/like/${venueId}/${userId}`
+    )
     dispatch({
       type: LIKE_HIGHLIGHT,
       payload: {
         data: profile.data,
         venueId,
-        userId 
+        userId
       }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -105,10 +107,10 @@ export const addDjpool = (djpoolData, history) => async dispatch => {
       payload: res.data
     })
     history.push('/dashboard')
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -123,10 +125,10 @@ export const addStore = (storeData, history) => async dispatch => {
       payload: res.data
     })
     history.push('/dashboard')
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -141,10 +143,10 @@ export const addPerk = (perkData, history) => async dispatch => {
       payload: res.data
     })
     history.push('/dashboard')
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -159,10 +161,10 @@ export const addBrand = (brandData, history) => async dispatch => {
       payload: res.data
     })
     history.push('/dashboard')
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -173,9 +175,11 @@ export const deleteVenue = id => async dispatch => {
     const res = await axios.delete(`/api/profile/venues/${id}`)
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
-  } catch (err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Delete Djpool
@@ -184,9 +188,11 @@ export const deleteDjpool = id => async dispatch => {
     const res = await axios.delete(`/api/profile/djpools/${id}`)
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Delete Store
@@ -195,9 +201,11 @@ export const deleteStore = id => async dispatch => {
     const res = await axios.delete(`/api/profile/stores/${id}`)
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
-  } catch (err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Delete Perk
@@ -206,9 +214,11 @@ export const deletePerk = id => async dispatch => {
     const res = await axios.delete(`/api/profile/perks/${id}`)
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Delete Brand
@@ -217,9 +227,11 @@ export const deleteBrand = id => async dispatch => {
     const res = await axios.delete(`/api/profile/brands/${id}`)
     dispatch({
       type: GET_PROFILE,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Get all profiles
@@ -229,31 +241,30 @@ export const getProfiles = () => async dispatch => {
     const res = await axios.get('/api/profile/all')
     dispatch({
       type: GET_PROFILES,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_PROFILES,
-      payload: null 
+      payload: null
     })
   }
 }
 
-
 // Delete account & profile
 export const deleteAccount = () => async dispatch => {
   try {
-    if(window.confirm('Are you sure? This can not be undone')) {
+    if (window.confirm('Are you sure? This can not be undone')) {
       await axios.delete('/api/profile')
       dispatch({
         type: SET_CURRENT_USER,
-        payload: {} 
+        payload: {}
       })
     }
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }

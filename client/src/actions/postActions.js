@@ -1,5 +1,5 @@
-import axios from 'axios' 
-import { 
+import axios from 'axios'
+import {
   ADD_POST,
   EDIT_POST,
   EDIT_COMMENT,
@@ -21,35 +21,35 @@ import {
   REMOVE_COMMENT_LIKE,
   ADD_NESTED_COMMENT_LIKE,
   REMOVE_NESTED_COMMENT_LIKE
-} from './types' 
+} from './types'
 
-// Add Post 
+// Add Post
 export const addPost = postData => async dispatch => {
   try {
-    dispatch(clearErrors()) 
+    dispatch(clearErrors())
     const res = await axios.post('/api/posts', postData)
     dispatch({
       type: ADD_POST,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
-// Get Posts 
+// Get Posts
 export const getPosts = (count, start) => async dispatch => {
   try {
-    dispatch(setPostLoading()) 
+    dispatch(setPostLoading())
     const res = await axios.get(`/api/posts?page=${start}&limit=${count}`)
     dispatch({
       type: GET_POSTS,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_POSTS,
       payload: null
@@ -57,7 +57,7 @@ export const getPosts = (count, start) => async dispatch => {
   }
 }
 
-// Get Post 
+// Get Post
 export const getPost = id => async dispatch => {
   try {
     dispatch(setPostLoading())
@@ -66,8 +66,8 @@ export const getPost = id => async dispatch => {
       type: GET_POST,
       payload: res.data
     })
-  } catch(err) {
-      dispatch({
+  } catch (err) {
+    dispatch({
       type: GET_POST,
       payload: null
     })
@@ -83,60 +83,75 @@ export const getPostsByHashtag = hashtag => async dispatch => {
       type: GET_POSTS,
       payload: res.data
     })
-  } catch(err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Get More Posts By Hashtag
-export const getMorePostsByHashtag = (hashtag, count, start) => async dispatch => {
+export const getMorePostsByHashtag = (
+  hashtag,
+  count,
+  start
+) => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.get(`/api/posts/hashtag/${hashtag}?page=${start}&limit=${count}`)
+    const res = await axios.get(
+      `/api/posts/hashtag/${hashtag}?page=${start}&limit=${count}`
+    )
     dispatch({
       type: GET_MORE_POSTS,
       payload: res.data
     })
-  } catch(err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
-// Get Liked Posts 
+// Get Liked Posts
 export const getLikedPosts = (count, start) => async dispatch => {
   try {
-    dispatch(setPostLoading()) 
-    const res = await axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
+    dispatch(setPostLoading())
+    const res = await axios.get(
+      `/api/posts/likedposts?page=${start}&limit=${count}`
+    )
     dispatch({
       type: GET_POSTS,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     console.log(err)
   }
 }
 
-// Get More Liked Posts 
+// Get More Liked Posts
 export const getMoreLikedPosts = (count, start) => async dispatch => {
   try {
-    dispatch(setPostLoading()) 
-    const res = await axios.get(`/api/posts/likedposts?page=${start}&limit=${count}`)
+    dispatch(setPostLoading())
+    const res = await axios.get(
+      `/api/posts/likedposts?page=${start}&limit=${count}`
+    )
     dispatch({
       type: GET_MORE_POSTS,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     console.log(err)
   }
 }
 
-
-// Get Profile Posts 
+// Get Profile Posts
 export const getProfilePosts = (count, start, handle) => async dispatch => {
   try {
-    dispatch(setPostLoading()) 
-    const res = await axios.get(`/api/posts/profileposts/${handle}?page=${start}&limit=${count}`)
+    dispatch(setPostLoading())
+    const res = await axios.get(
+      `/api/posts/profileposts/${handle}?page=${start}&limit=${count}`
+    )
     dispatch({
       type: GET_POSTS,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_POSTS,
       payload: null
@@ -148,12 +163,16 @@ export const getProfilePosts = (count, start, handle) => async dispatch => {
 export const getMoreProfilePosts = (count, start, handle) => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.get(`/api/posts/profileposts/${handle}?page=${start}&limit=${count}`)
+    const res = await axios.get(
+      `/api/posts/profileposts/${handle}?page=${start}&limit=${count}`
+    )
     dispatch({
       type: GET_MORE_POSTS,
-      payload: res.data,
-    }) 
-  } catch(err) { console.log(err) }
+      payload: res.data
+    })
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Get More Posts
@@ -165,11 +184,13 @@ export const getMorePosts = (count, start) => async dispatch => {
       type: GET_MORE_POSTS,
       payload: res.data
     })
-  } catch(err) { console.log(err) }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Get Matching Posts
-export const getMatchingPosts = (matches) => async dispatch => {
+export const getMatchingPosts = matches => async dispatch => {
   try {
     dispatch(setPostLoading())
     const res = await axios.get(`/api/posts/search/:${matches}`)
@@ -177,7 +198,9 @@ export const getMatchingPosts = (matches) => async dispatch => {
       type: GET_POSTS,
       payload: res.data
     })
-  } catch(err) { console.log(err) } 
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // Edit Post
@@ -187,21 +210,28 @@ export const editPostAction = (id, editedPost) => async dispatch => {
     const res = await axios.put(`/api/posts/${id}`, editedPost)
     dispatch({
       type: EDIT_POST,
-      payload: res.data 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
 // Edit Comment
-export const editedCommentAction = (postId, commentId, editedComment) => async dispatch => {
+export const editedCommentAction = (
+  postId,
+  commentId,
+  editedComment
+) => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.put(`/api/posts/comment/${postId}/${commentId}`, editedComment)
+    const res = await axios.put(
+      `/api/posts/comment/${postId}/${commentId}`,
+      editedComment
+    )
     dispatch({
       type: EDIT_COMMENT,
       payload: {
@@ -210,7 +240,7 @@ export const editedCommentAction = (postId, commentId, editedComment) => async d
         commentId
       }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -218,7 +248,7 @@ export const editedCommentAction = (postId, commentId, editedComment) => async d
   }
 }
 
-// Delete Post 
+// Delete Post
 export const deletePost = id => async dispatch => {
   try {
     await axios.delete(`/api/posts/${id}`)
@@ -226,10 +256,10 @@ export const deletePost = id => async dispatch => {
       type: DELETE_POST,
       payload: id
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -240,9 +270,9 @@ export const addLike = id => async dispatch => {
     const post = await axios.post(`/api/posts/like/${id}`)
     dispatch({
       type: ADD_LIKE,
-      payload: post.data 
+      payload: post.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -256,9 +286,9 @@ export const removeLike = id => async dispatch => {
     const post = await axios.post(`/api/posts/unlike/${id}`)
     dispatch({
       type: REMOVE_LIKE,
-      payload: post.data 
+      payload: post.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -266,24 +296,24 @@ export const removeLike = id => async dispatch => {
   }
 }
 
-// Add Comment to Post 
+// Add Comment to Post
 export const addComment = (postId, commentData) => async dispatch => {
   try {
-    dispatch(clearErrors()) 
+    dispatch(clearErrors())
     const res = await axios.post(`/api/posts/comment/${postId}`, commentData)
     dispatch({
       type: ADD_COMMENT,
-      payload: res.data, 
+      payload: res.data
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
-// Delete comment from post 
+// Delete comment from post
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {
     await axios.delete(`/api/posts/comment/${postId}/${commentId}`)
@@ -291,10 +321,10 @@ export const deleteComment = (postId, commentId) => async dispatch => {
       type: DELETE_COMMENT,
       payload: { commentId, postId }
     })
-  } catch(err) { 
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -302,7 +332,9 @@ export const deleteComment = (postId, commentId) => async dispatch => {
 // Add Like to Comment
 export const addCommentLike = (postId, commentId) => async dispatch => {
   try {
-    const post = await axios.post(`/api/posts/comment/like/${postId}/${commentId}`)
+    const post = await axios.post(
+      `/api/posts/comment/like/${postId}/${commentId}`
+    )
     dispatch({
       type: ADD_COMMENT_LIKE,
       payload: {
@@ -311,10 +343,10 @@ export const addCommentLike = (postId, commentId) => async dispatch => {
         commentId
       }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -322,7 +354,9 @@ export const addCommentLike = (postId, commentId) => async dispatch => {
 // Unlike Comment
 export const removeCommentLike = (postId, commentId) => async dispatch => {
   try {
-    const post = await axios.post(`/api/posts/comment/unlike/${postId}/${commentId}`)
+    const post = await axios.post(
+      `/api/posts/comment/unlike/${postId}/${commentId}`
+    )
     dispatch({
       type: REMOVE_COMMENT_LIKE,
       payload: {
@@ -331,36 +365,51 @@ export const removeCommentLike = (postId, commentId) => async dispatch => {
         commentId
       }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
-// Add NestedComment 
-export const addNestedComment = (postId, commentId, nestedCommentData) => async dispatch => {
+// Add NestedComment
+export const addNestedComment = (
+  postId,
+  commentId,
+  nestedCommentData
+) => async dispatch => {
   try {
-    dispatch(clearErrors()) 
-    const res = await axios.post(`/api/posts/comment/comment/${postId}/${commentId}`, nestedCommentData)
+    dispatch(clearErrors())
+    const res = await axios.post(
+      `/api/posts/comment/comment/${postId}/${commentId}`,
+      nestedCommentData
+    )
     dispatch({
       type: ADD_NESTED_COMMENT,
-      payload: { data: res.data, postId, commentId, nestedCommentData }, 
+      payload: { data: res.data, postId, commentId, nestedCommentData }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
 // Edit Nested Comment
-export const editNestedCommentAction = (postId, commentId, nestedCommentId, editedNestedComment) => async dispatch => {
+export const editNestedCommentAction = (
+  postId,
+  commentId,
+  nestedCommentId,
+  editedNestedComment
+) => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.put(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`, editedNestedComment)
+    const res = await axios.put(
+      `/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`,
+      editedNestedComment
+    )
     dispatch({
       type: EDIT_NESTED_COMMENT,
       payload: {
@@ -370,56 +419,76 @@ export const editNestedCommentAction = (postId, commentId, nestedCommentId, edit
         nestedCommentId
       }
     })
-  } catch(err) { dispatch({
-    type: GET_ERRORS,
-    payload: err.response.data
-  }) }
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
 }
 
 // Delete NestedComment
-export const deleteNestedComment = (postId, commentId, nestedCommentId) => async dispatch => {
+export const deleteNestedComment = (
+  postId,
+  commentId,
+  nestedCommentId
+) => async dispatch => {
   try {
-    const res = await axios.delete(`/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`)
+    const res = await axios.delete(
+      `/api/posts/comment/comment/${postId}/${commentId}/${nestedCommentId}`
+    )
     dispatch({
       type: REMOVE_NESTED_COMMENT,
       payload: { data: res.data, postId, commentId, nestedCommentId }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
 // Like NestedComment
-export const likeNestedComment = (postId, commentId, nestedCommentId) => async dispatch => {
+export const likeNestedComment = (
+  postId,
+  commentId,
+  nestedCommentId
+) => async dispatch => {
   try {
-    const res = await axios.post(`/api/posts/comment/comment/like/${postId}/${commentId}/${nestedCommentId}`)
+    const res = await axios.post(
+      `/api/posts/comment/comment/like/${postId}/${commentId}/${nestedCommentId}`
+    )
     dispatch({
       type: ADD_NESTED_COMMENT_LIKE,
       payload: { data: res.data, postId, commentId, nestedCommentId }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
 
 // Unlike NestedComment
-export const unlikeNestedComment = (postId, commentId, nestedCommentId) => async dispatch => {
+export const unlikeNestedComment = (
+  postId,
+  commentId,
+  nestedCommentId
+) => async dispatch => {
   try {
-    const res = await axios.post(`/api/posts/comment/comment/unlike/${postId}/${commentId}/${nestedCommentId}`)
+    const res = await axios.post(
+      `/api/posts/comment/comment/unlike/${postId}/${commentId}/${nestedCommentId}`
+    )
     dispatch({
       type: REMOVE_NESTED_COMMENT_LIKE,
       payload: { data: res.data, postId, commentId, nestedCommentId }
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data 
+      payload: err.response.data
     })
   }
 }
@@ -430,7 +499,6 @@ export const setPostLoading = () => {
     type: POST_LOADING
   }
 }
-
 
 // Clear Errors
 export const clearErrors = () => {

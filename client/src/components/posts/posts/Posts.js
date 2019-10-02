@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types' 
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { 
-  getPosts, 
-  getMorePosts, 
-  getMatchingPosts, 
-  getLikedPosts, 
-  getMoreLikedPosts, 
+import {
+  getPosts,
+  getMorePosts,
+  getMatchingPosts,
+  getLikedPosts,
+  getMoreLikedPosts,
   getPostsByHashtag,
   getMorePostsByHashtag
 } from '../../../actions/postActions'
@@ -27,35 +27,34 @@ import Footer from '../post-assets/footer/Footer'
 import './Posts.css'
 
 class Posts extends Component {
-
-  state = { 
+  state = {
     showPreview: false,
     showLikes: false,
     showHashtags: false,
     hashtag: '',
-    count: 10, 
-    start: 0,
+    count: 10,
+    start: 0
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0) 
-    this.props.getPosts(this.state.count, this.state.start) 
+    window.scrollTo(0, 0)
+    this.props.getPosts(this.state.count, this.state.start)
     this.props.getCurrentProfile()
     this.props.getProfiles()
-    this.setState( prevState => ({ start: prevState.start + 1 }))
+    this.setState(prevState => ({ start: prevState.start + 1 }))
   }
 
   fetchMore = () => {
-    const { count, start, hashtag } = this.state 
-    if(this.state.showLikes) {
-      this.props.getMoreLikedPosts(count, start) 
-      this.setState( prevState => ({ start: prevState.start + 1 }))
-    } else if(this.state.showHashtags) {
+    const { count, start, hashtag } = this.state
+    if (this.state.showLikes) {
+      this.props.getMoreLikedPosts(count, start)
+      this.setState(prevState => ({ start: prevState.start + 1 }))
+    } else if (this.state.showHashtags) {
       this.props.getMorePostsByHashtag(hashtag, count, start)
-      this.setState( prevState => ({ start: prevState.start + 1 }))
+      this.setState(prevState => ({ start: prevState.start + 1 }))
     } else {
       this.props.getMorePosts(count, start)
-      this.setState( prevState => ({ start: prevState.start + 1 }))
+      this.setState(prevState => ({ start: prevState.start + 1 }))
     }
   }
 
@@ -64,49 +63,57 @@ class Posts extends Component {
   }
 
   showLikesHandler = () => {
-    this.setState( prevState => ({ 
-      showLikes: !prevState.showLikes,
-      start: 1
-    }), () => {
-      if(this.state.showLikes) {
-        this.props.getLikedPosts()
-      } else {
-        this.props.getPosts() 
+    this.setState(
+      prevState => ({
+        showLikes: !prevState.showLikes,
+        start: 1
+      }),
+      () => {
+        if (this.state.showLikes) {
+          this.props.getLikedPosts()
+        } else {
+          this.props.getPosts()
+        }
       }
-    })
+    )
   }
 
   showPostByHashtag = tag => {
     // set hashtag to tag if tag exist lest hashtag will be empty when not using buttons
-    if(tag.length) this.setState({ hashtag: tag })
-    this.setState(prevState => ({
-      showHashtags: !prevState.showHashtags,
-      start: 1
-    }), () => {
-      if(this.state.showHashtags) {
-        this.props.getPostsByHashtag(tag.length ? tag : this.state.hashtag.toLowerCase())
-      } else {
-        this.props.getPosts()
+    if (tag.length) this.setState({ hashtag: tag })
+    this.setState(
+      prevState => ({
+        showHashtags: !prevState.showHashtags,
+        start: 1
+      }),
+      () => {
+        if (this.state.showHashtags) {
+          this.props.getPostsByHashtag(
+            tag.length ? tag : this.state.hashtag.toLowerCase()
+          )
+        } else {
+          this.props.getPosts()
+        }
       }
-    })
+    )
   }
 
   render() {
     const { posts, loading } = this.props.post,
-          { profile, profiles } = this.props.profile,
-          { showPreview, showHashtags, hashtag, showLikes } = this.state,
-          { user } = this.props.auth
+      { profile, profiles } = this.props.profile,
+      { showPreview, showHashtags, hashtag, showLikes } = this.state,
+      { user } = this.props.auth
 
     return (
-      <div className='feed'>
+      <div className="feed">
         <SearchPost
           showPostByHashtag={this.showPostByHashtag}
           onChange={this.onChange}
           hashtag={hashtag}
           showHashtags={showHashtags}
         />
-        <PostForm  showPreview={ showPreview }/>
-        <SearchBar profiles={ profiles } />
+        <PostForm showPreview={showPreview} />
+        <SearchBar profiles={profiles} />
         <Buttons showPostByHashtag={this.showPostByHashtag} />
         <PostFeedProfileContent
           profile={profile}
@@ -116,14 +123,8 @@ class Posts extends Component {
           showHighlight={this.props.showHighlight}
           toggleShowHighlight={this.props.toggleShowHighlight}
         />
-        <PoolsContainer
-          profiles={profiles}
-          loading={loading}
-        />
-        <PerksContainer
-          profiles={profiles}
-          loading={loading}
-        />
+        <PoolsContainer profiles={profiles} loading={loading} />
+        <PerksContainer profiles={profiles} loading={loading} />
         <PostsContainer
           posts={posts}
           profiles={profiles}
@@ -136,14 +137,8 @@ class Posts extends Component {
           loading={loading}
           toggleShowHighlight={this.props.toggleShowHighlight}
         />
-        <StoresContainer
-          profiles={profiles}
-          loading={loading}
-        />
-        <BrandContainer
-          profiles={profiles}
-          loading={loading}
-        />
+        <StoresContainer profiles={profiles} loading={loading} />
+        <BrandContainer profiles={profiles} loading={loading} />
         <Footer />
       </div>
     )
@@ -158,7 +153,7 @@ Posts.propTypes = {
   getProfiles: PropTypes.func.isRequired,
   getMorePosts: PropTypes.func.isRequired,
   getMatchingPosts: PropTypes.func.isRequired,
-  getLikedPosts: PropTypes.func.isRequired, 
+  getLikedPosts: PropTypes.func.isRequired,
   getMoreLikedPosts: PropTypes.func.isRequired,
   toggleShowHighlight: PropTypes.func.isRequired
 }
@@ -166,17 +161,20 @@ Posts.propTypes = {
 const mapStateToProps = state => ({
   post: state.post,
   profile: state.profile,
-  auth: state.auth 
+  auth: state.auth
 })
 
-export default connect(mapStateToProps, { 
-  getPosts, 
-  getCurrentProfile, 
-  getProfiles,
-  getMorePosts, 
-  getLikedPosts, 
-  getMoreLikedPosts, 
-  getMatchingPosts,
-  getPostsByHashtag,
-  getMorePostsByHashtag
-})(Posts)
+export default connect(
+  mapStateToProps,
+  {
+    getPosts,
+    getCurrentProfile,
+    getProfiles,
+    getMorePosts,
+    getLikedPosts,
+    getMoreLikedPosts,
+    getMatchingPosts,
+    getPostsByHashtag,
+    getMorePostsByHashtag
+  }
+)(Posts)

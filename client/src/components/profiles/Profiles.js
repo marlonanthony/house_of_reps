@@ -1,12 +1,12 @@
 // import React, { Component } from 'react'
 // import { connect } from 'react-redux'
-// import PropTypes from 'prop-types' 
+// import PropTypes from 'prop-types'
 // import { getProfiles } from '../../actions/profileActions'
 // import Arrow from '../UI/arrow_glyph/Arrow'
 // import './Profiles.css'
 
 // class Profiles extends Component {
-//   state = { 
+//   state = {
 //     currentImageIndex: 0,
 //     recentHighlights: []
 //   }
@@ -28,8 +28,8 @@
 //   }
 
 //   previousSlide = () => {
-//     const { recentHighlights } = this.state 
-//     const { currentImageIndex } = this.state 
+//     const { recentHighlights } = this.state
+//     const { currentImageIndex } = this.state
 //     const lastIndex = recentHighlights.length - 1
 //     const shouldResetIndex = currentImageIndex === 0
 //     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
@@ -37,8 +37,8 @@
 //   }
 
 //   nextSlide = () => {
-//     const { recentHighlights } = this.state 
-//     const { currentImageIndex } = this.state 
+//     const { recentHighlights } = this.state
+//     const { currentImageIndex } = this.state
 //     const lastIndex = recentHighlights.length - 1
 //     const shouldResetIndex = currentImageIndex === lastIndex
 //     const index = shouldResetIndex ? 0 : currentImageIndex + 1
@@ -55,20 +55,20 @@
 //         <div style={{position: 'fixed', maxWidth: 500, width: '100%', zIndex: 10}}>
 //           <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
 //           {this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].video ?
-//           <iframe 
-//             title={this.state.recentHighlights[this.state.currentImageIndex].video} 
+//           <iframe
+//             title={this.state.recentHighlights[this.state.currentImageIndex].video}
 //             style={{
 //               height: '75px',
 //               width: '100%',
 //               maxWidth: '1150px',
 //               top: 0
 //             }}
-//             src={this.state.recentHighlights[this.state.currentImageIndex].video} 
+//             src={this.state.recentHighlights[this.state.currentImageIndex].video}
 //             frameBorder={0}
-//             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+//             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 //             allowFullScreen={true}>
 //           </iframe>
-//             : this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].image 
+//             : this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].image
 //             ? <img src={this.state.recentHighlights[this.state.currentImageIndex].image} alt="highlights"/>
 //             : null }
 //           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
@@ -88,4 +88,4 @@
 //   loading: state.loading
 // })
 
-// export default connect(mapStateToProps, { getProfiles })(Profiles) 
+// export default connect(mapStateToProps, { getProfiles })(Profiles)

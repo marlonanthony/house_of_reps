@@ -13,7 +13,7 @@ const db = require('./config/keys').mongoURI
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err))
 

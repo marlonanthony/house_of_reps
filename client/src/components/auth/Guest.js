@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types' 
-import { connect } from 'react-redux' 
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../actions/authActions'
 
 const Guest = ({ auth, loginUser, getCurrentProfile, ...props }) => {
-
   useEffect(() => {
-    if(auth.isAuthenticated) {
+    if (auth.isAuthenticated) {
       props.history.push('/login')
     }
   }, [auth.isAuthenticated])
@@ -21,7 +20,7 @@ const Guest = ({ auth, loginUser, getCurrentProfile, ...props }) => {
   }
 
   return (
-    <button className='landing_buttons' onClick={onSubmitHandler}>
+    <button className="landing_buttons" onClick={onSubmitHandler}>
       Guest
     </button>
   )
@@ -37,4 +36,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { loginUser })(withRouter(Guest))
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(withRouter(Guest))

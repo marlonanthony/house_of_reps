@@ -10,25 +10,24 @@ import { createProfile } from '../../actions/profileActions'
 import './CreateProfile.css'
 
 const CreateProfile = ({ createProfile, auth, ...props }) => {
-
-  const [banner, setBanner] = useState(''),
-        [errors, setErrors] = useState({}),
-        [phoneNumber, setPhoneNumber] = useState(''),
-        [stageName, setStageName] = useState(''),
-        [company, setCompany] = useState(''),
-        [website, setWebsite] = useState(''),
-        [location, setLocation] = useState(''),
-        [bio, setBio] = useState(''),
-        [style, setStyle] = useState(''),
-        [twitter, setTwitter] = useState(''),
-        [instagram, setInstagram] = useState(''),
-        [facebook, setFacebook] = useState(''),
-        [linkedin, setLinkedin] = useState(''),
-        [soundcloud, setSoundcloud] = useState(''),
-        [spotify, setSpotify] = useState(''),
-        [mixcloud, setMixcloud] = useState(''),
-        [youtube, setYoutube]= useState(''),
-        [displaySocialInputs, setDisplaySocialInputs] = useState(false)
+  const [banner] = useState(''),
+    [errors, setErrors] = useState({}),
+    [phoneNumber] = useState(''),
+    [stageName, setStageName] = useState(''),
+    [company, setCompany] = useState(''),
+    [website, setWebsite] = useState(''),
+    [location, setLocation] = useState(''),
+    [bio, setBio] = useState(''),
+    [style, setStyle] = useState(''),
+    [twitter, setTwitter] = useState(''),
+    [instagram, setInstagram] = useState(''),
+    [facebook, setFacebook] = useState(''),
+    [linkedin, setLinkedin] = useState(''),
+    [soundcloud, setSoundcloud] = useState(''),
+    [spotify, setSpotify] = useState(''),
+    [mixcloud, setMixcloud] = useState(''),
+    [youtube, setYoutube] = useState(''),
+    [displaySocialInputs, setDisplaySocialInputs] = useState(false)
 
   useEffect(() => {
     setErrors(props.errors)
@@ -36,7 +35,7 @@ const CreateProfile = ({ createProfile, auth, ...props }) => {
 
   const onSubmit = e => {
     e.preventDefault()
-    
+
     const profileData = {
       banner,
       handle: auth.user.handle,
@@ -57,9 +56,9 @@ const CreateProfile = ({ createProfile, auth, ...props }) => {
       mixcloud
     }
 
-    createProfile(profileData, props.history) 
+    createProfile(profileData, props.history)
   }
-  
+
   const options = [
     { label: "What's Your DJ Style?", value: 0 },
     { label: 'MC', value: 'MC' },
@@ -88,137 +87,147 @@ const CreateProfile = ({ createProfile, auth, ...props }) => {
 
   let socialInputs
 
-  if(displaySocialInputs) {
+  if (displaySocialInputs) {
     socialInputs = (
-      <div id='social-inputs'>
-        <SocialLinksInput 
-          placeholder='Twitter Profile URL'
-          name='twitter'
-          icon='fab fa-twitter'
-          value={ twitter }
-          onChange={e => setTwitter(e.target.value) } 
-          error={ errors.twitter } 
+      <div id="social-inputs">
+        <SocialLinksInput
+          placeholder="Twitter Profile URL"
+          name="twitter"
+          icon="fab fa-twitter"
+          value={twitter}
+          onChange={e => setTwitter(e.target.value)}
+          error={errors.twitter}
         />
-        <SocialLinksInput 
-          placeholder='Facebook Profile URL'
-          name='facebook'
-          icon='fab fa-facebook'
-          value={ facebook }
-          onChange={e => setFacebook(e.target.value) } 
-          error={ errors.facebook } 
+        <SocialLinksInput
+          placeholder="Facebook Profile URL"
+          name="facebook"
+          icon="fab fa-facebook"
+          value={facebook}
+          onChange={e => setFacebook(e.target.value)}
+          error={errors.facebook}
         />
-        <SocialLinksInput 
-          placeholder='Linkedin Profile URL'
-          name='linkedin'
-          icon='fab fa-linkedin'
-          value={ linkedin }
-          onChange={e => setLinkedin(e.target.value) } 
-          error={ errors.linkedin } 
+        <SocialLinksInput
+          placeholder="Linkedin Profile URL"
+          name="linkedin"
+          icon="fab fa-linkedin"
+          value={linkedin}
+          onChange={e => setLinkedin(e.target.value)}
+          error={errors.linkedin}
         />
-        <SocialLinksInput 
-          placeholder='Instagram Profile URL'
-          name='instagram'
-          icon='fab fa-instagram'
-          value={ instagram }
-          onChange={e => setInstagram(e.target.value) } 
-          error={ errors.instagram } 
+        <SocialLinksInput
+          placeholder="Instagram Profile URL"
+          name="instagram"
+          icon="fab fa-instagram"
+          value={instagram}
+          onChange={e => setInstagram(e.target.value)}
+          error={errors.instagram}
         />
-        <SocialLinksInput 
-          placeholder='SoundCloud Profile URL'
-          name='soundcloud'
-          icon='fab fa-soundcloud'
-          value={ soundcloud }
-          onChange={e => setSoundcloud(e.target.value) } 
-          error={ errors.soundcloud } 
+        <SocialLinksInput
+          placeholder="SoundCloud Profile URL"
+          name="soundcloud"
+          icon="fab fa-soundcloud"
+          value={soundcloud}
+          onChange={e => setSoundcloud(e.target.value)}
+          error={errors.soundcloud}
         />
-        <SocialLinksInput 
-          placeholder='Spotify Profile URL'
-          name='spotify'
-          icon='fab fa-spotify'
-          value={ spotify }
-          onChange={e => setSpotify(e.target.value) } 
-          error={ errors.spotify } 
+        <SocialLinksInput
+          placeholder="Spotify Profile URL"
+          name="spotify"
+          icon="fab fa-spotify"
+          value={spotify}
+          onChange={e => setSpotify(e.target.value)}
+          error={errors.spotify}
         />
-        <SocialLinksInput 
-          placeholder='Mixcloud Profile URL'
-          name='mixcloud'
-          icon='fab fa-mixcloud'
-          value={ mixcloud }
-          onChange={e => setMixcloud(e.target.value) } 
-          error={ errors.mixcloud } 
+        <SocialLinksInput
+          placeholder="Mixcloud Profile URL"
+          name="mixcloud"
+          icon="fab fa-mixcloud"
+          value={mixcloud}
+          onChange={e => setMixcloud(e.target.value)}
+          error={errors.mixcloud}
         />
-        <SocialLinksInput 
-          placeholder='YouTube Profile URL'
-          name='youtube'
-          icon='fab fa-youtube'
-          value={ youtube }
-          onChange={e => setYoutube(e.target.value) } 
-          error={ errors.youtube } 
+        <SocialLinksInput
+          placeholder="YouTube Profile URL"
+          name="youtube"
+          icon="fab fa-youtube"
+          value={youtube}
+          onChange={e => setYoutube(e.target.value)}
+          error={errors.youtube}
         />
       </div>
     )
   }
 
   return (
-    <div className='create-profile'>
+    <div className="create-profile">
       <h2>Create Your Profile</h2>
-      <div className='createprofilecontainer'>
-        <form onSubmit={ onSubmit }>
-          <Input 
-            placeholder='A man has no name'
-            name='stageName'
-            value={ stageName }
-            onChange={e => setStageName(e.target.value) }
-            error={ errors.stageName }
+      <div className="createprofilecontainer">
+        <form onSubmit={onSubmit}>
+          <Input
+            placeholder="A man has no name"
+            name="stageName"
+            value={stageName}
+            onChange={e => setStageName(e.target.value)}
+            error={errors.stageName}
             info="DJ name?"
           />
-          <Input 
-            placeholder='Company'
-            name='company'
-            value={ company } 
-            onChange={e => setCompany(e.target.value) } 
-            error={ errors.company } 
+          <Input
+            placeholder="Company"
+            name="company"
+            value={company}
+            onChange={e => setCompany(e.target.value)}
+            error={errors.company}
             info="Company you're with."
           />
-          <Input 
-            placeholder='Website'
-            name='website'
-            value={ website } 
-            onChange={e => setWebsite(e.target.value) } 
-            error={ errors.website } 
-            info='Website domain'
+          <Input
+            placeholder="Website"
+            name="website"
+            value={website}
+            onChange={e => setWebsite(e.target.value)}
+            error={errors.website}
+            info="Website domain"
           />
-          <Input 
-            placeholder='Location'
-            name='location'
-            value={ location } 
-            onChange={e => setLocation(e.target.value) } 
-            error={ errors.location } 
-            info='Where are you from?'
+          <Input
+            placeholder="Location"
+            name="location"
+            value={location}
+            onChange={e => setLocation(e.target.value)}
+            error={errors.location}
+            info="Where are you from?"
           />
-          <TextArea 
-            placeholder='Short Bio'
-            name='bio'
-            value={ bio } 
-            onChange={e => setBio(e.target.value) } 
-            error={ errors.bio } 
-            info='Say a little bit about yourself' 
+          <TextArea
+            placeholder="Short Bio"
+            name="bio"
+            value={bio}
+            onChange={e => setBio(e.target.value)}
+            error={errors.bio}
+            info="Say a little bit about yourself"
           />
-          <SelectList 
-            name='style'
-            value={ style }
-            onChange={e => setStyle(e.target.value) }
-            error={ errors.style }
-            options={ options }
-            info='What style best defines you?'
+          <SelectList
+            name="style"
+            value={style}
+            onChange={e => setStyle(e.target.value)}
+            error={errors.style}
+            options={options}
+            info="What style best defines you?"
           />
-          <div className='add-social-links-button'>
-            <button type='button' onClick={() => {
-              setDisplaySocialInputs(prev => !prev)
-            }} id="create-profile-social-btn">Add Social Network Links</button>
+          <div className="add-social-links-button">
+            <button
+              type="button"
+              onClick={() => {
+                setDisplaySocialInputs(prev => !prev)
+              }}
+              id="create-profile-social-btn"
+            >
+              Add Social Network Links
+            </button>
           </div>
-          { socialInputs }
-          <input type="submit" value="Submit" class='create-profile-submit-button' />
+          {socialInputs}
+          <input
+            type="submit"
+            value="Submit"
+            class="create-profile-submit-button"
+          />
         </form>
       </div>
     </div>
@@ -235,4 +244,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile))
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile))

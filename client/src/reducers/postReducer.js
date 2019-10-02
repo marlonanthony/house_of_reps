@@ -1,11 +1,11 @@
-import { 
+import {
   ADD_POST,
   EDIT_POST,
   EDIT_COMMENT,
   EDIT_NESTED_COMMENT,
   GET_POSTS,
-  POST_LOADING, 
-  DELETE_POST, 
+  POST_LOADING,
+  DELETE_POST,
   DELETE_COMMENT,
   ADD_COMMENT,
   GET_POST,
@@ -20,52 +20,52 @@ import {
   REMOVE_NESTED_COMMENT_LIKE
 } from '../actions/types'
 
-const initialState = { 
+const initialState = {
   posts: [],
   post: {},
-  loading: false 
+  loading: false
 }
 
 export default function(state = initialState, action) {
-  switch(action.type) {
-    case POST_LOADING: 
+  switch (action.type) {
+    case POST_LOADING:
       return {
         ...state,
-        loading: true 
+        loading: true
       }
 
-    case GET_POST: 
+    case GET_POST:
       return {
         ...state,
         post: action.payload,
-        loading: false 
+        loading: false
       }
 
-    case GET_POSTS: 
+    case GET_POSTS:
       return {
         ...state,
         posts: action.payload,
-        loading: false 
+        loading: false
       }
-    
+
     case GET_MORE_POSTS:
       return {
         ...state,
         posts: [...state.posts, ...action.payload],
-        loading: false 
+        loading: false
       }
 
-    case ADD_POST: 
+    case ADD_POST:
       return {
         ...state,
         posts: [action.payload, ...state.posts]
       }
-    
+
     case EDIT_POST:
       return {
         ...state,
         posts: state.posts.map(post => {
-          if(post._id === action.payload._id) {
+          if (post._id === action.payload._id) {
             post = action.payload
           }
           return post
@@ -76,38 +76,38 @@ export default function(state = initialState, action) {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter(post => post._id !== action.payload) 
+        posts: state.posts.filter(post => post._id !== action.payload)
       }
 
     case ADD_LIKE:
       const updatePostsLikes = state.posts.map(post => {
-        if(post._id === action.payload._id) {
-          post = action.payload 
-        } 
-        return post 
+        if (post._id === action.payload._id) {
+          post = action.payload
+        }
+        return post
       })
       return {
         ...state,
         posts: updatePostsLikes,
-        loading: false 
+        loading: false
       }
 
     case REMOVE_LIKE:
       const updatePostRemoveLikes = state.posts.map(post => {
-        if(post._id === action.payload._id) {
+        if (post._id === action.payload._id) {
           post = action.payload
         }
-        return post 
+        return post
       })
       return {
         ...state,
         posts: updatePostRemoveLikes,
-        loading: false 
+        loading: false
       }
 
-    case ADD_COMMENT: 
+    case ADD_COMMENT:
       const updatedPost = state.posts.map(comment => {
-        if(comment._id === action.payload._id) {
+        if (comment._id === action.payload._id) {
           comment = action.payload
         }
         return comment
@@ -117,14 +117,14 @@ export default function(state = initialState, action) {
         posts: updatedPost,
         loading: false
       }
-    
+
     case EDIT_COMMENT:
       return {
         ...state,
         posts: state.posts.map(post => {
-          if(post._id === action.payload.postId) {
+          if (post._id === action.payload.postId) {
             post.comments.forEach(comment => {
-              if(comment._id === action.payload.commentId) {
+              if (comment._id === action.payload.commentId) {
                 post = action.payload.data
               }
             })
@@ -136,32 +136,31 @@ export default function(state = initialState, action) {
 
     case ADD_COMMENT_LIKE:
       const updateCommentLikes = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments.forEach(comment => {
-            if(comment._id === action.payload.commentId) {
+            if (comment._id === action.payload.commentId) {
               post = action.payload.data
             }
           })
-        } 
+        }
         return post
       })
       return {
         ...state,
         posts: updateCommentLikes,
-        loading: false 
+        loading: false
       }
-
 
     case REMOVE_COMMENT_LIKE:
       const removeCommentLike = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments.forEach(comment => {
-            if(comment._id === action.payload.commentId) {
+            if (comment._id === action.payload.commentId) {
               post = action.payload.data
             }
           })
         }
-        return post 
+        return post
       })
       return {
         ...state,
@@ -169,13 +168,15 @@ export default function(state = initialState, action) {
         loading: false
       }
 
-    case DELETE_COMMENT: 
-      const selectedPost = state.posts.filter(post => post._id === action.payload.postId)[0].comments.filter(val => val._id !== action.payload.commentId)
+    case DELETE_COMMENT:
+      const selectedPost = state.posts
+        .filter(post => post._id === action.payload.postId)[0]
+        .comments.filter(val => val._id !== action.payload.commentId)
       const newerComment = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments = selectedPost
         }
-        return post 
+        return post
       })
       return {
         ...state,
@@ -184,30 +185,30 @@ export default function(state = initialState, action) {
 
     case ADD_NESTED_COMMENT:
       const updatePost = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments.forEach(comment => {
-            if(comment._id === action.payload.commentId) {
+            if (comment._id === action.payload.commentId) {
               post = action.payload.data
             }
           })
         }
-        return post 
+        return post
       })
       return {
         ...state,
         posts: updatePost,
-        loading: false 
+        loading: false
       }
 
     case EDIT_NESTED_COMMENT:
       return {
         ...state,
         posts: state.posts.map(post => {
-          if(post._id === action.payload.postId) {
+          if (post._id === action.payload.postId) {
             post.comments.forEach(comment => {
-              if(comment._id === action.payload.commentId) {
+              if (comment._id === action.payload.commentId) {
                 comment.comments.forEach(nestedComment => {
-                  if(nestedComment._id === action.payload.nestedCommentId) {
+                  if (nestedComment._id === action.payload.nestedCommentId) {
                     post = action.payload.data
                   }
                 })
@@ -221,65 +222,68 @@ export default function(state = initialState, action) {
 
     case REMOVE_NESTED_COMMENT:
       const updateRomoveNestedCommentPosts = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments.forEach(comment => {
-            if(comment._id === action.payload.commentId) {
-              comment.comments.filter(nestedComment => nestedComment._id !== action.payload.nestedCommentId) 
+            if (comment._id === action.payload.commentId) {
+              comment.comments.filter(
+                nestedComment =>
+                  nestedComment._id !== action.payload.nestedCommentId
+              )
               post = action.payload.data
             }
           })
         }
-          return post 
+        return post
       })
       return {
         ...state,
         posts: updateRomoveNestedCommentPosts,
-        loading: false 
+        loading: false
       }
 
     case ADD_NESTED_COMMENT_LIKE:
       const updateNestedCommentLikes = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments.forEach(comment => {
-            if(comment._id === action.payload.commentId) {
+            if (comment._id === action.payload.commentId) {
               comment.comments.forEach(nestedComment => {
-                if(nestedComment._id === action.payload.nestedCommentId) {
+                if (nestedComment._id === action.payload.nestedCommentId) {
                   post = action.payload.data
                 }
               })
             }
           })
         }
-        return post 
+        return post
       })
       return {
         ...state,
         posts: updateNestedCommentLikes,
-        loading: false 
+        loading: false
       }
 
     case REMOVE_NESTED_COMMENT_LIKE:
       const removeNestedCommentLike = state.posts.map(post => {
-        if(post._id === action.payload.postId) {
+        if (post._id === action.payload.postId) {
           post.comments.forEach(comment => {
-            if(comment._id === action.payload.commentId) {
+            if (comment._id === action.payload.commentId) {
               comment.comments.forEach(nestedComment => {
-                if(nestedComment._id === action.payload.nestedCommentId) {
-                  post = action.payload.data 
+                if (nestedComment._id === action.payload.nestedCommentId) {
+                  post = action.payload.data
                 }
               })
             }
           })
         }
-        return post 
+        return post
       })
       return {
         ...state,
         posts: removeNestedCommentLike,
-        loading: false 
+        loading: false
       }
 
-    default: 
-      return state 
+    default:
+      return state
   }
 }

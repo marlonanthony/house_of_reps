@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom' 
-import { connect } from 'react-redux' 
-import PropTypes from 'prop-types' 
+import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
 import { deletePost, addLike, removeLike } from '../../../actions/postActions'
@@ -15,10 +15,10 @@ import PostBody from '../post-assets/post_item_assets/post_item_body/PostBody'
 import PostItemLikes from '../post-assets/post_item_assets/PostItemLikes'
 import NameAvatarDate from '../post-assets/post_item_assets/NameAvatarDate'
 import './PostItem.css'
- 
+
 class PostItem extends Component {
-  state = { 
-    showComments: false, 
+  state = {
+    showComments: false,
     postId: '',
     postComments: [],
     likes: this.props.post.likes && [...this.props.post.likes],
@@ -31,31 +31,31 @@ class PostItem extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.onOutsideClick, true) 
+    document.addEventListener('click', this.onOutsideClick, true)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.post.comments !== prevState.postComments) {
+    if (this.props.post.comments !== prevState.postComments) {
       this.setState({ postComments: this.props.post.comments })
     }
-    if(this.props.post.likes !== prevState.likes) {
+    if (this.props.post.likes !== prevState.likes) {
       this.setState({ likes: this.props.post.likes })
     }
   }
-  
+
   componentWillUnmount() {
-    document.removeEventListener('click', this.onOutsideClick, true) 
+    document.removeEventListener('click', this.onOutsideClick, true)
   }
 
-  onOutsideClick = (e) => {
-    const domNode = ReactDOM.findDOMNode(this) 
-    if(!domNode || !domNode.contains(e.target)) {
+  onOutsideClick = e => {
+    const domNode = ReactDOM.findDOMNode(this)
+    if (!domNode || !domNode.contains(e.target)) {
       this.setState({ showLikesPopup: false })
     }
   }
 
   onDeleteClick = id => {
-    this.props.deletePost(id) 
+    this.props.deletePost(id)
   }
 
   onLikeClick = id => {
@@ -68,22 +68,22 @@ class PostItem extends Component {
     this.setState(prevState => ({ likes: prevState.likes, liked: false }))
   }
 
-  findUserLike = likes => likes.filter(like => like.user === this.props.auth.user.id).length > 0
-  
+  findUserLike = likes =>
+    likes.filter(like => like.user === this.props.auth.user.id).length > 0
 
   modalToggle = () => {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
 
-  userNameOrAvatarClicked = postId => (
-    this.props.profile.profiles.map(profile => (
-      profile.user._id === postId && 
+  userNameOrAvatarClicked = postId =>
+    this.props.profile.profiles.map(
+      profile =>
+        profile.user._id === postId &&
         this.props.history.push(`/profile/${profile.handle}`)
-    ))
-  )
+    )
 
   userNameOrAvatarClickedLikesPopup = handle => {
-    if(this.props.location.pathname.includes('/profile')) {
+    if (this.props.location.pathname.includes('/profile')) {
       this.props.getProfileByHandle(handle)
     }
     this.props.history.push(`/profile/${handle}`)
@@ -93,62 +93,69 @@ class PostItem extends Component {
     this.setState(prevState => ({ showPopup: !prevState.showPopup }))
   }
 
-  likesPopupHandler = () => this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup })) 
+  likesPopupHandler = () =>
+    this.setState(prevState => ({ showLikesPopup: !prevState.showLikesPopup }))
 
-  removePopup = (e) => {
-    if(!e.target.closest('.popup')) {
+  removePopup = e => {
+    if (!e.target.closest('.popup')) {
       this.setState(prevState => ({ showLikesPopup: false }))
     }
   }
 
-  onPostCommentClick = () => this.setState((prevState, props) => ({
-    postId: props.post._id, 
-    postComments: props.post.comments, 
-    showComments: !prevState.showComments 
-  }))
+  onPostCommentClick = () =>
+    this.setState((prevState, props) => ({
+      postId: props.post._id,
+      postComments: props.post.comments,
+      showComments: !prevState.showComments
+    }))
 
   moreVertClicked = () => {
     let res = window.confirm('Edit post?')
-    if(res === true) this.setState({ editPost: true })
+    if (res === true) this.setState({ editPost: true })
     else this.setState({ editPost: false })
   }
 
-  toggleEditPost = () => this.setState(prevState => ({ editPost: !prevState.editPost }))
+  toggleEditPost = () =>
+    this.setState(prevState => ({ editPost: !prevState.editPost }))
 
-  toggleShowForm = () => this.setState(prevState => ({ showForm: !prevState.showForm })) 
+  toggleShowForm = () =>
+    this.setState(prevState => ({ showForm: !prevState.showForm }))
 
   render() {
-    const { post, auth, profile } = this.props 
-    const { 
-      showComments, 
-      postId, 
-      postComments, 
-      likes, 
-      showLikesPopup, 
-      showModal, 
+    const { post, auth, profile } = this.props
+    const {
+      showComments,
+      postId,
+      postComments,
+      likes,
+      showLikesPopup,
+      showModal,
       showPopup,
       liked,
       editPost,
       showForm
     } = this.state
 
-    const postModal = showModal &&
+    const postModal = showModal && (
       <CommentsModal showModal={showModal}>
         <img src={post.media} alt="uploaded" />
       </CommentsModal>
-      
+    )
+
     return (
       <>
         <Backdrop clicked={this.modalToggle} show={showModal} />
-        { postModal }
-        <div className='posts_container' onClick={this.removePopup}>
+        {postModal}
+        <div className="posts_container" onClick={this.removePopup}>
           <NameAvatarDate
             moreVertClicked={this.moreVertClicked}
             popupHandler={this.popupHandler}
             profile={profile}
             post={post}
             showPopup={showPopup}
-            userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+            userNameOrAvatarClickedLikesPopup={
+              this.userNameOrAvatarClickedLikesPopup
+            }
           />
           <div>
             <PostBody
@@ -161,7 +168,9 @@ class PostItem extends Component {
               likes={likes}
               likesPopupHandler={this.likesPopupHandler}
               showLikesPopup={showLikesPopup}
-              userNameOrAvatarClickedLikesPopup={this.userNameOrAvatarClickedLikesPopup}
+              userNameOrAvatarClickedLikesPopup={
+                this.userNameOrAvatarClickedLikesPopup
+              }
             />
             <PostItemButtons
               post={post}
@@ -175,16 +184,16 @@ class PostItem extends Component {
               onPostCommentClick={this.onPostCommentClick}
               toggleShowForm={this.toggleShowForm}
             />
-            { showComments &&
+            {showComments && (
               <div>
-                { showForm && <CommentForm postId={postId} /> }
+                {showForm && <CommentForm postId={postId} />}
                 <CommentFeed
                   postId={postId}
                   comments={postComments}
                   profiles={this.props.profiles}
                 />
               </div>
-            }
+            )}
           </div>
         </div>
       </>
@@ -206,9 +215,12 @@ const mapStateToProps = state => ({
   profile: state.profile
 })
 
-export default connect(mapStateToProps, { 
-  deletePost, 
-  addLike, 
-  removeLike, 
-  getProfileByHandle 
-})(withRouter(PostItem))
+export default connect(
+  mapStateToProps,
+  {
+    deletePost,
+    addLike,
+    removeLike,
+    getProfileByHandle
+  }
+)(withRouter(PostItem))

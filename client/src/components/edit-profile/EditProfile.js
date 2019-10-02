@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import request from 'superagent' 
+import request from 'superagent'
 
 import { createProfile, getCurrentProfile } from '../../actions/profileActions'
 import Input from '../common/inputs/Input'
@@ -14,7 +14,8 @@ import isEmpty from '../../validation/is-empty'
 import './EditProfile.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 const EditProfile = ({
   getCurrentProfile,
@@ -23,38 +24,37 @@ const EditProfile = ({
   auth,
   ...props
 }) => {
-
   const [banner, setBanner] = useState(''),
-        [errors, setErrors] = useState({}),
-        [avatar, setAvatar] = useState(''),
-        [phoneNumber, setPhoneNumber] = useState(''),
-        [stageName, setStageName] = useState(''),
-        [company, setCompany] = useState(''),
-        [website, setWebsite] = useState(''),
-        [location, setLocation] = useState(''),
-        [bio, setBio] = useState(''),
-        [style, setStyle] = useState(''),
-        [twitter, setTwitter] = useState(''),
-        [instagram, setInstagram] = useState(''),
-        [facebook, setFacebook] = useState(''),
-        [linkedin, setLinkedin] = useState(''),
-        [soundcloud, setSoundcloud] = useState(''),
-        [spotify, setSpotify] = useState(''),
-        [mixcloud, setMixcloud] = useState(''),
-        [youtube, setYoutube]= useState(''),
-        [displaySocialInputs, setDisplaySocialInputs] = useState(false),
-        [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
-        [uploadedFile, setUploadedFile] = useState('')
+    [errors, setErrors] = useState({}),
+    [avatar, setAvatar] = useState(''),
+    [phoneNumber, setPhoneNumber] = useState(''),
+    [stageName, setStageName] = useState(''),
+    [company, setCompany] = useState(''),
+    [website, setWebsite] = useState(''),
+    [location, setLocation] = useState(''),
+    [bio, setBio] = useState(''),
+    [style, setStyle] = useState(''),
+    [twitter, setTwitter] = useState(''),
+    [instagram, setInstagram] = useState(''),
+    [facebook, setFacebook] = useState(''),
+    [linkedin, setLinkedin] = useState(''),
+    [soundcloud, setSoundcloud] = useState(''),
+    [spotify, setSpotify] = useState(''),
+    [mixcloud, setMixcloud] = useState(''),
+    [youtube, setYoutube] = useState(''),
+    [displaySocialInputs, setDisplaySocialInputs] = useState(false),
+    [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
+    [uploadedFile, setUploadedFile] = useState('')
 
   useEffect(() => {
-    if(isEmpty(profile.profile)) getCurrentProfile()
+    if (isEmpty(profile.profile)) getCurrentProfile()
     setErrors(props.errors)
   }, [props.errors])
 
   useEffect(() => {
-    if(!isEmpty(profile.profile)) {
+    if (!isEmpty(profile.profile)) {
       const p = profile.profile
-      p.avatar = !isEmpty(auth.user.avatar) ? auth.user.avatar : '' 
+      p.avatar = !isEmpty(auth.user.avatar) ? auth.user.avatar : ''
       p.banner = !isEmpty(p.banner) ? p.banner : ''
       p.stageName = !isEmpty(p.stageName) ? p.stageName : ''
       p.phoneNumber = !isEmpty(p.phoneNumber) ? p.phoneNumber : ''
@@ -63,7 +63,7 @@ const EditProfile = ({
       p.location = !isEmpty(p.location) ? p.location : ''
       p.bio = !isEmpty(p.bio) ? p.bio : ''
       p.style = !isEmpty(p.style) ? p.style : ''
-      p.social = !isEmpty(p.social) ? p.social : {} 
+      p.social = !isEmpty(p.social) ? p.social : {}
       p.twitter = !isEmpty(p.social.twitter) ? p.social.twitter : ''
       p.instagram = !isEmpty(p.social.instagram) ? p.social.instagram : ''
       p.facebook = !isEmpty(p.social.facebook) ? p.social.facebook : ''
@@ -95,7 +95,7 @@ const EditProfile = ({
 
   const onSubmit = e => {
     e.preventDefault()
-    
+
     const profileData = {
       avatar,
       banner,
@@ -124,19 +124,20 @@ const EditProfile = ({
   }
 
   const handleImageUpload = file => {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                        .field('file', file) 
-    
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file)
+
     upload.end((err, response) => {
-      if(err) console.log(err) 
-      if(response.body.secure_url !== '') {
+      if (err) console.log(err)
+      if (response.body.secure_url !== '') {
         setUploadedFileCloudinaryUrl(response.body.secure_url)
         setAvatar(response.body.secure_url)
       }
     })
   }
-  
+
   const options = [
     { label: "What's Your DJ Style?", value: 0 },
     { label: 'MC', value: 'MC' },
@@ -165,147 +166,157 @@ const EditProfile = ({
 
   let socialInputs
 
-  if(displaySocialInputs) {
+  if (displaySocialInputs) {
     socialInputs = (
-      <div id='social-inputs'>
-        <SocialLinksInput 
-          placeholder='Twitter Profile URL'
-          name='twitter'
-          icon='fab fa-twitter'
-          value={ twitter }
-          onChange={e => setTwitter(e.target.value) } 
-          error={ errors.twitter } 
+      <div id="social-inputs">
+        <SocialLinksInput
+          placeholder="Twitter Profile URL"
+          name="twitter"
+          icon="fab fa-twitter"
+          value={twitter}
+          onChange={e => setTwitter(e.target.value)}
+          error={errors.twitter}
         />
-        <SocialLinksInput 
-          placeholder='Facebook Profile URL'
-          name='facebook'
-          icon='fab fa-facebook'
-          value={ facebook }
-          onChange={ e => setFacebook(e.target.value) } 
-          error={ errors.facebook } 
+        <SocialLinksInput
+          placeholder="Facebook Profile URL"
+          name="facebook"
+          icon="fab fa-facebook"
+          value={facebook}
+          onChange={e => setFacebook(e.target.value)}
+          error={errors.facebook}
         />
-        <SocialLinksInput 
-          placeholder='Linkedin Profile URL'
-          name='linkedin'
-          icon='fab fa-linkedin'
-          value={ linkedin }
-          onChange={ e => setLinkedin(e.target.value) } 
-          error={ errors.linkedin } 
+        <SocialLinksInput
+          placeholder="Linkedin Profile URL"
+          name="linkedin"
+          icon="fab fa-linkedin"
+          value={linkedin}
+          onChange={e => setLinkedin(e.target.value)}
+          error={errors.linkedin}
         />
-        <SocialLinksInput 
-          placeholder='Instagram Profile URL'
-          name='instagram'
-          icon='fab fa-instagram'
-          value={ instagram }
-          onChange={ e => setInstagram(e.target.value) } 
-          error={ errors.instagram } 
+        <SocialLinksInput
+          placeholder="Instagram Profile URL"
+          name="instagram"
+          icon="fab fa-instagram"
+          value={instagram}
+          onChange={e => setInstagram(e.target.value)}
+          error={errors.instagram}
         />
-        <SocialLinksInput 
-          placeholder='SoundCloud Profile URL'
-          name='soundcloud'
-          icon='fab fa-soundcloud'
-          value={ soundcloud }
-          onChange={ e => setSoundcloud(e.target.value) } 
-          error={ errors.soundcloud } 
+        <SocialLinksInput
+          placeholder="SoundCloud Profile URL"
+          name="soundcloud"
+          icon="fab fa-soundcloud"
+          value={soundcloud}
+          onChange={e => setSoundcloud(e.target.value)}
+          error={errors.soundcloud}
         />
-        <SocialLinksInput 
-          placeholder='Spotify Profile URL'
-          name='spotify'
-          icon='fab fa-spotify'
-          value={ spotify }
-          onChange={ e => setSpotify(e.target.value) } 
-          error={ errors.spotify } 
+        <SocialLinksInput
+          placeholder="Spotify Profile URL"
+          name="spotify"
+          icon="fab fa-spotify"
+          value={spotify}
+          onChange={e => setSpotify(e.target.value)}
+          error={errors.spotify}
         />
-        <SocialLinksInput 
-          placeholder='Mixcloud Profile URL'
-          name='mixcloud'
-          icon='fab fa-mixcloud'
-          value={ mixcloud }
-          onChange={ e => setMixcloud(e.target.value) } 
-          error={ errors.mixcloud } 
+        <SocialLinksInput
+          placeholder="Mixcloud Profile URL"
+          name="mixcloud"
+          icon="fab fa-mixcloud"
+          value={mixcloud}
+          onChange={e => setMixcloud(e.target.value)}
+          error={errors.mixcloud}
         />
-        <SocialLinksInput 
-          placeholder='YouTube Profile URL'
-          name='youtube'
-          icon='fab fa-youtube'
-          value={ youtube }
-          onChange={ e => setYoutube(e.target.value) } 
-          error={ errors.youtube } 
+        <SocialLinksInput
+          placeholder="YouTube Profile URL"
+          name="youtube"
+          icon="fab fa-youtube"
+          value={youtube}
+          onChange={e => setYoutube(e.target.value)}
+          error={errors.youtube}
         />
       </div>
     )
   }
   return (
-    <div className='edit-profile'>
-      <i 
-        onClick={props.history.goBack} 
-        id='edit-profile-back-button' 
-        className='fas fa-arrow-alt-circle-left' 
-        alt='back-button' 
+    <div className="edit-profile">
+      <i
+        onClick={props.history.goBack}
+        id="edit-profile-back-button"
+        className="fas fa-arrow-alt-circle-left"
+        alt="back-button"
       />
       <h2>Edit Profile</h2>
-      <div className='djpools_input_wrapper'>
+      <div className="djpools_input_wrapper">
         <Avatar
-            onImageDrop={onImageDrop}
-            uploadedFile={uploadedFile}
-            uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
+          onImageDrop={onImageDrop}
+          uploadedFile={uploadedFile}
+          uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
         />
-        <form onSubmit={ onSubmit }>
-          <Input 
-            placeholder='A man has no name'
-            name='stageName'
-            value={ stageName }
-            onChange={e => setStageName(e.target.value) }
-            error={ errors.stageName }
+        <form onSubmit={onSubmit}>
+          <Input
+            placeholder="A man has no name"
+            name="stageName"
+            value={stageName}
+            onChange={e => setStageName(e.target.value)}
+            error={errors.stageName}
             info="What's your stage name?"
           />
-          <Input 
-            placeholder='Company'
-            name='company'
-            value={ company } 
-            onChange={ e => setCompany(e.target.value) } 
-            error={ errors.company } 
+          <Input
+            placeholder="Company"
+            name="company"
+            value={company}
+            onChange={e => setCompany(e.target.value)}
+            error={errors.company}
             info="Company you're with."
           />
-          <Input 
-            placeholder='Website'
-            name='website'
-            value={ website } 
-            onChange={ e => setWebsite(e.target.value) } 
-            error={ errors.website } 
-            info='Website domain'
+          <Input
+            placeholder="Website"
+            name="website"
+            value={website}
+            onChange={e => setWebsite(e.target.value)}
+            error={errors.website}
+            info="Website domain"
           />
-          <Input 
-            placeholder='Location'
-            name='location'
-            value={ location } 
-            onChange={ e => setLocation(e.target.value) } 
-            error={ errors.location } 
-            info='Where are you from?'
+          <Input
+            placeholder="Location"
+            name="location"
+            value={location}
+            onChange={e => setLocation(e.target.value)}
+            error={errors.location}
+            info="Where are you from?"
           />
-          <TextArea  
-            placeholder='Short Bio'
-            name='bio'
-            value={ bio } 
-            onChange={ e => setBio(e.target.value) } 
-            error={ errors.bio } 
-            info='Say a little bit about yourself' 
+          <TextArea
+            placeholder="Short Bio"
+            name="bio"
+            value={bio}
+            onChange={e => setBio(e.target.value)}
+            error={errors.bio}
+            info="Say a little bit about yourself"
           />
-          <SelectList 
-            name='style'
-            value={ style }
-            onChange={ e => setStyle(e.target.value) }
-            error={ errors.style }
+          <SelectList
+            name="style"
+            value={style}
+            onChange={e => setStyle(e.target.value)}
+            error={errors.style}
             options={options}
-            info='What style best defines you?'
+            info="What style best defines you?"
           />
-          <div className='add-social-links-button'>
-            <button type='button' onClick={() => {
-              setDisplaySocialInputs(p => !p)
-            }} id='create-profile-social-btn'>Add Social Network Links</button>
+          <div className="add-social-links-button">
+            <button
+              type="button"
+              onClick={() => {
+                setDisplaySocialInputs(p => !p)
+              }}
+              id="create-profile-social-btn"
+            >
+              Add Social Network Links
+            </button>
           </div>
-          { socialInputs }
-          <input type="submit" value="Submit" className='create-profile-submit-button' />
+          {socialInputs}
+          <input
+            type="submit"
+            value="Submit"
+            className="create-profile-submit-button"
+          />
         </form>
       </div>
     </div>
@@ -322,10 +333,13 @@ EditProfile.propTypes = {
 const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors,
-  auth: state.auth 
+  auth: state.auth
 })
 
-export default connect(mapStateToProps, { 
-  createProfile, 
-  getCurrentProfile
-})(withRouter(EditProfile))
+export default connect(
+  mapStateToProps,
+  {
+    createProfile,
+    getCurrentProfile
+  }
+)(withRouter(EditProfile))

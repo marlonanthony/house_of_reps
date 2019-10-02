@@ -1,6 +1,6 @@
 import React from 'react'
-import classnames from 'classnames' 
-import PropTypes from 'prop-types' 
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 
 const TextAreaForm = ({
   name,
@@ -15,21 +15,22 @@ const TextAreaForm = ({
   noFocus
 }) => (
   <div>
-    <textarea 
-      className={classnames('text-area', { // text-area is in PostForm.css
+    <textarea
+      className={classnames('text-area', {
+        // text-area is in PostForm.css
         '': error
       })}
-      placeholder={ placeholder }
-      name={ name }
-      value={ value }
-      onChange={ onChange }
-      rows={ rows }
-      onPaste={ onPaste }
-      autoFocus={ noFocus ? false : true }
+      placeholder={placeholder}
+      name={name}
+      value={value}
+      onChange={onChange}
+      rows={rows}
+      onPaste={onPaste}
+      autoFocus={noFocus ? false : true}
       style={fontSize && { fontSize }}
     />
-    { info && <small className=''>{ info }</small> }
-    { error && (<div className='error'>{error}</div>) }
+    {info && <small className="">{info}</small>}
+    {error && <div className="error">{error}</div>}
   </div>
 )
 

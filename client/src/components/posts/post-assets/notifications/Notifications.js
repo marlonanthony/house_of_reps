@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux' 
+import { connect } from 'react-redux'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
@@ -9,13 +9,11 @@ import NotificationList from './NotificationList'
 import './Notifications.css'
 
 const Notifications = ({ getPost, ...props }) => {
-
   const [notifications, setNotifications] = useState([]),
-        [showPost, setShowPost] = useState(false)
+    [showPost, setShowPost] = useState(false)
 
   useEffect(() => {
-    axios.get('/api/profile/notifications')
-    .then(res => {
+    axios.get('/api/profile/notifications').then(res => {
       setNotifications(res.data)
     })
     return () => {
@@ -30,25 +28,26 @@ const Notifications = ({ getPost, ...props }) => {
 
   const { post } = props.post
   let youtubeUrl = post && post.url
-  
-  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be') 
-    ? youtubeUrl = post.url.replace(/youtu\.be/gi, 'www.youtube.com')
-                            .replace(/watch\?v=/gi, 'embed/')
-                            .replace(/&feature=www\.youtube\.com/gi, '')
-    : youtubeUrl = null 
-    
+
+  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be')
+    ? (youtubeUrl = post.url
+        .replace(/youtu\.be/gi, 'www.youtube.com')
+        .replace(/watch\?v=/gi, 'embed/')
+        .replace(/&feature=www\.youtube\.com/gi, ''))
+    : (youtubeUrl = null)
+
   return (
     <div>
-      { showPost && post &&
-        <ShowPost 
+      {showPost && post && (
+        <ShowPost
           post={post}
           setShowPost={setShowPost}
           showPost={showPost}
           youtubeUrl={youtubeUrl}
         />
-      }
-      <NotificationList 
-        notifications={notifications} 
+      )}
+      <NotificationList
+        notifications={notifications}
         postHandler={postHandler}
       />
     </div>
@@ -64,4 +63,7 @@ const mapStateToProps = state => ({
   post: state.post
 })
 
-export default connect(mapStateToProps, { getPost  })(Notifications)
+export default connect(
+  mapStateToProps,
+  { getPost }
+)(Notifications)

@@ -1,10 +1,10 @@
 import React from 'react'
-import classnames from 'classnames' 
-import PropTypes from 'prop-types' 
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import './TextArea.css'
 
 const TextArea = ({
-  name, 
+  name,
   placeholder,
   value,
   error,
@@ -16,7 +16,7 @@ const TextArea = ({
 }) => {
   return (
     <div>
-      <textarea 
+      <textarea
         type={type}
         className={classnames('register-text-area-field-group-inputs', {
           'is-invalid': error
@@ -29,8 +29,8 @@ const TextArea = ({
         disabled={disabled}
       />
       <br />
-      {info && <small className='info'>{info}</small>}
-      { error && (<div className='error'>{error}</div>)}
+      {info && <small className="info">{info}</small>}
+      {error && <div className="error">{error}</div>}
     </div>
   )
 }
@@ -42,11 +42,11 @@ TextArea.propTypes = {
   info: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
-  disabled: PropTypes.string,
+  disabled: PropTypes.string
 }
 
 TextArea.defaultProps = {
-  type: 'text' 
+  type: 'text'
 }
 
 export default TextArea

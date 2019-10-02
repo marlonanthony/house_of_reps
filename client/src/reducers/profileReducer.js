@@ -1,7 +1,7 @@
-import { 
-  GET_PROFILE, 
-  GET_PROFILES, 
-  PROFILE_LOADING, 
+import {
+  GET_PROFILE,
+  GET_PROFILES,
+  PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   LIKE_HIGHLIGHT,
   ADD_PROMOS
@@ -14,8 +14,8 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  switch(action.type) {
-    case PROFILE_LOADING: 
+  switch (action.type) {
+    case PROFILE_LOADING:
       return {
         ...state,
         loading: true
@@ -24,24 +24,24 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: action.payload,
-        loading: false 
+        loading: false
       }
     case GET_PROFILES:
       return {
         ...state,
         profiles: action.payload,
-        loading: false 
+        loading: false
       }
-    case CLEAR_CURRENT_PROFILE: 
+    case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
-        profile: null 
+        profile: null
       }
-    case LIKE_HIGHLIGHT: 
+    case LIKE_HIGHLIGHT:
       return {
         ...state,
         profile: action.payload.data,
-        loading: false 
+        loading: false
       }
     case ADD_PROMOS:
       return {
@@ -49,7 +49,7 @@ export default function(state = initialState, action) {
         profile: action.payload,
         loading: false
       }
-    default: 
-      return state 
+    default:
+      return state
   }
 }
