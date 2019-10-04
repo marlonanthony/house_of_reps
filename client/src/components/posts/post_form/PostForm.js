@@ -186,10 +186,10 @@ class PostForm extends Component {
     e.preventDefault()
     const { tag1, tag2, tag3, tag4 } = this.state
     const arr = []
-    if (tag1) arr.push(tag1.replace(/^#/, '').replace(/\s/g, ''))
-    if (tag2) arr.push(tag2.replace(/^#/, '').replace(/\s/g, ''))
-    if (tag3) arr.push(tag3.replace(/^#/, '').replace(/\s/g, ''))
-    if (tag4) arr.push(tag4.replace(/^#/, '').replace(/\s/g, ''))
+    if (tag1) arr.push(tag1.replace(/^#|\s/g, ''))
+    if (tag2) arr.push(tag2.replace(/^#|\s/g, ''))
+    if (tag3) arr.push(tag3.replace(/^#|\s/g, ''))
+    if (tag4) arr.push(tag4.replace(/^#|\s/g, ''))
     this.setState({ tags: arr })
     this.toggleShowTags()
   }
