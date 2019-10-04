@@ -49,7 +49,7 @@ const ProfilePost = ({
 
 ProfilePost.propTypes = {
   post: PropTypes.object.isRequired,
-  profiles: PropTypes.array.isRequired,
+  profiles: PropTypes.array,
   getMoreProfilePosts: PropTypes.func.isRequired
 }
 

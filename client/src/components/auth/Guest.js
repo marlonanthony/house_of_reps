@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../actions/authActions'
 
-const Guest = ({ auth, loginUser, getCurrentProfile, ...props }) => {
+const Guest = ({ auth, loginUser, ...props }) => {
   useEffect(() => {
     if (auth.isAuthenticated) {
       props.history.push('/login')
@@ -28,8 +28,7 @@ const Guest = ({ auth, loginUser, getCurrentProfile, ...props }) => {
 
 Guest.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

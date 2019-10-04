@@ -52,7 +52,7 @@ const SearchBar = ({ profiles }) => {
 }
 
 SearchBar.propTypes = {
-  profiles: PropTypes.array.isRequired
+  profiles: PropTypes.array
 }
 
 export default SearchBar

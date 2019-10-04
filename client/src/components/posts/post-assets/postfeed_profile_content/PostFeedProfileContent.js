@@ -117,7 +117,7 @@ const PostFeedProfileContent = ({
 
 PostFeedProfileContent.propTypes = {
   showLikesHandler: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.object,
   user: PropTypes.object.isRequired,
   showLikes: PropTypes.bool.isRequired,
   toggleShowHighlight: PropTypes.func.isRequired
