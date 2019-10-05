@@ -185,37 +185,53 @@ router.post(
 
     // Social
     profileFields.social = {}
-    if (req.body.twitter && req.body.twitter.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.twitter}`).trim()
-      profileFields.social.twitter = url
+    if (req.body.twitter) {
+      if(req.body.twitter.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.twitter}`).trim()
+        profileFields.social.twitter = url
+      } else profileFields.social.twitter = req.body.twitter.trim()
     }
-    if (req.body.instagram && req.body.instagram.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.instagram}`).trim()
-      profileFields.social.instagram = url
+    if (req.body.instagram) {
+      if(req.body.instagram.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.instagram}`).trim()
+        profileFields.social.instagram = url
+      } else profileFields.social.instagram = req.body.instagram.trim()
     }
-    if (req.body.facebook && req.body.facebook.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.facebook}`).trim()
-      profileFields.social.facebook = url
+    if (req.body.facebook) {
+      if(req.body.facebook.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.facebook}`).trim()
+        profileFields.social.facebook = url
+      } else profileFields.social.facebook = req.body.facebook.trim()
     }
-    if (req.body.linkedin && req.body.linkedin.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.linkedin}`).trim()
-      profileFields.social.linkedin = url
+    if (req.body.linkedin) {
+      if(req.body.linkedin.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.linkedin}`).trim()
+        profileFields.social.linkedin = url
+      } else profileFields.social.linkedin = req.body.linkedin.trim()
     }
-    if (req.body.soundcloud && req.body.soundcloud.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.soundcloud}`).trim()
-      profileFields.social.soundcloud = url
+    if (req.body.soundcloud) {
+      if(req.body.soundcloud.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.soundcloud}`).trim()
+        profileFields.social.soundcloud = url
+      } else profileFields.social.soundcloud = req.body.soundcloud.trim()
     }
-    if (req.body.spotify && req.body.spotify.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.spotify}`).trim()
-      profileFields.social.spotify = url
+    if (req.body.spotify) {
+      if(req.body.spotify.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.spotify}`).trim()
+        profileFields.social.spotify = url
+      } else profileFields.social.spotify = req.body.spotify.trim()
     }
-    if (req.body.mixcloud && req.body.mixcloud.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.mixcloud}`).trim()
-      profileFields.social.mixcloud = url
+    if (req.body.mixcloud) {
+      if(req.body.mixcloud.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.mixcloud}`).trim()
+        profileFields.social.mixcloud = url
+      } else profileFields.social.mixcloud = req.body.mixcloud.trim()
     }
-    if (req.body.youtube && req.body.youtube.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`https://${req.body.youtube}`).trim()
-      profileFields.social.youtube = url
+    if (req.body.youtube) {
+      if(req.body.youtube.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`https://${req.body.youtube}`).trim()
+        profileFields.social.youtube = url
+      } else profileFields.social.youtube = req.body.youtube.trim()
     }
 
     Profile.findOne({ user: req.user.id })
@@ -237,9 +253,9 @@ router.post(
           ).then(profileResponse => res.json(profileResponse))
           // update past posts avatar
           const posts = await Post.find({ user: req.user.id })
-          posts.forEach(post => {
-            post.avatar = req.body.avatar
-            post.save()
+          posts.forEach(p => {
+            p.avatar = req.body.avatar
+            p.save()
           })
           // update past posts comments avatar
           const allPosts = await Post.find()
@@ -247,7 +263,7 @@ router.post(
             post.comments.forEach(comment => {
               if (String(comment.user) === req.user.id)
                 comment.avatar = req.body.avatar
-              post.save()
+              post.save().catch(err => console.log(err))
             })
           })
         } else {
