@@ -1,91 +1,39 @@
-// import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
-// import { getProfiles } from '../../actions/profileActions'
-// import Arrow from '../UI/arrow_glyph/Arrow'
-// import './Profiles.css'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { getProfiles } from '../../actions/profileActions'
 
-// class Profiles extends Component {
-//   state = {
-//     currentImageIndex: 0,
-//     recentHighlights: []
-//   }
+import ProfileItem from './ProfileItem'
+import './Profiles.css'
 
-//   componentDidMount() {
-//     this.props.getProfiles()
-//     .then(() => {
-//       const hls = this.props.profile.profiles.map(profile => profile.venues).map(val => val.length ? val[0] : null).filter(val => val !== null),
-//           highlights = [].concat.apply([], hls),
-//           recentHighlights = highlights && highlights.sort((a,b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-//       this.setState({ recentHighlights })
-//     })
-//   }
+const Profiles = ({ getProfiles, ...props }) => {
+  useEffect(() => {
+    getProfiles()
+  }, [])
 
-//   componentDidUpdate(prevProps) {
-//     if(this.props.currentIndex !== prevProps.currentIndex) {
-//       this.setState({ currentImageIndex: this.props.currentIndex })
-//     }
-//   }
+  const { profiles } = props.profile
 
-//   previousSlide = () => {
-//     const { recentHighlights } = this.state
-//     const { currentImageIndex } = this.state
-//     const lastIndex = recentHighlights.length - 1
-//     const shouldResetIndex = currentImageIndex === 0
-//     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
-//     this.setState({ currentImageIndex: index })
-//   }
+  return (
+    profiles && (
+      <div className="profiles_container">
+        {profiles.map(profile => (
+          <ProfileItem key={profile._id} profile={profile} />
+        ))}
+      </div>
+    )
+  )
+}
 
-//   nextSlide = () => {
-//     const { recentHighlights } = this.state
-//     const { currentImageIndex } = this.state
-//     const lastIndex = recentHighlights.length - 1
-//     const shouldResetIndex = currentImageIndex === lastIndex
-//     const index = shouldResetIndex ? 0 : currentImageIndex + 1
-//     this.setState({ currentImageIndex: index })
-//   }
+Profiles.propTypes = {
+  getProfiles: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+}
 
-//   render() {
-//     const { profiles, loading } = this.props.profile
-//     if(!this.props.showHighlight) return null
-//     if(!profiles || loading || !this.state.recentHighlights) return null
+const mapStateToProps = state => ({
+  profile: state.profile
+})
 
-//     return (
-//       <div style={{  margin: '0 auto', maxWidth: 500 }}>
-//         <div style={{position: 'fixed', maxWidth: 500, width: '100%', zIndex: 10}}>
-//           <Arrow direction='left' styleClass='slide-arrow' clickFunction={() => this.previousSlide()} glyph='&#9664;' />
-//           {this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].video ?
-//           <iframe
-//             title={this.state.recentHighlights[this.state.currentImageIndex].video}
-//             style={{
-//               height: '75px',
-//               width: '100%',
-//               maxWidth: '1150px',
-//               top: 0
-//             }}
-//             src={this.state.recentHighlights[this.state.currentImageIndex].video}
-//             frameBorder={0}
-//             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-//             allowFullScreen={true}>
-//           </iframe>
-//             : this.state.recentHighlights[this.state.currentImageIndex] && this.state.recentHighlights[this.state.currentImageIndex].image
-//             ? <img src={this.state.recentHighlights[this.state.currentImageIndex].image} alt="highlights"/>
-//             : null }
-//           <Arrow direction='right' styleClass='slide-arrow' clickFunction={() => this.nextSlide()} glyph='&#9654;' />
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-// Profiles.propTypes = {
-//   getProfiles: PropTypes.func.isRequired,
-//   profile: PropTypes.object.isRequired
-// }
-
-// const mapStateToProps = state => ({
-//   profile: state.profile,
-//   loading: state.loading
-// })
-
-// export default connect(mapStateToProps, { getProfiles })(Profiles)
+export default connect(
+  mapStateToProps,
+  { getProfiles }
+)(Profiles)

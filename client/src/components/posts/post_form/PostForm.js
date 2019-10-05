@@ -137,7 +137,7 @@ class PostForm extends Component {
     this.setState(prevState => ({ show: !prevState.show, errors: {} }))
   }
 
-  onImageDrop = (files, e) => {
+  onImageDrop = files => {
     this.setState({ uploadedFile: files[0] })
     this.handleImageUpload(files[0])
   }

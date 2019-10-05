@@ -50,10 +50,10 @@ const DropdownMenu = ({
 
   const authLinks = (
     <div>
-      {/* <Link to="/djs">DJs</Link> */}
       <Link to={`/profile/${profile.handle}`}>Profile</Link>
       <Link to="/feed">Feed</Link>
       <Link to="/dashboard">Dashboard</Link>
+      <Link to="/djs">Reps</Link>
       <Link to="#" onClick={onLogoutClick}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
