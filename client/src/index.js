@@ -13,7 +13,7 @@ import App from './App'
 
 // Check for token
 if (localStorage.jwtToken) {
-  setAuthToken(localStorage.jwtToken) // Set auth token header auth
+  setAuthToken(localStorage.jwtToken) // Set auth token header
   const decoded = jwt_decode(localStorage.jwtToken) // Decode token and get user info and expiration
   store.dispatch(setCurrentUser(decoded)) // Set user and isAuthenticated
   const currentTime = Date.now() / 1000 // Check for expired token

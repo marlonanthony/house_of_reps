@@ -66,7 +66,6 @@ const AddVenue = ({ addVenue, ...props }) => {
           />
           <Input
             name="video"
-            type="text"
             value={video}
             onPaste={onPaste}
             error={errors.video}
