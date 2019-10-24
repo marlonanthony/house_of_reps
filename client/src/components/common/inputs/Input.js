@@ -41,7 +41,7 @@ Input.propTypes = {
   info: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
-  // onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   disabled: PropTypes.string
 }
 

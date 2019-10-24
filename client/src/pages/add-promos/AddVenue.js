@@ -54,7 +54,7 @@ const AddVenue = ({ addVenue, ...props }) => {
         className="fas fa-arrow-alt-circle-left"
         alt="back-button"
       />
-      <h2>Add Media</h2>
+      <h2>Add Highlight</h2>
       <div className="djpools_input_wrapper">
         <form onSubmit={onSubmit}>
           <Input
