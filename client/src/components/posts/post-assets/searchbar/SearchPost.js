@@ -8,6 +8,7 @@ const SearchPost = ({ onChange, hashtag, showHashtags, showPostByHashtag }) => (
       onChange={onChange}
       value={hashtag}
       name="hashtag"
+      type="text"
       className="searchbarpostinput"
     />
     {showHashtags ? (

@@ -266,7 +266,11 @@ class PostForm extends Component {
                     title="emojis"
                     toggleIcon={this.toggleEmoji}
                   />
-                  <button className="post_submit_button" title="Submit">
+                  <button
+                    className="post_submit_button"
+                    title="Submit"
+                    type="submit"
+                  >
                     <Icon icon="far fa-paper-plane" title="submit" />
                   </button>
                 </div>

@@ -23,6 +23,7 @@ const SearchBar = ({ profiles }) => {
       <input
         className="searchbar_input"
         placeholder=" Search reps"
+        type="text"
         name="matches"
         value={matches}
         onChange={e => setMatches(e.target.value)}
