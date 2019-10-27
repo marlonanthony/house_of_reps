@@ -10,7 +10,7 @@ import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
 import SocialLinksInput from '../common/inputs/SocialLinksInput'
 import Avatar from './Avatar'
-import isEmpty from '../../validation/is-empty'
+import isEmpty from '../../utils/is-empty'
 import './EditProfile.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'

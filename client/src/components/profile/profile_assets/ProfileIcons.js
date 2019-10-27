@@ -1,5 +1,5 @@
 import React from 'react'
-import isEmpty from '../../../validation/is-empty'
+import isEmpty from '../../../utils/is-empty'
 
 const ProfileIcons = ({ profile }) => (
   <div id="profile-icons-container">

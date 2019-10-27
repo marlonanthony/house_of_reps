@@ -9,7 +9,7 @@ import {
   getCurrentProfile,
   clearCurrentProfile
 } from '../../../actions/profileActions'
-import isEmpty from '../../../validation/is-empty'
+import isEmpty from '../../../utils/is-empty'
 import './DropdownMenu.css'
 
 const DropdownMenu = ({

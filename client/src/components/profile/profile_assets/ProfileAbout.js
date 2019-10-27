@@ -1,5 +1,5 @@
 import React from 'react'
-import isEmpty from '../../../validation/is-empty'
+import isEmpty from '../../../utils/is-empty'
 
 const ProfileAbout = ({ profile, user }) => (
   <>
