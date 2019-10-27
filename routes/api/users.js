@@ -79,7 +79,7 @@ router.post('/register', async (req, res) => {
         const emailInfo = {
           subject: 'Testing the register route',
           body: "Bruh, I'm fittin to write all the emails!",
-          recipients: email, // change this to email after testing
+          recipients: email,
           token: token.token
         }
         const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
@@ -134,7 +134,6 @@ router.post('/login', async (req, res) => {
     }
     const isMatch = await bcrypt.compare(password, user.password)
     if (isMatch) {
-      // User Matched
       const payload = {
         id: user.id,
         name: user.name,
@@ -142,7 +141,6 @@ router.post('/login', async (req, res) => {
         handle: user.handle,
         isAdmin: user.isAdmin
       }
-      // Sign Token
       jwt.sign(
         payload,
         keys.secretOrKey,

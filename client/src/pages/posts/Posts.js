@@ -103,7 +103,6 @@ class Posts extends Component {
       { profile, profiles } = this.props.profile,
       { showPreview, showHashtags, hashtag, showLikes } = this.state,
       { user } = this.props.auth
-
     return (
       <div className="feed">
         <SearchPost

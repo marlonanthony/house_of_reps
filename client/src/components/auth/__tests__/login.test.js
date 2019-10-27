@@ -6,16 +6,20 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import store from '../../../store'
 import Login from '../Login'
 
-afterEach(cleanup)
-
-it('ensures the login inputs work', async () => {
-  const { getByPlaceholderText } = render(
+const renderComponent = () =>
+  render(
     <Provider store={store}>
       <Router>
         <Login />
       </Router>
     </Provider>
   )
+
+afterEach(cleanup)
+
+it('renders inputs with the proper type', () => {
+  const { getByPlaceholderText } = renderComponent()
+
   const password = getByPlaceholderText(/password/i),
     email = getByPlaceholderText(/email address/i)
   expect(password).toHaveAttribute('type', 'password')

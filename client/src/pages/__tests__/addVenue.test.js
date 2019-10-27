@@ -8,14 +8,17 @@ import AddVenue from '../add-promos/AddVenue'
 
 afterEach(cleanup)
 
-it('renders inputs with the proper type', () => {
-  const { getByPlaceholderText, getByText } = render(
+const renderComponent = () =>
+  render(
     <Provider store={store}>
       <Router>
         <AddVenue />
       </Router>
     </Provider>
   )
+
+it('renders inputs with the proper type', () => {
+  const { getByPlaceholderText, getByText } = renderComponent()
   expect(getByPlaceholderText(/title/i)).toHaveAttribute('type', 'text')
   expect(getByPlaceholderText(/paste embed code/i)).toHaveAttribute(
     'type',
