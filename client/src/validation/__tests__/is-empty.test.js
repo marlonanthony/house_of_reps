@@ -17,7 +17,7 @@ test('should output truthy', () => {
 
 it('should output falsy', () => {
   const string = isEmpty('Hello World'),
-    zero = 0
+    zero = isEmpty(0)
 
   expect(string).toBeFalsy()
   expect(zero).toBeFalsy()
