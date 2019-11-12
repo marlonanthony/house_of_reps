@@ -15,10 +15,13 @@ const Profiles = ({ getProfiles, ...props }) => {
 
   return (
     profiles && (
-      <div className="profiles_container">
-        {profiles.map(profile => (
-          <ProfileItem key={profile._id} profile={profile} />
-        ))}
+      <div style={{ paddingTop: 10 }}>
+        <h2>Reps</h2>
+        <div className="profiles_container">
+          {profiles.map(profile => (
+            <ProfileItem key={profile._id} profile={profile} />
+          ))}
+        </div>
       </div>
     )
   )

@@ -34,6 +34,7 @@
   grid-area: post-feed-post-content;
 }
 
+.chatroom { display: none; }
 .post-feed-highlights { display: none; }
 .img_test { display: none; }
 .stores_container { display: none; }
@@ -100,9 +101,10 @@
       'searchbarpost postform searchbar'
       'profile btns postfeedhighlights'
       'profile post-feed-post-content postfeedhighlights'
-      'djpools post-feed-post-content stores'
-      'perks post-feed-post-content brands'
-      'perks post-feed-post-content footer'; 
+      'chatroom post-feed-post-content stores'
+      'chatroom post-feed-post-content brands'
+      'footer post-feed-post-content perks'
+      'footer post-feed-post-content djpools'; 
   }
 
   .mobile_icons_container { display: none; }
@@ -230,7 +232,6 @@
     display: flex;
     width: 250px;
     height: 250px;
-    border-radius: 2%;
   }
 
   .djpools {
@@ -256,6 +257,17 @@
     width: 250px;
     height: 250px;
     overflow-x: hidden;
+  }
+
+  .chatroom {
+    grid-area: chatroom;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    max-height: 500px;
+    overflow: auto;
+    border: .3px solid var(--border-color);
+    padding: 5px;
   }
 
   .post-feed-footer {

@@ -1,10 +1,9 @@
-import React, { Component } from 'react' 
+import React, { Component } from 'react'
 
 class Video extends Component {
-
   onChange = e => {
-    const video = e.target.value 
-    const { node, editor } = this.props 
+    const video = e.target.value
+    const { node, editor } = this.props
     editor.setNodeByKey(node.key, { data: { video } })
   }
 
@@ -13,14 +12,14 @@ class Video extends Component {
   }
 
   render() {
-    // const { isSelected, attributes } = this.props 
-    const { attributes } = this.props 
+    // const { isSelected, attributes } = this.props
+    const { attributes } = this.props
     const video = this.props.node.data.get('video')
 
     return (
       <div {...attributes}>
         {this.renderInput()}
-        { video.length > 0 ? this.renderVideo() : null }
+        {video.length > 0 ? this.renderVideo() : null}
         {/* { this.renderVideo() } */}
         {/* { isSelected ? this.renderInput() : null } */}
       </div>
@@ -28,8 +27,8 @@ class Video extends Component {
   }
 
   renderVideo = () => {
-    const { node, isFocused } = this.props 
-    const video = node.data.get('video') 
+    const { node, isFocused } = this.props
+    const video = node.data.get('video')
 
     const wrapperStyle = {
       position: 'relative',
@@ -56,24 +55,24 @@ class Video extends Component {
     return (
       <div style={wrapperStyle}>
         <div style={maskStyle} />
-        <iframe 
-          id='ytplayer'
-          type='text/html'
-          width='100%'
+        <iframe
+          id="ytplayer"
+          type="text/html"
+          width="100%"
           // width='640'
-          height='300'
+          height="300"
           src={video}
-          frameBorder='0'
+          frameBorder="0"
           style={iframeStyle}
-          title={video} 
+          title={video}
         />
       </div>
     )
   }
 
   renderInput = () => {
-    const { node } = this.props 
-    const video = node.data.get('video') 
+    const { node } = this.props
+    const video = node.data.get('video')
     const style = {
       margin: '5px 0',
       boxSizing: 'border-box',
@@ -84,16 +83,15 @@ class Video extends Component {
     }
 
     return (
-      <input 
+      <input
         value={video}
         onChange={this.onChange}
         onClick={this.onClick}
         style={style}
-        placeholder=' Copy & paste your fav embedded URL.'
+        placeholder=" Copy & paste your fav embedded URL."
       />
     )
   }
-
 }
 
 /*,
@@ -114,4 +112,4 @@ class Video extends Component {
         }
 */
 
-export default Video 
+export default Video

@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
-import { Editor } from 'slate-react' 
-import { Value } from 'slate' 
+import { Editor } from 'slate-react'
+import { Value } from 'slate'
 
-import Video from './Video' 
-import initialValue from './value.json' 
+import Video from './Video'
+import initialValue from './value.json'
 
 class Embed extends Component {
-
   state = { value: Value.fromJSON(initialValue) }
 
   schema = {
     blocks: {
       video: {
-        isVoid: true 
+        isVoid: true
       }
     }
   }
 
   style = {
     width: '100%',
-    margin: 'auto', 
+    margin: 'auto'
   }
 
   render() {
@@ -35,9 +34,9 @@ class Embed extends Component {
   }
 
   renderNode = (props, editor, next) => {
-    switch(props.node.type) {
+    switch (props.node.type) {
       case 'video':
-        return  <Video {...props} />
+        return <Video {...props} />
       default:
         return next()
     }
@@ -48,4 +47,4 @@ class Embed extends Component {
   }
 }
 
-export default Embed;
+export default Embed
