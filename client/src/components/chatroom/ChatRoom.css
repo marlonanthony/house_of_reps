@@ -1,7 +1,30 @@
-#chat-window {
-  flex: 1;
-}
-
 .chatroom::-webkit-scrollbar {
   width: 5px;
+}
+
+#chat-window {
+  padding: 0px 5px;
+}
+
+#chatroom_count {
+  color: var(--secondary-color);
+}
+
+.message_and_button_container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#chat_message {
+  flex: 1;
+  background: none;
+  padding: 10px;
+  color: var(--secondary-color);
+}
+
+#chat_submit_button {
+  /* padding: 5px; */
 }

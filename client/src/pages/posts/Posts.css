@@ -96,7 +96,7 @@
     display: grid;
     justify-items: center;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto auto auto 1fr;
     grid-template-areas: 
       'searchbarpost postform searchbar'
       'profile btns postfeedhighlights'
@@ -266,12 +266,13 @@
     width: 250px;
     max-height: 350px;
     overflow: auto;
-    border: .3px solid var(--border-color);
-    padding: 5px;
+    border: .5px solid var(--border-color);
+    border-radius: 5px;
+    position: relative;
   }
 
   .post-feed-footer {
     display: flex;
-    margin-top: -150px;
+    margin-top: -170px;
   }
 }

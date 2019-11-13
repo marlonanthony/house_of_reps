@@ -3,7 +3,11 @@ import io from 'socket.io-client'
 
 import './ChatRoom.css'
 
-const socket = io('http://localhost:5000')
+const socket = io(
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:5000'
+    : 'https://fathomless-escarpment-28544.herokuapp.com'
+)
 
 export default function ChatRoom({ handle }) {
   const [message, setMessage] = useState(''),
@@ -23,17 +27,22 @@ export default function ChatRoom({ handle }) {
     socket.on('chat', function(data) {
       if (!data.handle && !data.message) return
       setFeedback('')
-      setOutput(c => [...c, data.handle + ': ' + data.message])
+      setOutput(o => [...o, data.handle + ': ' + data.message])
     })
     socket.on('typing', data => {
+      // setFeedback('...')
+      // perhaps set a boolean isTyping flag and display '...' animation if true?
       setFeedback(data + ' is typing a message')
     })
     socket.on('new-connection', data => {
-      setCount(data)
+      localStorage.setItem('count', data)
+      setCount(JSON.parse(localStorage.getItem('count')))
     })
     socket.on('lost-connection', data => {
-      setCount(data)
+      localStorage.setItem('count', data)
+      setCount(JSON.parse(localStorage.getItem('count')))
     })
+
     return () => {
       socket.off('chat')
       socket.off('typing')
@@ -44,28 +53,30 @@ export default function ChatRoom({ handle }) {
 
   return (
     <div className="chatroom">
-      <small>
-        {count} {count === 1 ? 'person' : 'people'} in chat
-      </small>
       <div id="chat-window">
+        <small id="chatroom_count">
+          {count} {count === 1 ? 'person' : 'people'} online
+        </small>
         <div id="output">
           {output.map((val, i) => (
             <p key={i}>{val}</p>
           ))}
         </div>
-        <div id="feedback">{feedback}</div>
+        <small id="feedback">{feedback}</small>
       </div>
-      <input
-        onChange={e => setMessage(e.target.value)}
-        id="message"
-        type="text"
-        placeholder="Message"
-        onKeyPress={() => socket.emit('typing', handle)}
-        value={message}
-      />
-      <button id="send" onClick={onSubmit}>
-        Send
-      </button>
+      <div className="message_and_button_container">
+        <input
+          onChange={e => setMessage(e.target.value)}
+          id="chat_message"
+          type="text"
+          placeholder="Message"
+          onKeyPress={() => socket.emit('typing', handle)}
+          value={message}
+        />
+        <button id="chat_submit_button" onClick={onSubmit}>
+          Send
+        </button>
+      </div>
     </div>
   )
 }
