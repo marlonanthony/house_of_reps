@@ -264,7 +264,7 @@
     display: flex;
     flex-direction: column;
     width: 250px;
-    max-height: 500px;
+    max-height: 350px;
     overflow: auto;
     border: .3px solid var(--border-color);
     padding: 5px;
@@ -272,5 +272,6 @@
 
   .post-feed-footer {
     display: flex;
+    margin-top: -150px;
   }
 }

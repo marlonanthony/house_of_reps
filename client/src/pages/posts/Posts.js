@@ -139,7 +139,7 @@ class Posts extends Component {
         />
         <StoresContainer profiles={profiles} loading={loading} />
         <BrandContainer profiles={profiles} loading={loading} />
-        <ChatRoom />
+        <ChatRoom handle={profile && profile.handle} />
         <Footer />
       </div>
     )

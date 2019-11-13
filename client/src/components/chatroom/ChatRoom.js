@@ -5,9 +5,8 @@ import './ChatRoom.css'
 
 const socket = io('http://localhost:5000')
 
-export default function ChatRoom() {
+export default function ChatRoom({ handle }) {
   const [message, setMessage] = useState(''),
-    [handle, setHandle] = useState(''),
     [output, setOutput] = useState([]),
     [feedback, setFeedback] = useState(''),
     [count, setCount] = useState(0)
@@ -18,7 +17,6 @@ export default function ChatRoom() {
       message
     })
     setMessage('')
-    setHandle('')
   }
 
   useEffect(() => {
@@ -27,19 +25,15 @@ export default function ChatRoom() {
       setFeedback('')
       setOutput(c => [...c, data.handle + ': ' + data.message])
     })
-
     socket.on('typing', data => {
       setFeedback(data + ' is typing a message')
     })
-
     socket.on('new-connection', data => {
       setCount(data)
     })
-
     socket.on('lost-connection', data => {
       setCount(data)
     })
-
     return () => {
       socket.off('chat')
       socket.off('typing')
@@ -61,13 +55,6 @@ export default function ChatRoom() {
         </div>
         <div id="feedback">{feedback}</div>
       </div>
-      <input
-        onChange={e => setHandle(e.target.value)}
-        id="handle"
-        type="text"
-        placeholder="Handle"
-        value={handle}
-      />
       <input
         onChange={e => setMessage(e.target.value)}
         id="message"
