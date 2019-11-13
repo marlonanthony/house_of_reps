@@ -57,7 +57,7 @@ export default function ChatRoom({ handle }) {
       <div id="chatroom-header">
         <small id="speakeasy">Speakeasy</small>
         <small id="chatroom_count">
-          {count} <i class="fas fa-user-astronaut chatroom-astronaut"></i>
+          {count} <i class="fas fa-user-tie chatroom-avatar"></i>
         </small>
       </div>
       <div id="chat-window">
