@@ -50,7 +50,7 @@ export default function ChatRoom({ handle }) {
       socket.off('new-connection')
       socket.off('lost-connection')
     }
-  })
+  }, [setCount, setFeedback, setOutput])
 
   return (
     <div className="chatroom">

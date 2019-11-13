@@ -36,6 +36,8 @@
   font-style: italic;
   font-size: 13px;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .message_and_button_container {
