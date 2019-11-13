@@ -1,13 +1,41 @@
-.chatroom::-webkit-scrollbar {
+#chatroom-header {
+  background: var(--secondary-color);
+  min-height: 50px;
+}
+
+#chat-window::-webkit-scrollbar {
   width: 5px;
 }
 
 #chat-window {
   padding: 0px 5px;
+  overflow: auto;
+}
+
+#speakeasy {
+  color: var(--primary-color);
+  padding: 5px;
+  position: absolute;
+  font-style: italic;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.chatroom-astronaut {
+  font-size: 25px;
 }
 
 #chatroom_count {
-  color: var(--secondary-color);
+  color: var(--primary-color);
+  position: absolute;
+  right: 0;
+  padding: 5px;
+}
+
+#output {
+  font-style: italic;
+  font-size: 13px;
+  margin-bottom: 50px;
 }
 
 .message_and_button_container {
@@ -20,11 +48,16 @@
 
 #chat_message {
   flex: 1;
-  background: none;
+  background: var(--primary-color);
+  color: var(--text-color);
   padding: 10px;
-  color: var(--secondary-color);
+  margin: 1px;
+  margin-right: 0;
+  border: 1px solid var(--secondary-color);
 }
 
 #chat_submit_button {
-  /* padding: 5px; */
+  background: var(--secondary-color);
+  border: none;
+  cursor: pointer;
 }

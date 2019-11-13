@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import io from 'socket.io-client'
 
 import './ChatRoom.css'
@@ -32,7 +32,8 @@ export default function ChatRoom({ handle }) {
     socket.on('typing', data => {
       // setFeedback('...')
       // perhaps set a boolean isTyping flag and display '...' animation if true?
-      setFeedback(data + ' is typing a message')
+      setFeedback(data.handle + ' is typing a message')
+      setCount(data.count)
     })
     socket.on('new-connection', data => {
       localStorage.setItem('count', data)
@@ -42,27 +43,30 @@ export default function ChatRoom({ handle }) {
       localStorage.setItem('count', data)
       setCount(JSON.parse(localStorage.getItem('count')))
     })
-
+    console.log(count, JSON.parse(localStorage.getItem('count')))
     return () => {
       socket.off('chat')
       socket.off('typing')
       socket.off('new-connection')
       socket.off('lost-connection')
     }
-  }, [setOutput, setFeedback, setCount])
+  })
 
   return (
     <div className="chatroom">
-      <div id="chat-window">
+      <div id="chatroom-header">
+        <small id="speakeasy">Speakeasy</small>
         <small id="chatroom_count">
-          {count} {count === 1 ? 'person' : 'people'} online
+          {count} <i class="fas fa-user-astronaut chatroom-astronaut"></i>
         </small>
+      </div>
+      <div id="chat-window">
         <div id="output">
           {output.map((val, i) => (
             <p key={i}>{val}</p>
           ))}
+          <small id="feedback">{feedback}</small>
         </div>
-        <small id="feedback">{feedback}</small>
       </div>
       <div className="message_and_button_container">
         <input

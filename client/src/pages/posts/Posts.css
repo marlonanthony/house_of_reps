@@ -265,7 +265,7 @@
     flex-direction: column;
     width: 250px;
     max-height: 350px;
-    overflow: auto;
+    overflow: hidden;
     border: .5px solid var(--border-color);
     border-radius: 5px;
     position: relative;
