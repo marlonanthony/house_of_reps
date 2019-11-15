@@ -14,15 +14,17 @@ router.post(
       const chatroom = await new Chatroom({
         name: req.body.name && req.body.name,
         admin: req.user.id,
-        // REMOVE STATIC IDS
+        // REPLACE STATIC IDS
         invites: [
           '5d90285ff4b336001681f6c0', 
           '5baab2dc78cf5704ab8185ce', 
-          '5c393a8ffb3fd10a87b8904e'
+          '5c393a8ffb3fd10a87b8904e',
+          '5dce3751ae6bb11251e7a869',
+          '5bad9df3f3dd61183a0fec96'
         ]
       })
-      const savedChat = await chatroom.save()
-      return res.json(savedChat)
+      await chatroom.save()
+      return res.json(chatroom)
     } catch (err) { console.log(err)}
   }
 )
@@ -41,6 +43,12 @@ router.get(
       const member = chatroom.members.filter(id => String(id) === req.user.id)[0]
       if(String(chatroom.admin) !== req.user.id && !myInvite && !member) {
         return res.status(401).json({ error: 'You can\'t sit with us' })
+      }
+      if(req.user.id === myInvite) {
+        const index = chatroom.invites.indexOf(myInvite)
+        chatroom.invites.splice(index, 1)
+        chatroom.members.push(myInvite)
+        await chatroom.save()
       }
       return res.json(chatroom)
     } catch(err) {
