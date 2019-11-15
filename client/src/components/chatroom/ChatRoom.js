@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import io from 'socket.io-client'
 
 import './ChatRoom.css'
@@ -9,7 +10,7 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-export default function ChatRoom({ handle }) {
+export default function ChatRoom({ handle, onlineCount }) {
   const [message, setMessage] = useState(''),
     [output, setOutput] = useState([]),
     [feedback, setFeedback] = useState(''),
@@ -24,14 +25,17 @@ export default function ChatRoom({ handle }) {
   }
 
   useEffect(() => {
-    socket.on('chat', function(data) {
+    if (count === 0) setCount(onlineCount)
+
+    socket.on('chat', data => {
       if (!data.handle && !data.message) return
       setFeedback('')
       setOutput(o => [...o, data.handle + ': ' + data.message])
     })
     socket.on('typing', data => {
-      // setFeedback('...')
-      // perhaps set a boolean isTyping flag and display '...' animation if true?
+      // TODO:
+      // set boolean isTyping flag and display (...) animation if true
+      // instead of displaying what's below
       setFeedback(data.handle + ' is typing a message')
       setCount(data.count)
     })
@@ -43,21 +47,21 @@ export default function ChatRoom({ handle }) {
       localStorage.setItem('count', data)
       setCount(JSON.parse(localStorage.getItem('count')))
     })
-    console.log(count, JSON.parse(localStorage.getItem('count')))
+
     return () => {
       socket.off('chat')
       socket.off('typing')
       socket.off('new-connection')
       socket.off('lost-connection')
     }
-  }, [setCount, setFeedback, setOutput])
+  }, [setCount, setFeedback, setOutput, message, onlineCount])
 
   return (
     <div className="chatroom">
       <div id="chatroom-header">
         <small id="speakeasy">Speakeasy</small>
         <small id="chatroom_count">
-          {count} <i class="fas fa-user-tie chatroom-avatar"></i>
+          {count} <i className="fas fa-user-tie chatroom-avatar"></i>
         </small>
       </div>
       <div id="chat-window">
@@ -83,4 +87,9 @@ export default function ChatRoom({ handle }) {
       </div>
     </div>
   )
+}
+
+ChatRoom.propTypes = {
+  handle: PropTypes.string,
+  onlineCount: PropTypes.number
 }

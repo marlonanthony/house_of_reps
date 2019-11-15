@@ -34,7 +34,8 @@ class Posts extends Component {
     showHashtags: false,
     hashtag: '',
     count: 10,
-    start: 0
+    start: 0,
+    onlineCount: 0
   }
 
   componentDidMount() {
@@ -43,6 +44,13 @@ class Posts extends Component {
     this.props.getCurrentProfile()
     this.props.getProfiles()
     this.setState(prevState => ({ start: prevState.start + 1 }))
+    this.setState({ onlineCount: JSON.parse(localStorage.getItem('count')) })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.onlineCount !== this.state.onlineCount) {
+      this.setState({ onlineCount: prevProps.onlineCount })
+    }
   }
 
   fetchMore = () => {
@@ -102,7 +110,13 @@ class Posts extends Component {
   render() {
     const { posts, loading } = this.props.post,
       { profile, profiles } = this.props.profile,
-      { showPreview, showHashtags, hashtag, showLikes } = this.state,
+      {
+        showPreview,
+        showHashtags,
+        hashtag,
+        showLikes,
+        onlineCount
+      } = this.state,
       { user } = this.props.auth
     return (
       <div className="feed">
@@ -139,7 +153,10 @@ class Posts extends Component {
         />
         <StoresContainer profiles={profiles} loading={loading} />
         <BrandContainer profiles={profiles} loading={loading} />
-        <ChatRoom handle={profile && profile.handle} />
+        <ChatRoom
+          onlineCount={onlineCount}
+          handle={profile && profile.handle}
+        />
         <Footer />
       </div>
     )
