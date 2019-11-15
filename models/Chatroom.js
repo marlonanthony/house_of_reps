@@ -7,6 +7,19 @@ const ChatRoomSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  name: {
+    type: String
+  },
+  avatar: {
+    type: String
+  },
+  admin: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
+  moderators: [String],
+  invites: [String],
+  members: [String],
   messages: [
     {
       user: {

@@ -40,6 +40,14 @@ const ProfileSchema = new Schema({
   style: {
     type: String
   },
+  chatroomInvites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'chatroom'
+  }],
+  chatroomMemberships: [{
+    type: Schema.Types.ObjectId,
+    ref: 'chatroom'
+  }],
   venues: [
     {
       title: {
