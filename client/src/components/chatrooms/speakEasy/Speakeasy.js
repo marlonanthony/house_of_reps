@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import io from 'socket.io-client'
 
-import './ChatRoom.css'
+import './Speakeasy.css'
 
 const socket = io(
   process.env.NODE_ENV !== 'production'
@@ -10,7 +10,7 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-export default function ChatRoom({ handle, onlineCount }) {
+export default function Speakeasy({ handle, onlineCount }) {
   const [message, setMessage] = useState(''),
     [output, setOutput] = useState([]),
     [feedback, setFeedback] = useState(''),
@@ -93,7 +93,7 @@ export default function ChatRoom({ handle, onlineCount }) {
   )
 }
 
-ChatRoom.propTypes = {
+Speakeasy.propTypes = {
   handle: PropTypes.string,
   onlineCount: PropTypes.number
 }

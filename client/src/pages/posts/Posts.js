@@ -24,7 +24,7 @@ import BrandContainer from '../../components/posts/post-assets/promos/brands/Bra
 import PostsContainer from '../../components/posts/posts_container/PostsContainer'
 import HighlightsContainer from '../../components/posts/post-assets/highlights/HighlightsContainer'
 import Footer from '../../components/posts/post-assets/footer/Footer'
-import ChatRoom from '../../components/chatroom/ChatRoom'
+import Speakeasy from '../../components/chatrooms/speakEasy/Speakeasy'
 import './Posts.css'
 
 class Posts extends Component {
@@ -153,7 +153,7 @@ class Posts extends Component {
         />
         <StoresContainer profiles={profiles} loading={loading} />
         <BrandContainer profiles={profiles} loading={loading} />
-        <ChatRoom
+        <Speakeasy
           onlineCount={onlineCount}
           handle={profile && profile.handle}
         />
