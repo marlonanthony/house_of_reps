@@ -34,9 +34,11 @@ export default function ChatRoom({ handle, onlineCount }) {
     })
     socket.on('typing', data => {
       // TODO:
-      // set boolean isTyping flag and display (...) animation if true
+      // set boolean isTyping and display (...) animation if true
       // instead of displaying what's below
-      setFeedback(data.handle + ' is typing a message')
+      data.message.length
+        ? setFeedback(data.handle + ' is typing a message')
+        : setFeedback('')
       setCount(data.count)
     })
     socket.on('new-connection', data => {
@@ -74,11 +76,13 @@ export default function ChatRoom({ handle, onlineCount }) {
       </div>
       <div className="message_and_button_container">
         <input
-          onChange={e => setMessage(e.target.value)}
+          onChange={e => {
+            socket.emit('typing', { handle, message: e.target.value })
+            setMessage(e.target.value)
+          }}
           id="chat_message"
           type="text"
           placeholder="Message"
-          onKeyPress={() => socket.emit('typing', handle)}
           value={message}
         />
         <button id="chat_submit_button" onClick={onSubmit}>

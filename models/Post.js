@@ -178,6 +178,8 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  timestamps: true
 })
 
 PostSchema.index({ text: 'text' })
