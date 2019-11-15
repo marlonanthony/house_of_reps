@@ -2,6 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 
 const Chatroom = require('../../models/Chatroom')
+const Profile = require('../../models/Profile')
 
 // @route           POST api/chat
 // @desc            Create a Chatroom
@@ -12,7 +13,7 @@ router.post(
   async (req, res) => {
     try {
       const chatroom = await new Chatroom({
-        name: req.body.name && req.body.name,
+        name: req.body.name && req.body.name.trim(),
         admin: req.user.id,
         // REPLACE STATIC IDS
         invites: [
@@ -25,7 +26,7 @@ router.post(
       })
       await chatroom.save()
       return res.json(chatroom)
-    } catch (err) { console.log(err)}
+    } catch (error) { return res.status(400).json({ error }) }
   }
 )
 
@@ -44,18 +45,23 @@ router.get(
       if(String(chatroom.admin) !== req.user.id && !myInvite && !member) {
         return res.status(401).json({ error: 'You can\'t sit with us' })
       }
+      const profile = await Profile.findOne({ user: req.user.id })
       if(req.user.id === myInvite) {
         const index = chatroom.invites.indexOf(myInvite)
         chatroom.invites.splice(index, 1)
         chatroom.members.push(myInvite)
         await chatroom.save()
+
+        const i = profile.chatroomInvites.indexOf(req.params.id)
+        profile.chatroomMemberships.push(req.params.id)
+        profile.chatroomInvites.splice(i, 1)
+        await profile.save()
       }
-      return res.json(chatroom)
-    } catch(err) {
-      return res.status(400).json(err)
+      return res.json({ chatroom, profile })
+    } catch(error) {
+      return res.status(400).json({ error })
     }
   }
 )
-
 
 module.exports = router
