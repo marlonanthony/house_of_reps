@@ -22,6 +22,7 @@ import ConfirmEmail from './components/auth/ConfirmEmail'
 import Notifications from './components/posts/post-assets/notifications/Notifications'
 import FixedHighlights from './components/UI/uniterrupted_highlights/FixedHighlights'
 import Hashtag from './components/hashtags/Hashtag'
+import Chatroom from './components/chatrooms/Chatroom'
 import './App.css'
 
 const App = () => {
@@ -100,6 +101,9 @@ const App = () => {
         </Switch>
         <Switch>
           <PrivateRoute exact path="/hashtag/:hashtag" component={Hashtag} />
+        </Switch>
+        <Switch>
+          <PrivateRoute exact path="/chat/:id" component={Chatroom} />
         </Switch>
       </div>
     </>
