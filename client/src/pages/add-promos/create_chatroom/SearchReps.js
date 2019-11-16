@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const SearchBar = ({ profiles }) => {
+const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
   const [matches, setMatches] = useState(''),
     [showMatches, setShowMatches] = useState(false)
 
@@ -11,8 +10,12 @@ const SearchBar = ({ profiles }) => {
   }
 
   const onMouseLeave = () => {
-    setShowMatches(false)
+    !matches.length && setShowMatches(false)
   }
+
+  useEffect(() => {
+    !matches.length && setShowMatches(false)
+  }, [matches, setShowMatches])
 
   return (
     <div
@@ -23,7 +26,7 @@ const SearchBar = ({ profiles }) => {
     >
       <input
         className="searchbar_input"
-        placeholder=" Search Reps"
+        placeholder={placeholder}
         type="text"
         name="matches"
         value={matches}
@@ -39,13 +42,18 @@ const SearchBar = ({ profiles }) => {
               profile.stageName
                 .toLowerCase()
                 .includes(matches.toLowerCase()) ? (
-                <Link
+                <div
                   key={profile.user._id}
-                  to={`/profile/${profile.handle}`}
                   className="searchbar_items"
+                  onClick={() => {
+                    setInvites &&
+                      setInvites(invites => [...invites, profile.user._id])
+                    setModerators &&
+                      setModerators(mods => [...mods, profile.user._id])
+                  }}
                 >
                   @{profile.handle}
-                </Link>
+                </div>
               ) : null
             )}
         </div>
@@ -54,8 +62,11 @@ const SearchBar = ({ profiles }) => {
   )
 }
 
-SearchBar.propTypes = {
-  profiles: PropTypes.array
+SearchReps.propTypes = {
+  profiles: PropTypes.array,
+  setInvites: PropTypes.func,
+  setModerators: PropTypes.func,
+  placeholder: PropTypes.string
 }
 
-export default SearchBar
+export default SearchReps

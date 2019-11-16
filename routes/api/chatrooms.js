@@ -12,17 +12,12 @@ router.post(
   passport.authenticate('jwt', { session: false }), 
   async (req, res) => {
     try {
+      console.log(req.body)
       const chatroom = await new Chatroom({
-        name: req.body.name && req.body.name.trim(),
+        name: req.body.name && req.body.name.toLowerCase().trim(),
         admin: req.user.id,
-        // REPLACE STATIC IDS
-        invites: [
-          '5d90285ff4b336001681f6c0', 
-          '5baab2dc78cf5704ab8185ce', 
-          '5c393a8ffb3fd10a87b8904e',
-          '5dce3751ae6bb11251e7a869',
-          '5bad9df3f3dd61183a0fec96'
-        ]
+        invites: req.body.invites,
+        moderators: req.body.moderators
       })
       await chatroom.save()
       return res.json(chatroom)

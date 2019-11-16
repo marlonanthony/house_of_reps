@@ -8,12 +8,15 @@ function Chatroom({ getChatroom, chatroom }) {
     getChatroom('5dce597fdeff6715620fef80')
   }, [])
   console.log(chatroom.chatroom)
-  const { name, members } = chatroom.chatroom
+  const { name, members, invites } = chatroom.chatroom
   return (
     <div>
       <h2>{name && name} chatroom</h2>
       <li>
         {members && members.map((member, i) => <ol key={i}>{member}</ol>)}
+      </li>
+      <li>
+        {invites && invites.map((person, i) => <ol key={i}>{person}</ol>)}
       </li>
     </div>
   )

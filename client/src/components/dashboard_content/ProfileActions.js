@@ -12,6 +12,10 @@ const ProfileActions = ({ user }) => (
       <i className="fas fa-clipboard" />
       <span>Add Media</span>
     </Link>
+    <Link to="/create-chatroom">
+      <i class="far fa-comment-dots"></i>
+      <span>Create Chatroom</span>
+    </Link>
     {user.isAdmin && (
       <Link to="/add-djpool">
         <i className="fas fa-swimming-pool" />

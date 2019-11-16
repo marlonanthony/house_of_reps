@@ -10,6 +10,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
 import AddVenue from './pages/add-promos/AddVenue'
+import CreateChatroom from './pages/add-promos/create_chatroom/CreateChatroom'
 import AddDjpool from './pages/add-promos/AddDjpool'
 import AddCertifiedStore from './pages/add-promos/AddCertifiedStore'
 import AddPerk from './pages/add-promos/AddPerk'
@@ -65,6 +66,13 @@ const App = () => {
         </Switch>
         <Switch>
           <PrivateRoute exact path="/add-venue" component={AddVenue} />
+        </Switch>
+        <Switch>
+          <PrivateRoute
+            exact
+            path="/create-chatroom"
+            component={CreateChatroom}
+          />
         </Switch>
         <Switch>
           <PrivateRoute exact path="/add-djpool" component={AddDjpool} />
