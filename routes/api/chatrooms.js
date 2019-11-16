@@ -57,7 +57,7 @@ router.get(
         profile.chatroomInvites.splice(i, 1)
         await profile.save()
       }
-      return res.json({ chatroom, profile })
+      return res.json(chatroom)
     } catch(error) {
       return res.status(400).json({ error })
     }

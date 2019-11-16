@@ -17,7 +17,6 @@ export default function Speakeasy({ handle, onlineCount }) {
     [count, setCount] = useState(0)
 
   const onSubmit = () => {
-    console.log(message)
     message.length &&
       socket.emit('chat', {
         handle,
