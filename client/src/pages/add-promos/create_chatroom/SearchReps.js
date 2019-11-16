@@ -47,9 +47,23 @@ const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
                   className="searchbar_items"
                   onClick={() => {
                     setInvites &&
-                      setInvites(invites => [...invites, profile.user._id])
+                      setInvites(invites => [
+                        ...invites,
+                        {
+                          id: profile.user._id,
+                          name: profile.user.name,
+                          handle: profile.handle
+                        }
+                      ])
                     setModerators &&
-                      setModerators(mods => [...mods, profile.user._id])
+                      setModerators(mods => [
+                        ...mods,
+                        {
+                          id: profile.user._id,
+                          name: profile.user.name,
+                          handle: profile.handle
+                        }
+                      ])
                   }}
                 >
                   @{profile.handle}

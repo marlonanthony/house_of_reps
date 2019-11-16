@@ -1,0 +1,25 @@
+.invites_mods_container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  color: rgb(225, 225, 255);
+}
+
+.create_chatroom_card {
+  background: var(--secondary-color);
+  width: 300px;
+  min-height: 400px;
+}
+
+.create_chatroom_titles {
+  text-align: center;
+  letter-spacing: 3px;
+  font-style: italic;
+  color: black;
+}
+
+.create_chatroom_list_elements {
+  text-align: start;
+}

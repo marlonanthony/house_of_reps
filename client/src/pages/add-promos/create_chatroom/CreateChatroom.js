@@ -7,6 +7,7 @@ import { createChatroom } from '../../../actions/chatroomActions'
 import { getProfiles } from '../../../actions/profileActions'
 import Input from '../../../components/common/inputs/Input'
 import SearchReps from './SearchReps'
+import './CreateChatroom.css'
 
 const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
   const [name, setName] = useState(''),
@@ -26,8 +27,8 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
     e.preventDefault()
     const chatroomData = {
       name,
-      invites: [...new Set(invites)],
-      moderators: [...new Set(moderators)]
+      invites,
+      moderators
     }
     createChatroom(chatroomData, props.history)
   }
@@ -55,12 +56,12 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
             <SearchReps
               profiles={props.profile.profiles}
               setInvites={setInvites}
-              placeholder="Invite People"
+              placeholder="Invite Members"
             />
             <SearchReps
               profiles={props.profile.profiles}
               setModerators={setModerators}
-              placeholder="Add Moderators"
+              placeholder="Invite Moderators"
             />
           </div>
           <div className="venue-submit-btn-containing-div">
@@ -72,6 +73,43 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
             />
           </div>
         </form>
+      </div>
+      <div className="invites_mods_container">
+        <div className="create_chatroom_card">
+          <p className="create_chatroom_titles">Members</p>
+          <li>
+            {invites &&
+              invites.map(person => (
+                <ol key={person.id} className="create_chatroom_list_elements">
+                  {person.name}{' '}
+                  <span
+                    onClick={() =>
+                      setInvites(p => p.filter(val => val.id !== person.id))
+                    }
+                  >
+                    x
+                  </span>
+                </ol>
+              ))}
+          </li>
+        </div>
+        <div className="create_chatroom_card">
+          <p className="create_chatroom_titles">Moderators</p>
+          <li>
+            {moderators.map(person => (
+              <ol key={person.id} className="create_chatroom_list_elements">
+                {person.name}{' '}
+                <span
+                  onClick={() =>
+                    setModerators(m => m.filter(val => val.id !== person.id))
+                  }
+                >
+                  x
+                </span>
+              </ol>
+            ))}
+          </li>
+        </div>
       </div>
     </div>
   )
