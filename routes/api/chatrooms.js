@@ -12,7 +12,6 @@ router.post(
   passport.authenticate('jwt', { session: false }), 
   async (req, res) => {
     try {
-      console.log(req.body)
       const chatroom = await new Chatroom({
         name: req.body.name && req.body.name.toLowerCase().trim(),
         admin: req.user.id,
@@ -35,14 +34,16 @@ router.get(
     try {
       const chatroom = await Chatroom.findById(req.params.id)
       if(!chatroom) return res.status(404).json({ error: 'Chatroom not found' })
-      const myInvite = chatroom.invites.filter(id => String(id) === req.user.id)[0]
-      const member = chatroom.members.filter(id => String(id) === req.user.id)[0]
+      const myInvite = chatroom.invites.filter(person => String(person.id) === req.user.id)[0]
+      const member = chatroom.members.filter(person => String(person.id) === req.user.id)[0]
       if(String(chatroom.admin) !== req.user.id && !myInvite && !member) {
         return res.status(401).json({ error: 'You can\'t sit with us' })
       }
       const profile = await Profile.findOne({ user: req.user.id })
-      if(req.user.id === myInvite) {
-        const index = chatroom.invites.indexOf(myInvite)
+      if(myInvite && req.user.id === String(myInvite.id)) {
+        const index = chatroom.invites
+        .map((obj, i) => String(obj.id) === req.user.id && i)
+        .filter(val => val)[0]
         chatroom.invites.splice(index, 1)
         chatroom.members.push(myInvite)
         await chatroom.save()
