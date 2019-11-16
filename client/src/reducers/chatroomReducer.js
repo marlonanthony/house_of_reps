@@ -19,7 +19,6 @@ export default function(state = initialState, action) {
       }
 
     case CREATE_CHATROOM:
-      console.log(action.payload)
       return {
         ...state,
         chatroom: action.payload,
@@ -29,7 +28,7 @@ export default function(state = initialState, action) {
     case GET_CHATROOM:
       return {
         ...state,
-        chatroom: action.payload,
+        chatroom: action.payload.chatroom,
         loading: false
       }
 

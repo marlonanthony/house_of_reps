@@ -32,8 +32,6 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
     }
     createChatroom(chatroomData, props.history)
   }
-  console.log(invites)
-  console.log(moderators)
   return (
     <div className="add-venue">
       <i

@@ -50,7 +50,9 @@ const DropdownMenu = ({
 
   const authLinks = (
     <div>
-      <Link to={`/profile/${profile.handle}`}>Profile</Link>
+      {profile && profile.handle && (
+        <Link to={`/profile/${profile.handle}`}>Profile</Link>
+      )}
       <Link to="/feed">Feed</Link>
       <Link to="/dashboard">Dashboard</Link>
       <Link to="/djs">Reps</Link>

@@ -11,14 +11,16 @@ router.post(
   '/', 
   passport.authenticate('jwt', { session: false }), 
   async (req, res) => {
+    const {name, invites, moderators} = req.body
     try {
       const chatroom = await new Chatroom({
-        name: req.body.name && req.body.name.toLowerCase().trim(),
+        name: name && name.toLowerCase().trim(),
         admin: req.user.id,
-        invites: req.body.invites,
-        moderators: req.body.moderators
+        invites,
+        moderators
       })
       await chatroom.save()
+      // place invite in users profiles
       return res.json(chatroom)
     } catch (error) { return res.status(400).json({ error }) }
   }
@@ -47,13 +49,13 @@ router.get(
         chatroom.invites.splice(index, 1)
         chatroom.members.push(myInvite)
         await chatroom.save()
-
+        
+        profile.chatroomMemberships.push({ name: chatroom.name, id: req.params.id })
         const i = profile.chatroomInvites.indexOf(req.params.id)
-        profile.chatroomMemberships.push(req.params.id)
         profile.chatroomInvites.splice(i, 1)
         await profile.save()
       }
-      return res.json(chatroom)
+      return res.json({ chatroom, profile })
     } catch(error) {
       return res.status(400).json({ error })
     }

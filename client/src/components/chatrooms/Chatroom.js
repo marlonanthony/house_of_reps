@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { getChatroom } from '../../actions/chatroomActions'
 
-function Chatroom({ getChatroom, chatroom }) {
+function Chatroom({ getChatroom, chatroom, ...props }) {
   useEffect(() => {
-    getChatroom('5dce597fdeff6715620fef80')
+    getChatroom(props.match.params.id, props.history)
   }, [])
-  console.log(chatroom.chatroom)
+
   const { name, members, invites } = chatroom.chatroom
+
   return (
     <div>
+      <i
+        onClick={props.history.goBack}
+        id="addvenue-back-button"
+        className="fas fa-arrow-alt-circle-left"
+        alt="back-button"
+      />
       <h2>{name && name} chatroom</h2>
       <li>
-        {members && members.map((member, i) => <ol key={i}>{member}</ol>)}
+        {members && members.map((member, i) => <ol key={i}>{member.name}</ol>)}
       </li>
       <li>
-        {invites && invites.map((person, i) => <ol key={i}>{person}</ol>)}
+        {invites && invites.map((person, i) => <ol key={i}>{person.name}</ol>)}
       </li>
     </div>
   )
@@ -34,4 +42,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getChatroom }
-)(Chatroom)
+)(withRouter(Chatroom))

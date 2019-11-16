@@ -44,10 +44,17 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'chatroom'
   }],
-  chatroomMemberships: [{
-    type: Schema.Types.ObjectId,
-    ref: 'chatroom'
-  }],
+  chatroomMemberships: [
+    {
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: 'chatroom'
+      },
+      name: {
+        type: String
+      }
+    }
+  ],
   venues: [
     {
       title: {

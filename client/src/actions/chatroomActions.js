@@ -21,10 +21,11 @@ export const createChatroom = (chatroomData, history) => async dispatch => {
 }
 
 // Get Chatroom by id
-export const getChatroom = id => async dispatch => {
+export const getChatroom = (id, history) => async dispatch => {
   try {
     dispatch(chatroomLoading())
     const res = await axios.get(`/api/chat/${id}`)
+    history.push(`/chat/${id}`)
     dispatch({
       type: GET_CHATROOM,
       payload: res.data

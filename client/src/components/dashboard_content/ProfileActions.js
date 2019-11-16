@@ -13,7 +13,7 @@ const ProfileActions = ({ user }) => (
       <span>Add Media</span>
     </Link>
     <Link to="/create-chatroom">
-      <i class="far fa-comment-dots"></i>
+      <i className="far fa-comment-dots"></i>
       <span>Create Chatroom</span>
     </Link>
     {user.isAdmin && (
