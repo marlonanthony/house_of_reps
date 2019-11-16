@@ -19,22 +19,29 @@ const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
 
   return (
     <div
-      className="searchbar"
+      className="searchbar_create_chatroom"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onKeyPress={onMouseEnter}
     >
       <input
-        className="searchbar_input"
+        className="searchbar_input_create_chatroom"
         placeholder={placeholder}
         type="text"
         name="matches"
         value={matches}
         onChange={e => setMatches(e.target.value)}
         onKeyPress={onMouseEnter}
+        autoComplete="off"
       />
       {showMatches && (
-        <div>
+        <div
+          className={
+            setInvites
+              ? 'searchbar_create_chatroom_invites'
+              : 'searchbar_create_chatroom_moderators'
+          }
+        >
           {profiles &&
             profiles.map(profile =>
               profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
@@ -44,7 +51,7 @@ const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
                 .includes(matches.toLowerCase()) ? (
                 <div
                   key={profile.user._id}
-                  className="searchbar_items"
+                  className="searchbar_items_create_chatroom"
                   onClick={() => {
                     setInvites &&
                       setInvites(invites => [
