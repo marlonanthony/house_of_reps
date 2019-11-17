@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const passport = require('passport')
+const mongoose = require('mongoose')
 
 const Chatroom = require('../../models/Chatroom')
 const Profile = require('../../models/Profile')
@@ -14,13 +15,22 @@ router.post(
     const {name, invites, moderators} = req.body
     try {
       const chatroom = await new Chatroom({
-        name: name && name.toLowerCase().trim(),
+        name: name && name.trim(),
         admin: req.user.id,
         invites,
         moderators
       })
       await chatroom.save()
-      // place invite in users profiles
+      const invitesList = []
+      invites.forEach(val => invitesList.push(val.id))
+      // const profile = await Profile.updateMany({ user: { $in: invitesList}},
+      //   {$push: { chatroomInvites: { name, id: chatroom._id }}})
+      const profiles = await Profile.find({ user: { $in: invitesList }})
+      profiles.forEach(async profile => {
+        profile.chatroomInvites.push({ name, id: chatroom._id })
+        profile.save()
+        // add to notifications
+      })
       return res.json(chatroom)
     } catch (error) { return res.status(400).json({ error }) }
   }
@@ -32,6 +42,28 @@ router.post(
 router.get(
   '/:id', 
   passport.authenticate('jwt', { session: false }), 
+  async (req, res) => {
+    try {
+      const chatroom = await Chatroom.findById(req.params.id)
+      if(!chatroom) return res.status(404).json({ error: 'Chatroom not found' })
+      const myInvite = chatroom.invites.filter(person => String(person.id) === req.user.id)[0]
+      const member = chatroom.members.filter(person => String(person.id) === req.user.id)[0]
+      if(String(chatroom.admin) !== req.user.id && !myInvite && !member) {
+        return res.status(401).json({ error: 'You can\'t sit with us' })
+      }
+      return res.json(chatroom)
+    } catch(error) {
+      return res.status(400).json({ error })
+    }
+  }
+)
+
+// @route         POST api/chat/accept/:id
+// @desc          Accept chatroom invite
+// @access        Private
+router.post(
+  '/accept/:id',
+  passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
       const chatroom = await Chatroom.findById(req.params.id)
@@ -54,10 +86,10 @@ router.get(
         const i = profile.chatroomInvites.indexOf(req.params.id)
         profile.chatroomInvites.splice(i, 1)
         await profile.save()
+        return res.json(chatroom)
       }
-      return res.json({ chatroom, profile })
-    } catch(error) {
-      return res.status(400).json({ error })
+    } catch (err) {
+      return res.status(400).json(err)
     }
   }
 )

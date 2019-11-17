@@ -24,6 +24,13 @@
   text-align: start;
 }
 
+.remove_chatroom_member_or_mod {
+  color: red;
+  cursor: pointer;
+}
+
+/* SearchBar */
+
 .searchbar_create_chatroom {
   position: relative;
   width: 50%;

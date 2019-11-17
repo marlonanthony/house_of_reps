@@ -40,10 +40,20 @@ const ProfileSchema = new Schema({
   style: {
     type: String
   },
-  chatroomInvites: [{
-    type: Schema.Types.ObjectId,
-    ref: 'chatroom'
-  }],
+  chatroomInvites: [
+    {
+      id: {
+        type: Schema.Types.ObjectId,
+        ref: 'chatroom'
+      },
+      name: {
+        type: String
+      },
+      handle: {
+        type: String
+      }
+    }
+  ],
   chatroomMemberships: [
     {
       id: {
@@ -51,6 +61,9 @@ const ProfileSchema = new Schema({
         ref: 'chatroom'
       },
       name: {
+        type: String
+      },
+      handle: {
         type: String
       }
     }

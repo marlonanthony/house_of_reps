@@ -27,32 +27,69 @@ const DashboardContent = ({
           <Link to={`/profile/${profile.handle}`}>@{profile.handle}</Link>
           <ProfileActions user={user} />
         </div>
-        <div>
-          <h3>Chatrooms</h3>
-          <li
-            style={{
-              listStyle: 'none',
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              flexDirection: 'column'
-            }}
-          >
-            {profile.chatroomMemberships.map(cr => (
-              <ol
-                style={{
-                  border: '.3px solid var(--secondary-color)',
-                  width: 200,
-                  padding: 10,
-                  cursor: 'pointer'
-                }}
-                key={cr._id}
-                onClick={() => getChatroom(cr.id, props.history)}
-              >
-                {cr.name}
-              </ol>
-            ))}
-          </li>
+        <h3>Chatrooms</h3>
+        <div
+          className="dashboard_member_invite_container"
+          style={{
+            // remove and place in above className css file
+            display: 'flex',
+            justifyContent: 'space-evenly'
+          }}
+        >
+          <div>
+            Member
+            <li
+              style={{
+                listStyle: 'none',
+                display: 'flex',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                flexDirection: 'column'
+              }}
+            >
+              {profile.chatroomMemberships.map(cr => (
+                <ol
+                  style={{
+                    border: '.3px solid var(--secondary-color)',
+                    width: 200,
+                    padding: 10,
+                    cursor: 'pointer'
+                  }}
+                  key={cr._id}
+                  onClick={() => getChatroom(cr.id, props.history)}
+                >
+                  {cr.name}
+                </ol>
+              ))}
+            </li>
+          </div>
+          <div>
+            Invites
+            <li
+              style={{
+                listStyle: 'none',
+                display: 'flex',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                flexDirection: 'column'
+              }}
+            >
+              {profile.chatroomInvites.map(ci => (
+                <ol
+                  style={{
+                    border: '.3px solid var(--secondary-color)',
+                    width: 200,
+                    padding: 10,
+                    cursor: 'pointer'
+                  }}
+                  key={ci._id}
+                  onClick={() => getChatroom(ci.id, props.history)}
+                >
+                  {ci.name}
+                </ol>
+              ))}
+            </li>
+          </div>
         </div>
         <PromoContent user={user} profile={profile} />
         <Venues venues={profile.venues} />

@@ -1,7 +1,8 @@
 import {
   CREATE_CHATROOM,
   GET_CHATROOM,
-  CHATROOM_LOADING
+  CHATROOM_LOADING,
+  ACCEPT_CHATROOM_INVITE
 } from '../actions/types'
 
 const initialState = {
@@ -28,7 +29,15 @@ export default function(state = initialState, action) {
     case GET_CHATROOM:
       return {
         ...state,
-        chatroom: action.payload.chatroom,
+        chatroom: action.payload,
+        loading: false
+      }
+
+    case ACCEPT_CHATROOM_INVITE:
+      console.log(action.payload)
+      return {
+        ...state,
+        chatroom: action.payload,
         loading: false
       }
 

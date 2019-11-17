@@ -44,7 +44,7 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
       <div className="djpools_input_wrapper">
         <form onSubmit={onSubmit}>
           <Input
-            placeholder="Name"
+            placeholder="Give your chatroom a name"
             name="name"
             value={name}
             onChange={e => setName(e.target.value)}
@@ -81,6 +81,7 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
                 <ol key={person.id} className="create_chatroom_list_elements">
                   {person.name}{' '}
                   <span
+                    className="remove_chatroom_member_or_mod"
                     onClick={() =>
                       setInvites(p => p.filter(val => val.id !== person.id))
                     }
@@ -98,6 +99,7 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
               <ol key={person.id} className="create_chatroom_list_elements">
                 {person.name}{' '}
                 <span
+                  className="remove_chatroom_member_or_mod"
                   onClick={() =>
                     setModerators(m => m.filter(val => val.id !== person.id))
                   }
