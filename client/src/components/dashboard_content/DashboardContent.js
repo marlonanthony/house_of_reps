@@ -33,7 +33,8 @@ const DashboardContent = ({
           style={{
             // remove and place in above className css file
             display: 'flex',
-            justifyContent: 'space-evenly'
+            justifyContent: 'space-evenly',
+            flexWrap: 'wrap'
           }}
         >
           <div>

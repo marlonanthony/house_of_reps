@@ -36,18 +36,21 @@ function Chatroom({
         alt="back-button"
       />
       <h2>{name && name} chatroom</h2>
-      <p
-        onClick={() =>
-          acceptChatroomInvite(props.match.params.id, props.history)
-        }
-      >
-        {invite && 'Accept Invite'}
-      </p>
-      <li>
+      {invite && (
+        <button
+          style={{ cursor: 'pointer' }}
+          onClick={() =>
+            acceptChatroomInvite(props.match.params.id, props.history)
+          }
+        >
+          Accept Invite
+        </button>
+      )}
+      <li style={{ listStyle: 'none' }}>
         Members
         {members && members.map((member, i) => <ol key={i}>{member.name}</ol>)}
       </li>
-      <li>
+      <li style={{ listStyle: 'none' }}>
         Invited
         {invites && invites.map((person, i) => <ol key={i}>{person.name}</ol>)}
       </li>
@@ -57,6 +60,7 @@ function Chatroom({
 
 Chatroom.propTypes = {
   getChatroom: PropTypes.func.isRequired,
+  acceptChatroomInvite: PropTypes.func.isRequired,
   chatroom: PropTypes.object.isRequired
 }
 
