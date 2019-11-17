@@ -19,6 +19,14 @@ function Chatroom({
   }, [])
 
   const { name, members, invites } = chatroom.chatroom
+  const invite =
+    profile &&
+    profile.profile &&
+    profile.profile.chatroomInvites &&
+    profile.profile.chatroomInvites.filter(
+      i => i.id === chatroom.chatroom._id
+    )[0]
+
   return (
     <div>
       <i
@@ -33,7 +41,7 @@ function Chatroom({
           acceptChatroomInvite(props.match.params.id, props.history)
         }
       >
-        Accept Invite
+        {invite && 'Accept Invite'}
       </p>
       <li>
         Members
