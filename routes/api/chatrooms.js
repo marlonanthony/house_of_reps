@@ -14,9 +14,10 @@ router.post(
   async (req, res) => {
     const {name, invites, moderators} = req.body
     try {
+      const profile = await Profile.findOne({ user: req.user.id })
       const chatroom = await new Chatroom({
         name: name && name.trim(),
-        admin: req.user.id,
+        admin: { id: req.user.id, handle: profile.handle },
         invites,
         moderators
       })
@@ -48,7 +49,7 @@ router.get(
       if(!chatroom) return res.status(404).json({ error: 'Chatroom not found' })
       const myInvite = chatroom.invites.filter(person => String(person.id) === req.user.id)[0]
       const member = chatroom.members.filter(person => String(person.id) === req.user.id)[0]
-      if(String(chatroom.admin) !== req.user.id && !myInvite && !member) {
+      if(String(chatroom.admin.id) !== req.user.id && !myInvite && !member) {
         return res.status(401).json({ error: 'You can\'t sit with us' })
       }
       return res.json(chatroom)

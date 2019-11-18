@@ -18,13 +18,13 @@ function Chatroom({
     getChatroom(props.match.params.id)
   }, [])
 
-  const { name, members, invites } = chatroom.chatroom
+  const { name, members, invites, admin } = chatroom.chatroom
   const invite =
     profile &&
     profile.profile &&
     profile.profile.chatroomInvites &&
     profile.profile.chatroomInvites.filter(
-      i => i.id === chatroom.chatroom._id
+      me => me.id === chatroom.chatroom._id
     )[0]
 
   return (
@@ -46,6 +46,10 @@ function Chatroom({
           Accept Invite
         </button>
       )}
+      <li style={{ listStyle: 'none' }}>
+        Admin
+        <ol>{admin && admin.handle}</ol>
+      </li>
       <li style={{ listStyle: 'none' }}>
         Members
         {members && members.map((member, i) => <ol key={i}>{member.name}</ol>)}

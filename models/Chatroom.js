@@ -14,8 +14,13 @@ const ChatRoomSchema = new mongoose.Schema({
     type: String
   },
   admin: {
-    type: Schema.Types.ObjectId,
-    ref: 'users'
+    id: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
+    handle: {
+      type: String
+    }
   },
   moderators: [
     {
