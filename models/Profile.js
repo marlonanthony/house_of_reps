@@ -65,6 +65,10 @@ const ProfileSchema = new Schema({
       },
       handle: {
         type: String
+      },
+      moderator: {
+        type: Boolean,
+        default: false
       }
     }
   ],

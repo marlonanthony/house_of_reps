@@ -18,18 +18,19 @@ router.post(
       const chatroom = await new Chatroom({
         name: name && name.trim(),
         admin: { id: req.user.id, handle: profile.handle },
-        invites,
+        invites: [...invites, ...moderators],
         moderators
       })
       await chatroom.save()
       const invitesList = []
-      invites.forEach(val => invitesList.push(val.id))
+      invites.forEach(val => { invitesList.push(val.id) })
+      moderators.forEach(val => { invitesList.push(val.id) })
       // const profile = await Profile.updateMany({ user: { $in: invitesList}},
       //   {$push: { chatroomInvites: { name, id: chatroom._id }}})
       const profiles = await Profile.find({ user: { $in: invitesList }})
       profiles.forEach(async profile => {
         profile.chatroomInvites.push({ name, id: chatroom._id })
-        profile.save()
+        await profile.save()
         // add to notifications
       })
       return res.json(chatroom)
@@ -49,7 +50,8 @@ router.get(
       if(!chatroom) return res.status(404).json({ error: 'Chatroom not found' })
       const myInvite = chatroom.invites.filter(person => String(person.id) === req.user.id)[0]
       const member = chatroom.members.filter(person => String(person.id) === req.user.id)[0]
-      if(String(chatroom.admin.id) !== req.user.id && !myInvite && !member) {
+      const mod = chatroom.moderators.filter(person => String(person.id) === req.user.id)[0]
+      if(String(chatroom.admin.id) !== req.user.id && !myInvite && !member && !mod) {
         return res.status(401).json({ error: 'You can\'t sit with us' })
       }
       return res.json(chatroom)
@@ -84,6 +86,13 @@ router.post(
         await chatroom.save()
         
         profile.chatroomMemberships.push({ name: chatroom.name, id: req.params.id })
+        chatroom.moderators.map(mod => {
+          if(String(mod.id) === req.user.id){
+            profile.chatroomMemberships.forEach(mem => {
+              mem.moderator = true
+            })
+          }
+        })
         const i = profile.chatroomInvites.indexOf(req.params.id)
         profile.chatroomInvites.splice(i, 1)
         await profile.save()
