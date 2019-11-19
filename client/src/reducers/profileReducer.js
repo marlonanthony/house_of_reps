@@ -4,7 +4,8 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   LIKE_HIGHLIGHT,
-  ADD_PROMOS
+  ADD_PROMOS,
+  CREATE_CHATROOM
 } from '../actions/types'
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: action.payload,
+        loading: false
+      }
+    case CREATE_CHATROOM:
+      return {
+        ...state,
+        profile: action.payload.me,
         loading: false
       }
     default:

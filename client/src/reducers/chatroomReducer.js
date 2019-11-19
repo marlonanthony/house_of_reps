@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
     case CREATE_CHATROOM:
       return {
         ...state,
-        chatroom: action.payload,
+        chatroom: action.payload.chatroom,
         loading: false
       }
 

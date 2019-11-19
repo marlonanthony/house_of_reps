@@ -28,12 +28,18 @@ router.post(
       // const profile = await Profile.updateMany({ user: { $in: invitesList}},
       //   {$push: { chatroomInvites: { name, id: chatroom._id }}})
       const profiles = await Profile.find({ user: { $in: invitesList }})
-      profiles.forEach(async profile => {
-        profile.chatroomInvites.push({ name, id: chatroom._id })
-        await profile.save()
+      profiles.forEach(async person => {
+        person.chatroomInvites.push({ name, id: chatroom._id })
+        await person.save()
         // add to notifications
       })
-      return res.json(chatroom)
+      let me
+      profiles.map(p => {
+        if(String(p.user) === req.user.id) {
+          me = p
+        }
+      })
+      return res.json({chatroom, me})
     } catch (error) { return res.status(400).json({ error }) }
   }
 )

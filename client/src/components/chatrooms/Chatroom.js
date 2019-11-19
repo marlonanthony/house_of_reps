@@ -39,9 +39,7 @@ function Chatroom({
       {invite && (
         <button
           style={{ cursor: 'pointer' }}
-          onClick={() =>
-            acceptChatroomInvite(props.match.params.id, props.history)
-          }
+          onClick={() => acceptChatroomInvite(props.match.params.id)}
         >
           Accept Invite
         </button>
