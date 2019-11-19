@@ -13,11 +13,11 @@ export const createChatroom = (chatroomData, history) => async dispatch => {
   try {
     dispatch(chatroomLoading())
     const res = await axios.post(`/api/chat`, chatroomData)
+    history.push('/dashboard')
     dispatch({
       type: CREATE_CHATROOM,
       payload: res.data
     })
-    history.push('/dashboard')
   } catch (err) {
     dispatch({
       type: CREATE_CHATROOM,

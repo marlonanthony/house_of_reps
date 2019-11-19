@@ -6,7 +6,8 @@ import {
   LIKE_HIGHLIGHT,
   ADD_PROMOS,
   CREATE_CHATROOM,
-  DELETE_CHATROOM
+  DELETE_CHATROOM,
+  ACCEPT_CHATROOM_INVITE
 } from '../actions/types'
 
 const initialState = {
@@ -54,13 +55,19 @@ export default function(state = initialState, action) {
     case CREATE_CHATROOM:
       return {
         ...state,
-        profile: action.payload.me,
+        profile: action.payload.profile,
         loading: false
       }
     case DELETE_CHATROOM:
       return {
         ...state,
         profile: action.payload,
+        loading: false
+      }
+    case ACCEPT_CHATROOM_INVITE:
+      return {
+        ...state,
+        profile: action.payload.profile,
         loading: false
       }
     default:

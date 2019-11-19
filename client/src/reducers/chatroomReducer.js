@@ -37,7 +37,7 @@ export default function(state = initialState, action) {
     case ACCEPT_CHATROOM_INVITE:
       return {
         ...state,
-        chatroom: action.payload,
+        chatroom: action.payload.chatroom,
         loading: false
       }
 

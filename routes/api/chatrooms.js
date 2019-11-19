@@ -13,13 +13,19 @@ router.post(
   passport.authenticate('jwt', { session: false }), 
   async (req, res) => {
     const {name, invites, moderators} = req.body
+    const invitesAndMods = [...invites, ...moderators]
+    const arr = invitesAndMods.filter((person, index, arr) => 
+      index === arr.findIndex(t => 
+        t.id === person.id 
+    ))
     try {
       const profile = await Profile.findOne({ user: req.user.id })
       const chatroom = await new Chatroom({
         name: name && name.trim(),
         admin: { id: req.user.id, handle: profile.handle },
-        invites: [...invites, ...moderators],
-        moderators
+        invites: arr,
+        moderators,
+        members: [{id: req.user.id, name: profile.user.name, handle: profile.handle}]
       })
       await chatroom.save()
       const invitesList = []
@@ -33,13 +39,9 @@ router.post(
         await person.save()
         // add to notifications
       })
-      let me
-      profiles.map(p => {
-        if(String(p.user) === req.user.id) {
-          me = p
-        }
-      })
-      return res.json({chatroom, me})
+      profile.chatroomMemberships.push({name, id: chatroom._id})
+      await profile.save()
+      return res.json({chatroom, profile})
     } catch (error) { return res.status(400).json({ error }) }
   }
 )
@@ -102,7 +104,7 @@ router.post(
         const i = profile.chatroomInvites.indexOf(req.params.id)
         profile.chatroomInvites.splice(i, 1)
         await profile.save()
-        return res.json(chatroom)
+        return res.json({chatroom, profile})
       }
     } catch (err) {
       return res.status(400).json(err)

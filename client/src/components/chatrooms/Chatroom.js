@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import {
   getChatroom,
   acceptChatroomInvite,
   deleteChatroom
 } from '../../actions/chatroomActions'
+import { getCurrentProfile } from '../../actions/profileActions'
 
 function Chatroom({
   getChatroom,
@@ -14,12 +15,18 @@ function Chatroom({
   chatroom,
   profile,
   deleteChatroom,
+  getCurrentProfile,
   ...props
 }) {
-  const [errors, setErrors] = useState('')
+  const [errors, setErrors] = useState(''),
+    [accepted, setAccepted] = useState(false)
 
   useEffect(() => {
     getChatroom(props.match.params.id)
+  }, [])
+
+  useEffect(() => {
+    getCurrentProfile()
   }, [])
 
   useEffect(() => {
@@ -29,19 +36,17 @@ function Chatroom({
   }, [setErrors, chatroom.chatroom.err])
 
   const { name, members, invites, admin, _id } = chatroom.chatroom
+
   const invite =
-    profile &&
-    profile.profile &&
-    profile.profile.chatroomInvites &&
-    profile.profile.chatroomInvites.filter(
+    props.profiled &&
+    props.profiled.profile &&
+    props.profiled.profile.chatroomInvites &&
+    props.profiled.profile.chatroomInvites.filter(
       me => me.id === chatroom.chatroom._id
     )[0]
-  const userId =
-    profile &&
-    profile.profile &&
-    profile.profile.user &&
-    profile.profile.user._id
-  if (errors) return <div>{errors}</div>
+
+  if (errors) return <Redirect to="/dashboard" />
+  console.log(props)
   return (
     <div>
       <i
@@ -51,27 +56,41 @@ function Chatroom({
         alt="back-button"
       />
       <h2>{name && name} chatroom</h2>
-      {invite && (
+      {invite && !accepted && (
         <button
           style={{ cursor: 'pointer' }}
-          onClick={() => acceptChatroomInvite(props.match.params.id)}
+          onClick={() => {
+            setAccepted(true)
+            acceptChatroomInvite(props.match.params.id)
+          }}
         >
           Accept Invite
         </button>
       )}
       <li style={{ listStyle: 'none' }}>
         Admin
-        <ol>{admin && admin.handle}</ol>
+        <ol>{admin && '@' + admin.handle}</ol>
+      </li>
+
+      <li style={{ listStyle: 'none' }}>
+        Mods
+        {chatroom.chatroom &&
+          chatroom.chatroom.moderators &&
+          chatroom.chatroom.moderators.map(person => (
+            <ol>{person && '@' + person.handle}</ol>
+          ))}
       </li>
       <li style={{ listStyle: 'none' }}>
         Members
-        {members && members.map((member, i) => <ol key={i}>{member.name}</ol>)}
+        {members &&
+          members.map(member => <ol key={member._id}>@{member.handle}</ol>)}
       </li>
       <li style={{ listStyle: 'none' }}>
         Invited
-        {invites && invites.map((person, i) => <ol key={i}>{person.name}</ol>)}
+        {invites &&
+          invites.map(person => <ol key={person._id}>@{person.handle}</ol>)}
       </li>
-      {admin && admin.id === userId && (
+      {(admin && admin.id) === props.auth.user.id && (
         <button onClick={() => deleteChatroom(_id, props.history)}>
           Delete Chatroom
         </button>
@@ -85,15 +104,17 @@ Chatroom.propTypes = {
   acceptChatroomInvite: PropTypes.func.isRequired,
   deleteChatroom: PropTypes.func.isRequired,
   chatroom: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profiled: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   chatroom: state.chatroom,
-  profile: state.profile
+  profiled: state.profile,
+  auth: state.auth
 })
 
 export default connect(
   mapStateToProps,
-  { getChatroom, acceptChatroomInvite, deleteChatroom }
+  { getChatroom, acceptChatroomInvite, deleteChatroom, getCurrentProfile }
 )(withRouter(Chatroom))
