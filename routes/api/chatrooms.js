@@ -95,4 +95,24 @@ router.post(
   }
 )
 
+// @route         DELETE api/chat/:id
+// @desc          Delete chatroom
+// @access        Private
+router.delete(
+  '/:id', 
+  passport.authenticate('jwt', { session: false }), 
+  async(req, res) => {
+    try {
+      await Profile.updateMany({}, {$pull: { chatroomInvites: { id: req.params.id }}})
+      await Profile.updateMany({}, {$pull: { chatroomMemberships: { id: req.params.id }}})
+      const chatroom = await Chatroom.findById(req.params.id)
+      chatroom.remove()
+      const profile = await Profile.findOne({ user: req.user.id })
+      return res.json(profile)
+    } catch (err){
+      return res.status(404).json(err)
+    }
+  }
+)
+
 module.exports = router
