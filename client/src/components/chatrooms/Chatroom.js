@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -16,9 +16,17 @@ function Chatroom({
   deleteChatroom,
   ...props
 }) {
+  const [errors, setErrors] = useState('')
+
   useEffect(() => {
     getChatroom(props.match.params.id)
   }, [])
+
+  useEffect(() => {
+    if (chatroom.chatroom.err) {
+      setErrors(chatroom.chatroom.err.response.data.error)
+    }
+  }, [setErrors, chatroom.chatroom.err])
 
   const { name, members, invites, admin, _id } = chatroom.chatroom
   const invite =
@@ -33,6 +41,7 @@ function Chatroom({
     profile.profile &&
     profile.profile.user &&
     profile.profile.user._id
+  if (errors) return <div>{errors}</div>
   return (
     <div>
       <i
