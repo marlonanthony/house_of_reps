@@ -4,7 +4,8 @@ import {
   CREATE_CHATROOM,
   GET_CHATROOM,
   CHATROOM_LOADING,
-  ACCEPT_CHATROOM_INVITE
+  ACCEPT_CHATROOM_INVITE,
+  DELETE_CHATROOM
 } from './types'
 
 // Create Chatroom
@@ -56,6 +57,24 @@ export const acceptChatroomInvite = (id, history) => async dispatch => {
   } catch (err) {
     dispatch({
       type: ACCEPT_CHATROOM_INVITE,
+      payload: { err }
+    })
+  }
+}
+
+// Delete Chatroom
+export const deleteChatroom = (id, history) => async dispatch => {
+  try {
+    dispatch(chatroomLoading())
+    const res = await axios.delete(`/api/chat/${id}`)
+    history.push(`/dashboard`)
+    dispatch({
+      type: DELETE_CHATROOM,
+      payload: res.data
+    })
+  } catch (err) {
+    dispatch({
+      type: DELETE_CHATROOM,
       payload: { err }
     })
   }

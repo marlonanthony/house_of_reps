@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {
   getChatroom,
-  acceptChatroomInvite
+  acceptChatroomInvite,
+  deleteChatroom
 } from '../../actions/chatroomActions'
 
 function Chatroom({
@@ -12,13 +13,14 @@ function Chatroom({
   acceptChatroomInvite,
   chatroom,
   profile,
+  deleteChatroom,
   ...props
 }) {
   useEffect(() => {
     getChatroom(props.match.params.id)
   }, [])
 
-  const { name, members, invites, admin } = chatroom.chatroom
+  const { name, members, invites, admin, _id } = chatroom.chatroom
   const invite =
     profile &&
     profile.profile &&
@@ -26,7 +28,11 @@ function Chatroom({
     profile.profile.chatroomInvites.filter(
       me => me.id === chatroom.chatroom._id
     )[0]
-
+  const userId =
+    profile &&
+    profile.profile &&
+    profile.profile.user &&
+    profile.profile.user._id
   return (
     <div>
       <i
@@ -56,6 +62,11 @@ function Chatroom({
         Invited
         {invites && invites.map((person, i) => <ol key={i}>{person.name}</ol>)}
       </li>
+      {admin && admin.id === userId && (
+        <button onClick={() => deleteChatroom(_id, props.history)}>
+          Delete Chatroom
+        </button>
+      )}
     </div>
   )
 }
@@ -63,7 +74,9 @@ function Chatroom({
 Chatroom.propTypes = {
   getChatroom: PropTypes.func.isRequired,
   acceptChatroomInvite: PropTypes.func.isRequired,
-  chatroom: PropTypes.object.isRequired
+  deleteChatroom: PropTypes.func.isRequired,
+  chatroom: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -73,5 +86,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getChatroom, acceptChatroomInvite }
+  { getChatroom, acceptChatroomInvite, deleteChatroom }
 )(withRouter(Chatroom))
