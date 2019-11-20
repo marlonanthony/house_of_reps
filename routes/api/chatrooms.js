@@ -31,14 +31,9 @@ router.post(
       const invitesList = []
       invites.forEach(val => { invitesList.push(val.id) })
       moderators.forEach(val => { invitesList.push(val.id) })
-      // const profiles = await Profile.updateMany({ user: { $in: invitesList}},
-      //   {$push: { chatroomInvites: { name, id: chatroom._id }}})
-      const profiles = await Profile.find({ user: { $in: invitesList }})
-      profiles.forEach(async person => {
-        person.chatroomInvites.push({ name, id: chatroom._id })
-        await person.save()
-        // add to notifications
-      })
+      await Profile.updateMany({ user: { $in: invitesList}},
+        {$push: { chatroomInvites: { name, id: chatroom._id }}})
+      //   // add to notifications
       profile.chatroomMemberships.push({name, id: chatroom._id})
       await profile.save()
       return res.json({chatroom, profile})
