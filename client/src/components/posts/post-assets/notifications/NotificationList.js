@@ -47,6 +47,7 @@ const NotificationList = ({ notifications, postHandler }) =>
                 className="notification_post_content_image"
               />
             )}
+            {notification.chatroomName && <p>{notification.chatroomName}</p>}
             {notification.highlight && (
               <iframe
                 title="youtube"
