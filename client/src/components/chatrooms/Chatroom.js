@@ -46,7 +46,7 @@ function Chatroom({
     )[0]
 
   if (errors) return <Redirect to="/dashboard" />
-  console.log(props)
+
   return (
     <div>
       <i

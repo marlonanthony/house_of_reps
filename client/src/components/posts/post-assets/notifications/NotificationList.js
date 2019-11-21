@@ -1,8 +1,9 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import Moment from 'react-moment'
 import PropTypes from 'prop-types'
 
-const NotificationList = ({ notifications, postHandler }) =>
+const NotificationList = ({ notifications, postHandler, history }) =>
   notifications && (
     <div className="notifications">
       <h1 id="notifications_header">Notifications</h1>
@@ -49,7 +50,13 @@ const NotificationList = ({ notifications, postHandler }) =>
                 className="notification_post_content_image"
               />
             )}
-            {notification.chatroomName && <p>{notification.chatroomName}</p>}
+            {notification.chatroomName && (
+              <p
+                onClick={() => history.push(`/chat/${notification.chatroomId}`)}
+              >
+                {notification.chatroomName}
+              </p>
+            )}
             {notification.highlight && (
               <iframe
                 title="youtube"
@@ -138,7 +145,7 @@ NotificationList.propTypes = {
   postHandler: PropTypes.func.isRequired
 }
 
-export default NotificationList
+export default withRouter(NotificationList)
 
 //   31, 449, 600, 000 ms === 1 Year
 //    2, 592, 000, 000 ms === 1 Month (30 Days)
