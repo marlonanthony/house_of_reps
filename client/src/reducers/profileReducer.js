@@ -7,7 +7,8 @@ import {
   ADD_PROMOS,
   CREATE_CHATROOM,
   DELETE_CHATROOM,
-  ACCEPT_CHATROOM_INVITE
+  ACCEPT_CHATROOM_INVITE,
+  LEAVE_CHATROOM
 } from '../actions/types'
 
 const initialState = {
@@ -68,6 +69,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: action.payload.profile,
+        loading: false
+      }
+    case LEAVE_CHATROOM:
+      return {
+        ...state,
+        profile: action.payload.me,
         loading: false
       }
     default:

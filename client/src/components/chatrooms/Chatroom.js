@@ -7,7 +7,7 @@ import {
   acceptChatroomInvite,
   deleteChatroom
 } from '../../actions/chatroomActions'
-import { getCurrentProfile } from '../../actions/profileActions'
+import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 
 function Chatroom({
   getChatroom,
@@ -16,6 +16,7 @@ function Chatroom({
   profile,
   deleteChatroom,
   getCurrentProfile,
+  leaveChatroom,
   ...props
 }) {
   const [errors, setErrors] = useState(''),
@@ -44,6 +45,11 @@ function Chatroom({
     props.profiled.profile.chatroomInvites.filter(
       me => me.id === chatroom.chatroom._id
     )[0]
+
+  const member =
+    chatroom.chatroom &&
+    chatroom.chatroom.members &&
+    chatroom.chatroom.members.filter(me => me.id === props.auth.user.id)[0]
 
   if (errors) return <Redirect to="/dashboard" />
 
@@ -95,6 +101,13 @@ function Chatroom({
           Delete Chatroom
         </button>
       )}
+      {member && (
+        <button
+          onClick={() => leaveChatroom(chatroom.chatroom._id, props.history)}
+        >
+          Leave Chatroom
+        </button>
+      )}
     </div>
   )
 }
@@ -116,5 +129,11 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getChatroom, acceptChatroomInvite, deleteChatroom, getCurrentProfile }
+  {
+    getChatroom,
+    acceptChatroomInvite,
+    deleteChatroom,
+    getCurrentProfile,
+    leaveChatroom
+  }
 )(withRouter(Chatroom))

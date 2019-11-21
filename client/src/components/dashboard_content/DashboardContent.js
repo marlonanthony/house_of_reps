@@ -48,20 +48,21 @@ const DashboardContent = ({
                 flexDirection: 'column'
               }}
             >
-              {profile.chatroomMemberships.map(cr => (
-                <ol
-                  style={{
-                    border: '.3px solid var(--secondary-color)',
-                    width: 200,
-                    padding: 10,
-                    cursor: 'pointer'
-                  }}
-                  key={cr._id}
-                  onClick={() => getChatroom(cr.id, props.history)}
-                >
-                  {cr.name}
-                </ol>
-              ))}
+              {profile.chatroomMemberships &&
+                profile.chatroomMemberships.map(cr => (
+                  <ol
+                    style={{
+                      border: '.3px solid var(--secondary-color)',
+                      width: 200,
+                      padding: 10,
+                      cursor: 'pointer'
+                    }}
+                    key={cr._id}
+                    onClick={() => getChatroom(cr.id, props.history)}
+                  >
+                    {cr.name}
+                  </ol>
+                ))}
             </li>
           </div>
           <div>

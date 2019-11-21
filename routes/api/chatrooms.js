@@ -157,11 +157,14 @@ router.delete(
     try {
       const profile = await Profile.updateOne(
         { user: req.user.id }, 
-        {$pull: { chatroomMemberships: { id: req.params.chatId }}})
+        {$pull: { chatroomMemberships: { id: req.params.chatId }}}
+      )
       await Chatroom.updateOne(
         {_id: req.params.chatId},
-        {$pull: { members: { id: req.user.id } }})
-      return res.json({ profile })
+        {$pull: { members: { id: req.user.id } }}
+      )
+      const me = await Profile.findOne({ user: req.user.id })
+      return res.json({ me })
     } catch (err){
       return res.status(401).json(err)
     }

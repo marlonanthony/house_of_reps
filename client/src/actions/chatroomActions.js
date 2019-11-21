@@ -5,7 +5,8 @@ import {
   GET_CHATROOM,
   CHATROOM_LOADING,
   ACCEPT_CHATROOM_INVITE,
-  DELETE_CHATROOM
+  DELETE_CHATROOM,
+  LEAVE_CHATROOM
 } from './types'
 
 // Create Chatroom

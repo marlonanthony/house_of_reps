@@ -7,7 +7,8 @@ import {
   SET_CURRENT_USER,
   GET_PROFILES,
   LIKE_HIGHLIGHT,
-  ADD_PROMOS
+  ADD_PROMOS,
+  LEAVE_CHATROOM
 } from './types'
 
 // Get current profile
@@ -265,6 +266,24 @@ export const deleteAccount = () => async dispatch => {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data
+    })
+  }
+}
+
+// Leave Chatroom
+export const leaveChatroom = (chatId, history) => async dispatch => {
+  try {
+    dispatch(setProfileLoading())
+    history.push('/dashboard')
+    const res = await axios.delete(`/api/chat/profile/${chatId}`)
+    dispatch({
+      type: LEAVE_CHATROOM,
+      payload: res.data
+    })
+  } catch (err) {
+    dispatch({
+      type: LEAVE_CHATROOM,
+      payload: { err }
     })
   }
 }
