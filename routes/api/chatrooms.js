@@ -22,13 +22,13 @@ router.post(
       const profile = await Profile.findOne({ user: req.user.id })
       const chatroom = await new Chatroom({
         name: name && name.trim(),
-        admin: { id: req.user.id, handle: profile.handle },
+        admin: { id: req.user.id, handle: req.user.handle, name: req.user.name },
         invites: arr,
         moderators,
         members: [{
           id: req.user.id, 
-          name: profile.user.name, 
-          handle: profile.handle
+          name: req.user.name, 
+          handle: req.user.handle
         }]
       })
       await chatroom.save()
@@ -127,6 +127,49 @@ router.post(
   }
 )
 
+// @route         PUT api/chat/:id
+// @desc          Edit chatroom
+// @access        Private
+router.put(
+  '/:id', 
+  passport.authenticate('jwt', { session: false }),
+  async(req, res) => {
+    try {
+      const chatroom = await Chatroom.findById(req.params.id)
+      const mods = chatroom.moderators.filter(mod => String(mod.id) === req.user.id)[0]
+      
+      if(String(chatroom.admin.id) !== req.user.id && !mods){
+        return res.status(401).json({ error: 'Unauthorized' })
+      }
+      if(req.body.invites) {
+        req.body.invites.forEach(invite => {
+          const member = chatroom.members.filter(mem => String(mem.id) === invite.id)[0]
+          const invited = chatroom.invites.filter(i => String(i.id) === invite.id)[0]
+          if(!member && !invited) {
+            chatroom.invites.push({
+              id: invite.id,
+              name: invite.name,
+              handle: invite.handle
+            })
+          }
+          const modd = chatroom.moderators.filter(m => String(m.id) === invite.id)[0]
+          if(invite.mod && !modd){
+            chatroom.moderators.push({
+              id: invite.id,
+              name: invite.name,
+              handle: invite.handle
+            })
+          }
+        })
+      }
+      await chatroom.save()
+      return res.json({ chatroom })
+    } catch(err){
+      return res.status(401).json(err)
+    }
+  }
+)
+
 // @route         DELETE api/chat/:id
 // @desc          Delete chatroom
 // @access        Private
@@ -155,7 +198,7 @@ router.delete(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const profile = await Profile.updateOne(
+      await Profile.updateOne(
         { user: req.user.id }, 
         {$pull: { chatroomMemberships: { id: req.params.chatId }}}
       )
@@ -163,6 +206,7 @@ router.delete(
         {_id: req.params.chatId},
         {$pull: { members: { id: req.user.id } }}
       )
+      // TODO: remove from mods array as well
       const me = await Profile.findOne({ user: req.user.id })
       return res.json({ me })
     } catch (err){

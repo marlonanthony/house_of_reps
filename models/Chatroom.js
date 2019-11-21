@@ -20,6 +20,9 @@ const ChatRoomSchema = new mongoose.Schema({
     },
     handle: {
       type: String
+    },
+    name: {
+      type: String
     }
   },
   moderators: [
