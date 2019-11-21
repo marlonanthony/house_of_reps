@@ -1,5 +1,5 @@
 import React from 'react'
-import MobileNotifications from '../notifications/MobileNotifications'
+import MobileNotifications from '../../../../pages/notifications/MobileNotifications'
 
 export default function MobileIcons({
   profile,

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
-import { getPost } from '../../../../actions/postActions'
+import { getPost } from '../../actions/postActions'
 import ShowPost from './ShowPost'
 import NotificationList from './NotificationList'
 import './Notifications.css'

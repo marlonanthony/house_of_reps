@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal'
-import PostText from '../text/PostText'
-import Backdrop from '../../../UI/backdrop/Backdrop'
+import HighlightsModal from '../../components/UI/modal/highlights-modal/HighlightsModal'
+import PostText from '../../components/posts/post-assets/text/PostText'
+import Backdrop from '../../components/UI/backdrop/Backdrop'
 
 const ShowPost = ({ post, showPost, setShowPost, youtubeUrl }) => {
   const ref = useRef()
