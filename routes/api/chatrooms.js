@@ -25,7 +25,11 @@ router.post(
         admin: { id: req.user.id, handle: profile.handle },
         invites: arr,
         moderators,
-        members: [{id: req.user.id, name: profile.user.name, handle: profile.handle}]
+        members: [{
+          id: req.user.id, 
+          name: profile.user.name, 
+          handle: profile.handle
+        }]
       })
       await chatroom.save()
       const invitesList = []
@@ -33,7 +37,17 @@ router.post(
       moderators.forEach(val => { invitesList.push(val.id) })
       await Profile.updateMany({ user: { $in: invitesList}},
         {$push: { chatroomInvites: { name, id: chatroom._id }}})
-      //   // add to notifications
+      // add to notifications
+      const message = `${req.user.name} invited you to join a chatroom!`
+      await Profile.updateMany({ user: { $in: invitesList }},
+        {$push: { notifications: {
+          user: req.user.id,
+          name: req.user.name,
+          avatar: req.user.avatar,
+          chatroomId: chatroom._id,
+          chatroomName: name && name.trim(),
+          message
+        }}})
       profile.chatroomMemberships.push({name, id: chatroom._id})
       await profile.save()
       return res.json({chatroom, profile})

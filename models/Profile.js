@@ -238,6 +238,12 @@ const ProfileSchema = new Schema({
       commentId: {
         type: String
       },
+      chatroomId: {
+        type: String
+      },
+      chatroomName: {
+        type: String
+      },
       message: {
         type: String
       },
