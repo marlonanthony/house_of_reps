@@ -89,19 +89,27 @@ router.post(
       const chatroom = await Chatroom.findById(req.params.id)
       if(!chatroom) return res.status(404).json({ error: 'Chatroom not found' })
       const myInvite = chatroom.invites.filter(person => String(person.id) === req.user.id)[0]
-      const member = chatroom.members.filter(person => String(person.id) === req.user.id)[0]
-      if(String(chatroom.admin) !== req.user.id && !myInvite && !member) {
-        return res.status(401).json({ error: 'You can\'t sit with us' })
-      }
+      if(!myInvite) return res.status(401).json({ error: 'You can\'t sit with us' })
       const profile = await Profile.findOne({ user: req.user.id })
       if(myInvite && req.user.id === String(myInvite.id)) {
+        // remove invite and add member to chatroom
         const index = chatroom.invites
         .map((obj, i) => String(obj.id) === req.user.id && i)
         .filter(val => val)[0]
         chatroom.invites.splice(index, 1)
         chatroom.members.push(myInvite)
         await chatroom.save()
-        
+        // notify chatroom admin that a user accepted invite
+        const admin = await Profile.findOne({ user: chatroom.admin.id})
+        admin.notifications.push({
+          avatar: req.user.avatar,
+          name: req.user.name,
+          chatroomId: chatroom._id,
+          chatroomName: chatroom.name && chatroom.name.trim(),
+          message: `${req.user.name} accepted your invite to chatroom ${chatroom.name && chatroom.name}!`
+        })
+        await admin.save()
+        // place chatroom in users profile
         profile.chatroomMemberships.push({ name: chatroom.name, id: req.params.id })
         chatroom.moderators.map(mod => {
           if(String(mod.id) === req.user.id){

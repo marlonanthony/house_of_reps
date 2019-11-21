@@ -24,7 +24,9 @@ const NotificationList = ({ notifications, postHandler }) =>
             {notification.message && (
               <p>
                 <span className="notification_message">
-                  {notification.message}
+                  {notification.message.length >= 47
+                    ? notification.message.slice(0, 50) + '...'
+                    : notification.message}
                 </span>
               </p>
             )}
