@@ -77,7 +77,7 @@ function Chatroom({
         {chatroom.chatroom &&
           chatroom.chatroom.moderators &&
           chatroom.chatroom.moderators.map(person => (
-            <ol>{person && '@' + person.handle}</ol>
+            <ol key={person._id}>{person && '@' + person.handle}</ol>
           ))}
       </li>
       <li style={{ listStyle: 'none' }}>

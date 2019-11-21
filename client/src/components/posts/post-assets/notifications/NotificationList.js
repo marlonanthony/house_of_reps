@@ -142,7 +142,8 @@ const NotificationList = ({ notifications, postHandler, history }) =>
 
 NotificationList.propTypes = {
   notifications: PropTypes.array.isRequired,
-  postHandler: PropTypes.func.isRequired
+  postHandler: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default withRouter(NotificationList)

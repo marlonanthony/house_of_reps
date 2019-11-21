@@ -89,40 +89,38 @@ router.post(
       const chatroom = await Chatroom.findById(req.params.id)
       if(!chatroom) return res.status(404).json({ error: 'Chatroom not found' })
       const myInvite = chatroom.invites.filter(person => String(person.id) === req.user.id)[0]
-      if(!myInvite) return res.status(401).json({ error: 'You can\'t sit with us' })
+      if(!myInvite || req.user.id !== String(myInvite.id)) return res.status(401).json({ error: 'You can\'t sit with us' })
+      // remove invite and add member to chatroom
+      const index = chatroom.invites
+      .map((obj, i) => String(obj.id) === req.user.id && i)
+      .filter(val => val)[0]
+      chatroom.invites.splice(index, 1)
+      chatroom.members.push(myInvite)
+      await chatroom.save()
+      // notify chatroom admin that a user accepted invite
+      const admin = await Profile.findOne({ user: chatroom.admin.id})
+      admin.notifications.push({
+        avatar: req.user.avatar,
+        name: req.user.name,
+        chatroomId: chatroom._id,
+        chatroomName: chatroom.name && chatroom.name.trim(),
+        message: `${req.user.name} accepted your invite to chatroom ${chatroom.name && chatroom.name}!`
+      })
+      await admin.save()
+      // place chatroom in users profile
       const profile = await Profile.findOne({ user: req.user.id })
-      if(myInvite && req.user.id === String(myInvite.id)) {
-        // remove invite and add member to chatroom
-        const index = chatroom.invites
-        .map((obj, i) => String(obj.id) === req.user.id && i)
-        .filter(val => val)[0]
-        chatroom.invites.splice(index, 1)
-        chatroom.members.push(myInvite)
-        await chatroom.save()
-        // notify chatroom admin that a user accepted invite
-        const admin = await Profile.findOne({ user: chatroom.admin.id})
-        admin.notifications.push({
-          avatar: req.user.avatar,
-          name: req.user.name,
-          chatroomId: chatroom._id,
-          chatroomName: chatroom.name && chatroom.name.trim(),
-          message: `${req.user.name} accepted your invite to chatroom ${chatroom.name && chatroom.name}!`
-        })
-        await admin.save()
-        // place chatroom in users profile
-        profile.chatroomMemberships.push({ name: chatroom.name, id: req.params.id })
-        chatroom.moderators.map(mod => {
-          if(String(mod.id) === req.user.id){
-            profile.chatroomMemberships.forEach(mem => {
-              mem.moderator = true
-            })
-          }
-        })
-        const i = profile.chatroomInvites.indexOf(req.params.id)
-        profile.chatroomInvites.splice(i, 1)
-        await profile.save()
-        return res.json({chatroom, profile})
-      }
+      profile.chatroomMemberships.push({ name: chatroom.name, id: req.params.id })
+      chatroom.moderators.map(mod => {
+        if(String(mod.id) === req.user.id){
+          profile.chatroomMemberships.forEach(mem => {
+            mem.moderator = true
+          })
+        }
+      })
+      const i = profile.chatroomInvites.indexOf(req.params.id)
+      profile.chatroomInvites.splice(i, 1)
+      await profile.save()
+      return res.json({chatroom, profile})
     } catch (err) {
       return res.status(400).json(err)
     }
@@ -145,6 +143,27 @@ router.delete(
       return res.json(profile)
     } catch (err){
       return res.status(404).json(err)
+    }
+  }
+)
+
+// @route        DELETE api/chat/profile/:chatId
+// @desc         Remove chatroom from profile and user from chatroom members
+// @access       Private
+router.delete(
+  '/profile/:chatId',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const profile = await Profile.updateOne(
+        { user: req.user.id }, 
+        {$pull: { chatroomMemberships: { id: req.params.chatId }}})
+      await Chatroom.updateOne(
+        {_id: req.params.chatId},
+        {$pull: { members: { id: req.user.id } }})
+      return res.json({ profile })
+    } catch (err){
+      return res.status(401).json(err)
     }
   }
 )
