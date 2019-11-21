@@ -101,7 +101,7 @@ function Chatroom({
           Delete Chatroom
         </button>
       )}
-      {member && (
+      {member && member.id !== chatroom.chatroom.admin.id && (
         <button
           onClick={() => leaveChatroom(chatroom.chatroom._id, props.history)}
         >
