@@ -128,10 +128,10 @@ router.post(
 )
 
 // @route         PUT api/chat/:id
-// @desc          Edit chatroom
+// @desc          Add people to chatroom
 // @access        Private
 router.put(
-  '/:id', 
+  '/add_members/:id', 
   passport.authenticate('jwt', { session: false }),
   async(req, res) => {
     try {
@@ -141,8 +141,9 @@ router.put(
       if(String(chatroom.admin.id) !== req.user.id && !mods){
         return res.status(401).json({ error: 'Unauthorized' })
       }
-      if(req.body.invites) {
-        req.body.invites.forEach(invite => {
+
+      if(req.body) {
+        req.body.forEach(invite => {
           const member = chatroom.members.filter(mem => String(mem.id) === invite.id)[0]
           const invited = chatroom.invites.filter(i => String(i.id) === invite.id)[0]
           if(!member && !invited) {
@@ -152,15 +153,23 @@ router.put(
               handle: invite.handle
             })
           }
-          const modd = chatroom.moderators.filter(m => String(m.id) === invite.id)[0]
-          if(invite.mod && !modd){
-            chatroom.moderators.push({
-              id: invite.id,
-              name: invite.name,
-              handle: invite.handle
-            })
-          }
         })
+        // Add invite to users profile
+        const invitesList = []
+        req.body.forEach(val => { invitesList.push(val.id) })
+        await Profile.updateMany({ user: { $in: invitesList}},
+          {$push: { chatroomInvites: { name: chatroom.name.trim(), id: chatroom._id }}})
+        // Notify users that they've been invited to chatroom
+        const message = `${req.user.name} invited you to join a chatroom!`
+        await Profile.updateMany({ user: { $in: invitesList }},
+          {$push: { notifications: {
+            user: req.user.id,
+            name: req.user.name,
+            avatar: req.user.avatar,
+            chatroomId: chatroom._id,
+            chatroomName: chatroom.name && chatroom.name.trim(),
+            message
+          }}})
       }
       await chatroom.save()
       return res.json({ chatroom })

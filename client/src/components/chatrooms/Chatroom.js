@@ -5,7 +5,8 @@ import { withRouter, Redirect } from 'react-router-dom'
 import {
   getChatroom,
   acceptChatroomInvite,
-  deleteChatroom
+  deleteChatroom,
+  addMembers
 } from '../../actions/chatroomActions'
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 import SearchReps from '../../pages/add-promos/create_chatroom/SearchReps'
@@ -18,12 +19,14 @@ function Chatroom({
   deleteChatroom,
   getCurrentProfile,
   leaveChatroom,
+  addMembers,
   ...props
 }) {
   const [errors, setErrors] = useState(''),
     [accepted, setAccepted] = useState(false),
     [showForm, setShowForm] = useState(false),
-    [inviteMore, setInviteMore] = useState([])
+    [inviteMore, setInviteMore] = useState([]),
+    [makeMod, setMakeMod] = useState(false)
 
   useEffect(() => {
     getChatroom(props.match.params.id)
@@ -123,36 +126,48 @@ function Chatroom({
           Leave Chatroom
         </button>
       )}
+      {/* allow mods to add people */}
       {(admin && admin.id) === props.auth.user.id && (
-        <button
-          onClick={() => {
-            console.log(chatroom.chatroom._id)
-            setShowForm(val => !val)
-          }}
-        >
-          Edit chatroom
-        </button>
+        <button onClick={() => setShowForm(val => !val)}>Edit chatroom</button>
       )}
       {showForm && (
         <div>
-          <SearchReps
-            profiles={props.profiled.profiles}
-            setInvites={setInviteMore}
-            placeholder="Invite Members"
-          />
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              addMembers(chatroom.chatroom._id, inviteMore)
+            }}
+          >
+            <SearchReps
+              profiles={props.profiled.profiles}
+              setInvites={setInviteMore}
+              placeholder="Invite Members"
+            />
+
+            {inviteMore && (
+              <ul>
+                {inviteMore.map(m => (
+                  <li
+                    key={m.id}
+                    onClick={() =>
+                      setInviteMore(prev => [
+                        ...prev,
+                        {
+                          id: m.id,
+                          name: m.name,
+                          handle: m.handle
+                        }
+                      ])
+                    }
+                  >
+                    {m.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <button>Submit</button>
+          </form>
         </div>
-      )}
-      {inviteMore && showForm && (
-        <ol>
-          {inviteMore.map(m => (
-            <li key={m._id}>
-              {m.name}:{' '}
-              <label>
-                Make @{m.handle} a mod? <input type="checkbox" />
-              </label>
-            </li>
-          ))}
-        </ol>
       )}
     </div>
   )
@@ -164,7 +179,10 @@ Chatroom.propTypes = {
   deleteChatroom: PropTypes.func.isRequired,
   chatroom: PropTypes.object.isRequired,
   profiled: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  leaveChatroom: PropTypes.func.isRequired,
+  addMembers: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -180,6 +198,7 @@ export default connect(
     acceptChatroomInvite,
     deleteChatroom,
     getCurrentProfile,
-    leaveChatroom
+    leaveChatroom,
+    addMembers
   }
 )(withRouter(Chatroom))

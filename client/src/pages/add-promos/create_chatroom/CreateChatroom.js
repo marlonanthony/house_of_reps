@@ -75,10 +75,10 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
       <div className="invites_mods_container">
         <div className="create_chatroom_card">
           <p className="create_chatroom_titles">Members</p>
-          <li>
+          <ul>
             {invites &&
               invites.map(person => (
-                <ol key={person.id} className="create_chatroom_list_elements">
+                <li key={person.id} className="create_chatroom_list_elements">
                   {person.name}{' '}
                   <span
                     className="remove_chatroom_member_or_mod"
@@ -88,15 +88,15 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
                   >
                     x
                   </span>
-                </ol>
+                </li>
               ))}
-          </li>
+          </ul>
         </div>
         <div className="create_chatroom_card">
           <p className="create_chatroom_titles">Moderators</p>
-          <li>
+          <ul>
             {moderators.map(person => (
-              <ol key={person.id} className="create_chatroom_list_elements">
+              <li key={person.id} className="create_chatroom_list_elements">
                 {person.name}{' '}
                 <span
                   className="remove_chatroom_member_or_mod"
@@ -106,9 +106,9 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
                 >
                   x
                 </span>
-              </ol>
+              </li>
             ))}
-          </li>
+          </ul>
         </div>
       </div>
     </div>

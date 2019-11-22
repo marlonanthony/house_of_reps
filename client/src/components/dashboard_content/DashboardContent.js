@@ -39,7 +39,7 @@ const DashboardContent = ({
         >
           <div>
             Member
-            <li
+            <ul
               style={{
                 listStyle: 'none',
                 display: 'flex',
@@ -50,7 +50,7 @@ const DashboardContent = ({
             >
               {profile.chatroomMemberships &&
                 profile.chatroomMemberships.map(cr => (
-                  <ol
+                  <li
                     style={{
                       border: '.3px solid var(--secondary-color)',
                       width: 200,
@@ -61,13 +61,13 @@ const DashboardContent = ({
                     onClick={() => getChatroom(cr.id, props.history)}
                   >
                     {cr.name}
-                  </ol>
+                  </li>
                 ))}
-            </li>
+            </ul>
           </div>
           <div>
             Invites
-            <li
+            <ul
               style={{
                 listStyle: 'none',
                 display: 'flex',
@@ -77,7 +77,7 @@ const DashboardContent = ({
               }}
             >
               {profile.chatroomInvites.map(ci => (
-                <ol
+                <li
                   style={{
                     border: '.3px solid var(--secondary-color)',
                     width: 200,
@@ -88,9 +88,9 @@ const DashboardContent = ({
                   onClick={() => getChatroom(ci.id, props.history)}
                 >
                   {ci.name}
-                </ol>
+                </li>
               ))}
-            </li>
+            </ul>
           </div>
         </div>
         <PromoContent user={user} profile={profile} />

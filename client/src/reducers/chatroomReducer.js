@@ -3,7 +3,8 @@ import {
   GET_CHATROOM,
   CHATROOM_LOADING,
   ACCEPT_CHATROOM_INVITE,
-  DELETE_CHATROOM
+  DELETE_CHATROOM,
+  ADD_CHATROOM_MEMBERS
 } from '../actions/types'
 
 const initialState = {
@@ -48,6 +49,13 @@ export default function(state = initialState, action) {
         loading: false
       }
 
+    case ADD_CHATROOM_MEMBERS:
+      console.log(action.payload)
+      return {
+        ...state,
+        chatroom: action.payload.chatroom,
+        loading: false
+      }
     default:
       return state
   }
