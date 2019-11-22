@@ -206,7 +206,10 @@ router.delete(
         {_id: req.params.chatId},
         {$pull: { members: { id: req.user.id } }}
       )
-      // TODO: remove from mods array as well
+      await Chatroom.updateOne(
+        {_id: req.params.chatId},
+        {$pull: { moderators: { id: req.user.id}}}
+      )
       const me = await Profile.findOne({ user: req.user.id })
       return res.json({ me })
     } catch (err){
