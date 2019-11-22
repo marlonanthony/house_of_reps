@@ -66,6 +66,7 @@
   font-size: 35px;
   text-decoration: none;
   color: #ccc;
+  cursor: pointer;
 }
 
 #addvenue-back-button:hover {

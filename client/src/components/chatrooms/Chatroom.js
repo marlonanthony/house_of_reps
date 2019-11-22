@@ -57,6 +57,11 @@ function Chatroom({
     chatroom.chatroom.members &&
     chatroom.chatroom.members.filter(me => me.id === props.auth.user.id)[0]
 
+  const mods =
+    chatroom.chatroom &&
+    chatroom.chatroom.moderators &&
+    chatroom.chatroom.moderators.filter(me => me.id === props.auth.user.id)[0]
+
   if (errors) return <Redirect to="/dashboard" />
 
   return (
@@ -126,8 +131,7 @@ function Chatroom({
           Leave Chatroom
         </button>
       )}
-      {/* allow mods to add people */}
-      {(admin && admin.id) === props.auth.user.id && (
+      {((admin && admin.id) === props.auth.user.id || (mods && member)) && (
         <button onClick={() => setShowForm(val => !val)}>Edit chatroom</button>
       )}
       {showForm && (
@@ -174,12 +178,12 @@ function Chatroom({
 }
 
 Chatroom.propTypes = {
-  getChatroom: PropTypes.func.isRequired,
-  acceptChatroomInvite: PropTypes.func.isRequired,
-  deleteChatroom: PropTypes.func.isRequired,
   chatroom: PropTypes.object.isRequired,
   profiled: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  getChatroom: PropTypes.func.isRequired,
+  acceptChatroomInvite: PropTypes.func.isRequired,
+  deleteChatroom: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   leaveChatroom: PropTypes.func.isRequired,
   addMembers: PropTypes.func.isRequired

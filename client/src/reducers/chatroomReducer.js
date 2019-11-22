@@ -50,7 +50,6 @@ export default function(state = initialState, action) {
       }
 
     case ADD_CHATROOM_MEMBERS:
-      console.log(action.payload)
       return {
         ...state,
         chatroom: action.payload.chatroom,

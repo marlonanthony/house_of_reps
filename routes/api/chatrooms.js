@@ -188,17 +188,17 @@ router.put(
 // @route         PUT api/chat/add_mods/:id
 // @desc          Add Moderators to chatroom
 // @access        Private
-// router.put(
-//   '/add_mods/:id',
-//   passport.authenticate('jwt', { session: false }), 
-//   async(req, res) => {
-//     try {
+router.put(
+  '/add_mods/:id',
+  passport.authenticate('jwt', { session: false }), 
+  async(req, res) => {
+    try {
       
-//     } catch (err) {
-//       return res.status(400).json(err)
-//     }
-//   }
-// )
+    } catch (err) {
+      return res.status(400).json(err)
+    }
+  }
+)
 
 // @route         DELETE api/chat/:id
 // @desc          Delete chatroom
