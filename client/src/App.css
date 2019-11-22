@@ -49,7 +49,9 @@ a { color: var(--secondary-color); }
 input {
   -webkit-appearance: none;
 }
-
+input[type=checkbox] {
+  -webkit-appearance: checkbox;
+}
 .invalid-feedback { color: red; }
 
 /* background: #050c14;   */

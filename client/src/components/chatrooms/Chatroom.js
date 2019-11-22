@@ -8,6 +8,7 @@ import {
   deleteChatroom
 } from '../../actions/chatroomActions'
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
+import SearchReps from '../../pages/add-promos/create_chatroom/SearchReps'
 
 function Chatroom({
   getChatroom,
@@ -20,7 +21,9 @@ function Chatroom({
   ...props
 }) {
   const [errors, setErrors] = useState(''),
-    [accepted, setAccepted] = useState(false)
+    [accepted, setAccepted] = useState(false),
+    [showForm, setShowForm] = useState(false),
+    [inviteMore, setInviteMore] = useState([])
 
   useEffect(() => {
     getChatroom(props.match.params.id)
@@ -108,6 +111,32 @@ function Chatroom({
           Leave Chatroom
         </button>
       )}
+      {(admin && admin.id) === props.auth.user.id && (
+        <button
+          onClick={() => {
+            console.log(chatroom.chatroom._id)
+            setShowForm(val => !val)
+          }}
+        >
+          Edit chatroom
+        </button>
+      )}
+      {showForm && (
+        <div>
+          <SearchReps
+            profiles={props.profiled.profiles}
+            setInvites={setInviteMore}
+            placeholder="Invite Members"
+          />
+        </div>
+      )}
+      {inviteMore &&
+        inviteMore.map(m => (
+          <div key={m._id} style={{ display: 'flex', alignItems: 'center' }}>
+            <p>{m.handle}</p>
+            <input type="checkbox" />
+          </div>
+        ))}
     </div>
   )
 }
