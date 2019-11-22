@@ -143,9 +143,15 @@ router.put(
       }
 
       if(req.body) {
-        req.body.forEach(invite => {
+        // remove duplicates if any in req.body array
+        const arr = req.body.filter((person, index, arr) => 
+          index === arr.findIndex(t => 
+            t.id === person.id 
+        ))
+        arr.forEach(invite => {
           const member = chatroom.members.filter(mem => String(mem.id) === invite.id)[0]
           const invited = chatroom.invites.filter(i => String(i.id) === invite.id)[0]
+
           if(!member && !invited) {
             chatroom.invites.push({
               id: invite.id,
@@ -156,7 +162,7 @@ router.put(
         })
         // Add invite to users profile
         const invitesList = []
-        req.body.forEach(val => { invitesList.push(val.id) })
+        arr.forEach(val => { invitesList.push(val.id) })
         await Profile.updateMany({ user: { $in: invitesList}},
           {$push: { chatroomInvites: { name: chatroom.name.trim(), id: chatroom._id }}})
         // Notify users that they've been invited to chatroom
@@ -178,6 +184,21 @@ router.put(
     }
   }
 )
+
+// @route         PUT api/chat/add_mods/:id
+// @desc          Add Moderators to chatroom
+// @access        Private
+// router.put(
+//   '/add_mods/:id',
+//   passport.authenticate('jwt', { session: false }), 
+//   async(req, res) => {
+//     try {
+      
+//     } catch (err) {
+//       return res.status(400).json(err)
+//     }
+//   }
+// )
 
 // @route         DELETE api/chat/:id
 // @desc          Delete chatroom
