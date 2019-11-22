@@ -76,29 +76,41 @@ function Chatroom({
           Accept Invite
         </button>
       )}
-      <li style={{ listStyle: 'none' }}>
+      <ul style={{ listStyle: 'none', padding: 10 }}>
         Admin
-        <ol>{admin && '@' + admin.handle}</ol>
-      </li>
+        <li style={{ paddingLeft: 10, fontSize: 14 }}>
+          {admin && '@' + admin.handle}
+        </li>
+      </ul>
 
-      <li style={{ listStyle: 'none' }}>
+      <ul style={{ listStyle: 'none', padding: 10 }}>
         Mods
         {chatroom.chatroom &&
           chatroom.chatroom.moderators &&
           chatroom.chatroom.moderators.map(person => (
-            <ol key={person._id}>{person && '@' + person.handle}</ol>
+            <li style={{ paddingLeft: 10, fontSize: 14 }} key={person._id}>
+              {person && '@' + person.handle}
+            </li>
           ))}
-      </li>
-      <li style={{ listStyle: 'none' }}>
+      </ul>
+      <ul style={{ listStyle: 'none', padding: 10 }}>
         Members
         {members &&
-          members.map(member => <ol key={member._id}>@{member.handle}</ol>)}
-      </li>
-      <li style={{ listStyle: 'none' }}>
+          members.map(member => (
+            <li style={{ paddingLeft: 10, fontSize: 14 }} key={member._id}>
+              @{member.handle}
+            </li>
+          ))}
+      </ul>
+      <ul style={{ listStyle: 'none', padding: 10 }}>
         Invited
         {invites &&
-          invites.map(person => <ol key={person._id}>@{person.handle}</ol>)}
-      </li>
+          invites.map(person => (
+            <li style={{ paddingLeft: 10, fontSize: 14 }} key={person._id}>
+              @{person.handle}
+            </li>
+          ))}
+      </ul>
       {(admin && admin.id) === props.auth.user.id && (
         <button onClick={() => deleteChatroom(_id, props.history)}>
           Delete Chatroom
@@ -130,13 +142,18 @@ function Chatroom({
           />
         </div>
       )}
-      {inviteMore &&
-        inviteMore.map(m => (
-          <div key={m._id} style={{ display: 'flex', alignItems: 'center' }}>
-            <p>{m.handle}</p>
-            <input type="checkbox" />
-          </div>
-        ))}
+      {inviteMore && showForm && (
+        <ol>
+          {inviteMore.map(m => (
+            <li key={m._id}>
+              {m.name}:{' '}
+              <label>
+                Make @{m.handle} a mod? <input type="checkbox" />
+              </label>
+            </li>
+          ))}
+        </ol>
+      )}
     </div>
   )
 }

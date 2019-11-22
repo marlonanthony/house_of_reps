@@ -74,7 +74,7 @@ export default function(state = initialState, action) {
     case LEAVE_CHATROOM:
       return {
         ...state,
-        profile: action.payload.me,
+        profile: action.payload.profile,
         loading: false
       }
     default:

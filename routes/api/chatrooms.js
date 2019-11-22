@@ -191,7 +191,7 @@ router.delete(
 )
 
 // @route        DELETE api/chat/profile/:chatId
-// @desc         Remove chatroom from profile and user from chatroom members
+// @desc         Leave Chatroom
 // @access       Private
 router.delete(
   '/profile/:chatId',
@@ -210,8 +210,8 @@ router.delete(
         {_id: req.params.chatId},
         {$pull: { moderators: { id: req.user.id}}}
       )
-      const me = await Profile.findOne({ user: req.user.id })
-      return res.json({ me })
+      const profile = await Profile.findOne({ user: req.user.id })
+      return res.json({ profile })
     } catch (err){
       return res.status(401).json(err)
     }
