@@ -139,7 +139,11 @@ function Chatroom({
           <form
             onSubmit={e => {
               e.preventDefault()
-              addMembers(chatroom.chatroom._id, inviteMore)
+              const noDups = inviteMore.filter(
+                (person, index, arr) =>
+                  index === arr.findIndex(t => t.id === person.id)
+              )
+              addMembers(chatroom.chatroom._id, noDups)
             }}
           >
             <SearchReps

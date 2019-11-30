@@ -144,8 +144,8 @@ router.put(
 
       if(req.body) {
         // remove duplicates if any in req.body array
-        const arr = req.body.filter((person, index, arr) => 
-          index === arr.findIndex(t => 
+        const arr = req.body.filter((person, index, array) => 
+          index === array.findIndex(t => 
             t.id === person.id 
         ))
         arr.forEach(invite => {
@@ -163,6 +163,8 @@ router.put(
         // Add invite to users profile
         const invitesList = []
         arr.forEach(val => { invitesList.push(val.id) })
+        // compare invitesList to chatroomInvitesstyles
+        // figure out how to add multiple filters to updateMany
         await Profile.updateMany({ user: { $in: invitesList}},
           {$push: { chatroomInvites: { name: chatroom.name.trim(), id: chatroom._id }}})
         // Notify users that they've been invited to chatroom

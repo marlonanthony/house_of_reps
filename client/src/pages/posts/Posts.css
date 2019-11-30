@@ -4,13 +4,26 @@
   padding-top: 100px;
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto 1fr;
   grid-template-areas:
-    'mobile_icons mobile_icons'
-    'postform postform'
-    'btns btns'
-    'post-feed-post-content post-feed-post-content' 
+    'chatroom'
+    'mobile_icons'
+    'postform'
+    'btns'
+    'post-feed-post-content' 
+}
+
+.chatroom {
+  grid-area: chatroom;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border: .5px solid var(--border-color);
+  border-radius: 5px;
+  position: relative;
 }
 
 .edit_icon_container {
@@ -33,8 +46,6 @@
 .post-feed-post-content {
   grid-area: post-feed-post-content;
 }
-
-.chatroom { display: none; }
 .post-feed-highlights { display: none; }
 .img_test { display: none; }
 .stores_container { display: none; }
@@ -68,7 +79,7 @@
   cursor: pointer;
 }
 
-/* Figure out if you want to display highlights on mobie/tablet */
+/* Figure out if you want to display highlights on mobile/tablet */
 /*  or just use a toggle icon and remove this from */
 /* venueItems & Highlights */
 /* .postfeed_highlights_mobile::-webkit-scrollbar {
@@ -257,18 +268,6 @@
     width: 250px;
     height: 250px;
     overflow-x: hidden;
-  }
-
-  .chatroom {
-    grid-area: chatroom;
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    max-height: 350px;
-    overflow: hidden;
-    border: .5px solid var(--border-color);
-    border-radius: 5px;
-    position: relative;
   }
 
   .post-feed-footer {

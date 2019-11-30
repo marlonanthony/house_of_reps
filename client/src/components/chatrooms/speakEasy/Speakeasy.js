@@ -69,9 +69,17 @@ export default function Speakeasy({ handle, onlineCount }) {
       </div>
       <div id="chat-window">
         <div id="output">
-          {output.map((val, i) => (
-            <p key={i}>{val}</p>
-          ))}
+          {output.map((val, i) => {
+            const [arr1, arr2] = val.split(':')
+            return (
+              <p key={i}>
+                <span style={{ color: 'var(--secondary-color)' }}>
+                  @{arr1}:
+                </span>{' '}
+                {arr2}
+              </p>
+            )
+          })}
           <small id="feedback">{feedback}</small>
         </div>
       </div>
