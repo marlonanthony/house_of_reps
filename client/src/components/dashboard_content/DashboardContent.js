@@ -43,9 +43,10 @@ const DashboardContent = ({
               style={{
                 listStyle: 'none',
                 display: 'flex',
-                justifyContent: 'space-around',
+                justifyContent: 'center',
                 alignItems: 'center',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                padding: 10
               }}
             >
               {profile.chatroomMemberships &&
@@ -71,9 +72,10 @@ const DashboardContent = ({
               style={{
                 listStyle: 'none',
                 display: 'flex',
-                justifyContent: 'space-around',
+                justifyContent: 'center',
                 alignItems: 'center',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                padding: 10
               }}
             >
               {profile.chatroomInvites.map(ci => (

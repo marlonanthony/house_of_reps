@@ -177,6 +177,9 @@ function Chatroom({
           </form>
         </div>
       )}
+      <section>
+        <h2>Chat</h2>
+      </section>
     </div>
   )
 }
