@@ -53,10 +53,11 @@ const DashboardContent = ({
                 profile.chatroomMemberships.map(cr => (
                   <li
                     style={{
-                      border: '.3px solid var(--secondary-color)',
+                      // border: '.3px solid var(--secondary-color)',
                       width: 200,
                       padding: 10,
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      color: 'var(--secondary-color)'
                     }}
                     key={cr._id}
                     onClick={() => getChatroom(cr.id, props.history)}
@@ -81,10 +82,11 @@ const DashboardContent = ({
               {profile.chatroomInvites.map(ci => (
                 <li
                   style={{
-                    border: '.3px solid var(--secondary-color)',
+                    // border: '.3px solid var(--secondary-color)',
                     width: 200,
                     padding: 10,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    color: 'var(--secondary-color)'
                   }}
                   key={ci._id}
                   onClick={() => getChatroom(ci.id, props.history)}
