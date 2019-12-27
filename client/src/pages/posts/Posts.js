@@ -48,7 +48,7 @@ class Posts extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.onlineCount !== this.state.onlineCount) {
+    if (prevProps.onlineCount !== this.props.onlineCount) {
       this.setState({ onlineCount: prevProps.onlineCount })
     }
   }
