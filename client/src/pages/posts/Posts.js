@@ -47,7 +47,7 @@ class Posts extends Component {
     this.setState({ onlineCount: JSON.parse(localStorage.getItem('count')) })
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.onlineCount !== this.props.onlineCount) {
       this.setState({ onlineCount: prevProps.onlineCount })
     }
