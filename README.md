@@ -1,7 +1,7 @@
 # House of Reps
 ## Social network for DJs. 
 
-[Temp website](https://fathomless-escarpment-28544.herokuapp.com). 
+[Temp website](https://fathomless-escarpment-28544.herokuapp.com)
 
 This app is in development and being hosted on a free Heroku account. Free Heroku apps sleep automatically after 30 mins of inactivity and wake when a web request is received. This 'waking' can take a few seconds so give it a moment to render (especially if you're signing up for a new account and confirming your email).
 
