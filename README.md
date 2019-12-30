@@ -1,5 +1,5 @@
 # House of Reps
-## Social network for DJs. 
+## Social network for DJs
 
 [Temp website](https://fathomless-escarpment-28544.herokuapp.com)
 
