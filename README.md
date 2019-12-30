@@ -53,7 +53,7 @@ When landing on the profile page depending on whether you're on mobile, tablet, 
 
 ## Feed
 
-Like every page in this app, things will look different depending on the device being used. The key features of the newsfeed are: 
+Like every page in this app, things will look different depending on the users device. The key features of the newsfeed are: 
 
 1. Search posts by hashtag
 1. Create post
