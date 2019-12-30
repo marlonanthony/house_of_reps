@@ -77,7 +77,7 @@ Like every page in this app, things will look different depending on the users d
     * Informs the user if they have any new notifications and displays the count.
     * Clicking on the bell will navigate the user to the notifications page where they can learn more about each new notification.
 1. Posts
-    * Each post can be edited by clicking on the more-vert icon in the top right of the post. You can only edit the text.
+    * Each post can be edited by clicking on the more-vert icon in the top right of the post.
     * Each post has comments which in-turn can have their own comments. Comments and nested comments can both be edited by the publisher of said comment/nested comment.
     * Each post/comment has the creators username, avatar, and date created listed in the upper left corner. If you hover over the username, a dropdown menu will appear displaying info about the user.
     * In the bottom left corner either four or five icons will be presented depending on if you're the creator of the post/comment:
