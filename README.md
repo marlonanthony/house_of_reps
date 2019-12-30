@@ -7,7 +7,18 @@ This app is in development and being hosted on a free Heroku account. Free Herok
 
 ## Dashboard
 
-Once logged in, you'll be confronted with the Dashboard page. What you see on this page largely depends on if you're an admin of the site. Whether an admin or not, you'll see a few labels/icons: Edit Profile, Add Media, and Create Chatroom. Admins will see a few additional labels/icons: Add Store, Add DJ Pool, Add Perk, Add Brand.
+Once logged in, you'll be confronted with the Dashboard page. What you'll see on this page largely depends on if you're an admin of the site. Whether an admin or not, you'll see a few labels/icons: 
+
+  1. Edit Profile 
+  1. Add Media 
+  1. Create Chatroom
+
+Admins will see a few additional labels/icons: 
+
+  1. Add Store 
+  1. Add DJ Pool 
+  1. Add Perk 
+  1. Add Brand
 
 Afterwards, there will be a list of chatrooms that you're either a member of or have been invited two.
 
