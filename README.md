@@ -34,7 +34,7 @@ From your dashboard you can use the hamburger menu to navigate anywhere you'd li
 
 ## Profile Page
 
-When landing on the profile page depending on whether you're on mobile, tablet, or desktop, you'll see things a bit differently. That said, no matter the device used, there'll be three core sections presented: 
+When landing on the profile page depending on whether you're on mobile, tablet, or desktop; you'll see things a bit differently. That said, no matter the device, there'll be three core sections presented: 
 
 1. User Info
     * Name
@@ -66,6 +66,7 @@ Like every page in this app, things will look different depending on the device 
 1. Search Members (Might remove now that I've added the 'Reps' page which you can navigate to from the hamburger menu)
 1. Recently uploaded media
     * Displays a single upload (video/song/playlist) from every user ordered by recency
+    * If the user clicks on the 'House of Reps' icon in the bottom right of the uploaded media, an uninterrupted modal will appear that will allow the user to navigate different pages without their music/video experience being interrupted.
 1. Promotional section (Stores, Brands, Perks, Music Pools)
 1. Speakeasy
     * Real time chat messenger that doesn't save to a database. Messages only exist in memory; hence, the name speakeasy.
@@ -76,15 +77,15 @@ Like every page in this app, things will look different depending on the device 
     * Informs the user if they have any new notifications and displays the count.
     * Clicking on the bell will navigate the user to the notifications page where they can learn more about each new notification.
 1. Posts
-    * Each posts can be edited by clicking on the more-vert icon in the top right of the post. You can only edit the text.
+    * Each post can be edited by clicking on the more-vert icon in the top right of the post. You can only edit the text.
     * Each post has comments which in-turn can have their own comments. Comments and nested comments can both be edited by the publisher of said comment/nested comment.
     * Each post/comment has the creators username, avatar, and date created listed in the upper left corner. If you hover over the username, a dropdown menu will appear displaying info about the user.
     * In the bottom left corner either four or five icons will be presented depending on if you're the creator of the post/comment:
         1. Like icon
         1. Remove Like icon
-        1. Expand comments icon
-        1. Write comment icon
-        1. Delete post/comment icon (if you're the creator of said post or comment)
+        1. Expand Comments icon
+        1. Write Comment icon
+        1. Delete Post/Comment icon (if you're the creator of said post or comment)
 
 ## Reps
 
