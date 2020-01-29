@@ -120,10 +120,10 @@
       'searchbarpost postform searchbar'
       'profile btns postfeedhighlights'
       'profile post-feed-post-content postfeedhighlights'
-      'chatroom post-feed-post-content stores'
-      'chatroom post-feed-post-content brands'
-      'footer post-feed-post-content perks'
-      'footer post-feed-post-content djpools'; 
+      'chatroom post-feed-post-content djpools'
+      'chatroom post-feed-post-content perks'
+      'footer post-feed-post-content brands'
+      'footer post-feed-post-content stores'; 
   }
 
   .mobile_icons_container { display: none; }

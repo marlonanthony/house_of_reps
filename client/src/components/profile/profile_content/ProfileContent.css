@@ -52,8 +52,8 @@
 
 #profile-handle {
   margin-top: -15px;
-  font-size: 13px;
-  color: var(--secondary-color);
+  font-size: 12px;
+  color: var(--reps-blue);
 }
 
 #profile-bio {
@@ -64,7 +64,7 @@
 
 #profile-location {
   font-size: 15px;
-  color: var(--secondary-color);
+  color: var(--reps-blue);
 }
 
 #profile-icons-container {
