@@ -58,14 +58,15 @@
   grid-area: btns;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   cursor: pointer;
 }
 .postfeed_reps_btns img {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  flex: 1;
+  margin: 2px;
 }
 
 .mobile_icons_container {
@@ -97,8 +98,15 @@
   padding: 5px;
   text-align: center;
   border: none;
-  color: var(--secondary-color);
+  color: var(--reps-blue);
   font-size: 12px;
+}
+
+@media (min-width: 600px){
+  .postfeed_reps_btns img {
+    height: 60px;
+    max-width: 100px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -126,16 +134,10 @@
 
   .postfeed_reps_btns {
     grid-area: btns;
-    height: 40px;
     width: 620px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
   .postfeed_reps_btns img {
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
+    height: 60px;
   }
 
   .searchbar {
@@ -173,12 +175,13 @@
     outline: none;
     padding-left: 5px;
     font-size: 13px;
-    background: none;
+    /* background: rgba(0,0,0,0.89); */
+    background: var(--lighter);
     border: none;
-    color: var(--text-color);
+    color: var(--deep-color);
   }
   .searchbar_input::placeholder {
-    color: var(--secondary-color);
+    color: var(--deep-color);
   }
 
   .searchbarpost {
@@ -192,9 +195,9 @@
   
   .searchbarpostinput {
     flex: 8; 
-    background: none;
+    background: var(--lighter);
     border: 0.5px solid var(--border-color); 
-    color: var(--text-color);
+    color: var(0,0,0);
     font-size: 13px;
     padding-left: 5px;
     outline: none;
@@ -202,6 +205,7 @@
   .searchbarpostinput::placeholder {
     font-size: 13px;
     padding-left: 5px;
+    color: black;
   }
   
   .searchbarpostbtn {
@@ -227,6 +231,10 @@
     height: 250px;
     margin-top: -30px;
     border: .5px solid var(--border-color);
+    /* background-image: url('../../img/landingpic.jpg'); */
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .post-feed-highlights {

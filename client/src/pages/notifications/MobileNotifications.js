@@ -7,7 +7,7 @@ const MobileNotifications = ({ profile, ...props }) => {
     <div className="notifications_on_mobile">
       <button
         className="post-profile-notifications"
-        style={{ border: 'none' }}
+        style={{ border: 'none', background: 'none' }}
         onClick={() => props.history.push('/notifications')}
         title="notifications"
       >

@@ -34,7 +34,7 @@ export default function PostFeedPopup(props) {
               >
                 {post.name}
               </span>
-              <small>{profile.bio}</small>
+              <small className="popup_bio">{profile.bio}</small>
               <a
                 href={profile.website}
                 target="_blank"
@@ -67,7 +67,7 @@ export default function PostFeedPopup(props) {
               >
                 {comment.name}
               </span>
-              <small>{profile.bio}</small>
+              <small className="popup_bio">{profile.bio}</small>
               <a
                 href={profile.website}
                 target="_blank"

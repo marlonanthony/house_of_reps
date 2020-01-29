@@ -1,6 +1,11 @@
 #chatroom-header {
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
+  background: var(--reps-blue);
   min-height: 50px;
+}
+
+.chatroom {
+  background: var(--deep-color);
 }
 
 #chat-window::-webkit-scrollbar {
@@ -50,16 +55,16 @@
 
 #chat_message {
   flex: 1;
-  background: var(--primary-color);
+  background: var(--shallow-color);
   color: var(--text-color);
   padding: 10px;
   margin: 1px;
   margin-right: 0;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--reps-blue);
 }
 
 #chat_submit_button {
-  background: var(--secondary-color);
+  background: var(--reps-blue);
   border: none;
   cursor: pointer;
 }

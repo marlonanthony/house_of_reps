@@ -25,7 +25,7 @@ const PostFeedPopup = ({ showPopup, setShowPopup, profile, user }) => (
         <Link to={`/profile/${profile.handle}`}>
           <span>{user.name}</span>
         </Link>
-        <p style={{ cursor: 'text' }}>{profile.bio}</p>
+        <p className="popup_bio">{profile.bio}</p>
         <a href={profile.website} target="_blank" rel="noopener noreferrer">
           <p>{profile.website && profile.website}</p>
         </a>

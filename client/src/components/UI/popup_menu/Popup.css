@@ -14,7 +14,7 @@
   visibility: hidden;
   width: 175px;
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--text-color);
   text-align: center;
   border: 0.4px solid var(--border-color);
   padding: 8px 0;
@@ -60,7 +60,7 @@
   height: 250px;
   font-size: 12px;
   background-color: var(--primary-color);
-  color: var(--secondary-color);
+  color: var(--reps-blue);
   border: 1px solid var(--border-color);
   position: absolute;
   z-index: 100;
@@ -90,8 +90,8 @@
 }
 
 .popup_likes {
-  font-size: 12px; 
-  color: var(--secondary-color);
+  font-size: 14px; 
+  color: var(--reps-blue);
   padding: 10px 0px;
 }
 
@@ -100,6 +100,7 @@
   height: 25px; 
   margin-right: 10px;
   border-radius: 50%;
+  border: 1px solid var(--secondary-color);
 }
 
 .popup-profile-img {
@@ -107,11 +108,12 @@
   height: 50px; 
   margin: 5px 0;
   border-radius: 50%;
-  border: 2px solid var(--secondary-color);
+  border: 2px solid var(--reps-blue);
 }
 
+/* postfeed  profile handle popup*/
 .popup > a > p {
-  color: var(--secondary-color); 
+  color: var(--reps-blue); 
   font-size: 13px;
 }
 
@@ -122,18 +124,22 @@
   align-items: center;
   flex-direction: column;
 }
+.popup_bio {
+  cursor: text;
+}
 .postfeed_popup_profile_info > small {
   padding-top: 10px;
 }
 .postfeed_popup_profile_info > p {
   font-size: 13px;
 }
+/* website */
 .postfeed_popup_profile_info > a > p {
-  color: var(--secondary-color); 
+  color: var(--reps-blue); 
   font-size: 13px;
 }
-
+/* popup Name */
 .popupcontent span {
-  color: var(--secondary-color); 
+  color: var(--reps-blue);
   font-size: 13px;
 }

@@ -2,6 +2,7 @@
   width: 100%;
   border: .5px solid var(--border-color);
   border-radius: 5px;
+  background: black;
 }
 
 .text-area {

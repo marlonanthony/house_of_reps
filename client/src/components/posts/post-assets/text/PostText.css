@@ -1,14 +1,14 @@
 .post_text_mentions {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--reps-blue);
 }
 
 .post_text_hashtags {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--reps-blue);
 }
 
 .post_text_urls {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--reps-blue);
 }

@@ -4,20 +4,21 @@
   align-items: center;
   flex-wrap: wrap;
   list-style: none;
-  color: rgb(225, 225, 255);
+  color: var(--deep-color);
 }
 
 .create_chatroom_card {
   background: var(--secondary-color);
   width: 300px;
   min-height: 400px;
+  margin: 10px;
 }
 
 .create_chatroom_titles {
   text-align: center;
   letter-spacing: 3px;
   font-style: italic;
-  color: black;
+  color: var(--deep-color);
 }
 
 .create_chatroom_list_elements {

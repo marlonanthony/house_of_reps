@@ -27,9 +27,14 @@ const PostFeedProfileContent = ({
           toggleShowHighlight={toggleShowHighlight}
           showLikesHandler={showLikesHandler}
         />
-        <div className="post-feed-profile">
+        <div
+          className="post-feed-profile"
+          style={{
+            backgroundImage: `url(${profile && profile.avatar})`
+          }}
+        >
           <div>
-            <div className="post-profile-avatar-container">
+            {/* <div className="post-profile-avatar-container">
               <Link
                 style={{ textDecoration: 'none' }}
                 to={`/profile/${profile.handle}`}
@@ -40,7 +45,8 @@ const PostFeedProfileContent = ({
                   alt={user.name}
                 />
               </Link>
-            </div>
+            </div> */}
+            <div style={{ paddingBottom: 130 }}></div>
             <div className="post-profile-popup-and-buttons-container">
               <PostsProfilePopup
                 setShowPopup={setShowPopup}

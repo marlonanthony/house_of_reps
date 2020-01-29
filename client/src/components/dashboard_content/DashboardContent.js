@@ -24,7 +24,14 @@ const DashboardContent = ({
     dashboardContent = (
       <div style={{ textAlign: 'center' }}>
         <div className="handle_actions_container">
-          <Link to={`/profile/${profile.handle}`}>@{profile.handle}</Link>
+          <Link
+            to={`/profile/${profile.handle}`}
+            style={{
+              color: 'var(--reps-blue)'
+            }}
+          >
+            @{profile.handle}
+          </Link>
           <ProfileActions user={user} />
         </div>
         <h3>Chatrooms</h3>

@@ -28,8 +28,8 @@
 .post-profile-liked-posts-liked {
   padding: 7px 25px;
   flex: 1;
-  background: var(--secondary-color);
-  color: rgb(225,225,225); 
+  background: var(--lighter);
+  color: var(--deep-color); 
   cursor: pointer;
   border: .5px solid var(--border-color);
   outline: none;
@@ -38,10 +38,11 @@
 .post-profile-liked-posts-unliked {
   padding: 7px 25px;
   flex: 1;
-  background: none;
+  background: rgba(0,0,0,0.9);
   color: var(--secondary-color);
   cursor: pointer;
   border: 0.5px solid var(--border-color);
+  /* border: none; */
   outline: none;
 }
 
@@ -49,10 +50,12 @@
     padding: 7px 25px;
     margin: 0px 2px;
     flex: 1;
-    background: none;
+    background: rgba(0,0,0,0.9);
     color: var(--secondary-color);
     cursor: pointer;
     border: 0.5px solid var(--border-color);
+    /* border: none; */
+
     outline: none;
 }
 #post-profile-add-media-link {
@@ -63,10 +66,11 @@
 .post-profile-notifications {
   position: relative;
   padding: 7px 25px;
-  background: none;
+  background: rgba(0,0,0,0.9);
   color: var(--secondary-color);
   cursor: pointer;
   border: 0.5px solid var(--border-color);
+  /* border: none; */
   outline: none;
 }
 

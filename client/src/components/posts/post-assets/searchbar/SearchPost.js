@@ -14,8 +14,8 @@ const SearchPost = ({ onChange, hashtag, showHashtags, showPostByHashtag }) => (
     {showHashtags ? (
       <button
         style={{
-          background: 'var(--secondary-color)',
-          color: 'var(--text-color)'
+          background: 'var(--lighter)',
+          color: 'var(--deep-color)'
         }}
         className="searchbarpostbtn"
         onClick={showPostByHashtag}
