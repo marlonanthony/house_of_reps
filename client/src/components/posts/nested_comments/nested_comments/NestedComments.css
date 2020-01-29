@@ -1,13 +1,13 @@
 .nested_comments {
-  margin-top: 10px;
-  background: var(--nested-comments-color);
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 .nested_comments_container {
   margin: 10px 0px;
   padding: 10px;
-  /* border: .5px solid #222; */
   border-radius: 10px;
-  box-shadow: 5px 10px 20px rgba(0,0,0,0.3), 5px 10px 10px rgba(0,0,0,0.3) ;
+  background: var(--nested-comments-color);
+  box-shadow: 1px 1px 1px rgba(50,50,50,0.1), 1px 1px 1px rgba(50,50,50,0.1) ;
   /* border: .5px solid var(--border-color); */
 }
