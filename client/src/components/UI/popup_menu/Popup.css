@@ -126,12 +126,13 @@
 }
 .popup_bio {
   cursor: text;
+  font-size: 12px;
 }
 .postfeed_popup_profile_info > small {
   padding-top: 10px;
 }
 .postfeed_popup_profile_info > p {
-  font-size: 13px;
+  font-size: 12px;
 }
 /* website */
 .postfeed_popup_profile_info > a > p {

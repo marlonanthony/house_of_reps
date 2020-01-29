@@ -30,7 +30,7 @@ const App = () => {
   const [showHighlight, setShowHighlight] = useState(false),
     [currentIndex, setCurrentIndex] = useState(0)
 
-  const toggleShowHighlight = index => {
+  const toggleShowHighlight = (index = 0) => {
     setCurrentIndex(index)
     setShowHighlight(!showHighlight)
   }

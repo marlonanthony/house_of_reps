@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import PostItem from '../post_item/PostItem'
 
 const PostFeed = ({ posts, profiles }) => (
-  <div style={{ overflow: 'hidden' }}>
+  <div style={{ overflow: 'hidden', borderRadius: 10 }}>
     {!posts.length ? (
       <div style={{ textAlign: 'center' }}>
         These are not the posts you're looking for.
