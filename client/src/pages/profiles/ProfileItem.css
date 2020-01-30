@@ -32,7 +32,6 @@
 
 @media(max-width: 400px) {
   .djs_profile_card {
-    width: 90vw;
     margin: 10px 0px;
   }
 } 
