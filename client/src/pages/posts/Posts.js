@@ -92,7 +92,10 @@ class Posts extends Component {
     if (tag.length) this.setState({ hashtag: tag })
     this.setState(
       prevState => ({
-        showHashtags: !prevState.showHashtags,
+        showHashtags:
+          prevState.hashtag === this.state.hashtag
+            ? !prevState.showHashtags
+            : true,
         start: 1
       }),
       () => {
@@ -128,7 +131,11 @@ class Posts extends Component {
         />
         <PostForm showPreview={showPreview} />
         <SearchBar profiles={profiles} />
-        <Buttons showPostByHashtag={this.showPostByHashtag} />
+        <Buttons
+          showPostByHashtag={this.showPostByHashtag}
+          hashtag={hashtag}
+          showHashtags={showHashtags}
+        />
         <PostFeedProfileContent
           profile={profile}
           user={user}
