@@ -2,47 +2,37 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import ProfileActions from './ProfileActions'
+import HandleAndActions from './handle_and_actions/HandleAndActions'
 import Venues from './venues/Venues'
 import PromoContent from './PromoContent'
 import ChatroomSection from './chatroom_section/ChatroomSection'
 import DeleteProfileBtn from './delete_profile_btn/DeleteProfileBtn'
 
 const DashboardContent = ({ profile, loading, user }) => {
-  let dashboardContent
-
-  if (loading) dashboardContent = null
+  if (loading) return null
   else if (Object.keys(profile).length) {
-    dashboardContent = (
-      <div style={{ textAlign: 'center' }}>
-        <div className="handle_actions_container">
-          <Link
-            to={`/profile/${profile.handle}`}
-            style={{
-              color: 'var(--reps-blue)'
-            }}
-          >
-            @{profile.handle}
-          </Link>
-          <ProfileActions user={user} />
+    return (
+      <div id="dashboard">
+        <div style={{ textAlign: 'center' }}>
+          <HandleAndActions profile={profile} user={user} />
+          <ChatroomSection profile={profile} />
+          <PromoContent user={user} profile={profile} />
+          <Venues venues={profile.venues} />
+          <DeleteProfileBtn />
         </div>
-        <ChatroomSection profile={profile} />
-        <PromoContent user={user} profile={profile} />
-        <Venues venues={profile.venues} />
-        <DeleteProfileBtn />
       </div>
     )
   } else {
-    dashboardContent = (
-      <div className="dashboard_no_profile">
-        <p>{user.name}</p>
-        <p>You have not yet set up a profile, please add some info</p>
-        <Link to="/create-profile">Create Profile</Link>
+    return (
+      <div id="dashboard">
+        <div className="dashboard_no_profile">
+          <p>{user.name}</p>
+          <p>You have not yet set up a profile, please add some info</p>
+          <Link to="/create-profile">Create Profile</Link>
+        </div>
       </div>
     )
   }
-
-  return <div id="dashboard">{dashboardContent}</div>
 }
 
 DashboardContent.propTypes = {
