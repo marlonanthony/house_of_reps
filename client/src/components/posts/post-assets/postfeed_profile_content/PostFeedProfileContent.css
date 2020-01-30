@@ -25,28 +25,31 @@
 }
 
 .post-profile-liked-posts-liked {
-  background: var(--lighter);
-  color: var(--deep-color); 
+  background: rgba(0,0,0,0.65);
+  color: var(--reps-blue); 
   cursor: pointer;
-  border: .5px solid var(--border-color);
+  border: none;
   outline: none;
+  border-radius: 5px;
 }
 
 .post-profile-liked-posts-unliked {
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.65);
   color: var(--secondary-color);
   cursor: pointer;
-  border: 0.5px solid var(--border-color);
+  border: none;
   outline: none;
+  border-radius: 5px;
 }
 
 .post-profile-add-media {
     margin: 0px 5px;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.65);
     color: var(--secondary-color);
     cursor: pointer;
-    border: 0.5px solid var(--border-color);
+    border: none;
     outline: none;
+    border-radius: 5px;
 }
 #post-profile-add-media-link {
   text-decoration: none; 
@@ -56,11 +59,12 @@
 .post-profile-notifications {
   position: relative;
   padding: 10px 25px;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.65);
   color: var(--secondary-color);
   cursor: pointer;
-  border: 0.5px solid var(--border-color);
+  border: none;
   outline: none;
+  border-radius: 5px;
 }
 
 .notification-color {

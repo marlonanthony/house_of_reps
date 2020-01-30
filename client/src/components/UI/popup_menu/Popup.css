@@ -114,7 +114,7 @@
 /* postfeed  profile handle popup*/
 #popup-handle {
   color: var(--reps-blue);
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.65);
   padding: 5px;
   font-size: 12px;
 }
