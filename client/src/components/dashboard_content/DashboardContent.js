@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { deleteAccount } from '../../actions/profileActions'
 import PropTypes from 'prop-types'
 
 import ProfileActions from './ProfileActions'
-import Venues from './Venues'
+import Venues from './venues/Venues'
 import PromoContent from './PromoContent'
 import ChatroomSection from './chatroom_section/ChatroomSection'
+import DeleteProfileBtn from './delete_profile_btn/DeleteProfileBtn'
 
-const DashboardContent = ({ profile, loading, user, deleteAccount }) => {
+const DashboardContent = ({ profile, loading, user }) => {
   let dashboardContent
 
   if (loading) dashboardContent = null
@@ -30,13 +29,7 @@ const DashboardContent = ({ profile, loading, user, deleteAccount }) => {
         <ChatroomSection profile={profile} />
         <PromoContent user={user} profile={profile} />
         <Venues venues={profile.venues} />
-        <button
-          onClick={deleteAccount}
-          id="dashboard-delete-btn"
-          title="delete profile"
-        >
-          Delete My Account
-        </button>
+        <DeleteProfileBtn />
       </div>
     )
   } else {
@@ -55,11 +48,7 @@ const DashboardContent = ({ profile, loading, user, deleteAccount }) => {
 DashboardContent.propTypes = {
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
-  deleteAccount: PropTypes.func.isRequired,
   profile: PropTypes.object
 }
 
-export default connect(
-  null,
-  { deleteAccount }
-)(DashboardContent)
+export default DashboardContent

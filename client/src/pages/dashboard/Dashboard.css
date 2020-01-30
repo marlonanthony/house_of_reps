@@ -46,9 +46,8 @@
   cursor: pointer;
   outline: none;
 }
-
 #dashboard-delete-btn:hover {
-  color: var(--secondary-color);
+  color: var(--reps-blue);
   background: var(--primary-color);
 }
 

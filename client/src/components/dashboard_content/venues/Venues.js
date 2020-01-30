@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { deleteVenue } from '../../actions/profileActions'
 
+import { deleteVenue } from '../../../actions/profileActions'
 import './Venue.css'
 
 const Venues = ({ venues, deleteVenue }) => {
