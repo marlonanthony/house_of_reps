@@ -1,7 +1,6 @@
 .profiles_container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 100px;
 }

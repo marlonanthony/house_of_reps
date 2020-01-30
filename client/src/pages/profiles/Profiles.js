@@ -15,7 +15,7 @@ const Profiles = ({ getProfiles, ...props }) => {
 
   return (
     profiles && (
-      <div style={{ paddingTop: 10 }}>
+      <div>
         <h2>Reps</h2>
         <div className="profiles_container">
           {profiles.map(profile => (

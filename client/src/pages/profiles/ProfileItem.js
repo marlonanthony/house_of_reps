@@ -17,6 +17,16 @@ const ProfileItem = ({ profile }) => (
         {profile.handle && <span>@{profile.handle}</span>}
       </Link>
       <p>{profile.bio}</p>
+      {profile.venues[0] && profile.venues[0].video && (
+        <iframe
+          id="reps-card-iframe"
+          src={profile.venues[0].video || null}
+          title={profile.venues[0].title || null}
+          frameBorder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen={true}
+        />
+      )}
     </div>
   </div>
 )
