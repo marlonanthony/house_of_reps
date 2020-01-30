@@ -45,6 +45,24 @@ export const getProfileByHandle = handle => async dispatch => {
   }
 }
 
+// Search Profiles by handle || stageName
+export const searchProfiles = userInput => async dispatch => {
+  try {
+    dispatch(setProfileLoading())
+    const res = await axios.get(`/api/profile/search/${userInput}`)
+    // console.log(res.data)
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data
+    })
+  } catch (err) {
+    dispatch({
+      type: GET_PROFILES,
+      payload: null
+    })
+  }
+}
+
 // Create Profile
 export const createProfile = (profileData, history) => async dispatch => {
   try {

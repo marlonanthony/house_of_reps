@@ -83,6 +83,27 @@ router.get(
   }
 )
 
+// @route     GET api/profile/search/:search
+// @desc      Get profiles by handle || stageName
+// @access    Public
+router.get(
+  '/search/:search',
+  async (req, res) => {
+    try {
+      const profiles = await Profile.find({
+        $or: [
+          { handle: { $regex: req.params.search, $options: 'i' }},
+          { stageName: { $regex: req.params.search, $options: 'i' }}
+        ]
+      }).populate('user', ['name', 'avatar'])
+      if(!profiles.length) return res.json('These are not the profiles you\'re looking for.')
+      return res.json(profiles)
+    } catch (err) {
+      res.status(404).json(err)
+    }
+  }
+)
+
 // @route         GET api/profile/user/:user_id
 // @description   Get profile by user id
 // @access        Private

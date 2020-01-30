@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// @route         GET api/posts/search
+// @route         GET api/posts/search/:search
 // @description   Get posts by searching text
 // @access        Public
 router.get(`/search/:search`, async (req, res) => {
