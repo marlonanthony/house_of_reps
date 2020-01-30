@@ -51,6 +51,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  border: 1.5px solid var(--reps-blue);
 }
 
 #chat_message {
@@ -60,7 +61,8 @@
   padding: 10px;
   margin: 1px;
   margin-right: 0;
-  border: 1px solid var(--reps-blue);
+  border: none;
+  /* border: 1px solid var(--reps-blue); */
 }
 
 #chat_submit_button {

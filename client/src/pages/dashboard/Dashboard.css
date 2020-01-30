@@ -79,13 +79,15 @@
 .dashboard_profile_actions > a {
   padding: 0px 10px 5px 10px; 
   text-decoration: none; 
-  color: var(--secondary-color);
+  color: var(--reps-blue);
 }
 .dashboard_profile_actions > a > span {
   color: var(--text-color); 
   padding: 0px 5px;
 }
-
+.dashboard_profile_actions > a > span:hover {
+  color: var(--reps-blue);
+}
 .dashboard_no_profile {
   display: flex; 
   justify-content: center; 
