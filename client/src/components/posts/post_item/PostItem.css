@@ -1,9 +1,6 @@
 .posts_container {
   width: 100%;
   background: var(--post-color);
-  /* border: 0.5px solid var(--border-color); */
-  /* border-radius: 1px; */
-  /* border: 2px solid #444; */
   border-radius: 10px;
   box-shadow: 3px 6px 13px rgba(0,0,0,0.2), 3px 6px 8px rgba(0,0,0,0.2) ;
   outline: none;
@@ -64,7 +61,7 @@
 
 .post_feed_date {
   color: var(--text-color);
-  font-size: 13px;
+  font-size: 12px;
   margin-top: -7px;
 }
 
@@ -78,7 +75,6 @@
 .post_content > div {
   padding: 0.5px;
   border-radius: 5px; 
-  /* border: .5px solid var(--border-color); */
 }
 
 .postfeed-media-pic {
@@ -92,9 +88,7 @@
 
 .postfeed_buttons { 
   background: none;
-  /* color: rgb(5, 54, 100); */
-  /* color: var(--reps-blue); */
-  color: white;
+  color: var(--secondary-color);
   outline: none;
   margin-right: 2px;
   margin-bottom: 5px;

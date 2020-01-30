@@ -10,7 +10,7 @@ const PostFeedPopup = ({ showPopup, setShowPopup, profile, user }) => (
     onMouseOut={() => setShowPopup(!showPopup)}
   >
     <Link to={`/profile/${profile.handle}`}>
-      <p>@{profile.handle}</p>
+      <p id="popup-handle">@{profile.handle}</p>
     </Link>
 
     <div className={showPopup ? 'show popupcontent' : 'popupcontent'}>

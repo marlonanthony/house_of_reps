@@ -1,17 +1,4 @@
 * {
-  /* --primary-color: rgb(225,225,255);
-  --secondary-color: rgb(51, 149, 230);
-  --border-color: rgba(51, 149, 230, 0.3);
-  --text-color: #000; */
-  
-  /* --primary-color: rgb(9, 10, 15);
-  --secondary-color: rgb(192, 52, 169);
-  --border-color: rgba(192, 52, 169, 0.3);
-  --text-color: #fff; */
-
-  /* --primary-color: rgb(9, 10, 15); */
-  /* --secondary-color: rgb(55, 131, 194); */
-  /* --border-color: rgba(55,131,194, 0.3); */
   --primary-color: rgb(21, 23, 24);
   --post-color: rgba(29, 33, 35, 1);
   --comments-color: rgb(18, 19, 20);
@@ -63,12 +50,3 @@ input[type=checkbox] {
   -webkit-appearance: checkbox;
 }
 .invalid-feedback { color: red; }
-
-/* background: #050c14;   */
-/* background: #020811; */
-/* background: rgb(4,6,8); */
-/* background: rgb(10, 19, 29); */
-/* background: rgb(6, 9, 14); */
-/* background: #282c35; Dan Abramov  */
-/* background: rgb(7, 10, 17); */
-/* background: #071020; */

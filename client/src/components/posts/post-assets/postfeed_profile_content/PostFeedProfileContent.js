@@ -46,7 +46,6 @@ const PostFeedProfileContent = ({
                 />
               </Link>
             </div> */}
-            <div style={{ paddingBottom: 130 }}></div>
             <div className="post-profile-popup-and-buttons-container">
               <PostsProfilePopup
                 setShowPopup={setShowPopup}

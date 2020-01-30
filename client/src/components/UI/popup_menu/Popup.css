@@ -108,13 +108,15 @@
   height: 50px; 
   margin: 5px 0;
   border-radius: 50%;
-  border: 2px solid var(--reps-blue);
+  border: 2px solid var(--secondary-color);
 }
 
 /* postfeed  profile handle popup*/
-.popup > a > p {
-  color: var(--reps-blue); 
-  font-size: 13px;
+#popup-handle {
+  color: var(--reps-blue);
+  background: rgba(0,0,0,0.85);
+  padding: 5px;
+  font-size: 12px;
 }
 
 .postfeed_popup_profile_info {
@@ -124,14 +126,9 @@
   align-items: center;
   flex-direction: column;
 }
+/* postItem popup bio */
 .popup_bio {
   cursor: text;
-  font-size: 12px;
-}
-.postfeed_popup_profile_info > small {
-  padding-top: 10px;
-}
-.postfeed_popup_profile_info > p {
   font-size: 12px;
 }
 /* website */
@@ -139,8 +136,9 @@
   color: var(--reps-blue); 
   font-size: 13px;
 }
-/* popup Name */
+/* postItem popup Name */
 .popupcontent span {
   color: var(--reps-blue);
   font-size: 13px;
+  margin: 10px;
 }
