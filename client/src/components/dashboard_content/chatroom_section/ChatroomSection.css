@@ -1,0 +1,21 @@
+.dashboard_member_invite_container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.db-cr-section-ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.db-cr-section-li {
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--secondary-color);
+}

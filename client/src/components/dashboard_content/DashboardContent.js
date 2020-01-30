@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteAccount } from '../../actions/profileActions'
 import PropTypes from 'prop-types'
@@ -7,16 +7,9 @@ import PropTypes from 'prop-types'
 import ProfileActions from './ProfileActions'
 import Venues from './Venues'
 import PromoContent from './PromoContent'
-import { getChatroom } from '../../actions/chatroomActions'
+import ChatroomSection from './chatroom_section/ChatroomSection'
 
-const DashboardContent = ({
-  profile,
-  loading,
-  user,
-  deleteAccount,
-  getChatroom,
-  ...props
-}) => {
+const DashboardContent = ({ profile, loading, user, deleteAccount }) => {
   let dashboardContent
 
   if (loading) dashboardContent = null
@@ -34,76 +27,7 @@ const DashboardContent = ({
           </Link>
           <ProfileActions user={user} />
         </div>
-        <h3>Chatrooms</h3>
-        <div
-          className="dashboard_member_invite_container"
-          style={{
-            // remove and place in above className css file
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            flexWrap: 'wrap'
-          }}
-        >
-          <div>
-            Member
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                padding: 10
-              }}
-            >
-              {profile.chatroomMemberships &&
-                profile.chatroomMemberships.map(cr => (
-                  <li
-                    style={{
-                      // border: '.3px solid var(--secondary-color)',
-                      width: 200,
-                      padding: 10,
-                      cursor: 'pointer',
-                      color: 'var(--secondary-color)'
-                    }}
-                    key={cr._id}
-                    onClick={() => getChatroom(cr.id, props.history)}
-                  >
-                    {cr.name}
-                  </li>
-                ))}
-            </ul>
-          </div>
-          <div>
-            Invites
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                padding: 10
-              }}
-            >
-              {profile.chatroomInvites.map(ci => (
-                <li
-                  style={{
-                    // border: '.3px solid var(--secondary-color)',
-                    width: 200,
-                    padding: 10,
-                    cursor: 'pointer',
-                    color: 'var(--secondary-color)'
-                  }}
-                  key={ci._id}
-                  onClick={() => getChatroom(ci.id, props.history)}
-                >
-                  {ci.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ChatroomSection profile={profile} />
         <PromoContent user={user} profile={profile} />
         <Venues venues={profile.venues} />
         <button
@@ -132,11 +56,10 @@ DashboardContent.propTypes = {
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  profile: PropTypes.object,
-  getChatroom: PropTypes.func.isRequired
+  profile: PropTypes.object
 }
 
 export default connect(
   null,
-  { deleteAccount, getChatroom }
-)(withRouter(DashboardContent))
+  { deleteAccount }
+)(DashboardContent)
