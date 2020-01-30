@@ -34,18 +34,6 @@ const PostFeedProfileContent = ({
           }}
         >
           <div>
-            {/* <div className="post-profile-avatar-container">
-              <Link
-                style={{ textDecoration: 'none' }}
-                to={`/profile/${profile.handle}`}
-              >
-                <img
-                  id="posts-profile-img"
-                  src={profile.user.avatar}
-                  alt={user.name}
-                />
-              </Link>
-            </div> */}
             <div className="post-profile-popup-and-buttons-container">
               <PostsProfilePopup
                 setShowPopup={setShowPopup}

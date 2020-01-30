@@ -4,8 +4,6 @@ import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
 import HighlightsModal from '../../../UI/modal/highlights-modal/HighlightsModal'
-// import VenueItems from '../../../profile/profile_assets/VenueItems'
-// import FadeIn from '../../../UI/fade_in/FadeIn'
 import './Highlights.css'
 
 class Highlights extends Component {
@@ -106,22 +104,8 @@ class Highlights extends Component {
       </>
     )
 
-    // const venueItems = recentHighlights && recentHighlights.map(venue => (
-    //   <FadeIn key={venue._id}>
-    //     <VenueItems
-    //       venue={venue}
-    //       setShowModal={this.state.showModal}
-    //       toggleShowHighlight={this.props.toggleShowHighlight}
-    //       postfeed
-    //     />
-    //   </FadeIn>
-    // ))
-
     return (
       <>
-        {/* <div className='postfeed_highlights_mobile'>
-          {venueItems}
-        </div> */}
         <div className="post-feed-highlights">
           <div className="highlightss">
             <Backdrop clicked={this.modalToggle} show={this.state.showModal} />

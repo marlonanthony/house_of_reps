@@ -80,18 +80,6 @@
   cursor: pointer;
 }
 
-/* Figure out if you want to display highlights on mobile/tablet */
-/*  or just use a toggle icon and remove this from */
-/* venueItems & Highlights */
-/* .postfeed_highlights_mobile::-webkit-scrollbar {
-  height: 8px;
-}
-.postfeed_highlights_mobile {
-  display: none;
-  grid-area: mobile-hls;
-  overflow-x: scroll;
-} */
-
 .post-feed-footer {
   display: none;
   grid-area: footer;
@@ -127,10 +115,6 @@
   }
 
   .mobile_icons_container { display: none; }
-
-  /* .postfeed_highlights_mobile {
-    display: none;
-  } */
 
   .postfeed_reps_btns {
     grid-area: btns;
