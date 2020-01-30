@@ -13,7 +13,7 @@ const DashboardContent = ({ profile, loading, user }) => {
   else if (Object.keys(profile).length) {
     return (
       <div id="dashboard">
-        <div style={{ textAlign: 'center' }}>
+        <div id="dashboard-container">
           <HandleAndActions profile={profile} user={user} />
           <ChatroomSection profile={profile} />
           <PromoContent user={user} profile={profile} />
