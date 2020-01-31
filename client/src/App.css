@@ -45,7 +45,8 @@ a { color: var(--secondary-color); }
 
 input {
   -webkit-appearance: none;
-  border-radius: 0;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
 }
 input[type=checkbox] {
   -webkit-appearance: checkbox;
