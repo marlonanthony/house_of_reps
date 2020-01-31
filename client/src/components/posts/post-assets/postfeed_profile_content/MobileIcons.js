@@ -1,15 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import MobileNotifications from '../../../../pages/notifications/MobileNotifications'
 
 export default function MobileIcons({
   profile,
   showHighlight,
-  toggleShowHighlight,
+  setShowHighlight,
   showLikesHandler
 }) {
   return (
     <div className="mobile_icons_container">
-      <div onClick={() => toggleShowHighlight(0)}>
+      <div onClick={() => setShowHighlight(prev => !prev)}>
         <i
           className={
             showHighlight
@@ -24,4 +26,11 @@ export default function MobileIcons({
       <MobileNotifications profile={profile} />
     </div>
   )
+}
+
+MobileIcons.propTypes = {
+  profile: PropTypes.object.isRequired,
+  showHighlight: PropTypes.bool.isRequired,
+  setShowHighlight: PropTypes.func.isRequired,
+  showLikesHandler: PropTypes.func.isRequired
 }

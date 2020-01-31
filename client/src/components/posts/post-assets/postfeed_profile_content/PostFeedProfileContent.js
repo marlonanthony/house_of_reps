@@ -12,7 +12,7 @@ const PostFeedProfileContent = ({
   user,
   showLikes,
   showHighlight,
-  toggleShowHighlight,
+  setShowHighlight,
   ...props
 }) => {
   const [showPopup, setShowPopup] = useState(false)
@@ -24,7 +24,7 @@ const PostFeedProfileContent = ({
         <MobileIcons
           profile={profile}
           showHighlight={showHighlight}
-          toggleShowHighlight={toggleShowHighlight}
+          setShowHighlight={setShowHighlight}
           showLikesHandler={showLikesHandler}
         />
         <div
@@ -113,7 +113,8 @@ PostFeedProfileContent.propTypes = {
   profile: PropTypes.object,
   user: PropTypes.object.isRequired,
   showLikes: PropTypes.bool.isRequired,
-  toggleShowHighlight: PropTypes.func.isRequired
+  setShowHighlight: PropTypes.func.isRequired,
+  showHighlight: PropTypes.bool.isRequired
 }
 
 export default withRouter(PostFeedProfileContent)

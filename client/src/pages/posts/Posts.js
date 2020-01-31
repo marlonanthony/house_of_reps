@@ -147,7 +147,7 @@ class Posts extends Component {
           showLikesHandler={this.showLikesHandler}
           showLikes={showLikes}
           showHighlight={this.props.showHighlight}
-          toggleShowHighlight={this.props.toggleShowHighlight}
+          setShowHighlight={this.props.setShowHighlight}
         />
         <PoolsContainer profiles={profiles} loading={loading} />
         <PerksContainer profiles={profiles} loading={loading} />
@@ -161,7 +161,7 @@ class Posts extends Component {
         <HighlightsContainer
           profiles={profiles}
           loading={loading}
-          toggleShowHighlight={this.props.toggleShowHighlight}
+          setShowHighlight={this.props.setShowHighlight}
         />
         <StoresContainer profiles={profiles} loading={loading} />
         <BrandContainer profiles={profiles} loading={loading} />
@@ -184,7 +184,8 @@ Posts.propTypes = {
   getMorePosts: PropTypes.func.isRequired,
   getLikedPosts: PropTypes.func.isRequired,
   getMoreLikedPosts: PropTypes.func.isRequired,
-  toggleShowHighlight: PropTypes.func.isRequired
+  setShowHighlight: PropTypes.func.isRequired,
+  showHighlight: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({

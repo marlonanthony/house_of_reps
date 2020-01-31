@@ -1,10 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import Highlights from './Highlights'
 
 export default function HighlightsContainer({
   profiles,
   loading,
-  toggleShowHighlight
+  setShowHighlight
 }) {
   let highlights, orderedHighlights
 
@@ -24,7 +26,13 @@ export default function HighlightsContainer({
   return (
     <Highlights
       recentHighlights={orderedHighlights}
-      toggleShowHighlight={toggleShowHighlight}
+      setShowHighlight={setShowHighlight}
     />
   )
+}
+
+HighlightsContainer.propTypes = {
+  profiles: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  setShowHighlight: PropTypes.func.isRequired
 }

@@ -184,7 +184,7 @@ class PostItem extends Component {
               onPostCommentClick={this.onPostCommentClick}
               toggleShowForm={this.toggleShowForm}
             />
-            {showComments && (
+            {(showForm || showComments) && (
               <div>
                 {showForm && <CommentForm postId={postId} />}
                 <CommentFeed

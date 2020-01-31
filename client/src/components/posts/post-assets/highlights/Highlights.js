@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 import { likeVenue } from '../../../../actions/profileActions'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import Arrow from '../../../UI/arrow_glyph/Arrow'
@@ -42,7 +44,7 @@ class Highlights extends Component {
 
   render() {
     if (!this.props.recentHighlights) return null
-    const { recentHighlights } = this.props
+    const { recentHighlights, setShowHighlight } = this.props
 
     const highlightsModal = this.state.showModal && (
       <>
@@ -129,9 +131,7 @@ class Highlights extends Component {
                   ></iframe>
                 )}
               <img
-                onClick={() =>
-                  this.props.toggleShowHighlight(this.state.currentImageIndex)
-                }
+                onClick={() => setShowHighlight(prev => !prev)}
                 className="highlightss_icon"
                 src={require('../../../../img/hor-icon.jpg')}
                 alt="hors"
@@ -149,6 +149,12 @@ class Highlights extends Component {
       </>
     )
   }
+}
+
+Highlights.propTypes = {
+  likeVenue: PropTypes.func.isRequired,
+  recentHighlights: PropTypes.array.isRequired,
+  setShowHighlight: PropTypes.func.isRequired
 }
 
 export default connect(

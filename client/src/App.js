@@ -27,13 +27,7 @@ import Chatroom from './components/chatrooms/Chatroom'
 import './App.css'
 
 const App = () => {
-  const [showHighlight, setShowHighlight] = useState(false),
-    [currentIndex, setCurrentIndex] = useState(0)
-
-  const toggleShowHighlight = (index = 0) => {
-    setCurrentIndex(index)
-    setShowHighlight(!showHighlight)
-  }
+  const [showHighlight, setShowHighlight] = useState(false)
 
   return (
     <>
@@ -41,8 +35,7 @@ const App = () => {
         <DropdownMenu />
         <FixedHighlights
           showHighlight={showHighlight}
-          toggleShowHighlight={toggleShowHighlight}
-          currentIndex={currentIndex}
+          setShowHighlight={setShowHighlight}
         />
         <Route exact path="/" component={Landing} />
       </>
@@ -92,7 +85,7 @@ const App = () => {
             path="/feed"
             component={() => (
               <Posts
-                toggleShowHighlight={toggleShowHighlight}
+                setShowHighlight={setShowHighlight}
                 showHighlight={showHighlight}
               />
             )}

@@ -27,9 +27,6 @@ class FixedHighlights extends Component {
 
   componentDidUpdate(prevProps) {
     const { profiles } = this.props.profile
-    if (this.props.currentIndex !== prevProps.currentIndex) {
-      this.setState({ currentImageIndex: this.props.currentIndex })
-    }
     if (profiles !== prevProps.profile.profiles) {
       const recentHighlights =
         this.props.profile &&
@@ -60,7 +57,8 @@ class FixedHighlights extends Component {
   render() {
     const { recentHighlights, currentImageIndex } = this.state
     const { profiles } = this.props.profile
-    if (!this.props.showHighlight) return null
+    const { setShowHighlight, showHighlight } = this.props
+    if (!showHighlight) return null
     if (!profiles || !recentHighlights.length) return null
 
     return (
@@ -82,7 +80,7 @@ class FixedHighlights extends Component {
               allowFullScreen={true}
             ></iframe>
             <img
-              onClick={() => this.props.toggleShowHighlight(currentImageIndex)}
+              onClick={() => setShowHighlight(prev => !prev)}
               src={require('../../../img/hor-icon.jpg')}
               alt="hors"
               title="toggle modal"
@@ -102,7 +100,9 @@ class FixedHighlights extends Component {
 
 FixedHighlights.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  setShowHighlight: PropTypes.func.isRequired,
+  showHighlight: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
