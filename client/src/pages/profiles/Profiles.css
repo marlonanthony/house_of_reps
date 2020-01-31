@@ -15,13 +15,12 @@
   border: none;
   flex: 1;
   background: var(--secondary-color);
-  border-radius: none;
+  border-radius: 0;
 }
 .reps-search-btn {
   border: none;
   cursor: pointer;
   outline: none;
-  padding: none;
   background: var(--secondary-color);
 }
 #reps-search-icon {
