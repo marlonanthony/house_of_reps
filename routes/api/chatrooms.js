@@ -50,7 +50,7 @@ router.post(
         }}})
       profile.chatroomMemberships.push({name, id: chatroom._id})
       await profile.save()
-      return res.json({chatroom, profile})
+      return res.status(201).json({chatroom, profile})
     } catch (error) { return res.status(400).json({ error }) }
   }
 )
@@ -71,7 +71,7 @@ router.get(
       if(String(chatroom.admin.id) !== req.user.id && !myInvite && !member && !mod) {
         return res.status(401).json({ error: 'You can\'t sit with us' })
       }
-      return res.json(chatroom)
+      return res.status(200).json(chatroom)
     } catch(error) {
       return res.status(400).json({ error })
     }
@@ -120,7 +120,7 @@ router.post(
       const i = profile.chatroomInvites.indexOf(req.params.id)
       profile.chatroomInvites.splice(i, 1)
       await profile.save()
-      return res.json({chatroom, profile})
+      return res.status(200).json({chatroom, profile})
     } catch (err) {
       return res.status(400).json(err)
     }
@@ -180,7 +180,7 @@ router.put(
           }}})
       }
       await chatroom.save()
-      return res.json({ chatroom })
+      return res.status(200).json({ chatroom })
     } catch(err){
       return res.status(401).json(err)
     }
@@ -215,9 +215,9 @@ router.delete(
       const chatroom = await Chatroom.findById(req.params.id)
       chatroom.remove()
       const profile = await Profile.findOne({ user: req.user.id })
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err){
-      return res.status(404).json(err)
+      return res.status(400).json(err)
     }
   }
 )
@@ -243,9 +243,9 @@ router.delete(
         {$pull: { moderators: { id: req.user.id}}}
       )
       const profile = await Profile.findOne({ user: req.user.id })
-      return res.json({ profile })
+      return res.status(200).json({ profile })
     } catch (err){
-      return res.status(401).json(err)
+      return res.status(400).json(err)
     }
   }
 )
