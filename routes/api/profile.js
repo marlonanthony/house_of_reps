@@ -609,11 +609,12 @@ router.delete(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      await Profile.findOneAndRemove({ user: req.user.id })
-      await User.findOneAndRemove({ _id: req.user.id })
+      await Profile.deleteOne({ user: req.user.id })
+      await User.deleteOne({ _id: req.user.id })
+      await Post.deleteMany({ handle: req.user.handle })
       return res.status(200).json({ success: true })
     } catch (err) {
-      res.status(404).json(err)
+      res.status(400).json(err)
     }
   }
 )

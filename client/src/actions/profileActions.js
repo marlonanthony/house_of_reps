@@ -274,6 +274,7 @@ export const deleteAccount = () => async dispatch => {
   try {
     if (window.confirm('Are you sure? This can not be undone')) {
       await axios.delete('/api/profile')
+      localStorage.clear()
       dispatch({
         type: SET_CURRENT_USER,
         payload: {}

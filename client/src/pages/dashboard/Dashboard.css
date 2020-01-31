@@ -44,7 +44,7 @@
   font-size: 17px; 
   padding: 10px;
   background: none;
-  color: var(--text-color);
+  color: #aaa;
   border: none;
   border-radius: 2%;
   margin: 30px;
@@ -52,8 +52,7 @@
   outline: none;
 }
 #dashboard-delete-btn:hover {
-  color: var(--reps-blue);
-  background: var(--primary-color);
+  color: red;
 }
 
 #djpools_delete_btn {

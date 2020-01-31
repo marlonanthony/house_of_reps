@@ -30,7 +30,7 @@ const PostFeedProfileContent = ({
         <div
           className="post-feed-profile"
           style={{
-            backgroundImage: `url(${profile && profile.avatar})`
+            backgroundImage: `url(${profile && profile.user.avatar})`
           }}
         >
           <div>
