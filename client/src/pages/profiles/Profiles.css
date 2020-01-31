@@ -9,18 +9,21 @@
   justify-content: center;
   margin: 30px auto;
   max-width: 320px;
+  background: var(--secondary-color);
 }
 .reps-search-input {
-  padding: 10px 0px;
+  padding: 7px 0px;
   border: none;
   flex: 1;
-  background: var(--secondary-color);
+  font-size: 14px;
+  background: none;
+  outline: none;
 }
 .reps-search-btn {
   border: none;
   cursor: pointer;
   outline: none;
-  background: var(--secondary-color);
+  background: none;
 }
 #reps-search-icon {
   font-size: 16px;
