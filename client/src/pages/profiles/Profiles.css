@@ -14,11 +14,13 @@
   padding: 10px;
   border: none;
   flex: 1;
+  background: var(--secondary-color);
 }
 .reps-search-btn {
   border: none;
   cursor: pointer;
   outline: none;
+  background: var(--secondary-color);
 }
 #reps-search-icon {
   font-size: 16px;
