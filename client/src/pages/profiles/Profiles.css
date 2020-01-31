@@ -1,6 +1,6 @@
 .profiles_container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -12,17 +12,20 @@
   background: var(--secondary-color);
 }
 .reps-search-input {
-  padding: 8px 0px;
+  padding: 8px;
   border: none;
   flex: 1;
   font-size: 14px;
   background: none;
   outline: none;
 }
+.reps-search-input::placeholder {
+  color: var(--primary-color);
+}
 .reps-search-btn {
   border: none;
   cursor: pointer;
-  outline: none;
+  /* outline: none; */
   background: none;
 }
 #reps-search-icon {

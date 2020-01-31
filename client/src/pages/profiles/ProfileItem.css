@@ -27,8 +27,30 @@
 
 #reps-page-bio {
   font-size: 13px;
+  position: relative;
 }
 
+#showmore-reps-bio {
+  position: absolute;
+  right: 0;
+  color: var(--reps-blue);
+  cursor: pointer;
+  opacity: 0.8;
+}
+#showmore-reps-bio:hover {
+  opacity: 1;
+}
+#showless-reps-bio {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  color: var(--reps-blue);
+  cursor: pointer;
+  opacity: 0.8;
+}
+#showless-reps-bio:hover {
+  opacity: 1;
+}
 #reps-card-iframe {
   width: 100%;
   height: 100%;

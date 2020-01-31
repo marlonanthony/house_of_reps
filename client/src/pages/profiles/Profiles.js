@@ -29,6 +29,7 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
             className="reps-search-input"
             type="text"
             onChange={e => setUserInput(e.target.value)}
+            placeholder="search"
           />
           <button
             className="reps-search-btn"
