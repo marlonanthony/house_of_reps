@@ -21,6 +21,7 @@
   border: none;
   cursor: pointer;
   outline: none;
+  padding: none;
   background: var(--secondary-color);
 }
 #reps-search-icon {
