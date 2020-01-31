@@ -100,7 +100,13 @@ class Posts extends Component {
       () => {
         if (this.state.showHashtags) {
           this.props.getPostsByHashtag(
-            tag.length ? tag : this.state.hashtag.toLowerCase()
+            tag.length
+              ? tag[0] === '#'
+                ? tag.slice(1)
+                : tag
+              : this.state.hashtag[0] === '#'
+              ? this.state.hashtag.slice(1)
+              : this.state.hashtag
           )
         } else {
           this.props.getPosts()
