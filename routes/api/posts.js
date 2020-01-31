@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
       .sort({ date: -1 })
       .skip(pageOptions.page * pageOptions.limit)
       .limit(pageOptions.limit)
-    return res.json(posts)
+    return res.status(200).json(posts)
   } catch (err) {
     res.status(404).json(err)
   }
@@ -39,7 +39,7 @@ router.get(`/search/:search`, async (req, res) => {
       .sort({ date: -1 })
       .skip(pageOptions.page * pageOptions.limit)
       .limit(pageOptions.limit)
-    return res.json(posts)
+    return res.status(200).json(posts)
   } catch (err) {
     res.status(404).json(err)
   }
@@ -61,7 +61,7 @@ router.get(
         .sort({ date: -1 })
         .skip(pageOptions.page * pageOptions.limit)
         .limit(pageOptions.limit)
-      return res.json(posts)
+      return res.status(200).json(posts)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -86,7 +86,7 @@ router.get(
         .sort({ date: -1 })
         .skip(pageOptions.page * pageOptions.limit)
         .limit(pageOptions.limit)
-      return res.json(posts)
+      return res.status(200).json(posts)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -110,7 +110,7 @@ router.get('/hashtag/:hashtag', async (req, res) => {
       return res
         .status(404)
         .json({ nopostfound: 'No posts found with that hashtag' })
-    return res.json(posts)
+    return res.status(200).json(posts)
   } catch (err) {
     res.json(err)
   }
@@ -121,7 +121,7 @@ router.get('/hashtag/:hashtag', async (req, res) => {
 // @access        Public
 router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(post => res.status(200).json(post))
     .catch(() =>
       res.status(404).json({ nopostfound: 'No post found with that ID' })
     )
@@ -153,7 +153,7 @@ router.post(
         tags: req.body.tags && req.body.tags
       })
       const post = await newPost.save()
-      return res.json(post)
+      return res.status(201).json(post)
     } catch (err) {
       res.json(err)
     }
@@ -176,7 +176,7 @@ router.put(
       }
       post.text = req.body.text
       await post.save()
-      return res.json(post)
+      return res.status(200).json(post)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -196,7 +196,7 @@ router.delete(
         return res.status(401).json({ notauthorized: 'User not authorized' })
       }
       post.remove()
-      return res.json({ success: true })
+      return res.status(200).json({ success: true })
     } catch (err) {
       res.status(404).json({ postnotfound: 'No post found' })
     }
@@ -242,7 +242,7 @@ router.post(
       })
       profile.save()
 
-      return res.json(savedPost)
+      return res.status(200).json(savedPost)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -271,7 +271,7 @@ router.post(
         .indexOf(req.user.id)
       post.likes.splice(removeIndex, 1)
       const savedPost = await post.save()
-      return res.json(savedPost)
+      return res.status(200).json(savedPost)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -319,7 +319,7 @@ router.post(
         message
       })
       await profile.save()
-      return res.json(post)
+      return res.status(201).json(post)
     } catch (err) {
       res.status(404).json({ postnotfound: 'No post found' })
     }
@@ -346,7 +346,7 @@ router.put(
           await post.save()
         }
       })
-      return res.json(post)
+      return res.status(200).json(post)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -376,7 +376,7 @@ router.delete(
         .indexOf(req.params.comment_id)
       post.comments.splice(removeIndex, 1)
       await post.save()
-      return res.json(post)
+      return res.status(200).json(post)
     } catch (err) {
       res.status(404).json({ postnotfound: 'No post found' })
     }
@@ -426,7 +426,7 @@ router.post(
             })
           }
         })
-        post.save().then(savedPost => res.json(savedPost))
+        post.save().then(savedPost => res.status(200).json(savedPost))
       })
       .catch(err => res.status(404).json(err))
   }
@@ -457,7 +457,7 @@ router.post(
                 )
             : null
         )
-        post.save().then(savedPost => res.json(savedPost))
+        post.save().then(savedPost => res.status(200).json(savedPost))
       })
       .catch(err => res.status(404).json(err))
   }
@@ -492,7 +492,7 @@ router.post(
         post.comments.map(comment => {
           if (comment._id.toString() === req.params.comment_id) {
             comment.comments.unshift(newComment)
-            post.save().then(savedPost => res.json(savedPost))
+            post.save().then(savedPost => res.status(201).json(savedPost))
 
             // Add to notifications array
             Profile.findOne({ user: comment.user }).then(profile => {
@@ -542,7 +542,7 @@ router.put(
           })
         }
       })
-      return res.json(post)
+      return res.status(200).json(post)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -572,7 +572,7 @@ router.delete(
               )
             : null
         )
-        post.save().then(savedPost => res.json(savedPost))
+        post.save().then(savedPost => res.status(200).json(savedPost))
       })
       .catch(err => res.status(404).json(err))
   }
@@ -629,7 +629,7 @@ router.post(
             })
           }
         })
-        post.save().then(savedPost => res.json(savedPost))
+        post.save().then(savedPost => res.status(200).json(savedPost))
       })
       .catch(err => res.status(404).json(err))
   }
@@ -669,7 +669,7 @@ router.post(
             })
           }
         })
-        post.save().then(savedPost => res.json(savedPost))
+        post.save().then(savedPost => res.status(200).json(savedPost))
       })
       .catch(err => res.status(404).json(err))
   }
