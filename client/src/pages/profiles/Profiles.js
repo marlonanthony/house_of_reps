@@ -38,7 +38,10 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
               console.log(toggleSearch)
             }}
           >
-            search
+            <i
+              id="reps-search-icon"
+              className={toggleSearch ? 'fas fa-search-minus' : 'fas fa-search'}
+            />
           </button>
         </div>
         <div className="profiles_container">

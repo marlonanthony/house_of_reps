@@ -7,11 +7,20 @@
 .reps-search-div {
   display: flex;
   justify-content: center;
-  margin: 30px 0px;
+  margin: 30px auto;
+  max-width: 320px;
 }
 .reps-search-input {
-  padding: 5px;
+  padding: 10px;
+  border: none;
+  flex: 1;
 }
 .reps-search-btn {
-  
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+#reps-search-icon {
+  font-size: 16px;
+  color: gray;
 }
