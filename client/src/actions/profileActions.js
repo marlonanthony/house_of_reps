@@ -50,7 +50,6 @@ export const searchProfiles = userInput => async dispatch => {
   try {
     dispatch(setProfileLoading())
     const res = await axios.get(`/api/profile/search/${userInput}`)
-    // console.log(res.data)
     dispatch({
       type: GET_PROFILES,
       payload: res.data

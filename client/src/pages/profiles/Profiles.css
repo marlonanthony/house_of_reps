@@ -4,3 +4,14 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.reps-search-div {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+}
+.reps-search-input {
+  padding: 5px;
+}
+.reps-search-btn {
+  
+}

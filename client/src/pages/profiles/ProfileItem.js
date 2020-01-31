@@ -16,7 +16,7 @@ const ProfileItem = ({ profile }) => (
       <Link to={`/profile/${profile.handle}`} id="profiles-item-link">
         {profile.handle && <span>@{profile.handle}</span>}
       </Link>
-      <p>{profile.bio}</p>
+      <p id="reps-page-bio">{profile.bio}</p>
       {profile.venues[0] && profile.venues[0].video && (
         <iframe
           id="reps-card-iframe"

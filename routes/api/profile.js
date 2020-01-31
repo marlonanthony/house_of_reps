@@ -90,13 +90,14 @@ router.get(
   '/search/:search',
   async (req, res) => {
     try {
+      const input = req.params.search.trim()
       const profiles = await Profile.find({
         $or: [
-          { handle: { $regex: req.params.search, $options: 'i' }},
-          { stageName: { $regex: req.params.search, $options: 'i' }}
+          { handle: { $regex: input, $options: 'i' }},
+          { stageName: { $regex: input, $options: 'i' }}
         ]
       }).populate('user', ['name', 'avatar'])
-      if(!profiles.length) return res.json('These are not the profiles you\'re looking for.')
+      if(!profiles) throw new Error('These are not the profiles you\'re looking for.')
       return res.json(profiles)
     } catch (err) {
       res.status(404).json(err)

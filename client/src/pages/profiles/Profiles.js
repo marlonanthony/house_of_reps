@@ -11,7 +11,7 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
     [toggleSearch, setToggleSearch] = useState(false)
 
   useEffect(() => {
-    if (toggleSearch && userInput) {
+    if (toggleSearch && /\S/.test(userInput)) {
       searchProfiles(userInput)
     } else {
       getProfiles()
@@ -24,16 +24,23 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
     profiles && (
       <div>
         <h2>Reps</h2>
-        <input type="text" onChange={e => setUserInput(e.target.value)} />
-        <button
-          type="button"
-          onClick={() => {
-            setToggleSearch(prev => !prev)
-            console.log(toggleSearch)
-          }}
-        >
-          search
-        </button>
+        <div className="reps-search-div">
+          <input
+            className="reps-search-input"
+            type="text"
+            onChange={e => setUserInput(e.target.value)}
+          />
+          <button
+            className="reps-search-btn"
+            type="button"
+            onClick={() => {
+              setToggleSearch(prev => !prev)
+              console.log(toggleSearch)
+            }}
+          >
+            search
+          </button>
+        </div>
         <div className="profiles_container">
           {profiles.map(profile => (
             <ProfileItem key={profile._id} profile={profile} />
