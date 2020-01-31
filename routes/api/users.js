@@ -22,7 +22,7 @@ router.post('/confirm', async (req, res) => {
     if (!user) throw new Error('User not found')
     user.isVerified = true
     await user.save()
-    return res.json({
+    return res.status(200).json({
       _id: user.id, // might use id, email, and handle. not sure yet. else get rid of them
       email: user.email,
       handle: user.handle,
@@ -84,7 +84,7 @@ router.post('/register', async (req, res) => {
         }
         const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
         await mailer.send()
-        return res.json(user)
+        return res.status(201).json(user)
       })
     })
   } catch (error) {
@@ -146,7 +146,7 @@ router.post('/login', async (req, res) => {
         keys.secretOrKey,
         { expiresIn: 10800 },
         (err, token) => {
-          res.json({
+          res.status(200).json({
             success: true,
             token: `Bearer ${token}`
           })
@@ -168,7 +168,7 @@ router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    res.json({
+    res.status(200).json({
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
