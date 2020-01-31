@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import {
   getPosts,
   getMorePosts,
-  getMatchingPosts,
   getLikedPosts,
   getMoreLikedPosts,
   getPostsByHashtag,
@@ -177,7 +176,6 @@ Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   getProfiles: PropTypes.func.isRequired,
   getMorePosts: PropTypes.func.isRequired,
-  getMatchingPosts: PropTypes.func.isRequired,
   getLikedPosts: PropTypes.func.isRequired,
   getMoreLikedPosts: PropTypes.func.isRequired,
   toggleShowHighlight: PropTypes.func.isRequired
@@ -198,7 +196,6 @@ export default connect(
     getMorePosts,
     getLikedPosts,
     getMoreLikedPosts,
-    getMatchingPosts,
     getPostsByHashtag,
     getMorePostsByHashtag
   }

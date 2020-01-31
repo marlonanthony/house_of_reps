@@ -78,7 +78,7 @@ export const getPost = id => async dispatch => {
 export const getPostsByHashtag = hashtag => async dispatch => {
   try {
     dispatch(setPostLoading())
-    const res = await axios.get(`/api/posts/hashtag/${hashtag}`)
+    const res = await axios.get(`/api/posts/search/${hashtag}`)
     dispatch({
       type: GET_POSTS,
       payload: res.data
@@ -97,7 +97,7 @@ export const getMorePostsByHashtag = (
   try {
     dispatch(setPostLoading())
     const res = await axios.get(
-      `/api/posts/hashtag/${hashtag}?page=${start}&limit=${count}`
+      `/api/posts/search/${hashtag}?page=${start}&limit=${count}`
     )
     dispatch({
       type: GET_MORE_POSTS,
@@ -182,20 +182,6 @@ export const getMorePosts = (count, start) => async dispatch => {
     const res = await axios.get(`/api/posts?page=${start}&limit=${count}`)
     dispatch({
       type: GET_MORE_POSTS,
-      payload: res.data
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-// Get Matching Posts
-export const getMatchingPosts = matches => async dispatch => {
-  try {
-    dispatch(setPostLoading())
-    const res = await axios.get(`/api/posts/search/:${matches}`)
-    dispatch({
-      type: GET_POSTS,
       payload: res.data
     })
   } catch (err) {

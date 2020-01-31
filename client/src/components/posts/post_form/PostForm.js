@@ -13,7 +13,6 @@ import LinkPreview from '../post-assets/link_preview/LinkPreview'
 import EmojiModal from '../../UI/modal/EmojiModal'
 import LightBackdrop from '../../UI/backdrop/LightBackdrop'
 import Icon from '../../UI/icons/Icon'
-import HashtagInputs from '../post-assets/hashtag_inputs/HashtagInputs'
 import './PostForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -23,12 +22,6 @@ const CLOUDINARY_UPLOAD_URL =
 class PostForm extends Component {
   state = {
     text: '',
-    tags: [],
-    showTags: false,
-    tag1: '',
-    tag2: '',
-    tag3: '',
-    tag4: '',
     errors: {},
     rows: 2,
     minRows: 2,
@@ -103,14 +96,12 @@ class PostForm extends Component {
   }
 
   onSubmit = e => {
-    // const { avatar } = this.props.profile.profile
     e.preventDefault()
     const { user } = this.props.auth
     this.setState({ showPreview: false })
 
     const newPost = {
       text: this.state.text,
-      tags: this.state.tags,
       name: user.name,
       avatar: user.avatar,
       image: this.state.data.image,
@@ -121,15 +112,6 @@ class PostForm extends Component {
       handle: this.props.profile.profile.handle
     }
     this.props.addPost(newPost)
-    this.setState({
-      text: '',
-      data: {},
-      media: '',
-      tag1: '',
-      tag2: '',
-      tag3: '',
-      tag4: ''
-    })
     e.target.reset()
   }
 
@@ -179,21 +161,6 @@ class PostForm extends Component {
     this.setState({ text: this.state.text + emoji })
   }
 
-  toggleShowTags = () =>
-    this.setState(prevState => ({ showTags: !prevState.showTags }))
-
-  onTagSubmit = e => {
-    e.preventDefault()
-    const { tag1, tag2, tag3, tag4 } = this.state
-    const arr = []
-    if (tag1) arr.push(tag1.replace(/^#|\s/g, ''))
-    if (tag2) arr.push(tag2.replace(/^#|\s/g, ''))
-    if (tag3) arr.push(tag3.replace(/^#|\s/g, ''))
-    if (tag4) arr.push(tag4.replace(/^#|\s/g, ''))
-    this.setState({ tags: arr })
-    this.toggleShowTags()
-  }
-
   render() {
     const {
       errors,
@@ -203,12 +170,7 @@ class PostForm extends Component {
       media,
       rows,
       show,
-      showEmojis,
-      showTags,
-      tag1,
-      tag2,
-      tag3,
-      tag4
+      showEmojis
     } = this.state
     return (
       <div className="post-feed-form">
@@ -220,15 +182,6 @@ class PostForm extends Component {
                 <EmojiPicker onEmojiClick={this.addEmoji} />
               </EmojiModal>
             )}
-            <HashtagInputs
-              showTags={showTags}
-              onTagSubmit={this.onTagSubmit}
-              onChange={this.onChange}
-              tag1={tag1}
-              tag2={tag2}
-              tag3={tag3}
-              tag4={tag4}
-            />
             <div>
               <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler}>
                 <TextAreaForm
@@ -243,11 +196,6 @@ class PostForm extends Component {
                   noFocus
                 />
                 <div className={show ? 'otherstuff' : 'disp'}>
-                  <Icon
-                    icon="fas fa-hashtag"
-                    title="hashtags"
-                    toggleIcon={this.toggleShowTags}
-                  />
                   <Dropzone
                     style={{ border: 'none' }}
                     multiple={false}

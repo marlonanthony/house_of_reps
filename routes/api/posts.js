@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 })
 
 // @route         GET api/posts/search/:search
-// @description   Get posts by searching text
+// @description   Get posts by searching text/hashtag
 // @access        Public
 router.get(`/search/:search`, async (req, res) => {
   const pageOptions = {
@@ -35,7 +35,7 @@ router.get(`/search/:search`, async (req, res) => {
     search: req.params.search
   }
   try {
-    const posts = await Post.find({ $text: { $search: pageOptions.search } })
+    const posts = await Post.find({ text: { $regex: `#${pageOptions.search}`, $options: 'i' } })
       .sort({ date: -1 })
       .skip(pageOptions.page * pageOptions.limit)
       .limit(pageOptions.limit)
@@ -93,29 +93,6 @@ router.get(
   }
 )
 
-// @route        GET api/posts/hashtags/:id
-// @desc         Get posts by hashtag
-// @access       Public
-router.get('/hashtag/:hashtag', async (req, res) => {
-  const pageOptions = {
-    page: parseInt(req.query.page) || 0,
-    limit: parseInt(req.query.limit) || 10
-  }
-  try {
-    const posts = await Post.find({ tags: { $in: req.params.hashtag } })
-      .sort({ date: -1 })
-      .skip(pageOptions.page * pageOptions.limit)
-      .limit(pageOptions.limit)
-    if (!posts)
-      return res
-        .status(404)
-        .json({ nopostfound: 'No posts found with that hashtag' })
-    return res.status(200).json(posts)
-  } catch (err) {
-    res.json(err)
-  }
-})
-
 // @route         GET api/posts/:id
 // @description   Get post by id
 // @access        Public
@@ -150,7 +127,6 @@ router.post(
         description: req.body.description,
         url: req.body.url,
         media: req.body.media,
-        tags: req.body.tags && req.body.tags
       })
       const post = await newPost.save()
       return res.status(201).json(post)
