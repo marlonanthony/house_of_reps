@@ -30,7 +30,7 @@ router.get(
         errors.noprofile = 'There is no profile for this user'
         return res.status(404).json(errors)
       }
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -52,7 +52,7 @@ router.get(
         errors.noprofile = 'No profiles yet'
         return res.status(404).json(errors)
       }
-      return res.json(profiles)
+      return res.status(200).json(profiles)
     } catch (err) {
       res.status(404).json({ profile: 'No profiles yet' })
     }
@@ -76,7 +76,7 @@ router.get(
         errors.noprofile = 'There is no profile for this user'
         return res.status(404).json(errors)
       }
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -97,8 +97,8 @@ router.get(
           { stageName: { $regex: input, $options: 'i' }}
         ]
       }).populate('user', ['name', 'avatar'])
-      if(!profiles) throw new Error('These are not the profiles you\'re looking for.')
-      return res.json(profiles)
+      if(!profiles) return res.status(404).json('These are not the profiles you\'re looking for.')
+      return res.status(200).json(profiles)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -122,7 +122,7 @@ router.get(
         errors.noprofile = 'There is no profile for this user'
         return res.status(404).json(errors)
       }
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json({ profile: 'There is no profile for this user' })
     }
@@ -148,7 +148,7 @@ router.get(
         }
       })
       await profile.save()
-      return res.json(profile.notifications.reverse())
+      return res.status(200).json(profile.notifications.reverse())
     } catch (err) {
       res.status(404).json(err)
     }
@@ -168,7 +168,7 @@ router.post(
         notification.seen = true
       })
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -299,7 +299,7 @@ router.post(
               }
               new Profile(profileFields)
                 .save()
-                .then(newProfile => res.json(newProfile)).catch(err => console.log(err))
+                .then(newProfile => res.status(200).json(newProfile)).catch(err => console.log(err))
             }
           )
         }
@@ -336,7 +336,7 @@ router.post(
       // Add to venues array
       profile.venues.unshift(newVenue)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -381,7 +381,7 @@ router.post(
       })
 
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -408,7 +408,7 @@ router.post(
       }
       profile.djpools.unshift(newDjpool)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -435,7 +435,7 @@ router.post(
       }
       profile.stores.unshift(newStore)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -462,7 +462,7 @@ router.post(
       }
       profile.perks.unshift(newPerk)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -489,7 +489,7 @@ router.post(
       }
       profile.brands.unshift(newBrand)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -510,7 +510,7 @@ router.delete(
         .indexOf(req.params.venue_id)
       profile.venues.splice(index, 1)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -531,7 +531,7 @@ router.delete(
         .indexOf(req.params.djpool_id)
       profile.djpools.splice(index, 1)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -552,7 +552,7 @@ router.delete(
         .indexOf(req.params.store_id)
       profile.stores.splice(index, 1)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -573,7 +573,7 @@ router.delete(
         .indexOf(req.params.perk_id)
       profile.perks.splice(index, 1)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -594,7 +594,7 @@ router.delete(
         .indexOf(req.params.brand_id)
       profile.brands.splice(index, 1)
       await profile.save()
-      return res.json(profile)
+      return res.status(200).json(profile)
     } catch (err) {
       res.status(404).json(err)
     }
@@ -611,7 +611,7 @@ router.delete(
     try {
       await Profile.findOneAndRemove({ user: req.user.id })
       await User.findOneAndRemove({ _id: req.user.id })
-      return res.json({ success: true })
+      return res.status(200).json({ success: true })
     } catch (err) {
       res.status(404).json(err)
     }

@@ -22,7 +22,7 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
 
   return (
     profiles && (
-      <div>
+      <section>
         <h2>Reps</h2>
         <div className="reps-search-div">
           <input
@@ -34,14 +34,14 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
           <button
             className="reps-search-btn"
             type="button"
-            onClick={() => {
-              setToggleSearch(prev => !prev)
-              console.log(toggleSearch)
-            }}
+            onClick={() => setToggleSearch(prev => !prev)}
           >
             <i
-              id="reps-search-icon"
-              className={toggleSearch ? 'fas fa-search-minus' : 'fas fa-search'}
+              className={
+                toggleSearch
+                  ? 'fas fa-search-minus reps-search-icon toggle-color'
+                  : 'fas fa-search reps-search-icon'
+              }
             />
           </button>
         </div>
@@ -50,7 +50,7 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
             <ProfileItem key={profile._id} profile={profile} />
           ))}
         </div>
-      </div>
+      </section>
     )
   )
 }

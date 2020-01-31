@@ -20,15 +20,18 @@
   outline: none;
 }
 .reps-search-input::placeholder {
-  color: var(--primary-color);
+  color: gray;
 }
 .reps-search-btn {
   border: none;
   cursor: pointer;
-  /* outline: none; */
+  outline: none;
   background: none;
 }
-#reps-search-icon {
+.reps-search-icon {
   font-size: 16px;
   color: gray;
+}
+.toggle-color {
+  color: var(--primary-color);
 }

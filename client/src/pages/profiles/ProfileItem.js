@@ -14,10 +14,12 @@ const ProfileItem = ({ profile }) => {
         id="profiles_avatar"
       />
       <div className="djs_profile_card">
-        <p>{profile.stageName && <span>{profile.stageName}</span>}</p>
-        <Link to={`/profile/${profile.handle}`} id="profiles-item-link">
-          {profile.handle && <span>@{profile.handle}</span>}
-        </Link>
+        {profile.stageName && <p id="reps-stage-name">{profile.stageName}</p>}
+        {profile.handle && (
+          <Link to={`/profile/${profile.handle}`} id="profiles-item-link">
+            @{profile.handle}
+          </Link>
+        )}
         {profile.bio && profile.bio.length >= 135 ? (
           showMore ? (
             <p id="reps-page-bio">
