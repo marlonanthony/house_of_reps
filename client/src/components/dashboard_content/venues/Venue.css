@@ -9,53 +9,29 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 
 .dashboard_venue_items {
-  background: rgba(0, 0, 0, 1);
   text-align: center;
-  max-width: 400px;
+  max-width: 350px;
   margin: 10px;
 }
 
 .dashboard_iframe {
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  min-height: 250px;
 }
-
-.dashboard_venue_items:hover {
-  background: rgba(0, 0, 0, 0.5);
-}
-
 
 #venue-delete-btns {
   padding: 10px;
   width: 100px;
-  background: rgba(0, 0, 0, 0.5);
   color: rgba(200,200,200,0.6);
   border: none;
   outline: none;
   border-radius: 2%;
+  cursor: pointer;
+  background: var(--nested-comments-color);
 }
-
 #venue-delete-btns:hover {
   color: rgb(55, 131, 194);
-  background: rgba(0, 0, 0, 1);
-  cursor: pointer;
-}
-
-@media (max-width: 800px) {
-  #venue-delete-btns {
-    width: 80px;
-  }
-}
-
-@media(max-width: 420px) {
-  .dashboard_venue_items {
-    width: 320px;
-  }
-  .dashboard_iframe {
-    width: 320px;
-  }
 }
