@@ -22,6 +22,9 @@
 *::-webkit-scrollbar-thumb {
   background-color: var(--secondary-color);
 }
+::placeholder {
+  color: var(--secondary-color);
+}
 body::-webkit-scrollbar {
   width: 5px;
 }

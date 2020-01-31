@@ -58,11 +58,11 @@ router.post('/register', async (req, res) => {
       d: 'mm' // default
     })
     const newUser = new User({
-      name,
-      handle,
-      email,
+      name: name.trim(),
+      handle: handle.trim(),
+      email: email.trim(),
       avatar: req.body.avatar ? req.body.avatar : avatar,
-      password
+      password: password.trim()
     })
 
     bcrypt.genSalt(10, (err, salt) => {
@@ -77,8 +77,8 @@ router.post('/register', async (req, res) => {
         })
         await token.save()
         const emailInfo = {
-          subject: 'Testing the register route',
-          body: "Bruh, I'm fittin to write all the emails!",
+          subject: 'Confirm your email',
+          body: "Click on the link below to conifrm your email.",
           recipients: email,
           token: token.token
         }

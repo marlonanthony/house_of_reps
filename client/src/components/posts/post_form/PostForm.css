@@ -17,11 +17,6 @@
   color: var(--text-color);
   background: none;
 }
-
-::placeholder {
-  color: var(--secondary-color);
-}
-
 .text-area:focus {
   outline: none;
 }
