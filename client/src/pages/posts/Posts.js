@@ -147,7 +147,7 @@ class Posts extends Component {
           showLikesHandler={this.showLikesHandler}
           showLikes={showLikes}
           showHighlight={this.props.showHighlight}
-          setShowHighlight={this.props.setShowHighlight}
+          toggleHighlight={this.props.toggleHighlight}
         />
         <PoolsContainer profiles={profiles} loading={loading} />
         <PerksContainer profiles={profiles} loading={loading} />
@@ -161,7 +161,7 @@ class Posts extends Component {
         <HighlightsContainer
           profiles={profiles}
           loading={loading}
-          setShowHighlight={this.props.setShowHighlight}
+          toggleHighlight={this.props.toggleHighlight}
         />
         <StoresContainer profiles={profiles} loading={loading} />
         <BrandContainer profiles={profiles} loading={loading} />
@@ -184,7 +184,7 @@ Posts.propTypes = {
   getMorePosts: PropTypes.func.isRequired,
   getLikedPosts: PropTypes.func.isRequired,
   getMoreLikedPosts: PropTypes.func.isRequired,
-  setShowHighlight: PropTypes.func.isRequired,
+  toggleHighlight: PropTypes.func.isRequired,
   showHighlight: PropTypes.bool.isRequired
 }
 

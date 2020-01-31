@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import PrivateRoute from './components/common/PrivateRoute'
@@ -29,13 +29,17 @@ import './App.css'
 const App = () => {
   const [showHighlight, setShowHighlight] = useState(false)
 
+  const toggleHighlight = useCallback(() => {
+    setShowHighlight(prev => !prev)
+  }, [setShowHighlight])
+
   return (
     <>
       <>
         <DropdownMenu />
         <FixedHighlights
           showHighlight={showHighlight}
-          setShowHighlight={setShowHighlight}
+          toggleHighlight={toggleHighlight}
         />
         <Route exact path="/" component={Landing} />
       </>
@@ -85,7 +89,7 @@ const App = () => {
             path="/feed"
             component={() => (
               <Posts
-                setShowHighlight={setShowHighlight}
+                toggleHighlight={toggleHighlight}
                 showHighlight={showHighlight}
               />
             )}

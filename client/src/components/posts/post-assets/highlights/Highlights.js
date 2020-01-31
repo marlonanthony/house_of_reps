@@ -44,7 +44,7 @@ class Highlights extends Component {
 
   render() {
     if (!this.props.recentHighlights) return null
-    const { recentHighlights, setShowHighlight } = this.props
+    const { recentHighlights, toggleHighlight } = this.props
 
     const highlightsModal = this.state.showModal && (
       <>
@@ -131,7 +131,7 @@ class Highlights extends Component {
                   ></iframe>
                 )}
               <img
-                onClick={() => setShowHighlight(prev => !prev)}
+                onClick={toggleHighlight}
                 className="highlightss_icon"
                 src={require('../../../../img/hor-icon.jpg')}
                 alt="hors"
@@ -154,7 +154,7 @@ class Highlights extends Component {
 Highlights.propTypes = {
   likeVenue: PropTypes.func.isRequired,
   recentHighlights: PropTypes.array.isRequired,
-  setShowHighlight: PropTypes.func.isRequired
+  toggleHighlight: PropTypes.func.isRequired
 }
 
 export default connect(

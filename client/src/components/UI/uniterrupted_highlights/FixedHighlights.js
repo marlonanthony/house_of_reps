@@ -57,7 +57,7 @@ class FixedHighlights extends Component {
   render() {
     const { recentHighlights, currentImageIndex } = this.state
     const { profiles } = this.props.profile
-    const { setShowHighlight, showHighlight } = this.props
+    const { toggleHighlight, showHighlight } = this.props
     if (!showHighlight) return null
     if (!profiles || !recentHighlights.length) return null
 
@@ -80,7 +80,7 @@ class FixedHighlights extends Component {
               allowFullScreen={true}
             ></iframe>
             <img
-              onClick={() => setShowHighlight(prev => !prev)}
+              onClick={toggleHighlight}
               src={require('../../../img/hor-icon.jpg')}
               alt="hors"
               title="toggle modal"
@@ -101,7 +101,7 @@ class FixedHighlights extends Component {
 FixedHighlights.propTypes = {
   getProfiles: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  setShowHighlight: PropTypes.func.isRequired,
+  toggleHighlight: PropTypes.func.isRequired,
   showHighlight: PropTypes.bool.isRequired
 }
 

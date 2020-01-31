@@ -6,7 +6,7 @@ import Highlights from './Highlights'
 export default function HighlightsContainer({
   profiles,
   loading,
-  setShowHighlight
+  toggleHighlight
 }) {
   let highlights, orderedHighlights
 
@@ -26,7 +26,7 @@ export default function HighlightsContainer({
   return (
     <Highlights
       recentHighlights={orderedHighlights}
-      setShowHighlight={setShowHighlight}
+      toggleHighlight={toggleHighlight}
     />
   )
 }
@@ -34,5 +34,5 @@ export default function HighlightsContainer({
 HighlightsContainer.propTypes = {
   profiles: PropTypes.array,
   loading: PropTypes.bool.isRequired,
-  setShowHighlight: PropTypes.func.isRequired
+  toggleHighlight: PropTypes.func.isRequired
 }

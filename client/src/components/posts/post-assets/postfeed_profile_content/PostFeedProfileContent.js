@@ -12,7 +12,7 @@ const PostFeedProfileContent = ({
   user,
   showLikes,
   showHighlight,
-  setShowHighlight,
+  toggleHighlight,
   ...props
 }) => {
   const [showPopup, setShowPopup] = useState(false)
@@ -24,7 +24,7 @@ const PostFeedProfileContent = ({
         <MobileIcons
           profile={profile}
           showHighlight={showHighlight}
-          setShowHighlight={setShowHighlight}
+          toggleHighlight={toggleHighlight}
           showLikesHandler={showLikesHandler}
         />
         <div
@@ -113,7 +113,7 @@ PostFeedProfileContent.propTypes = {
   profile: PropTypes.object,
   user: PropTypes.object.isRequired,
   showLikes: PropTypes.bool.isRequired,
-  setShowHighlight: PropTypes.func.isRequired,
+  toggleHighlight: PropTypes.func.isRequired,
   showHighlight: PropTypes.bool.isRequired
 }
 
