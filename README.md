@@ -9,7 +9,7 @@ This app is in development and being hosted on a free Heroku account. Free Herok
 
 ## Dashboard
 
-Once logged in, you'll be confronted with the Dashboard page. What you'll see on this page largely depends on if you're an admin of the site. Whether an admin or not, you'll see a few labels/icons: 
+Once logged in you'll be confronted with the Dashboard page. What you'll see on this page largely depends on if you're an admin of the site. Whether an admin or not, you'll see a few labels/icons: 
 
   1. Edit Profile 
   1. Add Media 

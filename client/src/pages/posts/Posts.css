@@ -164,7 +164,7 @@
     color: var(--primary-color);
   }
   .searchbar_input::placeholder {
-    color: var(--primary-color);
+    color: gray;
   }
 
   .searchbarpost {
@@ -188,7 +188,7 @@
   .searchbarpostinput::placeholder {
     font-size: 13px;
     padding-left: 5px;
-    color: var(--primary-color);
+    color: gray;
   }
   
   .searchbarpostbtn {
