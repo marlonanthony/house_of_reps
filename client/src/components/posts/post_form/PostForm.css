@@ -20,6 +20,10 @@
 .text-area:focus {
   outline: none;
 }
+.text-area::placeholder {
+  color: gray;
+}
+
 .post-form-text-area {
   border: none;
   padding: 10px;
@@ -31,7 +35,6 @@
   color: var(--text-color);
   margin-left: 10%;
 }
-
 .post-form-text-area::placeholder {
   color: var(--text-color);
 }

@@ -127,50 +127,55 @@ class Posts extends Component {
       } = this.state,
       { user } = this.props.auth
     return (
-      <div className="feed">
-        <SearchPost
-          showPostByHashtag={this.showPostByHashtag}
-          onChange={this.onChange}
-          hashtag={hashtag}
-          showHashtags={showHashtags}
-        />
-        <PostForm showPreview={showPreview} />
-        <SearchBar profiles={profiles} />
-        <Buttons
-          showPostByHashtag={this.showPostByHashtag}
-          hashtag={hashtag}
-          showHashtags={showHashtags}
-        />
-        <PostFeedProfileContent
-          profile={profile}
-          user={user}
-          showLikesHandler={this.showLikesHandler}
-          showLikes={showLikes}
-          showHighlight={this.props.showHighlight}
-          toggleHighlight={this.props.toggleHighlight}
-        />
-        <PoolsContainer profiles={profiles} loading={loading} />
-        <PerksContainer profiles={profiles} loading={loading} />
-        <PostsContainer
-          posts={posts}
-          profiles={profiles}
-          loading={loading}
-          fetchMore={this.fetchMore}
-          showsPreview={showPreview}
-        />
-        <HighlightsContainer
-          profiles={profiles}
-          loading={loading}
-          toggleHighlight={this.props.toggleHighlight}
-        />
-        <StoresContainer profiles={profiles} loading={loading} />
-        <BrandContainer profiles={profiles} loading={loading} />
-        <Speakeasy
-          onlineCount={onlineCount}
-          handle={profile && profile.handle}
-        />
-        <Footer />
-      </div>
+      <>
+        <div id="logo-div">
+          <img id="logo" src={require('../../img/logo-lg.png')} alt="logo" />
+        </div>
+        <div className="feed">
+          <SearchPost
+            showPostByHashtag={this.showPostByHashtag}
+            onChange={this.onChange}
+            hashtag={hashtag}
+            showHashtags={showHashtags}
+          />
+          <PostForm showPreview={showPreview} />
+          <SearchBar profiles={profiles} />
+          <Buttons
+            showPostByHashtag={this.showPostByHashtag}
+            hashtag={hashtag}
+            showHashtags={showHashtags}
+          />
+          <PostFeedProfileContent
+            profile={profile}
+            user={user}
+            showLikesHandler={this.showLikesHandler}
+            showLikes={showLikes}
+            showHighlight={this.props.showHighlight}
+            toggleHighlight={this.props.toggleHighlight}
+          />
+          <PoolsContainer profiles={profiles} loading={loading} />
+          <PerksContainer profiles={profiles} loading={loading} />
+          <PostsContainer
+            posts={posts}
+            profiles={profiles}
+            loading={loading}
+            fetchMore={this.fetchMore}
+            showsPreview={showPreview}
+          />
+          <HighlightsContainer
+            profiles={profiles}
+            loading={loading}
+            toggleHighlight={this.props.toggleHighlight}
+          />
+          <StoresContainer profiles={profiles} loading={loading} />
+          <BrandContainer profiles={profiles} loading={loading} />
+          <Speakeasy
+            onlineCount={onlineCount}
+            handle={profile && profile.handle}
+          />
+          <Footer />
+        </div>
+      </>
     )
   }
 }

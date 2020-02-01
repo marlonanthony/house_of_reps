@@ -62,7 +62,9 @@
   margin: 1px;
   margin-right: 0;
   border: none;
-  /* border: 1px solid var(--reps-blue); */
+}
+#chat_message::placeholder {
+  color: gray;
 }
 
 #chat_submit_button {

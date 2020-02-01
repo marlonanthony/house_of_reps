@@ -1,7 +1,15 @@
+#logo-div {
+  margin-top: 50px;
+  text-align: center;
+}
+#logo {
+  max-width: 200px;
+}
+
 .feed {
   max-width: 1150px;
   margin: 0 auto;
-  padding-top: 100px;
+  /* padding-top: 100px; */
   display: grid;
   grid-gap: 15px;
   grid-template-columns: 1fr;
@@ -91,6 +99,10 @@
 }
 
 @media (min-width: 600px){
+  #logo {
+    max-width: 500px;
+    max-height: 100px;
+  }
   .postfeed_reps_btns img {
     height: 60px;
     max-width: 100px;
