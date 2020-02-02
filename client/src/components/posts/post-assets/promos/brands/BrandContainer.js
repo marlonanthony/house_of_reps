@@ -1,9 +1,9 @@
 import React from 'react'
 import Brands from './Brands'
 
-const BrandContainer = ({ profiles, loading }) => {
+const BrandContainer = ({ profiles }) => {
   let brands
-  if (!profiles || loading) {
+  if (!profiles) {
     brands = null
   } else {
     brands = profiles.map(val =>

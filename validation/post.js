@@ -10,7 +10,7 @@ module.exports = function validatePostInput(data) {
     errors.text = 'Post must be between 1 and 500 characters'
   }
 
-  if(Validator.isEmpty(data.text) && Validator.isEmpty(data.media)) {
+  if(Validator.isEmpty(data.text) && Validator.isEmpty(data.media) && Validator.isEmpty(data.image)) {
     errors.text = 'Content is required'
   }
 

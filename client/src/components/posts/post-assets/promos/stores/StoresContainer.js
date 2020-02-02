@@ -1,10 +1,10 @@
 import React from 'react'
 import CertifiedStores from './CertifiedStores'
 
-export default function StoresContainer({ profiles, loading }) {
+export default function StoresContainer({ profiles }) {
   let stores
 
-  if (!profiles || loading) {
+  if (!profiles) {
     stores = null
   } else {
     stores = profiles.map(val =>

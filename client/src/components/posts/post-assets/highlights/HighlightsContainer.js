@@ -3,14 +3,10 @@ import PropTypes from 'prop-types'
 
 import Highlights from './Highlights'
 
-export default function HighlightsContainer({
-  profiles,
-  loading,
-  toggleHighlight
-}) {
+export default function HighlightsContainer({ profiles, toggleHighlight }) {
   let highlights, orderedHighlights
 
-  if (!profiles || loading) highlights = null
+  if (!profiles) highlights = null
   else {
     let hls = profiles
       .map(profile => profile.venues)
@@ -33,6 +29,5 @@ export default function HighlightsContainer({
 
 HighlightsContainer.propTypes = {
   profiles: PropTypes.array,
-  loading: PropTypes.bool.isRequired,
   toggleHighlight: PropTypes.func.isRequired
 }

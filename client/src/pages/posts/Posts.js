@@ -116,7 +116,7 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts, loading } = this.props.post,
+    const { posts } = this.props.post,
       { profile, profiles } = this.props.profile,
       {
         showPreview,
@@ -153,22 +153,20 @@ class Posts extends Component {
             showHighlight={this.props.showHighlight}
             toggleHighlight={this.props.toggleHighlight}
           />
-          <PoolsContainer profiles={profiles} loading={loading} />
-          <PerksContainer profiles={profiles} loading={loading} />
+          <PoolsContainer profiles={profiles} />
+          <PerksContainer profiles={profiles} />
           <PostsContainer
             posts={posts}
             profiles={profiles}
-            loading={loading}
             fetchMore={this.fetchMore}
             showsPreview={showPreview}
           />
           <HighlightsContainer
             profiles={profiles}
-            loading={loading}
             toggleHighlight={this.props.toggleHighlight}
           />
-          <StoresContainer profiles={profiles} loading={loading} />
-          <BrandContainer profiles={profiles} loading={loading} />
+          <StoresContainer profiles={profiles} />
+          <BrandContainer profiles={profiles} />
           <Speakeasy
             onlineCount={onlineCount}
             handle={profile && profile.handle}

@@ -1,9 +1,9 @@
 import React from 'react'
 import Perks from './Perks'
 
-export default function PerksContainer({ profiles, loading }) {
+export default function PerksContainer({ profiles }) {
   let perks
-  if (!profiles || loading) {
+  if (!profiles) {
     perks = null
   } else {
     perks = profiles.map(val =>

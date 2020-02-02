@@ -1,10 +1,10 @@
 import React from 'react'
 import DjPools from './DjPools'
 
-export default function PoolsContainer({ profiles, loading }) {
+export default function PoolsContainer({ profiles }) {
   let djpools
 
-  if (!profiles || loading) {
+  if (!profiles) {
     djpools = null
   } else {
     djpools = profiles.map(val =>
