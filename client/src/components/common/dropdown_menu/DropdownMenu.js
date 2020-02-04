@@ -77,7 +77,7 @@ const DropdownMenu = ({
   )
 
   return (
-    <div ref={ref}>
+    <div ref={ref} aria-label="Main Menu">
       <div className="dropdown" onClick={() => setDisplayMenu(prev => !prev)}>
         <div className="dropdown_hover">
           <div className="btn-line"></div>

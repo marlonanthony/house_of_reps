@@ -125,8 +125,7 @@ router.post('/login', async (req, res) => {
   try {
     const { errors, isValid } = validateLoginInput(req.body)
     if (!isValid) return res.status(400).json(errors)
-    const { email } = req.body
-    const { password } = req.body
+    const { email, password } = req.body
     const user = await User.findOne({ email })
     if (!user) {
       errors.email = 'User not found'
