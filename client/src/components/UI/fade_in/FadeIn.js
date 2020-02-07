@@ -16,7 +16,7 @@ export default function FadeIn(props) {
 
   return (
     <div
-      className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
+      className={`fade-in-section ${isVisible ? 'is-visible' : null}`}
       ref={domRef}
     >
       {props.children}
