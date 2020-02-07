@@ -1,3 +1,4 @@
+                          /* MOBILE */
 .profile-content-container {
   padding-top: 70px;
   min-height: 100vh;
@@ -9,12 +10,12 @@
   overflow: hidden;
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto ;
+  grid-template-columns: 100vw;
+  grid-template-rows: auto auto 1fr;
   grid-template-areas: 
-    'headeritems headeritems'
-    'profilecredsdiv profilecredsdiv' 
-    'profilefeed profilefeed';
+    'headeritems'
+    'profilecredsdiv' 
+    'profilefeed';
 }
 
 #profile-avatar-div {
@@ -29,23 +30,22 @@
 
 #profile-avatar {
   border-radius: 50%;
-  height: 140px;
-  width: 140px;
+  height: 70px;
+  width: 70px;
   border: 2px solid var(--secondary-color);
 }
 
 #header-items {
   grid-area: headeritems;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-end;
+  display: block;
+  margin: 0 auto;
 }
 
 #profile-header-about-info {
   grid-area: about-info;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 0px;
+  margin-top: 0px;
   width: 200px;
   border: none;
 }
@@ -118,9 +118,37 @@
   grid-area: profilecredsdiv;
 }
 
+
+                        /* TABLET */
+
+
+@media(min-width: 600px){
+  .profile-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto ;
+    grid-template-areas: 
+      'headeritems headeritems'
+      'profilecredsdiv profilecredsdiv' 
+      'profilefeed profilefeed';
+  }
+  #profile-avatar {
+    height: 140px;
+    width: 140px;
+  }
+  #header-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+}
+
+
+                          /* DESKTOP */
+
+
 @media (min-width: 1200px) {
   .profile-content {
-    display: grid;
     justify-items: center;
     grid-template-columns: auto 1fr 330px;
     grid-template-rows: auto 1fr;
@@ -135,30 +163,5 @@
   #profile-feed {
     margin: 70px auto;
     max-width: 900px;
-  }
-  #profile-header-about-info {
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .profile-content {
-    grid-template-columns: 100vw;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas: 
-    'headeritems'
-    'profilecredsdiv' 
-    'profilefeed';
-  }
-  #profile-avatar {
-    height: 70px;
-    width: 70px;
-  }
-  #header-items {
-    display: block;
-    margin: 0 auto; 
-  }
-  #profile-header-about-info {
-    margin-top: 0;
   }
 }
