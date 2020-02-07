@@ -1,19 +1,21 @@
-.profile-creds {
-
-}
-
+                        /* MOBILE */
 .profile-creds-content {
-
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  margin: 5px;
 }
-
+.profile-creds-content::-webkit-scrollbar {
+  height: 8px;
+}
 .venue-items {
   border: none;
-  margin-bottom: 10px;
+  margin: 10px;
   list-style: none;
   cursor: pointer;
   position: relative;
 }
-
 .profile_highlights_toggle_modal {
   position: absolute;
   width: 35px;
@@ -27,68 +29,35 @@
   animation-iteration-count: 1;
   opacity: .5;
 }
-
 .profile_highlights_toggle_modal:hover {
   opacity: 1;
 }
-
 #no_venues {
   text-align: center;
+  margin: auto;
+}
+#profile_creds_video {
+  width: 200px;
+  height: 250px;
 }
 
-#venue_profile_image {
-  max-height: 200px;
-  width: 100%;
-}
+                      /* TABLET */
 
-@media (max-width: 1200px) {
+
+@media (min-width: 600px) {
   .profile-creds-content {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
-  }
-
-  #no_venues {
-    text-align: center;
-  }
-  #venue_profile_image {
-    max-height: 500px;
-    max-width: 100%;
-  }
-  .profile_highlights_toggle_modal {
-    /* display: none; */
-  }
-}
-
-@media(max-width: 600px) {
-  .venue-items {
-    margin: 5px;
-  }
-  #no_venues {
-    margin: auto;
-  }
-  .profile-creds-content {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    margin: 5px;
-  }
-  .profile-creds-content::-webkit-scrollbar {
-    height: 8px;
-  }
-  .profile-creds-content li {
-    width: 200px;
-    height: 250px;
+    flex-wrap: wrap;
+    overflow-x: hidden;
   }
   #profile_creds_video {
-    width: 200px;
-    height: 250px;
-  }
-  .profile_highlights_toggle_modal {
-    /* display: none; */
+    width: 330px;
+    height: 200px;
   }
 }
+
+                        /* DESKTOP */
 
 @media (min-width: 1200px) {
   .profile-creds {

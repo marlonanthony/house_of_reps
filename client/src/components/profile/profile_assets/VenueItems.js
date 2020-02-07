@@ -13,17 +13,10 @@ export default function VenueItems({
           id="profile_creds_video"
           title={venue._id}
           src={venue.video}
-          width="330"
-          height="200"
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen={true}
         ></iframe>
-      )}
-      {venue.image && !venue.video && (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={venue.image} id="venue_profile_image" alt="new-venue" />
-        </div>
       )}
       <img
         onClick={() =>
