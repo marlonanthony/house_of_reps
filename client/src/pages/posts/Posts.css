@@ -1,5 +1,5 @@
 #logo-div {
-  margin-top: 50px;
+  padding-top: 50px;
   text-align: center;
 }
 #logo {
@@ -9,7 +9,6 @@
 .feed {
   max-width: 1150px;
   margin: 0 auto;
-  /* padding-top: 100px; */
   display: grid;
   grid-gap: 15px;
   grid-template-columns: 1fr;
