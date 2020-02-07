@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function VenueItems({
   venue,
   setShowModal,
   toggleShowHighlight,
-  ...props
+  postfeed
 }) {
   return (
     <li className="venue-items">
@@ -20,13 +21,20 @@ export default function VenueItems({
       )}
       <img
         onClick={() =>
-          props.postfeed ? toggleShowHighlight(0) : setShowModal(prev => !prev)
+          postfeed ? toggleShowHighlight() : setShowModal(prev => !prev)
         }
         className="profile_highlights_toggle_modal"
         src={require('../../../img/hor-icon.jpg')}
-        alt="hors"
-        title={'🔥'}
+        alt="HORs logo"
+        title="toggle modal"
       />
     </li>
   )
+}
+
+VenueItems.propTypes = {
+  venue: PropTypes.object.isRequired,
+  setShowModal: PropTypes.func,
+  toggleShowHighlight: PropTypes.func,
+  postfeed: PropTypes.bool
 }
