@@ -7,6 +7,8 @@ export default function PoolsContainer({ profiles }) {
   return profiles.map(
     profile =>
       profile.djpools &&
-      profile.djpools.length && <DjPools djpools={profile.djpools} />
+      profile.djpools.length && (
+        <DjPools key={profile._id} djpools={profile.djpools} />
+      )
   )
 }

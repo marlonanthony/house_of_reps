@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
@@ -48,4 +49,8 @@ export default function DjPools({ djpools }) {
       </div>
     </div>
   )
+}
+
+DjPools.propTypes = {
+  djpools: PropTypes.array.isRequired
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import Arrow from '../../../../UI/arrow_glyph/Arrow'
+import PropTypes from 'prop-types'
 
+import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
 export default function Brands({ brands }) {
@@ -43,4 +44,8 @@ export default function Brands({ brands }) {
       </div>
     </div>
   )
+}
+
+Brands.propTypes = {
+  brands: PropTypes.array.isRequired
 }

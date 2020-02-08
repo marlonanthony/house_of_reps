@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
@@ -47,4 +49,8 @@ export default function CertifiedStores({ stores }) {
       </div>
     </div>
   )
+}
+
+CertifiedStores.propTypes = {
+  stores: PropTypes.array.isRequired
 }

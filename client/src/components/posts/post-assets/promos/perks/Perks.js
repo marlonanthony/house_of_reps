@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
@@ -42,4 +44,8 @@ export default function Perks({ perks }) {
       </div>
     </div>
   )
+}
+
+Perks.propTypes = {
+  perks: PropTypes.array.isRequired
 }

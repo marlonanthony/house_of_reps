@@ -6,7 +6,9 @@ const BrandContainer = ({ profiles }) => {
   return profiles.map(
     profile =>
       profile.brands &&
-      profile.brands.length && <Brands brands={profile.brands} />
+      profile.brands.length && (
+        <Brands key={profile._id} brands={profile.brands} />
+      )
   )
 }
 
