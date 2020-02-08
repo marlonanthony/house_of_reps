@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
-import './DjPools.css'
 import '../Promos.css'
 
 export default function DjPools({ djpools }) {
@@ -22,7 +21,7 @@ export default function DjPools({ djpools }) {
 
   return (
     <div className="djpools">
-      <div className="djpool">
+      <div className="promo">
         <Arrow
           direction="left"
           styleClass="slide-arrow"

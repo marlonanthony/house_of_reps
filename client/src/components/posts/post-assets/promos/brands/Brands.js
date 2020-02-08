@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
-import './Brands.css'
+
+import '../Promos.css'
 
 export default function Brands({ brands }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -21,7 +22,7 @@ export default function Brands({ brands }) {
 
   return (
     <div className="certified_brands">
-      <div className="brandss">
+      <div className="promo">
         <Arrow
           direction="left"
           styleClass="slide-arrow"
