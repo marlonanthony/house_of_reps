@@ -1,13 +1,5 @@
 .djpool {
-  display: flex;
-  flex: 1;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   width: 250px;
   height: 250px;
-  margin: auto;
-}
-
-.djpools_modal_img:hover {
-  opacity: .8;
 }
