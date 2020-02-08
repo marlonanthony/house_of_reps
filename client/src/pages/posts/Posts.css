@@ -233,7 +233,7 @@
 
   .post-feed-highlights {
     grid-area: postfeedhighlights;
-    display: flex;
+    display: grid;
     width: 250px;
     height: 250px;
     margin: 0;

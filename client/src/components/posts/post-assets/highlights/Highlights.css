@@ -1,9 +1,11 @@
 .highlightss {
-  display: flex;
-  flex: 1;
-  justify-content: center;
+  position: relative;
 }
-.highlightss_icon {
+.postfeed-highlight-iframe {
+  width: 100%;
+  height: 100%;
+}
+.highlights_logo {
   position: absolute;
   width: 35px;
   height: 35px;
@@ -17,11 +19,9 @@
   opacity: .5;
   cursor: pointer;
 }
-
-.highlightss_icon:hover {
+.highlights_logo:hover {
   opacity: 1;
 }
-
 @keyframes highlights {
   0% {
     transform: translateX(100vw);
