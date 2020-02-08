@@ -9,9 +9,7 @@ export default function PoolsContainer({ profiles }) {
       val.djpools &&
       val.djpools.length &&
       val.djpools.map(djpool => (
-        <div className="djpools">
-          <DjPools key={djpool._id} djpools={val.djpools} djpool={djpool} />
-        </div>
+        <DjPools key={djpool._id} djpools={val.djpools} djpool={djpool} />
       ))
   )
 }
