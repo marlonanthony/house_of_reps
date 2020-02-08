@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import './DjPools.css'
+import '../Promos.css'
 
 export default function DjPools({ djpools }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -36,7 +37,7 @@ export default function DjPools({ djpools }) {
           <img
             src={djpools[currentImageIndex].image}
             alt={djpools[currentImageIndex].url}
-            style={{ height: '100%', width: '100%' }}
+            className="promos-thumbnail"
           />
         </a>
         <Arrow

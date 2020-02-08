@@ -5,11 +5,8 @@ export default function PoolsContainer({ profiles }) {
   if (!profiles) return null
 
   return profiles.map(
-    val =>
-      val.djpools &&
-      val.djpools.length &&
-      val.djpools.map(djpool => (
-        <DjPools key={djpool._id} djpools={val.djpools} djpool={djpool} />
-      ))
+    profile =>
+      profile.djpools &&
+      profile.djpools.length && <DjPools djpools={profile.djpools} />
   )
 }
