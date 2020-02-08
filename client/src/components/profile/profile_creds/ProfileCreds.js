@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { likeVenue } from '../../../actions/profileActions'
 import HighlightsModal from '../../UI/modal/highlights-modal/HighlightsModal'
 import Backdrop from '../../UI/backdrop/Backdrop'
 import VenueItems from '../profile_assets/VenueItems'
-import ModalVenues from '../profile_assets/ModalVenues'
+import ModalVenues from '../profile_assets/modal_venues/ModalVenues'
 import FadeIn from '../../UI/fade_in/FadeIn'
 import './ProfileCreds.css'
 
@@ -34,8 +35,8 @@ const ProfileCreds = ({ likeVenue, venues }) => {
         />
         {highlightsModal}
         <div className="profile-creds-content">
-          {venueItems.length > 0 ? (
-            venueItems.filter((_, i) => (i < 6 ? <ul>{venueItems}</ul> : null))
+          {venueItems.length ? (
+            venueItems.filter((_, i) => i < 6 && <ul>{venueItems}</ul>)
           ) : (
             <p id="no_venues">
               <Link to="/add-venue">Add some content</Link>
@@ -47,11 +48,12 @@ const ProfileCreds = ({ likeVenue, venues }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  profile: state.profile
-})
+ProfileCreds.propTypes = {
+  likeVenue: PropTypes.func.isRequired,
+  venues: PropTypes.array.isRequired
+}
 
 export default connect(
-  mapStateToProps,
+  null,
   { likeVenue }
 )(ProfileCreds)

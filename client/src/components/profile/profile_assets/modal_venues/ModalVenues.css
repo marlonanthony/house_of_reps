@@ -1,0 +1,13 @@
+.modal-venues-iframe {
+  width: 100%; 
+  min-height: 35vh; 
+  margin-top: 15px;
+}
+.modal-venues-icon-count-div {
+  display: flex; 
+  align-items: center;
+}
+.modal-venue-icon-count-item {
+  color: var(--reps-blue); 
+  cursor: pointer;
+}

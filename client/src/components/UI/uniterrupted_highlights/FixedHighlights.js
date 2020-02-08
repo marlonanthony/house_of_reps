@@ -12,19 +12,6 @@ class FixedHighlights extends Component {
     recentHighlights: []
   }
 
-  componentDidMount() {
-    const { profiles } = this.props.profile
-    this.props.getProfiles().then(() => {
-      const recentHighlights =
-        this.props.profile &&
-        profiles &&
-        profiles
-          .map(profile => profile.venues.length && profile.venues[0])
-          .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-      this.setState({ recentHighlights })
-    })
-  }
-
   componentDidUpdate(prevProps) {
     const { profiles } = this.props.profile
     if (profiles !== prevProps.profile.profiles) {
@@ -82,7 +69,7 @@ class FixedHighlights extends Component {
             <img
               onClick={toggleHighlight}
               src={require('../../../img/hor-icon.jpg')}
-              alt="hors"
+              alt="HORs logo"
               title="toggle modal"
             />
             <Arrow
