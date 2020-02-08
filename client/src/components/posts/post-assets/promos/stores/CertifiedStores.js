@@ -1,62 +1,50 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Arrow from '../../../../UI/arrow_glyph/Arrow'
-import './CertifiedStores.css'
+import '../Promos.css'
 
-export default class CertifiedStores extends Component {
-  state = { currentImageIndex: 0 }
+export default function CertifiedStores({ stores }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  previousSlide = () => {
-    const { stores } = this.props
-    const { currentImageIndex } = this.state
+  const previousSlide = () => {
     const lastIndex = stores.length - 1
-    const shouldResetIndex = currentImageIndex === 0
-    const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
-
-    this.setState({ currentImageIndex: index })
+    const shouldResetIndex = currentIndex === 0
+    const index = shouldResetIndex ? lastIndex : currentIndex - 1
+    setCurrentIndex(index)
   }
 
-  nextSlide = () => {
-    const { stores } = this.props
-    const { currentImageIndex } = this.state
+  const nextSlide = () => {
     const lastIndex = stores.length - 1
-    const shouldResetIndex = currentImageIndex === lastIndex
-    const index = shouldResetIndex ? 0 : currentImageIndex + 1
-
-    this.setState({ currentImageIndex: index })
+    const shouldResetIndex = currentIndex === lastIndex
+    const index = shouldResetIndex ? 0 : currentIndex + 1
+    setCurrentIndex(index)
   }
-
-  render() {
-    const { stores } = this.props
-
-    return (
-      <div
-        className="store"
-        style={{ position: 'absolute', overflowY: 'hidden' }}
-      >
+  return (
+    <div className="stores_container">
+      <div className="promo">
         <Arrow
           direction="left"
           styleClass="slide-arrow"
-          clickFunction={this.previousSlide}
+          clickFunction={previousSlide}
           glyph="&#9664;"
         />
         <a
-          href={stores[this.state.currentImageIndex].url}
+          href={stores[currentIndex].url}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
-            src={stores[this.state.currentImageIndex].image}
-            alt={stores[this.state.currentImageIndex].url}
-            style={{ height: '100%', width: '100%' }}
+            src={stores[currentIndex].image}
+            alt={stores[currentIndex].url}
+            className="promos-thumbnail"
           />
         </a>
         <Arrow
           direction="right"
           styleClass="slide-arrow"
-          clickFunction={this.nextSlide}
+          clickFunction={nextSlide}
           glyph="&#9654;"
         />
       </div>
-    )
-  }
+    </div>
+  )
 }

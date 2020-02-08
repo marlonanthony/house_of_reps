@@ -4,20 +4,20 @@ import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
 export default function Brands({ brands }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const previousSlide = () => {
     const lastIndex = brands.length - 1
-    const shouldResetIndex = currentImageIndex === 0
-    const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
-    setCurrentImageIndex(index)
+    const shouldResetIndex = currentIndex === 0
+    const index = shouldResetIndex ? lastIndex : currentIndex - 1
+    setCurrentIndex(index)
   }
 
   const nextSlide = () => {
     const lastIndex = brands.length - 1
-    const shouldResetIndex = currentImageIndex === lastIndex
-    const index = shouldResetIndex ? 0 : currentImageIndex + 1
-    setCurrentImageIndex(index)
+    const shouldResetIndex = currentIndex === lastIndex
+    const index = shouldResetIndex ? 0 : currentIndex + 1
+    setCurrentIndex(index)
   }
 
   return (
@@ -30,8 +30,8 @@ export default function Brands({ brands }) {
           glyph="&#9664;"
         />
         <img
-          src={brands[currentImageIndex].image}
-          alt={brands[currentImageIndex].url}
+          src={brands[currentIndex].image}
+          alt={brands[currentIndex].url}
           className="promos-thumbnail"
         />
         <Arrow

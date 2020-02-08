@@ -3,20 +3,20 @@ import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
 export default function DjPools({ djpools }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const previousSlide = () => {
     const lastIndex = djpools.length - 1
-    const shouldResetIndex = currentImageIndex === 0
-    const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
-    setCurrentImageIndex(index)
+    const shouldResetIndex = currentIndex === 0
+    const index = shouldResetIndex ? lastIndex : currentIndex - 1
+    setCurrentIndex(index)
   }
 
   const nextSlide = () => {
     const lastIndex = djpools.length - 1
-    const shouldResetIndex = currentImageIndex === lastIndex
-    const index = shouldResetIndex ? 0 : currentImageIndex + 1
-    setCurrentImageIndex(index)
+    const shouldResetIndex = currentIndex === lastIndex
+    const index = shouldResetIndex ? 0 : currentIndex + 1
+    setCurrentIndex(index)
   }
 
   return (
@@ -29,13 +29,13 @@ export default function DjPools({ djpools }) {
           glyph="&#9664;"
         />
         <a
-          href={djpools[currentImageIndex].url}
+          href={djpools[currentIndex].url}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
-            src={djpools[currentImageIndex].image}
-            alt={djpools[currentImageIndex].url}
+            src={djpools[currentIndex].image}
+            alt={djpools[currentIndex].url}
             className="promos-thumbnail"
           />
         </a>
