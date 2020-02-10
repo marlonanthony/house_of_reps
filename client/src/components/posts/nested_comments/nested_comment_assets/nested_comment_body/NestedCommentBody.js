@@ -10,6 +10,7 @@ import Icon from '../../../../UI/icons/Icon'
 import EmojiModal from '../../../../UI/modal/EmojiModal'
 import TextAreaForm from '../../../../common/textarea/TextAreaForm'
 import { editNestedCommentAction } from '../../../../../actions/postActions'
+import { youTubeURL } from '../../../../../utils/youTubeUrl'
 import './NestedCommentBody.css'
 
 class NestedCommentBody extends Component {
@@ -68,13 +69,7 @@ class NestedCommentBody extends Component {
       { text, showEmojis, errors } = this.state
 
     let youtubeUrl = nestedComment.url
-    youtubeUrl &&
-    youtubeUrl.includes('https://www.youtube' || 'https://youtu.be')
-      ? (youtubeUrl = nestedComment.url
-          .replace(/youtu\.be/gi, 'www.youtube.com')
-          .replace(/watch\?v=/gi, 'embed/')
-          .replace(/&feature=www\.youtube\.com/gi, ''))
-      : (youtubeUrl = null)
+    youtubeUrl = youTubeURL(youtubeUrl)
 
     return !editPost ? (
       !nestedComment.description &&

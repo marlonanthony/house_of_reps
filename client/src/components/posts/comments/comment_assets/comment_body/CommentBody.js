@@ -9,6 +9,7 @@ import Icon from '../../../../UI/icons/Icon'
 import { editedCommentAction } from '../../../../../actions/postActions'
 import LightBackdrop from '../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../UI/modal/EmojiModal'
+import { youTubeURL } from '../../../../../utils/youTubeUrl'
 import './CommentBody.css'
 
 class CommentBody extends Component {
@@ -54,13 +55,7 @@ class CommentBody extends Component {
     const { comment, modalShow, editPost } = this.props
 
     let youtubeUrl = comment.url
-    youtubeUrl &&
-    youtubeUrl.includes('https://www.youtube' || 'https://youtu.be')
-      ? (youtubeUrl = comment.url
-          .replace(/youtu\.be/gi, 'www.youtube.com')
-          .replace(/watch\?v=/gi, 'embed/')
-          .replace(/&feature=www\.youtube\.com/gi, ''))
-      : (youtubeUrl = null)
+    youtubeUrl = youTubeURL(youtubeUrl)
 
     if (!editPost) {
       return !comment.description &&
