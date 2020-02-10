@@ -9,6 +9,7 @@ import {
   getCurrentProfile,
   clearCurrentProfile
 } from '../../../actions/profileActions'
+import Logout from '../../auth/logout/Logout'
 import './DropdownMenu.css'
 
 const DropdownMenu = ({
@@ -54,14 +55,7 @@ const DropdownMenu = ({
       <Link to="/dashboard">Dashboard</Link>
       <Link to="/djs">Reps</Link>
       <Link to="/" onClick={onLogoutClick}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src={user.avatar}
-            alt={user.name}
-            style={{ width: '25px', height: '22px', marginRight: '5px' }}
-          />
-          Logout
-        </div>
+        <Logout user={user} />
       </Link>
     </div>
   )

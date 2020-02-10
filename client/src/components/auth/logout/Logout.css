@@ -1,0 +1,9 @@
+.logout-div {
+  display: flex;
+  align-items: center;
+}
+.logout-avatar {
+  width: 25px;
+  height: 22px;
+  margin-right: 5px;
+}
