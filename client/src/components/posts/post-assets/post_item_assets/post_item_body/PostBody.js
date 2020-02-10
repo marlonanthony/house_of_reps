@@ -14,7 +14,7 @@ const PostBody = ({
   toggleEditPost,
   modalToggle
 }) => {
-  const [text, setText] = useState(''),
+  const [text, setText] = useState(post.text || ''),
     [showEmojis, setShowEmojis] = useState(false)
 
   const onChange = e => setText(e.target.value)
