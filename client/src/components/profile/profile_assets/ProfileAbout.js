@@ -4,14 +4,25 @@ import isEmpty from '../../../utils/is-empty'
 const ProfileAbout = ({ profile, user }) => (
   <>
     <div id="profile-avatar-div">
-      {isEmpty(user.avatar) ? (
+      {isEmpty(profile) ? (
         <p>create profile</p>
       ) : (
-        <img id="profile-avatar" src={profile.user.avatar} alt="avatar" />
+        <img
+          id="profile-avatar"
+          src={
+            profile &&
+            profile.user &&
+            profile.user.avatar &&
+            profile.user.avatar
+          }
+          alt="avatar"
+        />
       )}
     </div>
     <div id="profile-header-about-info">
-      <h4 id="profile-name">{profile.user.name}</h4>
+      <h4 id="profile-name">
+        {profile && profile.user && profile.user.name && profile.user.name}
+      </h4>
       {!isEmpty(profile.handle) && <p id="profile-handle">@{profile.handle}</p>}
       {!isEmpty(profile.bio) && <p id="profile-bio">{profile.bio}</p>}
       {!isEmpty(profile.location) && (

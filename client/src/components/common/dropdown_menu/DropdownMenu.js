@@ -9,7 +9,6 @@ import {
   getCurrentProfile,
   clearCurrentProfile
 } from '../../../actions/profileActions'
-import isEmpty from '../../../utils/is-empty'
 import './DropdownMenu.css'
 
 const DropdownMenu = ({
@@ -45,8 +44,6 @@ const DropdownMenu = ({
 
   const { isAuthenticated, user } = auth
   const { profile } = props.profile
-
-  if (isEmpty(profile)) return null
 
   const authLinks = (
     <div>

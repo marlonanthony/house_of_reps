@@ -15,7 +15,7 @@ const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      getCurrentProfile().then(() => props.history.push('/dashboard'))
+      getCurrentProfile().then(() => props.history.push('/feed'))
     }
     setErrors(props.errors)
   }, [auth.isAuthenticated, props.errors])

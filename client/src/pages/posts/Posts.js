@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
+import { withRouter } from 'react-router-dom'
 import {
   getPosts,
   getMorePosts,
@@ -49,6 +49,9 @@ class Posts extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.onlineCount !== this.props.onlineCount) {
       this.setState({ onlineCount: prevProps.onlineCount })
+    }
+    if (!this.props.profile.profile.user) {
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -209,4 +212,4 @@ export default connect(
     getPostsByHashtag,
     getMorePostsByHashtag
   }
-)(Posts)
+)(withRouter(Posts))

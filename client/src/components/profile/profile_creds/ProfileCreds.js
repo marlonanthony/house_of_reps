@@ -20,11 +20,13 @@ const ProfileCreds = ({ likeVenue, venues }) => {
     </HighlightsModal>
   )
 
-  const venueItems = venues.map(venue => (
-    <FadeIn key={venue._id}>
-      <VenueItems venue={venue} setShowModal={setShowModal} />
-    </FadeIn>
-  ))
+  const venueItems =
+    venues &&
+    venues.map(venue => (
+      <FadeIn key={venue._id}>
+        <VenueItems venue={venue} setShowModal={setShowModal} />
+      </FadeIn>
+    ))
 
   return (
     <div id="profile-creds-div">
@@ -35,7 +37,7 @@ const ProfileCreds = ({ likeVenue, venues }) => {
         />
         {highlightsModal}
         <div className="profile-creds-content">
-          {venueItems.length ? (
+          {venueItems && venueItems.length ? (
             venueItems.filter((_, i) => i < 6 && <ul>{venueItems}</ul>)
           ) : (
             <p id="no_venues">

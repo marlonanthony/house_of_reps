@@ -9,20 +9,20 @@ const PostFeedPopup = ({ showPopup, setShowPopup, profile, user }) => (
     onMouseOver={() => setShowPopup(!showPopup)}
     onMouseOut={() => setShowPopup(!showPopup)}
   >
-    <Link to={`/profile/${profile.handle}`}>
-      <p id="popup-handle">@{profile.handle}</p>
+    <Link to={`/profile/${user.handle}`}>
+      <p id="popup-handle">@{user.handle}</p>
     </Link>
 
     <div className={showPopup ? 'show popupcontent' : 'popupcontent'}>
       <div className="postfeed_popup_profile_info">
-        <Link to={`/profile/${profile.handle}`}>
+        <Link to={`/profile/${user.handle}`}>
           <img
             className="popup-profile-img"
             src={user.avatar}
             alt={user.name}
           />
         </Link>
-        <Link to={`/profile/${profile.handle}`}>
+        <Link to={`/profile/${user.handle}`}>
           <span>{user.name}</span>
         </Link>
         <p className="popup_bio">{profile.bio}</p>
