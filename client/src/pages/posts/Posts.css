@@ -18,7 +18,7 @@
     'mobile_icons'
     'postform'
     'btns'
-    'post-feed-post-content' 
+    'post-feed-post-content';
 }
 
 .chatroom {
@@ -252,8 +252,6 @@
     display: flex;
     width: 250px;
     height: 250px;
-    position: relative;
-    overflow-x: hidden;
   }
 
   .perks_and_hookups {
@@ -261,7 +259,6 @@
     display: flex;
     width: 250px;
     height: 250px;
-    overflow-x: hidden;
   }
 
   .certified_brands {
@@ -269,7 +266,6 @@
     display: flex;
     width: 250px;
     height: 250px;
-    overflow-x: hidden;
   }
 
   .post-feed-footer {

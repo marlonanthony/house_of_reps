@@ -50,13 +50,10 @@ class Posts extends Component {
     if (prevProps.onlineCount !== this.props.onlineCount) {
       this.setState({ onlineCount: prevProps.onlineCount })
     }
-    if (
-      !this.props.profile &&
-      !this.props.profile.profile &&
-      !this.props.profile.profile.user &&
-      !this.props.profile.profile.user
-    ) {
-      this.props.history.push('/dashboard')
+    if (prevProps.profile.profile !== null) {
+      if (!prevProps.profile.profile.user) {
+        this.props.history.push('/dashboard')
+      }
     }
   }
 
