@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
+import PropTypes from 'prop-types'
 
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
 import Icon from '../../../../../UI/icons/Icon'
@@ -188,4 +189,13 @@ export default function EditNestedComment({
       )}
     </>
   )
+}
+
+EditNestedComment.propTypes = {
+  nestedComment: PropTypes.object.isRequired,
+  toggleEditPost: PropTypes.func.isRequired,
+  editNestedCommentAction: PropTypes.func.isRequired,
+  comment: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
+  youtubeUrl: PropTypes.string
 }
