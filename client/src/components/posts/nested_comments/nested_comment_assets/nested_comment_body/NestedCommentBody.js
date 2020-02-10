@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
 
-import PostText from '../../../post-assets/text/PostText'
-import LightBackdrop from '../../../../UI/backdrop/LightBackdrop'
-import Icon from '../../../../UI/icons/Icon'
-import EmojiModal from '../../../../UI/modal/EmojiModal'
-import TextAreaForm from '../../../../common/textarea/TextAreaForm'
 import { editNestedCommentAction } from '../../../../../actions/postActions'
 import { youTubeURL } from '../../../../../utils/youTubeUrl'
+import DefaultNestedCommentBody from './default_nested_comment_body/DefaultNestedCommentBody'
+import EditNestedComment from './edit_nested_comment/EditNestedComment'
 import './NestedCommentBody.css'
 
 class NestedCommentBody extends Component {
@@ -72,203 +68,22 @@ class NestedCommentBody extends Component {
     youtubeUrl = youTubeURL(youtubeUrl)
 
     return !editPost ? (
-      !nestedComment.description &&
-      !nestedComment.image &&
-      !nestedComment.title &&
-      !nestedComment.url &&
-      !nestedComment.media ? (
-        <PostText fontSize="13px" postText={nestedComment.text} />
-      ) : nestedComment.media ? (
-        <div>
-          <PostText fontSize="13px" postText={nestedComment.text} />
-          <img
-            src={nestedComment.media}
-            alt="uploaded"
-            className="comments_image"
-          />
-        </div>
-      ) : (
-        <div className="comment-wrapper">
-          <PostText fontSize="13px" postText={nestedComment.text} />
-          <div>
-            {youtubeUrl ? (
-              <>
-                <iframe
-                  title="youtube"
-                  width="100%"
-                  height="300"
-                  src={youtubeUrl}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen={true}
-                ></iframe>
-                <div className="youtube_link_title_desc_wrapper">
-                  <p>{nestedComment.title}</p>
-                  <p>{nestedComment.description}</p>
-                </div>
-              </>
-            ) : (
-              <a
-                href={nestedComment.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="comment-anchor-container"
-              >
-                <div id="comment-link-container">
-                  <img
-                    src={nestedComment.image}
-                    alt="thumbnail"
-                    id="comment-link-img"
-                  />
-                  <div id="comment-link-title-desc">
-                    <p id="comments-title">{nestedComment.title}</p>
-                    <p id="comments-description">{nestedComment.description}</p>
-                  </div>
-                </div>
-              </a>
-            )}
-          </div>
-        </div>
-      )
+      <DefaultNestedCommentBody
+        nestedComment={nestedComment}
+        youtubeUrl={youtubeUrl}
+      />
     ) : (
-      <>
-        <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
-        {showEmojis && (
-          <EmojiModal>
-            <EmojiPicker onEmojiClick={this.addEmoji} />
-          </EmojiModal>
-        )}
-        {!nestedComment.description &&
-        !nestedComment.image &&
-        !nestedComment.title &&
-        !nestedComment.url &&
-        !nestedComment.media ? (
-          <div style={{ position: 'relative' }}>
-            <form onSubmit={this.editNestedComment}>
-              <TextAreaForm
-                placeholder="Edit comment"
-                name="text"
-                value={text}
-                onChange={this.onChange}
-                autoFocus
-                fontSize="14px"
-                error={errors.text}
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={this.toggleEmoji}
-                />
-                <button type="submit" className="comment_form_btns">
-                  <Icon icon="far fa-paper-plane" title="submit" />
-                </button>
-              </div>
-            </form>
-          </div>
-        ) : nestedComment.media ? (
-          <div>
-            <div style={{ position: 'relative' }}>
-              <form>
-                <TextAreaForm
-                  placeholder="Edit comment"
-                  name="text"
-                  value={text}
-                  onChange={this.onChange}
-                  autoFocus
-                  fontSize="14px"
-                  error={errors.text}
-                />
-                <div className="edit_icon_container">
-                  <Icon
-                    icon="far fa-smile-wink"
-                    title="emojis"
-                    toggleIcon={this.toggleEmoji}
-                  />
-                  {/* <button type='submit' className='comment_form_btns'> */}
-                  <Icon
-                    icon="far fa-paper-plane"
-                    title="submit"
-                    toggleIcon={this.editNestedComment}
-                  />
-                  {/* </button> */}
-                </div>
-              </form>
-            </div>
-            <img
-              src={nestedComment.media}
-              alt="uploaded"
-              className="comments_image"
-            />
-          </div>
-        ) : (
-          <div className="comment-wrapper">
-            <div style={{ position: 'relative' }}>
-              <form onSubmit={this.editNestedComment}>
-                <TextAreaForm
-                  placeholder="Edit comment"
-                  name="text"
-                  value={text}
-                  onChange={this.onChange}
-                  autoFocus
-                  fontSize="14px"
-                  error={errors.text}
-                />
-                <div className="edit_icon_container">
-                  <Icon
-                    icon="far fa-smile-wink"
-                    title="emojis"
-                    toggleIcon={this.toggleEmoji}
-                  />
-                  <button type="submit" className="comment_form_btns">
-                    <Icon icon="far fa-paper-plane" title="submit" />
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div>
-              {youtubeUrl ? (
-                <>
-                  <iframe
-                    title="youtube"
-                    width="100%"
-                    height="300"
-                    src={youtubeUrl}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen={true}
-                  ></iframe>
-                  <div className="youtube_link_title_desc_wrapper">
-                    <p>{nestedComment.title}</p>
-                    <p>{nestedComment.description}</p>
-                  </div>
-                </>
-              ) : (
-                <a
-                  href={nestedComment.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="comment-anchor-container"
-                >
-                  <div id="comment-link-container">
-                    <img
-                      src={nestedComment.image}
-                      alt="thumbnail"
-                      id="comment-link-img"
-                    />
-                    <div id="comment-link-title-desc">
-                      <p id="comments-title">{nestedComment.title}</p>
-                      <p id="comments-description">
-                        {nestedComment.description}
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              )}
-            </div>
-          </div>
-        )}
-      </>
+      <EditNestedComment
+        showEmojis={showEmojis}
+        nestedComment={nestedComment}
+        editNestedComment={this.editNestedComment}
+        text={text}
+        errors={errors}
+        addEmoji={this.addEmoji}
+        onChange={this.onChange}
+        toggleEmoji={this.toggleEmoji}
+        youtubeUrl={youtubeUrl}
+      />
     )
   }
 }
