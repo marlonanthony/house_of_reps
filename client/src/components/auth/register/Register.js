@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 
-import { registerUser } from '../../actions/authActions'
-import Input from '../common/inputs/Input'
-import useForm from '../common/hooks/useForm'
+import { registerUser } from '../../../actions/authActions'
+import Input from '../../common/inputs/Input'
+import useForm from '../../common/hooks/useForm'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'

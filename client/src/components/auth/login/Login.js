@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import { loginUser } from '../../actions/authActions'
-import { getCurrentProfile } from '../../actions/profileActions'
-import Input from '../common/inputs/Input'
-import useForm from '../common/hooks/useForm'
+import { loginUser } from '../../../actions/authActions'
+import { getCurrentProfile } from '../../../actions/profileActions'
+import Input from '../../common/inputs/Input'
+import useForm from '../../common/hooks/useForm'
 import './Login.css'
 
 const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
