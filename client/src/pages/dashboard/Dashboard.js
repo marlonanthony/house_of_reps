@@ -9,7 +9,7 @@ import './Dashboard.css'
 
 const Dashboard = ({ auth, getCurrentProfile, ...props }) => {
   useEffect(() => {
-    if (isEmpty(props.profile.profile)) getCurrentProfile()
+    getCurrentProfile()
   }, [])
 
   const { user } = auth
