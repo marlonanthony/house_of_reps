@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import DashboardContent from '../../components/dashboard_content/DashboardContent'
 import { getCurrentProfile } from '../../actions/profileActions'
-import isEmpty from '../../utils/is-empty'
 import './Dashboard.css'
 
 const Dashboard = ({ auth, getCurrentProfile, ...props }) => {
