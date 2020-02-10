@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import JSEMOJI from 'emoji-js'
 
 import { editPostAction } from '../../../../../actions/postActions'
 import EditPostBody from './edit_post/EditPostBody'
@@ -35,23 +34,6 @@ const PostBody = ({
     setShowEmojis(p => !p)
   }
 
-  const addEmoji = emojiName => {
-    const jsemoji = new JSEMOJI()
-    jsemoji.img_set = 'emojione'
-    jsemoji.img_sets.emojione.path =
-      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
-    jsemoji.supports_css = false
-    jsemoji.allow_native = false
-    jsemoji.replace_mode = 'unified'
-    jsemoji.text_mode = true
-    jsemoji.include_title = true
-    jsemoji.replace_unified(`:${emojiName}:`)
-    jsemoji.replace_colons(`:${emojiName}:`)
-
-    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
-    setText(text => text + emoji)
-  }
-
   let youtubeUrl = post.url
   youtubeUrl = youTubeURL(youtubeUrl)
 
@@ -65,7 +47,7 @@ const PostBody = ({
     <EditPostBody
       showEmojis={showEmojis}
       toggleEmoji={toggleEmoji}
-      addEmoji={addEmoji}
+      setText={setText}
       onSubmit={onSubmit}
       post={post}
       onChange={onChange}
