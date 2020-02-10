@@ -3,11 +3,10 @@ import CertifiedStores from './CertifiedStores'
 
 export default function StoresContainer({ profiles }) {
   if (!profiles) return null
-  return profiles.map(
-    profile =>
-      profile.stores &&
-      profile.stores.length && (
-        <CertifiedStores key={profile._id} stores={profile.stores} />
-      )
-  )
+  // eslint-disable-next-line array-callback-return
+  return profiles.map(profile => {
+    if (profile.stores && profile.stores.length) {
+      return <CertifiedStores key={profile._id} stores={profile.stores} />
+    }
+  })
 }

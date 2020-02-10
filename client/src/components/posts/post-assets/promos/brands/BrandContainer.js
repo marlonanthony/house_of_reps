@@ -3,13 +3,11 @@ import Brands from './Brands'
 
 const BrandContainer = ({ profiles }) => {
   if (!profiles) return null
-  return profiles.map(
-    profile =>
-      profile.brands &&
-      profile.brands.length && (
-        <Brands key={profile._id} brands={profile.brands} />
-      )
-  )
+  // eslint-disable-next-line array-callback-return
+  return profiles.map(profile => {
+    if (profile.brands && profile.brands.length)
+      return <Brands key={profile._id} brands={profile.brands} />
+  })
 }
 
 export default BrandContainer
