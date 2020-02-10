@@ -2,10 +2,10 @@ import React from 'react'
 import EmojiPicker from 'emoji-picker-react'
 import PropTypes from 'prop-types'
 
-import TextAreaForm from '../../../../common/textarea/TextAreaForm'
-import Icon from '../../../../UI/icons/Icon'
-import LightBackdrop from '../../../../UI/backdrop/LightBackdrop'
-import EmojiModal from '../../../../UI/modal/EmojiModal'
+import TextAreaForm from '../../../../../common/textarea/TextAreaForm'
+import Icon from '../../../../../UI/icons/Icon'
+import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
+import EmojiModal from '../../../../../UI/modal/EmojiModal'
 
 const EditPostBody = ({
   showEmojis,

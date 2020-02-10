@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import JSEMOJI from 'emoji-js'
 
 import { editPostAction } from '../../../../../actions/postActions'
-import EditPostBody from './EditPostBody'
-import DefaultPostBody from './DefaultPostBody'
+import EditPostBody from './edit_post/EditPostBody'
+import DefaultPostBody from './default_post_body/DefaultPostBody'
 
 const PostBody = ({
   post,
