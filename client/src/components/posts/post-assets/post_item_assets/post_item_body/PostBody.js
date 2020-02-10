@@ -6,6 +6,7 @@ import JSEMOJI from 'emoji-js'
 import { editPostAction } from '../../../../../actions/postActions'
 import EditPostBody from './edit_post/EditPostBody'
 import DefaultPostBody from './default_post_body/DefaultPostBody'
+import { youTubeURL } from '../../../../../utils/youTubeUrl'
 
 const PostBody = ({
   post,
@@ -52,13 +53,7 @@ const PostBody = ({
   }
 
   let youtubeUrl = post.url
-
-  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be')
-    ? (youtubeUrl = post.url
-        .replace(/youtu\.be/gi, 'www.youtube.com')
-        .replace(/watch\?v=/gi, 'embed/')
-        .replace(/&feature=www\.youtube\.com/gi, ''))
-    : (youtubeUrl = null)
+  youtubeUrl = youTubeURL(youtubeUrl)
 
   return !editPost ? (
     <DefaultPostBody
