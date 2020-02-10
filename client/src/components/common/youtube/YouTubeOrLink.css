@@ -1,0 +1,9 @@
+.youtube_or_link_iframe {
+  width: 100%;
+  height: 300px;
+}
+
+#post-link-img { width: 100%; }
+#post-link-img:hover {
+  opacity: .8;
+}
