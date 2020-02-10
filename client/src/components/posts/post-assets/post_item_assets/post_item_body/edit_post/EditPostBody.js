@@ -33,7 +33,7 @@ const EditPostBody = ({
     jsemoji.replace_colons(`:${emojiName}:`)
 
     let emoji = String.fromCodePoint(parseInt(emojiName, 16))
-    setText(text => text + emoji)
+    setText(prevText => prevText + emoji)
   }
   return (
     <>
@@ -165,7 +165,7 @@ const EditPostBody = ({
 EditPostBody.propTypes = {
   showEmojis: PropTypes.bool.isRequired,
   toggleEmoji: PropTypes.func.isRequired,
-  addEmoji: PropTypes.func.isRequired,
+  setText: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
