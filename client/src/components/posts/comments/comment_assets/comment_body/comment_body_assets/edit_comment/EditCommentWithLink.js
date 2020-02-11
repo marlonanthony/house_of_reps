@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import TextAreaForm from '../../../../../../common/textarea/TextAreaForm'
 import Icon from '../../../../../../UI/icons/Icon'
@@ -39,4 +40,13 @@ export default function EditCommentWithLink({
       <YouTubeOrLink value={comment} youtubeUrl={youtubeUrl} />
     </div>
   )
+}
+
+EditCommentWithLink.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  toggleEmoji: PropTypes.func.isRequired,
+  comment: PropTypes.object.isRequired,
+  youtubeUrl: PropTypes.string
 }

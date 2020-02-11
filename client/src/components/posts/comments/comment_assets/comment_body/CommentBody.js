@@ -10,25 +10,21 @@ function CommentBody({ comment, modalShow, editPost, toggleEditPost, postId }) {
   let youtubeUrl = comment.url
   youtubeUrl = youTubeURL(youtubeUrl)
 
-  if (!editPost) {
-    return (
-      <DefaultCommentBody
-        comment={comment}
-        modalShow={modalShow}
-        youtubeUrl={youtubeUrl}
-      />
-    )
-  } else {
-    return (
-      <EditComment
-        comment={comment}
-        modalShow={modalShow}
-        youtubeUrl={youtubeUrl}
-        postId={postId}
-        toggleEditPost={toggleEditPost}
-      />
-    )
-  }
+  return !editPost ? (
+    <DefaultCommentBody
+      comment={comment}
+      modalShow={modalShow}
+      youtubeUrl={youtubeUrl}
+    />
+  ) : (
+    <EditComment
+      comment={comment}
+      modalShow={modalShow}
+      youtubeUrl={youtubeUrl}
+      postId={postId}
+      toggleEditPost={toggleEditPost}
+    />
+  )
 }
 
 CommentBody.propTypes = {

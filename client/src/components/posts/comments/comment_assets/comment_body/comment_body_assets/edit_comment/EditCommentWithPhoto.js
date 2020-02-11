@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import TextAreaForm from '../../../../../../common/textarea/TextAreaForm'
 import Icon from '../../../../../../UI/icons/Icon'
@@ -43,4 +44,13 @@ export default function EditCommentWithPhoto({
       />
     </div>
   )
+}
+
+EditCommentWithPhoto.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  toggleEmoji: PropTypes.func.isRequired,
+  modalShow: PropTypes.func.isRequired,
+  comment: PropTypes.object.isRequired
 }
