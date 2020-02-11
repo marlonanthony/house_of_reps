@@ -63,7 +63,7 @@ export default function EditComment({
       !comment.title &&
       !comment.url &&
       !comment.media ? (
-        <div style={{ position: 'relative' }}>
+        <div>
           <form onSubmit={onSubmit}>
             <TextAreaForm
               placeholder="Edit comment"
@@ -87,7 +87,7 @@ export default function EditComment({
         </div>
       ) : comment.media ? (
         <div>
-          <div style={{ position: 'relative' }}>
+          <div>
             <form onSubmit={onSubmit}>
               <TextAreaForm
                 placeholder="Edit comment"
@@ -118,7 +118,7 @@ export default function EditComment({
         </div>
       ) : (
         <div className="comment-wrapper">
-          <div style={{ position: 'relative' }}>
+          <div>
             <form onSubmit={onSubmit}>
               <TextAreaForm
                 placeholder="Edit comment"

@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
+import { editPostAction } from '../../../../../../actions/postActions'
 import TextAreaForm from '../../../../../common/textarea/TextAreaForm'
 import Icon from '../../../../../UI/icons/Icon'
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
@@ -153,4 +155,7 @@ EditPostBody.propTypes = {
   toggleEditPost: PropTypes.func.isRequired
 }
 
-export default EditPostBody
+export default connect(
+  null,
+  { editPostAction }
+)(EditPostBody)
