@@ -6,6 +6,7 @@ import TextAreaForm from '../../../../../../common/textarea/TextAreaForm'
 import Icon from '../../../../../../UI/icons/Icon'
 import LightBackdrop from '../../../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../../../UI/modal/EmojiModal'
+import YouTubeOrLink from '../../../../../../common/youtube/YouTubeOrLink'
 
 export default function EditComment({
   comment,
@@ -139,44 +140,7 @@ export default function EditComment({
               </div>
             </form>
           </div>
-          <div>
-            {youtubeUrl ? (
-              <>
-                <iframe
-                  title="youtube"
-                  width="100%"
-                  height="300"
-                  src={youtubeUrl}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen={true}
-                ></iframe>
-                <div className="youtube_link_title_desc_wrapper">
-                  <p>{comment.title}</p>
-                  <p>{comment.description}</p>
-                </div>
-              </>
-            ) : (
-              <a
-                href={comment.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="comment-anchor-container"
-              >
-                <div id="comment-link-container">
-                  <img
-                    src={comment.image}
-                    alt="thumbnail"
-                    id="comment-link-img"
-                  />
-                  <div id="comment-link-title-desc">
-                    <p id="comments-title">{comment.title}</p>
-                    <p id="comments-description">{comment.description}</p>
-                  </div>
-                </div>
-              </a>
-            )}
-          </div>
+          <YouTubeOrLink value={comment} youtubeUrl={youtubeUrl} />
         </div>
       )}
     </>

@@ -7,6 +7,7 @@ import TextAreaForm from '../../../../../common/textarea/TextAreaForm'
 import Icon from '../../../../../UI/icons/Icon'
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../../UI/modal/EmojiModal'
+import YouTubeOrLink from '../../../../../common/youtube/YouTubeOrLink'
 
 const EditPostBody = ({
   post,
@@ -137,40 +138,7 @@ const EditPostBody = ({
               </div>
             </form>
           </div>
-          <div>
-            {youtubeUrl ? (
-              <iframe
-                title="youtube"
-                width="100%"
-                height="300"
-                src={youtubeUrl}
-                frameBorder={0}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen={true}
-              ></iframe>
-            ) : (
-              <a href={post.url} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={post.image}
-                  alt="thumbnail"
-                  style={{ width: '100%' }}
-                  id="post-link-img"
-                />
-              </a>
-            )}
-            <p style={{ textAlign: 'center', fontSize: '12px' }}>
-              {post.title}
-            </p>
-            <p
-              style={{
-                textAlign: 'center',
-                fontSize: '12px',
-                padding: '0 5px 20px 5px'
-              }}
-            >
-              {post.description}
-            </p>
-          </div>
+          <YouTubeOrLink value={post} youtubeUrl={youtubeUrl} />
         </div>
       )}
     </>

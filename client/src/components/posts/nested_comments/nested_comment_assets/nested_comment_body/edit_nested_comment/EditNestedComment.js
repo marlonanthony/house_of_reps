@@ -7,6 +7,7 @@ import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
 import Icon from '../../../../../UI/icons/Icon'
 import EmojiModal from '../../../../../UI/modal/EmojiModal'
 import TextAreaForm from '../../../../../common/textarea/TextAreaForm'
+import YouTubeOrLink from '../../../../../common/youtube/YouTubeOrLink'
 
 export default function EditNestedComment({
   nestedComment,
@@ -147,44 +148,7 @@ export default function EditNestedComment({
               </div>
             </form>
           </div>
-          <div>
-            {youtubeUrl ? (
-              <>
-                <iframe
-                  title="youtube"
-                  width="100%"
-                  height="300"
-                  src={youtubeUrl}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen={true}
-                ></iframe>
-                <div className="youtube_link_title_desc_wrapper">
-                  <p>{nestedComment.title}</p>
-                  <p>{nestedComment.description}</p>
-                </div>
-              </>
-            ) : (
-              <a
-                href={nestedComment.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="comment-anchor-container"
-              >
-                <div id="comment-link-container">
-                  <img
-                    src={nestedComment.image}
-                    alt="thumbnail"
-                    id="comment-link-img"
-                  />
-                  <div id="comment-link-title-desc">
-                    <p id="comments-title">{nestedComment.title}</p>
-                    <p id="comments-description">{nestedComment.description}</p>
-                  </div>
-                </div>
-              </a>
-            )}
-          </div>
+          <YouTubeOrLink youtubeUrl={youtubeUrl} value={nestedComment} />
         </div>
       )}
     </>
