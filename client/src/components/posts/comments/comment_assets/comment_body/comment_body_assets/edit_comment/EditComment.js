@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import TextAreaForm from '../../../../../../common/textarea/TextAreaForm'
-import Icon from '../../../../../../UI/icons/Icon'
+import { editedCommentAction } from '../../../../../../../actions/postActions'
 import LightBackdrop from '../../../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../../../UI/modal/EmojiModal'
-import YouTubeOrLink from '../../../../../../common/youtube/YouTubeOrLink'
+import EditCommentWithText from './EditCommentWithText'
+import EditCommentWithPhoto from './EditCommentWithPhoto'
+import EditCommentWithLink from './EditCommentWithLink'
 
-export default function EditComment({
+function EditComment({
   comment,
   modalShow,
   youtubeUrl,
@@ -63,86 +66,45 @@ export default function EditComment({
       !comment.title &&
       !comment.url &&
       !comment.media ? (
-        <div>
-          <form onSubmit={onSubmit}>
-            <TextAreaForm
-              placeholder="Edit comment"
-              name="text"
-              value={text}
-              onChange={onChange}
-              autoFocus
-              fontSize="14px"
-            />
-            <div className="edit_icon_container">
-              <Icon
-                icon="far fa-smile-wink"
-                title="emojis"
-                toggleIcon={toggleEmoji}
-              />
-              <button type="submit" className="comment_form_btns">
-                <Icon icon="far fa-paper-plane" title="submit" />
-              </button>
-            </div>
-          </form>
-        </div>
+        <EditCommentWithText
+          onSubmit={onSubmit}
+          onChange={onChange}
+          text={text}
+          toggleEmoji={toggleEmoji}
+        />
       ) : comment.media ? (
-        <div>
-          <div>
-            <form onSubmit={onSubmit}>
-              <TextAreaForm
-                placeholder="Edit comment"
-                name="text"
-                value={text}
-                onChange={onChange}
-                autoFocus
-                fontSize="14px"
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={toggleEmoji}
-                />
-                <button type="submit" className="comment_form_btns">
-                  <Icon icon="far fa-paper-plane" title="submit" />
-                </button>
-              </div>
-            </form>
-          </div>
-          <img
-            onClick={modalShow}
-            src={comment.media}
-            alt="uploaded"
-            className="comments_image"
-          />
-        </div>
+        <EditCommentWithPhoto
+          onChange={onChange}
+          onSubmit={onSubmit}
+          text={text}
+          toggleEmoji={toggleEmoji}
+          modalShow={modalShow}
+          comment={comment}
+        />
       ) : (
-        <div className="comment-wrapper">
-          <div>
-            <form onSubmit={onSubmit}>
-              <TextAreaForm
-                placeholder="Edit comment"
-                name="text"
-                value={text}
-                onChange={onChange}
-                autoFocus
-                fontSize="14px"
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={toggleEmoji}
-                />
-                <button type="submit" className="comment_form_btns">
-                  <Icon icon="far fa-paper-plane" title="submit" />
-                </button>
-              </div>
-            </form>
-          </div>
-          <YouTubeOrLink value={comment} youtubeUrl={youtubeUrl} />
-        </div>
+        <EditCommentWithLink
+          onSubmit={onSubmit}
+          onChange={onChange}
+          text={text}
+          toggleEmoji={toggleEmoji}
+          comment={comment}
+          youtubeUrl={youtubeUrl}
+        />
       )}
     </>
   )
 }
+
+EditComment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  modalShow: PropTypes.func.isRequired,
+  youtubeUrl: PropTypes.string,
+  postId: PropTypes.string.isRequired,
+  editedCommentAction: PropTypes.func.isRequired,
+  toggleEditPost: PropTypes.func.isRequired
+}
+
+export default connect(
+  null,
+  { editedCommentAction }
+)(EditComment)

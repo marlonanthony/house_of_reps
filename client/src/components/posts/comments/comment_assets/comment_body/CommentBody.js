@@ -1,20 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { editedCommentAction } from '../../../../../actions/postActions'
 import { youTubeURL } from '../../../../../utils/youTubeUrl'
 import DefaultCommentBody from './comment_body_assets/default_comment_body/DefaultCommentBody'
 import EditComment from './comment_body_assets/edit_comment/EditComment'
 import './CommentBody.css'
 
-function CommentBody({
-  comment,
-  modalShow,
-  editPost,
-  toggleEditPost,
-  postId,
-  editedCommentAction
-}) {
+function CommentBody({ comment, modalShow, editPost, toggleEditPost, postId }) {
   let youtubeUrl = comment.url
   youtubeUrl = youTubeURL(youtubeUrl)
 
@@ -33,18 +25,18 @@ function CommentBody({
         modalShow={modalShow}
         youtubeUrl={youtubeUrl}
         postId={postId}
-        editedCommentAction={editedCommentAction}
         toggleEditPost={toggleEditPost}
       />
     )
   }
 }
 
-const mapStateToProps = state => ({
-  errors: state.errors
-})
+CommentBody.propTypes = {
+  comment: PropTypes.object.isRequired,
+  modalShow: PropTypes.func.isRequired,
+  editPost: PropTypes.bool.isRequired,
+  toggleEditPost: PropTypes.func.isRequired,
+  postId: PropTypes.string.isRequired
+}
 
-export default connect(
-  mapStateToProps,
-  { editedCommentAction }
-)(CommentBody)
+export default CommentBody
