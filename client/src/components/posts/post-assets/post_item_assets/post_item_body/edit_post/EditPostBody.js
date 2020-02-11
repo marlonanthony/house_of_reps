@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { editPostAction } from '../../../../../../actions/postActions'
-import TextAreaForm from '../../../../../common/textarea/TextAreaForm'
-import Icon from '../../../../../UI/icons/Icon'
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../../UI/modal/EmojiModal'
-import YouTubeOrLink from '../../../../../common/youtube/YouTubeOrLink'
+import EditPostWithText from './EditPostWithText'
+import EditPostWithPhoto from './EditPostWithPhoto'
+import EditPostWithLink from './EditPostWithLink'
 
 const EditPostBody = ({
   post,
@@ -66,82 +66,30 @@ const EditPostBody = ({
       !post.title &&
       !post.url &&
       !post.media ? (
-        <div style={{ position: 'relative' }}>
-          <form onSubmit={onSubmit}>
-            <TextAreaForm
-              placeholder="Edit post"
-              name="text"
-              value={text}
-              onChange={onChange}
-              autoFocus
-            />
-            <div className="edit_icon_container">
-              <Icon
-                icon="far fa-smile-wink"
-                title="emojis"
-                toggleIcon={toggleEmoji}
-              />
-              <button type="submit" className="comment_form_btns">
-                <Icon icon="far fa-paper-plane" title="submit" />
-              </button>
-            </div>
-          </form>
-        </div>
+        <EditPostWithText
+          onSubmit={onSubmit}
+          onChange={onChange}
+          text={text}
+          toggleEmoji={toggleEmoji}
+        />
       ) : post.media ? (
-        <div>
-          <div style={{ position: 'relative' }}>
-            <form onSubmit={onSubmit}>
-              <TextAreaForm
-                placeholder="Edit post"
-                name="text"
-                value={text}
-                onChange={onChange}
-                autoFocus
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={toggleEmoji}
-                />
-                <button type="submit" className="comment_form_btns">
-                  <Icon icon="far fa-paper-plane" title="submit" />
-                </button>
-              </div>
-            </form>
-          </div>
-          <img
-            className="postfeed-media-pic"
-            onClick={modalToggle}
-            src={post.media}
-            alt="uploaded"
-          />
-        </div>
+        <EditPostWithPhoto
+          onSubmit={onSubmit}
+          onChange={onChange}
+          text={text}
+          toggleEmoji={toggleEmoji}
+          modalToggle={modalToggle}
+          post={post}
+        />
       ) : (
-        <div className="post_content">
-          <div style={{ position: 'relative' }}>
-            <form onSubmit={onSubmit}>
-              <TextAreaForm
-                placeholder="Edit post"
-                name="text"
-                value={text}
-                onChange={onChange}
-                autoFocus
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={toggleEmoji}
-                />
-                <button type="submit" className="comment_form_btns">
-                  <Icon icon="far fa-paper-plane" title="submit" />
-                </button>
-              </div>
-            </form>
-          </div>
-          <YouTubeOrLink value={post} youtubeUrl={youtubeUrl} />
-        </div>
+        <EditPostWithLink
+          onSubmit={onSubmit}
+          onChange={onChange}
+          text={text}
+          toggleEmoji={toggleEmoji}
+          post={post}
+          youtubeUrl={youtubeUrl}
+        />
       )}
     </>
   )
