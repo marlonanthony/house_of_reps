@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import JSEMOJI from 'emoji-js'
 
 import { editedCommentAction } from '../../../../../actions/postActions'
 import { youTubeURL } from '../../../../../utils/youTubeUrl'
@@ -16,42 +15,6 @@ function CommentBody({
   postId,
   editedCommentAction
 }) {
-  const [text, setText] = useState(comment.text || ''),
-    [showEmojis, setShowEmojis] = useState(false)
-
-  const onChange = e => setText(e.target.value)
-
-  const onSubmit = e => {
-    e.preventDefault()
-    const { _id } = comment
-    const editedComment = { text }
-    editedCommentAction(postId, _id, editedComment)
-    toggleEditPost()
-    setText('')
-    e.target.reset()
-  }
-
-  const toggleEmoji = () => {
-    setShowEmojis(prev => !prev)
-  }
-
-  const addEmoji = emojiName => {
-    const jsemoji = new JSEMOJI()
-    jsemoji.img_set = 'emojione'
-    jsemoji.img_sets.emojione.path =
-      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
-    jsemoji.supports_css = false
-    jsemoji.allow_native = false
-    jsemoji.replace_mode = 'unified'
-    jsemoji.text_mode = true
-    jsemoji.include_title = true
-    jsemoji.replace_unified(`:${emojiName}:`)
-    jsemoji.replace_colons(`:${emojiName}:`)
-
-    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
-    setText(prevText => prevText + emoji)
-  }
-
   let youtubeUrl = comment.url
   youtubeUrl = youTubeURL(youtubeUrl)
 
@@ -66,15 +29,12 @@ function CommentBody({
   } else {
     return (
       <EditComment
-        showEmojis={showEmojis}
         comment={comment}
-        text={text}
         modalShow={modalShow}
         youtubeUrl={youtubeUrl}
-        toggleEmoji={toggleEmoji}
-        addEmoji={addEmoji}
-        onSubmit={onSubmit}
-        onChange={onChange}
+        postId={postId}
+        editedCommentAction={editedCommentAction}
+        toggleEditPost={toggleEditPost}
       />
     )
   }

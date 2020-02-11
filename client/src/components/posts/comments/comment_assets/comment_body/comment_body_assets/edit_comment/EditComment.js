@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
+import JSEMOJI from 'emoji-js'
 
 import TextAreaForm from '../../../../../../common/textarea/TextAreaForm'
 import Icon from '../../../../../../UI/icons/Icon'
@@ -7,16 +8,47 @@ import LightBackdrop from '../../../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../../../UI/modal/EmojiModal'
 
 export default function EditComment({
-  showEmojis,
   comment,
-  text,
   modalShow,
   youtubeUrl,
-  toggleEmoji,
-  addEmoji,
-  onSubmit,
-  onChange
+  postId,
+  editedCommentAction,
+  toggleEditPost
 }) {
+  const [text, setText] = useState(comment.text || ''),
+    [showEmojis, setShowEmojis] = useState(false)
+
+  const onChange = e => setText(e.target.value)
+
+  const onSubmit = e => {
+    e.preventDefault()
+    const { _id } = comment
+    const editedComment = { text }
+    editedCommentAction(postId, _id, editedComment)
+    toggleEditPost()
+    setText('')
+    e.target.reset()
+  }
+  const toggleEmoji = () => {
+    setShowEmojis(prev => !prev)
+  }
+
+  const addEmoji = emojiName => {
+    const jsemoji = new JSEMOJI()
+    jsemoji.img_set = 'emojione'
+    jsemoji.img_sets.emojione.path =
+      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
+    jsemoji.supports_css = false
+    jsemoji.allow_native = false
+    jsemoji.replace_mode = 'unified'
+    jsemoji.text_mode = true
+    jsemoji.include_title = true
+    jsemoji.replace_unified(`:${emojiName}:`)
+    jsemoji.replace_colons(`:${emojiName}:`)
+
+    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
+    setText(prevText => prevText + emoji)
+  }
   return (
     <>
       <LightBackdrop clicked={toggleEmoji} show={showEmojis} />
