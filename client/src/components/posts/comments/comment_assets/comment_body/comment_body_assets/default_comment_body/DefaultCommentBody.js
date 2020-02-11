@@ -21,6 +21,6 @@ export default function DefaultCommentBody({ comment, modalShow, youtubeUrl }) {
 
 DefaultCommentBody.propTypes = {
   comment: PropTypes.object.isRequired,
-  modalShow: PropTypes.bool.isRequired,
+  modalShow: PropTypes.func.isRequired,
   youtubeUrl: PropTypes.string
 }

@@ -14,5 +14,5 @@ export default function CommentWithPhoto({ modalShow, comment }) {
 
 CommentWithPhoto.propTypes = {
   comment: PropTypes.object.isRequired,
-  modalShow: PropTypes.bool.isRequired
+  modalShow: PropTypes.func.isRequired
 }

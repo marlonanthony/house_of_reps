@@ -4,10 +4,10 @@ import JSEMOJI from 'emoji-js'
 import PropTypes from 'prop-types'
 
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
-import Icon from '../../../../../UI/icons/Icon'
 import EmojiModal from '../../../../../UI/modal/EmojiModal'
-import TextAreaForm from '../../../../../common/textarea/TextAreaForm'
-import YouTubeOrLink from '../../../../../common/youtube/YouTubeOrLink'
+import EditNestedCommentWithPhoto from './EditNestedCommentWithPhoto'
+import EditNestedCommentWithLink from './EditNestedCommentWithLink'
+import EditNestedCommentWithText from './EditNestedCommentWithText'
 
 export default function EditNestedComment({
   nestedComment,
@@ -51,7 +51,6 @@ export default function EditNestedComment({
     editNestedCommentAction(postId, _id, nestedComment._id, editedNestedComment)
     toggleEditPost()
     setText('')
-    e.target.reset()
   }
 
   return (
@@ -67,89 +66,32 @@ export default function EditNestedComment({
       !nestedComment.title &&
       !nestedComment.url &&
       !nestedComment.media ? (
-        <div style={{ position: 'relative' }}>
-          <form onSubmit={editNestedComment}>
-            <TextAreaForm
-              placeholder="Edit comment"
-              name="text"
-              value={text}
-              onChange={onChange}
-              autoFocus
-              fontSize="14px"
-              error={errors.text}
-            />
-            <div className="edit_icon_container">
-              <Icon
-                icon="far fa-smile-wink"
-                title="emojis"
-                toggleIcon={toggleEmoji}
-              />
-              <button type="submit" className="comment_form_btns">
-                <Icon icon="far fa-paper-plane" title="submit" />
-              </button>
-            </div>
-          </form>
-        </div>
+        <EditNestedCommentWithText
+          editNestedComment={editNestedComment}
+          text={text}
+          onChange={onChange}
+          toggleEmoji={toggleEmoji}
+          errors={errors}
+        />
       ) : nestedComment.media ? (
-        <div>
-          <div style={{ position: 'relative' }}>
-            <form>
-              <TextAreaForm
-                placeholder="Edit comment"
-                name="text"
-                value={text}
-                onChange={onChange}
-                autoFocus
-                fontSize="14px"
-                error={errors.text}
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={toggleEmoji}
-                />
-                <Icon
-                  icon="far fa-paper-plane"
-                  title="submit"
-                  toggleIcon={editNestedComment}
-                />
-              </div>
-            </form>
-          </div>
-          <img
-            src={nestedComment.media}
-            alt="uploaded"
-            className="comments_image"
-          />
-        </div>
+        <EditNestedCommentWithPhoto
+          text={text}
+          onChange={onChange}
+          toggleEmoji={toggleEmoji}
+          editNestedComment={editNestedComment}
+          errors={errors}
+          nestedComment={nestedComment}
+        />
       ) : (
-        <div className="comment-wrapper">
-          <div style={{ position: 'relative' }}>
-            <form onSubmit={editNestedComment}>
-              <TextAreaForm
-                placeholder="Edit comment"
-                name="text"
-                value={text}
-                onChange={onChange}
-                autoFocus
-                fontSize="14px"
-                error={errors.text}
-              />
-              <div className="edit_icon_container">
-                <Icon
-                  icon="far fa-smile-wink"
-                  title="emojis"
-                  toggleIcon={toggleEmoji}
-                />
-                <button type="submit" className="comment_form_btns">
-                  <Icon icon="far fa-paper-plane" title="submit" />
-                </button>
-              </div>
-            </form>
-          </div>
-          <YouTubeOrLink youtubeUrl={youtubeUrl} value={nestedComment} />
-        </div>
+        <EditNestedCommentWithLink
+          editNestedComment={editNestedComment}
+          text={text}
+          onChange={onChange}
+          toggleEmoji={toggleEmoji}
+          errors={errors}
+          youtubeUrl={youtubeUrl}
+          nestedComment={nestedComment}
+        />
       )}
     </>
   )
