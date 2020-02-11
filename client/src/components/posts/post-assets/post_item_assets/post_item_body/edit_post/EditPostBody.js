@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
 import JSEMOJI from 'emoji-js'
 import PropTypes from 'prop-types'
@@ -9,16 +9,31 @@ import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
 import EmojiModal from '../../../../../UI/modal/EmojiModal'
 
 const EditPostBody = ({
-  showEmojis,
-  toggleEmoji,
-  onSubmit,
   post,
-  onChange,
-  text,
   modalToggle,
   youtubeUrl,
-  setText
+  editPostAction,
+  toggleEditPost
 }) => {
+  const [text, setText] = useState(post.text || ''),
+    [showEmojis, setShowEmojis] = useState(false)
+
+  const onChange = e => setText(e.target.value)
+
+  const onSubmit = e => {
+    e.preventDefault()
+    const { _id } = post
+    const editedPost = { text }
+
+    editPostAction(_id, editedPost)
+    setText('')
+    toggleEditPost()
+    e.target.reset()
+  }
+
+  const toggleEmoji = () => {
+    setShowEmojis(p => !p)
+  }
   const addEmoji = emojiName => {
     const jsemoji = new JSEMOJI()
     jsemoji.img_set = 'emojione'
@@ -163,15 +178,11 @@ const EditPostBody = ({
 }
 
 EditPostBody.propTypes = {
-  showEmojis: PropTypes.bool.isRequired,
-  toggleEmoji: PropTypes.func.isRequired,
-  setText: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
   modalToggle: PropTypes.func.isRequired,
-  youtubeUrl: PropTypes.string
+  youtubeUrl: PropTypes.string,
+  editPostAction: PropTypes.func.isRequired,
+  toggleEditPost: PropTypes.func.isRequired
 }
 
 export default EditPostBody

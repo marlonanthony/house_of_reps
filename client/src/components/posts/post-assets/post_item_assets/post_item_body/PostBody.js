@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -14,26 +14,6 @@ const PostBody = ({
   toggleEditPost,
   modalToggle
 }) => {
-  const [text, setText] = useState(post.text || ''),
-    [showEmojis, setShowEmojis] = useState(false)
-
-  const onChange = e => setText(e.target.value)
-
-  const onSubmit = e => {
-    e.preventDefault()
-    const { _id } = post
-    const editedPost = { text }
-
-    editPostAction(_id, editedPost)
-    setText('')
-    toggleEditPost()
-    e.target.reset()
-  }
-
-  const toggleEmoji = () => {
-    setShowEmojis(p => !p)
-  }
-
   let youtubeUrl = post.url
   youtubeUrl = youTubeURL(youtubeUrl)
 
@@ -45,15 +25,11 @@ const PostBody = ({
     />
   ) : (
     <EditPostBody
-      showEmojis={showEmojis}
-      toggleEmoji={toggleEmoji}
-      setText={setText}
-      onSubmit={onSubmit}
       post={post}
-      onChange={onChange}
-      text={text}
       modalToggle={modalToggle}
       youtubeUrl={youtubeUrl}
+      editPostAction={editPostAction}
+      toggleEditPost={toggleEditPost}
     />
   )
 }
