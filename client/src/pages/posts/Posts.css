@@ -1,11 +1,3 @@
-#logo-div {
-  padding-top: 50px;
-  text-align: center;
-}
-#logo {
-  max-width: 200px;
-}
-
 .feed {
   max-width: 1150px;
   margin: 0 auto;
@@ -98,10 +90,6 @@
 }
 
 @media (min-width: 600px){
-  #logo {
-    max-width: 500px;
-    max-height: 100px;
-  }
   .postfeed_reps_btns img {
     height: 60px;
     max-width: 100px;

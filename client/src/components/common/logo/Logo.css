@@ -1,0 +1,13 @@
+#logo-div {
+  padding-top: 50px;
+  text-align: center;
+}
+#logo {
+  max-width: 200px;
+}
+@media (min-width: 600px){
+  #logo {
+    max-width: 500px;
+    max-height: 100px;
+  }
+}

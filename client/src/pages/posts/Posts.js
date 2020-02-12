@@ -24,6 +24,7 @@ import PostsContainer from '../../components/posts/posts_container/PostsContaine
 import HighlightsContainer from '../../components/posts/post-assets/highlights/HighlightsContainer'
 import Footer from '../../components/posts/post-assets/footer/Footer'
 import Speakeasy from '../../components/chatrooms/speakEasy/Speakeasy'
+import Logo from '../../components/common/logo/Logo'
 import './Posts.css'
 
 class Posts extends Component {
@@ -133,9 +134,7 @@ class Posts extends Component {
       { user } = this.props.auth
     return (
       <>
-        <div id="logo-div">
-          <img id="logo" src={require('../../img/logo-lg.png')} alt="logo" />
-        </div>
+        <Logo />
         <div className="feed">
           <SearchPost
             showPostByHashtag={this.showPostByHashtag}
