@@ -1,5 +1,6 @@
 import React from 'react'
 import Dropzone from 'react-dropzone'
+import PropTypes from 'prop-types'
 
 export default function DropZoneContainer({
   onImageDrop,
@@ -25,4 +26,10 @@ export default function DropZoneContainer({
       )}
     </div>
   )
+}
+
+DropZoneContainer.propTypes = {
+  onImageDrop: PropTypes.func.isRequired,
+  uploadedFile: PropTypes.string.isRequired,
+  uploadedFileCloudinaryUrl: PropTypes.string.isRequired
 }
