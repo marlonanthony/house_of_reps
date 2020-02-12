@@ -1,19 +1,8 @@
-.djpools_input_wrapper {
+.promos_input_wrapper {
   width: 80%;
   margin: 0 auto;
 }
-
-.djpools-dropzone {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.add-djpool-submit-btn-containing-div {
-  text-align: center;
-}
-
-#add-djpools-submit-button {
+.add-promo-submit-btn {
   cursor: pointer;
   display: inline-block;
   border: none;
@@ -24,12 +13,11 @@
   text-decoration: none;
   transition: opacity .25s ease-in;
 }
-#add-djpools-submit-button:hover {
+.add-promo-submit-btn:hover {
   opacity: 0.7;
 }
-
 @media(min-width: 800px) {
-  .djpools_input_wrapper {
+  .promos_input_wrapper {
     width: 400px;
   }
 }

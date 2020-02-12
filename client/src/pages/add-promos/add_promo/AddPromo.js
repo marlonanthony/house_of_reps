@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import request from 'superagent'
 
 import Input from '../../../components/common/inputs/Input'
-import '../AddDjpool.css'
+import './AddPromo.css'
 import DropZoneContainer from '../../../components/UI/dropzone/DropZoneContainer'
 import '../../../components/UI/dropzone/Dropzone.css'
 
@@ -26,7 +26,6 @@ const AddPromo = ({ action, title, ...props }) => {
   }, [props.errors])
 
   const onSubmit = e => {
-    console.log('clicked')
     e.preventDefault()
     const promoData = {
       image,
@@ -65,7 +64,7 @@ const AddPromo = ({ action, title, ...props }) => {
         alt="back-button"
       />
       <h2>{title}</h2>
-      <div className="djpools_input_wrapper">
+      <div className="promos_input_wrapper">
         <DropZoneContainer
           onImageDrop={onImageDrop}
           uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
@@ -96,14 +95,12 @@ const AddPromo = ({ action, title, ...props }) => {
             error={errors.description}
             placeholder="Description"
           />
-          <div className="add-djpool-submit-btn-containing-div">
-            <input
-              type="submit"
-              value="Submit"
-              id="add-djpools-submit-button"
-              title="submit"
-            />
-          </div>
+          <input
+            type="submit"
+            value="Submit"
+            className="add-promo-submit-btn"
+            title="submit"
+          />
         </form>
       </div>
     </div>

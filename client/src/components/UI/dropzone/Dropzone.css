@@ -1,5 +1,9 @@
+.dropzone-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .dropzone {
-  /* max-width: 50%; */
   border-radius: 2px; 
   font-size: 12px;
   text-align: center;
@@ -8,6 +12,10 @@
   cursor: pointer;
   color: var(--secondary-color);
   border: dashed;
-  border-color: var(--secondary-color);
-                  
+  border-color: var(--secondary-color);                 
+}
+.dropzone_img {
+  height: 50px; 
+  width: 50px; 
+  border-radius: 50px;
 }

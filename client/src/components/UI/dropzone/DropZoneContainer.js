@@ -7,7 +7,7 @@ export default function DropZoneContainer({
   uploadedFileCloudinaryUrl
 }) {
   return (
-    <div className="djpools-dropzone">
+    <div className="dropzone-container">
       <div className="FileUpload">
         <Dropzone
           className="dropzone"
@@ -22,7 +22,7 @@ export default function DropZoneContainer({
         {uploadedFileCloudinaryUrl === '' ? null : (
           <img
             src={uploadedFileCloudinaryUrl}
-            style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+            className="dropzone_img"
             alt={uploadedFile.name}
           />
         )}
