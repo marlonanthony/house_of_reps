@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import request from 'superagent'
 
+import { handleImageUpload } from '../../utils/handleImageUpload'
 import Input from '../../components/common/inputs/Input'
 import BackButton from '../../components/UI/icons/back-btn/BackButton'
 import SubmitButton from '../../components/UI/icons/submit-btn/SubmitButton'
 import DropZoneContainer from '../../components/UI/dropzone/DropZoneContainer'
 import '../../components/UI/dropzone/Dropzone.css'
 import './AddPromo.css'
-
-const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL =
-  'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 const AddPromo = ({ action, title, ...props }) => {
   const [image, setImage] = useState(''),
@@ -38,22 +35,7 @@ const AddPromo = ({ action, title, ...props }) => {
 
   const onImageDrop = files => {
     setUploadedFile(files[0])
-    handleImageUpload(files[0])
-  }
-
-  const handleImageUpload = file => {
-    let upload = request
-      .post(CLOUDINARY_UPLOAD_URL)
-      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-      .field('file', file)
-
-    upload.end((err, response) => {
-      if (err) console.log(err)
-      if (response.body.secure_url !== '') {
-        setUploadedFileCloudinaryUrl(response.body.secure_url)
-        setImage(response.body.secure_url)
-      }
-    })
+    handleImageUpload(files[0], setUploadedFileCloudinaryUrl, setImage)
   }
 
   return (
@@ -104,4 +86,4 @@ AddPromo.propTypes = {
 
 const mapStateToProps = state => ({ errors: state.errors })
 
-export default connect(mapStateToProps)(AddPromo)
+export default connect(mapStateToProps)(withRouter(AddPromo))

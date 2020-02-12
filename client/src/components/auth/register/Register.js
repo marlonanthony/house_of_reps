@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import request from 'superagent'
 
 import { registerUser } from '../../../actions/authActions'
 import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
 import DropZoneContainer from '../../UI/dropzone/DropZoneContainer'
 import SubmitButton from '../../UI/icons/submit-btn/SubmitButton'
+import { handleImageUpload } from '../../../utils/handleImageUpload'
 import './Register.css'
-
-const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL =
-  'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
 const Register = ({ auth, registerUser, ...props }) => {
   const [values, setValues] = useForm({
@@ -51,22 +46,7 @@ const Register = ({ auth, registerUser, ...props }) => {
 
   const onImageDrop = files => {
     setUploadedFile(files[0])
-    handleImageUpload(files[0])
-  }
-
-  const handleImageUpload = file => {
-    let upload = request
-      .post(CLOUDINARY_UPLOAD_URL)
-      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-      .field('file', file)
-
-    upload.end((err, response) => {
-      if (err) console.log(err)
-      if (response.body.secure_url !== '') {
-        setUploadedFileCloudinaryUrl(response.body.secure_url)
-        setAvatar(response.body.secure_url)
-      }
-    })
+    handleImageUpload(files[0], setUploadedFileCloudinaryUrl, setAvatar)
   }
 
   return (
@@ -140,4 +120,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
-)(withRouter(Register))
+)(Register)

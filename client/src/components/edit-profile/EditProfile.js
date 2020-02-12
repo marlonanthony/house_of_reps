@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import request from 'superagent'
 
 import { createProfile, getCurrentProfile } from '../../actions/profileActions'
+import { handleImageUpload } from '../../utils/handleImageUpload'
 import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
@@ -13,10 +13,6 @@ import isEmpty from '../../utils/is-empty'
 import BackButton from '../UI/icons/back-btn/BackButton'
 import './EditProfile.css'
 
-const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
-const CLOUDINARY_UPLOAD_URL =
-  'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
-
 const EditProfile = ({
   getCurrentProfile,
   createProfile,
@@ -24,6 +20,7 @@ const EditProfile = ({
   auth,
   ...props
 }) => {
+  console.log(props)
   const [banner, setBanner] = useState(''),
     [errors, setErrors] = useState({}),
     [avatar, setAvatar] = useState(''),
@@ -120,22 +117,7 @@ const EditProfile = ({
 
   const onImageDrop = files => {
     setUploadedFile(files[0])
-    handleImageUpload(files[0])
-  }
-
-  const handleImageUpload = file => {
-    let upload = request
-      .post(CLOUDINARY_UPLOAD_URL)
-      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-      .field('file', file)
-
-    upload.end((err, response) => {
-      if (err) console.log(err)
-      if (response.body.secure_url !== '') {
-        setUploadedFileCloudinaryUrl(response.body.secure_url)
-        setAvatar(response.body.secure_url)
-      }
-    })
+    handleImageUpload(files[0], setUploadedFileCloudinaryUrl, setAvatar)
   }
 
   const options = [
