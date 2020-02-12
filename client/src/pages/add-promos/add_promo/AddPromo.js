@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Dropzone from 'react-dropzone'
 import request from 'superagent'
 
 import Input from '../../../components/common/inputs/Input'
 import '../AddDjpool.css'
+import DropZoneContainer from '../../../components/UI/dropzone/DropZoneContainer'
 import '../../../components/UI/dropzone/Dropzone.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -66,27 +66,11 @@ const AddPromo = ({ action, title, ...props }) => {
       />
       <h2>{title}</h2>
       <div className="djpools_input_wrapper">
-        <div className="djpools-dropzone">
-          <div className="FileUpload">
-            <Dropzone
-              className="dropzone" // In UI/dropzone
-              multiple={false}
-              accept="image/*"
-              onDrop={onImageDrop}
-            >
-              <p>Drag or click here to upload a file.</p>
-            </Dropzone>
-          </div>
-          <div>
-            {uploadedFileCloudinaryUrl === '' ? null : (
-              <img
-                src={uploadedFileCloudinaryUrl}
-                style={{ height: '50px', width: '50px' }}
-                alt={uploadedFile.name}
-              />
-            )}
-          </div>
-        </div>
+        <DropZoneContainer
+          onImageDrop={onImageDrop}
+          uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
+          uploadedFile={uploadedFile}
+        />
         <form onSubmit={onSubmit}>
           <Input
             name="url"

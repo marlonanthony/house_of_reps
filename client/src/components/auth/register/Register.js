@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Dropzone from 'react-dropzone'
 import request from 'superagent'
 
 import { registerUser } from '../../../actions/authActions'
 import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
+import DropZoneContainer from '../../UI/dropzone/DropZoneContainer'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -72,35 +72,11 @@ const Register = ({ auth, registerUser, ...props }) => {
     <div className="register-container">
       <h2>Sign Up</h2>
       <div id="register-content">
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <div className="FileUpload">
-            <Dropzone
-              className="dropzone"
-              multiple={false}
-              accept="image/*"
-              onDrop={onImageDrop}
-            >
-              <p>
-                Drop an image or click to select a file to upload your avatar.
-              </p>
-            </Dropzone>
-          </div>
-          <div>
-            {uploadedFileCloudinaryUrl === '' ? null : (
-              <img
-                src={uploadedFileCloudinaryUrl}
-                style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                alt={uploadedFile.name}
-              />
-            )}
-          </div>
-        </div>
+        <DropZoneContainer
+          onImageDrop={onImageDrop}
+          uploadedFile={uploadedFile}
+          uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
+        />
         <form id="register-form" onSubmit={onSubmitHandler}>
           <Input
             type="text"
