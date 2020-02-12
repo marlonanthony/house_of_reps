@@ -10,6 +10,7 @@ import {
 } from '../../actions/chatroomActions'
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 import SearchReps from '../../pages/create_chatroom/SearchReps'
+import BackButton from '../UI/icons/back-btn/BackButton'
 
 function Chatroom({
   getChatroom,
@@ -66,12 +67,7 @@ function Chatroom({
 
   return (
     <div>
-      <i
-        onClick={props.history.goBack}
-        id="addvenue-back-button"
-        className="fas fa-arrow-alt-circle-left"
-        alt="back-button"
-      />
+      <BackButton />
       <h2>{name && name} chatroom</h2>
       {invite && !accepted && (
         <button

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { addVenue } from '../../actions/profileActions'
 import Input from '../../components/common/inputs/Input'
 import TextArea from '../../components/common/textarea/TextArea'
+import BackButton from '../../components/UI/icons/back-btn/BackButton'
 import './AddMedia.css'
 
 const AddMedia = ({ addVenue, ...props }) => {
@@ -47,14 +48,10 @@ const AddMedia = ({ addVenue, ...props }) => {
   }
 
   return (
-    <div className="add-venue">
-      <i
-        onClick={props.history.goBack}
-        className="fas fa-arrow-alt-circle-left back-btn"
-        alt="back-button"
-      />
+    <div>
+      <BackButton />
       <h2>Add Media</h2>
-      <div className="promos_input_wrapper">
+      <div className="media_input_wrapper">
         <form onSubmit={onSubmit}>
           <Input
             placeholder="Title"
