@@ -7,6 +7,7 @@ import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
 import SocialLinksInput from '../common/inputs/SocialLinksInput'
 import { createProfile } from '../../actions/profileActions'
+import SubmitButton from '../UI/icons/submit-btn/SubmitButton'
 import './CreateProfile.css'
 
 const CreateProfile = ({ createProfile, auth, ...props }) => {
@@ -223,11 +224,7 @@ const CreateProfile = ({ createProfile, auth, ...props }) => {
             </button>
           </div>
           {socialInputs}
-          <input
-            type="submit"
-            value="Submit"
-            class="create-profile-submit-button"
-          />
+          <SubmitButton />
         </form>
       </div>
     </div>
