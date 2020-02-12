@@ -44,7 +44,7 @@ const EditProfile = ({
     [youtube, setYoutube] = useState(''),
     [displaySocialInputs, setDisplaySocialInputs] = useState(false),
     [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
-    [uploadedFile, setUploadedFile] = useState('')
+    [uploadedFile, setUploadedFile] = useState({})
 
   useEffect(() => {
     if (isEmpty(profile.profile)) getCurrentProfile()

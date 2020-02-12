@@ -26,7 +26,7 @@ const Register = ({ auth, registerUser, ...props }) => {
 
   const [avatar, setAvatar] = useState(''),
     [errors, setErrors] = useState({}),
-    [uploadedFile, setUploadedFile] = useState(''),
+    [uploadedFile, setUploadedFile] = useState({}),
     [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState('')
 
   useEffect(() => {

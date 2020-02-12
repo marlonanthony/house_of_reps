@@ -20,7 +20,7 @@ const AddPromo = ({ action, title, ...props }) => {
     [description, setDescription] = useState(''),
     [errors, setErrors] = useState({}),
     [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
-    [uploadedFile, setUploadedFile] = useState('')
+    [uploadedFile, setUploadedFile] = useState({})
 
   useEffect(() => {
     setErrors(props.errors)

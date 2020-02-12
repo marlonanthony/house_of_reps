@@ -30,6 +30,6 @@ export default function DropZoneContainer({
 
 DropZoneContainer.propTypes = {
   onImageDrop: PropTypes.func.isRequired,
-  uploadedFile: PropTypes.any.isRequired,
+  uploadedFile: PropTypes.object.isRequired,
   uploadedFileCloudinaryUrl: PropTypes.string.isRequired
 }
