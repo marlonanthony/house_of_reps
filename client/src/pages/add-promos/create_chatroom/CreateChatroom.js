@@ -7,6 +7,7 @@ import { createChatroom } from '../../../actions/chatroomActions'
 import { getProfiles } from '../../../actions/profileActions'
 import Input from '../../../components/common/inputs/Input'
 import SearchReps from './SearchReps'
+import BackButton from '../../../components/UI/icons/back-btn/BackButton'
 import './CreateChatroom.css'
 
 const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
@@ -34,14 +35,9 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
   }
   return (
     <div className="add-venue">
-      <i
-        onClick={props.history.goBack}
-        id="addvenue-back-button"
-        className="fas fa-arrow-alt-circle-left"
-        alt="back-button"
-      />
+      <BackButton />
       <h2>Create Chatroom</h2>
-      <div className="djpools_input_wrapper">
+      <div className="create_chatroom_wrapper">
         <form onSubmit={onSubmit}>
           <Input
             placeholder="Give your chatroom a name"
