@@ -1,12 +1,13 @@
 .promos_input_wrapper {
   width: 80%;
   margin: 0 auto;
+  text-align: center;
 }
 .add-promo-submit-btn {
   cursor: pointer;
   display: inline-block;
   border: none;
-  background-color: rgb(55,131,194);
+  background-color: var(--reps-blue);
   color: #fff;
   padding: 0.75rem 1.5rem;
   margin-top: 1rem;

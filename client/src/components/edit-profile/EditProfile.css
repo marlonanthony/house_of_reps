@@ -15,7 +15,7 @@
 }
 
 #edit-profile-back-button:hover {
-  background: rgb(55, 131, 194);
+  background: var(--reps-blue);
   border-radius: 50%;
   color: rgba(0,0,0,0.8);
 }

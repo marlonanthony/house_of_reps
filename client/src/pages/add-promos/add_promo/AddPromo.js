@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import request from 'superagent'
 
 import Input from '../../../components/common/inputs/Input'
-import './AddPromo.css'
+import BackButton from '../../../components/UI/icons/back-btn/BackButton'
 import DropZoneContainer from '../../../components/UI/dropzone/DropZoneContainer'
 import '../../../components/UI/dropzone/Dropzone.css'
+import './AddPromo.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL =
@@ -57,12 +57,7 @@ const AddPromo = ({ action, title, ...props }) => {
 
   return (
     <div>
-      <i
-        onClick={props.history.goBack}
-        id="addvenue-back-button"
-        className="fas fa-arrow-alt-circle-left"
-        alt="back-button"
-      />
+      <BackButton />
       <h2>{title}</h2>
       <div className="promos_input_wrapper">
         <DropZoneContainer
@@ -113,4 +108,4 @@ AddPromo.propTypes = {
 
 const mapStateToProps = state => ({ errors: state.errors })
 
-export default connect(mapStateToProps)(withRouter(AddPromo))
+export default connect(mapStateToProps)(AddPromo)

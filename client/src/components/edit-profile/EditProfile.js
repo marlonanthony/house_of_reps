@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import request from 'superagent'
 
@@ -9,8 +8,9 @@ import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
 import SocialLinksInput from '../common/inputs/SocialLinksInput'
-import Avatar from './Avatar'
+import DropZoneContainer from '../UI/dropzone/DropZoneContainer'
 import isEmpty from '../../utils/is-empty'
+import BackButton from '../UI/icons/back-btn/BackButton'
 import './EditProfile.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -238,18 +238,13 @@ const EditProfile = ({
   }
   return (
     <div className="edit-profile">
-      <i
-        onClick={props.history.goBack}
-        id="edit-profile-back-button"
-        className="fas fa-arrow-alt-circle-left"
-        alt="back-button"
-      />
+      <BackButton />
       <h2>Edit Profile</h2>
-      <div className="djpools_input_wrapper">
-        <Avatar
+      <div className="promos_input_wrapper">
+        <DropZoneContainer
           onImageDrop={onImageDrop}
-          uploadedFile={uploadedFile}
           uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
+          uploadedFile={uploadedFile}
         />
         <form onSubmit={onSubmit}>
           <Input
@@ -342,4 +337,4 @@ export default connect(
     createProfile,
     getCurrentProfile
   }
-)(withRouter(EditProfile))
+)(EditProfile)

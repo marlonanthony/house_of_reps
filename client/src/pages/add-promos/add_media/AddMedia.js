@@ -50,12 +50,11 @@ const AddMedia = ({ addVenue, ...props }) => {
     <div className="add-venue">
       <i
         onClick={props.history.goBack}
-        id="addvenue-back-button"
-        className="fas fa-arrow-alt-circle-left"
+        className="fas fa-arrow-alt-circle-left back-btn"
         alt="back-button"
       />
       <h2>Add Media</h2>
-      <div className="djpools_input_wrapper">
+      <div className="promos_input_wrapper">
         <form onSubmit={onSubmit}>
           <Input
             placeholder="Title"
@@ -78,14 +77,12 @@ const AddMedia = ({ addVenue, ...props }) => {
             onChange={e => setDiscription(e.target.value)}
             error={errors.description}
           />
-          <div className="venue-submit-btn-containing-div">
-            <input
-              type="submit"
-              value="Submit"
-              id="add-djpools-submit-button"
-              title="submit"
-            />
-          </div>
+          <input
+            type="submit"
+            value="Submit"
+            title="submit"
+            className="add-promo-submit-btn"
+          />
         </form>
       </div>
     </div>

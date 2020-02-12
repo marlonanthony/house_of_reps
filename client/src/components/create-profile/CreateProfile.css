@@ -1,8 +1,9 @@
 .createprofilecontainer {
   height: auto; 
-  width: 100vw; 
+  max-width: 400px; 
   text-align: center;
   margin-bottom: 50px;
+  margin: auto;
 }
 
 .select-list {
@@ -22,7 +23,7 @@
   cursor: pointer;
   display: inline-block;
   border: none;
-  background-color: rgb(55,131,194);
+  background-color: var(--reps-blue);
   color: #fff;
   padding: 0.75rem 1.5rem;
   margin-top: 1rem;
@@ -57,7 +58,7 @@
   cursor: pointer;
   display: inline-block;
   border: none;
-  background-color: rgb(55,131,194);
+  background-color: var(--reps-blue);
   color: #fff;
   padding: 0.75rem 1.5rem;
   margin-top: 1rem;
@@ -66,11 +67,4 @@
 }
 .create-profile-submit-button:hover {
   opacity: 0.7;
-}
-
-@media (min-width: 1050px) {
-  .createprofilecontainer {
-    width: 50%;
-    margin-left: 25%;
-  }
 }

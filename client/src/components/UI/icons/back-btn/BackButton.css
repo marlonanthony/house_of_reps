@@ -1,0 +1,18 @@
+.back-btn {
+  position: absolute;
+  top: 30px;
+  left: 2%;
+  font-size: 35px;
+  text-decoration: none;
+  color: #ccc;
+  cursor: pointer;
+}
+.back-btn:hover {
+  background: rgb(55, 131, 194);
+  border-radius: 50%;
+  color: rgba(0,0,0,0.8);
+}
+
+.back-btn:active {
+  font-size: 33px;
+} 
