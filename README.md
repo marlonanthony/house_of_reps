@@ -5,7 +5,40 @@
 
 ![House of Reps Landing page background image](client/src/img/dj.jpg)
 
-This app is in development and being hosted on a free Heroku account. Free Heroku apps sleep automatically after 30 mins of inactivity and wake when a web request is received. This 'waking' can take a few seconds so give it a moment to render.
+## Feed
+
+Like every page in this app, things will look differently depending on the users device. The key features of the newsfeed are: 
+
+1. Search posts by hashtag
+1. Create post
+    * Once a user clicks on the textarea they'll be presented with four options:
+        1. Add photo
+        1. Add emoji
+        1. Submit button
+    * If you paste a link, a preview will be presented with accompanied metadata (depending on the website).
+1. Search Members (Might remove now that I've added the 'Reps' page which you can navigate to from the hamburger menu)
+1. Recently uploaded media
+    * Displays a single upload (video/song/playlist) from every user ordered by recency
+    * If the user clicks on the 'House of Reps' icon in the bottom right of the uploaded media, an uninterrupted modal will appear that will allow the user to navigate different pages without their music/video experience being interrupted.
+1. Promotional section (Stores, Brands, Perks, Music Pools)
+1. Speakeasy
+    * Real time chat messenger that doesn't save to a database. Messages only exist in memory; hence, the name speakeasy.
+1. Post filters
+    * At the moment there are 7 core filters that are being accessed via hashtag. These filters will likely change at the whim of the client. None of these are guaranteed to stick around and none are styled/labeled correctly. These are just placeholders to test out functionality.
+    * On top of these core filters, there is a 'liked' filter that displays all posts that the user liked.
+1. Notifications bell 
+    * Informs the user if they have any new notifications and displays the count.
+    * Clicking on the bell will navigate the user to the notifications page where they can learn more about each new notification.
+1. Posts
+    * Each post can be edited by clicking on the more-vert icon in the top right of the post.
+    * Each post has comments which in-turn can have their own comments. Comments and nested comments can both be edited by the publisher of said comment/nested comment.
+    * Each post/comment has the creators username, avatar, and date created listed in the upper left corner. If you hover over the username, a dropdown menu will appear displaying info about the user.
+    * In the bottom left corner either four or five icons will be presented depending on if you're the creator of the post/comment:
+        1. Like icon
+        1. Remove Like icon
+        1. Expand Comments icon
+        1. Write Comment icon
+        1. Delete Post/Comment icon (if you're the creator of said post or comment)
 
 ## Dashboard
 
@@ -50,42 +83,6 @@ When landing on the profile page depending on whether you're on mobile, tablet, 
 
 1. Posts
     * Created posts
-
-## Feed
-
-Like every page in this app, things will look differently depending on the users device. The key features of the newsfeed are: 
-
-1. Search posts by hashtag
-1. Create post
-    * Once a user clicks on the textarea they'll be presented with four options:
-        1. Add hashtag
-        1. Add photo
-        1. Add emoji
-        1. Submit button
-    * If you paste a link, a preview will be presented with accompanied metadata (depending on the website).
-1. Search Members (Might remove now that I've added the 'Reps' page which you can navigate to from the hamburger menu)
-1. Recently uploaded media
-    * Displays a single upload (video/song/playlist) from every user ordered by recency
-    * If the user clicks on the 'House of Reps' icon in the bottom right of the uploaded media, an uninterrupted modal will appear that will allow the user to navigate different pages without their music/video experience being interrupted.
-1. Promotional section (Stores, Brands, Perks, Music Pools)
-1. Speakeasy
-    * Real time chat messenger that doesn't save to a database. Messages only exist in memory; hence, the name speakeasy.
-1. Post filters
-    * At the moment there are 7 core filters that are being accessed via hashtag. These filters will likely change at the whim of the client. None of these are guaranteed to stick around and none are styled/labeled correctly. These are just placeholders to test out functionality.
-    * On top of these core filters, there is a 'liked' filter that displays all posts that the user liked.
-1. Notifications bell 
-    * Informs the user if they have any new notifications and displays the count.
-    * Clicking on the bell will navigate the user to the notifications page where they can learn more about each new notification.
-1. Posts
-    * Each post can be edited by clicking on the more-vert icon in the top right of the post.
-    * Each post has comments which in-turn can have their own comments. Comments and nested comments can both be edited by the publisher of said comment/nested comment.
-    * Each post/comment has the creators username, avatar, and date created listed in the upper left corner. If you hover over the username, a dropdown menu will appear displaying info about the user.
-    * In the bottom left corner either four or five icons will be presented depending on if you're the creator of the post/comment:
-        1. Like icon
-        1. Remove Like icon
-        1. Expand Comments icon
-        1. Write Comment icon
-        1. Delete Post/Comment icon (if you're the creator of said post or comment)
 
 ## Reps
 

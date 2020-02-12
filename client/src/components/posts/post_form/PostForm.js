@@ -45,9 +45,6 @@ class PostForm extends Component {
     if (prevState.data !== this.state.data) {
       this.setState({ data: this.state.data })
     }
-    // if(prevProps.errors !== this.props.errors) {
-    //   this.setState({ errors: prevProps.errors })
-    // }
   }
 
   onChange = e => {
@@ -112,6 +109,7 @@ class PostForm extends Component {
       handle: this.props.profile.profile.handle
     }
     this.props.addPost(newPost)
+    this.setState({ text: '' })
     e.target.reset()
   }
 

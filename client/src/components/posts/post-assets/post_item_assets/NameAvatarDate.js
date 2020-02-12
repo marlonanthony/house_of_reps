@@ -19,7 +19,7 @@ export default function NameAvatarDate({
         src={post.avatar}
         alt={post.name}
       />
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div>
         <PostFeedPopup
           popupHandler={popupHandler}
           profile={profile}
