@@ -3,9 +3,9 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { addVenue } from '../../../actions/profileActions'
-import Input from '../../../components/common/inputs/Input'
-import TextArea from '../../../components/common/textarea/TextArea'
+import { addVenue } from '../../actions/profileActions'
+import Input from '../../components/common/inputs/Input'
+import TextArea from '../../components/common/textarea/TextArea'
 import './AddMedia.css'
 
 const AddMedia = ({ addVenue, ...props }) => {

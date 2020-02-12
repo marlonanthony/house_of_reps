@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addPerk } from '../../../actions/profileActions'
+import { addPerk } from '../../actions/profileActions'
 import AddPromo from './AddPromo'
 
 function AddPerk({ addPerk }) {

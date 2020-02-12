@@ -3,11 +3,11 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { createChatroom } from '../../../actions/chatroomActions'
-import { getProfiles } from '../../../actions/profileActions'
-import Input from '../../../components/common/inputs/Input'
+import { createChatroom } from '../../actions/chatroomActions'
+import { getProfiles } from '../../actions/profileActions'
+import Input from '../../components/common/inputs/Input'
 import SearchReps from './SearchReps'
-import BackButton from '../../../components/UI/icons/back-btn/BackButton'
+import BackButton from '../../components/UI/icons/back-btn/BackButton'
 import './CreateChatroom.css'
 
 const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {

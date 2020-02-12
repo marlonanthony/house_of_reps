@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addDjpool } from '../../../actions/profileActions'
+import { addDjpool } from '../../actions/profileActions'
 import AddPromo from './AddPromo'
 
 function AddPool({ addDjpool }) {
