@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 })
 
 // @route         GET api/posts/search/:search
-// @description   Get posts by searching text/hashtag
+// @description   Get posts by hashtag
 // @access        Public
 router.get(`/search/:search`, async (req, res) => {
   const pageOptions = {
@@ -35,7 +35,10 @@ router.get(`/search/:search`, async (req, res) => {
     search: req.params.search
   }
   try {
-    const posts = await Post.find({ text: { $regex: `#${pageOptions.search}`, $options: 'i' } })
+    const posts = await Post.find({ $or: [
+      { text: { $regex: `#${pageOptions.search}`, $options: 'i' } }, 
+      { tag: `${pageOptions.search}` }
+    ]})
       .sort({ date: -1 })
       .skip(pageOptions.page * pageOptions.limit)
       .limit(pageOptions.limit)
@@ -118,6 +121,7 @@ router.post(
     try {
       const newPost = new Post({
         text: req.body.text,
+        tag: req.body.tag,
         name: req.body.name,
         handle: req.user.handle,
         avatar: req.body.avatar,

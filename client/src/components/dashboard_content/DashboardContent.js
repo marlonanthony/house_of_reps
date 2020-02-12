@@ -8,7 +8,7 @@ import PromoContent from './PromoContent'
 import ChatroomSection from './chatroom_section/ChatroomSection'
 import DeleteProfileBtn from './delete_profile_btn/DeleteProfileBtn'
 
-const DashboardContent = ({ profile, loading, user }) => {
+const DashboardContent = ({ profile, user }) => {
   if (Object.keys(profile).length) {
     return (
       <div id="dashboard">
@@ -35,7 +35,6 @@ const DashboardContent = ({ profile, loading, user }) => {
 }
 
 DashboardContent.propTypes = {
-  loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   profile: PropTypes.object
 }

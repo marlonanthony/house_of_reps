@@ -99,6 +99,7 @@ class PostForm extends Component {
 
     const newPost = {
       text: this.state.text,
+      tag: 'downloads',
       name: user.name,
       avatar: user.avatar,
       image: this.state.data.image,

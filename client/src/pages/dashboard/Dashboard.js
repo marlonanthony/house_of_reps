@@ -12,13 +12,9 @@ const Dashboard = ({ auth, getCurrentProfile, ...props }) => {
   }, [])
 
   const { user } = auth
-  const { profile, loading } = props.profile
+  const { profile } = props.profile
 
-  return (
-    profile && (
-      <DashboardContent profile={profile} loading={loading} user={user} />
-    )
-  )
+  return profile && <DashboardContent profile={profile} user={user} />
 }
 
 Dashboard.propTypes = {
