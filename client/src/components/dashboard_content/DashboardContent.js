@@ -9,8 +9,7 @@ import ChatroomSection from './chatroom_section/ChatroomSection'
 import DeleteProfileBtn from './delete_profile_btn/DeleteProfileBtn'
 
 const DashboardContent = ({ profile, loading, user }) => {
-  if (loading) return null
-  else if (Object.keys(profile).length) {
+  if (Object.keys(profile).length) {
     return (
       <div id="dashboard">
         <div id="dashboard-container">
