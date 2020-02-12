@@ -9,7 +9,7 @@ import Login from './components/auth/login/Login'
 import Dashboard from './pages/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
-import AddVenue from './pages/add-promos/AddVenue'
+import AddMedia from './pages/add-promos/add_media/AddMedia'
 import CreateChatroom from './pages/add-promos/create_chatroom/CreateChatroom'
 import AddDjpool from './pages/add-promos/add_promo/AddPool'
 import AddStore from './pages/add-promos/add_promo/AddStore'
@@ -62,7 +62,7 @@ const App = () => {
           <PrivateRoute exact path="/edit-profile" component={EditProfile} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path="/add-venue" component={AddVenue} />
+          <PrivateRoute exact path="/add-venue" component={AddMedia} />
         </Switch>
         <Switch>
           <PrivateRoute

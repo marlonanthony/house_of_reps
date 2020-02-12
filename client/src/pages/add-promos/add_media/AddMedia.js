@@ -3,12 +3,12 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { addVenue } from '../../actions/profileActions'
-import Input from '../../components/common/inputs/Input'
-import TextArea from '../../components/common/textarea/TextArea'
-import './AddVenue.css'
+import { addVenue } from '../../../actions/profileActions'
+import Input from '../../../components/common/inputs/Input'
+import TextArea from '../../../components/common/textarea/TextArea'
+import './AddMedia.css'
 
-const AddVenue = ({ addVenue, ...props }) => {
+const AddMedia = ({ addVenue, ...props }) => {
   const [description, setDiscription] = useState(''),
     [errors, setErrors] = useState({}),
     [title, setTitle] = useState(''),
@@ -54,7 +54,7 @@ const AddVenue = ({ addVenue, ...props }) => {
         className="fas fa-arrow-alt-circle-left"
         alt="back-button"
       />
-      <h2>Add Highlight</h2>
+      <h2>Add Media</h2>
       <div className="djpools_input_wrapper">
         <form onSubmit={onSubmit}>
           <Input
@@ -92,7 +92,7 @@ const AddVenue = ({ addVenue, ...props }) => {
   )
 }
 
-AddVenue.propTypes = {
+AddMedia.propTypes = {
   errors: PropTypes.object.isRequired,
   addVenue: PropTypes.func.isRequired
 }
@@ -102,4 +102,4 @@ const mapStateToProps = state => ({ errors: state.errors })
 export default connect(
   mapStateToProps,
   { addVenue }
-)(withRouter(AddVenue))
+)(withRouter(AddMedia))
