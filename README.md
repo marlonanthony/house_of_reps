@@ -11,7 +11,7 @@ Like every page in this app, things will look differently depending on the users
 
 1. Search posts by hashtag
 1. Create post
-    * Once a user clicks on the textarea they'll be presented with four options:
+    * Once a user clicks on the textarea they'll be presented with three options:
         1. Add photo
         1. Add emoji
         1. Submit button
