@@ -9,7 +9,7 @@ import {
   addMembers
 } from '../../actions/chatroomActions'
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
-import SearchReps from '../../pages/add-promos/create_chatroom/SearchReps'
+import SearchReps from '../../pages/create_chatroom/SearchReps'
 
 function Chatroom({
   getChatroom,
