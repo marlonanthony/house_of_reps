@@ -7,6 +7,7 @@ import { addVenue } from '../../actions/profileActions'
 import Input from '../../components/common/inputs/Input'
 import TextArea from '../../components/common/textarea/TextArea'
 import BackButton from '../../components/UI/icons/back-btn/BackButton'
+import SubmitButton from '../../components/UI/icons/submit-btn/SubmitButton'
 import './AddMedia.css'
 
 const AddMedia = ({ addVenue, ...props }) => {
@@ -74,12 +75,7 @@ const AddMedia = ({ addVenue, ...props }) => {
             onChange={e => setDiscription(e.target.value)}
             error={errors.description}
           />
-          <input
-            type="submit"
-            value="Submit"
-            title="submit"
-            className="add-promo-submit-btn"
-          />
+          <SubmitButton />
         </form>
       </div>
     </div>

@@ -3,31 +3,7 @@
 }
 
 #login-content {
-  width: 80%;
+  max-width: 400px;
   margin: 0 auto;
-}
-
-.login-page-button-container {
   text-align: center;
-}
-
-#login-page-button {
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  background-color: rgb(55,131,194);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  text-decoration: none;
-  transition: opacity .25s ease-in;
-}
-#login-page-button:hover {
-  opacity: 0.7;
-}
-
-@media (min-width: 1025px) {
-  #login-content {
-    width: 400px;
-  }
 }

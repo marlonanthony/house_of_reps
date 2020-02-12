@@ -8,6 +8,7 @@ import { registerUser } from '../../../actions/authActions'
 import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
 import DropZoneContainer from '../../UI/dropzone/DropZoneContainer'
+import SubmitButton from '../../UI/icons/submit-btn/SubmitButton'
 import './Register.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -69,7 +70,7 @@ const Register = ({ auth, registerUser, ...props }) => {
   }
 
   return (
-    <div className="register-container">
+    <div>
       <h2>Sign Up</h2>
       <div id="register-content">
         <DropZoneContainer
@@ -77,7 +78,7 @@ const Register = ({ auth, registerUser, ...props }) => {
           uploadedFile={uploadedFile}
           uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
         />
-        <form id="register-form" onSubmit={onSubmitHandler}>
+        <form onSubmit={onSubmitHandler}>
           <Input
             type="text"
             name="name"
@@ -118,9 +119,7 @@ const Register = ({ auth, registerUser, ...props }) => {
             onChange={setValues}
             error={errors.password2}
           />
-          <div className="register-button-container">
-            <input type="submit" id="register-button" title="submit" />
-          </div>
+          <SubmitButton />
         </form>
       </div>
     </div>

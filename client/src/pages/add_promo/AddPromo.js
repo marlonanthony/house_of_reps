@@ -5,6 +5,7 @@ import request from 'superagent'
 
 import Input from '../../components/common/inputs/Input'
 import BackButton from '../../components/UI/icons/back-btn/BackButton'
+import SubmitButton from '../../components/UI/icons/submit-btn/SubmitButton'
 import DropZoneContainer from '../../components/UI/dropzone/DropZoneContainer'
 import '../../components/UI/dropzone/Dropzone.css'
 import './AddPromo.css'
@@ -90,12 +91,7 @@ const AddPromo = ({ action, title, ...props }) => {
             error={errors.description}
             placeholder="Description"
           />
-          <input
-            type="submit"
-            value="Submit"
-            className="add-promo-submit-btn"
-            title="submit"
-          />
+          <SubmitButton />
         </form>
       </div>
     </div>

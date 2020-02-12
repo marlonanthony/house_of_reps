@@ -8,6 +8,7 @@ import { getProfiles } from '../../actions/profileActions'
 import Input from '../../components/common/inputs/Input'
 import SearchReps from './SearchReps'
 import BackButton from '../../components/UI/icons/back-btn/BackButton'
+import SubmitButton from '../../components/UI/icons/submit-btn/SubmitButton'
 import './CreateChatroom.css'
 
 const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
@@ -34,7 +35,7 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
     createChatroom(chatroomData, props.history)
   }
   return (
-    <div className="add-venue">
+    <div>
       <BackButton />
       <h2>Create Chatroom</h2>
       <div className="create_chatroom_wrapper">
@@ -58,14 +59,7 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
               placeholder="Invite Moderators"
             />
           </div>
-          <div className="venue-submit-btn-containing-div">
-            <input
-              type="submit"
-              value="Submit"
-              id="add-djpools-submit-button"
-              title="submit"
-            />
-          </div>
+          <SubmitButton />
         </form>
       </div>
       <div className="invites_mods_container">

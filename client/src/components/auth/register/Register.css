@@ -1,36 +1,5 @@
 #register-content {
-  width: 80%;
+  max-width: 400px;
   margin: 0 auto;
-}
-
-
-#register-form {
-}
-
-.register-button-container {
   text-align: center;
-} 
-
-#register-button {
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  background-color: rgb(55,131,194);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  text-decoration: none;
-  transition: opacity .25s ease-in;
-}
-#register-button:hover {
-  opacity: 0.7;
-}
-
-@media (min-width: 1025px) {
-  #register-content {
-    width: 400px;
-  }
-  #register-form {
-    padding: 10 0;
-  }
 }

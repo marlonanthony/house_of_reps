@@ -7,6 +7,7 @@ import { loginUser } from '../../../actions/authActions'
 import { getCurrentProfile } from '../../../actions/profileActions'
 import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
+import SubmitButton from '../../UI/icons/submit-btn/SubmitButton'
 import './Login.css'
 
 const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
@@ -50,9 +51,7 @@ const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
             onChange={setValues}
             error={errors.password}
           />
-          <div className="login-page-button-container">
-            <input type="submit" id="login-page-button" title="submit" />
-          </div>
+          <SubmitButton />
         </form>
       </div>
     </div>
