@@ -5,17 +5,18 @@ import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 
-import { addPerk } from '../../actions/profileActions'
-import Input from '../../components/common/inputs/Input'
+import Input from '../../../components/common/inputs/Input'
+import '../AddDjpool.css'
+import '../../../components/UI/dropzone/Dropzone.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
 const CLOUDINARY_UPLOAD_URL =
   'https://api.cloudinary.com/v1_1/dbwifrjvy/image/upload'
 
-const AddPerk = ({ addPerk, ...props }) => {
+const AddPromo = ({ action, title, ...props }) => {
   const [image, setImage] = useState(''),
     [url, setUrl] = useState(''),
-    [description, setDiscription] = useState(''),
+    [description, setDescription] = useState(''),
     [errors, setErrors] = useState({}),
     [uploadedFileCloudinaryUrl, setUploadedFileCloudinaryUrl] = useState(''),
     [uploadedFile, setUploadedFile] = useState('')
@@ -25,13 +26,14 @@ const AddPerk = ({ addPerk, ...props }) => {
   }, [props.errors])
 
   const onSubmit = e => {
+    console.log('clicked')
     e.preventDefault()
-    const perkData = {
+    const promoData = {
       image,
       url,
       description
     }
-    addPerk(perkData, props.history)
+    action(promoData, props.history)
   }
 
   const onImageDrop = files => {
@@ -55,16 +57,14 @@ const AddPerk = ({ addPerk, ...props }) => {
   }
 
   return (
-    /*  Set classNames to djpools for lack of repitition  */
-
-    <div className="add-djpool">
+    <div>
       <i
         onClick={props.history.goBack}
         id="addvenue-back-button"
         className="fas fa-arrow-alt-circle-left"
         alt="back-button"
       />
-      <h2>Add Perk</h2>
+      <h2>{title}</h2>
       <div className="djpools_input_wrapper">
         <div className="djpools-dropzone">
           <div className="FileUpload">
@@ -94,7 +94,7 @@ const AddPerk = ({ addPerk, ...props }) => {
             value={url}
             onChange={e => setUrl(e.target.value)}
             error={errors.url}
-            placeholder="URL"
+            placeholder="DJ Pool URL"
           />
           <Input
             name="image"
@@ -102,21 +102,22 @@ const AddPerk = ({ addPerk, ...props }) => {
             value={image}
             onChange={e => setImage(e.target.value)}
             error={errors.image}
-            placeholder="image"
+            placeholder="Image URL"
           />
           <Input
             name="description"
             type="text"
             value={description}
-            onChange={e => setDiscription(e.target.value)}
+            onChange={e => setDescription(e.target.value)}
             error={errors.description}
-            placeholder="description"
+            placeholder="Description"
           />
-          <div style={{ textAlign: 'center' }}>
+          <div className="add-djpool-submit-btn-containing-div">
             <input
               type="submit"
               value="Submit"
               id="add-djpools-submit-button"
+              title="submit"
             />
           </div>
         </form>
@@ -125,14 +126,10 @@ const AddPerk = ({ addPerk, ...props }) => {
   )
 }
 
-AddPerk.propTypes = {
-  errors: PropTypes.object.isRequired,
-  addPerk: PropTypes.func.isRequired
+AddPromo.propTypes = {
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({ errors: state.errors })
 
-export default connect(
-  mapStateToProps,
-  { addPerk }
-)(withRouter(AddPerk))
+export default connect(mapStateToProps)(withRouter(AddPromo))

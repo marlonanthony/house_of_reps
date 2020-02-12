@@ -11,10 +11,10 @@ import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
 import AddVenue from './pages/add-promos/AddVenue'
 import CreateChatroom from './pages/add-promos/create_chatroom/CreateChatroom'
-import AddDjpool from './pages/add-promos/AddDjpool'
-import AddCertifiedStore from './pages/add-promos/AddCertifiedStore'
-import AddPerk from './pages/add-promos/AddPerk'
-import AddBrand from './pages/add-promos/AddBrand'
+import AddDjpool from './pages/add-promos/add_promo/AddPool'
+import AddStore from './pages/add-promos/add_promo/AddStore'
+import AddPerk from './pages/add-promos/add_promo/AddPerk'
+import AddBrand from './pages/add-promos/add_promo/AddBrand'
 import Profiles from './pages/profiles/Profiles'
 import Profile from './pages/profile/Profile'
 import Posts from './pages/posts/Posts'
@@ -75,7 +75,7 @@ const App = () => {
           <PrivateRoute exact path="/add-djpool" component={AddDjpool} />
         </Switch>
         <Switch>
-          <PrivateRoute exact path="/add-store" component={AddCertifiedStore} />
+          <PrivateRoute exact path="/add-store" component={AddStore} />
         </Switch>
         <Switch>
           <PrivateRoute exact path="/add-perk" component={AddPerk} />
