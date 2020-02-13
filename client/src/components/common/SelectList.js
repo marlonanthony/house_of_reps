@@ -14,7 +14,7 @@ const SelectList = ({ name, value, error, info, onChange, options }) => {
   ))
 
   return (
-    <div className="">
+    <div>
       <select
         className={classnames('select-list', {
           'is-invalid': error

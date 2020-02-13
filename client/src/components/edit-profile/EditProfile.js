@@ -20,7 +20,6 @@ const EditProfile = ({
   auth,
   ...props
 }) => {
-  console.log(props)
   const [banner, setBanner] = useState(''),
     [errors, setErrors] = useState({}),
     [avatar, setAvatar] = useState(''),

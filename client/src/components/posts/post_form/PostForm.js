@@ -13,6 +13,7 @@ import LinkPreview from '../post-assets/link_preview/LinkPreview'
 import EmojiModal from '../../UI/modal/EmojiModal'
 import LightBackdrop from '../../UI/backdrop/LightBackdrop'
 import Icon from '../../UI/icons/Icon'
+import PostTag from '../post-assets/post_tag/PostTag'
 import './PostForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -32,7 +33,9 @@ class PostForm extends Component {
     uploadedFileCloudinaryUrl: '',
     uploadedFile: '',
     media: '',
-    showEmojis: false
+    showEmojis: false,
+    showTags: false,
+    tag: ''
   }
 
   componentWillReceiveProps(newProps) {
@@ -99,7 +102,7 @@ class PostForm extends Component {
 
     const newPost = {
       text: this.state.text,
-      tag: 'downloads',
+      tag: this.state.tag,
       name: user.name,
       avatar: user.avatar,
       image: this.state.data.image,
@@ -160,6 +163,13 @@ class PostForm extends Component {
     this.setState({ text: this.state.text + emoji })
   }
 
+  setShowTag = () => {
+    this.setState(prevState => ({ showTags: !prevState.showTags }))
+  }
+  setTag = e => {
+    this.setState({ tag: e.target.value, showTags: false })
+  }
+
   render() {
     const {
       errors,
@@ -182,7 +192,7 @@ class PostForm extends Component {
               </EmojiModal>
             )}
             <div>
-              <form onSubmit={this.onSubmit} onClick={this.showButtonsHandler}>
+              <form onSubmit={this.onSubmit}>
                 <TextAreaForm
                   className="text-area"
                   placeholder="What's the discussion?"
@@ -193,6 +203,7 @@ class PostForm extends Component {
                   error={errors.text}
                   rows={rows}
                   noFocus
+                  onClick={this.showButtonsHandler}
                 />
                 <div className={show ? 'otherstuff' : 'disp'}>
                   <Dropzone
@@ -213,14 +224,21 @@ class PostForm extends Component {
                     title="emojis"
                     toggleIcon={this.toggleEmoji}
                   />
-                  <button
-                    className="post_submit_button"
-                    title="Submit"
-                    type="submit"
-                  >
+                  <Icon
+                    icon="fas fa-hashtag"
+                    title="add tag"
+                    toggleIcon={this.setShowTag}
+                  />
+                  <button className="post_submit_button">
                     <Icon icon="far fa-paper-plane" title="submit" />
                   </button>
                 </div>
+                <PostTag
+                  tag={this.state.tag}
+                  onChange={this.setTag}
+                  showTags={this.state.showTags}
+                  errors={this.state.errors}
+                />
                 <LinkPreview
                   post={data}
                   media={media}

@@ -51,10 +51,8 @@
 }
 
 .post_submit_button {
-  cursor: pointer;
   color: var(--secondary-color);
   background: none;
   border: none;
   outline: none;
-  font-family: 'Ubuntu', sans-serif;
 }
