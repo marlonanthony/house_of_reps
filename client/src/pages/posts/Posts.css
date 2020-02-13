@@ -46,26 +46,25 @@
   grid-area: post-feed-post-content;
 }
 .post-feed-highlights { display: none; }
-.img_test { display: none; }
 .stores_container { display: none; }
 .djpools { display: none; }
 .perks_and_hookups { display: none; }
 .certified_brands { display: none; }
 .searchbarpost { display: none; }
 .searchbar { display: none; }
+
 .postfeed_reps_btns {
   grid-area: btns;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
   cursor: pointer;
 }
-.postfeed_reps_btns img {
+.reps-btn-imgs {
   height: 35px;
-  flex: 1;
-  margin: 2px;
+  width: 35px;
 }
 
 .mobile_icons_container {
@@ -89,15 +88,95 @@
   font-size: 12px;
 }
 
-@media (min-width: 600px){
-  .postfeed_reps_btns img {
-    height: 60px;
-    max-width: 100px;
+@media (min-width: 800px){
+  .mobile_icons_container {
+    display: none;
+  }
+  .post-feed-footer {
+    display: block;
+  }
+  .feed {
+    margin: 0 15px;
+    grid-gap: 15px;
+    overflow-x: hidden;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto 1fr;
+    grid-template-areas: 
+      'profile postform'
+      'profile post-feed-post-content'
+      'btns post-feed-post-content'
+      'postfeedhighlights post-feed-post-content'
+      'chatroom post-feed-post-content'
+      'djpools post-feed-post-content'
+      'perks post-feed-post-content'
+      'brands post-feed-post-content'
+      'stores post-feed-post-content'
+      'footer post-feed-post-content'; 
+  }
+  .post-feed-post-content {
+    width: 100%;
+  }
+  .post-feed-profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    grid-area: profile;
+    border-radius: 7px;
+    width: 250px;
+    height: 250px;
+    border: .5px solid var(--border-color);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .post-feed-highlights {
+    grid-area: postfeedhighlights;
+    display: grid;
+    width: 250px;
+    height: 250px;
+    margin: 0;
+  }
+  .stores_container {
+    grid-area: stores;
+    display: flex;
+    width: 250px;
+    height: 250px;
+  }
+  .djpools {
+    grid-area: djpools;
+    display: flex;
+    width: 250px;
+    height: 250px;
+  }
+  .perks_and_hookups {
+    grid-area: perks;
+    display: flex;
+    width: 250px;
+    height: 250px;
+  }
+  .certified_brands {
+    grid-area: brands;
+    display: flex;
+    width: 250px;
+    height: 250px;
+  }
+  .postfeed_reps_btns {
+    display: flex;
+    justify-content: space-between;
+  }
+  .reps-btn-imgs {
+    height: 55px;
+    width: 55px;
+    margin: 4px;
   }
 }
 
 @media (min-width: 1200px) {
   .feed {
+    margin: 0 auto;
+    grid-gap: 15px;
     overflow-x: hidden;
     display: grid;
     justify-items: center;
@@ -116,10 +195,10 @@
   .mobile_icons_container { display: none; }
 
   .postfeed_reps_btns {
-    grid-area: btns;
     width: 620px;
   }
-  .postfeed_reps_btns img {
+  .reps-btn-imgs {
+    width: 60px;
     height: 60px;
   }
 
@@ -205,59 +284,14 @@
   }
 
   .post-feed-profile {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    grid-area: profile;
-    border-radius: 5px;
-    width: 250px;
-    height: 250px;
     margin-top: -30px;
-    border: .5px solid var(--border-color);
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 
   .post-feed-highlights {
-    grid-area: postfeedhighlights;
-    display: grid;
-    width: 250px;
-    height: 250px;
-    margin: 0;
     margin-top: -30px;
   }
 
-  .stores_container {
-    grid-area: stores;
-    display: flex;
-    width: 250px;
-    height: 250px;
-  }
-
-  .djpools {
-    grid-area: djpools;
-    display: flex;
-    width: 250px;
-    height: 250px;
-  }
-
-  .perks_and_hookups {
-    grid-area: perks;
-    display: flex;
-    width: 250px;
-    height: 250px;
-  }
-
-  .certified_brands {
-    grid-area: brands;
-    display: flex;
-    width: 250px;
-    height: 250px;
-  }
-
   .post-feed-footer {
-    display: flex;
     margin-top: -170px;
   }
 }
