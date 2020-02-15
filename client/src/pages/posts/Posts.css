@@ -1,5 +1,4 @@
 .feed {
-  max-width: 1150px;
   margin: 0 auto;
   display: grid;
   grid-gap: 15px;
@@ -96,7 +95,7 @@
     display: block;
   }
   .feed {
-    margin: 0 15px;
+    margin: 0 20px;
     grid-gap: 15px;
     overflow-x: hidden;
     display: grid;
