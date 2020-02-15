@@ -5,11 +5,12 @@ import Highlights from './Highlights'
 
 export default function HighlightsContainer({ profiles, toggleHighlight }) {
   if (!profiles) return null
-  let highlights = profiles
+  const highlights = profiles
     .map(
       profile => profile.venues && profile.venues.length && profile.venues[0]
     )
     .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+    .filter(val => val)
 
   return (
     <Highlights highlights={highlights} toggleHighlight={toggleHighlight} />

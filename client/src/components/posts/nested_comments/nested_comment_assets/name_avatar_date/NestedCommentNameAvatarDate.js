@@ -9,10 +9,7 @@ const NestedCommentNameAvatarDate = ({
   moreVertClicked
 }) =>
   nestedComment && (
-    <div
-      className="nested_comment_name_avatar_date_container"
-      style={{ position: 'relative' }}
-    >
+    <div className="nested_comment_name_avatar_date_container">
       <img
         className="nested_comment_avatar"
         onClick={() => userNameOrAvatarClickedLikesPopup(nestedComment.handle)}

@@ -1,0 +1,7 @@
+.PostFeed {
+  overflow-x: hidden;
+  border-radius: 10px;
+}
+.no_post {
+  text-align: center;
+}

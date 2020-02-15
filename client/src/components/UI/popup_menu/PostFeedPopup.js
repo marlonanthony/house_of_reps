@@ -21,8 +21,8 @@ export default function PostFeedPopup(props) {
       profile.profiles &&
       profile.profiles.map(
         profile =>
-          profile.user._id === post.user && (
-            <div className="postfeed_popup_profile_info" key={profile.user._id}>
+          profile._id === post.user && (
+            <div className="postfeed_popup_profile_info" key={profile._id}>
               <img
                 onClick={() => userNameOrAvatarClickedLikesPopup(post.handle)}
                 className="popup-profile-img"
@@ -50,8 +50,8 @@ export default function PostFeedPopup(props) {
       profilesArr &&
       profilesArr.map(
         profile =>
-          profile.user._id === comment.user && (
-            <div className="postfeed_popup_profile_info" key={profile.user._id}>
+          profile._id === comment.user && (
+            <div className="postfeed_popup_profile_info" key={profile._id}>
               <img
                 onClick={() =>
                   userNameOrAvatarClickedLikesPopup(comment.handle)

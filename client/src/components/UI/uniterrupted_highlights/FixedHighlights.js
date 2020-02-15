@@ -19,7 +19,10 @@ class FixedHighlights extends Component {
         this.props.profile &&
         profiles &&
         profiles
-          .map(profile => profile.venues.length && profile.venues[0])
+          .map(
+            profile =>
+              profile.venues && profile.venues.length && profile.venues[0]
+          )
           .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
       this.setState({ recentHighlights })
     }

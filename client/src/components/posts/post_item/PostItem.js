@@ -75,13 +75,6 @@ class PostItem extends Component {
     this.setState(prevState => ({ showModal: !prevState.showModal }))
   }
 
-  userNameOrAvatarClicked = postId =>
-    this.props.profile.profiles.map(
-      profile =>
-        profile.user._id === postId &&
-        this.props.history.push(`/profile/${profile.handle}`)
-    )
-
   userNameOrAvatarClickedLikesPopup = handle => {
     if (this.props.location.pathname.includes('/profile')) {
       this.props.getProfileByHandle(handle)

@@ -48,11 +48,29 @@ router.get(
       const errors = {}
       const profiles = await Profile.find().populate('user', ['name', 'avatar'])
 
-      if (!profiles) {
+      if (profiles && !profiles.length) {
         errors.noprofile = 'No profiles yet'
         return res.status(404).json(errors)
       }
-      return res.status(200).json(profiles)
+
+      const returnedProfiles = profiles && profiles.map(profile => {
+        return {
+          _id: profile.user._id,
+          avatar: profile.user.avatar,
+          name: profile.user.name,
+          stageName: profile.stageName,
+          handle: profile.handle,
+          bio: profile.bio,
+          website: profile.website,
+          venues: profile.venues && profile.venues,
+          djpools: profile.djpools,
+          brands: profile.brands,
+          perks: profile.perks,
+          stores: profile.stores
+        }
+      })
+
+      return res.status(200).json(returnedProfiles)
     } catch (err) {
       res.status(404).json({ profile: 'No profiles yet' })
     }
@@ -84,7 +102,7 @@ router.get(
 )
 
 // @route     GET api/profile/search/:search
-// @desc      Get profiles by handle || stageName
+// @desc      Get profiles by handle || stageName || location(?)
 // @access    Public
 router.get(
   '/search/:search',
@@ -94,11 +112,21 @@ router.get(
       const profiles = await Profile.find({
         $or: [
           { handle: { $regex: input, $options: 'i' }},
-          { stageName: { $regex: input, $options: 'i' }}
+          { stageName: { $regex: input, $options: 'i' }},
+          { location: { $regex: input, $options: 'i' }}
         ]
       }).populate('user', ['name', 'avatar'])
-      if(!profiles) return res.status(404).json('These are not the profiles you\'re looking for.')
-      return res.status(200).json(profiles)
+      const returnedProfiles = profiles && profiles.map(profile => {
+        return {
+          avatar: profile.user.avatar,
+          name: profile.user.name,
+          stageName: profile.stageName,
+          handle: profile.handle,
+          bio: profile.bio,
+          venues: profile.venues && profile.venues[0]
+        }
+      })
+      return res.status(200).json(returnedProfiles)
     } catch (err) {
       res.status(404).json(err)
     }

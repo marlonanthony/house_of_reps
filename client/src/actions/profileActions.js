@@ -28,6 +28,23 @@ export const getCurrentProfile = () => async dispatch => {
   }
 }
 
+// Get all profiles
+export const getProfiles = () => async dispatch => {
+  try {
+    dispatch(setProfileLoading())
+    const res = await axios.get('/api/profile/all')
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data
+    })
+  } catch (err) {
+    dispatch({
+      type: GET_PROFILES,
+      payload: null
+    })
+  }
+}
+
 // Get profile by handle
 export const getProfileByHandle = handle => async dispatch => {
   try {
@@ -249,23 +266,6 @@ export const deleteBrand = id => async dispatch => {
     })
   } catch (err) {
     console.log(err)
-  }
-}
-
-// Get all profiles
-export const getProfiles = () => async dispatch => {
-  try {
-    dispatch(setProfileLoading())
-    const res = await axios.get('/api/profile/all')
-    dispatch({
-      type: GET_PROFILES,
-      payload: res.data
-    })
-  } catch (err) {
-    dispatch({
-      type: GET_PROFILES,
-      payload: null
-    })
   }
 }
 

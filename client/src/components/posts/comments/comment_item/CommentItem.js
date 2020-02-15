@@ -52,13 +52,6 @@ class CommentItem extends Component {
   toggleForm = () =>
     this.setState(prevState => ({ showForm: !prevState.showForm }))
 
-  userNameOrAvatarClicked = commentId =>
-    this.props.profiles.map(
-      profile =>
-        profile.user._id === commentId &&
-        this.props.history.push(`/profile/${profile.handle}`)
-    )
-
   toggleShowNestedComment = () => {
     this.setState(prevState => ({
       showNestedComments: !prevState.showNestedComments

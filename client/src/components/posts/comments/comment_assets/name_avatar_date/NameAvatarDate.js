@@ -14,14 +14,14 @@ const NameAvatarDate = ({
   const [showPopup, setShowPopup] = useState(false)
 
   return (
-    <div className="comment_avatar_name_date" style={{ position: 'relative' }}>
+    <div className="comment_avatar_name_date">
       <img
         id="comment-feed-avatar"
         onClick={() => userNameOrAvatarClickedLikesPopup(comment.handle)}
         src={comment.avatar}
         alt="user avatar"
       />
-      <div id="comment_name_and_date_container">
+      <div>
         <PostFeedPopup
           comment={comment}
           setShowPopup={setShowPopup}

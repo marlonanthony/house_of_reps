@@ -35,12 +35,12 @@ const SearchBar = ({ profiles }) => {
           {profiles &&
             profiles.map(profile =>
               profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
-              profile.user.name.toLowerCase().includes(matches.toLowerCase()) ||
+              profile.name.toLowerCase().includes(matches.toLowerCase()) ||
               profile.stageName
                 .toLowerCase()
                 .includes(matches.toLowerCase()) ? (
                 <Link
-                  key={profile.user._id}
+                  key={profile._id}
                   to={`/profile/${profile.handle}`}
                   className="searchbar_items"
                 >

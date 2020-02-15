@@ -1,6 +1,7 @@
 .comment_avatar_name_date {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 #comment-feed-avatar {
@@ -10,10 +11,6 @@
   border: 2px solid var(--border-color);
   cursor: pointer;
   margin-right: 5px;
-}
-
-#comment_name_and_date_container {
-
 }
 
 .comment-feed-name {

@@ -9,8 +9,8 @@ const ProfileItem = ({ profile }) => {
   return (
     <div className="profiles_item">
       <img
-        src={profile.user.avatar}
-        alt={profile.user.name}
+        src={profile.user ? profile.user.avatar : profile.avatar}
+        alt={profile.user ? profile.user.name : profile.name}
         id="profiles_avatar"
       />
       <div className="djs_profile_card">
@@ -35,16 +35,29 @@ const ProfileItem = ({ profile }) => {
         ) : (
           <p id="reps-page-bio">{profile.bio}</p>
         )}
-        {profile.venues[0] && profile.venues[0].video && (
-          <iframe
-            id="reps-card-iframe"
-            src={profile.venues[0].video || null}
-            title={profile.venues[0].title || null}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen={true}
-          />
-        )}
+        {profile.venues && profile.venues.length > 1
+          ? profile.venues[0] &&
+            profile.venues[0].video && (
+              <iframe
+                id="reps-card-iframe"
+                src={profile.venues[0].video}
+                title={profile.venues[0].title || null}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen={true}
+              />
+            )
+          : profile.venues &&
+            profile.venues.video && (
+              <iframe
+                id="reps-card-iframe"
+                src={profile.venues.video}
+                title={profile.venues.title || null}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen={true}
+              />
+            )}
       </div>
     </div>
   )
