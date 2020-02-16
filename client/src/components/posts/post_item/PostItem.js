@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 import { deletePost, addLike, removeLike } from '../../../actions/postActions'
 import { getProfileByHandle } from '../../../actions/profileActions'
-import CommentsModal from '../../UI/modal/CommentsModal'
+import CommentsModal from '../../UI/modal/comments-modal/CommentsModal'
 import Backdrop from '../../UI/backdrop/Backdrop'
 import CommentFeed from '../comments/comment_feed/CommentFeed'
 import CommentForm from '../comments/comment_form/CommentForm'

@@ -11,7 +11,7 @@ import Icon from '../../../UI/icons/Icon'
 import './NestedCommentForm.css'
 import TextAreaForm from '../../../common/textarea/TextAreaForm'
 import LightBackdrop from '../../../UI/backdrop/LightBackdrop'
-import EmojiModal from '../../../UI/modal/EmojiModal'
+import EmojiModal from '../../../UI/modal/emoji-modal/EmojiModal'
 import { addNestedComment } from '../../../../actions/postActions'
 import LinkPreview from '../../post-assets/link_preview/LinkPreview'
 

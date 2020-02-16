@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { editedCommentAction } from '../../../../../../../actions/postActions'
 import LightBackdrop from '../../../../../../UI/backdrop/LightBackdrop'
-import EmojiModal from '../../../../../../UI/modal/EmojiModal'
+import EmojiModal from '../../../../../../UI/modal/emoji-modal/EmojiModal'
 import EditCommentWithText from './EditCommentWithText'
 import EditCommentWithPhoto from './EditCommentWithPhoto'
 import EditCommentWithLink from './EditCommentWithLink'

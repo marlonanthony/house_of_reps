@@ -7,7 +7,7 @@ import {
   getProfiles,
   getProfileByHandle
 } from '../../../../actions/profileActions'
-import CommentsModal from '../../../UI/modal/CommentsModal'
+import CommentsModal from '../../../UI/modal/comments-modal/CommentsModal'
 import Backdrop from '../../../UI/backdrop/Backdrop'
 import CommentBody from '../comment_assets/comment_body/CommentBody'
 import CommentLikes from '../comment_assets/CommentLikes'

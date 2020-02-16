@@ -4,7 +4,7 @@ import JSEMOJI from 'emoji-js'
 import PropTypes from 'prop-types'
 
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
-import EmojiModal from '../../../../../UI/modal/EmojiModal'
+import EmojiModal from '../../../../../UI/modal/emoji-modal/EmojiModal'
 import EditNestedCommentWithPhoto from './EditNestedCommentWithPhoto'
 import EditNestedCommentWithLink from './EditNestedCommentWithLink'
 import EditNestedCommentWithText from './EditNestedCommentWithText'
