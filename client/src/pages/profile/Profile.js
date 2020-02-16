@@ -18,11 +18,17 @@ const Profile = ({ auth, getProfileByHandle, ...props }) => {
     }
   }, [props.match.params.handle, getProfileByHandle])
 
-  const { profile, profiles } = props.profile
+  const { profile } = props.profile
   const { user } = auth
 
   if (!profile) return <Spinner />
-  return <ProfileContent profiles={profiles} profile={profile} user={user} />
+  return (
+    <ProfileContent
+      handle={props.match.params.handle}
+      profile={profile}
+      user={user}
+    />
+  )
 }
 
 Profile.propTypes = {

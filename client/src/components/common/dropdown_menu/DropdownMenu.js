@@ -16,8 +16,7 @@ const DropdownMenu = ({
   logoutUser,
   clearCurrentProfile,
   getCurrentProfile,
-  auth,
-  ...props
+  auth
 }) => {
   const [displayMenu, setDisplayMenu] = useState(false),
     ref = useRef()
@@ -28,7 +27,7 @@ const DropdownMenu = ({
     return () => {
       document.removeEventListener('click', onOutsideClick, true)
     }
-  }, [])
+  }, [auth.isAuthenticated])
 
   const onOutsideClick = e => {
     const domNode = ReactDOM.findDOMNode(ref.current)
@@ -44,15 +43,12 @@ const DropdownMenu = ({
   }
 
   const { isAuthenticated, user } = auth
-  const { profile } = props.profile
 
   const authLinks = (
     <div>
-      {profile && profile.handle && (
-        <Link to={`/profile/${profile.handle}`}>Profile</Link>
-      )}
-      <Link to="/feed">Feed</Link>
       <Link to="/dashboard">Dashboard</Link>
+      <Link to={`/profile/${user.handle}`}>Profile</Link>
+      <Link to="/feed">Feed</Link>
       <Link to="/djs">Reps</Link>
       <Link to="/" onClick={onLogoutClick}>
         <Logout user={user} />
@@ -89,12 +85,10 @@ DropdownMenu.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile,
   auth: state.auth
 })
 

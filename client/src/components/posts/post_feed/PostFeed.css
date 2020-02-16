@@ -1,5 +1,5 @@
 .PostFeed {
-  overflow-x: hidden;
+  overflow: hidden;
   border-radius: 10px;
 }
 .no_post {
