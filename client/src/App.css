@@ -18,7 +18,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 *::-webkit-scrollbar-thumb {
   background-color: var(--reps-blue);
 }
