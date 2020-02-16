@@ -10,7 +10,7 @@ import {
 } from '../../actions/chatroomActions'
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 import SearchReps from '../../pages/create_chatroom/SearchReps'
-import BackButton from '../UI/icons/back-btn/BackButton'
+import BackButton from '../UI/buttons/back-btn/BackButton'
 
 function Chatroom({
   getChatroom,

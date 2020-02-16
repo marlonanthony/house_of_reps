@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import { addVenue } from '../../actions/profileActions'
 import Input from '../../components/common/inputs/Input'
 import TextArea from '../../components/common/textarea/TextArea'
-import BackButton from '../../components/UI/icons/back-btn/BackButton'
-import SubmitButton from '../../components/UI/icons/submit-btn/SubmitButton'
+import BackButton from '../../components/UI/buttons/back-btn/BackButton'
+import SubmitButton from '../../components/UI/buttons/submit-btn/SubmitButton'
 import './AddMedia.css'
 
 const AddMedia = ({ addVenue, ...props }) => {

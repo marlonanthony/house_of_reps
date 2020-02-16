@@ -7,8 +7,8 @@ import { createChatroom } from '../../actions/chatroomActions'
 import { getProfiles } from '../../actions/profileActions'
 import Input from '../../components/common/inputs/Input'
 import SearchReps from './SearchReps'
-import BackButton from '../../components/UI/icons/back-btn/BackButton'
-import SubmitButton from '../../components/UI/icons/submit-btn/SubmitButton'
+import BackButton from '../../components/UI/buttons/back-btn/BackButton'
+import SubmitButton from '../../components/UI/buttons/submit-btn/SubmitButton'
 import './CreateChatroom.css'
 
 const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {

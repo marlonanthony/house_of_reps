@@ -6,7 +6,7 @@ import { registerUser } from '../../../actions/authActions'
 import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
 import DropZoneContainer from '../../UI/dropzone/DropZoneContainer'
-import SubmitButton from '../../UI/icons/submit-btn/SubmitButton'
+import SubmitButton from '../../UI/buttons/submit-btn/SubmitButton'
 import { handleImageUpload } from '../../../utils/handleImageUpload'
 import './Register.css'
 

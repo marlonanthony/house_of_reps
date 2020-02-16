@@ -7,7 +7,7 @@ import { loginUser } from '../../../actions/authActions'
 import { getCurrentProfile } from '../../../actions/profileActions'
 import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
-import SubmitButton from '../../UI/icons/submit-btn/SubmitButton'
+import SubmitButton from '../../UI/buttons/submit-btn/SubmitButton'
 import './Login.css'
 
 const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
