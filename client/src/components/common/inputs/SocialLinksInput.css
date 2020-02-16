@@ -1,0 +1,27 @@
+.social-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.social-links {
+  font-size: 14px;
+  padding: 5px;
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  background: rgba(200, 200, 200, 0.9);
+  color: var(--primary-color);
+}
+.social-links::placeholder {
+  color: var(--primary-color);
+}
+
+.social-links-icons {
+    margin-right: 5px;
+    font-size: 19px;
+    width: 40px;
+    color: var(--reps-blue);
+}

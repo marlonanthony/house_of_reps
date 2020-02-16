@@ -5,25 +5,6 @@
   background: black;
 }
 
-.text-area {
-  border: none;
-  padding: 10px;
-  margin: auto;
-  width: 100%;
-  height: auto;
-  line-height: 24px;
-  font-size: 16px;
-  resize: none;
-  color: var(--text-color);
-  background: none;
-}
-.text-area:focus {
-  outline: none;
-}
-.text-area::placeholder {
-  color: gray;
-}
-
 .post-form-text-area {
   border: none;
   padding: 10px;

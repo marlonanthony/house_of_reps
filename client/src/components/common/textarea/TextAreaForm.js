@@ -1,6 +1,7 @@
 import React from 'react'
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
+
+import './TextAreaForm.css'
 
 const TextAreaForm = ({
   name,
@@ -17,10 +18,7 @@ const TextAreaForm = ({
 }) => (
   <div>
     <textarea
-      className={classnames('text-area', {
-        // text-area is in PostForm.css
-        '': error
-      })}
+      className="text-area"
       placeholder={placeholder}
       name={name}
       value={value}
@@ -31,7 +29,7 @@ const TextAreaForm = ({
       style={fontSize && { fontSize }}
       onClick={onClick}
     />
-    {info && <small className="">{info}</small>}
+    {info && <small className="info">{info}</small>}
     {error && <div className="error">{error}</div>}
   </div>
 )

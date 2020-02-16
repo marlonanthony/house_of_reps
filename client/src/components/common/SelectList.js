@@ -1,6 +1,7 @@
 import React from 'react'
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
+
+import './SelectList.css'
 
 const SelectList = ({ name, value, error, info, onChange, options }) => {
   const selectOptions = options.map(option => (
@@ -16,9 +17,7 @@ const SelectList = ({ name, value, error, info, onChange, options }) => {
   return (
     <div>
       <select
-        className={classnames('select-list', {
-          'is-invalid': error
-        })}
+        className="select-list"
         name={name}
         value={value}
         onChange={onChange}
@@ -27,7 +26,7 @@ const SelectList = ({ name, value, error, info, onChange, options }) => {
       </select>
       <br />
       {info && <small className="info">{info}</small>} {/* in TextArea.css */}
-      {error && <div className="invalid-feedback">{error}</div>}
+      {error && <div className="error">{error}</div>}
     </div>
   )
 }

@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
-import SocialLinksInput from '../common/inputs/SocialLinksInput'
 import { createProfile } from '../../actions/profileActions'
 import SubmitButton from '../UI/icons/submit-btn/SubmitButton'
 import './CreateProfile.css'
+import SocialInputs from '../common/social-inputs/SocialInputs'
 
 const CreateProfile = ({ createProfile, auth, ...props }) => {
   const [banner] = useState(''),
@@ -86,79 +86,6 @@ const CreateProfile = ({ createProfile, auth, ...props }) => {
     { label: 'I Got My Own Swag Bruh', value: 'I Got My Own Swag Bruh' }
   ]
 
-  let socialInputs
-
-  if (displaySocialInputs) {
-    socialInputs = (
-      <div id="social-inputs">
-        <SocialLinksInput
-          placeholder="Twitter Profile URL"
-          name="twitter"
-          icon="fab fa-twitter"
-          value={twitter}
-          onChange={e => setTwitter(e.target.value)}
-          error={errors.twitter}
-        />
-        <SocialLinksInput
-          placeholder="Facebook Profile URL"
-          name="facebook"
-          icon="fab fa-facebook"
-          value={facebook}
-          onChange={e => setFacebook(e.target.value)}
-          error={errors.facebook}
-        />
-        <SocialLinksInput
-          placeholder="Linkedin Profile URL"
-          name="linkedin"
-          icon="fab fa-linkedin"
-          value={linkedin}
-          onChange={e => setLinkedin(e.target.value)}
-          error={errors.linkedin}
-        />
-        <SocialLinksInput
-          placeholder="Instagram Profile URL"
-          name="instagram"
-          icon="fab fa-instagram"
-          value={instagram}
-          onChange={e => setInstagram(e.target.value)}
-          error={errors.instagram}
-        />
-        <SocialLinksInput
-          placeholder="SoundCloud Profile URL"
-          name="soundcloud"
-          icon="fab fa-soundcloud"
-          value={soundcloud}
-          onChange={e => setSoundcloud(e.target.value)}
-          error={errors.soundcloud}
-        />
-        <SocialLinksInput
-          placeholder="Spotify Profile URL"
-          name="spotify"
-          icon="fab fa-spotify"
-          value={spotify}
-          onChange={e => setSpotify(e.target.value)}
-          error={errors.spotify}
-        />
-        <SocialLinksInput
-          placeholder="Mixcloud Profile URL"
-          name="mixcloud"
-          icon="fab fa-mixcloud"
-          value={mixcloud}
-          onChange={e => setMixcloud(e.target.value)}
-          error={errors.mixcloud}
-        />
-        <SocialLinksInput
-          placeholder="YouTube Profile URL"
-          name="youtube"
-          icon="fab fa-youtube"
-          value={youtube}
-          onChange={e => setYoutube(e.target.value)}
-          error={errors.youtube}
-        />
-      </div>
-    )
-  }
-
   return (
     <div className="create-profile">
       <h2>Create Your Profile</h2>
@@ -223,7 +150,26 @@ const CreateProfile = ({ createProfile, auth, ...props }) => {
               Add Social Network Links
             </button>
           </div>
-          {socialInputs}
+          <SocialInputs
+            displaySocialInputs={displaySocialInputs}
+            twitter={twitter}
+            facebook={facebook}
+            linkedin={linkedin}
+            instagram={instagram}
+            soundcloud={soundcloud}
+            spotify={spotify}
+            mixcloud={mixcloud}
+            youtube={youtube}
+            setTwitter={setTwitter}
+            setFacebook={setFacebook}
+            setLinkedin={setLinkedin}
+            setInstagram={setInstagram}
+            setSoundcloud={setSoundcloud}
+            setSpotify={setSpotify}
+            setMixcloud={setMixcloud}
+            setYoutube={setYoutube}
+            errors={errors}
+          />
           <SubmitButton />
         </form>
       </div>

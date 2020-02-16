@@ -1,6 +1,7 @@
 import React from 'react'
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
+
+import './SocialLinksInput.css'
 
 const SocialLinksInput = ({
   name,
@@ -12,35 +13,17 @@ const SocialLinksInput = ({
 }) => {
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: '10px'
-        }}
-      >
-        <i
-          className={icon}
-          style={{
-            marginRight: '5px',
-            fontSize: 19,
-            width: 40,
-            color: 'rgb(55, 131, 194)'
-          }}
-        />
+      <div className="social-links-container">
+        <i className={icon + ' social-links-icons'} />
         <input
-          className={classnames('social-links', {
-            // social-links is in CreateProfile.css
-            'is-invalid': error
-          })}
+          className="social-links"
           placeholder={placeholder}
           name={name}
           value={value}
           onChange={onChange}
         />
       </div>
-      <div>{error && <div className="invalid-feedback">{error}</div>}</div>
+      <div>{error && <div className="error">{error}</div>}</div>
     </>
   )
 }

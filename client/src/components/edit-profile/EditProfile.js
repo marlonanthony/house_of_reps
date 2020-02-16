@@ -7,10 +7,11 @@ import { handleImageUpload } from '../../utils/handleImageUpload'
 import Input from '../common/inputs/Input'
 import TextArea from '../common/textarea/TextArea'
 import SelectList from '../common/SelectList'
-import SocialLinksInput from '../common/inputs/SocialLinksInput'
+import SocialInputs from '../common/social-inputs/SocialInputs'
 import DropZoneContainer from '../UI/dropzone/DropZoneContainer'
 import isEmpty from '../../utils/is-empty'
 import BackButton from '../UI/icons/back-btn/BackButton'
+import SubmitButton from '../UI/icons/submit-btn/SubmitButton'
 import './EditProfile.css'
 
 const EditProfile = ({
@@ -145,78 +146,6 @@ const EditProfile = ({
     { label: 'I Got My Own Swag Bruh', value: 'I Got My Own Swag Bruh' }
   ]
 
-  let socialInputs
-
-  if (displaySocialInputs) {
-    socialInputs = (
-      <div id="social-inputs">
-        <SocialLinksInput
-          placeholder="Twitter Profile URL"
-          name="twitter"
-          icon="fab fa-twitter"
-          value={twitter}
-          onChange={e => setTwitter(e.target.value)}
-          error={errors.twitter}
-        />
-        <SocialLinksInput
-          placeholder="Facebook Profile URL"
-          name="facebook"
-          icon="fab fa-facebook"
-          value={facebook}
-          onChange={e => setFacebook(e.target.value)}
-          error={errors.facebook}
-        />
-        <SocialLinksInput
-          placeholder="Linkedin Profile URL"
-          name="linkedin"
-          icon="fab fa-linkedin"
-          value={linkedin}
-          onChange={e => setLinkedin(e.target.value)}
-          error={errors.linkedin}
-        />
-        <SocialLinksInput
-          placeholder="Instagram Profile URL"
-          name="instagram"
-          icon="fab fa-instagram"
-          value={instagram}
-          onChange={e => setInstagram(e.target.value)}
-          error={errors.instagram}
-        />
-        <SocialLinksInput
-          placeholder="SoundCloud Profile URL"
-          name="soundcloud"
-          icon="fab fa-soundcloud"
-          value={soundcloud}
-          onChange={e => setSoundcloud(e.target.value)}
-          error={errors.soundcloud}
-        />
-        <SocialLinksInput
-          placeholder="Spotify Profile URL"
-          name="spotify"
-          icon="fab fa-spotify"
-          value={spotify}
-          onChange={e => setSpotify(e.target.value)}
-          error={errors.spotify}
-        />
-        <SocialLinksInput
-          placeholder="Mixcloud Profile URL"
-          name="mixcloud"
-          icon="fab fa-mixcloud"
-          value={mixcloud}
-          onChange={e => setMixcloud(e.target.value)}
-          error={errors.mixcloud}
-        />
-        <SocialLinksInput
-          placeholder="YouTube Profile URL"
-          name="youtube"
-          icon="fab fa-youtube"
-          value={youtube}
-          onChange={e => setYoutube(e.target.value)}
-          error={errors.youtube}
-        />
-      </div>
-    )
-  }
   return (
     <div className="edit-profile">
       <BackButton />
@@ -287,12 +216,27 @@ const EditProfile = ({
               Add Social Network Links
             </button>
           </div>
-          {socialInputs}
-          <input
-            type="submit"
-            value="Submit"
-            className="create-profile-submit-button"
+          <SocialInputs
+            displaySocialInputs={displaySocialInputs}
+            twitter={twitter}
+            facebook={facebook}
+            linkedin={linkedin}
+            instagram={instagram}
+            soundcloud={soundcloud}
+            spotify={spotify}
+            mixcloud={mixcloud}
+            youtube={youtube}
+            setTwitter={setTwitter}
+            setFacebook={setFacebook}
+            setLinkedin={setLinkedin}
+            setInstagram={setInstagram}
+            setSoundcloud={setSoundcloud}
+            setSpotify={setSpotify}
+            setMixcloud={setMixcloud}
+            setYoutube={setYoutube}
+            errors={errors}
           />
+          <SubmitButton />
         </form>
       </div>
     </div>

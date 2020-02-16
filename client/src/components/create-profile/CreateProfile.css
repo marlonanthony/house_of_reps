@@ -6,19 +6,6 @@
   margin: auto;
 }
 
-.select-list {
-  background: rgba(200, 200, 200, 0.9);
-  color: var(--primary-color);
-  width: 100%;
-  font-size: 1rem;
-  padding: 5px;
-  border: none;
-  border-radius: 2px;
-  outline: none;
-  margin: 15px 0;
-  height: 35px;
-}
-
 #create-profile-social-btn {
   cursor: pointer;
   display: inline-block;
@@ -31,40 +18,5 @@
   transition: opacity .25s ease-in;
 }
 #create-profile-social-btn:hover {
-  opacity: 0.7;
-}
-
-#social-inputs {
-  width: 100%;
-  outline: none;
-  margin: 0 auto;
-}
-
-.social-links {
-  font-size: 14px;
-  padding: 5px;
-  width: 100%;
-  height: 30px;
-  border: none;
-  outline: none;
-  background: rgba(200, 200, 200, 0.9);
-  color: var(--primary-color);
-}
-.social-links::placeholder {
-  color: var(--primary-color);
-}
-
-.create-profile-submit-button {
-  cursor: pointer;
-  display: inline-block;
-  border: none;
-  background-color: var(--reps-blue);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  text-decoration: none;
-  transition: opacity .25s ease-in;
-}
-.create-profile-submit-button:hover {
   opacity: 0.7;
 }
