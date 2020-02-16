@@ -27,7 +27,7 @@ const ProfilePost = ({
     if (start > 0) {
       getMoreProfilePosts(count, start, handle)
     }
-  }, [start, count, getMoreProfilePosts, handle])
+  }, [start, count, getMoreProfilePosts])
 
   const { posts } = post
   return (
