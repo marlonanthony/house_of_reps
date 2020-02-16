@@ -186,7 +186,7 @@ class PostItem extends Component {
                 <CommentFeed
                   postId={postId}
                   comments={postComments}
-                  profiles={this.props.profiles}
+                  profiles={profile.profiles}
                 />
               </div>
             )}
