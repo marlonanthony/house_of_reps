@@ -39,7 +39,6 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0)
     this.props.getPosts(this.state.count, this.state.start)
     this.props.getCurrentProfile()
     this.props.getProfiles()

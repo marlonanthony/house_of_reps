@@ -45,20 +45,20 @@ const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
           {profiles &&
             profiles.map(profile =>
               profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
-              profile.user.name.toLowerCase().includes(matches.toLowerCase()) ||
+              profile.name.toLowerCase().includes(matches.toLowerCase()) ||
               profile.stageName
                 .toLowerCase()
                 .includes(matches.toLowerCase()) ? (
                 <div
-                  key={profile.user._id}
+                  key={profile._id}
                   className="searchbar_items_create_chatroom"
                   onClick={() => {
                     setInvites &&
                       setInvites(invites => [
                         ...invites,
                         {
-                          id: profile.user._id,
-                          name: profile.user.name,
+                          id: profile._id,
+                          name: profile.name,
                           handle: profile.handle
                         }
                       ])
@@ -66,8 +66,8 @@ const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
                       setModerators(mods => [
                         ...mods,
                         {
-                          id: profile.user._id,
-                          name: profile.user.name,
+                          id: profile._id,
+                          name: profile.name,
                           handle: profile.handle
                         }
                       ])
