@@ -8,11 +8,7 @@ const ProfileItem = ({ profile }) => {
   const [showMore, setShowMore] = useState(false)
   return (
     <div className="profiles_item">
-      <img
-        src={profile.user ? profile.user.avatar : profile.avatar}
-        alt={profile.user ? profile.user.name : profile.name}
-        id="profiles_avatar"
-      />
+      <img src={profile.avatar} alt={profile.name} id="profiles_avatar" />
       <div className="djs_profile_card">
         {profile.stageName && <p id="reps-stage-name">{profile.stageName}</p>}
         {profile.handle && (
