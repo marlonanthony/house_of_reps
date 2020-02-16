@@ -5,12 +5,12 @@
 }
 .add-promo-submit-btn {
   cursor: pointer;
-  display: inline-block;
+  display: block;
   border: none;
   background-color: var(--reps-blue);
   color: #fff;
   padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
+  margin: 1rem auto;
   text-decoration: none;
   transition: opacity .25s ease-in;
 }

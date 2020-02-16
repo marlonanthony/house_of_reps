@@ -12,6 +12,7 @@ import DropZoneContainer from '../UI/dropzone/DropZoneContainer'
 import isEmpty from '../../utils/is-empty'
 import BackButton from '../UI/icons/back-btn/BackButton'
 import SubmitButton from '../UI/icons/submit-btn/SubmitButton'
+import { options } from '../create-profile/options'
 import './EditProfile.css'
 
 const EditProfile = ({
@@ -120,32 +121,6 @@ const EditProfile = ({
     handleImageUpload(files[0], setUploadedFileCloudinaryUrl, setAvatar)
   }
 
-  const options = [
-    { label: "What's Your DJ Style?", value: 0 },
-    { label: 'MC', value: 'MC' },
-    { label: 'Tour', value: 'Tour' },
-    { label: 'Battle', value: 'Battle' },
-    { label: 'Hybrid', value: 'Hybrid' },
-    { label: 'Novice', value: 'Novice' },
-    { label: 'Digger', value: 'Digger' },
-    { label: 'Mobile DJ', value: 'Mobile DJ' },
-    { label: 'Live Remix', value: 'Live Remix' },
-    { label: 'Producer DJ', value: 'Producer DJ' },
-    { label: 'Turntablism', value: 'Turntablism' },
-    { label: 'Program Guru', value: 'Program Guru' },
-    { label: 'Mad Scientist', value: 'Mad Scientist' },
-    { label: 'Radio Mixshow', value: 'Radio Mixshow' },
-    { label: 'Night Club Mix', value: 'Night Club Mix' },
-    { label: 'Video DJ "VDJ"', value: 'Video DJ "VDJ"' },
-    { label: 'Bedroom Bandit', value: 'Bedroom Bandit' },
-    { label: 'On air Personality', value: 'On air Personality' },
-    { label: 'House & Electronic', value: 'House & Electronic' },
-    { label: 'Night Club Scratch', value: 'Night Club Scratch' },
-    { label: 'Portable Scratcher', value: 'Portable Scratcher' },
-    { label: 'Audio Visual Artist', value: 'Audio Visual Artist' },
-    { label: 'I Got My Own Swag Bruh', value: 'I Got My Own Swag Bruh' }
-  ]
-
   return (
     <div className="edit-profile">
       <BackButton />
@@ -205,17 +180,13 @@ const EditProfile = ({
             options={options}
             info="What style best defines you?"
           />
-          <div className="add-social-links-button">
-            <button
-              type="button"
-              onClick={() => {
-                setDisplaySocialInputs(p => !p)
-              }}
-              id="create-profile-social-btn"
-            >
-              Add Social Network Links
-            </button>
-          </div>
+          <SubmitButton
+            onClick={() => {
+              setDisplaySocialInputs(prev => !prev)
+            }}
+            type="button"
+            text="Add Social Network Links"
+          />
           <SocialInputs
             displaySocialInputs={displaySocialInputs}
             twitter={twitter}

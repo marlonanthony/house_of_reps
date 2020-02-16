@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default function SubmitButton() {
+export default function SubmitButton({ type, text, onClick }) {
   return (
     <input
-      type="submit"
-      value="Submit"
+      type={type || 'submit'}
+      value={text || 'Submit'}
       title="submit"
       className="add-promo-submit-btn"
+      onClick={onClick}
     />
   )
 }
