@@ -42,14 +42,26 @@ const DropdownMenu = ({
     logoutUser()
   }
 
+  const scrollToTop = () => {
+    return window.scrollTo(0, 0)
+  }
+
   const { isAuthenticated, user } = auth
 
   const authLinks = (
     <div>
-      <Link to="/dashboard">Dashboard</Link>
-      <Link to={`/profile/${user.handle}`}>Profile</Link>
-      <Link to="/feed">Feed</Link>
-      <Link to="/djs">Reps</Link>
+      <Link to="/dashboard" onClick={scrollToTop}>
+        Dashboard
+      </Link>
+      <Link to={`/profile/${user.handle}`} onClick={scrollToTop}>
+        Profile
+      </Link>
+      <Link to="/feed" onClick={scrollToTop}>
+        Feed
+      </Link>
+      <Link to="/djs" onClick={scrollToTop}>
+        Reps
+      </Link>
       <Link to="/" onClick={onLogoutClick}>
         <Logout user={user} />
       </Link>

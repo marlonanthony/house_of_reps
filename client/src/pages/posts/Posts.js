@@ -51,11 +51,6 @@ class Posts extends Component {
     if (prevProps.onlineCount !== this.props.onlineCount) {
       this.setState({ onlineCount: prevProps.onlineCount })
     }
-    if (prevProps.profile.profile !== null) {
-      if (!prevProps.profile.profile.user) {
-        this.props.history.push('/dashboard')
-      }
-    }
   }
 
   fetchMore = () => {
