@@ -4,6 +4,7 @@ const passport = require('passport')
 const Post = require('../../models/Post')
 const Profile = require('../../models/Profile')
 const validatePostInput = require('../../validation/post')
+const validateCommentInput = require('../../validation/comments')
 
 // @route         GET api/posts
 // @description   Get posts
@@ -265,7 +266,7 @@ router.post(
   '/comment/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body)
+    const { errors, isValid } = validateCommentInput(req.body)
     if (!isValid) return res.status(400).json(errors)
     try {
       const post = await Post.findById(req.params.id)
@@ -313,7 +314,7 @@ router.put(
   '/comment/:id/:comment_id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body)
+    const { errors, isValid } = validateCommentInput(req.body)
     if (!isValid) return res.status(400).json(errors)
     try {
       const post = await Post.findById(req.params.id)
@@ -450,7 +451,7 @@ router.post(
   '/comment/comment/:id/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body)
+    const { errors, isValid } = validateCommentInput(req.body)
     if (!isValid) {
       return res.status(400).json(errors)
     }
@@ -503,7 +504,7 @@ router.put(
   '/comment/comment/:id/:comment_id/:nested_comment_id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body)
+    const { errors, isValid } = validateCommentInput(req.body)
     if (!isValid) return res.status(400).json(errors)
     try {
       const post = await Post.findById(req.params.id)

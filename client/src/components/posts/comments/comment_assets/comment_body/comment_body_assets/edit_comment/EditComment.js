@@ -53,6 +53,7 @@ function EditComment({
     let emoji = String.fromCodePoint(parseInt(emojiName, 16))
     setText(prevText => prevText + emoji)
   }
+
   return (
     <>
       <LightBackdrop clicked={toggleEmoji} show={showEmojis} />

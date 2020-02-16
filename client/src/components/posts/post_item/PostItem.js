@@ -112,7 +112,10 @@ class PostItem extends Component {
     this.setState(prevState => ({ editPost: !prevState.editPost }))
 
   toggleShowForm = () =>
-    this.setState(prevState => ({ showForm: !prevState.showForm }))
+    this.setState(prevState => ({
+      showForm: !prevState.showForm,
+      postId: this.props.post._id
+    }))
 
   render() {
     const { post, auth, profile } = this.props

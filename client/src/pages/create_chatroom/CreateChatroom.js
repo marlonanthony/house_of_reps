@@ -15,11 +15,12 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
   const [name, setName] = useState(''),
     [invites, setInvites] = useState([]),
     [moderators, setModerators] = useState([]),
-    [errors, setErrors] = useState({})
+    [errors, setErrors] = useState({}),
+    { profiles } = props.profile
 
   useEffect(() => {
-    getProfiles()
-  }, [])
+    if (!profiles) getProfiles()
+  }, [profiles, getProfiles])
 
   useEffect(() => {
     setErrors(props.errors)
@@ -34,6 +35,7 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
     }
     createChatroom(chatroomData, props.history)
   }
+
   return (
     <div>
       <BackButton />
@@ -49,12 +51,12 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
           />
           <div style={{ display: 'flex' }}>
             <SearchReps
-              profiles={props.profile.profiles}
+              profiles={profiles}
               setInvites={setInvites}
               placeholder="Invite Members"
             />
             <SearchReps
-              profiles={props.profile.profiles}
+              profiles={profiles}
               setModerators={setModerators}
               placeholder="Invite Moderators"
             />
@@ -107,7 +109,8 @@ const CreateChatroom = ({ createChatroom, getProfiles, ...props }) => {
 
 CreateChatroom.propTypes = {
   errors: PropTypes.object.isRequired,
-  createChatroom: PropTypes.func.isRequired
+  createChatroom: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

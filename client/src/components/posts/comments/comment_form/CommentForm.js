@@ -86,7 +86,6 @@ class CommentForm extends Component {
       url: this.state.data.url,
       media: this.state.media
     }
-
     this.props.addComment(postId, newComment)
     this.setState({ text: '', data: {}, media: '' })
     e.target.reset()
