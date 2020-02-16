@@ -148,7 +148,7 @@ router.put(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body)
+    const { errors, isValid } = validateCommentInput(req.body)
     if (!isValid) return res.status(400).json(errors)
     try {
       const post = await Post.findById(req.params.id)
