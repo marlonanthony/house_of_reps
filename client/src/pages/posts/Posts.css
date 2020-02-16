@@ -1,5 +1,6 @@
 .feed {
   margin: 0 auto;
+  max-width: 1150px;
   overflow-x: hidden;
   display: grid;
   grid-gap: 15px;
@@ -174,7 +175,6 @@
 
 @media (min-width: 1200px) {
   .feed {
-    max-width: 1150px;
     margin: 0 auto;
     grid-gap: 15px;
     display: grid;

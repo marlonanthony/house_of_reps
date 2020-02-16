@@ -12,7 +12,7 @@
 .notifications_container {
   width: 90%;
   max-width: 500px;
-  border: 0.5px solid rgba(200,200,200,0.1);
+  border: 0.5px solid var(--border-color);
   border-radius: 5px;
   margin: 15px auto; 
   padding: 10px 0px;
@@ -23,7 +23,7 @@
   max-width: 500px;
   border: 0.5px solid var(--border-color);
   margin: 35px auto;
-  background: #000;
+  background: var(--post-color);
   padding: 10px 0px;
   border-radius: 2px;
 }
@@ -70,6 +70,7 @@
   display: flex; 
   justify-content: center; 
   align-items: center;
+  color: var(--reps-blue);
 }
 
 .notification_date {
