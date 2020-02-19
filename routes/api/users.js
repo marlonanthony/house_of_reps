@@ -33,6 +33,52 @@ router.post('/confirm', async (req, res) => {
   }
 })
 
+// @route         POST api/users/reconfirm-email
+// @description   Resend email confirmation
+// @access        Public
+router.post('/reconfirm-email', async (req, res) => {
+  try {
+    const { errors, isValid } = validateLoginInput(req.body)
+    if (!isValid) return res.status(400).json(errors)
+    const { email, password } = req.body
+    const user = await User.findOne({ email })
+    if (!user) {
+      errors.email = 'User not found'
+      return res.status(404).json(errors)
+    }
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (isMatch) {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.password, salt, async (error, hash) => {
+          if (error) throw error
+          user.password = hash
+          const num = Math.floor(Math.random() * 10000000000 + 1)
+          const token = new Token({
+            _userId: user._id,
+            token: num
+          })
+          await token.save()
+          const emailInfo = {
+            subject: 'Confirm your email',
+            body: "Click on the link below to conifrm your email.",
+            recipients: email,
+            token: token.token
+          }
+          const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
+          await mailer.send()
+          return res.status(201).json(true)
+        })
+      })
+    } else {
+      errors.password = 'Password incorrect'
+      return res.status(401).json(errors)
+    }
+  } catch (error) {
+    throw error
+  }
+})
+
+
 // @route         POST api/users/register
 // @description   Register a user
 // @access        Public
@@ -91,32 +137,6 @@ router.post('/register', async (req, res) => {
     throw error
   }
 })
-
-// ///////////////////////////////////////////////////////           TESTING USER UPDATE          ///////////////////////////////////////////////////
-// router.post('/update/:id', (req, res) => {
-//   User.findOne({ _id: req.params.id })
-//   .then(user => {
-//     const handle = req.body.handle
-//     user.handle = handle
-//     user.save().then(user => res.json(user))
-// const { email, body, title, subject, recipients, token } = req.body
-// const emailInfo = {
-//   title,
-//   subject,
-//   body,
-//   recipients,
-//   token
-// }
-
-// const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
-// mailer.send()
-// await mailer.send()
-// await user.save()
-
-// res.json(user)
-//   })
-//   .catch(err => console.log(err))
-// })
 
 // @route         POST api/users/login
 // @description   Login User / Returning JWT Token

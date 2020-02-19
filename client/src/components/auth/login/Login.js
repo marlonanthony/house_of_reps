@@ -33,7 +33,7 @@ const Login = ({ auth, loginUser, getCurrentProfile, ...props }) => {
   return (
     <div className="login">
       <h2>Log In</h2>
-      <div id="login-content">
+      <div className="login-content">
         <form onSubmit={onSubmitHandler}>
           <Input
             placeholder="Email Address"
