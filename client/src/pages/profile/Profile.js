@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import Spinner from '../../components/common/Spinner'
 import ProfileContent from '../../components/profile/profile_content/ProfileContent'
@@ -18,10 +18,18 @@ const Profile = ({ auth, getProfileByHandle, ...props }) => {
     }
   }, [props.match.params.handle, getProfileByHandle])
 
-  const { profile } = props.profile
+  const { profile, loading } = props.profile
   const { user } = auth
 
-  if (!profile) return <Spinner />
+  if (props.profile && loading) return <Spinner />
+
+  if (!profile)
+    return (
+      <div id="no_profile">
+        <Link to="/create-profile">Create Profile</Link>
+      </div>
+    )
+
   return (
     <ProfileContent
       handle={props.match.params.handle}

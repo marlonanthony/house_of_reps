@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import DashboardContent from '../../components/dashboard_content/DashboardContent'
 import { getCurrentProfile } from '../../actions/profileActions'
 import './Dashboard.css'
+import Spinner from '../../components/common/Spinner'
 
 const Dashboard = ({ auth, getCurrentProfile, ...props }) => {
   useEffect(() => {
@@ -12,7 +13,9 @@ const Dashboard = ({ auth, getCurrentProfile, ...props }) => {
   }, [])
 
   const { user } = auth
-  const { profile } = props.profile
+  const { profile, loading } = props.profile
+
+  if (props.profile && loading) return <Spinner />
 
   return profile && <DashboardContent profile={profile} user={user} />
 }

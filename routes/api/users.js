@@ -14,7 +14,7 @@ const Token = require('../../models/Token')
 
 // @route     POST api/users/confirm
 // @desc      Confirm email address
-// @access    Public?
+// @access    Public
 router.post('/confirm', async (req, res) => {
   try {
     const response = await Token.findOne({ token: req.body.token })
@@ -23,7 +23,7 @@ router.post('/confirm', async (req, res) => {
     user.isVerified = true
     await user.save()
     return res.status(200).json({
-      _id: user.id, // might use id, email, and handle. not sure yet. else get rid of them
+      _id: user.id,
       email: user.email,
       handle: user.handle,
       isVerified: user.isVerified
@@ -84,7 +84,7 @@ router.post('/register', async (req, res) => {
         }
         const mailer = new Mailer(emailInfo, updateTemplate(emailInfo))
         await mailer.send()
-        return res.status(201).json(user)
+        return res.status(201).json(true)
       })
     })
   } catch (error) {
@@ -130,6 +130,10 @@ router.post('/login', async (req, res) => {
     if (!user) {
       errors.email = 'User not found'
       return res.status(404).json(errors)
+    }
+    if (!user.isVerified) {
+      errors.email = 'Confirm your email'
+      return res.status(401).json(errors)
     }
     const isMatch = await bcrypt.compare(password, user.password)
     if (isMatch) {
