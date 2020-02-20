@@ -10,6 +10,7 @@
   --lighter: rgb(168, 178, 180);
   --shallow-color: rgb(13,13,13);
   --deep-color: black;
+  --webkit-box-sizing: border-box;
   box-sizing: border-box;
   text-decoration: none;
   outline-width: .5px; 

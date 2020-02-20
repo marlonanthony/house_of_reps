@@ -1,7 +1,7 @@
-import isEmpty from '../is-empty'
+import isEmpty from './is-empty'
 import '@testing-library/jest-dom/extend-expect'
 
-test('should output truthy', () => {
+it('should output truthy', () => {
   const emptyObject = isEmpty({}),
     emptyArray = isEmpty([]),
     emptyString = isEmpty(''),
@@ -17,8 +17,12 @@ test('should output truthy', () => {
 
 it('should output falsy', () => {
   const string = isEmpty('Hello World'),
-    zero = isEmpty(0)
+    zero = isEmpty(0),
+    obj = isEmpty({ hello: 'world' }),
+    arr = isEmpty([1, 2, 3, 4, 5])
 
   expect(string).toBeFalsy()
   expect(zero).toBeFalsy()
+  expect(obj).toBeFalsy()
+  expect(arr).toBeFalsy()
 })

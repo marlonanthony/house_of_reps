@@ -4,7 +4,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import store from '../../store'
-import AddVenue from '../add-promos/AddVenue'
+import AddMedia from '../add_media/AddMedia'
 
 afterEach(cleanup)
 
@@ -12,7 +12,7 @@ const renderComponent = () =>
   render(
     <Provider store={store}>
       <Router>
-        <AddVenue />
+        <AddMedia />
       </Router>
     </Provider>
   )

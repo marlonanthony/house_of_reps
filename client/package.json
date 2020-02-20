@@ -11,8 +11,8 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-dropzone": "^6.2.4",
     "react-infinite-scroll-component": "^4.5.0",
     "react-moment": "^0.8.1",
@@ -42,9 +42,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@testing-library/dom": "^6.8.1",
-    "@testing-library/jest-dom": "^4.1.2",
-    "@testing-library/react": "^9.3.0",
+    "@testing-library/dom": "^6.12.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.1",
     "prettier": "^1.18.2"

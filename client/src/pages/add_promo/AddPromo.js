@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { handleImageUpload } from '../../utils/handleImageUpload'
+import { handleImageUpload } from '../../utils/handle_image_upload/handleImageUpload'
 import Input from '../../components/common/inputs/Input'
 import BackButton from '../../components/UI/buttons/back-btn/BackButton'
 import SubmitButton from '../../components/UI/buttons/submit-btn/SubmitButton'

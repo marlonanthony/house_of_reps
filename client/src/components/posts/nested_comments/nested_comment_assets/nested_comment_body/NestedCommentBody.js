@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { editNestedCommentAction } from '../../../../../actions/postActions'
-import { youTubeURL } from '../../../../../utils/youTubeUrl'
+import { youTubeURL } from '../../../../../utils/youtube_url/youTubeUrl'
 import DefaultNestedCommentBody from './default_nested_comment_body/DefaultNestedCommentBody'
 import EditNestedComment from './edit_nested_comment/EditNestedComment'
 import './NestedCommentBody.css'

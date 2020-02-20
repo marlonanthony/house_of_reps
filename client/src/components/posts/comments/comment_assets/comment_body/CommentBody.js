@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { youTubeURL } from '../../../../../utils/youTubeUrl'
+import { youTubeURL } from '../../../../../utils/youtube_url/youTubeUrl'
 import DefaultCommentBody from './comment_body_assets/default_comment_body/DefaultCommentBody'
 import EditComment from './comment_body_assets/edit_comment/EditComment'
 import './CommentBody.css'

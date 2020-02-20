@@ -7,7 +7,7 @@ import Input from '../../common/inputs/Input'
 import useForm from '../../common/hooks/useForm'
 import DropZoneContainer from '../../UI/dropzone/DropZoneContainer'
 import SubmitButton from '../../UI/buttons/submit-btn/SubmitButton'
-import { handleImageUpload } from '../../../utils/handleImageUpload'
+import { handleImageUpload } from '../../../utils/handle_image_upload/handleImageUpload'
 import './Register.css'
 
 const Register = ({ auth, registerUser, ...props }) => {

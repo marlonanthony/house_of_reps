@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import EditPostBody from './edit_post/EditPostBody'
 import DefaultPostBody from './default_post_body/DefaultPostBody'
-import { youTubeURL } from '../../../../../utils/youTubeUrl'
+import { youTubeURL } from '../../../../../utils/youtube_url/youTubeUrl'
 
 const PostBody = ({ post, editPost, toggleEditPost, modalToggle }) => {
   let youtubeUrl = post.url
