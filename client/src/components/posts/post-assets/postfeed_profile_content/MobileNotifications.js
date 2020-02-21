@@ -7,7 +7,7 @@ const MobileNotifications = ({ profile, ...props }) => {
     <div className="notifications_on_mobile">
       <button
         className="post-profile-notifications"
-        style={{ border: 'none', background: 'none' }}
+        style={{ background: 'none', padding: 'none' }}
         onClick={() => props.history.push('/notifications')}
         title="notifications"
       >
@@ -37,6 +37,7 @@ const MobileNotifications = ({ profile, ...props }) => {
           </i>
         )}
       </button>
+      <label htmlFor="mobile_icon_notification">notifications</label>
     </div>
   )
 }

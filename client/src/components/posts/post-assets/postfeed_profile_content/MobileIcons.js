@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import MobileNotifications from '../../../../pages/notifications/MobileNotifications'
+import MobileNotifications from './MobileNotifications'
 
 const MobileIcons = ({
   profile,
@@ -11,17 +11,20 @@ const MobileIcons = ({
 }) => {
   return (
     <div className="mobile_icons_container">
-      <div onClick={toggleHighlight}>
+      <div className="mobile_icon_media_div" onClick={toggleHighlight}>
         <i
+          id="mobile_icon_media"
           className={
             showHighlight
               ? 'far fa-play-circle notification-color'
               : 'far fa-play-circle'
           }
         />
+        <label htmlFor="mobile_icon_media">media</label>
       </div>
-      <div onClick={showLikesHandler}>
-        <i className="fas fa-thumbs-up" />
+      <div className="mobile_icon_like_div" onClick={showLikesHandler}>
+        <i id="mobile_icon_like" className="fas fa-thumbs-up" />
+        <label htmlFor="mobile_icon_like">liked posts</label>
       </div>
       <MobileNotifications profile={profile} />
     </div>
