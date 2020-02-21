@@ -1,8 +1,8 @@
 import React from 'react'
 import isEmpty from '../../../utils/is_empty/is-empty'
 
-const ProfileAbout = ({ profile, user }) => (
-  <>
+const ProfileAbout = ({ profile }) => (
+  <div className="profile_page_avatar_bio_wrapper">
     <div id="profile-avatar-div">
       {isEmpty(profile) ? (
         <p>create profile</p>
@@ -29,7 +29,7 @@ const ProfileAbout = ({ profile, user }) => (
         <p id="profile-location">{profile.location}</p>
       )}
     </div>
-  </>
+  </div>
 )
 
 export default ProfileAbout

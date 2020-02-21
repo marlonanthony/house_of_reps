@@ -43,8 +43,10 @@
 
                       /* TABLET */
 
-
-@media (min-width: 600px) {
+@media (min-width: 850px){
+  .profile-creds {
+    margin-top: 70px;
+  }
   .profile-creds-content {
     display: flex;
     justify-content: space-around;
@@ -60,7 +62,5 @@
                         /* DESKTOP */
 
 @media (min-width: 1200px) {
-  .profile-creds {
-    margin-top: 70px;
-  }
+
 }
