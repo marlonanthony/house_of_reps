@@ -1,4 +1,4 @@
-                        /* MOBILE */
+/* MOBILE */
 .profile-creds-content {
   display: flex;
   justify-content: flex-start;
@@ -51,16 +51,10 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    overflow-x: hidden;
+    overflow: hidden;
   }
   #profile_creds_video {
-    width: 330px;
+    width: 100%;
     height: 200px;
   }
-}
-
-                        /* DESKTOP */
-
-@media (min-width: 1200px) {
-
 }
