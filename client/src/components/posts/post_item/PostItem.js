@@ -26,8 +26,7 @@ class PostItem extends Component {
     showModal: false,
     showPopup: false,
     showLikesPopup: false,
-    editPost: false,
-    showForm: false
+    editPost: false
   }
 
   componentDidMount() {
@@ -112,12 +111,6 @@ class PostItem extends Component {
   toggleEditPost = () =>
     this.setState(prevState => ({ editPost: !prevState.editPost }))
 
-  toggleShowForm = () =>
-    this.setState(prevState => ({
-      showForm: !prevState.showForm,
-      postId: this.props.post._id
-    }))
-
   render() {
     const { post, auth, profile } = this.props
     const {
@@ -129,8 +122,7 @@ class PostItem extends Component {
       showModal,
       showPopup,
       liked,
-      editPost,
-      showForm
+      editPost
     } = this.state
 
     const postModal = showModal && (
@@ -179,11 +171,10 @@ class PostItem extends Component {
               onUnlikeClick={this.onUnlikeClick}
               onDeleteClick={this.onDeleteClick}
               onPostCommentClick={this.onPostCommentClick}
-              toggleShowForm={this.toggleShowForm}
             />
-            {(showForm || showComments) && (
+            {showComments && (
               <div>
-                {showForm && <CommentForm postId={postId} />}
+                {<CommentForm postId={postId} />}
                 <CommentFeed
                   postId={postId}
                   comments={postComments}

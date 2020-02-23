@@ -11,8 +11,7 @@ const PostItemButtons = ({
   onPostCommentClick,
   post,
   likes,
-  auth,
-  toggleShowForm
+  auth
 }) => {
   return (
     <div>
@@ -45,13 +44,6 @@ const PostItemButtons = ({
         <i className="fas fa-comment icons" id="comment" />
         <span>{post.comments.length}</span>
       </button>
-      <button
-        title="reply"
-        onClick={toggleShowForm}
-        className="postfeed_buttons"
-      >
-        <i className="fas fa-user-edit icons" id="comment" />
-      </button>
       {post.user === auth.user.id && (
         <button
           title="Delete post"
@@ -74,8 +66,7 @@ PostItemButtons.propTypes = {
   onPostCommentClick: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   likes: PropTypes.array.isRequired,
-  auth: PropTypes.object.isRequired,
-  toggleShowForm: PropTypes.func.isRequired
+  auth: PropTypes.object.isRequired
 }
 
 export default PostItemButtons

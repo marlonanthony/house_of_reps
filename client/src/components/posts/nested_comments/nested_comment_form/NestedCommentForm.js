@@ -137,7 +137,7 @@ class NestedCommentForm extends Component {
   }
 
   showBtnsHandler = () =>
-    this.setState(prevState => ({ showBtns: !prevState.showBtns }))
+    this.setState(prevState => ({ showBtns: !prevState.showBtns, errors: {} }))
 
   render() {
     const { showForm, postId, comment } = this.props

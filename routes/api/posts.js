@@ -302,7 +302,7 @@ router.post(
       await profile.save()
       return res.status(201).json(post)
     } catch (err) {
-      res.status(404).json({ postnotfound: 'No post found' })
+      res.status(404).json(err)
     }
   }
 )
