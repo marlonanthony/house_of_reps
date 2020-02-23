@@ -6,18 +6,18 @@ import { getProfiles } from '../../../actions/profileActions'
 import Arrow from '../arrow_glyph/Arrow'
 import './FixedHighlights.css'
 
-function FixedHighlights({
+const FixedHighlights = ({
   getProfiles,
   profile,
   toggleHighlight,
   showHighlight
-}) {
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0),
     [recentHighlights, setRecentHighlights] = useState([])
 
   useEffect(() => {
     getProfiles()
-  }, [])
+  }, [getProfiles])
 
   useEffect(() => {
     const profiles =
@@ -28,7 +28,7 @@ function FixedHighlights({
         )
         .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
     setRecentHighlights(profiles)
-  }, [profile.profiles])
+  }, [profile.profiles, setRecentHighlights])
 
   const previousSlide = () => {
     const lastIndex = recentHighlights.length - 1
@@ -45,10 +45,9 @@ function FixedHighlights({
   }
 
   if (!showHighlight) return null
-  if (!profile && !profile.profiles) return null
+  if (!profile && !profile.profiles && !recentHighlights.length) return null
 
   return (
-    recentHighlights &&
     recentHighlights[currentIndex] &&
     recentHighlights[currentIndex].video && (
       <div className="fixed_highlights_container">

@@ -126,6 +126,7 @@ class Posts extends Component {
         onlineCount
       } = this.state,
       { user } = this.props.auth
+
     return (
       <>
         <Logo />

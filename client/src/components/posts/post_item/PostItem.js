@@ -21,7 +21,7 @@ class PostItem extends Component {
     showComments: false,
     postId: '',
     postComments: [],
-    likes: this.props.post.likes && [...this.props.post.likes],
+    likes: [],
     liked: false,
     showModal: false,
     showPopup: false,
@@ -32,6 +32,7 @@ class PostItem extends Component {
 
   componentDidMount() {
     document.addEventListener('click', this.onOutsideClick, true)
+    this.setState({ likes: this.props.post.likes })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -118,6 +119,7 @@ class PostItem extends Component {
     }))
 
   render() {
+    console.log(this.state.likes)
     const { post, auth, profile } = this.props
     const {
       showComments,
