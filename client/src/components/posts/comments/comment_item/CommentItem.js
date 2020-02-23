@@ -34,9 +34,6 @@ class CommentItem extends Component {
     if (this.props.comment.comments !== prevState.comment.comments) {
       this.setState({ comment: this.props.comment })
     }
-    if (this.props.profiles !== prevProps.profiles) {
-      this.props.getProfiles()
-    }
   }
 
   findUserLike = likes => {

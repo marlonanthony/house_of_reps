@@ -119,7 +119,6 @@ class PostItem extends Component {
     }))
 
   render() {
-    console.log(this.state.likes)
     const { post, auth, profile } = this.props
     const {
       showComments,
