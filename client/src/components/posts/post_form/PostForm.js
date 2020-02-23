@@ -81,7 +81,7 @@ class PostForm extends Component {
     // Check for URL
     const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-/]))?/
     if (!regex.test(pastedData)) {
-      this.setState({ text: pastedData })
+      return
     } else {
       axios
         .get(
@@ -171,6 +171,7 @@ class PostForm extends Component {
   }
 
   render() {
+    console.log(this.state.text)
     const {
       errors,
       data,
