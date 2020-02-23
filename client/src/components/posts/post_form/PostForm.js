@@ -171,7 +171,6 @@ class PostForm extends Component {
   }
 
   render() {
-    console.log(this.state.text)
     const {
       errors,
       data,
