@@ -1,5 +1,5 @@
 import React from 'react'
-import SelectList from '../../../common/SelectList'
+import SelectList from '../../../common/select_list/SelectList'
 import './PostTag.css'
 
 export default function PostTag({ tag, errors, showTags, onChange }) {
