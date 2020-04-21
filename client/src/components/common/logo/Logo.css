@@ -1,5 +1,6 @@
 #logo-div {
   padding-top: 50px;
+  padding-bottom: 10px;
   text-align: center;
 }
 #logo {
@@ -7,7 +8,7 @@
 }
 @media (min-width: 600px){
   #logo {
-    max-width: 500px;
+    max-width: 300px;
     max-height: 100px;
   }
 }

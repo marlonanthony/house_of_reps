@@ -76,7 +76,7 @@ const Register = ({ auth, registerUser, ...props }) => {
             error={errors.email}
           />
           <Input
-            type="handle"
+            type="text"
             name="handle"
             placeholder="handle"
             value={values.handle}

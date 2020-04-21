@@ -12,7 +12,7 @@ const Landing = () => {
         <div className="dark-overlay">
           <div className="landing_content">
             <div>
-              <h1>House of Reps</h1>
+              <h1>Senate DJs</h1>
               <h6>Community of DJs by DJs for DJs</h6>
               <div className="landing_btn_container">
                 <Link to="/login">
@@ -25,7 +25,7 @@ const Landing = () => {
               </div>
             </div>
             <footer className="landing_footer">
-              Copyright &copy; {date.getFullYear()} House of Reps
+              Copyright &copy; {date.getFullYear()} Senate DJs
             </footer>
           </div>
         </div>
