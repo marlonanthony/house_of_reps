@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import EmojiPicker from 'emoji-picker-react'
-import JSEMOJI from 'emoji-js'
 import PropTypes from 'prop-types'
 
 import LightBackdrop from '../../../../../UI/backdrop/LightBackdrop'
@@ -27,21 +26,8 @@ export default function EditNestedComment({
 
   const onChange = e => setText(e.target.value)
 
-  const addEmoji = emojiName => {
-    const jsemoji = new JSEMOJI()
-    jsemoji.img_set = 'emojione'
-    jsemoji.img_sets.emojione.path =
-      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
-    jsemoji.supports_css = false
-    jsemoji.allow_native = false
-    jsemoji.replace_mode = 'unified'
-    jsemoji.text_mode = true
-    jsemoji.include_title = true
-    jsemoji.replace_unified(`:${emojiName}:`)
-    jsemoji.replace_colons(`:${emojiName}:`)
-
-    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
-    setText(prevText => prevText + emoji)
+  const addEmoji = (e, emojiObject) => {
+    setText(prevText => prevText + emojiObject.emoji)
   }
 
   const editNestedComment = e => {
