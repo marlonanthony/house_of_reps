@@ -105,7 +105,7 @@ router.post('/register', async (req, res) => {
     })
     const newUser = new User({
       name: name.trim(),
-      handle: handle.trim(),
+      handle: handle[0] === '@' ? handle.slice(1).trim() : handle.trim(),
       email: email.trim(),
       avatar: req.body.avatar ? req.body.avatar : avatar,
       password: password.trim()
