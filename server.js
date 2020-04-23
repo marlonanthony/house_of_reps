@@ -3,7 +3,8 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   passport = require('passport'),
   path = require('path'),
-  socketIO = require('socket.io')
+  socketIO = require('socket.io'),
+  sslRedirect = require('heroku-ssl-redirect')
 
 const app = express(),
   port = process.env.PORT || 5000,
@@ -15,6 +16,8 @@ const app = express(),
   posts = require('./routes/api/posts'),
   chatrooms = require('./routes/api/chatrooms'),
   db = require('./config/keys').mongoURI
+
+app.use(sslRedirect())
 
 let count = 0
 

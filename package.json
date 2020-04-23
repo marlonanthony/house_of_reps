@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "gravatar": "^1.6.0",
+    "heroku-ssl-redirect": "0.0.4",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.7.3",
     "passport": "^0.4.0",
