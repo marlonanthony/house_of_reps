@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import EmojiPicker from 'emoji-picker-react'
-import JSEMOJI from 'emoji-js'
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 
@@ -146,21 +145,8 @@ class PostForm extends Component {
     this.setState(prevState => ({ showEmojis: !prevState.showEmojis }))
   }
 
-  addEmoji = emojiName => {
-    const jsemoji = new JSEMOJI()
-    jsemoji.img_set = 'emojione'
-    jsemoji.img_sets.emojione.path =
-      'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/'
-    jsemoji.supports_css = false
-    jsemoji.allow_native = false
-    jsemoji.replace_mode = 'unified'
-    jsemoji.text_mode = true
-    jsemoji.include_title = true
-    jsemoji.replace_unified(`:${emojiName}:`)
-    jsemoji.replace_colons(`:${emojiName}:`)
-
-    let emoji = String.fromCodePoint(parseInt(emojiName, 16))
-    this.setState({ text: this.state.text + emoji })
+  addEmoji = (e, emojiObject) => {
+    this.setState({ text: this.state.text + emojiObject.emoji })
   }
 
   setShowTag = () => {
