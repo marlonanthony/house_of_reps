@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.1",
     "classnames": "^2.2.6",
-    "emoji-js": "^3.4.1",
     "emoji-picker-react": "^3.1.4",
     "immutable": "^4.0.0-rc.12",
     "jwt-decode": "^2.2.0",
