@@ -50,40 +50,22 @@ const App = () => {
         <Route exact path="/verify" component={Verify} />
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        </Switch>
-        <Switch>
           <PrivateRoute
             exact
             path="/create-profile"
             component={CreateProfile}
           />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/add-venue" component={AddMedia} />
-        </Switch>
-        <Switch>
           <PrivateRoute
             exact
             path="/create-chatroom"
             component={CreateChatroom}
           />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/add-djpool" component={AddDjpool} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/add-store" component={AddStore} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/add-perk" component={AddPerk} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/add-brand" component={AddBrand} />
-        </Switch>
-        <Switch>
           <PrivateRoute
             exact
             path="/feed"
@@ -94,20 +76,10 @@ const App = () => {
               />
             )}
           />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/profile/:handle" component={Profile} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/djs" component={Profiles} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/notifications" component={Notifications} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/hashtag/:hashtag" component={Hashtag} />
-        </Switch>
-        <Switch>
           <PrivateRoute exact path="/chat/:id" component={Chatroom} />
         </Switch>
       </div>
