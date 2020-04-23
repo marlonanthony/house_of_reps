@@ -26,6 +26,7 @@ const FixedHighlights = ({
         .map(
           person => person.venues && person.venues.length && person.venues[0]
         )
+        .filter(val => val)
         .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
     setRecentHighlights(profiles)
   }, [profile.profiles, setRecentHighlights])
