@@ -9,8 +9,8 @@ export default function HighlightsContainer({ profiles, toggleHighlight }) {
     .map(
       profile => profile.venues && profile.venues.length && profile.venues[0]
     )
-    .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
     .filter(val => val)
+    .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
 
   return (
     <Highlights highlights={highlights} toggleHighlight={toggleHighlight} />
