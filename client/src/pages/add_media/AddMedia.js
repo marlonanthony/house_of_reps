@@ -34,6 +34,11 @@ const AddMedia = ({ addVenue, ...props }) => {
           .match(/http(.*?)[\s]/g)
           .toString()
           .slice(0, -2))
+      : parsedUrl.includes('mixcloud')
+      ? (parsedUrl = parsedUrl
+          .match(/(?:www|https?)[^\s]*/g)
+          .toString()
+          .slice(0, -1))
       : null
     setVideo(parsedUrl)
   }
