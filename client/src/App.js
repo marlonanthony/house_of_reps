@@ -42,8 +42,6 @@ const App = () => {
           toggleHighlight={toggleHighlight}
         />
         <Route exact path="/" component={Landing} />
-      </>
-      <div>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/checkemail" component={ConfirmEmail} />
@@ -82,7 +80,7 @@ const App = () => {
           <PrivateRoute exact path="/hashtag/:hashtag" component={Hashtag} />
           <PrivateRoute exact path="/chat/:id" component={Chatroom} />
         </Switch>
-      </div>
+      </>
     </>
   )
 }

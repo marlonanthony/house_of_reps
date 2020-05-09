@@ -25,15 +25,15 @@ const Profile = ({ auth, getProfileByHandle, ...props }) => {
 
   if (!profile && props.match.params.handle !== user.handle) {
     return (
-      <div id="no_profile">
-        <h2>This person's not big on profiles</h2>
+      <div className="no_profile">
+        <h2>This one's not big on profiles</h2>
       </div>
     )
   }
 
   if (!profile && props.match.params.handle === user.handle) {
     return (
-      <div id="no_profile">
+      <div className="no_profile">
         <Link to="/create-profile">Create Profile</Link>
       </div>
     )
