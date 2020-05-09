@@ -15,10 +15,10 @@ export default function ProfileContent({ handle, profile, user }) {
         <div id="header-items">
           <ProfileAbout profile={profile} user={user} />
           <ProfileIcons profile={profile} />
-          <Banners />
+          {/* <Banners /> */}
         </div>
         <ProfilePost handle={handle} />
-        <ProfileCreds venues={profile.venues} />
+        <ProfileCreds venues={profile.venues} user={user} profile={profile} />
       </div>
     </div>
   )

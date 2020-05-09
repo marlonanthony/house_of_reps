@@ -327,7 +327,8 @@ router.post(
               }
               new Profile(profileFields)
                 .save()
-                .then(newProfile => res.status(200).json(newProfile)).catch(err => console.log(err))
+                .then(newProfile => res.status(200).json(newProfile))
+                .catch(err => console.log(err))
             }
           )
         }
