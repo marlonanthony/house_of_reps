@@ -22,7 +22,7 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
 
   return (
     profiles && (
-      <section>
+      <section id="members">
         <h2>Reps</h2>
         <div className="reps-search-div">
           <input

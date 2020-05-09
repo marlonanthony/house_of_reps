@@ -10,7 +10,7 @@ import './ProfileContent.css'
 
 export default function ProfileContent({ handle, profile, user }) {
   return (
-    <div className="profile-content-container">
+    <section id="profile" className="profile-content-container">
       <div className="profile-content">
         <div id="header-items">
           <ProfileAbout profile={profile} user={user} />
@@ -20,7 +20,7 @@ export default function ProfileContent({ handle, profile, user }) {
         <ProfilePost handle={handle} />
         <ProfileCreds venues={profile.venues} user={user} profile={profile} />
       </div>
-    </div>
+    </section>
   )
 }
 

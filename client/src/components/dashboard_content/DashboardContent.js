@@ -11,7 +11,7 @@ import DeleteProfileBtn from './delete_profile_btn/DeleteProfileBtn'
 const DashboardContent = ({ profile, user }) => {
   if (Object.keys(profile).length) {
     return (
-      <div id="dashboard">
+      <section id="dashboard">
         <div id="dashboard-container">
           <HandleAndActions profile={profile} user={user} />
           <ChatroomSection profile={profile} />
@@ -19,17 +19,17 @@ const DashboardContent = ({ profile, user }) => {
           <Venues venues={profile.venues} />
           <DeleteProfileBtn />
         </div>
-      </div>
+      </section>
     )
   } else {
     return (
-      <div id="dashboard">
+      <section id="dashboard">
         <div className="dashboard_no_profile">
           <p>{user.name}</p>
           <p>You have not yet set up a profile, please add some info</p>
           <Link to="/create-profile">Create Profile</Link>
         </div>
-      </div>
+      </section>
     )
   }
 }

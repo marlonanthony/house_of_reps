@@ -128,7 +128,7 @@ class Posts extends Component {
       { user } = this.props.auth
 
     return (
-      <>
+      <section id="posts">
         <Logo />
         <div className="feed">
           <SearchPost
@@ -172,7 +172,7 @@ class Posts extends Component {
           />
           <Footer />
         </div>
-      </>
+      </section>
     )
   }
 }
