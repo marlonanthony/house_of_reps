@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <div className="post-feed-footer">
-      <footer>Copyright &copy; {date.getFullYear()} House of Reps</footer>
+      <footer>Copyright &copy; {date.getFullYear()} Senate DJs</footer>
     </div>
   )
 }
