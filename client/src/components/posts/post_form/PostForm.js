@@ -96,6 +96,10 @@ class PostForm extends Component {
 
   onSubmit = e => {
     e.preventDefault()
+    if (!this.state.tag) {
+      alert('Choose a tag for your post!')
+      return
+    }
     const { user } = this.props.auth
     this.setState({ showPreview: false })
 
