@@ -60,7 +60,7 @@ const DropdownMenu = ({
         Feed
       </Link>
       <Link to="/djs" onClick={scrollToTop}>
-        Reps
+        Members
       </Link>
       <Link to="/" onClick={onLogoutClick}>
         <Logout user={user} />

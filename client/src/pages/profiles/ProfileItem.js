@@ -16,7 +16,7 @@ const ProfileItem = ({ profile }) => {
             @{profile.handle}
           </Link>
         )}
-        {profile.bio && profile.bio.length >= 125 ? (
+        {profile.bio && profile.bio.length > 119 ? (
           showMore ? (
             <p id="reps-page-bio" onClick={() => setShowMore(prev => !prev)}>
               {profile.bio}
@@ -24,7 +24,7 @@ const ProfileItem = ({ profile }) => {
             </p>
           ) : (
             <p id="reps-page-bio" onClick={() => setShowMore(prev => !prev)}>
-              {profile.bio.slice(0, 125)}...
+              {profile.bio.slice(0, 119)}...
               <span id="showmore-reps-bio">show more</span>
             </p>
           )

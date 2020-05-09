@@ -23,7 +23,7 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
   return (
     profiles && (
       <section id="members">
-        <h2>Reps</h2>
+        <h2>Members</h2>
         <div className="reps-search-div">
           <input
             className="reps-search-input"
