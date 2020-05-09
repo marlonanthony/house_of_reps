@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import ProfileCreds from '../profile_creds/ProfileCreds'
 import ProfilePost from '../profile_post/ProfilePost'
 import ProfileIcons from '../profile_assets/ProfileIcons'
-import Banners from '../profile_assets/Banners'
+// import Banners from '../profile_assets/Banners'
 import ProfileAbout from '../profile_assets/ProfileAbout'
 import './ProfileContent.css'
 

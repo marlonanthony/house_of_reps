@@ -10,21 +10,24 @@ export default function PostsContainer({
   fetchMore,
   showsPreview
 }) {
-  let postContent
-
   if (!posts || !profiles || loading) {
-    postContent = <Spinner />
+    return <Spinner />
   }
 
-  postContent = (
-    <InfinteScroll
-      dataLength={posts.length}
-      next={fetchMore}
-      hasMore={true}
-      loader={null}
-    >
-      <PostFeed showPreview={showsPreview} posts={posts} profiles={profiles} />
-    </InfinteScroll>
+  return (
+    <div className="post-feed-post-content">
+      <InfinteScroll
+        dataLength={posts.length}
+        next={fetchMore}
+        hasMore={true}
+        loader={null}
+      >
+        <PostFeed
+          showPreview={showsPreview}
+          posts={posts}
+          profiles={profiles}
+        />
+      </InfinteScroll>
+    </div>
   )
-  return <div className="post-feed-post-content">{postContent}</div>
 }
