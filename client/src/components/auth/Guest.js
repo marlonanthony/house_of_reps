@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../actions/authActions'
-import keys from '../../config/keys'
 
 const Guest = ({ auth, loginUser, ...props }) => {
   useEffect(() => {
@@ -14,8 +13,8 @@ const Guest = ({ auth, loginUser, ...props }) => {
 
   const onSubmitHandler = () => {
     const userData = {
-      email: keys.GUEST_EMAIL,
-      password: keys.GUEST_PASSWORD
+      email: 'andresojo@gmail.com',
+      password: '123456'
     }
     loginUser(userData)
   }
