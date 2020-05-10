@@ -37,7 +37,7 @@ export const getPromos = () => async dispatch => {
 // Delete Promo
 export const deletePromo = id => async dispatch => {
   try {
-    const res = await axios.delete(`/api/promos/${id}`)
+    await axios.delete(`/api/promos/${id}`)
     dispatch({
       type: DELETE_PROMO,
       payload: id
