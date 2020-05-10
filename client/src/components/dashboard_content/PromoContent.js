@@ -1,23 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  deleteDjpool,
-  deleteStore,
-  deletePerk,
-  deleteBrand
-} from '../../actions/profileActions'
 import { deletePromo } from '../../actions/promoActions'
 
-const PromoContent = ({
-  user,
-  promo,
-  deleteDjpool,
-  deleteStore,
-  deletePerk,
-  deleteBrand,
-  deletePromo
-}) =>
+const PromoContent = ({ user, promo, deletePromo }) =>
   user.isAdmin && (
     <>
       <div className="dashboard_ad_container">
@@ -110,10 +96,6 @@ const PromoContent = ({
 
 PromoContent.propTypes = {
   user: PropTypes.object.isRequired,
-  deleteBrand: PropTypes.func.isRequired,
-  deleteDjpool: PropTypes.func.isRequired,
-  deletePerk: PropTypes.func.isRequired,
-  deleteStore: PropTypes.func.isRequired,
   promo: PropTypes.array.isRequired,
   deletePromo: PropTypes.func.isRequired
 }
@@ -121,10 +103,6 @@ PromoContent.propTypes = {
 export default connect(
   null,
   {
-    deleteDjpool,
-    deleteStore,
-    deletePerk,
-    deleteBrand,
     deletePromo
   }
 )(PromoContent)
