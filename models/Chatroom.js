@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 
-const ChatRoomSchema = new mongoose.Schema({
+const ChatRoomSchema = new Schema({
   count: {
     type: Number,
     default: 0

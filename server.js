@@ -15,6 +15,7 @@ const app = express(),
   profile = require('./routes/api/profile'),
   posts = require('./routes/api/posts'),
   chatrooms = require('./routes/api/chatrooms'),
+  promos = require('./routes/api/promos'),
   db = require('./config/keys').mongoURI
 
 app.use(sslRedirect())
@@ -56,6 +57,7 @@ app.use('/api/users', users)
 app.use('/api/profile', profile)
 app.use('/api/posts', posts)
 app.use('/api/chat', chatrooms)
+app.use('/api/promos', promos)
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
