@@ -4,11 +4,11 @@ const Promo = require('../../models/Promo')
 const validatePromoInput = require('../../validation/djpools')
 
 
-// @route   POST api/promos/add_promo
-// @desc    Add a promo
+// @route   POST api/promos
+// @desc    Create a promo
 // @access  Private
 router.post(
-  '/add_promo',
+  '/',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
@@ -29,5 +29,24 @@ router.post(
     }
   }
 )
+
+// @route   DELETE api/promos/:id
+// @desc    Delete promo
+// @access  Private
+router.delete(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.user.isAdmin) return res.status(401).json({unauthorized: 'Unauthorized!'})
+      const promo = await Promo.findById(req.params.id)
+      promo.remove()
+      return res.status(200).json({ success: true })
+    } catch (err) {
+      res.status(404).json({ notfound: 'Promo not found!' })
+    }
+  }
+)
+
 
 module.exports = router
