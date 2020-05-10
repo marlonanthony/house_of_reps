@@ -8,8 +8,8 @@ import {
   CREATE_CHATROOM,
   DELETE_CHATROOM,
   ACCEPT_CHATROOM_INVITE,
-  LEAVE_CHATROOM,
-  ADD_CHATROOM_MEMBERS
+  LEAVE_CHATROOM
+  // ADD_CHATROOM_MEMBERS
 } from '../actions/types'
 
 const initialState = {
