@@ -128,7 +128,7 @@ class Posts extends Component {
         onlineCount
       } = this.state,
       { user } = this.props.auth,
-      { promo } = this.props
+      { promo, showHighlight, toggleHighlight } = this.props
 
     return (
       <section id="posts">
@@ -152,8 +152,8 @@ class Posts extends Component {
             user={user}
             showLikesHandler={this.showLikesHandler}
             showLikes={showLikes}
-            showHighlight={this.props.showHighlight}
-            toggleHighlight={this.props.toggleHighlight}
+            showHighlight={showHighlight}
+            toggleHighlight={toggleHighlight}
           />
           <PoolsContainer promo={promo} />
           <PerksContainer promo={promo} />
@@ -165,7 +165,7 @@ class Posts extends Component {
           />
           <HighlightsContainer
             profiles={profiles}
-            toggleHighlight={this.props.toggleHighlight}
+            toggleHighlight={toggleHighlight}
           />
           <StoresContainer promo={promo} />
           <BrandContainer promo={promo} />

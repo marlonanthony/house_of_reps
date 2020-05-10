@@ -8,14 +8,14 @@ import PromoContent from './PromoContent'
 import ChatroomSection from './chatroom_section/ChatroomSection'
 import DeleteProfileBtn from './delete_profile_btn/DeleteProfileBtn'
 
-const DashboardContent = ({ profile, user }) => {
+const DashboardContent = ({ profile, user, promo }) => {
   if (Object.keys(profile).length) {
     return (
       <section id="dashboard">
         <div id="dashboard-container">
           <HandleAndActions profile={profile} user={user} />
           <ChatroomSection profile={profile} />
-          <PromoContent user={user} profile={profile} />
+          <PromoContent user={user} promo={promo} />
           <Venues venues={profile.venues} />
           <DeleteProfileBtn />
         </div>
@@ -36,7 +36,8 @@ const DashboardContent = ({ profile, user }) => {
 
 DashboardContent.propTypes = {
   user: PropTypes.object.isRequired,
-  profile: PropTypes.object
+  profile: PropTypes.object,
+  promo: PropTypes.object.isRequired
 }
 
 export default DashboardContent
