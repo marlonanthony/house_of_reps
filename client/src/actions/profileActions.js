@@ -186,23 +186,6 @@ export const addPerk = (perkData, history) => async dispatch => {
   }
 }
 
-// Add Promo
-export const addPromo = (promoData, history) => async dispatch => {
-  try {
-    const res = await axios.post('/api/promos', promoData)
-    dispatch({
-      type: ADD_PROMOS,
-      payload: res.data
-    })
-    history.push('/dashboard')
-  } catch (err) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    })
-  }
-}
-
 // Add Brand
 export const addBrand = (brandData, history) => async dispatch => {
   try {

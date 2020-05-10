@@ -30,11 +30,27 @@ export default function Brands({ brands }) {
           clickFunction={previousSlide}
           glyph="&#9664;"
         />
-        <img
-          src={brands[currentIndex].image}
-          alt={brands[currentIndex].url}
-          className="promos-thumbnail"
-        />
+        <a
+          href={
+            brands[currentIndex] &&
+            brands[currentIndex].url &&
+            brands[currentIndex].url
+          }
+        >
+          <img
+            src={
+              brands[currentIndex] &&
+              brands[currentIndex].image &&
+              brands[currentIndex].image
+            }
+            alt={
+              brands[currentIndex] &&
+              brands[currentIndex].url &&
+              brands[currentIndex].url
+            }
+            className="promos-thumbnail"
+          />
+        </a>
         <Arrow
           direction="right"
           styleClass="slide-arrow"

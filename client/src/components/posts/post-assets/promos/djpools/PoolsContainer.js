@@ -1,11 +1,12 @@
 import React from 'react'
 import DjPools from './DjPools'
 
-export default function PoolsContainer({ profiles }) {
-  if (!profiles) return null
-  // eslint-disable-next-line array-callback-return
-  return profiles.map(profile => {
-    if (profile.djpools && profile.djpools.length)
-      return <DjPools key={profile._id} djpools={profile.djpools} />
-  })
+export default function PoolsContainer({ promo }) {
+  const arr = []
+  promo &&
+    promo.promos &&
+    promo.promos.forEach(p => {
+      if (p.type === 'djpools') arr.push(p)
+    })
+  return <DjPools djpools={arr} />
 }

@@ -1,24 +1,27 @@
 const mongoose = require('mongoose')
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
 const PromoSchema = new Schema({
   url: {
     type: String
   },
   image: {
-    type: String
+    type: String,
+    required: true
   },
   description: {
     type: String
   },
   type: {
-    type: String
+    type: String,
+    required: true
   },
   createdBy: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('promo', PromoSchema)
+module.exports = model('promo', PromoSchema)

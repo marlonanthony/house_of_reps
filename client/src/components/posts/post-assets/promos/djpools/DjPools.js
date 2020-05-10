@@ -30,13 +30,25 @@ export default function DjPools({ djpools }) {
           glyph="&#9664;"
         />
         <a
-          href={djpools[currentIndex].url}
+          href={
+            djpools[currentIndex] &&
+            djpools[currentIndex].url &&
+            djpools[currentIndex].url
+          }
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
-            src={djpools[currentIndex].image}
-            alt={djpools[currentIndex].url}
+            src={
+              djpools[currentIndex] &&
+              djpools[currentIndex].image &&
+              djpools[currentIndex].image
+            }
+            alt={
+              djpools[currentIndex] &&
+              djpools[currentIndex].url &&
+              djpools[currentIndex].url
+            }
             className="promos-thumbnail"
           />
         </a>

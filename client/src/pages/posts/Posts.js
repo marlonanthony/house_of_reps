@@ -10,6 +10,7 @@ import {
   getPostsByHashtag,
   getMorePostsByHashtag
 } from '../../actions/postActions'
+import { getPromos } from '../../actions/promoActions'
 import { getCurrentProfile, getProfiles } from '../../actions/profileActions'
 import PostForm from '../../components/posts/post_form/PostForm'
 import PoolsContainer from '../../components/posts/post-assets/promos/djpools/PoolsContainer'
@@ -42,6 +43,7 @@ class Posts extends Component {
     this.props.getPosts(this.state.count, this.state.start)
     this.props.getCurrentProfile()
     this.props.getProfiles()
+    this.props.getPromos()
     this.setState(prevState => ({ start: prevState.start + 1 }))
     this.setState({ onlineCount: JSON.parse(localStorage.getItem('count')) })
   }
@@ -125,7 +127,8 @@ class Posts extends Component {
         showLikes,
         onlineCount
       } = this.state,
-      { user } = this.props.auth
+      { user } = this.props.auth,
+      { promo } = this.props
 
     return (
       <section id="posts">
@@ -152,8 +155,8 @@ class Posts extends Component {
             showHighlight={this.props.showHighlight}
             toggleHighlight={this.props.toggleHighlight}
           />
-          <PoolsContainer profiles={profiles} />
-          <PerksContainer profiles={profiles} />
+          <PoolsContainer promo={promo} />
+          <PerksContainer promo={promo} />
           <PostsContainer
             posts={posts}
             profiles={profiles}
@@ -164,8 +167,8 @@ class Posts extends Component {
             profiles={profiles}
             toggleHighlight={this.props.toggleHighlight}
           />
-          <StoresContainer profiles={profiles} />
-          <BrandContainer profiles={profiles} />
+          <StoresContainer promo={promo} />
+          <BrandContainer promo={promo} />
           <Speakeasy
             onlineCount={onlineCount}
             handle={profile && profile.handle}
@@ -187,13 +190,15 @@ Posts.propTypes = {
   getLikedPosts: PropTypes.func.isRequired,
   getMoreLikedPosts: PropTypes.func.isRequired,
   toggleHighlight: PropTypes.func.isRequired,
-  showHighlight: PropTypes.bool.isRequired
+  showHighlight: PropTypes.bool.isRequired,
+  getPromos: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   post: state.post,
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  promo: state.promo
 })
 
 export default connect(
@@ -206,6 +211,7 @@ export default connect(
     getLikedPosts,
     getMoreLikedPosts,
     getPostsByHashtag,
-    getMorePostsByHashtag
+    getMorePostsByHashtag,
+    getPromos
   }
 )(withRouter(Posts))

@@ -5,20 +5,20 @@ import Arrow from '../../../../UI/arrow_glyph/Arrow'
 import '../Promos.css'
 
 export default function Perks({ perks }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const previousSlide = () => {
     const lastIndex = perks.length - 1
-    const shouldResetIndex = currentImageIndex === 0
-    const index = shouldResetIndex ? lastIndex : currentImageIndex - 1
-    setCurrentImageIndex(index)
+    const shouldResetIndex = currentIndex === 0
+    const index = shouldResetIndex ? lastIndex : currentIndex - 1
+    setCurrentIndex(index)
   }
 
   const nextSlide = () => {
     const lastIndex = perks.length - 1
-    const shouldResetIndex = currentImageIndex === lastIndex
-    const index = shouldResetIndex ? 0 : currentImageIndex + 1
-    setCurrentImageIndex(index)
+    const shouldResetIndex = currentIndex === lastIndex
+    const index = shouldResetIndex ? 0 : currentIndex + 1
+    setCurrentIndex(index)
   }
 
   return (
@@ -30,11 +30,27 @@ export default function Perks({ perks }) {
           clickFunction={previousSlide}
           glyph="&#9664;"
         />
-        <img
-          src={perks[currentImageIndex].image}
-          alt={perks[currentImageIndex].url}
-          className="promos-thumbnail"
-        />
+        <a
+          href={
+            perks[currentIndex] &&
+            perks[currentIndex].url &&
+            perks[currentIndex].url
+          }
+        >
+          <img
+            src={
+              perks[currentIndex] &&
+              perks[currentIndex].image &&
+              perks[currentIndex].image
+            }
+            alt={
+              perks[currentIndex] &&
+              perks[currentIndex].url &&
+              perks[currentIndex].url
+            }
+            className="promos-thumbnail"
+          />
+        </a>
         <Arrow
           direction="right"
           styleClass="slide-arrow"

@@ -30,13 +30,25 @@ export default function CertifiedStores({ stores }) {
           glyph="&#9664;"
         />
         <a
-          href={stores[currentIndex].url}
+          href={
+            stores[currentIndex] &&
+            stores[currentIndex].url &&
+            stores[currentIndex].url
+          }
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
-            src={stores[currentIndex].image}
-            alt={stores[currentIndex].url}
+            src={
+              stores[currentIndex] &&
+              stores[currentIndex].image &&
+              stores[currentIndex].image
+            }
+            alt={
+              stores[currentIndex] &&
+              stores[currentIndex].url &&
+              stores[currentIndex].url
+            }
             className="promos-thumbnail"
           />
         </a>

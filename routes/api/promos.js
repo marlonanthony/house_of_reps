@@ -4,6 +4,21 @@ const Promo = require('../../models/Promo')
 const validatePromoInput = require('../../validation/djpools')
 
 
+// @route   GET api/promos
+// @desc    Get Promos
+// @access  Public
+router.get(
+  '/',
+  async (req, res) => {
+    try {
+      const promos = await Promo.find()
+      return res.status(200).json(promos)
+    } catch (err) {
+      res.status(404).json(err)
+    }
+  }
+)
+
 // @route   POST api/promos
 // @desc    Create a promo
 // @access  Private

@@ -1,12 +1,12 @@
 import React from 'react'
 import Perks from './Perks'
 
-export default function PerksContainer({ profiles }) {
-  if (!profiles) return null
-  // eslint-disable-next-line array-callback-return
-  return profiles.map(profile => {
-    if (profile.perks && profile.perks.length) {
-      return <Perks key={profile._id} perks={profile.perks} />
-    }
-  })
+export default function PerksContainer({ promo }) {
+  const arr = []
+  promo &&
+    promo.promos &&
+    promo.promos.forEach(p => {
+      if (p.type === 'perks') arr.push(p)
+    })
+  return <Perks perks={arr} />
 }
