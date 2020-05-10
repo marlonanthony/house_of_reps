@@ -7,6 +7,7 @@ import {
   deletePerk,
   deleteBrand
 } from '../../actions/profileActions'
+import { deletePromo } from '../../actions/promoActions'
 
 const PromoContent = ({
   user,
@@ -14,7 +15,8 @@ const PromoContent = ({
   deleteDjpool,
   deleteStore,
   deletePerk,
-  deleteBrand
+  deleteBrand,
+  deletePromo
 }) =>
   user.isAdmin && (
     <>
@@ -30,7 +32,7 @@ const PromoContent = ({
                     <br />
                     <button
                       id="djpools_delete_btn"
-                      onClick={() => deleteDjpool(val._id)}
+                      onClick={() => deletePromo(val._id)}
                     >
                       Delete
                     </button>
@@ -52,7 +54,7 @@ const PromoContent = ({
                     <br />
                     <button
                       id="djpools_delete_btn"
-                      onClick={() => deleteStore(val._id)}
+                      onClick={() => deletePromo(val._id)}
                     >
                       Delete
                     </button>
@@ -73,7 +75,7 @@ const PromoContent = ({
                     <br />
                     <button
                       id="djpools_delete_btn"
-                      onClick={() => deletePerk(val._id)}
+                      onClick={() => deletePromo(val._id)}
                     >
                       Delete
                     </button>
@@ -94,7 +96,7 @@ const PromoContent = ({
                     <br />
                     <button
                       id="djpools_delete_btn"
-                      onClick={() => deleteBrand(val._id)}
+                      onClick={() => deletePromo(val._id)}
                     >
                       Delete
                     </button>
@@ -112,7 +114,8 @@ PromoContent.propTypes = {
   deleteDjpool: PropTypes.func.isRequired,
   deletePerk: PropTypes.func.isRequired,
   deleteStore: PropTypes.func.isRequired,
-  promo: PropTypes.array.isRequired
+  promo: PropTypes.array.isRequired,
+  deletePromo: PropTypes.func.isRequired
 }
 
 export default connect(
@@ -121,6 +124,7 @@ export default connect(
     deleteDjpool,
     deleteStore,
     deletePerk,
-    deleteBrand
+    deleteBrand,
+    deletePromo
   }
 )(PromoContent)

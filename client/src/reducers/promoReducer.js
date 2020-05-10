@@ -1,4 +1,4 @@
-import { ADD_PROMO, GET_PROMOS } from '../actions/types'
+import { ADD_PROMO, GET_PROMOS, DELETE_PROMO } from '../actions/types'
 
 const initialState = {
   promos: [],
@@ -19,6 +19,11 @@ export default function(state = initialState, action) {
         ...state,
         promos: [action.payload, ...state.promos],
         loading: false
+      }
+    case DELETE_PROMO:
+      return {
+        ...state,
+        promos: state.promos.filter(promo => promo._id !== action.payload)
       }
     default:
       return state
