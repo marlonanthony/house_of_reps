@@ -37,7 +37,7 @@ const DashboardContent = ({ profile, user, promo }) => {
 DashboardContent.propTypes = {
   user: PropTypes.object.isRequired,
   profile: PropTypes.object,
-  promo: PropTypes.object.isRequired
+  promo: PropTypes.array.isRequired
 }
 
 export default DashboardContent

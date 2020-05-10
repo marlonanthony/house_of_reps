@@ -4,7 +4,7 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   LIKE_HIGHLIGHT,
-  ADD_PROMOS,
+  ADD_PROMO,
   CREATE_CHATROOM,
   DELETE_CHATROOM,
   ACCEPT_CHATROOM_INVITE,
@@ -48,7 +48,7 @@ export default function(state = initialState, action) {
         profile: action.payload.data,
         loading: false
       }
-    case ADD_PROMOS:
+    case ADD_PROMO:
       return {
         ...state,
         profile: action.payload,

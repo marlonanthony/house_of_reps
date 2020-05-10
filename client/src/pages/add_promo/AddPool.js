@@ -1,14 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
-import { addDjpool } from '../../actions/profileActions'
 import AddPromo from './AddPromo'
 
-function AddPool({ addDjpool }) {
-  return <AddPromo title="Add DJ Pool" action={addDjpool} />
+function AddPool() {
+  return <AddPromo title="Add DJ Pool" type="djpools" />
 }
 
-export default connect(
-  null,
-  { addDjpool }
-)(AddPool)
+export default AddPool

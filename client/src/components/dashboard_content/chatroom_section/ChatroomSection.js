@@ -29,15 +29,16 @@ function ChatroomSection({ getChatroom, profile, ...props }) {
         <div>
           Invites
           <ul className="db-cr-section-ul">
-            {profile.chatroomInvites.map(ci => (
-              <li
-                className="db-cr-section-li"
-                key={ci._id}
-                onClick={() => getChatroom(ci.id, props.history)}
-              >
-                {ci.name}
-              </li>
-            ))}
+            {profile.chatroomInvites &&
+              profile.chatroomInvites.map(ci => (
+                <li
+                  className="db-cr-section-li"
+                  key={ci._id}
+                  onClick={() => getChatroom(ci.id, props.history)}
+                >
+                  {ci.name}
+                </li>
+              ))}
           </ul>
         </div>
       </div>

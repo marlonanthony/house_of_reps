@@ -1,12 +1,12 @@
 import axios from 'axios'
-import { GET_ERRORS, ADD_PROMOS, GET_PROMOS } from './types'
+import { GET_ERRORS, ADD_PROMO, GET_PROMOS } from './types'
 
 // Add Promo
 export const addPromo = (promoData, history) => async dispatch => {
   try {
     const res = await axios.post('/api/promos', promoData)
     dispatch({
-      type: ADD_PROMOS,
+      type: ADD_PROMO,
       payload: res.data
     })
     history.push('/dashboard')
@@ -27,6 +27,9 @@ export const getPromos = () => async dispatch => {
       payload: res.data
     })
   } catch (err) {
-    console.log(err)
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
   }
 }

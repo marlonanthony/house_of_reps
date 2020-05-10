@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
+import { addPromo } from '../../actions/promoActions'
 import { handleImageUpload } from '../../utils/handle_image_upload/handleImageUpload'
 import Input from '../../components/common/inputs/Input'
 import BackButton from '../../components/UI/buttons/back-btn/BackButton'
@@ -11,7 +11,7 @@ import DropZoneContainer from '../../components/UI/dropzone/DropZoneContainer'
 import '../../components/UI/dropzone/Dropzone.css'
 import './AddPromo.css'
 
-const AddPromo = ({ action, title, ...props }) => {
+const AddPromo = ({ addPromo, title, type, ...props }) => {
   const [image, setImage] = useState(''),
     [url, setUrl] = useState(''),
     [description, setDescription] = useState(''),
@@ -28,9 +28,10 @@ const AddPromo = ({ action, title, ...props }) => {
     const promoData = {
       image,
       url,
-      description
+      description,
+      type
     }
-    action(promoData, props.history)
+    addPromo(promoData, props.history)
   }
 
   const onImageDrop = files => {
@@ -81,9 +82,15 @@ const AddPromo = ({ action, title, ...props }) => {
 }
 
 AddPromo.propTypes = {
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  addPromo: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({ errors: state.errors })
 
-export default connect(mapStateToProps)(withRouter(AddPromo))
+export default connect(
+  mapStateToProps,
+  { addPromo }
+)(withRouter(AddPromo))

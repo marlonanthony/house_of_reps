@@ -1,4 +1,4 @@
-import { GET_ERRORS, ADD_PROMOS, GET_PROMOS } from '../actions/types'
+import { ADD_PROMO, GET_PROMOS } from '../actions/types'
 
 const initialState = {
   promos: [],
@@ -12,6 +12,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         promos: action.payload,
+        loading: false
+      }
+    case ADD_PROMO:
+      return {
+        ...state,
+        promos: [action.payload, ...state.promos],
         loading: false
       }
     default:

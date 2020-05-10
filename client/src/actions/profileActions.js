@@ -7,7 +7,7 @@ import {
   SET_CURRENT_USER,
   GET_PROFILES,
   LIKE_HIGHLIGHT,
-  ADD_PROMOS,
+  ADD_PROMO,
   LEAVE_CHATROOM
 } from './types'
 
@@ -98,7 +98,7 @@ export const addVenue = (venueData, history) => async dispatch => {
     dispatch(setProfileLoading())
     const res = await axios.post('/api/profile/venues', venueData)
     dispatch({
-      type: ADD_PROMOS,
+      type: ADD_PROMO,
       payload: res.data
     })
     history.push('/dashboard')
@@ -138,7 +138,7 @@ export const addDjpool = (djpoolData, history) => async dispatch => {
     dispatch(setProfileLoading())
     const res = await axios.post('/api/profile/djpools', djpoolData)
     dispatch({
-      type: ADD_PROMOS,
+      type: ADD_PROMO,
       payload: res.data
     })
     history.push('/dashboard')
@@ -156,7 +156,7 @@ export const addStore = (storeData, history) => async dispatch => {
     dispatch(setProfileLoading())
     const res = await axios.post('/api/profile/stores', storeData)
     dispatch({
-      type: ADD_PROMOS,
+      type: ADD_PROMO,
       payload: res.data
     })
     history.push('/dashboard')
@@ -174,7 +174,7 @@ export const addPerk = (perkData, history) => async dispatch => {
     dispatch(setProfileLoading())
     const res = await axios.post('/api/profile/perks', perkData)
     dispatch({
-      type: ADD_PROMOS,
+      type: ADD_PROMO,
       payload: res.data
     })
     history.push('/dashboard')
@@ -192,7 +192,7 @@ export const addBrand = (brandData, history) => async dispatch => {
     dispatch(setProfileLoading())
     const res = await axios.post('/api/profile/brands', brandData)
     dispatch({
-      type: ADD_PROMOS,
+      type: ADD_PROMO,
       payload: res.data
     })
     history.push('/dashboard')

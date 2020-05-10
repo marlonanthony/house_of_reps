@@ -22,8 +22,7 @@ const PromoContent = ({
         <h3>DJ Pools</h3>
         <div>
           {promo &&
-            promo.promos &&
-            promo.promos.map(
+            promo.map(
               val =>
                 val.type === 'djpools' && (
                   <div key={val._id} className="ad_img_btn_container">
@@ -45,8 +44,7 @@ const PromoContent = ({
         <h3>Certified Stores</h3>
         <div>
           {promo &&
-            promo.promos &&
-            promo.promos.map(
+            promo.map(
               val =>
                 val.type === 'stores' && (
                   <div key={val._id} className="ad_img_btn_container">
@@ -67,8 +65,7 @@ const PromoContent = ({
         <h3>Perks</h3>
         <div>
           {promo &&
-            promo.promos &&
-            promo.promos.map(
+            promo.map(
               val =>
                 val.type === 'perks' && (
                   <div key={val._id} className="ad_img_btn_container">
@@ -89,8 +86,7 @@ const PromoContent = ({
         <h3>Brands</h3>
         <div>
           {promo &&
-            promo.promos &&
-            promo.promos.map(
+            promo.map(
               val =>
                 val.type === 'brands' && (
                   <div key={val._id} className="ad_img_btn_container">
@@ -116,7 +112,7 @@ PromoContent.propTypes = {
   deleteDjpool: PropTypes.func.isRequired,
   deletePerk: PropTypes.func.isRequired,
   deleteStore: PropTypes.func.isRequired,
-  promo: PropTypes.object.isRequired
+  promo: PropTypes.array.isRequired
 }
 
 export default connect(
