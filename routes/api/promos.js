@@ -27,7 +27,9 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      if (!req.user.isAdmin) return res.status(401).json({unauthorized: 'Unauthorized!'})
+      if (!req.user.isAdmin) {
+        return res.status(401).json({unauthorized: 'Unauthorized!'})
+      }
       const { errors, isValid } = validatePromoInput(req.body)
       if (!isValid) return res.status(400).json(errors)
       const newPromo = new Promo({
