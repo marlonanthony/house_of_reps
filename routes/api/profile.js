@@ -4,9 +4,6 @@ const passport = require('passport')
 // Load Validation
 const validateProfileInput = require('../../validation/profile')
 const validateVenuesInput = require('../../validation/venues')
-const validateDjpoolsInput = require('../../validation/djpools')
-const validatePerksInput = require('../../validation/djpools')
-const validateBrandsInput = require('../../validation/djpools')
 
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')

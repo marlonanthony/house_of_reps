@@ -1,7 +1,7 @@
 const Validator = require('validator') 
 const isEmpty = require('./is-empty')
 
-module.exports = function validateDjpoolsInput(data) {
+module.exports = function validatePromoInput(data) {
   const errors = {} 
   
   data.image = !isEmpty(data.image) ? data.image : '' 

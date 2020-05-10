@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
 const Promo = require('../../models/Promo')
-const validatePromoInput = require('../../validation/djpools')
+const validatePromoInput = require('../../validation/promo')
 
 
 // @route   GET api/promos
