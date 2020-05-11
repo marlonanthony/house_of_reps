@@ -26,9 +26,11 @@ const PostFeedPopup = ({ showPopup, setShowPopup, profile, user }) => (
           <span>{user.name}</span>
         </Link>
         <p className="popup_bio">{profile.bio}</p>
-        <a href={profile.website} target="_blank" rel="noopener noreferrer">
-          <p>{profile.website && profile.website}</p>
-        </a>
+        {profile.website && (
+          <a href={profile.website} target="_blank" rel="noopener noreferrer">
+            <p>website</p>
+          </a>
+        )}
       </div>
     </div>
   </div>

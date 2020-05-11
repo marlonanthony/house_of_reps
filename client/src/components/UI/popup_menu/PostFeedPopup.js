@@ -35,13 +35,15 @@ export default function PostFeedPopup(props) {
                 {post.name}
               </span>
               <small className="popup_bio">{profile.bio}</small>
-              <a
-                href={profile.website}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p>{profile.website}</p>
-              </a>
+              {profile.website && (
+                <a
+                  href={profile.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p>website</p>
+                </a>
+              )}
             </div>
           )
       )
@@ -68,13 +70,15 @@ export default function PostFeedPopup(props) {
                 {comment.name}
               </span>
               <small className="popup_bio">{profile.bio}</small>
-              <a
-                href={profile.website}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p>{profile.website}</p>
-              </a>
+              {profile.website && (
+                <a
+                  href={profile.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p>website</p>
+                </a>
+              )}
             </div>
           )
       )
