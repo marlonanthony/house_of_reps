@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
 const PostSchema = new Schema({
   user: {
@@ -180,4 +179,4 @@ const PostSchema = new Schema({
 
 PostSchema.index({ text: 'text' })
 
-module.exports = mongoose.model('post', PostSchema)
+module.exports = model('post', PostSchema)

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
 const ChatRoomSchema = new Schema({
   count: {
@@ -92,4 +91,4 @@ const ChatRoomSchema = new Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('chatroom', ChatRoomSchema)
+module.exports = model('chatroom', ChatRoomSchema)

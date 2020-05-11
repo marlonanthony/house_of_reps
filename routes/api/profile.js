@@ -20,7 +20,7 @@ router.get(
       const errors = {}
       const profile = await Profile.findOne({ user: req.user.id }).populate(
         'user',
-        ['name', 'avatar']
+        ['name', 'avatar', 'email']
       )
 
       if (!profile) {
@@ -43,7 +43,7 @@ router.get(
   async (req, res) => {
     try {
       const errors = {}
-      const profiles = await Profile.find().populate('user', ['name', 'avatar'])
+      const profiles = await Profile.find().populate('user', ['name', 'avatar', 'email'])
 
       if (profiles && !profiles.length) {
         errors.noprofile = 'No profiles yet'
@@ -55,15 +55,12 @@ router.get(
           _id: profile.user._id,
           avatar: profile.user.avatar,
           name: profile.user.name,
+          email: profile.user.email,
           stageName: profile.stageName,
           handle: profile.handle,
           bio: profile.bio,
           website: profile.website,
-          venues: profile.venues && profile.venues,
-          djpools: profile.djpools,
-          brands: profile.brands,
-          perks: profile.perks,
-          stores: profile.stores
+          venues: profile.venues && profile.venues
         }
       })
 
@@ -85,7 +82,7 @@ router.get(
       const errors = {}
       const profile = await Profile.findOne({
         handle: req.params.handle
-      }).populate('user', ['name', 'avatar'])
+      }).populate('user', ['name', 'avatar', 'email'])
 
       if (!profile) {
         errors.noprofile = 'There is no profile for this user'
@@ -112,7 +109,7 @@ router.get(
           { stageName: { $regex: input, $options: 'i' }},
           { location: { $regex: input, $options: 'i' }}
         ]
-      }).populate('user', ['name', 'avatar'])
+      }).populate('user', ['name', 'avatar', 'email'])
       const returnedProfiles = profiles && profiles.map(profile => {
         return {
           avatar: profile.user.avatar,
@@ -141,7 +138,7 @@ router.get(
       const errors = {}
       const profile = await Profile.findOne({
         user: req.params.user_id
-      }).populate('user', ['name', 'avatar'])
+      }).populate('user', ['name', 'avatar', 'email'])
 
       if (!profile) {
         errors.noprofile = 'There is no profile for this user'

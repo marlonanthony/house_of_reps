@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
 const TokenSchema = new mongoose.Schema({
   _userId: {
@@ -20,4 +19,4 @@ const TokenSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('token', TokenSchema)
+module.exports = model('token', TokenSchema)
