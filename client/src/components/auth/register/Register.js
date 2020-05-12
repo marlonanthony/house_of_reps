@@ -16,7 +16,8 @@ const Register = ({ auth, registerUser, ...props }) => {
     email: '',
     handle: '',
     password: '',
-    password2: ''
+    password2: '',
+    code: ''
   })
 
   const [avatar, setAvatar] = useState(''),
@@ -39,7 +40,8 @@ const Register = ({ auth, registerUser, ...props }) => {
       handle: values.handle,
       avatar,
       password: values.password,
-      password2: values.password2
+      password2: values.password2,
+      code: values.code
     }
     registerUser(newUser, props.history)
   }
@@ -98,6 +100,14 @@ const Register = ({ auth, registerUser, ...props }) => {
             value={values.password2}
             onChange={setValues}
             error={errors.password2}
+          />
+          <Input
+            type="password"
+            name="code"
+            placeholder="Enter Secret Code"
+            value={values.code}
+            onChange={setValues}
+            error={errors.code}
           />
           <SubmitButton />
         </form>
