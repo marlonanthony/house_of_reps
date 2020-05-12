@@ -2,12 +2,14 @@ const router = require('express').Router()
 const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
 
 const keys = require('../../config/keys')
 const Mailer = require('../../services/Mailer')
 const updateTemplate = require('../../services/email_templates/updateTemplate')
 const validateRegisterInput = require('../../validation/register')
 const validateLoginInput = require('../../validation/login')
+const validateUpdateInput = require('../../validation/update_user')
 const User = require('../../models/User')
 const Token = require('../../models/Token')
 
@@ -178,11 +180,45 @@ router.post('/login', async (req, res) => {
         }
       )
     } else {
-      errors.password = 'Password incorrect'
+      errors.password = 'Password Incorrect'
       return res.status(401).json(errors)
     }
   } catch (err) {
     throw err
+  }
+})
+
+// @route     PUT api/users/update
+// @desc      Update user info (password for now)
+// @access    Private
+router.put(
+  '/update', 
+  passport.authenticate('jwt', { session: false }),
+  async(req, res) => {
+  try {
+    const { errors, isValid } = validateUpdateInput(req.body)
+    if (!isValid) return res.status(400).json(errors)
+    const user = await User.findById(req.user.id)
+    if (!user) {
+      errors.email = 'User not found'
+      return res.status(404).json(errors)
+    }
+    const isMatch = await bcrypt.compare(req.body.password, user.password)
+    if (!isMatch) {
+      errors.password = 'Password Incorrect'
+      return res.status(401).json(errors)
+    }
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(req.body.new_password, salt, async (error, hash) => {
+        if (error) throw error
+        user.password = hash
+        await user.save()
+        return res.json({ success: true })
+      })
+    })
+    
+  } catch (err) {
+    res.status(400).json(err)
   }
 })
 
