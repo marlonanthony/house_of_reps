@@ -50,7 +50,7 @@ module.exports = function validateRegisterInput(data) {
   if(!Validator.equals(data.code, keys.code)){
     errors.code = 'Wrong code pleb!'
   }
-  if(!data.code.length >= 1){
+  if(Validator.isEmpty(data.code)){
     errors.code = 'Enter Secret Code'
   }
 
