@@ -59,7 +59,12 @@ const CommentButtons = ({
         <button
           title="Delete comment"
           className="postfeed_buttons delete"
-          onClick={() => deleteComment(postId, comment._id)}
+          onClick={() => {
+            let res = window.confirm(
+              'Are you sure you want to delete this comment?'
+            )
+            if (res) deleteComment(postId, comment._id)
+          }}
         >
           <i className="fas fa-times icons" />
         </button>

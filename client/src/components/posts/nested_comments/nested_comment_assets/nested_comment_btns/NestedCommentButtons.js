@@ -48,9 +48,12 @@ const NestedCommentButtons = ({
       <button
         title="delete comment"
         className="postfeed_buttons delete"
-        onClick={() =>
-          deleteNestedComment(postId, comment._id, nestedComment._id)
-        }
+        onClick={() => {
+          let res = window.confirm(
+            'Are you sure you want to delete this comment?'
+          )
+          if (res) deleteNestedComment(postId, comment._id, nestedComment._id)
+        }}
       >
         <i className="fas fa-times icons" />
       </button>

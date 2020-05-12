@@ -55,7 +55,8 @@ class PostItem extends Component {
   }
 
   onDeleteClick = id => {
-    this.props.deletePost(id)
+    let res = window.confirm('Are you sure you want to delete this post?')
+    if (res) this.props.deletePost(id)
   }
 
   onLikeClick = id => {
