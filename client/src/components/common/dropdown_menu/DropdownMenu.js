@@ -51,7 +51,7 @@ const DropdownMenu = ({
   const authLinks = (
     <div>
       <Link to="/dashboard" onClick={scrollToTop}>
-        Dashboard
+        Settings
       </Link>
       <Link to={`/profile/${user.handle}`} onClick={scrollToTop}>
         Profile
