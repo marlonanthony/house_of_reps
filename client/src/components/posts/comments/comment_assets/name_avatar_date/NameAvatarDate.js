@@ -35,7 +35,7 @@ const NameAvatarDate = ({
       </div>
       <i
         className="material-icons post_item_more_vert"
-        onClick={moreVertClicked}
+        onClick={e => moreVertClicked(comment.user)}
       >
         more_vert
       </i>

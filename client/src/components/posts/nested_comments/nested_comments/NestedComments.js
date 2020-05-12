@@ -20,10 +20,14 @@ const NestedComments = ({
 }) => {
   const [editPost, setEditPost] = useState(false)
 
-  const moreVertClicked = () => {
-    let res = window.confirm('Edit post?')
-    if (res) setEditPost(true)
-    else setEditPost(false)
+  const moreVertClicked = nestedCommentID => {
+    if (nestedCommentID !== auth.user.id) {
+      alert('Wrong password peasant!')
+    } else {
+      let res = window.confirm('Edit post?')
+      if (res) setEditPost(true)
+      else setEditPost(false)
+    }
   }
 
   const toggleEditPost = () => setEditPost(!editPost)

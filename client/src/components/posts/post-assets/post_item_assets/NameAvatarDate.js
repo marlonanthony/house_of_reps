@@ -33,7 +33,7 @@ export default function NameAvatarDate({
       </div>
       <i
         className="material-icons post_item_more_vert"
-        onClick={moreVertClicked}
+        onClick={e => moreVertClicked(post.user)}
       >
         more_vert
       </i>

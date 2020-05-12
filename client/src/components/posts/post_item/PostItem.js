@@ -102,10 +102,14 @@ class PostItem extends Component {
       showComments: !prevState.showComments
     }))
 
-  moreVertClicked = () => {
-    let res = window.confirm('Edit post?')
-    if (res === true) this.setState({ editPost: true })
-    else this.setState({ editPost: false })
+  moreVertClicked = postId => {
+    if (postId !== this.props.auth.user.id) {
+      alert('Wrong password peasant!')
+    } else {
+      let res = window.confirm('Edit post?')
+      if (res === true) this.setState({ editPost: true })
+      else this.setState({ editPost: false })
+    }
   }
 
   toggleEditPost = () =>

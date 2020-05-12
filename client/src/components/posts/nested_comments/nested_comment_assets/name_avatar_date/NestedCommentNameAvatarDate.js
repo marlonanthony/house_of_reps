@@ -30,7 +30,7 @@ const NestedCommentNameAvatarDate = ({
         </p>
         <i
           className="material-icons post_item_more_vert"
-          onClick={moreVertClicked}
+          onClick={e => moreVertClicked(nestedComment.user)}
         >
           more_vert
         </i>

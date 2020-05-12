@@ -62,10 +62,14 @@ class CommentItem extends Component {
     this.props.history.push(`/profile/${handle}`)
   }
 
-  moreVertClicked = () => {
-    let res = window.confirm('Edit post?')
-    if (res) this.setState({ editPost: true })
-    else this.setState({ editPost: false })
+  moreVertClicked = commentID => {
+    if (commentID !== this.props.auth.user.id) {
+      alert('Wrong password peasant!')
+    } else {
+      let res = window.confirm('Edit post?')
+      if (res) this.setState({ editPost: true })
+      else this.setState({ editPost: false })
+    }
   }
 
   toggleEditPost = () =>
