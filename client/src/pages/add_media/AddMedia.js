@@ -23,11 +23,30 @@ const AddMedia = ({ addVenue, ...props }) => {
   const onPaste = e => {
     let clipboardData = e.clipboardData || window.clipboardData
     let urlData = `${'' + clipboardData.getData('Text')}`
-    let parsedUrl = urlData.slice(7, -10)
-    parsedUrl = parsedUrl
-      .match(/(?:www|https?)[^\s]*/g)
-      .toString()
-      .slice(0, -1)
+    let parsedUrl
+    if (!urlData.includes('twitch')) {
+      parsedUrl = urlData
+        .slice(7, -10)
+        .match(/(?:www|https?)[^\s]*/g)
+        .toString()
+        .slice(0, -1)
+    } else {
+      const arr = []
+      const array = urlData.split('')
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] === '>' && array[i - 1] === 'e' && array[i - 2] === 'm') {
+          arr.push(array[i])
+          break
+        }
+        arr.push(array[i])
+      }
+      parsedUrl = arr
+        .join('')
+        .slice(7, -10)
+        .match(/(?:www|https?)[^\s]*/g)
+        .toString()
+        .slice(0, -1)
+    }
     setVideo(parsedUrl)
   }
 
