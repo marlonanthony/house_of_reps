@@ -33,6 +33,20 @@ export const loginUser = userData => async dispatch => {
   }
 }
 
+// Update user info (password for now)
+export const updateUserInfo = (userData, history) => async dispatch => {
+  try {
+    await axios.put('/api/users/update', userData)
+    alert('Your password has been updated')
+    history.push('/dashboard')
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  }
+}
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {

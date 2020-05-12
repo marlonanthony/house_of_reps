@@ -24,6 +24,7 @@ import Notifications from './pages/notifications/Notifications'
 import FixedHighlights from './components/UI/uniterrupted_highlights/FixedHighlights'
 import Hashtag from './components/hashtags/Hashtag'
 import Chatroom from './components/chatrooms/Chatroom'
+import EditAccount from './components/dashboard_content/edit_account/EditAccount'
 import './App.css'
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
             component={CreateProfile}
           />
           <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+          <PrivateRoute exact path="/edit-account" component={EditAccount} />
           <PrivateRoute exact path="/add-venue" component={AddMedia} />
           <PrivateRoute
             exact

@@ -8,6 +8,10 @@ const ProfileActions = ({ user }) => (
       <i className="fab fa-black-tie" />
       <span>Edit Profile</span>
     </Link>
+    <Link to="/edit-account">
+      <i className="fas fa-user-edit" />
+      <span>Edit Account</span>
+    </Link>
     <Link to="/add-venue">
       <i className="fas fa-clipboard" />
       <span>Add Media</span>

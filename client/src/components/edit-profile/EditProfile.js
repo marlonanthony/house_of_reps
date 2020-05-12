@@ -131,6 +131,8 @@ const EditProfile = ({
           uploadedFileCloudinaryUrl={uploadedFileCloudinaryUrl}
           uploadedFile={uploadedFile}
         />
+        <br />
+        <small className="info">Upload a new avatar?</small>
         <form onSubmit={onSubmit}>
           <Input
             placeholder="A man has no name"
