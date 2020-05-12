@@ -104,7 +104,7 @@ const Register = ({ auth, registerUser, ...props }) => {
           <Input
             type="password"
             name="code"
-            placeholder="Enter Secret Code"
+            placeholder="Enter Secret Code (check your email)"
             value={values.code}
             onChange={setValues}
             error={errors.code}

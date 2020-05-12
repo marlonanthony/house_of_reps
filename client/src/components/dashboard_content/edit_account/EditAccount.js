@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { updateUserInfo } from '../../../actions/authActions'
 import Input from '../../common/inputs/Input'
@@ -9,7 +10,7 @@ import SubmitButton from '../../UI/buttons/submit-btn/SubmitButton'
 import BackButton from '../../UI/buttons/back-btn/BackButton'
 import './EditAccount.css'
 
-function EditAccount(props) {
+function EditAccount({ updateUserInfo, history, ...props }) {
   const [values, setValues] = useForm({
     password: '',
     new_password: '',
@@ -21,28 +22,25 @@ function EditAccount(props) {
     setErrors(props.errors)
   }, [props.errors])
 
-  console.log(props.errors)
+  const onSubmit = e => {
+    e.preventDefault()
+    const userData = {
+      password: values.password,
+      new_password: values.new_password,
+      confirm_new_password: values.confirm_new_password
+    }
+    let res = window.confirm(
+      `Are you sure you want to change your password to ${userData.new_password}?`
+    )
+    if (res) updateUserInfo(userData, history)
+  }
+
   return (
     <section id="edit-account">
       <div className="createprofilecontainer">
         <BackButton />
         <h2>Edit Password</h2>
-        <form
-          onSubmit={e => {
-            e.preventDefault()
-            const userData = {
-              password: values.password,
-              new_password: values.new_password,
-              confirm_new_password: values.confirm_new_password
-            }
-            let res = window.confirm(
-              'Are you sure you want to change your password to ' +
-                userData.new_password +
-                '?'
-            )
-            if (res) props.updateUserInfo(userData, props.history)
-          }}
-        >
+        <form onSubmit={onSubmit}>
           <Input
             type="password"
             name="password"
@@ -72,6 +70,12 @@ function EditAccount(props) {
       </div>
     </section>
   )
+}
+
+EditAccount.propTypes = {
+  updateUserInfo: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
