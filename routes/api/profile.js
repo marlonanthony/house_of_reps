@@ -288,13 +288,7 @@ router.post(
             { avatar: req.body.avatar },
             { new: true }
           )
-          user.save()
-          // update users profile
-          Profile.findOneAndUpdate(
-            { user: req.user.id },
-            { $set: profileFields },
-            { new: true }
-          ).then(profileResponse => res.json(profileResponse))
+          await user.save()
           // update past posts avatar
           const posts = await Post.find({ user: req.user.id })
           posts.forEach(p => {
@@ -309,6 +303,22 @@ router.post(
                 comment.avatar = req.body.avatar
               post.save().catch(err => console.log(err))
             })
+          })
+          // update users profile
+          Profile.findOneAndUpdate(
+            { user: req.user.id },
+            { $set: profileFields },
+            { new: true }
+          ).then(profileResponse => {
+            const savedUser = {
+              id: user._id,
+              name: user.name,
+              email: user.email,
+              avatar: user.avatar,
+              handle: user.handle,
+              isAdmin: user.isAdmin
+            }
+            res.json({ profileResponse, savedUser })
           })
         } else {
           // Create
