@@ -36,6 +36,8 @@ export default function Perks({ perks }) {
             perks[currentIndex].url &&
             perks[currentIndex].url
           }
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             src={

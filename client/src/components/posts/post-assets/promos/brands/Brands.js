@@ -36,6 +36,8 @@ export default function Brands({ brands }) {
             brands[currentIndex].url &&
             brands[currentIndex].url
           }
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             src={
