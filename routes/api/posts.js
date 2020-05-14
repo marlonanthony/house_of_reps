@@ -61,7 +61,12 @@ router.get(
       limit: parseInt(req.query.limit) || 10
     }
     try {
-      const posts = await Post.find({ handle: req.params.handle }) // , date: { $gte: new Date('2019-01-01') }
+      const posts = await Post.find({ 
+        $or: [
+          { handle: req.params.handle },
+          { text: { $regex: `@${req.params.handle}`, $options: 'i' } } 
+        ]
+      })
         .sort({ date: -1 })
         .skip(pageOptions.page * pageOptions.limit)
         .limit(pageOptions.limit)
