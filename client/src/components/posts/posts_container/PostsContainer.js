@@ -7,8 +7,7 @@ export default function PostsContainer({
   posts,
   profiles,
   loading,
-  fetchMore,
-  showsPreview
+  fetchMore
 }) {
   if (!posts || !profiles || loading) {
     return <Spinner />
@@ -22,11 +21,7 @@ export default function PostsContainer({
         hasMore={true}
         loader={null}
       >
-        <PostFeed
-          showPreview={showsPreview}
-          posts={posts}
-          profiles={profiles}
-        />
+        <PostFeed posts={posts} profiles={profiles} />
       </InfinteScroll>
     </div>
   )

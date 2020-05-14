@@ -30,7 +30,6 @@ import './Posts.css'
 
 class Posts extends Component {
   state = {
-    showPreview: false,
     showLikes: false,
     showHashtags: false,
     hashtag: '',
@@ -120,13 +119,7 @@ class Posts extends Component {
   render() {
     const { posts } = this.props.post,
       { profile, profiles } = this.props.profile,
-      {
-        showPreview,
-        showHashtags,
-        hashtag,
-        showLikes,
-        onlineCount
-      } = this.state,
+      { showHashtags, hashtag, showLikes, onlineCount } = this.state,
       { user } = this.props.auth,
       { promo, showHighlight, toggleHighlight } = this.props
 
@@ -140,7 +133,7 @@ class Posts extends Component {
             hashtag={hashtag}
             showHashtags={showHashtags}
           />
-          <PostForm showPreview={showPreview} />
+          <PostForm />
           <SearchBar profiles={profiles} />
           <Buttons
             showPostByHashtag={this.showPostByHashtag}
@@ -161,7 +154,6 @@ class Posts extends Component {
             posts={posts}
             profiles={profiles}
             fetchMore={this.fetchMore}
-            showsPreview={showPreview}
           />
           <HighlightsContainer
             profiles={profiles}
