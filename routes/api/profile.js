@@ -163,9 +163,9 @@ router.get(
       profile.notifications.forEach((notification, i, array) => {
         if (
           notification.seen &&
-          Math.abs(new Date(notification.date) - new Date()) > 604800000
+          Math.abs(new Date(notification.date) - new Date()) > 2592000000
+          // Delete notification if seen and > one month
         ) {
-          // 1 week
           array.splice(notification[i], 1)
         }
       })
