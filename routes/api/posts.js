@@ -139,6 +139,24 @@ router.post(
         media: req.body.media,
       })
       const post = await newPost.save()
+
+      // Provide mentioned users with a notification
+      const mentions = req.body.text.match(/@[^\W_]*/g).map(val => val.slice(1))
+      const profiles = await Profile.find({ handle: { $in: mentions } })
+      profiles.forEach(async profile => {
+        profile.notifications.push({
+          user: req.user.id,
+          name: req.user.name,
+          avatar: req.user.avatar,
+          postImage: post.media,
+          postText: post.text,
+          postId: post._id,
+          post,
+          message: `${req.user.name} mentioned you in a post`
+        })
+        await profile.save()
+      })
+      
       return res.status(201).json(post)
     } catch (err) {
       res.json(err)
