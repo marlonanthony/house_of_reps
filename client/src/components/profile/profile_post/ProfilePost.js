@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import InfinteScroll from 'react-infinite-scroll-component'
+import PostForm from '../../posts/post_form/PostForm'
 
 import {
   getProfilePosts,
@@ -32,6 +33,8 @@ const ProfilePost = ({
   const { posts } = post
   return (
     <div id="profile-feed">
+      <PostForm />
+      <br />
       <InfinteScroll
         dataLength={posts.length}
         next={() => setStart(prev => prev + 1)}
