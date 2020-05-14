@@ -105,7 +105,7 @@ class PostItem extends Component {
 
   moreVertClicked = postId => {
     if (postId !== this.props.auth.user.id) {
-      alert('Wrong password peasant!')
+      alert("You didn't say the magic word!")
     } else {
       let res = window.confirm('Edit post?')
       if (res === true) this.setState({ editPost: true })
