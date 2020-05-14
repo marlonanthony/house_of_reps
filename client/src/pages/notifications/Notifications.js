@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { getPost } from '../../actions/postActions'
 import ShowPost from './ShowPost'
 import NotificationList from './NotificationList'
+import { youTubeURL } from '../../utils/youtube_url/youTubeUrl'
 import './Notifications.css'
 
 const Notifications = ({ getPost, ...props }) => {
@@ -28,13 +29,7 @@ const Notifications = ({ getPost, ...props }) => {
 
   const { post } = props.post
   let youtubeUrl = post && post.url
-
-  youtubeUrl && youtubeUrl.includes('https://www.youtube' || 'https://youtu.be')
-    ? (youtubeUrl = post.url
-        .replace(/youtu\.be/gi, 'www.youtube.com')
-        .replace(/watch\?v=/gi, 'embed/')
-        .replace(/&feature=www\.youtube\.com/gi, ''))
-    : (youtubeUrl = null)
+  youtubeUrl = youTubeURL(youtubeUrl)
 
   return (
     <div>
