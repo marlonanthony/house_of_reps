@@ -1,9 +1,9 @@
-# House of Reps
+# Senate DJs
 ## Social network for DJs
 
 [Website](https://house.senatedjs.com/)
 
-![House of Reps Landing page background image](client/src/img/dj.jpg)
+![Senate DJs Landing page background image](client/src/img/dj.jpg)
 
 ## Feed
 
@@ -19,7 +19,7 @@ Like every page in this app, things will look differently depending on the users
 1. Search Members (Might remove now that I've added the 'Reps' page which you can navigate to from the hamburger menu)
 1. Recently uploaded media
     * Displays a single upload (video/song/playlist) from every user ordered by recency
-    * If the user clicks on the 'House of Reps' icon in the bottom right of the uploaded media, an uninterrupted modal will appear that will allow the user to navigate different pages without their music/video experience being interrupted.
+    * If the user clicks on the 'Senate DJs' icon in the bottom right of the uploaded media, an uninterrupted modal will appear that will allow the user to navigate different pages without their music/video experience being interrupted.
 1. Promotional section (Stores, Brands, Perks, Music Pools)
 1. Speakeasy
     * Real time chat messenger that doesn't save to a database. Messages only exist in memory; hence, the name speakeasy.
@@ -84,6 +84,6 @@ When landing on the profile page depending on whether you're on mobile, tablet, 
 1. Posts
     * Created posts
 
-## Reps
+## Members
 
 One of the newer pages to the app. For now it's just a list of all members. 
