@@ -80,6 +80,9 @@ When landing on the profile page depending on whether you're on mobile, tablet, 
 1. Embedded Media
     * YouTube
     * Soundcloud
+    * Twitch
+    * Mixcloud
+    * Facebook videos, etc.
 
 1. Posts
     * Created posts
