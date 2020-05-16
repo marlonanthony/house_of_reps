@@ -4,19 +4,20 @@ import PropTypes from 'prop-types'
 
 import { getProfiles, searchProfiles } from '../../actions/profileActions'
 import ProfileItem from './ProfileItem'
+import useDebounce from '../../components/common/hooks/useDebounce'
 import './Profiles.css'
 
 const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
   const [userInput, setUserInput] = useState(''),
-    [toggleSearch, setToggleSearch] = useState(false)
+    debouncedSearchTerm = useDebounce(userInput, 500)
 
   useEffect(() => {
-    if (toggleSearch && /\S/.test(userInput)) {
-      searchProfiles(userInput)
+    if (/\S/.test(debouncedSearchTerm)) {
+      searchProfiles(debouncedSearchTerm)
     } else {
       getProfiles()
     }
-  }, [userInput, toggleSearch, searchProfiles, getProfiles])
+  }, [debouncedSearchTerm, searchProfiles, getProfiles])
 
   const { profiles } = props.profile
 
@@ -31,18 +32,8 @@ const Profiles = ({ getProfiles, searchProfiles, ...props }) => {
             onChange={e => setUserInput(e.target.value)}
             placeholder="search"
           />
-          <button
-            className="reps-search-btn"
-            type="button"
-            onClick={() => setToggleSearch(prev => !prev)}
-          >
-            <i
-              className={
-                toggleSearch
-                  ? 'fas fa-search-minus reps-search-icon toggle-color'
-                  : 'fas fa-search reps-search-icon'
-              }
-            />
+          <button className="reps-search-btn" type="button">
+            <i className={'fas fa-search reps-search-icon'} />
           </button>
         </div>
         <div className="profiles_container">
