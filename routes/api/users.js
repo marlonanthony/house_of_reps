@@ -93,9 +93,13 @@ router.post('/register', async (req, res) => {
     }
 
     const user = await User.findOne({ email })
-
     if (user) {
       errors.email = 'Email already exists'
+      return res.status(400).json(errors)
+    }
+    const handleTaken = await User.findOne({ handle })
+    if (handleTaken) {
+      errors.handle = 'Handle taken'
       return res.status(400).json(errors)
     }
 
