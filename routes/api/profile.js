@@ -207,7 +207,7 @@ router.post(
     const { errors, isValid } = validateProfileInput(req.body)
 
     if (!isValid) return res.status(404).json(errors)
-
+    console.log(req.body)
     // Get fields
     const profileFields = {}
     profileFields.user = req.user.id
@@ -220,6 +220,7 @@ router.post(
       let url = (`http://${req.body.website}`).trim()
       profileFields.website = url
     }
+    if (!req.body.website) profileFields.website = ''
     if (req.body.location) profileFields.location = req.body.location
     if (req.body.bio) profileFields.bio = req.body.bio
     if (req.body.venues) profileFields.venues = req.body.venues
@@ -291,18 +292,18 @@ router.post(
           await user.save()
           // update past posts avatar
           const posts = await Post.find({ user: req.user.id })
-          posts.forEach(p => {
+          posts.forEach(async p => {
             p.avatar = req.body.avatar
-            p.save()
+            await p.save()
           })
           // update past posts comments avatar
           const allPosts = await Post.find()
-          allPosts.forEach(post => {
+          allPosts.forEach(async post => {
             post.comments.forEach(comment => {
               if (String(comment.user) === req.user.id)
                 comment.avatar = req.body.avatar
-              post.save().catch(err => console.log(err))
             })
+            await post.save()
           })
           // update users profile
           Profile.findOneAndUpdate(
@@ -319,7 +320,7 @@ router.post(
               isAdmin: user.isAdmin
             }
             res.json({ profileResponse, savedUser })
-          })
+          }).catch(err => res.status(404).json(err))
         } else {
           // Create
           // Check if handle exists
