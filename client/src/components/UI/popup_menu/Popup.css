@@ -73,6 +73,11 @@
   transition: opacity .5s ease-in;
 }
 
+.likespopupwrapper {
+  overflow-y: scroll;
+  width: 90%;
+}
+
 .likespopupavatarandname {
   display: flex;
   justify-content: flex-start;
