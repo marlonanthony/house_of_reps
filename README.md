@@ -14,6 +14,7 @@ Like every page in this app, things will look differently depending on the users
     * Once a user clicks on the textarea they'll be presented with three options:
         1. Add photo
         1. Add emoji
+        1. Add post tag
         1. Submit button
     * If you paste a link, a preview will be presented with accompanied metadata (depending on the website).
 1. Search Members (Might remove now that I've added the 'Reps' page which you can navigate to from the hamburger menu)
@@ -75,7 +76,6 @@ When landing on the profile page depending on whether you're on mobile, tablet, 
     * Bio
     * Location
     * Social Links
-    * Badges (beta)
 
 1. Embedded Media
     * YouTube
@@ -85,8 +85,9 @@ When landing on the profile page depending on whether you're on mobile, tablet, 
     * Facebook videos, etc.
 
 1. Posts
+    * Post Form
     * Created posts
 
 ## Members
 
-One of the newer pages to the app. For now it's just a list of all members. 
+One of the newer pages to the app. For now it's a list of all members, displaying their name, avatar, bio, and most recent highlight (embedded media). Using the input field at the top of the page, users can filter members via name, handle, or location.
