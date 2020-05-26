@@ -86,11 +86,17 @@ class PostForm extends Component {
         profile.profiles.forEach(person => {
           if (
             ((person.handle &&
-              person.handle.toLowerCase().includes(foundHandle)) ||
+              person.handle
+                .toLowerCase()
+                .includes(foundHandle.toLowerCase())) ||
               (person.name &&
-                person.name.toLowerCase().includes(foundHandle)) ||
+                person.name
+                  .toLowerCase()
+                  .includes(foundHandle.toLowerCase())) ||
               (person.stageName &&
-                person.stageName.toLowerCase().includes(foundHandle))) &&
+                person.stageName
+                  .toLowerCase()
+                  .includes(foundHandle.toLowerCase()))) &&
             arr.length < 5
           ) {
             arr.push(person.handle)

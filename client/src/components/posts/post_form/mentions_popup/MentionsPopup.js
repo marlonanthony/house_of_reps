@@ -4,10 +4,10 @@ export default function MentionsPopup({
   matchedMentions,
   mentionsPopupHandler
 }) {
-  return (
+  return matchedMentions.length ? (
     <div className="mention_popup_container">
-      {(matchedMentions.length &&
-        matchedMentions.map((person, i) => (
+      <div className="mention_subcontainer">
+        {matchedMentions.map((person, i) => (
           <p
             className="mention_popup"
             key={i}
@@ -15,8 +15,8 @@ export default function MentionsPopup({
           >
             @{person}
           </p>
-        ))) ||
-        null}
+        ))}
+      </div>
     </div>
-  )
+  ) : null
 }
