@@ -32,18 +32,7 @@
   font-size: 13px;
   position: relative;
 }
-
-#showmore-reps-bio {
-  position: absolute;
-  right: 0;
-  color: var(--reps-blue);
-  cursor: pointer;
-  opacity: 0.8;
-}
-#showmore-reps-bio:hover {
-  opacity: 1;
-}
-#showless-reps-bio {
+#showmoreless-reps-bio {
   position: absolute;
   right: 0;
   top: -20px;
@@ -51,7 +40,7 @@
   cursor: pointer;
   opacity: 0.8;
 }
-#showless-reps-bio:hover {
+#showmoreless-reps-bio:hover {
   opacity: 1;
 }
 #reps-card-iframe {

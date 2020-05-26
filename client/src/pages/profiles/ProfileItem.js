@@ -16,16 +16,16 @@ const ProfileItem = ({ profile }) => {
             @{profile.handle}
           </Link>
         )}
-        {profile.bio && profile.bio.length > 119 ? (
+        {profile.bio && profile.bio.length > 120 ? (
           showMore ? (
             <p id="reps-page-bio" onClick={() => setShowMore(prev => !prev)}>
               {profile.bio}
-              <span id="showless-reps-bio">say less</span>
+              <span id="showmoreless-reps-bio">say less</span>
             </p>
           ) : (
             <p id="reps-page-bio" onClick={() => setShowMore(prev => !prev)}>
-              {profile.bio.slice(0, 119)}...
-              <span id="showmore-reps-bio">show more</span>
+              {profile.bio.slice(0, 120)}...
+              <span id="showmoreless-reps-bio">show more</span>
             </p>
           )
         ) : (
