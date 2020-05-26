@@ -76,7 +76,6 @@ class PostForm extends Component {
     })
 
     // match mentions
-    console.log(profile.profiles[0])
     let foundMatch = e.target.value.match(/@\w+$/i)
     if (foundMatch) {
       let foundHandle = foundMatch[0].slice(1)
