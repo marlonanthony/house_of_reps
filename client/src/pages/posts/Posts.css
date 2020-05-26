@@ -206,17 +206,20 @@
     display: flex;
     justify-content: space-between;
     border-radius: 3px;
-    border: .5px solid var(--border-color);
+    /* border: .5px solid var(--border-color); */
     z-index: 2;
   }
   .searchbar > div {
     position: absolute; 
     top: 100%; 
     right: 0px;
+    height: 269px;
+    width: 250px;
+    overflow-y: scroll;
   }
   .searchbar_items {
     display: flex;
-    width: 250px; 
+    width: 100%; 
     padding: 10px;
     font-size: 13px;
     color: var(--text-color);
@@ -224,7 +227,7 @@
   }
   .searchbar_items:hover {
     color: var(--secondary-color);
-    background: var(--primary-color);
+    background: var(--reps-blue);
     cursor: pointer;
   }
   .searchbar_input {

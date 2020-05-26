@@ -34,11 +34,14 @@ const SearchBar = ({ profiles }) => {
         <div>
           {profiles &&
             profiles.map(profile =>
-              profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
-              profile.name.toLowerCase().includes(matches.toLowerCase()) ||
-              profile.stageName
-                .toLowerCase()
-                .includes(matches.toLowerCase()) ? (
+              (profile.handle &&
+                profile.handle.toLowerCase().includes(matches.toLowerCase())) ||
+              (profile.name &&
+                profile.name.toLowerCase().includes(matches.toLowerCase())) ||
+              (profile.stageName &&
+                profile.stageName
+                  .toLowerCase()
+                  .includes(matches.toLowerCase())) ? (
                 <Link
                   key={profile._id}
                   to={`/profile/${profile.handle}`}
