@@ -20,6 +20,14 @@
   color: var(--text-color);
 }
 
+.mention_popup_container {
+  padding: 0px 5px;
+}
+.mention_popup {
+  color: var(--reps-blue);
+  cursor: pointer;
+}
+
 .otherstuff {
   display: flex;
   justify-content: space-around;

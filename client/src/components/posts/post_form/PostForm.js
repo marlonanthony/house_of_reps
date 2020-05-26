@@ -34,7 +34,8 @@ class PostForm extends Component {
     media: '',
     showEmojis: false,
     showTags: false,
-    tag: ''
+    tag: '',
+    matchedMentions: []
   }
 
   componentWillReceiveProps(newProps) {
@@ -52,6 +53,7 @@ class PostForm extends Component {
   onChange = e => {
     const textareaLineHeight = 24
     const { minRows, maxRows } = this.state
+    const { profile } = this.props
 
     const previousRows = e.target.rows
     e.target.rows = minRows // reset number of rows in textarea
@@ -71,6 +73,23 @@ class PostForm extends Component {
       [e.target.name]: e.target.value,
       rows: currentRows < maxRows ? currentRows : maxRows
     })
+
+    // match mentions
+    let foundMatch = e.target.value.match(/@\w+$/i)
+    if (foundMatch){
+      let foundHandle = foundMatch[0].slice(1)
+      // limit profiles returned to 5 by creating arr
+      let arr = []
+      profile && 
+      profile.profiles && 
+      profile.profiles.forEach(person => {
+        if(person.handle.startsWith(foundHandle) && arr.length < 5){
+          arr.push(person.handle)
+          this.setState({ matchedMentions: arr })
+        }
+      })
+    } 
+    if (!foundMatch) this.setState({ matchedMentions: [] })
   }
 
   onPaste = e => {
@@ -172,7 +191,7 @@ class PostForm extends Component {
       showEmojis
     } = this.state
     return (
-      <div className="post-feed-form">
+      <section className="post-feed-form">
         <div>
           <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
           <div className="post_form">
@@ -195,6 +214,16 @@ class PostForm extends Component {
                   noFocus
                   onClick={this.showButtonsHandler}
                 />
+                <div className='mention_popup_container'>
+                  {this.state.matchedMentions.length && this.state.matchedMentions.map((person, i) => (
+                    <p className='mention_popup' key={i} onClick={() => {
+                      this.setState({
+                        text: this.state.text.replace(this.state.text.match(/@\w+$/i), `@${person}`),
+                        matchedMentions: []
+                      })
+                    }}>@{person}</p>
+                  )) || null}
+                </div>
                 <div className={show ? 'otherstuff' : 'disp'}>
                   <Dropzone
                     style={{ border: 'none' }}
@@ -238,7 +267,7 @@ class PostForm extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 }
