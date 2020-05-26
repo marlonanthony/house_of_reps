@@ -76,6 +76,7 @@ class PostForm extends Component {
     })
 
     // match mentions
+    console.log(profile.profiles[0])
     let foundMatch = e.target.value.match(/@\w+$/i)
     if (foundMatch) {
       let foundHandle = foundMatch[0].slice(1)
@@ -84,7 +85,12 @@ class PostForm extends Component {
       profile &&
         profile.profiles &&
         profile.profiles.forEach(person => {
-          if (person.handle.startsWith(foundHandle) && arr.length < 5) {
+          if ((
+            person.handle.startsWith(foundHandle) ||
+            (person.name && person.name.toLowerCase().startsWith(foundHandle)) || 
+            (person.stageName && person.stageName.toLowerCase().startsWith(foundHandle))
+            )
+            && arr.length < 5) {
             arr.push(person.handle)
             this.setState({ matchedMentions: arr })
           }
