@@ -84,12 +84,15 @@ class PostForm extends Component {
       profile &&
         profile.profiles &&
         profile.profiles.forEach(person => {
-          if ((
-            person.handle.toLowerCase().startsWith(foundHandle) ||
-            (person.name && person.name.toLowerCase().startsWith(foundHandle)) || 
-            (person.stageName && person.stageName.toLowerCase().startsWith(foundHandle))
-            )
-            && arr.length < 5) {
+          if (
+            ((person.handle &&
+              person.handle.toLowerCase().includes(foundHandle)) ||
+              (person.name &&
+                person.name.toLowerCase().includes(foundHandle)) ||
+              (person.stageName &&
+                person.stageName.toLowerCase().includes(foundHandle))) &&
+            arr.length < 5
+          ) {
             arr.push(person.handle)
             this.setState({ matchedMentions: arr })
           }
