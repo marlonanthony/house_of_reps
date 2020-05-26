@@ -13,6 +13,7 @@ import EmojiModal from '../../UI/modal/emoji-modal/EmojiModal'
 import LightBackdrop from '../../UI/backdrop/LightBackdrop'
 import Icon from '../../UI/icons/Icon'
 import PostTag from '../post-assets/post_tag/PostTag'
+import MentionsPopUp from './mentions_popup/MentionsPopup'
 import './PostForm.css'
 
 const CLOUDINARY_UPLOAD_PRESET = 'btq6upaq'
@@ -76,19 +77,19 @@ class PostForm extends Component {
 
     // match mentions
     let foundMatch = e.target.value.match(/@\w+$/i)
-    if (foundMatch){
+    if (foundMatch) {
       let foundHandle = foundMatch[0].slice(1)
       // limit profiles returned to 5 by creating arr
       let arr = []
-      profile && 
-      profile.profiles && 
-      profile.profiles.forEach(person => {
-        if(person.handle.startsWith(foundHandle) && arr.length < 5){
-          arr.push(person.handle)
-          this.setState({ matchedMentions: arr })
-        }
-      })
-    } 
+      profile &&
+        profile.profiles &&
+        profile.profiles.forEach(person => {
+          if (person.handle.startsWith(foundHandle) && arr.length < 5) {
+            arr.push(person.handle)
+            this.setState({ matchedMentions: arr })
+          }
+        })
+    }
     if (!foundMatch) this.setState({ matchedMentions: [] })
   }
 
@@ -179,6 +180,14 @@ class PostForm extends Component {
     this.setState({ tag: e.target.value, showTags: false })
   }
 
+  mentionsPopupHandler = person => {
+    const { text } = this.state
+    this.setState({
+      text: text.replace(text.match(/@\w+$/i), `@${person}`),
+      matchedMentions: []
+    })
+  }
+
   render() {
     const {
       errors,
@@ -188,7 +197,8 @@ class PostForm extends Component {
       media,
       rows,
       show,
-      showEmojis
+      showEmojis,
+      matchedMentions
     } = this.state
     return (
       <section className="post-feed-form">
@@ -214,16 +224,10 @@ class PostForm extends Component {
                   noFocus
                   onClick={this.showButtonsHandler}
                 />
-                <div className='mention_popup_container'>
-                  {this.state.matchedMentions.length && this.state.matchedMentions.map((person, i) => (
-                    <p className='mention_popup' key={i} onClick={() => {
-                      this.setState({
-                        text: this.state.text.replace(this.state.text.match(/@\w+$/i), `@${person}`),
-                        matchedMentions: []
-                      })
-                    }}>@{person}</p>
-                  )) || null}
-                </div>
+                <MentionsPopUp
+                  mentionsPopupHandler={this.mentionsPopupHandler}
+                  matchedMentions={matchedMentions}
+                />
                 <div className={show ? 'otherstuff' : 'disp'}>
                   <Dropzone
                     style={{ border: 'none' }}
