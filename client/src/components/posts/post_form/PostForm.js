@@ -215,7 +215,7 @@ class PostForm extends Component {
       matchedMentions
     } = this.state
     return (
-      <section className="post-feed-form">
+      <div className="post-feed-form">
         <div>
           <LightBackdrop clicked={this.toggleEmoji} show={showEmojis} />
           <div className="post_form">
@@ -285,7 +285,7 @@ class PostForm extends Component {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     )
   }
 }

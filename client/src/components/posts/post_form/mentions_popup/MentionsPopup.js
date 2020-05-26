@@ -1,4 +1,5 @@
 import React from 'react'
+import './MentionsPopup.css'
 
 export default function MentionsPopup({
   matchedMentions,

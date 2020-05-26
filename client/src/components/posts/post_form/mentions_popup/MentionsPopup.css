@@ -1,0 +1,17 @@
+.mention_popup_container {
+    padding: 0px 5px;
+    position: relative;
+  }
+  .mention_subcontainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    background: rgba(0,0,0, 0.9);
+    z-index: 2;
+  }
+  .mention_popup {
+    color: var(--reps-blue);
+    cursor: pointer;
+  }
