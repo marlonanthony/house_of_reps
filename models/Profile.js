@@ -15,6 +15,8 @@ const ProfileSchema = new Schema({
   handle: {
     type: String,
     required: true,
+    unique: true,
+    lowercase: true,
     max: 40
   },
   stageName: {
@@ -27,7 +29,8 @@ const ProfileSchema = new Schema({
     type: String
   },
   website: {
-    type: String
+    type: String,
+    lowercase: true
   },
   location: {
     type: String

@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
+const keys = require('../../config/keys')
 
 // Load Validation
 const validateProfileInput = require('../../validation/profile')
@@ -203,141 +205,144 @@ router.post(
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validateProfileInput(req.body)
+  async (req, res) => {
+    try {
+      const { errors, isValid } = validateProfileInput(req.body)
 
-    if (!isValid) return res.status(404).json(errors)
-    // Get fields
-    const profileFields = {}
-    profileFields.user = req.user.id
-    if (req.body.avatar) profileFields.avatar = req.body.avatar
-    if (req.body.banner) profileFields.banner = req.body.banner
-    if (req.body.handle)
-      profileFields.handle = req.body.handle.replace(/\s/g, '')
-    if (req.body.company) profileFields.company = req.body.company
-    if (req.body.website && req.body.website.search(/^http[s]?\:\/\//) === -1) {
-      let url = (`http://${req.body.website}`).trim()
-      profileFields.website = url
-    }
-    if (!req.body.website) profileFields.website = ''
-    if (req.body.location) profileFields.location = req.body.location
-    if (req.body.bio) profileFields.bio = req.body.bio
-    if (req.body.venues) profileFields.venues = req.body.venues
-    if (req.body.stageName) profileFields.stageName = req.body.stageName.trim()
-    if (req.body.style) profileFields.style = req.body.style
-    if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber
+      if (!isValid) return res.status(404).json(errors)
+      // Get fields
+      const profileFields = {}
+      profileFields.user = req.user.id
+      req.body.avatar ? profileFields.avatar = req.body.avatar : profileFields.avatar = req.user.avatar
+      if (req.body.banner) profileFields.banner = req.body.banner
+      req.body.handle 
+        ? profileFields.handle = req.body.handle.replace(/\s/g, '') 
+        : profileFields.handle = req.user.handle
+      if (req.body.company) profileFields.company = req.body.company
+      if (req.body.website && req.body.website.search(/^http[s]?\:\/\//) === -1) {
+        let url = (`http://${req.body.website}`).trim()
+        profileFields.website = url
+      }
+      if (!req.body.website) profileFields.website = ''
+      if (req.body.location) profileFields.location = req.body.location
+      if (req.body.bio) profileFields.bio = req.body.bio
+      if (req.body.venues) profileFields.venues = req.body.venues
+      if (req.body.stageName) profileFields.stageName = req.body.stageName.trim()
+      if (req.body.style) profileFields.style = req.body.style
+      if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber
 
-    // Social
-    profileFields.social = {}
-    if (req.body.twitter) {
-      if(req.body.twitter.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.twitter}`).trim()
-        profileFields.social.twitter = url
-      } else profileFields.social.twitter = req.body.twitter.trim()
-    }
-    if (req.body.instagram) {
-      if(req.body.instagram.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.instagram}`).trim()
-        profileFields.social.instagram = url
-      } else profileFields.social.instagram = req.body.instagram.trim()
-    }
-    if (req.body.facebook) {
-      if(req.body.facebook.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.facebook}`).trim()
-        profileFields.social.facebook = url
-      } else profileFields.social.facebook = req.body.facebook.trim()
-    }
-    if (req.body.linkedin) {
-      if(req.body.linkedin.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.linkedin}`).trim()
-        profileFields.social.linkedin = url
-      } else profileFields.social.linkedin = req.body.linkedin.trim()
-    }
-    if (req.body.soundcloud) {
-      if(req.body.soundcloud.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.soundcloud}`).trim()
-        profileFields.social.soundcloud = url
-      } else profileFields.social.soundcloud = req.body.soundcloud.trim()
-    }
-    if (req.body.spotify) {
-      if(req.body.spotify.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.spotify}`).trim()
-        profileFields.social.spotify = url
-      } else profileFields.social.spotify = req.body.spotify.trim()
-    }
-    if (req.body.mixcloud) {
-      if(req.body.mixcloud.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.mixcloud}`).trim()
-        profileFields.social.mixcloud = url
-      } else profileFields.social.mixcloud = req.body.mixcloud.trim()
-    }
-    if (req.body.youtube) {
-      if(req.body.youtube.search(/^http[s]?\:\/\//) === -1) {
-        let url = (`https://${req.body.youtube}`).trim()
-        profileFields.social.youtube = url
-      } else profileFields.social.youtube = req.body.youtube.trim()
-    }
+      // Social
+      profileFields.social = {}
+      if (req.body.twitter) {
+        if(req.body.twitter.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.twitter}`).trim()
+          profileFields.social.twitter = url
+        } else profileFields.social.twitter = req.body.twitter.trim()
+      }
+      if (req.body.instagram) {
+        if(req.body.instagram.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.instagram}`).trim()
+          profileFields.social.instagram = url
+        } else profileFields.social.instagram = req.body.instagram.trim()
+      }
+      if (req.body.facebook) {
+        if(req.body.facebook.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.facebook}`).trim()
+          profileFields.social.facebook = url
+        } else profileFields.social.facebook = req.body.facebook.trim()
+      }
+      if (req.body.linkedin) {
+        if(req.body.linkedin.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.linkedin}`).trim()
+          profileFields.social.linkedin = url
+        } else profileFields.social.linkedin = req.body.linkedin.trim()
+      }
+      if (req.body.soundcloud) {
+        if(req.body.soundcloud.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.soundcloud}`).trim()
+          profileFields.social.soundcloud = url
+        } else profileFields.social.soundcloud = req.body.soundcloud.trim()
+      }
+      if (req.body.spotify) {
+        if(req.body.spotify.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.spotify}`).trim()
+          profileFields.social.spotify = url
+        } else profileFields.social.spotify = req.body.spotify.trim()
+      }
+      if (req.body.mixcloud) {
+        if(req.body.mixcloud.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.mixcloud}`).trim()
+          profileFields.social.mixcloud = url
+        } else profileFields.social.mixcloud = req.body.mixcloud.trim()
+      }
+      if (req.body.youtube) {
+        if(req.body.youtube.search(/^http[s]?\:\/\//) === -1) {
+          let url = (`https://${req.body.youtube}`).trim()
+          profileFields.social.youtube = url
+        } else profileFields.social.youtube = req.body.youtube.trim()
+      }
 
-    Profile.findOne({ user: req.user.id })
-      .then(async profile => {
-        if (profile) {
-          // Update
-          // update users avatar
-          const user = await User.findOneAndUpdate(
-            { _id: req.user.id },
-            { avatar: req.body.avatar },
-            { new: true }
-          )
-          await user.save()
-          // update past posts avatar
-          const posts = await Post.find({ user: req.user.id })
-          posts.forEach(async p => {
-            p.avatar = req.body.avatar
-            await p.save()
+      const profile = await Profile.findOne({ user: req.user.id })
+      if (profile) {
+        // Update
+        // update users avatar and handle
+        const user = await User.findOneAndUpdate(
+          { _id: req.user.id },
+          { avatar: profileFields.avatar, handle: profileFields.handle },
+          { new: true }
+        )
+        await user.save()
+
+        // update past posts avatar and handle
+        const posts = await Post.find({ user: req.user.id })
+        posts.forEach(async p => {
+          p.avatar = profileFields.avatar
+          p.handle = profileFields.handle
+          await p.save()
+        })
+        // update past posts comments avatar and handle
+        const allPosts = await Post.find()
+        allPosts.forEach(async post => {
+          post.comments.forEach(comment => {
+            if (String(comment.user) === req.user.id)
+              comment.avatar = profileFields.avatar
+              comment.handle = profileFields.handle
           })
-          // update past posts comments avatar
-          const allPosts = await Post.find()
-          allPosts.forEach(async post => {
-            post.comments.forEach(comment => {
-              if (String(comment.user) === req.user.id)
-                comment.avatar = req.body.avatar
-            })
-            await post.save()
-          })
-          // update users profile
-          Profile.findOneAndUpdate(
-            { user: req.user.id },
-            { $set: profileFields },
-            { new: true }
-          ).then(profileResponse => {
-            const savedUser = {
-              id: user._id,
-              name: user.name,
-              email: user.email,
-              avatar: user.avatar,
-              handle: user.handle,
-              isAdmin: user.isAdmin
-            }
-            res.json({ profileResponse, savedUser })
-          }).catch(err => res.status(404).json(err))
-        } else {
-          // Create
-          // Check if handle exists
-          Profile.findOne({ handle: profileFields.handle }).then(
-            froundProfile => {
-              if (froundProfile) {
-                errors.handle = 'That username already exists'
-                res.status(400).json(errors)
-              }
-              new Profile(profileFields)
-                .save()
-                .then(newProfile => res.status(200).json(newProfile))
-                .catch(err => console.log(err))
-            }
-          )
+          await post.save()
+        })
+        // update users profile
+        const profileResponse = await Profile.findOneAndUpdate(
+          { user: req.user.id },
+          { $set: profileFields },
+          { new: true }
+        )
+        const payload = {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar,
+          handle: user.handle,
+          isAdmin: user.isAdmin
         }
-      })
-      .catch(err => res.status(404).json(err))
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 10800 },
+          (err, token) => {
+              return res.status(200).json({ 
+              profileResponse, 
+              token: `Bearer ${token}` 
+            })
+          }
+        )
+        // return res.json({ profileResponse,  })
+      } else {
+        // Create
+        const newProfile = await new Profile(profileFields)
+        await newProfile.save()
+        return res.status(200).json(newProfile)
+      }
+    } catch(err){ return res.status(404).json(err) }
   }
 )
 

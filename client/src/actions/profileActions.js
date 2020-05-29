@@ -10,10 +10,10 @@ import {
   GET_PROFILES,
   LIKE_HIGHLIGHT,
   ADD_PROMO,
-  LEAVE_CHATROOM,
-  UPDATE_USER
+  LEAVE_CHATROOM
 } from './types'
-import { logoutUser } from './authActions'
+import { setCurrentUser } from './authActions'
+import setAuthToken from '../utils/setAuthToken'
 
 // Get current profile
 export const getCurrentProfile = () => async dispatch => {
@@ -87,18 +87,12 @@ export const searchProfiles = userInput => async dispatch => {
 export const createProfile = (profileData, history) => async dispatch => {
   try {
     const res = await axios.post('/api/profile', profileData)
-    dispatch({
-      type: UPDATE_USER,
-      payload: res.data
-    })
-    // If user updated their avatar,
-    // log them out so that the jwt payload is updated
-    const decoded = jwt_decode(localStorage.jwtToken)
-    if (decoded.avatar === profileData.avatar) {
-      history.push('/dashboard')
-    } else {
-      dispatch(logoutUser())
-    }
+    const { token } = res.data
+    localStorage.setItem('jwtToken', token)
+    setAuthToken(token)
+    const decoded = jwt_decode(token)
+    dispatch(setCurrentUser(decoded))
+    history.push('/dashboard')
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

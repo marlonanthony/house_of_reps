@@ -38,17 +38,17 @@ const App = ({ location, history }) => {
   let expired = false,
     decoded
 
-  if (localStorage.jwtToken) {
-    setAuthToken(localStorage.jwtToken)
-    decoded = jwt_decode(localStorage.jwtToken)
-    store.dispatch(setCurrentUser(decoded))
-    expired = decoded.exp < currentTime
-  }
-
   useEffect(() => {
+    if (localStorage.jwtToken) {
+      setAuthToken(localStorage.jwtToken)
+      decoded = jwt_decode(localStorage.jwtToken)
+      store.dispatch(setCurrentUser(decoded))
+      expired = decoded.exp < currentTime
+    }
+
     if (
       (!localStorage.jwtToken || expired) &&
-      (location.pathname !== '/' && !location.pathname.includes('/verify'))
+      (location.pathname !== '/' && !location.pathname.includes('/auth'))
     ) {
       store.dispatch(logoutUser())
       store.dispatch(clearCurrentProfile())

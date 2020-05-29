@@ -25,6 +25,7 @@ const EditProfile = ({
   const [banner, setBanner] = useState(''),
     [errors, setErrors] = useState({}),
     [avatar, setAvatar] = useState(''),
+    [handle, setHandle] = useState(''),
     [phoneNumber, setPhoneNumber] = useState(''),
     [stageName, setStageName] = useState(''),
     [company, setCompany] = useState(''),
@@ -53,6 +54,7 @@ const EditProfile = ({
     if (!isEmpty(profile.profile)) {
       const p = profile.profile
       p.avatar = !isEmpty(auth.user.avatar) ? auth.user.avatar : ''
+      p.handle = !isEmpty(auth.user.handle) ? auth.user.handle : ''
       p.banner = !isEmpty(p.banner) ? p.banner : ''
       p.stageName = !isEmpty(p.stageName) ? p.stageName : ''
       p.phoneNumber = !isEmpty(p.phoneNumber) ? p.phoneNumber : ''
@@ -72,6 +74,7 @@ const EditProfile = ({
       p.youtube = !isEmpty(p.social.youtube) ? p.social.youtube : ''
 
       setAvatar(p.avatar)
+      setHandle(p.handle)
       setBanner(p.banner)
       setStageName(p.stageName)
       setPhoneNumber(p.phoneNumber)
@@ -96,6 +99,7 @@ const EditProfile = ({
 
     const profileData = {
       avatar,
+      handle,
       banner,
       stageName,
       phoneNumber,
@@ -134,6 +138,14 @@ const EditProfile = ({
         <br />
         <small className="info">Upload a new avatar?</small>
         <form onSubmit={onSubmit}>
+          <Input
+            placeholder='Update Handle'
+            name='handle'
+            value={handle}
+            onChange={e => setHandle(e.target.value)}
+            error={errors.handle}
+            info='Change your handle?'
+          />
           <Input
             placeholder="A man has no name"
             name="stageName"
