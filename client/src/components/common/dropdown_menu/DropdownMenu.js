@@ -53,9 +53,11 @@ const DropdownMenu = ({
       <Link to="/dashboard" onClick={scrollToTop}>
         Dashboard
       </Link>
-      <Link to={`/profile/${user.handle}`} onClick={scrollToTop}>
-        Profile
-      </Link>
+      {user && (
+        <Link to={`/profile/${user.handle}`} onClick={scrollToTop}>
+          Profile
+        </Link>
+      )}
       <Link to="/feed" onClick={scrollToTop}>
         Feed
       </Link>

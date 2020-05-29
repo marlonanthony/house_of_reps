@@ -207,7 +207,6 @@ router.post(
     const { errors, isValid } = validateProfileInput(req.body)
 
     if (!isValid) return res.status(404).json(errors)
-    console.log(req.body)
     // Get fields
     const profileFields = {}
     profileFields.user = req.user.id

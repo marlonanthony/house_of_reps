@@ -5,7 +5,7 @@ module.exports = emailInfo => {
     <html>
       <body>
         <div style='text-align: center'>
-          <h3>House of Reps</h3>
+          <h3>Senate DJs</h3>
           <p>${emailInfo.body}</p>
           <a href="${keys.redirectDomain}/verify/?token=${emailInfo.token}">Confirm email</a>
         </div>

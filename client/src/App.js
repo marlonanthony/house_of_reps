@@ -46,7 +46,10 @@ const App = ({ location, history }) => {
   }
 
   useEffect(() => {
-    if ((!localStorage.jwtToken || expired) && location.pathname !== '/') {
+    if (
+      (!localStorage.jwtToken || expired) &&
+      (location.pathname !== '/' && !location.pathname.includes('/verify'))
+    ) {
       store.dispatch(logoutUser())
       store.dispatch(clearCurrentProfile())
       history.push('/')
