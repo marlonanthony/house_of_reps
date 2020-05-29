@@ -295,7 +295,7 @@ router.post(
 
         // update past posts avatar and handle
         const posts = await Post.find({ user: req.user.id })
-        posts.forEach(async p => {
+        if(posts.length) posts.forEach(async p => {
           p.avatar = profileFields.avatar
           p.handle = profileFields.handle
           await p.save()
