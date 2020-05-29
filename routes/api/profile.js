@@ -210,7 +210,7 @@ router.post(
       const { errors, isValid } = validateProfileInput(req.body)
 
       if (!isValid) return res.status(404).json(errors)
-      // Get fields
+      
       const profileFields = {}
       profileFields.user = req.user.id
       req.body.avatar ? profileFields.avatar = req.body.avatar : profileFields.avatar = req.user.avatar
@@ -335,7 +335,6 @@ router.post(
             })
           }
         )
-        // return res.json({ profileResponse,  })
       } else {
         // Create
         const newProfile = await new Profile(profileFields)
