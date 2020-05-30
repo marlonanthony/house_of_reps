@@ -207,9 +207,7 @@ router.post(
   async (req, res) => {
     try {
       const { errors, isValid } = validateProfileInput(req.body)
-
       if (!isValid) return res.status(404).json(errors)
-      
       const profileFields = getProfileFields(req)
 
       const profile = await Profile.findOne({ user: req.user.id })

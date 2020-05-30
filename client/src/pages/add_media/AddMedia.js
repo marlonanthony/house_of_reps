@@ -24,8 +24,11 @@ const AddMedia = ({ addVenue, ...props }) => {
     let clipboardData = e.clipboardData || window.clipboardData
     let urlData = `${'' + clipboardData.getData('Text')}`
     let parsedUrl
-    if(!urlData.includes('iframe')){
-      return setErrors({ ...errors, video: 'Are you sure this is an embed link' })
+    if (!urlData.includes('iframe')) {
+      return setErrors({
+        ...errors,
+        video: 'Are you sure this is an embed link'
+      })
     }
     if (!urlData.includes('twitch')) {
       parsedUrl = urlData
