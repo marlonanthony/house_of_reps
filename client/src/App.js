@@ -1,8 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import jwt_decode from 'jwt-decode'
-
-import store from './store'
 import PrivateRoute from './components/common/PrivateRoute'
 import DropdownMenu from './components/common/dropdown_menu/DropdownMenu'
 import Landing from './pages/landing/Landing'
@@ -27,34 +24,10 @@ import FixedHighlights from './components/UI/uniterrupted_highlights/FixedHighli
 import Hashtag from './components/hashtags/Hashtag'
 import Chatroom from './components/chatrooms/Chatroom'
 import EditAccount from './components/dashboard_content/edit_account/EditAccount'
-import { logoutUser, setCurrentUser } from './actions/authActions'
-import { clearCurrentProfile } from './actions/profileActions'
-import setAuthToken from './utils/setAuthToken'
 import './App.css'
 
-const App = ({ location, history }) => {
+const App = () => {
   const [showHighlight, setShowHighlight] = useState(false)
-  const currentTime = Date.now() / 1000
-  let expired = false,
-    decoded
-
-  useEffect(() => {
-    if (localStorage.jwtToken) {
-      setAuthToken(localStorage.jwtToken)
-      decoded = jwt_decode(localStorage.jwtToken)
-      store.dispatch(setCurrentUser(decoded))
-      expired = decoded.exp < currentTime
-    }
-
-    if (
-      (!localStorage.jwtToken || expired) &&
-      (location.pathname !== '/' && !location.pathname.includes('/auth'))
-    ) {
-      store.dispatch(logoutUser())
-      store.dispatch(clearCurrentProfile())
-      history.push('/')
-    }
-  }, [localStorage.jwtToken, expired])
 
   const toggleHighlight = useCallback(() => {
     setShowHighlight(prev => !prev)
