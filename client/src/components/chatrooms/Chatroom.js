@@ -11,7 +11,7 @@ import {
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 import SearchReps from '../../pages/create_chatroom/SearchReps'
 import BackButton from '../UI/buttons/back-btn/BackButton'
-import Dms from './Dms'
+import Dms from './dms/Dms'
 
 function Chatroom({
   getChatroom,
