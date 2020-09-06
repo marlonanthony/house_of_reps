@@ -65,30 +65,9 @@ const ChatRoomSchema = new Schema({
         type: String
       }
     }
-  ],
-  messages: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-      },
-      text: {
-        type: String,
-        required: true
-      },
-      name: {
-        type: String
-      },
-      handle: {
-        type: String
-      },
-      avatar: {
-        type: String
-      },
-    }
   ]
 }, {
   timestamps: true
 })
 
-module.exports = model('chatroom', ChatRoomSchema)
+module.exports = model('chatrooms', ChatRoomSchema)

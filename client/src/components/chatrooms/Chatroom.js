@@ -11,6 +11,7 @@ import {
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 import SearchReps from '../../pages/create_chatroom/SearchReps'
 import BackButton from '../UI/buttons/back-btn/BackButton'
+import Dms from './Dms'
 
 function Chatroom({
   getChatroom,
@@ -173,9 +174,7 @@ function Chatroom({
           </form>
         </div>
       )}
-      <section>
-        <h2>Chat</h2>
-      </section>
+      <Dms chatroomId={_id} user={props.auth.user} />
     </div>
   )
 }

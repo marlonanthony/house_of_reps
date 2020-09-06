@@ -16,31 +16,21 @@ const app = express(),
   posts = require('./routes/api/posts'),
   chatrooms = require('./routes/api/chatrooms'),
   promos = require('./routes/api/promos'),
+  messages = require('./routes/api/messages'),
   db = require('./config/keys').mongoURI
 
 app.use(sslRedirect())
-
-let count = 0
-
-io.on('connection', socket => {
-  io.emit('new-connection', ++count)
-  socket.on('disconnect', () => {
-    io.emit('lost-connection', --count)
-  })
-  socket.on('chat', data => {
-    io.sockets.emit('chat', data)
-  })
-  socket.on('typing', data => {
-    socket.broadcast.emit('typing', {
-      handle: data.handle, 
-      count, 
-      message: data.message
-    })
-  })
-})
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(passport.initialize())
+require('./config/passport')(passport)
+require('./services/sockets/sockets')(io)
+app.use('/api/users', users)
+app.use('/api/profile', profile)
+app.use('/api/posts', posts)
+app.use('/api/chat', chatrooms)
+app.use('/api/promos', promos)
+app.use('/api/messages', messages)
 
 mongoose.connect(db, { 
   useNewUrlParser: true, 
@@ -50,15 +40,6 @@ mongoose.connect(db, {
 })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err))
-
-app.use(passport.initialize())
-require('./config/passport')(passport)
-
-app.use('/api/users', users)
-app.use('/api/profile', profile)
-app.use('/api/posts', posts)
-app.use('/api/chat', chatrooms)
-app.use('/api/promos', promos)
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
