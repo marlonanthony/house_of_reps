@@ -11,8 +11,9 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
+      if(!req.body.message) return res.status(400).json({message: 'Best to type something!'})
       const newMessage = new Message({
-        message: req.body.message,
+        message: req.body.message.trim(),
         chatroom: req.body.chatroom,
         user: req.user.id
       })
@@ -35,6 +36,7 @@ router.get(
       const messages = await Message.find({
         chatroom: req.params.chatroomId
       })
+      .sort({ createdAt: 'ascending' })
       .populate('user', ['name', 'avatar', 'handle'])
       return res.json(messages)
     } catch (err) {

@@ -8,10 +8,11 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-export default function Dms({chatroomId, user }) {
+export default function Dms({chatroomId, user, ...props }) {
   const [message, setMessage] = useState(''),
-  [dms, setDms] = useState([])
-  const chatroom = `group-chat-${chatroomId}`
+    [dms, setDms] = useState([]),
+    [errors, setErrors] = useState({}),
+    chatroom = `group-chat-${chatroomId}`
 
   useEffect(() => {
     axios.get('/api/messages/' + chatroomId)
@@ -32,6 +33,10 @@ export default function Dms({chatroomId, user }) {
         <h2>Chat</h2>
         <form onSubmit={e => {
           e.preventDefault()
+          if (message) setErrors(prev => ({
+            ...prev,
+            message: null
+          }))
           const newMessage = {
             message,
             chatroom: chatroomId
@@ -42,7 +47,7 @@ export default function Dms({chatroomId, user }) {
             message
           })
           axios.post('/api/messages', newMessage)
-          .catch(err => console.log(err))
+          .catch(err => setErrors(err.response.data))
           setMessage('')
         }}>
           <input 
@@ -52,6 +57,7 @@ export default function Dms({chatroomId, user }) {
             value={message}
             // onKeyPress={() => socket.emit('typing', handle)}
           />
+          {errors && errors.message && <div>{errors.message}</div>}
           <button>Send</button>
         </form>
         <ol>
