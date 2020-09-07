@@ -1,20 +1,11 @@
-#chatroom-header {
-  /* background: var(--secondary-color); */
-  background: var(--reps-blue);
-  min-height: 50px;
-}
-
 .chatroom {
   background: var(--deep-color);
 }
 
-#chat-window::-webkit-scrollbar {
-  width: 5px;
-}
-
-#chat-window {
-  padding: 0px 5px;
-  overflow: auto;
+#chatroom-header {
+  /* background: var(--secondary-color); */
+  background: var(--reps-blue);
+  min-height: 50px;
 }
 
 #speakeasy {
@@ -26,15 +17,24 @@
   font-size: 14px;
 }
 
-.chatroom-avatar {
-  font-size: 25px;
-}
-
 #chatroom_count {
   color: var(--primary-color);
   position: absolute;
   right: 0;
   padding: 5px;
+}
+
+#chat-window::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chat-window {
+  padding: 0px 5px;
+  overflow: auto;
+}
+
+.chatroom-avatar {
+  font-size: 25px;
 }
 
 #output {
