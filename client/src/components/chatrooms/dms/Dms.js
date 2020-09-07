@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
+import {withRouter} from 'react-router-dom'
 
 import './Dms.css'
 
@@ -10,26 +11,27 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-export default function Dms({chatroomId, user, ...props }) {
+function Dms({ chatroomName ,chatroomId, user, ...props }) {
   const [message, setMessage] = useState(''),
     [dms, setDms] = useState([]),
     [errors, setErrors] = useState({}),
-    chatroom = `group-chat-${chatroomId}`
+    ref = useRef(),
+    scrollHeight = ref.current && ref.current.scrollHeight
 
   useEffect(() => {
-    axios.get('/api/messages/' + chatroomId)
+    if (scrollHeight) window.scrollTo(0, scrollHeight)
+  }, [scrollHeight])
+
+  useEffect(() => {
+    const chatroom = `group-chat-${chatroomId}`
+    axios.get('/api/messages/' + props.match.params.id)
       .then(res => setDms(res.data))
       .catch(err => console.log(err))
-
     socket.on(chatroom, (data) => {
-      console.log(data)
       setDms(prev => [...prev, data])
     })
-
-    return () => {
-      socket.off(chatroom)
-    }
-  }, [chatroomId])
+    return () => { socket.off(chatroom) }
+  }, [props.match.params.id, chatroomId])
 
   const onSubmit = e => {
     e.preventDefault()
@@ -50,37 +52,41 @@ export default function Dms({chatroomId, user, ...props }) {
     .catch(err => setErrors(err.response.data))
     setMessage('')
   }
-  console.log(dms)
+
   return (
-    <section>
-        <h2>Chat</h2>
-        <div className='chat-group-messages'>
-          { dms.map((m, i, arr) => (
-            <div key={i}>
-              {((arr[i-1] && arr[i-1].user && arr[i-1].user.id) !== (m.user && m.user.id) ||
-                (arr[i-1] && arr[i-1].user && arr[i-1].user._id) !== (m.user && m.user._id)
-              )
-                ? <img 
-                      src={m.user && m.user.avatar}
-                      className='chat-group-avatar'
-                  />
-                : null
-              }
-              <p className='chatroom_text'>{m.message}</p>
-            </div>
-          ))}
-        </div>
-        <form onSubmit={onSubmit}>
-          <input 
-            onChange={e => setMessage(e.target.value)} 
-            type="text" 
-            placeholder="Message"
-            value={message}
-            // onKeyPress={() => socket.emit('typing', handle)}
-          />
-          {errors && errors.message && <div>{errors.message}</div>}
-          <button>Send</button>
-        </form>
-      </section>
+    <section className='chat-group-section'>
+      <div id="group-chat-header">
+        <small id="group-chat-name">{chatroomName}</small>
+      </div>
+      <div className='chat-group-messages' ref={ref}>
+        { dms.length ? dms.map((m, i, arr) => (
+          <div className='group-chat-output' key={i}>
+            {((arr[i-1] && arr[i-1].user && arr[i-1].user.id) !== (m.user && m.user.id) ||
+              (arr[i-1] && arr[i-1].user && arr[i-1].user._id) !== (m.user && m.user._id)
+            )
+              ? <img 
+                    src={m.user && m.user.avatar}
+                    className='chat-group-avatar'
+                    alt={m.user.handle}
+                />
+              : null
+            }
+            <p className='chat-group-text'>{m.message}</p>
+          </div>
+        )):null}
+      </div>
+      <form onSubmit={onSubmit} className='group-chat-form'>
+        <input 
+          onChange={e => setMessage(e.target.value)} 
+          type="text" 
+          placeholder="Message"
+          value={message}
+          // onKeyPress={() => socket.emit('typing', handle)}
+        />
+        {errors && errors.message && <small>{errors.message}</small>}
+      </form>
+    </section>
   )
 }
+
+export default withRouter(Dms)

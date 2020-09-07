@@ -68,7 +68,7 @@ function Chatroom({
 
   return (
     <div>
-      <BackButton />
+      {/* <BackButton />
       <h2>{name && name} chatroom</h2>
       {invite && !accepted && (
         <button
@@ -173,8 +173,8 @@ function Chatroom({
             <button>Submit</button>
           </form>
         </div>
-      )}
-      <Dms chatroomId={_id} user={props.auth.user} />
+      )} */}
+      <Dms chatroomName={name} chatroomId={_id} user={props.auth.user} />
     </div>
   )
 }
