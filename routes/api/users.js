@@ -6,7 +6,6 @@ const {
   loginUser,
   updateUserInfo
 } = require('../../controllers/user-controller')
-const login = require('../../validation/login')
 const withAuth = require('../../utils/withAuth')
 
 router
