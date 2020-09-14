@@ -1,13 +1,15 @@
 const router = require('express').Router()
-const passport = require('passport')
+const withAuth = require('../../utils/withAuth')
 const {createMessage, getMessages} = require('../../controllers/message-controller')
+
+// /api/messages
 
 router
 .route('/')
-.post(passport.authenticate('jwt', { session: false }), createMessage)
+.post(withAuth, createMessage)
 
 router
 .route('/:chatroomId')
-.get(passport.authenticate('jwt', { session: false }), getMessages)
+.get(withAuth, getMessages)
 
 module.exports = router
