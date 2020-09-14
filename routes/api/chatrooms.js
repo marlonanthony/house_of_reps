@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const passport = require('passport')
-const mongoose = require('mongoose')
 
 const Chatroom = require('../../models/Chatroom')
 const Profile = require('../../models/Profile')
