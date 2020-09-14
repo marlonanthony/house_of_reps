@@ -5,7 +5,7 @@ const promoController = {
   // @route   GET api/promos
   // @desc    Get Promos
   // @access  Public
-  async getPromos(req, res) {
+  async getPromos(_, res) {
     try {
       const promos = await Promo.find()
       return res.status(200).json(promos)

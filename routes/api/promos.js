@@ -1,14 +1,16 @@
 const router = require('express').Router()
-const passport = require('passport')
+const withAuth = require('../../utils/withAuth')
 const { getPromos, createPromo, deletePromo } = require('../../controllers/promo-controller')
+
+// /api/promos
 
 router
 .route('/')
 .get(getPromos)
-.post(passport.authenticate('jwt', { session: false }), createPromo)
+.post(withAuth, createPromo)
 
 router
 .route('/:id')
-.delete(passport.authenticate('jwt', { session: false }), deletePromo)
+.delete(withAuth, deletePromo)
 
 module.exports = router
