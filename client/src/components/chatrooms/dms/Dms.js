@@ -56,6 +56,11 @@ function Dms({ chatroomName ,chatroomId, user, ...props }) {
   return (
     <section className='chat-group-section'>
       <div id="group-chat-header">
+        <img
+          className="group-chat-reps-icon"
+          src={require('../../../img/hor-icon.jpg')}
+          alt="HORs logo"
+        />
         <small id="group-chat-name">{chatroomName}</small>
       </div>
       <div className='chat-group-messages' ref={ref}>
