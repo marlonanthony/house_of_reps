@@ -15,6 +15,8 @@ const {
   deleteAccount
 } = require('../../controllers/profile-controller')
 
+// /api/profile
+
 router
 .route('/')
 .get(withAuth, getMyProfile)
