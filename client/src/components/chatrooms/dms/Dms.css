@@ -3,23 +3,50 @@
 }
 
 #group-chat-header {
-  /* background: var(--secondary-color); */
-  background: var(--reps-blue);
+  background: rgba(0,0,0,0.7);
   min-height: 50px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 50px;
+  text-align: center;
+  padding: 5px;
+}
+
+.group-chat-reps-icon {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  left: 0;
+  bottom: 5;
+  margin: 0px 0px 5px 10px;
+  animation-name: group-chat-reps-icon;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  opacity: .5;
+  cursor: pointer;
+}
+.group-chat-reps-icon:hover {
+  opacity: 1;
+}
+@keyframes group-chat-reps-icon {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 #group-chat-name {
-  color: var(--primary-color);
-  padding: 5px;
-  position: absolute;
+  color: var(--secondary-color);
   font-style: italic;
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .chat-group-messages {
@@ -58,6 +85,6 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: var(--reps-blue);
+  background: rgba(0,0,0,0.7);
   height: 50px;
 }
