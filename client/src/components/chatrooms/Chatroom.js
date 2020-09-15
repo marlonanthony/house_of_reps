@@ -72,13 +72,6 @@ function Chatroom({
     <div>
       <section id={ toggleDrawer ? 'chatroom-drawer-active' : 'chatroom-drawer-inactive'}>
         <div>
-          <img
-            className="group-chat-reps-icon" // Dms.css
-            src={require('../../img/hor-icon.jpg')}
-            alt="HORs logo"
-            onClick={() => setToggleDrawer(prev => !prev)}
-          />
-          <h2>{name && name}</h2>
           {invite && !accepted && (
             <button
               style={{ cursor: 'pointer' }}
@@ -90,14 +83,14 @@ function Chatroom({
               Accept Invite
             </button>
           )}
-          <ul style={{ listStyle: 'none', padding: 10 }}>
+          <ul className='chatroom-uls'>
             Admin
             <li style={{ paddingLeft: 10, fontSize: 14 }}>
               {admin && '@' + admin.handle}
             </li>
           </ul>
 
-          <ul style={{ listStyle: 'none', padding: 10 }}>
+          <ul className='chatroom-uls'>
             Mods
             {chatroom.chatroom &&
               chatroom.chatroom.moderators &&
@@ -107,7 +100,7 @@ function Chatroom({
                 </li>
               ))}
           </ul>
-          <ul style={{ listStyle: 'none', padding: 10 }}>
+          <ul className='chatroom-uls'>
             Members
             {members &&
               members.map(member => (
@@ -116,7 +109,7 @@ function Chatroom({
                 </li>
               ))}
           </ul>
-          <ul style={{ listStyle: 'none', padding: 10 }}>
+          <ul className='chatroom-uls'>
             Invited
             {invites &&
               invites.map(person => (

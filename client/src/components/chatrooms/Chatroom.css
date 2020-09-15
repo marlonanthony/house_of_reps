@@ -1,28 +1,38 @@
 #chatroom-drawer-active{
   position: fixed;
-  background: rgb(36, 41, 46);
+  /* background: rgb(36, 41, 46); */
+  background: var(--primary-color);
   z-index: 1;
-  height: 100vh;
+  height: calc(100% - 100px);
   width: 60%;
   left: 0;
   top: 0;
+  padding: 10px;
+  margin: 50px 0px 50px 0px;
   /* set overflow to scroll for now
      eventually the invite members form
      will have it's own height and scroll
   */
   overflow-y: scroll;
   transform: translateX(0%);
-  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-in;
 }
 
 #chatroom-drawer-inactive { 
   position: fixed;
-  background: rgb(36, 41, 46);
+  background: var(--primary-color);
   z-index: 1;
-  height: 100vh;
+  height: calc(100% - 100px);
   width: 60%;
   left: 0;
   top: 0;
+  padding: 10px;
+  margin: 50px 0px 50px 0px;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in;
+}
+
+.chatroom-uls {
+  list-style: none; 
+  padding: 10px;
 }
