@@ -90,7 +90,7 @@ function Chatroom({
               {admin && '@' + admin.handle}
             </Link>
             <i
-              className="material-icons icon-thingy"
+              className="material-icons chatroom-li-icon"
               onClick={() => alert( "You'll be allowed to do something with " +admin.handle + ' soon')}
             >
               more_vert
@@ -108,7 +108,7 @@ function Chatroom({
                   {person && '@' + person.handle}
                 </Link>
                 <i
-                  className="material-icons icon-thingy"
+                  className="material-icons chatroom-li-icon"
                   onClick={() => alert( "You'll be allowed to do something with " +person.handle + ' soon')}
                 >
                   more_vert
@@ -125,7 +125,7 @@ function Chatroom({
                   @{member.handle}
                 </Link>
                 <i
-                  className="material-icons icon-thingy"
+                  className="material-icons chatroom-li-icon"
                   onClick={() => alert( "You'll be allowed to do something with " +member.handle + ' soon')}
                 >
                   more_vert
@@ -142,7 +142,7 @@ function Chatroom({
                   @{person.handle}
                 </Link>
                 <i
-                  className="material-icons icon-thingy"
+                  className="material-icons chatroom-li-icon"
                   onClick={() => alert( "You'll be allowed to do something with " +person.handle + ' soon')}
                 >
                   more_vert
