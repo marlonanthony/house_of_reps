@@ -71,9 +71,11 @@ function Dms({ chatroomName ,chatroomId, user, setToggleDrawer, ...props }) {
               (arr[i-1] && arr[i-1].user && arr[i-1].user._id) !== (m.user && m.user._id)
             )
               ? <img 
-                    src={m.user && m.user.avatar}
+                    src={m.user.avatar}
                     className='chat-group-avatar'
                     alt={m.user.handle}
+                    title={m.user.handle}
+                    onClick={() => props.history.push(`/profile/${m.user.handle}`)}
                 />
               : null
             }

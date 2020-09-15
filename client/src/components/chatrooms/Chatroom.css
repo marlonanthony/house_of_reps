@@ -2,7 +2,6 @@
   position: fixed;
   /* background: rgb(36, 41, 46); */
   background: var(--primary-color);
-  z-index: 1;
   height: calc(100% - 100px);
   width: 60%;
   left: 0;
@@ -21,7 +20,6 @@
 #chatroom-drawer-inactive { 
   position: fixed;
   background: var(--primary-color);
-  z-index: 1;
   height: calc(100% - 100px);
   width: 60%;
   left: 0;
@@ -35,4 +33,21 @@
 .chatroom-uls {
   list-style: none; 
   padding: 10px;
+}
+
+.chatroom-lis {
+  padding: 5px 0px 0px 10px; 
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+.chatroom-li-a {
+  color: var(--reps-blue);
+}
+.chatroom-li-x {
+  cursor: pointer;
+}
+.icon-thingy {
+  cursor: pointer;
+  font-size: 1rem;
 }
