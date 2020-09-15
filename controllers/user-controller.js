@@ -47,7 +47,7 @@ const userController = {
       }
       const isMatch = await bcrypt.compare(password, user.password)
       if (isMatch) {
-        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.genSalt(10, (_, salt) => {
           bcrypt.hash(user.password, salt, async (error, hash) => {
             if (error) throw error
             user.password = hash
@@ -114,7 +114,7 @@ const userController = {
         password: password.trim()
       })
 
-      bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.genSalt(10, (_, salt) => {
         bcrypt.hash(newUser.password, salt, async (error, hash) => {
           if (error) throw error
           newUser.password = hash
@@ -171,7 +171,7 @@ const userController = {
           payload,
           keys.secretOrKey,
           { expiresIn: 10800 },
-          (err, token) => {
+          (_, token) => {
             res.status(200).json({
               success: true,
               token: `Bearer ${token}`
@@ -203,7 +203,7 @@ const userController = {
         errors.password = 'Password Incorrect'
         return res.status(401).json(errors)
       }
-      bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.genSalt(10, (_, salt) => {
         bcrypt.hash(req.body.new_password, salt, async (error, hash) => {
           if (error) throw error
           user.password = hash
