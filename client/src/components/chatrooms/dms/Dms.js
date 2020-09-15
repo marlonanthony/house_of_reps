@@ -11,7 +11,7 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-function Dms({ chatroomName ,chatroomId, user, ...props }) {
+function Dms({ chatroomName ,chatroomId, user, setToggleDrawer, ...props }) {
   const [message, setMessage] = useState(''),
     [dms, setDms] = useState([]),
     [errors, setErrors] = useState({}),
@@ -60,6 +60,7 @@ function Dms({ chatroomName ,chatroomId, user, ...props }) {
           className="group-chat-reps-icon"
           src={require('../../../img/hor-icon.jpg')}
           alt="HORs logo"
+          onClick={() => setToggleDrawer(prev => !prev)}
         />
         <small id="group-chat-name">{chatroomName}</small>
       </div>

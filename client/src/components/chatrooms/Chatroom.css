@@ -1,0 +1,28 @@
+#chatroom-drawer-active{
+  position: fixed;
+  background: rgb(36, 41, 46);
+  z-index: 1;
+  height: 100vh;
+  width: 60%;
+  left: 0;
+  top: 0;
+  /* set overflow to scroll for now
+     eventually the invite members form
+     will have it's own height and scroll
+  */
+  overflow-y: scroll;
+  transform: translateX(0%);
+  transition: transform 0.3s ease-out;
+}
+
+#chatroom-drawer-inactive { 
+  position: fixed;
+  background: rgb(36, 41, 46);
+  z-index: 1;
+  height: 100vh;
+  width: 60%;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in;
+}

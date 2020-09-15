@@ -12,6 +12,7 @@ import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
 import SearchReps from '../../pages/create_chatroom/SearchReps'
 import BackButton from '../UI/buttons/back-btn/BackButton'
 import Dms from './dms/Dms'
+import './Chatroom.css'
 
 function Chatroom({
   getChatroom,
@@ -28,7 +29,8 @@ function Chatroom({
     [accepted, setAccepted] = useState(false),
     [showForm, setShowForm] = useState(false),
     [inviteMore, setInviteMore] = useState([]),
-    [makeMod, setMakeMod] = useState(false)
+    [makeMod, setMakeMod] = useState(false),
+    [toggleDrawer, setToggleDrawer] = useState(false)
 
   useEffect(() => {
     getChatroom(props.match.params.id)
@@ -68,113 +70,122 @@ function Chatroom({
 
   return (
     <div>
-      <BackButton />
-      <h2>{name && name} chatroom</h2>
-      {invite && !accepted && (
-        <button
-          style={{ cursor: 'pointer' }}
-          onClick={() => {
-            setAccepted(true)
-            acceptChatroomInvite(props.match.params.id)
-          }}
-        >
-          Accept Invite
-        </button>
-      )}
-      <ul style={{ listStyle: 'none', padding: 10 }}>
-        Admin
-        <li style={{ paddingLeft: 10, fontSize: 14 }}>
-          {admin && '@' + admin.handle}
-        </li>
-      </ul>
-
-      <ul style={{ listStyle: 'none', padding: 10 }}>
-        Mods
-        {chatroom.chatroom &&
-          chatroom.chatroom.moderators &&
-          chatroom.chatroom.moderators.map(person => (
-            <li style={{ paddingLeft: 10, fontSize: 14 }} key={person._id}>
-              {person && '@' + person.handle}
-            </li>
-          ))}
-      </ul>
-      <ul style={{ listStyle: 'none', padding: 10 }}>
-        Members
-        {members &&
-          members.map(member => (
-            <li style={{ paddingLeft: 10, fontSize: 14 }} key={member._id}>
-              @{member.handle}
-            </li>
-          ))}
-      </ul>
-      <ul style={{ listStyle: 'none', padding: 10 }}>
-        Invited
-        {invites &&
-          invites.map(person => (
-            <li style={{ paddingLeft: 10, fontSize: 14 }} key={person._id}>
-              @{person.handle}
-            </li>
-          ))}
-      </ul>
-      {(admin && admin.id) === props.auth.user.id && (
-        <button onClick={() => deleteChatroom(_id, props.history)}>
-          Delete Chatroom
-        </button>
-      )}
-      {member && member.id !== chatroom.chatroom.admin.id && (
-        <button
-          onClick={() => leaveChatroom(chatroom.chatroom._id, props.history)}
-        >
-          Leave Chatroom
-        </button>
-      )}
-      {((admin && admin.id) === props.auth.user.id || (mods && member)) && (
-        <button onClick={() => setShowForm(val => !val)}>Edit chatroom</button>
-      )}
-      {showForm && (
+      <section id={ toggleDrawer ? 'chatroom-drawer-active' : 'chatroom-drawer-inactive'}>
         <div>
-          <form
-            onSubmit={e => {
-              e.preventDefault()
-              const noDups = inviteMore.filter(
-                (person, index, arr) =>
-                  index === arr.findIndex(t => t.id === person.id)
-              )
-              addMembers(chatroom.chatroom._id, noDups)
-            }}
-          >
-            <SearchReps
-              profiles={props.profiled.profiles}
-              setInvites={setInviteMore}
-              placeholder="Invite Members"
-            />
+          <img
+            className="group-chat-reps-icon" // Dms.css
+            src={require('../../img/hor-icon.jpg')}
+            alt="HORs logo"
+            onClick={() => setToggleDrawer(prev => !prev)}
+          />
+          <h2>{name && name}</h2>
+          {invite && !accepted && (
+            <button
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setAccepted(true)
+                acceptChatroomInvite(props.match.params.id)
+              }}
+            >
+              Accept Invite
+            </button>
+          )}
+          <ul style={{ listStyle: 'none', padding: 10 }}>
+            Admin
+            <li style={{ paddingLeft: 10, fontSize: 14 }}>
+              {admin && '@' + admin.handle}
+            </li>
+          </ul>
 
-            {inviteMore && (
-              <ul>
-                {inviteMore.map(m => (
-                  <li
-                    key={m.id}
-                    onClick={() =>
-                      setInviteMore(prev => [
-                        ...prev,
-                        {
-                          id: m.id,
-                          name: m.name,
-                          handle: m.handle
+          <ul style={{ listStyle: 'none', padding: 10 }}>
+            Mods
+            {chatroom.chatroom &&
+              chatroom.chatroom.moderators &&
+              chatroom.chatroom.moderators.map(person => (
+                <li style={{ paddingLeft: 10, fontSize: 14 }} key={person._id}>
+                  {person && '@' + person.handle}
+                </li>
+              ))}
+          </ul>
+          <ul style={{ listStyle: 'none', padding: 10 }}>
+            Members
+            {members &&
+              members.map(member => (
+                <li style={{ paddingLeft: 10, fontSize: 14 }} key={member._id}>
+                  @{member.handle}
+                </li>
+              ))}
+          </ul>
+          <ul style={{ listStyle: 'none', padding: 10 }}>
+            Invited
+            {invites &&
+              invites.map(person => (
+                <li style={{ paddingLeft: 10, fontSize: 14 }} key={person._id}>
+                  @{person.handle}
+                </li>
+              ))}
+          </ul>
+          {(admin && admin.id) === props.auth.user.id && (
+            <button onClick={() => deleteChatroom(_id, props.history)}>
+              Delete Chatroom
+            </button>
+          )}
+          {member && member.id !== chatroom.chatroom.admin.id && (
+            <button
+              onClick={() => leaveChatroom(chatroom.chatroom._id, props.history)}
+            >
+              Leave Chatroom
+            </button>
+          )}
+          {((admin && admin.id) === props.auth.user.id || (mods && member)) && (
+            <button onClick={() => setShowForm(val => !val)}>Edit chatroom</button>
+          )}
+          {showForm && (
+            <div>
+              <form
+                onSubmit={e => {
+                  e.preventDefault()
+                  const noDups = inviteMore.filter(
+                    (person, index, arr) =>
+                      index === arr.findIndex(t => t.id === person.id)
+                  )
+                  addMembers(chatroom.chatroom._id, noDups)
+                }}
+              >
+                <SearchReps
+                  profiles={props.profiled.profiles}
+                  setInvites={setInviteMore}
+                  placeholder="Invite Members"
+                />
+
+                {inviteMore && (
+                  <ul>
+                    {inviteMore.map(m => (
+                      <li
+                        key={m.id}
+                        onClick={() =>
+                          setInviteMore(prev => [
+                            ...prev,
+                            {
+                              id: m.id,
+                              name: m.name,
+                              handle: m.handle
+                            }
+                          ])
                         }
-                      ])
-                    }
-                  >
-                    {m.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-            <button>Submit</button>
-          </form>
+                      >
+                        {m.name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <button>Submit</button>
+              </form>
+            </div>
+          )}
         </div>
-      )}
-      <Dms chatroomName={name} chatroomId={_id} user={props.auth.user} />
+      </section>
+      <Dms chatroomName={name} chatroomId={_id} user={props.auth.user} setToggleDrawer={setToggleDrawer} />
     </div>
   )
 }
