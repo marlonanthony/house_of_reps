@@ -23,7 +23,7 @@ const SearchBar = ({ profiles }) => {
     >
       <input
         className="searchbar_input"
-        placeholder=" Search Reps"
+        placeholder=" Search Members"
         type="text"
         name="matches"
         value={matches}
