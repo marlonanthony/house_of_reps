@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const SearchPost = ({ onChange, hashtag, showHashtags, showPostByHashtag }) => (
   <div className="searchbarpost">
     <input
-      placeholder="Search by hashtag"
+      placeholder="Search by Hashtag"
       onChange={onChange}
       value={hashtag}
       name="hashtag"
