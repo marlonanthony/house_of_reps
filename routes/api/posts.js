@@ -25,6 +25,9 @@ const {
 } = require('../../controllers/post-controller')
 
 // /api/posts
+router
+.route('/likedposts')
+.get(withAuth, getLikedPosts)
 
 router
 .route('/')
@@ -44,10 +47,6 @@ router
 router
 .route('/profileposts/:handle')
 .get(withAuth, getPostsByProfile)
-
-router
-.route('/likedposts')
-.get(withAuth, getLikedPosts)
 
 router
 .route('/like/:id')

@@ -83,6 +83,7 @@ const AddMedia = ({ addVenue, ...props }) => {
             name="video"
             value={video}
             onPaste={onPaste}
+            onChange={function(){}}
             error={errors.video}
             placeholder="Paste embed code"
           />
