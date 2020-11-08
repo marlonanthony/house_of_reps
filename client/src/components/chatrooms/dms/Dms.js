@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import './Dms.css'
 
@@ -11,13 +11,13 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-function Dms({ chatroomName ,chatroomId, user, setToggleDrawer, ...props }) {
+function Dms({ chatroomName, chatroomId, user, setToggleDrawer, ...props }) {
   const [message, setMessage] = useState(''),
     [dms, setDms] = useState([]),
     [errors, setErrors] = useState({}),
     ref = useRef(),
     scrollHeight = ref.current && ref.current.scrollHeight
-
+  
   useEffect(() => {
     if (scrollHeight) window.scrollTo(0, scrollHeight)
   }, [scrollHeight])
@@ -60,6 +60,7 @@ function Dms({ chatroomName ,chatroomId, user, setToggleDrawer, ...props }) {
           className="group-chat-reps-icon"
           src={require('../../../img/hor-icon.jpg')}
           alt="HORs logo"
+          title='side drawer'
           onClick={() => setToggleDrawer(prev => !prev)}
         />
         <small id="group-chat-name">{chatroomName}</small>
