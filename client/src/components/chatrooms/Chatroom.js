@@ -44,7 +44,7 @@ function Chatroom({
     }
   }, [setErrors, chatroom.chatroom.err])
 
-  const { name, members, invites, admin, _id } = chatroom.chatroom
+  const { name, members, moderators, invites, admin, _id } = chatroom.chatroom
 
   const invite =
     profile &&
@@ -55,14 +55,10 @@ function Chatroom({
     )[0]
 
   const member =
-    chatroom.chatroom &&
-    chatroom.chatroom.members &&
-    chatroom.chatroom.members.filter(me => me.id === props.auth.user.id)[0]
+    members && members.filter(me => me.id === props.auth.user.id)[0]
 
   const mods =
-    chatroom.chatroom &&
-    chatroom.chatroom.moderators &&
-    chatroom.chatroom.moderators.filter(me => me.id === props.auth.user.id)[0]
+    moderators && moderators.filter(me => me.id === props.auth.user.id)[0]
 
   if (errors) return <Redirect to="/dashboard" />
 
@@ -97,9 +93,8 @@ function Chatroom({
 
         <ul className='chatroom-uls'>
           Mods
-          {chatroom.chatroom &&
-            chatroom.chatroom.moderators &&
-            chatroom.chatroom.moderators.map(person => (
+          {moderators && 
+            moderators.map(person => (
               <li className='chatroom-lis' key={person._id}>
                 <Link className='chatroom-li-a' to={`/profile/${person.handle}`}>
                   {person && '@' + person.handle}
@@ -115,7 +110,7 @@ function Chatroom({
         </ul>
         <ul className='chatroom-uls'>
           Members
-          {members &&
+          {members && 
             members.map(member => (
               <li className='chatroom-lis' key={member._id}>
                 <Link className='chatroom-li-a' to={`/profile/${member.handle}`}>
@@ -152,9 +147,9 @@ function Chatroom({
             Delete Chatroom
           </button>
         )}
-        {member && member.id !== chatroom.chatroom.admin.id && (
+        {member && member.id !== admin.id && (
           <button
-            onClick={() => leaveChatroom(chatroom.chatroom._id, props.history)}
+            onClick={() => leaveChatroom(_id, props.history)}
           >
             Leave Chatroom
           </button>
@@ -171,7 +166,7 @@ function Chatroom({
                   (person, index, arr) =>
                     index === arr.findIndex(t => t.id === person.id)
                 )
-                addMembers(chatroom.chatroom._id, noDups)
+                addMembers(_id, noDups)
               }}
             >
               <SearchReps
