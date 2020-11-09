@@ -30,7 +30,7 @@ function Chatroom({
     [accepted, setAccepted] = useState(false),
     [showForm, setShowForm] = useState(false),
     [inviteMore, setInviteMore] = useState([]),
-    [makeMod, setMakeMod] = useState(false),
+    // [makeMod, setMakeMod] = useState(false),
     [toggleDrawer, setToggleDrawer] = useState(false)
 
   useEffect(() => {
@@ -50,10 +50,10 @@ function Chatroom({
   const { name, members, invites, admin, _id } = chatroom.chatroom
 
   const invite =
-    props.profiled &&
-    props.profiled.profile &&
-    props.profiled.profile.chatroomInvites &&
-    props.profiled.profile.chatroomInvites.filter(
+    profile &&
+    profile.profile &&
+    profile.profile.chatroomInvites &&
+    profile.profile.chatroomInvites.filter(
       me => me.id === chatroom.chatroom._id
     )[0]
 
@@ -178,7 +178,7 @@ function Chatroom({
               }}
             >
               <SearchReps
-                profiles={props.profiled.profiles}
+                profiles={profile.profiles}
                 setInvites={setInviteMore}
                 placeholder="Invite Members"
               />
@@ -216,7 +216,7 @@ function Chatroom({
 
 Chatroom.propTypes = {
   chatroom: PropTypes.object.isRequired,
-  profiled: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   getChatroom: PropTypes.func.isRequired,
   acceptChatroomInvite: PropTypes.func.isRequired,
@@ -228,7 +228,7 @@ Chatroom.propTypes = {
 
 const mapStateToProps = state => ({
   chatroom: state.chatroom,
-  profiled: state.profile,
+  profile: state.profile,
   auth: state.auth
 })
 
