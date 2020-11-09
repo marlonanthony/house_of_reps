@@ -44,11 +44,11 @@ export default function Speakeasy({ handle, onlineCount }) {
     })
     socket.on('new-connection', data => {
       localStorage.setItem('count', data)
-      setCount(JSON.parse(localStorage.getItem('count')))
+      setCount(Math.floor(JSON.parse(localStorage.getItem('count'))/2))
     })
     socket.on('lost-connection', data => {
       localStorage.setItem('count', data)
-      setCount(JSON.parse(localStorage.getItem('count')))
+      setCount(Math.floor(JSON.parse(localStorage.getItem('count'))/2))
     })
 
     return () => {
