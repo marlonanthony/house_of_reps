@@ -35,9 +35,6 @@ function Chatroom({
 
   useEffect(() => {
     getChatroom(props.match.params.id)
-  }, [])
-
-  useEffect(() => {
     getCurrentProfile()
   }, [])
 

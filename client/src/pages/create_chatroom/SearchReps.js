@@ -44,11 +44,14 @@ const SearchReps = ({ profiles, setInvites, setModerators, placeholder }) => {
         >
           {profiles &&
             profiles.map(profile =>
-              profile.handle.toLowerCase().includes(matches.toLowerCase()) ||
-              profile.name.toLowerCase().includes(matches.toLowerCase()) ||
+              (profile.handle && 
+              profile.handle.toLowerCase().includes(matches.toLowerCase())) ||
+              (profile.name &&
+              profile.name.toLowerCase().includes(matches.toLowerCase())) ||
+              (profile.stageName &&
               profile.stageName
                 .toLowerCase()
-                .includes(matches.toLowerCase()) ? (
+                .includes(matches.toLowerCase())) ? (
                 <div
                   key={profile._id}
                   className="searchbar_items_create_chatroom"
