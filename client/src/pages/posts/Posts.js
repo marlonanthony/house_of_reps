@@ -164,6 +164,7 @@ class Posts extends Component {
           <Speakeasy
             onlineCount={onlineCount}
             handle={profile && profile.handle}
+            avatar={profile && profile.avatar}
           />
           <Footer />
         </div>
