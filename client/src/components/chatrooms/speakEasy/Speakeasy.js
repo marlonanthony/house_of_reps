@@ -40,7 +40,7 @@ export default function Speakeasy({ handle, onlineCount }) {
       data.message.length
         ? setFeedback(data.handle + ' is typing a message')
         : setFeedback('')
-      setCount(data.count)
+      setCount(Math.floor(data.count /2))
     })
     socket.on('new-connection', data => {
       localStorage.setItem('count', data)
