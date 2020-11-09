@@ -51,14 +51,12 @@ function Chatroom({
     profile.profile &&
     profile.profile.chatroomInvites &&
     profile.profile.chatroomInvites.filter(
-      me => me.id === chatroom.chatroom._id
+      me => me.id === _id
     )[0]
 
-  const member =
-    members && members.filter(me => me.id === props.auth.user.id)[0]
+  const member = members && members.filter(me => me.id === props.auth.user.id)[0]
 
-  const mods =
-    moderators && moderators.filter(me => me.id === props.auth.user.id)[0]
+  const mods = moderators && moderators.filter(me => me.id === props.auth.user.id)[0]
 
   if (errors) return <Redirect to="/dashboard" />
 
