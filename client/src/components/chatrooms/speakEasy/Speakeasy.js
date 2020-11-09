@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import io from 'socket.io-client'
+import { withRouter } from 'react-router-dom'
 
 import './Speakeasy.css'
 
@@ -10,17 +11,18 @@ const socket = io(
     : 'https://fathomless-escarpment-28544.herokuapp.com'
 )
 
-export default function Speakeasy({ handle, onlineCount }) {
+function Speakeasy({ handle, avatar, onlineCount, history }) {
   const [message, setMessage] = useState(''),
     [output, setOutput] = useState([]),
     [feedback, setFeedback] = useState(''),
     [count, setCount] = useState(0)
-
+  
   const onSubmit = () => {
     message.length &&
       socket.emit('chat', {
         handle,
-        message
+        message,
+        avatar
       })
     setMessage('')
   }
@@ -31,7 +33,7 @@ export default function Speakeasy({ handle, onlineCount }) {
     socket.on('chat', data => {
       if (!data.handle && !data.message) return
       setFeedback('')
-      setOutput(o => [...o, data.handle + ': ' + data.message])
+      setOutput(o => [...o, {avatar: data.avatar, message: data.message, handle: data.handle}])
     })
     socket.on('typing', data => {
       // TODO:
@@ -50,12 +52,13 @@ export default function Speakeasy({ handle, onlineCount }) {
       localStorage.setItem('count', data)
       setCount(Math.floor(JSON.parse(localStorage.getItem('count'))/2))
     })
-
+    
     return () => {
       socket.off('chat')
       socket.off('typing')
       socket.off('new-connection')
       socket.off('lost-connection')
+      localStorage.removeItem('count')
     }
   }, [setCount, setFeedback, setOutput, message, onlineCount])
 
@@ -70,14 +73,17 @@ export default function Speakeasy({ handle, onlineCount }) {
       <div id="chat-window">
         <div id="output">
           {output.map((val, i) => {
-            const [arr1, arr2] = val.split(':')
             return (
-              <p key={i}>
-                <span style={{ color: 'var(--secondary-color)' }}>
-                  @{arr1}:
-                </span>{' '}
-                {arr2}
-              </p>
+              <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
+                <img src={val.avatar} 
+                  alt={`${val.handle}'s avatar`}
+                  style={{borderRadius: '50%', width: 40, height: 40, cursor: 'pointer'}} 
+                  onClick={() => history.push(`/profile/${val.handle}`)}
+                />
+                <p style={{ padding: 5 }}>
+                  {val.message}
+                </p>
+              </div>
             )
           })}
           <small id="feedback">{feedback}</small>
@@ -106,3 +112,5 @@ Speakeasy.propTypes = {
   handle: PropTypes.string,
   onlineCount: PropTypes.number
 }
+
+export default withRouter(Speakeasy)
