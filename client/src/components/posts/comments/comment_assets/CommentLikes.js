@@ -21,7 +21,7 @@ const CommentLikes = ({ comment, userNameOrAvatarClickedLikesPopup }) => {
           onClick={() => setShowLikesPopup(!showLikesPopup)}
           style={{ fontSize: '11px' }}
         >
-          Like by {comment.likes[comment.likes.length - 1].name} and{' '}
+          Liked by {comment.likes[comment.likes.length - 1].name} and{' '}
           {comment.likes.length - 1} others.
         </div>
       ) : (

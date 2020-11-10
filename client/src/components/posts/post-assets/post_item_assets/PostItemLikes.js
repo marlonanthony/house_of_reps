@@ -14,7 +14,7 @@ const PostItemLikes = ({
         </div>
       ) : likes.length > 2 ? (
         <div className="popup_likes" onClick={likesPopupHandler}>
-          Like by {likes[likes.length - 1].name} and {likes.length - 1} others.
+          Liked by {likes[likes.length - 1].name} and {likes.length - 1} others.
         </div>
       ) : (
         <div className="popup_likes" onClick={likesPopupHandler}>

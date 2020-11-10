@@ -26,7 +26,7 @@ export default function NestedLikes({
           style={{ fontSize: 11 }}
           onClick={() => setShow(!show)}
         >
-          Like by {nestedComment.likes[nestedComment.likes.length - 1].name} and{' '}
+          Liked by {nestedComment.likes[nestedComment.likes.length - 1].name} and{' '}
           {nestedComment.likes.length - 1} others.
         </div>
       ) : (
