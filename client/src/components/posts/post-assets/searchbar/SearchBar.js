@@ -42,13 +42,19 @@ const SearchBar = ({ profiles }) => {
                 profile.stageName
                   .toLowerCase()
                   .includes(matches.toLowerCase())) ? (
-                <Link
-                  key={profile._id}
-                  to={`/profile/${profile.handle}`}
-                  className="searchbar_items"
-                >
-                  @{profile.handle}
-                </Link>
+                    <Link
+                      key={profile._id}
+                      to={`/profile/${profile.handle}`}
+                      className="searchbar_items" // In Posts.css
+                    >
+                      <img 
+                        className='post_avatar_img' // In PostItem.css
+                        style={{ border: 'none' }}
+                        src={profile.avatar} 
+                        alt={`${profile.handle}'s avatar`}
+                      />
+                      <p>@{profile.handle}</p>
+                    </Link>
               ) : null
             )}
         </div>

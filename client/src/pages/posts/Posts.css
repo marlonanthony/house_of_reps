@@ -217,8 +217,9 @@
   }
   .searchbar_items {
     display: flex;
+    align-items: center;
     width: 100%; 
-    padding: 10px;
+    padding: 5px;
     font-size: 13px;
     color: var(--text-color);
     background: rgba(0,0,0,0.89);
