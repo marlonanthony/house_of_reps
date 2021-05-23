@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 
 import {
   getChatroom,
@@ -11,17 +10,17 @@ import {
   addMembers
 } from '../../actions/chatroomActions'
 import { getCurrentProfile, leaveChatroom } from '../../actions/profileActions'
-import SearchReps from '../../pages/create_chatroom/SearchReps'
 import Dms from './dms/Dms'
+import SideDrawer from './side_drawer/SideDrawer'
 import './Chatroom.css'
 
 function Chatroom({
   getChatroom,
+  getCurrentProfile,
   acceptChatroomInvite,
   chatroom,
   profile,
   deleteChatroom,
-  getCurrentProfile,
   leaveChatroom,
   addMembers,
   ...props
@@ -62,143 +61,29 @@ function Chatroom({
 
   return (
     <>
-      <section id={ toggleDrawer ? 'chatroom-drawer-active' : 'chatroom-drawer-inactive'}>
-        {invite && !accepted && (
-          <button
-            style={{ cursor: 'pointer' }}
-            onClick={() => {
-              setAccepted(true)
-              acceptChatroomInvite(props.match.params.id)
-            }}
-          >
-            Accept Invite
-          </button>
-        )}
-        <ul className='chatroom-uls'>
-          Admin
-          <li className='chatroom-lis'>
-            <Link className='chatroom-li-a' to={`/profile/${admin && admin.handle}`}>
-              {admin && '@' + admin.handle}
-            </Link>
-            <i
-              className="material-icons chatroom-li-icon"
-              onClick={() => alert( "You'll be allowed to do something with " +admin.handle + ' soon')}
-            >
-              more_vert
-            </i>
-          </li>
-        </ul>
-
-        <ul className='chatroom-uls'>
-          Mods
-          {moderators && 
-            moderators.map(person => (
-              <li className='chatroom-lis' key={person._id}>
-                <Link className='chatroom-li-a' to={`/profile/${person.handle}`}>
-                  {person && '@' + person.handle}
-                </Link>
-                <i
-                  className="material-icons chatroom-li-icon"
-                  onClick={() => alert( "You'll be allowed to do something with " +person.handle + ' soon')}
-                >
-                  more_vert
-                </i>
-              </li>
-            ))}
-        </ul>
-        <ul className='chatroom-uls'>
-          Members
-          {members && 
-            members.map(member => (
-              <li className='chatroom-lis' key={member._id}>
-                <Link className='chatroom-li-a' to={`/profile/${member.handle}`}>
-                  @{member.handle}
-                </Link>
-                <i
-                  className="material-icons chatroom-li-icon"
-                  onClick={() => alert( "You'll be allowed to do something with " +member.handle + ' soon')}
-                >
-                  more_vert
-                </i>
-              </li>
-            ))}
-        </ul>
-        <ul className='chatroom-uls'>
-          Invited
-          {invites &&
-            invites.map(person => (
-              <li className='chatroom-lis' key={person._id}>
-                <Link className='chatroom-li-a' to={`/profile/${person.handle}`}>
-                  @{person.handle}
-                </Link>
-                <i
-                  className="material-icons chatroom-li-icon"
-                  onClick={() => alert( "You'll be allowed to do something with " +person.handle + ' soon')}
-                >
-                  more_vert
-                </i>
-              </li>
-            ))}
-        </ul>
-        {(admin && admin.id) === props.auth.user.id && (
-          <button onClick={() => deleteChatroom(_id, props.history)}>
-            Delete Chatroom
-          </button>
-        )}
-        {member && member.id !== admin.id && (
-          <button
-            onClick={() => leaveChatroom(_id, props.history)}
-          >
-            Leave Chatroom
-          </button>
-        )}
-        {((admin && admin.id) === props.auth.user.id || (mods && member)) && (
-          <button onClick={() => setShowForm(val => !val)}>Edit chatroom</button>
-        )}
-        {showForm && (
-          <div>
-            <form
-              onSubmit={e => {
-                e.preventDefault()
-                const noDups = inviteMore.filter(
-                  (person, index, arr) =>
-                    index === arr.findIndex(t => t.id === person.id)
-                )
-                addMembers(_id, noDups)
-              }}
-            >
-              <SearchReps
-                profiles={profile.profiles}
-                setInvites={setInviteMore}
-                placeholder="Invite Members"
-              />
-
-              {inviteMore && (
-                <ul>
-                  {inviteMore.map(m => (
-                    <li
-                      key={m.id}
-                      onClick={() =>
-                        setInviteMore(prev => [
-                          ...prev,
-                          {
-                            id: m.id,
-                            name: m.name,
-                            handle: m.handle
-                          }
-                        ])
-                      }
-                    >
-                      {m.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <button>Submit</button>
-            </form>
-          </div>
-        )}
-      </section>
+      <SideDrawer
+          _id={_id}
+          props={props}
+          profile={profile}
+          invite={invite}
+          accepted={accepted}
+          setAccepted={setAccepted}
+          admin={admin}
+          addMembers={addMembers}
+          mods={mods}
+          moderators={moderators}
+          member={member}
+          members={members}
+          invites={invites}
+          inviteMore={inviteMore}
+          setInviteMore={setInviteMore}
+          showForm={showForm}
+          setShowForm={setShowForm}
+          toggleDrawer={toggleDrawer}
+          leaveChatroom={leaveChatroom}
+          deleteChatroom={deleteChatroom}
+          acceptChatroomInvite={acceptChatroomInvite}
+      />
       <Dms chatroomName={name} chatroomId={_id} user={props.auth.user} setToggleDrawer={setToggleDrawer} />
     </>
   )

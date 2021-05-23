@@ -49,6 +49,7 @@ function Dms({ chatroomName, chatroomId, user, setToggleDrawer, ...props }) {
       message
     })
     axios.post('/api/messages', newMessage)
+    .then(() => {})
     .catch(err => setErrors(err.response.data))
     setMessage('')
   }
