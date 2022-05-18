@@ -13,8 +13,8 @@ const Guest = ({ auth, loginUser, ...props }) => {
 
   const onSubmitHandler = () => {
     const userData = {
-      email: 'andresojo@gmail.com',
-      password: '123456'
+      email: '',
+      password: ''
     }
     loginUser(userData)
   }

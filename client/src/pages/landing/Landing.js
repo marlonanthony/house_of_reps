@@ -21,7 +21,7 @@ const Landing = () => {
                 <Link to="/register">
                   <button className="landing_buttons">Sign Up</button>
                 </Link>
-                <Guest />
+                {/* <Guest /> */}
               </div>
             </div>
             <footer className="landing_footer">
